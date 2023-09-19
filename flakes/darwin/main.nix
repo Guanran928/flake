@@ -55,6 +55,11 @@
       ShowPathbar = true;
       ShowStatusBar = false;
     };
+    loginwindow = {
+      autoLoginUser = "Off";
+      DisableConsoleAccess = true;
+      GuestEnabled = false;
+    };
     menuExtraClock = {
       IsAnalog = false;
       Show24Hour = false;
