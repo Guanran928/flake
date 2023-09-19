@@ -1,0 +1,22 @@
+[Desktop Entry]
+Name=Telegram Desktop
+Comment=Official desktop version of Telegram messaging app
+Exec=flatpak run --branch=stable --arch=x86_64 --command=telegram-desktop --file-forwarding org.telegram.desktop -- @@u %u @@
+Icon=org.telegram.desktop
+Terminal=false
+StartupWMClass=TelegramDesktop
+Type=Application
+Categories=Chat;Network;InstantMessaging;Qt;
+MimeType=x-scheme-handler/tg;
+Keywords=tg;chat;im;messaging;messenger;sms;tdesktop;
+Actions=quit;
+#DBusActivatable=true
+SingleMainWindow=true
+X-GNOME-UsesNotifications=true
+X-GNOME-SingleWindow=true
+X-Flatpak=org.telegram.desktop
+
+[Desktop Action quit]
+Exec=flatpak run --branch=stable --arch=x86_64 --command=telegram-desktop org.telegram.desktop -quit
+Name=Quit Telegram
+Icon=application-exit

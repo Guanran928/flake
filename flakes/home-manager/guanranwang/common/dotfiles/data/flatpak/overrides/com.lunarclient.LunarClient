@@ -1,0 +1,5 @@
+[Context]
+filesystems=xdg-documents/minecraft-shaders:ro;xdg-documents/minecraft-packs:ro
+
+[Environment]
+__GL_THREADED_OPTIMIZATIONS=0

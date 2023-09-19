@@ -1,0 +1,7 @@
+{ ... }:
+
+{
+  imports = [
+    ./guanranwang.nix
+  ];
+}

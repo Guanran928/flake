@@ -1,0 +1,5 @@
+#!/bin/sh
+
+gsettings set org.gnome.desktop.interface font-name 'Inter'
+gsettings set org.gnome.desktop.interface document-font-name 'Inter'
+gsettings set org.gnome.desktop.interface monospace-font-name 'JetBrainsMono Nerd Font'

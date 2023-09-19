@@ -1,0 +1,57 @@
+#
+# Dunst config 
+# ~/.config/dunst/dunstrc
+# modified from https://github.com/end-4/dots-hyprland/blob/main/.config/dunst/dunstrc
+#
+
+[global]
+follow = mouse
+geometry = "280x50-20+90"
+indicate_hidden = no
+separator_height = 2
+separator_color = yes
+padding = 12
+horizontal_padding = 12
+frame_width = 2
+font = Monospace 10
+line_height = 4
+markup = full
+format = "<b>%s</b>\n%b"
+alignment = left
+show_age_threshold = 60
+word_wrap = yes
+ignore_newline = no
+stack_duplicates = yes
+hide_duplicate_count = no
+icon_position = left
+icon_path = /home/guanranwang/.local/share/icons/dunst
+show_indicators = no
+icon_position = left
+max_icon_size = 48
+sticky_history = yes
+history_length = 20
+title = Dunst
+class = Dunst
+corner_radius = 10
+offset = 8x8
+
+# Tokyonight
+[global]
+frame_color = "#c0caf5"
+separator_color = frame
+
+[urgency_low]
+timeout = 4
+background = "#1a1b26"
+foreground = "#c0caf5"
+
+[urgency_normal]
+timeout = 8
+background = "#1a1b26"
+foreground = "#c0caf5"
+
+[urgency_critical]
+timeout = 0
+background = "#1a1b26"
+foreground = "#c0caf5"
+frame_color = "#FAB387"

@@ -1,0 +1,29 @@
+[submodule "flakes/home-manager/guanranwang/common/dotfiles/config/alacritty/catppuccin"]
+	path = flakes/home-manager/guanranwang/common/dotfiles/config/alacritty/catppuccin
+	url = https://github.com/catppuccin/catppuccin.git
+[submodule "flakes/home-manager/guanranwang/common/dotfiles/config/clash/yacd"]
+	path = flakes/home-manager/guanranwang/common/dotfiles/config/clash/yacd
+	url = https://github.com/haishanh/yacd.git
+	branch = gh-pages
+[submodule "flakes/home-manager/guanranwang/common/dotfiles/config/clash/metacubexd"]
+	path = flakes/home-manager/guanranwang/common/dotfiles/config/clash/metacubexd
+	url = https://github.com/MetaCubeX/metacubexd.git
+	branch = gh-pages
+[submodule "flakes/home-manager/guanranwang/common/dotfiles/config/zsh/fast-syntax-highlighting"]
+	path = flakes/home-manager/guanranwang/common/dotfiles/config/zsh/fast-syntax-highlighting
+	url = https://github.com/zdharma-continuum/fast-syntax-highlighting.git
+[submodule "flakes/home-manager/guanranwang/common/dotfiles/config/zsh/fzf-tab"]
+	path = flakes/home-manager/guanranwang/common/dotfiles/config/zsh/fzf-tab
+	url = https://github.com/Aloxaf/fzf-tab.git
+[submodule "flakes/home-manager/guanranwang/common/dotfiles/config/zsh/powerlevel10k"]
+	path = flakes/home-manager/guanranwang/common/dotfiles/config/zsh/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git
+[submodule "flakes/home-manager/guanranwang/common/dotfiles/config/zsh/zsh-autosuggestions"]
+	path = flakes/home-manager/guanranwang/common/dotfiles/config/zsh/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions.git
+[submodule "flakes/home-manager/guanranwang/common/dotfiles/config/zsh/zsh-history-substring-search"]
+	path = flakes/home-manager/guanranwang/common/dotfiles/config/zsh/zsh-history-substring-search
+	url = https://github.com/zsh-users/zsh-history-substring-search.git
+[submodule "flakes/home-manager/guanranwang/common/dotfiles/config/zsh/zsh-syntax-highlighting"]
+	path = flakes/home-manager/guanranwang/common/dotfiles/config/zsh/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
