@@ -39,6 +39,22 @@
   programs.zsh.enable = true;  # default shell on catalina
   programs.fish.enable = true;
 
+  system.defaults.finder = {
+    # Apple... Do I really have to change literally 
+    # every setting in Finder to make it actually usable
+
+    _FXShowPosixPathInTitle = false;
+    AppleShowAllExtensions = true;
+    AppleShowAllFiles = true;
+    CreateDesktop = false;
+    FXDefaultSearchScope = "SCcf"; # "SCcf" = Current folder
+    FXEnableExtensionChangeWarning = false;
+    FXPreferredViewStyle = "Nlsv"; # "icnv" = Icon view, "Nlsv" = List view, "clmv" = Column View, "Flwv" = Gallery View 
+    QuitMenuItem = true;
+    ShowPathbar = true;
+    ShowStatusBar = false;
+  };
+
   # Set Git commit hash for darwin-version.
   #system.configurationRevision = self.rev or self.dirtyRev or null;
 
