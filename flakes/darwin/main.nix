@@ -5,6 +5,8 @@
     ./networking
     ./packages
     ./users
+
+    ./input.nix
   ];
 
   fonts.fonts = with pkgs; [
