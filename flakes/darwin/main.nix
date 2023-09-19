@@ -39,20 +39,31 @@
   programs.zsh.enable = true;  # default shell on catalina
   programs.fish.enable = true;
 
-  system.defaults.finder = {
+  system.defaults = {
     # Apple... Do I really have to change literally 
-    # every setting in Finder to make it actually usable
-
-    _FXShowPosixPathInTitle = false;
-    AppleShowAllExtensions = true;
-    AppleShowAllFiles = true;
-    CreateDesktop = false;
-    FXDefaultSearchScope = "SCcf"; # "SCcf" = Current folder
-    FXEnableExtensionChangeWarning = false;
-    FXPreferredViewStyle = "Nlsv"; # "icnv" = Icon view, "Nlsv" = List view, "clmv" = Column View, "Flwv" = Gallery View 
-    QuitMenuItem = true;
-    ShowPathbar = true;
-    ShowStatusBar = false;
+    # every setting in macOS to make it actually usable
+    # NOTE: default of those options is `null` (unmanaged)
+    finder = {
+      _FXShowPosixPathInTitle = false;
+      AppleShowAllExtensions = true;
+      AppleShowAllFiles = true;
+      CreateDesktop = false;
+      FXDefaultSearchScope = "SCcf"; # "SCcf" = Current folder
+      FXEnableExtensionChangeWarning = false;
+      FXPreferredViewStyle = "Nlsv"; # "icnv" = Icon view, "Nlsv" = List view, "clmv" = Column View, "Flwv" = Gallery View 
+      QuitMenuItem = true;
+      ShowPathbar = true;
+      ShowStatusBar = false;
+    };
+    menuExtraClock = {
+      IsAnalog = false;
+      Show24Hour = false;
+      ShowAMPM = true;
+      ShowDate = 0; # 0 = show, 1, 2 = don't show
+      ShowDayOfMonth = true;
+      ShowDayOfWeek = true;
+      ShowSeconds = false;
+    };
   };
 
   # Set Git commit hash for darwin-version.
