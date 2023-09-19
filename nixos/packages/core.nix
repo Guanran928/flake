@@ -22,7 +22,7 @@
   # Services
   services = {
     getty.greetingLine = ''
-      NixOS ${config.system.nixos.release} ${config.system.nixos.codeName}
+      NixOS ${config.system.nixos.label} ${config.system.nixos.codeName} (\m) - \l
       --my-next-gpu-wont-be-nvidia
     '';
     #cron.enable = true;
