@@ -25,14 +25,14 @@
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-hardware = {
-      url = "github:NixOS/nixos-hardware/master";
-      #inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nixpak = {
-      url = "github:nixpak/nixpak";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #nixos-hardware = {
+    #  url = "github:NixOS/nixos-hardware/master";
+    #  #inputs.nixpkgs.follows = "nixpkgs";
+    #};
+    #nixpak = {
+    #  url = "github:nixpak/nixpak";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
