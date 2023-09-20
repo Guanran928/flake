@@ -12,7 +12,8 @@
     # changes in each release.
     stateVersion = "23.05";
 
-    shellAliases = let
+    shellAliases = 
+    let
       proxy = "http://127.0.0.1:7890/";
     in {
       # navigation
@@ -24,10 +25,10 @@
       ".." = "cd ..";
 
       # replacements
-      "code" = "codium";
-      "neofetch" = "fastfetch";
+      #"code" = "codium";
+      #"neofetch" = "fastfetch";
       #"ranger" = "joshuto"; # rust
-      "grep" = "rg";
+      #"grep" = "rg";
       #"top" = "btm -b";
       #"htop" = "btm -b";
       #"btop" = "btm";
