@@ -39,6 +39,34 @@
   programs.zsh.enable = true;  # default shell on catalina
   programs.fish.enable = true;
 
+  services = {
+    yabai = {
+      enable = true;
+      enableScriptingAddition = true;
+      config = {
+        layout         = "bsp";
+  
+        mouse_modifier = "fn";
+  
+        # very broken on slow cpu
+        #focus_follows_mouse = "autoraise";
+        #mouse_follows_focus = "on";
+  
+        top_padding    = 10;
+        bottom_padding = 10;
+        left_padding   = 10;
+        right_padding  = 10;
+        window_gap     = 4;
+      };
+    };
+    skhd = {
+      enable = true;
+      skhdConfig = ''
+        cmd - return : open -n ${pkgs.alacritty}/Applications/Alacritty.app
+      '';
+    };
+  };
+
   system.defaults = {
     # Apple... Do I really have to change literally 
     # every setting in macOS to make it actually usable.

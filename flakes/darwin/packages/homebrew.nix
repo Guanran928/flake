@@ -5,8 +5,6 @@
     enable = true;
     brews = [
       "fastfetch" # fastfetch is broken in nixpkgs
-
-      "yabai" # b3z/small
     ];
     casks = [
       #"alacritty"
@@ -32,7 +30,6 @@
     ];
     taps = [
       "b3z/small" # activate
-      "koekeishiya/formulae" # yabai
     ];
   };
 }

@@ -15,10 +15,6 @@ in
       source = "${configPath}/alacritty";
       recursive = true;
     };
-    "yabai" = {
-      source = "${configPath}/yabai";
-      recursive = true;
-    };
     "fish" = {
       source = "${configPath}/fish"; 
       recursive = true;
