@@ -16,15 +16,21 @@
     serviceConfig = {
       Type = "simple";
       WorkingDirectory = "/etc/clash-meta";
+      User = [ config.users.users."clash-meta".name ];
       ExecStart = "${pkgs.clash-meta}/bin/clash-meta -d /etc/clash-meta";
       Restart = "on-failure";
+      CapabilityBoundingSet = [
+        "CAP_NET_RAW"
+        "CAP_NET_ADMIN"
+        "CAP_NET_BIND_SERVICE"
+      ];
+      AmbientCapabilities = [
+        "CAP_NET_RAW"
+        "CAP_NET_ADMIN"
+        "CAP_NET_BIND_SERVICE"
+      ];
     };
   };
 
-  environment.etc = {
-    "clash-meta/config.yaml".source = config.sops.secrets."clash-config".path;
-    "clash-meta/metacubexd" = {
-      source = ../../flakes/home-manager/guanranwang/common/dotfiles/config/clash/metacubexd;
-    };
-  };
+  environment.etc."clash-meta/metacubexd".source = ../../flakes/home-manager/guanranwang/common/dotfiles/config/clash/metacubexd;
 }

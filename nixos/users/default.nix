@@ -3,6 +3,7 @@
 {
   imports = [
     ./users.nix
-    ./guanranwang.nix
+    ./system-users.nix
+    ./normal-users/guanranwang.nix
   ];
 }

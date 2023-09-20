@@ -110,15 +110,23 @@
           }
 
           sops-nix.nixosModules.sops
+          ({ config, ... }:
           {
             sops = {
               defaultSopsFile = ./secrets/secrets.yaml;
               age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
               secrets = {
-                "clash-config" = { mode = "0444"; }; # readable
+                "clash-config" = {
+                  #mode = "0444"; # readable
+                  owner = config.users.users."clash-meta".name;
+                  group = config.users.users."clash-meta".group;
+                  restartUnits = [ "clash-meta.service" ];
+                  path = "/etc/clash-meta/config.yaml";
+                };
+                "user-password-guanranwang".neededForUsers = true;
               };
             };
-          }
+          })
         ];
       };
 
