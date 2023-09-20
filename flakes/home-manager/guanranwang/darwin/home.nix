@@ -56,6 +56,13 @@
       spicetify-cli
       yesplaymusic
       mpv
+
+      # replace outdated macOS components
+      coreutils
+      vim 
+      gnugrep
+      openssh
+      screen
     ];
 
     sessionVariables = {
