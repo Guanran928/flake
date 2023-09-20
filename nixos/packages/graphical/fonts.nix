@@ -15,6 +15,7 @@
       source-han-mono
       #wqy_zenhei # weird font shape, noto sans cjk is a better alternative
       #wqy_microhei
+      roboto
       fira-code
       jetbrains-mono
       (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
