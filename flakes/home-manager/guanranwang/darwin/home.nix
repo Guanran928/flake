@@ -63,6 +63,10 @@
       gnugrep
       openssh
       screen
+
+      # LSP
+      nixd 
+      nil
     ];
 
     sessionVariables = {
