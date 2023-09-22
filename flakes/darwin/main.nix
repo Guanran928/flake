@@ -131,15 +131,15 @@
       AppleInterfaceStyleSwitchesAutomatically = false;
       AppleKeyboardUIMode = 3;                                    # ??? "null or value 3 (singular enum)"
       AppleMeasurementUnits = "Centimeters";                      # "null or one of "Centimeters", "Inches""
-      ApplePressAndHoldEnabled = false;                           # DOES NOT WORK... https://stackoverflow.com/questions/33152551/how-can-i-disable-applepressandholdenabled-for-a-specific-application-repeat#33497193
+      ApplePressAndHoldEnabled = false;                           # https://stackoverflow.com/questions/33152551/how-can-i-disable-applepressandholdenabled-for-a-specific-application-repeat#33497193
       AppleScrollerPagingBehavior = false;
       #AppleShowAllExtensions = true;                             # Dupelicate?
       #AppleShowAllFiles = true;
       AppleShowScrollBars = "Always";
       AppleTemperatureUnit = "Celsius";                           # "null or one of "Celsius", "Fahrenheit"" 
       #AppleWindowTabbingMode # ?
-      InitialKeyRepeat = 10;
-      KeyRepeat = 1;
+      InitialKeyRepeat = 32;
+      KeyRepeat = 2;
       NSAutomaticCapitalizationEnabled = false;
       NSAutomaticDashSubstitutionEnabled = false;
       NSAutomaticPeriodSubstitutionEnabled = false;
