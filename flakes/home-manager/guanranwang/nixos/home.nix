@@ -60,6 +60,7 @@
       # cli
       fastfetch
       wget
+      sops
       zoxide # rs
       trashy
       eza
