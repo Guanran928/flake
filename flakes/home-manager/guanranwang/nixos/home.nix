@@ -61,6 +61,7 @@
       fastfetch
       wget
       sops
+      skim
       zoxide # rs
       trashy
       eza

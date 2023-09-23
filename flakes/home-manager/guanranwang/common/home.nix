@@ -68,6 +68,7 @@
       initExtra = ''
         source ${config.xdg.configHome}/zsh/plugins/sudo/sudo.plugin.zsh
         source ${config.xdg.configHome}/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
+        zstyle ':fzf-tab:*' fzf-command sk
       '';
       history = {
         path = "${config.xdg.configHome}/zsh/.zsh_history";

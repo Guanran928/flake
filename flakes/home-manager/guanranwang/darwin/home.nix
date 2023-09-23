@@ -51,6 +51,7 @@
       yt-dlp
       aria2
       android-tools
+      skim
 
       spotify
       spicetify-cli
