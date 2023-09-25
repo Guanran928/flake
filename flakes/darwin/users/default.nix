@@ -2,6 +2,6 @@
 
 {
   imports = [
-    ./guanranwang.nix
+    ./normal-users/guanranwang.nix
   ];
 }
