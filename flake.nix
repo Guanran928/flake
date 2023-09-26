@@ -94,8 +94,6 @@
 
               extraSpecialArgs = { inherit inputs; }; # ??? isnt specialArgs imported by default ???
             };
-            # fcitx, use kde kcm
-            systemd.user.services.fcitx5-daemon.enable = lib.mkForce false;
           })
 
           hosts.nixosModule
@@ -130,6 +128,7 @@
         ];
       };
 
+      # Currently un-used.
       "imac-nixos" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
