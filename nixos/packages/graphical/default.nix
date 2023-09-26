@@ -7,5 +7,6 @@
     #./flatpak.nix
     ./fonts.nix
     ./graphical.nix
+    ./xdg.nix
   ];
 }
