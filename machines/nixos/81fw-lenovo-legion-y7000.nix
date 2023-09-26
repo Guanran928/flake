@@ -2,16 +2,16 @@
 
 {
   imports = [
-    ../nixos
+    ../../nixos
 
-    ../nixos/hardware/misc/audio.nix
-    ../nixos/hardware/misc/bluetooth.nix
-    ../nixos/hardware/misc/opengl.nix
-    ../nixos/hardware/cpu/intel.nix
-    ../nixos/hardware/gpu/intel.nix
-    ../nixos/hardware/gpu/nvidia.nix
-    ../nixos/hardware/gpu/nvidia-prime.nix
-    ../nixos/hardware/accessories/xbox.nix
+    ./hardware/misc/audio.nix
+    ./hardware/misc/bluetooth.nix
+    ./hardware/misc/opengl.nix
+    ./hardware/cpu/intel.nix
+    ./hardware/gpu/intel.nix
+    ./hardware/gpu/nvidia.nix
+    ./hardware/gpu/nvidia-prime.nix
+    ./hardware/accessories/xbox.nix
     (modulesPath + "/installer/scan/not-detected.nix") # what is this
   ];
 

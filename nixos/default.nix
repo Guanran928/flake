@@ -3,7 +3,6 @@
 {
   imports = [
     ./boot
-    ./hardware
     ./i18n
     ./networking
     ./nix

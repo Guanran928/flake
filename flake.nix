@@ -44,7 +44,7 @@
       "iMac-macOS" = nix-darwin.lib.darwinSystem {
         system = "x86_64-darwin";
         modules = [
-          ./hosts/darwin/imac-2017.nix
+          ./machines/darwin/imac-2017.nix
 
           home-manager.darwinModules.home-manager
           {
@@ -64,7 +64,7 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          ./hosts/81fw-lenovo-legion-y7000.nix
+          ./machines/nixos/81fw-lenovo-legion-y7000.nix
 
           # Overlays
           {
@@ -133,7 +133,7 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          ./hosts/imac-2017.nix
+          ./machines/nixos/imac-2017.nix
 
           home-manager.nixosModules.home-manager
           {
