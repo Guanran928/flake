@@ -46,13 +46,7 @@
         modules = [
           ./machines/darwin/imac-2017.nix
           ./users/guanranwang/darwin.nix
-
-          home-manager.darwinModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.guanranwang = import ./users/guanranwang/home-manager/darwin/home.nix;
-          }
+          ./flakes/darwin/home-manager.nix
         ];
       };
     };
@@ -65,69 +59,13 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          ./machines/nixos/81fw-lenovo-legion-y7000.nix
+          ./machines/nixos/81fw-lenovo-legion-y7000.nix # Entrypoint, this .nix file imports ./nixos
           ./users/guanranwang/nixos.nix
-
-          # Overlays
-          {
-            nixpkgs.overlays = [
-              berberman.overlays.default
-            ];
-          }
-
-          lanzaboote.nixosModules.lanzaboote
-          ({ pkgs, lib, ... }:
-          {
-            environment.systemPackages = with pkgs; [ sbctl ];
-            boot.loader.systemd-boot.enable = lib.mkForce false;
-            boot.lanzaboote = {
-              enable = true;
-              pkiBundle = "/etc/secureboot";
-            };
-          })
-
-          home-manager.nixosModules.home-manager
-          ({ lib, ... }:
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              #                            users,user,       flake,       os.       
-              users.guanranwang = import ./users/guanranwang/home-manager/nixos;
-
-              extraSpecialArgs = { inherit inputs; }; # ??? isnt specialArgs imported by default ???
-            };
-          })
-
-          hosts.nixosModule
-          {
-            networking.stevenBlackHosts = {
-              enable = true;
-              blockFakenews = true;
-              blockGambling = true;
-              blockPorn = true;
-              blockSocial = true;
-            };
-          }
-
-          sops-nix.nixosModules.sops
-          ({ config, ... }:
-          {
-            sops = {
-              defaultSopsFile = ./users/guanranwang/secrets/secrets.yaml;
-              age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-              secrets = {
-                "clash-config" = {
-                  #mode = "0444"; # readable
-                  owner = config.users.users."clash-meta".name;
-                  group = config.users.users."clash-meta".group;
-                  restartUnits = [ "clash-meta.service" ];
-                  path = "/etc/clash-meta/config.yaml";
-                };
-                "user-password-guanranwang".neededForUsers = true;
-              };
-            };
-          })
+          ./flakes/nixos/berberman.nix
+          ./flakes/nixos/home-manager.nix
+          ./flakes/nixos/hosts.nix
+          ./flakes/nixos/lanzaboote.nix
+          ./flakes/nixos/sops-nix.nix
         ];
       };
 
@@ -138,26 +76,11 @@
         modules = [
           ./machines/nixos/imac-2017.nix
           ./users/guanranwag/nixos.nix
-
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.guanranwang = import ./users/guananwnng/home-manager/nixos;
-            };
-          }
-
-          hosts.nixosModule
-          {
-            networking.stevenBlackHosts = {
-              enable = true;
-              blockFakenews = true;
-              blockGambling = true;
-              blockPorn = true;
-              blockSocial = true;
-            };
-          }
+          ./flakes/nixos/berberman.nix
+          ./flakes/nixos/home-manager.nix
+          ./flakes/nixos/hosts.nix
+          ./flakes/nixos/lanzaboote.nix
+          ./flakes/nixos/sops-nix.nix
         ];
       };
     };
@@ -167,6 +90,8 @@
     # Home-Manager
     homeConfigurations = {
       "guanranwang@81fw-nixos" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = { inherit inputs; };
         modules = [
           sops-nix.homeManagerModules.sops
 
@@ -184,6 +109,8 @@
       };
 
       "guanranwang@imac-nixos" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = { inherit inputs; };
         modules = [
           sops-nix.homeManagerModules.sops
 

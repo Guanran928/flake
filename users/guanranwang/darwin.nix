@@ -11,4 +11,7 @@
       uid = 501;
     };
   };
+
+  #                                             users,user,       flake,       os.
+  home-manager.users.guanranwang = import ../../users/guanranwang/home-manager/darwin; # NOTE: using flakes
 }
