@@ -21,7 +21,7 @@
       "ll" = "${pkgs.eza}/bin/eza -Fahl --icons --git";
       "ls" = "${pkgs.eza}/bin/eza -F --icons --git";
       "la" = "${pkgs.eza}/bin/eza -Fa --icons --git";
-      "tree" = "${pkgs.eza}/bin/eza --icons --git -tree";
+      "tree" = "${pkgs.eza}/bin/eza --icons --git --tree";
       ".." = "cd ..";
 
       # replacements
