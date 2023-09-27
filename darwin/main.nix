@@ -4,7 +4,6 @@
   imports = [
     ./networking
     ./packages
-    ./users
 
     ./input.nix
   ];

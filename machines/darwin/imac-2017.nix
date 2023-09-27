@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../../flakes/darwin/main.nix
+    ../../darwin/main.nix
   ];
   networking.knownNetworkServices = [
     "Ethernet"

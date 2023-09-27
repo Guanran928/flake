@@ -51,7 +51,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.guanranwang = import ./flakes/home-manager/guanranwang/darwin/home.nix;
+            home-manager.users.guanranwang = import ./users/guanranwang/home-manager/darwin/home.nix;
           }
         ];
       };
