@@ -32,5 +32,5 @@
     };
   };
 
-  environment.etc."clash-meta/metacubexd".source = ../../flakes/home-manager/guanranwang/common/dotfiles/config/clash/metacubexd;
+  environment.etc."clash-meta/metacubexd".source = ../../users/guanranwang/home-manager/common/dotfiles/config/clash/metacubexd;
 }

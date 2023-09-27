@@ -65,6 +65,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./machines/nixos/81fw-lenovo-legion-y7000.nix
+          ./users/guanranwang/nixos.nix
 
           # Overlays
           {
@@ -90,7 +91,8 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.guanranwang = import ./flakes/home-manager/guanranwang/nixos;
+              #                            users,user,       flake,       os.       
+              users.guanranwang = import ./users/guanranwang/home-manager/nixos;
 
               extraSpecialArgs = { inherit inputs; }; # ??? isnt specialArgs imported by default ???
             };
@@ -111,7 +113,7 @@
           ({ config, ... }:
           {
             sops = {
-              defaultSopsFile = ./secrets/secrets.yaml;
+              defaultSopsFile = ./users/guanranwang/secrets/secrets.yaml;
               age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
               secrets = {
                 "clash-config" = {
@@ -134,13 +136,14 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./machines/nixos/imac-2017.nix
+          ./users/guanranwag/nixos.nix
 
           home-manager.nixosModules.home-manager
           {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.guanranwang = import ./flakes/home-manager/guanranwang/nixos;
+              users.guanranwang = import ./users/guananwnng/home-manager/nixos;
             };
           }
 
