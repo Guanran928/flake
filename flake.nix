@@ -45,6 +45,7 @@
         system = "x86_64-darwin";
         modules = [
           ./machines/darwin/imac-2017.nix
+          ./users/guanranwang/darwin.nix
 
           home-manager.darwinModules.home-manager
           {
