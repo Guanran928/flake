@@ -5,22 +5,9 @@ let
   binPath = ../common/dotfiles/bin;
   configPath = ../common/dotfiles/config;
   dataPath = ../common/dotfiles/data;
-  chromiumFlags = ''
-    --ozone-platform-hint=auto
-    --enable-wayland-ime
-    #--gtk-version=4
-    --password-store=gnome
-    --proxy-server=127.0.0.1:7890
-  '';
 in
 {
   xdg.configFile = {
-    "chromium-flags.conf".text = chromiumFlags;
-    "chrome-flags.conf".text = chromiumFlags;
-    "electron-flags.conf".text = chromiumFlags;
-    "code-flags.conf".text = chromiumFlags;
-    #"thorium-flags.conf".text = chromiumFlags;
-
     "alacritty" = {
       source = "${configPath}/alacritty";
       recursive = true;
