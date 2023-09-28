@@ -36,10 +36,10 @@
       mpvpaper
 
       # x11
-      polybar
-      picom
-      feh
-      flameshot
+      #polybar
+      #picom
+      #feh
+      #flameshot
 
 
 
@@ -93,10 +93,10 @@
       #microsoft-edge
 
       # matrix
-      fluffychat
+      #fluffychat
       element
-      cinny
-      nheko
+      cinny-desktop
+      #nheko
 
       # music
       easyeffects
