@@ -179,7 +179,7 @@
         # lsp
         #bbenoist.nix
         jnoortheen.nix-ide
-        ms-python.python
+        #ms-python.python # Temporary disable this, as debugpy is stuck at building (literally waited for 40 minute + 6 hour + 2 hour...)
         rust-lang.rust-analyzer
         tamasfe.even-better-toml
         #bungcip.better-toml
