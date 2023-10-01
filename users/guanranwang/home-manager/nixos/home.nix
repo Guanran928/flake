@@ -511,6 +511,11 @@
       terminal = "${pkgs.alacritty}/bin/alacritty";
     };
 
+    mangohud = {
+      enable = true;
+      # TODO: add configuration, i have no idea how to display stuff with nix syntax
+    };
+
     #boxxy = {
     #  enable = true;
     #  #rules = {
