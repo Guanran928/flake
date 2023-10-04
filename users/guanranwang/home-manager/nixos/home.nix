@@ -94,7 +94,7 @@
 
       # matrix
       #fluffychat
-      element
+      element-desktop
       cinny-desktop
       #nheko
 
