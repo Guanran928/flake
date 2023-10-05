@@ -283,9 +283,10 @@
         startup = [
           { command = "${pkgs.swww}/bin/swww init"; }
           { command = "${pkgs.waybar}/bin/waybar"; }
+          { command = "${pkgs.wl-clipboard}/bin/wl-paste --watch cliphist store"; }
           #{ command = "${pkgs.alacritty}/bin/alacritty"; }
           #{ command = "${pkgs.fcitx5}/bin/fcitx5 -d"; }
-          { command = "fcitx5 -d"; }
+          #{ command = "fcitx5 -d"; }
         ];
         gaps = {
           inner = 4;
@@ -295,39 +296,81 @@
         modifier = "Mod4";
         keybindings =
         let
-          modifier = config.wayland.windowManager.sway.config.modifier;
-          setBrightness = "/home/guanranwang/.local/bin/wrapped-brightnessctl";
-          setVolume = "/home/guanranwang/.local/bin/wrapped-pamixer";
+          modifier        = config.wayland.windowManager.sway.config.modifier;
+          setBrightness   = "/home/guanranwang/.local/bin/wrapped-brightnessctl";
+          setVolume       = "/home/guanranwang/.local/bin/wrapped-pamixer";
+          screenshot      = "/home/guanranwang/.local/bin/wrapped-grim";
+          terminal        = "exec ${pkgs.alacritty}/bin/alacritty";
+          browser         = "exec ${pkgs.xdg-utils}/bin/xdg-open http:";
+          fileManager     = "exec ${pkgs.xdg-utils}/bin/xdg-open ~";
         in
-        lib.mkOptionDefault {
-          "${modifier}+Shift+q" = null;
-          "${modifier}+space" = null;
-          "${modifier}+b" = null;
-          "${modifier}+w" = "exec ${pkgs.xdg-utils}/bin/xdg-open https://";
-          "${modifier}+e" = "exec ${pkgs.xdg-utils}/bin/xdg-open ~";
-          #"${modifier}+h" = "focus left";
-          #"${modifier}+j" = "focus down";
-          #"${modifier}+k" = "focus up";
-          #"${modifier}+l" = "focus right";
-          "${modifier}+s" = "split toggle";
-          "${modifier}+v" = "floating toggle";
-          "${modifier}+d" = "exec ${pkgs.rofi}/bin/rofi -show drun -show-icons -icon-theme ${config.gtk.iconTheme.name}";
-          #"${modifier}+backspace" = "exec loginctl lock-session";
-          "${modifier}+q" = "kill";
-          "${modifier}+Shift+s" = "exec /home/guanranwang/.local/bin/wrapped-slurp region";
-          "XF86MonBrightnessUp" = "exec ${setBrightness} up";
-          "XF86MonBrightnessDown" = "exec ${setBrightness} down";
-          "XF86AudioRaiseVolume" = "exec ${setVolume} up";
-          "XF86AudioLowerVolume" = "exec ${setVolume} down";
-          "XF86AudioMute" = "exec ${setVolume} mute";
-          "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
-          "XF86AudioPause" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
-          "XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
-          "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
-          "XF86AudioStop" = "exec ${pkgs.playerctl}/bin/playerctl stop";
-          "XF86AudioMedia" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
-        };
+        {
+          ### Sway itself
+          # Window
+          "${modifier}+s"       = "split toggle";
+          "${modifier}+v"       = "floating toggle";
+          "${modifier}+f"       = "fullscreen";
+          "${modifier}+q"       = "kill";
+          "${modifier}+Shift+e" = "exec ${pkgs.sway}/bin/swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' '${pkgs.sway}/bin/swaymsg exit'";
 
+          # Move around
+          "${modifier}+h" = "focus left";
+          "${modifier}+j" = "focus down";
+          "${modifier}+k" = "focus up";
+          "${modifier}+l" = "focus right";
+
+          # Workspaces
+          # Switch to workspace
+          "${modifier}+1" = "workspace 1";
+          "${modifier}+2" = "workspace 2";
+          "${modifier}+3" = "workspace 3";
+          "${modifier}+4" = "workspace 4";
+          "${modifier}+5" = "workspace 5";
+          "${modifier}+6" = "workspace 6";
+          "${modifier}+7" = "workspace 7";
+          "${modifier}+8" = "workspace 8";
+          "${modifier}+9" = "workspace 9";
+          "${modifier}+0" = "workspace 10";
+          # Move focused Window to workspace
+          "${modifier}+Shift+1" = "move container to workspace 1";
+          "${modifier}+Shift+2" = "move container to workspace 2";
+          "${modifier}+Shift+3" = "move container to workspace 3";
+          "${modifier}+Shift+4" = "move container to workspace 4";
+          "${modifier}+Shift+5" = "move container to workspace 5";
+          "${modifier}+Shift+6" = "move container to workspace 6";
+          "${modifier}+Shift+7" = "move container to workspace 7";
+          "${modifier}+Shift+8" = "move container to workspace 8";
+          "${modifier}+Shift+9" = "move container to workspace 9";
+          "${modifier}+Shift+0" = "move container to workspace 10";
+
+          ### Execute other stuff
+          # Launch applications
+          "${modifier}+Return"    = terminal;
+          "${modifier}+w"         = browser;
+          "${modifier}+e"         = fileManager;
+
+          # Rofi
+          "${modifier}+d"         = "exec ${pkgs.rofi}/bin/rofi -show drun -show-icons -icon-theme ${config.gtk.iconTheme.name}";
+          "${modifier}+Shift+d"   = "exec ${pkgs.cliphist}/bin/cliphist list | ${pkgs.rofi}/bin/rofi -dmenu | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy";
+          "${modifier}+Shift+l"   = "exec ${pkgs.rofi}/bin/rofi -modi \"power-menu:rofi-power-menu --confirm=reboot/shutdown\" -show power-menu";
+
+          # Screenshot
+          "${modifier}+Shift+s"   = "exec ${screenshot} region";
+          "Print"                 = "exec ${screenshot} fullscreen";
+
+          # Fn keys
+          "XF86MonBrightnessUp"   = "exec ${setBrightness} up";
+          "XF86MonBrightnessDown" = "exec ${setBrightness} down";
+          "XF86AudioRaiseVolume"  = "exec ${setVolume} up";
+          "XF86AudioLowerVolume"  = "exec ${setVolume} down";
+          "XF86AudioMute"         = "exec ${setVolume} mute";
+          "XF86AudioPlay"         = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
+          "XF86AudioPause"        = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
+          "XF86AudioPrev"         = "exec ${pkgs.playerctl}/bin/playerctl previous";
+          "XF86AudioNext"         = "exec ${pkgs.playerctl}/bin/playerctl next";
+          "XF86AudioStop"         = "exec ${pkgs.playerctl}/bin/playerctl stop";
+          "XF86AudioMedia"        = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
+        };
       };
       extraConfig = ''
         default_border pixel 2
@@ -519,7 +562,7 @@
     #boxxy = {
     #  enable = true;
     #  #rules = {
-    #  #  
+    #  #
     #  #};
     #};
   };
