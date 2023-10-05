@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Send a notification if the laptop battery is either low 
+# Send a notification if the laptop battery is either low
 # or is fully charged.
 
 export DISPLAY=:0

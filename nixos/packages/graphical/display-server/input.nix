@@ -1,7 +1,7 @@
 { ... }:
 
 {
-  services.xserver = {    
+  services.xserver = {
     layout = "us"; # keymap in x11
     libinput = {
       enable = true;

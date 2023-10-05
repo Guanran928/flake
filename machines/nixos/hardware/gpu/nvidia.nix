@@ -9,7 +9,7 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
     open = false;
     modesetting.enable = true;
-    #dynamicboost.enable = true; 
+    #dynamicboost.enable = true;
     powerManagement = {
       enable = true; # experimental power management feature
       #finegrained = true;

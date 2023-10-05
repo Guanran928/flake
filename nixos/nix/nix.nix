@@ -37,7 +37,7 @@
     # accidentally delete configuration.nix.
 
     # Does not work with flake based configurations
-    #copySystemConfiguration = true; 
+    #copySystemConfiguration = true;
 
 
     # This value determines the NixOS release from which the default

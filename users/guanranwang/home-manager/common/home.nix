@@ -12,7 +12,7 @@
     # changes in each release.
     stateVersion = "23.05";
 
-    shellAliases = 
+    shellAliases =
     let
       proxy = "http://127.0.0.1:7890/";
     in {

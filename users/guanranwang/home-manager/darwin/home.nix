@@ -55,13 +55,13 @@
 
       # replace outdated macOS components
       coreutils
-      vim 
+      vim
       gnugrep
       openssh
       screen
 
       # LSP
-      nixd 
+      nixd
       nil
     ];
 

@@ -8,7 +8,7 @@ in
 {
   xdg.configFile = {
     "clash-meta" = {
-      source = "${configPath}/clash"; 
+      source = "${configPath}/clash";
       recursive = true;
     };
     "alacritty" = {
@@ -16,7 +16,7 @@ in
       recursive = true;
     };
     "fish" = {
-      source = "${configPath}/fish"; 
+      source = "${configPath}/fish";
       recursive = true;
     };
     "zsh/plugins" = {

@@ -37,13 +37,13 @@
       enableScriptingAddition = true;
       config = {
         layout         = "bsp";
-  
+
         mouse_modifier = "fn";
-  
+
         # very broken on slow cpu
         #focus_follows_mouse = "autoraise";
         #mouse_follows_focus = "on";
-  
+
         top_padding    = 10;
         bottom_padding = 10;
         left_padding   = 10;
@@ -72,11 +72,11 @@
   };
 
   system.defaults = {
-    # Apple... Do I really have to change literally 
+    # Apple... Do I really have to change literally
     # every setting in macOS to make it actually usable.
-    # 
+    #
     # Through this... you will see why I say macOS is a terriable mess.
-    # 
+    #
     # NOTE: default of those options is `null` (unmanaged)
     #       https://github.com/mathiasbynens/dotfiles/blob/main/.macos for references
     finder = {
@@ -86,7 +86,7 @@
       CreateDesktop = false;
       FXDefaultSearchScope = "SCcf";                              # "SCcf" = Current folder
       FXEnableExtensionChangeWarning = false;
-      FXPreferredViewStyle = "Nlsv";                              # "icnv" = Icon view, "Nlsv" = List view, "clmv" = Column View, "Flwv" = Gallery View 
+      FXPreferredViewStyle = "Nlsv";                              # "icnv" = Icon view, "Nlsv" = List view, "clmv" = Column View, "Flwv" = Gallery View
       QuitMenuItem = true;
       ShowPathbar = true;
       ShowStatusBar = false;
@@ -128,7 +128,7 @@
       #AppleShowAllExtensions = true;                             # Dupelicate?
       #AppleShowAllFiles = true;
       AppleShowScrollBars = "Always";
-      AppleTemperatureUnit = "Celsius";                           # "null or one of "Celsius", "Fahrenheit"" 
+      AppleTemperatureUnit = "Celsius";                           # "null or one of "Celsius", "Fahrenheit""
       #AppleWindowTabbingMode # ?
       InitialKeyRepeat = 32;
       KeyRepeat = 2;
