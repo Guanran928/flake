@@ -44,6 +44,7 @@
       "iMac-macOS" = nix-darwin.lib.darwinSystem {
         system = "x86_64-darwin";
         modules = [
+          ./darwin
           ./machines/darwin/imac-2017.nix
           ./users/guanranwang/darwin.nix
           ./flakes/darwin/home-manager.nix
@@ -59,7 +60,8 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          ./machines/nixos/81fw-lenovo-legion-y7000.nix # Entrypoint, this .nix file imports ./nixos
+          ./nixos # Entrypoint
+          ./machines/nixos/81fw-lenovo-legion-y7000.nix
           ./users/guanranwang/nixos.nix
           ./flakes/nixos/berberman.nix
           ./flakes/nixos/home-manager.nix
@@ -74,6 +76,7 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
+          ./nixos
           ./machines/nixos/imac-2017.nix
           ./users/guanranwag/nixos.nix
           ./flakes/nixos/berberman.nix

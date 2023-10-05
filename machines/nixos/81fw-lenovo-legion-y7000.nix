@@ -2,8 +2,6 @@
 
 {
   imports = [
-    ../../nixos
-
     ./hardware/misc/audio.nix
     ./hardware/misc/bluetooth.nix
     ./hardware/misc/opengl.nix

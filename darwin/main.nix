@@ -1,13 +1,6 @@
 { lib, pkgs, ... }:
 
 {
-  imports = [
-    ./networking
-    ./packages
-
-    ./input.nix
-  ];
-
   fonts.fonts = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
   ];

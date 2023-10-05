@@ -1,9 +1,6 @@
 { ... }:
 
 {
-  imports = [
-    ../../darwin/main.nix
-  ];
   networking.knownNetworkServices = [
     "Ethernet"
     "Wi-Fi"
