@@ -150,30 +150,32 @@
       enableExtensionUpdateCheck = false;
       enableUpdateCheck = false;
       userSettings = {
-        "editor.cursorSmoothCaretAnimation" = "on";
-        "editor.cursorBlinking" = "smooth";
-        "editor.fontFamily" = lib.mkDefault "Monospace";
-        "editor.fontWeight" = "SemiBold";
-        "editor.tabSize" = 2;
-        "explorer.confirmDragAndDrop" = false;
-        "explorer.confirmDelete" = false;
-        "files.autoSave" = "onFocusChange";
-        "security.workspace.trust.enabled" = false;
-        "terminal.integrated.cursorBlinking" = true;
-        "update.mode" = "none";
-        "window.menuBarVisibility" = "toggle";
-        "workbench.colorTheme" = "Tokyo Night";
-        "telemetry.telemetryLevel" = "off";
-        #"telemetry.enableCrashReporter"
-        #"telemetry.enableTelemetry"
-        "terminal.external.osxExec" = "Alacritty.app";
-        #"editor.renderWhitespace" = "all";
+        "diffEditor.ignoreTrimWhitespace"     = false;
+        "editor.cursorSmoothCaretAnimation"   = "on";
+        "editor.cursorBlinking"               = "smooth";
+        "editor.fontFamily"     = lib.mkDefault "Monospace";
+        "editor.fontWeight"                   = "600";
+        "editor.tabSize"                      = 2;
+        "explorer.confirmDragAndDrop"         = false;
+        "explorer.confirmDelete"              = false;
+        "files.autoSave"                      = "onFocusChange";
+        "files.trimTrailingWhitespace"        = true;
+        "files.trimFinalNewlines"             = true;
+        "security.workspace.trust.enabled"    = false;
+        "telemetry.telemetryLevel"            = "off";
+        "terminal.external.osxExec"           = "Alacritty.app";
+        "terminal.integrated.cursorBlinking"  = true;
+        "update.mode"                         = "none";
+        "window.menuBarVisibility"            = "toggle";
+        "workbench.colorTheme"                = "Tokyo Night";
 
-        # extensions
-        "nix.enableLanguageServer" = true;
-        #"nix.serverPath" = "nixd";
-        "nix.serverPath" = "nil";
-        "gitlens.telemetry.enabled" = false;
+        # Extensions
+        ### Nix IDE
+        "nix.enableLanguageServer"    = true;
+        #"nix.serverPath"              = "nixd";
+        "nix.serverPath"              = "nil";
+        ### GitLens
+        "gitlens.telemetry.enabled"   = false;
       };
       extensions = with pkgs.vscode-extensions; [
         # lsp
