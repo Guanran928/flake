@@ -3,6 +3,7 @@
 {
   imports = [
     ./nautilus.nix
-    ./sway.nix # broken
+    ./sway.nix
+    ./prismlauncher.nix
   ];
 }
