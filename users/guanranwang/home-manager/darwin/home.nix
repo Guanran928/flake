@@ -30,7 +30,6 @@
 
     packages = with pkgs; [
       #fastfetch
-      neovim
 
       prismlauncher
       keka # un-archive-r

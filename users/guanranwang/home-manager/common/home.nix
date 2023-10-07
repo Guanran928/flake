@@ -41,10 +41,6 @@
       "unsetproxy" = "set -e http_proxy https_proxy all_proxy"; # fish syntax (?)
     };
     sessionVariables = {
-      # editor
-      "EDITOR" = "nvim";
-      "VISUAL" = "nvim";
-
       # misc
       "MANPAGER" = "sh -c 'col -bx | bat -l man -p'"; # man: use bat as man's pager
       "MANROFFOPT" = "-c"; # man: fix formatting issue with bat
@@ -144,6 +140,8 @@
       };
     };
 
+    # Editors
+    ### VSCode
     vscode = {
       enable = true;
       package = pkgs.vscodium; # foss
@@ -197,6 +195,31 @@
         #catppuccin.catppuccin-vsc-icons
         #catppuccin.catppuccin-vsc
       ];
+    };
+    ### Neovim
+    neovim = {
+      enable = true;
+      #defaultEditor = true;
+      viAlias = true;
+      vimAlias = true;
+    };
+    ### Helix
+    helix = {
+      enable = true;
+      defaultEditor = true;
+      settings = {
+        theme = "tokyonight";
+        editor = {
+          cursor-shape = {
+            insert = "bar";
+            normal = "block";
+            select = "underline";
+          };
+          file-picker = {
+            hidden = false;
+          };
+        };
+      };
     };
   };
 }
