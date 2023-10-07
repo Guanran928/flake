@@ -4,8 +4,10 @@
 {
   hardware.nvidia.prime = {
     sync.enable = false;
-    nvidiaBusId = "PCI:1:0:0";
-    intelBusId = "PCI:0:2:0";
+
+    ### Device specific, please put those configuration in `machines/your-machine.nix`
+    # nvidiaBusId = "PCI:1:0:0";
+    # intelBusId = "PCI:0:2:0";
     offload = {
       enable = true;
       enableOffloadCmd = true;

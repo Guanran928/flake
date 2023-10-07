@@ -1,5 +1,6 @@
 { pkgs, ... }:
 
+# Following https://nixos.wiki/wiki/Intel_Graphics
 {
   boot.initrd.kernelModules = [ "i915" ]; # if not enabled, plymouth's distro logo wont show for some reason
   nixpkgs.config.packageOverrides = pkgs: { vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; }; };

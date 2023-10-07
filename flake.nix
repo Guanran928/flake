@@ -40,55 +40,64 @@
   };
 
   outputs = { self, nixpkgs, berberman, home-manager, hosts, hyprland, lanzaboote, nix-darwin, sops-nix, ... } @ inputs: {
+
+    # nix-darwin (macOS)
     darwinConfigurations = {
       "iMac-macOS" = nix-darwin.lib.darwinSystem {
         system = "x86_64-darwin";
         specialArgs = { inherit inputs; };
         modules = [
-          ./darwin
-          ./machines/darwin/imac-2017.nix
-          ./users/guanranwang/darwin.nix
-          ./flakes/darwin/home-manager.nix
+          ./darwin                          # Entrypoint
+          ./machines/darwin/imac-2017.nix   # Hardware-specific configurations
+                                            # Machine-specific configurations (does such stuff even exist on nix-darwin)
+          ./users/guanranwang/darwin.nix    # User-specific configurations
+          ./flakes/darwin/home-manager.nix  # Flakes
+
+          { networking.hostName = "iMac-macOS"; }
         ];
       };
     };
 
 
-
-
+    # NixOS
     nixosConfigurations = {
       "81fw-nixos" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          ./nixos # Entrypoint
-          ./machines/nixos/81fw-lenovo-legion-y7000.nix
-          ./users/guanranwang/nixos.nix
-          ./flakes/nixos/berberman.nix
+          ./nixos                                             # Entrypoint
+          ./machines/nixos/81fw-lenovo-legion-y7000           # Hardware-specific configurations
+          ./machines/nixos/81fw-lenovo-legion-y7000/machine-1 # Machine-specific configurations
+          ./users/guanranwang/nixos.nix                       # User-specific configurations
+          ./flakes/nixos/berberman.nix                        # Flakes
           ./flakes/nixos/home-manager.nix
           ./flakes/nixos/hosts.nix
           ./flakes/nixos/lanzaboote.nix
           ./flakes/nixos/sops-nix.nix
+
+          { networking.hostName = "81fw-nixos"; }
         ];
       };
 
-      # Currently un-used.
+      ## Currently un-used.
       "imac-nixos" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
           ./nixos
-          ./machines/nixos/imac-2017.nix
+          ./machines/nixos/imac-2017
+          ./machines/nixos/imac-2017/machine-1
           ./users/guanranwag/nixos.nix
           ./flakes/nixos/berberman.nix
           ./flakes/nixos/home-manager.nix
           ./flakes/nixos/hosts.nix
           ./flakes/nixos/lanzaboote.nix
           ./flakes/nixos/sops-nix.nix
+
+          { networking.hostName = "imac-nixos"; }
         ];
       };
     };
-
 
 
     # Home-Manager

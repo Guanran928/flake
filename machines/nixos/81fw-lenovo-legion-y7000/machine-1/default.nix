@@ -1,0 +1,7 @@
+{ ... }:
+
+{
+  imports = [
+    ./partition.nix
+  ];
+}
