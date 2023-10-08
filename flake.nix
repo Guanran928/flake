@@ -48,7 +48,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./darwin                          # Entrypoint
-          ./machines/darwin/imac-2017.nix   # Hardware-specific configurations
+          ./machines/darwin/imac-2017       # Hardware-specific configurations
                                             # Machine-specific configurations (does such stuff even exist on nix-darwin)
           ./users/guanranwang/darwin.nix    # User-specific configurations
           ./flakes/darwin/home-manager.nix  # Flakes
