@@ -11,11 +11,12 @@
   };
 
 
+
   # Flakes.
-  home-manager.users.guanranwang = import ../../users/guanranwang/home-manager/nixos;
+  home-manager.users.guanranwang = import ./home-manager/nixos;
 
   sops = {
-    defaultSopsFile = ../../users/guanranwang/secrets/secrets.yaml;
+    defaultSopsFile = ./secrets/secrets.yaml;
     age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
     secrets = {
       "clash-config" = {

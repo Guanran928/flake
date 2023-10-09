@@ -12,6 +12,6 @@
     };
   };
 
-  #                                             users,user,       flake,       os.
-  home-manager.users.guanranwang = import ../../users/guanranwang/home-manager/darwin; # NOTE: using flakes
+  # Flakes.
+  home-manager.users.guanranwang = import ./home-manager/darwin; # NOTE: using flakes
 }
