@@ -31,6 +31,7 @@
       swaylock-effects
       grim
       slurp
+      swappy
       udiskie
       swww
       mpvpaper
@@ -267,8 +268,19 @@
         xdgAutostart = true;
       };
       config = {
+        ### Default Applications
         terminal = "${pkgs.alacritty}/bin/alacritty";
-        bars = [ ];
+        menu = "${pkgs.rofi}/bin/rofi";
+
+        ### Visuals
+        bars = [];
+        gaps = {
+          inner = 4;
+          outer = 4;
+          #smartGaps = true;
+        };
+
+        ### Inputs
         input = {
           "*" = {
             accel_profile = "flat";
@@ -280,29 +292,25 @@
             dwt = "disabled";
           };
         };
+
+        ### Autostarts
         startup = [
           { command = "${pkgs.swww}/bin/swww init"; }
           { command = "${pkgs.waybar}/bin/waybar"; }
           { command = "${pkgs.wl-clipboard}/bin/wl-paste --watch cliphist store"; }
-          #{ command = "${pkgs.alacritty}/bin/alacritty"; }
-          #{ command = "${pkgs.fcitx5}/bin/fcitx5 -d"; }
-          #{ command = "fcitx5 -d"; }
+          { command = "${pkgs.udiskie}/bin/udiskie --smart-tray"; }
         ];
-        gaps = {
-          inner = 4;
-          outer = 4;
-          #smartGaps = true;
-        };
+
+        ### Keybinds
+        defaultWorkspace = "workspace number 1";
         modifier = "Mod4";
+        modes = {};
         keybindings =
         let
           modifier        = config.wayland.windowManager.sway.config.modifier;
           setBrightness   = "/home/guanranwang/.local/bin/wrapped-brightnessctl";
           setVolume       = "/home/guanranwang/.local/bin/wrapped-pamixer";
           screenshot      = "/home/guanranwang/.local/bin/wrapped-grim";
-          terminal        = "exec ${pkgs.alacritty}/bin/alacritty";
-          browser         = "exec ${pkgs.xdg-utils}/bin/xdg-open http:";
-          fileManager     = "exec ${pkgs.xdg-utils}/bin/xdg-open ~";
         in
         {
           ### Sway itself
@@ -345,18 +353,20 @@
 
           ### Execute other stuff
           # Launch applications
-          "${modifier}+Return"    = terminal;
-          "${modifier}+w"         = browser;
-          "${modifier}+e"         = fileManager;
+          "${modifier}+Return"    = "exec ${config.wayland.windowManager.sway.config.terminal}";
+          "${modifier}+w"         = "exec ${pkgs.xdg-utils}/bin/xdg-open http:";
+          "${modifier}+e"         = "exec ${pkgs.xdg-utils}/bin/xdg-open ~";
 
           # Rofi
-          "${modifier}+d"         = "exec ${pkgs.rofi}/bin/rofi -show drun -show-icons -icon-theme ${config.gtk.iconTheme.name}";
-          "${modifier}+Shift+d"   = "exec ${pkgs.cliphist}/bin/cliphist list | ${pkgs.rofi}/bin/rofi -dmenu | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy";
-          "${modifier}+Shift+l"   = "exec ${pkgs.rofi}/bin/rofi -modi \"power-menu:rofi-power-menu --confirm=reboot/shutdown\" -show power-menu";
+          "${modifier}+d"         = "exec ${config.wayland.windowManager.sway.config.menu} -show drun -show-icons -icon-theme ${config.gtk.iconTheme.name}";
+          "${modifier}+Shift+d"   = "exec ${pkgs.cliphist}/bin/cliphist list | ${config.wayland.windowManager.sway.config.menu} -dmenu | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy";
+          "${modifier}+Shift+l"   = "exec ${config.wayland.windowManager.sway.config.menu} -modi \"power-menu:rofi-power-menu --confirm=reboot/shutdown\" -show power-menu";
 
           # Screenshot
-          "${modifier}+Shift+s"   = "exec ${screenshot} region";
-          "Print"                 = "exec ${screenshot} fullscreen";
+          "${modifier}+Shift+s"           = "exec ${screenshot} region";
+          "${modifier}+Control+Shift+s"   = "exec ${screenshot} region edit";
+          "Print"                         = "exec ${screenshot} fullscreen";
+          "Print+Control"                 = "exec ${screenshot} fullscreen edit";
 
           # Fn keys
           "XF86MonBrightnessUp"   = "exec ${setBrightness} up";
@@ -372,9 +382,6 @@
           "XF86AudioMedia"        = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
         };
       };
-      extraConfig = ''
-        default_border pixel 2
-      '';
     };
   };
 
