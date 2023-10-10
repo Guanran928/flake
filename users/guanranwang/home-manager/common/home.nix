@@ -12,10 +12,7 @@
     # changes in each release.
     stateVersion = "23.05";
 
-    shellAliases =
-    let
-      proxy = "http://127.0.0.1:7890/";
-    in {
+    shellAliases = {
       # navigation
       "l" = "${pkgs.eza}/bin/eza -Fhl --icons --git";
       "ll" = "${pkgs.eza}/bin/eza -Fahl --icons --git";
@@ -37,7 +34,8 @@
       "clock" = "tty-clock -5Ccs";
 
       # proxy
-      "setproxy" = "export https_proxy=${proxy} http_proxy=${proxy} all_proxy=${proxy}";
+      "setproxy" = let proxy = "http://127.0.0.1:7890/";
+      in "export http_proxy=${proxy} https_proxy=${proxy} ftp_proxy=${proxy} rsync_proxy=${proxy}";
       "unsetproxy" = "set -e http_proxy https_proxy all_proxy"; # fish syntax (?)
     };
     sessionVariables = {
