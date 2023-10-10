@@ -19,11 +19,11 @@
       options = [ "compress=zstd" "subvol=@home" ];
     };
 
-    "/var/lib/flatpak" = {
-      device = "/dev/disk/by-uuid/6288ce7a-a153-4302-a4de-5dc71f58da79";
-      fsType = "btrfs";
-      options = [ "compress=zstd" "subvol=@flatpak" ];
-    };
+    #"/var/lib/flatpak" = {
+    #  device = "/dev/disk/by-uuid/6288ce7a-a153-4302-a4de-5dc71f58da79";
+    #  fsType = "btrfs";
+    #  options = [ "compress=zstd" "subvol=@flatpak" ];
+    #};
 
     "/btrfs" = {
       device = "/dev/disk/by-uuid/6288ce7a-a153-4302-a4de-5dc71f58da79";
