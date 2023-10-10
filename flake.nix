@@ -87,7 +87,7 @@
           ./nixos
           ./machines/nixos/imac-2017
           ./machines/nixos/imac-2017/machine-1
-          ./users/guanranwag/nixos.nix
+          ./users/guanranwang/nixos.nix
           ./flakes/nixos/berberman.nix
           ./flakes/nixos/home-manager.nix
           ./flakes/nixos/hosts.nix
