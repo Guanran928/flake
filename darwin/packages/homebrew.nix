@@ -15,7 +15,7 @@
       "alt-tab"
     	"altserver"
       "balenaetcher"
-      "clashx"
+      #"clashx"
       "opencore-patcher"
 
       #"element"
