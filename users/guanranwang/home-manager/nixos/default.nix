@@ -7,6 +7,8 @@
 
     ./dotfiles.nix
     ./i18n.nix
+    ./sway.nix
+    ./waybar.nix
 
     ./xdg
   ];
