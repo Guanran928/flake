@@ -1,5 +1,5 @@
 { ... }:
 
 {
-  networking.useDHCP = false;
+  #networking.useDHCP = false;
 }

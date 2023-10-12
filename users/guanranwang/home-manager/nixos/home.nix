@@ -19,7 +19,7 @@
       pamixer
       brightnessctl
       playerctl
-      networkmanagerapplet
+      #networkmanagerapplet
       pavucontrol
 
       # wayland

@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./networkmanager.nix
+    #./networkmanager.nix
     ./iwd.nix
   ];
 }

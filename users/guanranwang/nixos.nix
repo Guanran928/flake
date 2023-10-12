@@ -28,6 +28,11 @@
         path = "/etc/clash-meta/config.yaml";
       };
       "hashed-passwd".neededForUsers = true;
+      "wireless/home" = {};
     };
   };
+
+  systemd.tmpfiles.rules = [
+    "C /var/lib/iwd/wangxiaobo.psk - - - - ${config.sops.secrets."wireless/home".path}"
+  ];
 }
