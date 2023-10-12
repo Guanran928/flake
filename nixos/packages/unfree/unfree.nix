@@ -14,6 +14,7 @@
     "google-chrome"
     "lunar-client"
     "osu-lazer-bin"
+    "osu-lazer-bin-2023.1008.0" # what?
     "spotify"
     "steam"
     "steam-original"

@@ -12,7 +12,7 @@
               patches = (old.patches or []) ++ [
                 (prev.fetchpatch {
                   url = "https://aur.archlinux.org/cgit/aur.git/plain/nautilus-restore-typeahead.patch?h=nautilus-typeahead";
-                  hash = "sha256-dtMm5FRvwHF9SBibCgl/+8AlesthZtpE4DHzLbM8XSY=";
+                  hash = "sha256-a40vNo2Nw068GBtjVPUz6WAYRtjD0DB2bG/N14vSTxI=";
                 })
               ];
             });
