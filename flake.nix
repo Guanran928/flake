@@ -37,9 +37,27 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    impermanence = {
+      url = "github:nix-community/impermanence";
+    };
   };
 
-  outputs = { self, nixpkgs, berberman, home-manager, hosts, hyprland, lanzaboote, nix-darwin, sops-nix, ... } @ inputs: {
+  outputs = { self,
+              nixpkgs,
+              berberman,
+              home-manager,
+              hosts,
+              hyprland,
+              lanzaboote,
+              nix-darwin,
+              sops-nix,
+              disko,
+              impermanence,
+              ... } @ inputs: {
 
     # nix-darwin (macOS)
     darwinConfigurations = {
@@ -67,15 +85,20 @@
         modules = [
           ./nixos                                             # Entrypoint
           ./machines/nixos/81fw-lenovo-legion-y7000           # Hardware-specific configurations
-          ./machines/nixos/81fw-lenovo-legion-y7000/machine-1 # Machine-specific configurations
+          #./machines/nixos/81fw-lenovo-legion-y7000/machine-1 # Machine-specific configurations
           ./users/guanranwang/nixos.nix                       # User-specific configurations
           ./flakes/nixos/berberman.nix                        # Flakes
           ./flakes/nixos/home-manager.nix
           ./flakes/nixos/hosts.nix
           ./flakes/nixos/lanzaboote.nix
           ./flakes/nixos/sops-nix.nix
+          ./flakes/nixos/impermanence.nix
+          ./flakes/nixos/disko.nix
 
-          { networking.hostName = "81fw-nixos"; }
+          {
+            _module.args.disks = [ "/dev/nvme0n1" ]; # Disko
+            networking.hostName = "81fw-nixos";
+          }
         ];
       };
 

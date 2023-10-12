@@ -17,7 +17,8 @@
 
   sops = {
     defaultSopsFile = ./secrets/secrets.yaml;
-    age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+    age.sshKeyPaths = [ "/nix/persist/system/etc/ssh/ssh_host_ed25519_key" ];
+    gnupg.sshKeyPaths = [];
     secrets = {
       "clash-config" = {
         #mode = "0444"; # readable
