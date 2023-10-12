@@ -60,7 +60,7 @@
         "${modifier}+v"       = "floating toggle";
         "${modifier}+f"       = "fullscreen";
         "${modifier}+q"       = "kill";
-        "${modifier}+Shift+e" = "exec ${pkgs.sway}/bin/swaynag -t warning -m 'You   pressed the exit shortcut. Do you really want to exit sway? This will end your  Wayland session.' -b 'Yes, exit sway' '${pkgs.sway}/bin/swaymsg exit'";
+        "${modifier}+Shift+e" = "exec ${pkgs.sway}/bin/swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' '${pkgs.sway}/bin/swaymsg exit'";
 
         # Move around
         "${modifier}+h" = "focus left";
