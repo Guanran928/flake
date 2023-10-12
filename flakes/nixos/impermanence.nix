@@ -7,6 +7,9 @@
   environment.persistence."/nix/persist/system" = {
     directories = [
       # bind mounted from /nix/persist/system/etc/nixos to /etc/nixos
+      "/var/log"
+      "/var/lib"
+
       #"/etc/NetworkManager/system-connections"
       "/etc/clash-meta" # clash-meta
       "/etc/secureboot" # sbctl, lanzaboote, etc
