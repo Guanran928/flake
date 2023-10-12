@@ -9,7 +9,6 @@
     ../hardware/gpu/intel.nix
     ../hardware/gpu/nvidia.nix
     ../hardware/gpu/nvidia-prime.nix
-    ../hardware/accessories/xbox.nix
     (modulesPath + "/installer/scan/not-detected.nix") # what is this
   ];
 
