@@ -12,27 +12,30 @@
 
 
 
-  # Flakes.
+  # Flakes
+  imports = [
+    ../../flakes/nixos/home-manager.nix
+    ../../flakes/nixos/sops-nix.nix
+    ../../flakes/nixos/hosts.nix
+    ../../flakes/nixos/berberman.nix
+  ];
+  ### home-manager
   home-manager.users.guanranwang = import ./home-manager/nixos;
-
+  ### sops-nix
   sops = {
     defaultSopsFile = ./secrets/secrets.yaml;
     age.sshKeyPaths = [ "/nix/persist/system/etc/ssh/ssh_host_ed25519_key" ];
     gnupg.sshKeyPaths = [];
     secrets = {
-      "clash-config" = {
+      "hashed-passwd".neededForUsers = true;                # Hashed user password
+      "wireless/home".path = "/var/lib/iwd/wangxiaobo.psk"; # Home wifi password
+      "clash-config" = {                                    # Clash.Meta configuration
         #mode = "0444"; # readable
         owner = config.users.users."clash-meta".name;
         group = config.users.users."clash-meta".group;
         restartUnits = [ "clash-meta.service" ];
         path = "/etc/clash-meta/config.yaml";
       };
-      "hashed-passwd".neededForUsers = true;
-      "wireless/home" = {};
     };
   };
-
-  systemd.tmpfiles.rules = [
-    "C /var/lib/iwd/wangxiaobo.psk - - - - ${config.sops.secrets."wireless/home".path}"
-  ];
 }

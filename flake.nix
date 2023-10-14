@@ -69,7 +69,7 @@
           ./machines/darwin/imac-2017       # Hardware-specific configurations
                                             # Machine-specific configurations (does such stuff even exist on nix-darwin)
           ./users/guanranwang/darwin.nix    # User-specific configurations
-          ./flakes/darwin/home-manager.nix  # Flakes
+           # Flakes
 
           { networking.hostName = "iMac-macOS"; }
         ];
@@ -85,21 +85,10 @@
         modules = [
           ./nixos                                             # Entrypoint
           ./machines/nixos/81fw-lenovo-legion-y7000           # Hardware-specific configurations
-          #./machines/nixos/81fw-lenovo-legion-y7000/machine-1 # Machine-specific configurations
+          ./machines/nixos/81fw-lenovo-legion-y7000/machine-1 # Machine-specific configurations
           ./users/guanranwang/nixos.nix                       # User-specific configurations
-          ./flakes/nixos/berberman.nix                        # Flakes
-          ./flakes/nixos/home-manager.nix
-          ./flakes/nixos/hosts.nix
-          ./flakes/nixos/lanzaboote.nix
-          ./flakes/nixos/sops-nix.nix
-          ./flakes/nixos/impermanence.nix
-          ./flakes/nixos/disko.nix
 
-          {
-            _module.args.disks = [ "/dev/nvme0n1" ]; # Disko
-            boot.initrd.systemd.enable = true; # LUKS TPM unlocking
-            networking.hostName = "81fw-nixos";
-          }
+          { networking.hostName = "81fw-nixos"; }
         ];
       };
 
@@ -112,11 +101,6 @@
           ./machines/nixos/imac-2017
           ./machines/nixos/imac-2017/machine-1
           ./users/guanranwang/nixos.nix
-          ./flakes/nixos/berberman.nix
-          ./flakes/nixos/home-manager.nix
-          ./flakes/nixos/hosts.nix
-          ./flakes/nixos/lanzaboote.nix
-          ./flakes/nixos/sops-nix.nix
 
           { networking.hostName = "imac-nixos"; }
         ];
