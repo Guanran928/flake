@@ -64,7 +64,7 @@
       plugins = [
         {
           name = "fzf-tab";
-          src = pkgs.zsh-fzf-tab;
+          src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
         }
         {
           # should I use flake inputs / fetchurl?
