@@ -6,5 +6,6 @@
     ./packages
     ./main.nix
     ./input.nix
+    ./nix
   ];
 }

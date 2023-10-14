@@ -2,13 +2,13 @@
 
 {
   nix.settings = {
-    allowed-users = [ "@wheel" ];
+    trusted-users = [ "@wheel" ];
     substituters = [
-      "https://mirrors.ustc.edu.cn/nix-channels/store"
-      "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
-      "https://mirror.sjtu.edu.cn/nix-channels/store"
+      "https://mirrors.ustc.edu.cn/nix-channels/store"            # USTC - 中国科学技术大学 Mirror
+      "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"   # TUNA - 清华大学 Mirror
+      "https://mirrors.bfsu.edu.cn/nix-channels/store"            # BFSU - 北京外国语大学 Mirror
+      "https://mirror.sjtu.edu.cn/nix-channels/store"             # SJTU - 上海交通大学 Mirror
 
-      # TODO: actually figure out what is Cachix
       "https://nix-community.cachix.org"
       "https://berberman.cachix.org"
       "https://hyprland.cachix.org"
