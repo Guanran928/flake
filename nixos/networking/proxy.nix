@@ -1,9 +1,17 @@
 { pkgs, config, inputs, ... }:
 
 {
+  ### System proxy settings
   networking.proxy.default = "http://127.0.0.1:7890/";
 
-  #environment.systemPackages = with pkgs; [ clash-meta ];
+  ### User running proxy service
+  users.groups."clash-meta" = {};
+  users.users."clash-meta" = {
+    isSystemUser = true;
+    group = config.users.groups."clash-meta".name;
+  };
+
+  ### Proxy service
   systemd.services."clash-meta" = {
     wantedBy = [ "multi-user.target" ];
     after = [ "network-online.target" ];
