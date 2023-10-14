@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, config, lib, inputs, ... }:
 
 {
   home = {
@@ -55,15 +55,24 @@
     };
     zsh = {
       enable = true;
+      ### XDG
+      dotDir = ".config/zsh";
+      ### Plugins
       syntaxHighlighting.enable = true;
       historySubstringSearch.enable = true;
       enableAutosuggestions = true;
-      dotDir = ".config/zsh";
-      initExtra = ''
-        source ${config.xdg.configHome}/zsh/plugins/sudo/sudo.plugin.zsh
-        source ${config.xdg.configHome}/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
-        zstyle ':fzf-tab:*' fzf-command sk
-      '';
+      plugins = [
+        {
+          name = "fzf-tab";
+          src = pkgs.zsh-fzf-tab;
+        }
+        {
+          name = "sudo";
+          src = ./dotfiles/config/zsh/sudo;
+        }
+      ];
+      initExtra = "zstyle ':fzf-tab:*' fzf-command sk";
+      ### History
       history = {
         path = "${config.xdg.configHome}/zsh/.zsh_history";
         save = 1000000;
@@ -106,7 +115,7 @@
     alacritty = {
       enable = true;
       settings = {
-        import = [ "${config.xdg.configHome}/alacritty/tokyonight/tokyonight_night.yml" ];
+        import = [ "${inputs.tokyonight}/extras/alacritty/tokyonight_night.yml" ];
         cursor.style = "beam";
         env.WINIT_X11_SCALE_FACTOR = "1";
         window = {
@@ -135,6 +144,17 @@
             style = "SemiBold Italic";
           };
         };
+      };
+    };
+
+    kitty = {
+      enable = true;
+      settings = {
+        include = "${inputs.tokyonight}/extras/kitty/tokyonight_night.conf";
+        font_size = 12;
+        confirm_os_window_close = 0;
+        window_padding_width = 6;
+        adjust_line_height = 0;
       };
     };
 

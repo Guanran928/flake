@@ -8,16 +8,8 @@ let
 in
 {
   xdg.configFile = {
-    "alacritty" = {
-      source = "${configPath}/alacritty";
-      recursive = true;
-    };
     "foot" = {
       source = "${configPath}/foot";
-      recursive = true;
-    };
-    "kitty" = {
-      source = "${configPath}/kitty";
       recursive = true;
     };
     "fish" = {
@@ -38,10 +30,6 @@ in
     };
     "rofi" = {
       source = "${configPath}/rofi";
-      recursive = true;
-    };
-    "zsh/plugins" = {
-      source = "${configPath}/zsh";
       recursive = true;
     };
     "mpv" = {

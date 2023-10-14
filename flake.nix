@@ -1,6 +1,10 @@
 {
   inputs = {
+    # Flake inputs
+    ## Nixpkgs
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    ## Flakes
     berberman = {
       url = "github:berberman/flakes";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -44,6 +48,19 @@
     impermanence = {
       url = "github:nix-community/impermanence";
     };
+
+    ## Non-Flake
+    ### Color scheme files
+    tokyonight = {
+      # TODO: base16.nix/Stylix when?
+      url = "github:folke/tokyonight.nvim";
+      flake = false;
+    };
+    ### Clash WebUI
+    metacubexd = {
+      url = "github:MetaCubeX/metacubexd/gh-pages";
+      flake = false;
+    };
   };
 
   outputs = { self,
@@ -57,6 +74,8 @@
               sops-nix,
               disko,
               impermanence,
+              tokyonight,
+              metacubexd,
               ... } @ inputs: {
 
     # nix-darwin (macOS)

@@ -315,6 +315,23 @@
         "type": "github"
       }
     },
+    "metacubexd": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1696853927,
+        "narHash": "sha256-HzbU/TWXfRJytSwIpdJRMdeOUXE1pMxtKtmjhkWTXzk=",
+        "owner": "MetaCubeX",
+        "repo": "metacubexd",
+        "rev": "0ff85616c7b9156e9d5eaee62eb811da5872a71d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MetaCubeX",
+        "ref": "gh-pages",
+        "repo": "metacubexd",
+        "type": "github"
+      }
+    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -446,9 +463,11 @@
         "hyprland": "hyprland",
         "impermanence": "impermanence",
         "lanzaboote": "lanzaboote",
+        "metacubexd": "metacubexd",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",
-        "sops-nix": "sops-nix"
+        "sops-nix": "sops-nix",
+        "tokyonight": "tokyonight"
       }
     },
     "rust-overlay": {
@@ -539,6 +558,22 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "tokyonight": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1697104289,
+        "narHash": "sha256-OJGgBcSTiIEnmGpYlNBmb3CzOmxb8W1Wjl7Fz0FhpbE=",
+        "owner": "folke",
+        "repo": "tokyonight.nvim",
+        "rev": "dce0ab49ae751f4f3617ab42d6f20c72369c7cb1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "folke",
+        "repo": "tokyonight.nvim",
         "type": "github"
       }
     },
