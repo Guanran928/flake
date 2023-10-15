@@ -1,4 +1,4 @@
-{ disks ? [ "/dev/vdb" ], inputs, ... }:
+{ inputs, disks ? [ "/dev/vdb" ], ... }:
 
 {
   imports = [ inputs.disko.nixosModules.disko ];

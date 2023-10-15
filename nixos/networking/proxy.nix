@@ -1,9 +1,17 @@
-{ pkgs, config, ... }:
+{ pkgs, config, inputs, ... }:
 
 {
+  ### System proxy settings
   networking.proxy.default = "http://127.0.0.1:7890/";
 
-  #environment.systemPackages = with pkgs; [ clash-meta ];
+  ### User running proxy service
+  users.groups."clash-meta" = {};
+  users.users."clash-meta" = {
+    isSystemUser = true;
+    group = config.users.groups."clash-meta".name;
+  };
+
+  ### Proxy service
   systemd.services."clash-meta" = {
     wantedBy = [ "multi-user.target" ];
     after = [ "network-online.target" ];
@@ -27,5 +35,15 @@
     };
   };
 
-  environment.etc."clash-meta/metacubexd".source = ../../users/guanranwang/home-manager/common/dotfiles/config/clash/metacubexd;
+  ### Local Clash WebUI
+  # You can also use the following website, just in case:
+  # - metacubexd:
+  #   - GH Pages Custom Domain: http://d.metacubex.one
+  #   - GH Pages: https://metacubex.github.io/metacubexd
+  #   - Cloudflare Pages: https://metacubexd.pages.dev
+  # - yacd (Yet Another Clash Dashboard):
+  #   - https://yacd.haishan.me
+  # - clash-dashboard (buggy):
+  #   - https://clash.razord.top
+  environment.etc."clash-meta/metacubexd".source = inputs.metacubexd;
 }

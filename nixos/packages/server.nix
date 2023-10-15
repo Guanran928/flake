@@ -1,1 +1,0 @@
-# no i dont actually own a server

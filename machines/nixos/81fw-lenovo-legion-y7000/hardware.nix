@@ -5,6 +5,7 @@
     ../hardware/misc/audio.nix
     ../hardware/misc/bluetooth.nix
     ../hardware/misc/opengl.nix
+    ../hardware/misc/tpm.nix
     ../hardware/cpu/intel.nix
     ../hardware/gpu/intel.nix
     ../hardware/gpu/nvidia.nix

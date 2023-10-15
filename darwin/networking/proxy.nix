@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 # README!!:
 # I HAVE NO IDEA HOW LAUNCHD DAEMON WORKS
@@ -23,5 +23,5 @@
     "rsync_proxy" = "http://127.0.0.1:7890";
   };
 
-  environment.etc."clash-meta/metacubexd".source = ../../users/guanranwang/home-manager/common/dotfiles/config/clash/metacubexd;
+  environment.etc."clash-meta/metacubexd".source = inputs.metacubexd;
 }

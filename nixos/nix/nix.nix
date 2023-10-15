@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 
 {
   nix.settings = {
@@ -29,15 +29,13 @@
     nixos.enable = false;
   };
 
-  #nix.useSandbox = false;
-
   system = {
     # Copy the NixOS configuration file and link it from the resulting system
     # (/run/current-system/configuration.nix). This is useful in case you
     # accidentally delete configuration.nix.
 
     # Does not work with flake based configurations
-    #copySystemConfiguration = true;
+    copySystemConfiguration = lib.mkDefault true;
 
 
     # This value determines the NixOS release from which the default

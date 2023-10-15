@@ -12,6 +12,10 @@
     };
   };
 
-  # Flakes.
+  # Flakes
+  imports = [
+    ../../flakes/darwin/home-manager.nix
+  ];
+  ### home-manager
   home-manager.users.guanranwang = import ./home-manager/darwin; # NOTE: using flakes
 }

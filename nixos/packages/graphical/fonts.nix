@@ -29,6 +29,6 @@
         monospace = [ "JetBrainsMono Nerd Font" "JetBrains Mono" "FiraCode Nerd Font" "Fira Code" "Noto Sans Mono" ];
       };
     };
-    # fontconfig is too limited here, use `$HOME/.config/fontconfig/fonts.conf` instead
+    # fontconfig is too limited here, and appling it globally is **bad**, use Home Manager instead
   };
 }

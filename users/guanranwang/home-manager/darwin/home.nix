@@ -36,13 +36,14 @@
     };
 
     packages = with pkgs; [
-      #fastfetch
-
-      prismlauncher
-      keka # un-archive-r
-      iterm2
-      element-desktop
-
+      ## CLI
+      ### outdated macOS components
+      coreutils
+      vim
+      gnugrep
+      openssh
+      screen
+      ### Misc
       eza
       bottom
       bat
@@ -54,19 +55,23 @@
       android-tools
       skim
 
+
+      ## GUI
+      ### Music
       spotify
       spicetify-cli
       yesplaymusic
       mpv
+      ### Tools
+      keka # un-archive-r
+      iterm2
+      ### Misc
+      prismlauncher
+      element-desktop
 
-      # replace outdated macOS components
-      coreutils
-      vim
-      gnugrep
-      openssh
-      screen
 
-      # LSP
+      ## Misc
+      ### LSP
       nixd
       nil
     ];

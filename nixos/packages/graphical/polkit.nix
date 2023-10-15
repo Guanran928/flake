@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
 {
+  security.polkit.enable = true;
   environment.systemPackages = with pkgs; [ polkit_gnome ];
 
   # polkit_gnome autostart for wms

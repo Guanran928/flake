@@ -2,10 +2,7 @@
 
 {
   hardware = {
-    # Enable redistriutable firmware
     enableRedistributableFirmware = true;
-
-    # Enable all firmware
     #enableAllFirmware = true;
   };
 
