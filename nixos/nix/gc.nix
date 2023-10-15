@@ -2,10 +2,10 @@
 
 {
   nix = {
-    # hard linking
+    ### Auto hard linking
     settings.auto-optimise-store = true;
 
-    # auto delete older NixOS builds
+    ### Automatically delete older NixOS builds
     gc = {
       automatic = true;
       dates = "weekly";

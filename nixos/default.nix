@@ -8,7 +8,6 @@
     ./nix
     ./packages
     ./power-management
-    ./security
     #./specialisation # dont actually use this
     ./users
   ];

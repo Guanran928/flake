@@ -1,7 +1,7 @@
 { ... }:
 
-# Internationalisation settings
-# IME settings are at /etc/nixos/modules/graphical/input.nix
+# Internationalisation configurations
+# Use Home Manager for IME configurations
 {
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -27,4 +27,6 @@
   #   keyMap = "us";
   #   useXkbConfig = true; # use xkbOptions in tty.
   # };
+
+  services.xserver.layout = "us"; # keymap in x11
 }

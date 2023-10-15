@@ -1,10 +1,9 @@
 { pkgs, ... }:
 
 {
-  # NOTE: secureboot enabled in flake.nix
   boot = {
-    #kernelPackages = pkgs.linuxPackages_latest; # latest kernel
-    kernelPackages = pkgs.linuxPackages_zen; # zen kernel, often outdated
-    #kernelPackages = pkgs.linuxKernel.Packages.linux_6_1;
+    #kernelPackages = pkgs.linuxPackages_latest;            # latest linux kernel
+    kernelPackages = pkgs.linuxPackages_zen;                # latest linux-zen kernel
+    #kernelPackages = pkgs.linuxKernel.Packages.linux_6_1;  # linux 6.1 LTS kernel
   };
 }

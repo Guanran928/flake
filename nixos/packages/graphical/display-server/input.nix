@@ -2,7 +2,6 @@
 
 {
   services.xserver = {
-    layout = "us"; # keymap in x11
     libinput = {
       enable = true;
       touchpad = {
@@ -18,7 +17,7 @@
     };
   };
 
-  # Removes debounce time
+  ### Removes debounce time
   # https://www.reddit.com/r/linux_gaming/comments/ku6gth
   environment.etc."libinput/local-overrides.quirks".text = ''
     [Never Debounce]

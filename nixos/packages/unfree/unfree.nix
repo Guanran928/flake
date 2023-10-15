@@ -10,15 +10,15 @@
     "facetimehd-firmware"     # ../hardware/hardwares/imac-2017.nix
 
     # flatpak-able
-    "discord"
-    "google-chrome"
-    "lunar-client"
     "osu-lazer-bin"
     "osu-lazer-bin-2023.1008.0" # what?
     "spotify"
     "steam"
     "steam-original"
-    "microsoft-edge-stable"
-    "qq"
+    #"discord"
+    #"google-chrome"
+    #"lunar-client"
+    #"microsoft-edge-stable"
+    #"qq"
   ];
 }

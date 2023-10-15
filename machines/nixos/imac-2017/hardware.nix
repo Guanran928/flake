@@ -11,11 +11,11 @@
     (modulesPath + "/installer/scan/not-detected.nix") # what is this
   ];
 
-  # from nixos-hardware
-  boot.kernelParams = [ "hid_apple.iso_layout=0" ];
-  hardware.facetimehd.enable = true; # cam already works before adding this, not sure what is the point
-
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "sdhci_pci" ];
+
+  # Options from github:NixOS/nixos-hardware
+  boot.kernelParams = [ "hid_apple.iso_layout=0" ];
+  hardware.facetimehd.enable = true; # TODO: Camera already works before adding this, not sure what is the point...
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

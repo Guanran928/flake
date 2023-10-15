@@ -1,9 +1,17 @@
 { config, ... }:
 
+# Imported by default, check out ./desktop.nix or ./server.nix
 {
   # Installed packages (System wide)
   environment = {
-    defaultPackages = [];
+    #defaultPackages = [];
+  };
+
+  users.mutableUsers = false;
+  environment.etc.machine-id.text = "b08dfa6083e7567a1921a715000001fb"; # whonix id
+  security = {
+    apparmor.enable = true;
+    sudo.execWheelOnly = true;
   };
 
   # Programs
@@ -25,9 +33,18 @@
       NixOS ${config.system.nixos.label} ${config.system.nixos.codeName} (\m) - \l
       --my-next-gpu-wont-be-nvidia
     '';
+
+    openssh = {
+      enable = true;
+      settings = {
+        PermitRootLogin = "no";
+        PasswordAuthentication = false;
+      };
+    };
+
     #cron.enable = true;
     #dbus.enable = true;
-    openssh.enable = true;
+
     # BTRFS De-Dupe
     # bruh how to make it not a background job
     # i want to run it manually
