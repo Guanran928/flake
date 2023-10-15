@@ -1,68 +1,6 @@
-{ lib, pkgs, ... }:
+{ ... }:
 
 {
-  fonts.fonts = with pkgs; [
-    (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
-  ];
-
-  # Allow unfree applications
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    #"vscode"
-    "spotify"
-    "keka" # i thought it was opensource
-  ];
-
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
-  #environment.systemPackages = with pkgs; [
-  #  neovim
-  #  vscode
-  #];
-
-  # Create /etc/zshrc that loads the nix-darwin environment.
-  programs.zsh.enable = true;  # default shell on catalina
-  programs.fish.enable = true;
-
-  services = {
-    yabai = {
-      enable = true;
-      enableScriptingAddition = true;
-      config = {
-        layout         = "bsp";
-
-        mouse_modifier = "fn";
-
-        # very broken on slow cpu
-        #focus_follows_mouse = "autoraise";
-        #mouse_follows_focus = "on";
-
-        top_padding    = 10;
-        bottom_padding = 10;
-        left_padding   = 10;
-        right_padding  = 10;
-        window_gap     = 4;
-      };
-    };
-    skhd = {
-      enable = true;
-      skhdConfig = ''
-        cmd - return : open -n ${pkgs.alacritty}/Applications/Alacritty.app
-
-        cmd - 1 : yabai -m space --focus 1             # Focus space
-        cmd - 2 : yabai -m space --focus 2
-        cmd - 3 : yabai -m space --focus 3
-        cmd - 4 : yabai -m space --focus 4
-        cmd - 5 : yabai -m space --focus 5
-
-        shift + cmd - 1 : yabai -m window --space 1    # Send to space
-        shift + cmd - 2 : yabai -m window --space 2
-        shift + cmd - 3 : yabai -m window --space 3
-        shift + cmd - 4 : yabai -m window --space 4
-        shift + cmd - 5 : yabai -m window --space 5
-      '';
-    };
-  };
-
   system.defaults = {
     # Apple... Do I really have to change literally
     # every setting in macOS to make it actually usable.
@@ -71,6 +9,15 @@
     #
     # NOTE: default of those options is `null` (unmanaged)
     #       https://github.com/mathiasbynens/dotfiles/blob/main/.macos for references
+
+    ### Inputs
+    ".GlobalPreferences"."com.apple.mouse.scaling" = "-1"; # Disable mouse acceleration
+    trackpad = {
+      Clicking = true;
+      TrackpadRightClick = true;
+    };
+
+    ### Finder
     finder = {
       _FXShowPosixPathInTitle = false;
       AppleShowAllExtensions = true;
@@ -83,11 +30,15 @@
       ShowPathbar = true;
       ShowStatusBar = false;
     };
+
+    ### Login window
     loginwindow = {
       autoLoginUser = "Off";
       DisableConsoleAccess = true;
       GuestEnabled = false;
     };
+
+    ### Finder menu
     menuExtraClock = {
       IsAnalog = false;
       Show24Hour = false;
@@ -97,6 +48,8 @@
       ShowDayOfWeek = true;
       ShowSeconds = false;
     };
+
+    ### Misc
     NSGlobalDomain = {
       "com.apple.keyboard.fnState" = true;
       "com.apple.mouse.tapBehavior" = 1;
@@ -143,7 +96,4 @@
       PMPrintingExpandedStateForPrint2 = true;
     };
   };
-
-  # Set Git commit hash for darwin-version.
-  #system.configurationRevision = self.rev or self.dirtyRev or null;
 }
