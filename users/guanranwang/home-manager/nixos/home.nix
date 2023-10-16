@@ -106,10 +106,6 @@
       amberol
       netease-cloud-music-gtk
 
-      # game
-      steam
-      #lunar-client
-
       bitwarden
       #discord
       #qq
@@ -117,9 +113,7 @@
       mousai
       protonup-qt
       piper
-      prismlauncher
       telegram-desktop
-      osu-lazer-bin
       qbittorrent
       gradience
       dippi
@@ -281,11 +275,6 @@
       package = pkgs.rofi-wayland;
       font = "monospace";
       terminal = "${pkgs.alacritty}/bin/alacritty";
-    };
-
-    mangohud = {
-      enable = true;
-      # TODO: add configuration, i have no idea how to display stuff with nix syntax
     };
 
     #boxxy = {

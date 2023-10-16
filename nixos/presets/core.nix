@@ -2,6 +2,17 @@
 
 # Imported by default, check out ./desktop.nix or ./server.nix
 {
+  imports = [
+    ../boot
+    ../i18n
+    ../networking
+    ../nix
+    ../packages
+    ../power-management
+    #../specialisation # dont actually use this
+    ../users
+  ];
+
   # Installed packages (System wide)
   environment = {
     #defaultPackages = [];

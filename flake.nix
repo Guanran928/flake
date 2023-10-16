@@ -86,11 +86,10 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          ./nixos                                             # Entrypoint
-          ./machines/nixos/81fw-lenovo-legion-y7000           # Hardware-specific configurations
-          ./machines/nixos/81fw-lenovo-legion-y7000/machine-1 # Machine-specific configurations
-
-          ./users/guanranwang/nixos.nix                       # Home Manager entrypoint (user-specific)
+          ./nixos/presets/gaming.nix                          # OS-specific (with presets)
+          ./users/guanranwang/nixos/presets/gaming.nix        # User-specific (with presets)
+          ./machines/nixos/81fw-lenovo-legion-y7000           # Hardware-specific
+          ./machines/nixos/81fw-lenovo-legion-y7000/machine-1 # Machine-specific
 
           { networking.hostName = "81FW-NixOS"; }             # Hostname
         ];
@@ -101,11 +100,10 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          ./nixos
+          ./nixos/presets/desktop.nix
+          ./users/guanranwang/nixos/presets/desktop.nix
           ./machines/nixos/imac-2017
           ./machines/nixos/imac-2017/machine-1
-
-          ./users/guanranwang/nixos.nix
 
           { networking.hostName = "iMac-NixOS"; }
         ];
@@ -120,9 +118,8 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./darwin
+          ./users/guanranwang/darwin/presets/desktop.nix
           ./machines/darwin/imac-2017
-
-          ./users/guanranwang/darwin.nix
 
           { networking.hostName = "iMac-macOS"; }
         ];

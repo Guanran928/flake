@@ -66,7 +66,6 @@
       keka # un-archive-r
       iterm2
       ### Misc
-      prismlauncher
       element-desktop
 
 
