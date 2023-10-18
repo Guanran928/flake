@@ -9,9 +9,7 @@
     "xow_dongle-firmware"     # ../hardware/accessories/xbox.nix
     "facetimehd-firmware"     # ../hardware/hardwares/imac-2017.nix
 
-    # flatpak-able
-    "osu-lazer-bin"
-    "osu-lazer-bin-2023.1008.0" # what?
+    "osu-lazer-bin-2023.1008.1" # what?
     "spotify"
     "steam"
     "steam-original"
