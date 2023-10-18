@@ -176,10 +176,10 @@
       enableUpdateCheck = false;
       userSettings = {
         "diffEditor.ignoreTrimWhitespace"     = false;
-        "editor.cursorSmoothCaretAnimation"   = "on";
         "editor.cursorBlinking"               = "smooth";
+        "editor.cursorSmoothCaretAnimation"   = "on";
         "editor.fontFamily"     = lib.mkDefault "Monospace";
-        "editor.fontWeight"                   = "600";
+        "editor.fontWeight"                   = 600;
         "editor.tabSize"                      = 2;
         "explorer.confirmDragAndDrop"         = false;
         "explorer.confirmDelete"              = false;
@@ -192,32 +192,30 @@
         "terminal.integrated.cursorBlinking"  = true;
         "update.mode"                         = "none";
         "window.menuBarVisibility"            = "toggle";
-        "workbench.colorTheme"                = "Tokyo Night";
+        "workbench.colorTheme"   = "Tokyo Night";
 
         # Extensions
         ### Nix IDE
         "nix.enableLanguageServer"    = true;
-        #"nix.serverPath"              = "nixd";
-        "nix.serverPath"              = "nil";
+        "nix.serverPath"              = "${pkgs.nil}/bin/nil";
         ### GitLens
         "gitlens.telemetry.enabled"   = false;
       };
       extensions = with pkgs.vscode-extensions; [
-        # lsp
-        #bbenoist.nix
+        ### LSP
         jnoortheen.nix-ide
-        #ms-python.python # Temporary disable this, as debugpy is stuck at building (literally waited for 40 minute + 6 hour + 2 hour...)
+        ms-python.python
         rust-lang.rust-analyzer
         tamasfe.even-better-toml
         #bungcip.better-toml
 
-        # qol
+        ### QoL
         eamodio.gitlens
         esbenp.prettier-vscode
         ritwickdey.liveserver
         vscodevim.vim
 
-        # theme
+        ### Themes
         enkia.tokyo-night
         #catppuccin.catppuccin-vsc-icons
         #catppuccin.catppuccin-vsc

@@ -67,12 +67,6 @@
       iterm2
       ### Misc
       element-desktop
-
-
-      ## Misc
-      ### LSP
-      nixd
-      nil
     ];
   };
 

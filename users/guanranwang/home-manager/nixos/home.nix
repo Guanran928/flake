@@ -75,11 +75,6 @@
       adw-gtk3
       libsForQt5.qtstyleplugin-kvantum # Kvantum, theme engine
 
-      # lsp
-      nixd
-      nil
-
-
 
       ### flatpak-able
 
