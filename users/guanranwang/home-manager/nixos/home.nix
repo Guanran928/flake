@@ -23,9 +23,6 @@
       pavucontrol
 
       # wayland
-      wayland
-      xdg-utils
-      libnotify
       wl-clipboard
       cliphist
       swaylock-effects
