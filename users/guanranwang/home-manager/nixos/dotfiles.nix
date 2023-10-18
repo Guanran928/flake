@@ -36,6 +36,10 @@ in
       source = "${configPath}/mpv";
       recursive = true;
     };
+    "dunst" = {
+      source = "${configPath}/dunst";
+      recursive = true;
+    };
 
     "makepkgs.conf" = {
       source = "${configPath}/makepkgs.conf";
@@ -43,18 +47,6 @@ in
     "alsoft.conf" = {
       source = "${configPath}/alsoft.conf";
     };
-
-    #"waybar" = {
-    #  source = "${configPath}/waybar";
-    #  recursive = true;
-    #};
-    #"clash-meta" = {
-    #  source = "${configPath}/clash";
-    #  recursive = true;
-    #};
-    #"clash-meta/config.yaml" = {
-    #  text = "${config.sops.secrets."clash-config".path}";
-    #};
   };
 
   xdg.dataFile = {
