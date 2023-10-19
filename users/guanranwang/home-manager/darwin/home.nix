@@ -54,6 +54,7 @@
       aria2
       android-tools
       skim
+      ydict
 
 
       ## GUI

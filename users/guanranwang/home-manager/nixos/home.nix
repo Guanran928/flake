@@ -60,6 +60,7 @@
       wget
       sops
       skim
+      ydict
       zoxide # rs
       trashy
       eza

@@ -30,6 +30,7 @@
       #"htop" = "btm -b";
       #"btop" = "btm";
 
+      "yd" = "ydict -c";
       "farsee" = "curl -F 'c=@-' 'https://fars.ee/'"; # pb
       "clock" = "tty-clock -5Ccs";
 
