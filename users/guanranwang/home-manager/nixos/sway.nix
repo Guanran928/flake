@@ -1,6 +1,12 @@
 { config, pkgs, ... }:
 
 {
+  programs.fish.loginShellInit = ''
+    if test -z "$Display" -a "$XDG_VTNR" = 1
+      exec sway
+    end
+  '';
+
   wayland.windowManager.sway = {
     enable = true;
     extraOptions = [ "--unsupported-gpu" "-D" "noscanout" ];

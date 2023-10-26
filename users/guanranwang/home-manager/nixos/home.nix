@@ -256,13 +256,6 @@
   #};
 
   programs = {
-    fish.loginShellInit = ''
-      if status is-login
-        if test -z "$Display" -a "$XDG_VTNR" = 1
-          exec sway
-        end
-      end
-    '';
     rofi = {
       #enable = true;
       package = pkgs.rofi-wayland;
