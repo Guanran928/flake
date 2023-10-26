@@ -91,7 +91,10 @@
           ./machines/nixos/81fw-lenovo-legion-y7000           # Hardware-specific
           ./machines/nixos/81fw-lenovo-legion-y7000/machine-1 # Machine-specific
 
-          { networking.hostName = "81FW-NixOS"; }             # Hostname
+          {
+            networking.hostName = "81FW-NixOS"; # Hostname
+            time.timeZone = "Asia/Shanghai";    # Timezone
+          }
         ];
       };
 
@@ -105,7 +108,10 @@
           ./machines/nixos/imac-2017
           ./machines/nixos/imac-2017/machine-1
 
-          { networking.hostName = "iMac-NixOS"; }
+          {
+            networking.hostName = "iMac-NixOS";
+            time.timeZone = "Asia/Shanghai";
+          }
         ];
       };
     };
@@ -121,7 +127,10 @@
           ./users/guanranwang/darwin/presets/desktop.nix
           ./machines/darwin/imac-2017
 
-          { networking.hostName = "iMac-macOS"; }
+          {
+            networking.hostName = "iMac-macOS";
+            time.timeZone = "Asia/Shanghai";
+          }
         ];
       };
     };

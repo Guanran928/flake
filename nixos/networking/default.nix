@@ -8,6 +8,5 @@
     ./dhcp.nix
     ./firewall.nix
     ./proxy.nix
-    ./timezone.nix
   ];
 }
