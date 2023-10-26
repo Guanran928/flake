@@ -97,23 +97,6 @@
           }
         ];
       };
-
-      ## Currently un-used.
-      "iMac-NixOS" = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./nixos/presets/desktop.nix
-          ./users/guanranwang/nixos/presets/desktop.nix
-          ./machines/nixos/imac-2017
-          ./machines/nixos/imac-2017/machine-1
-
-          {
-            networking.hostName = "iMac-NixOS";
-            time.timeZone = "Asia/Shanghai";
-          }
-        ];
-      };
     };
 
 
@@ -140,24 +123,6 @@
     # TODO: Actually figure out how this works
     homeConfigurations = {
       "guanranwang@81fw-nixos" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = { inherit inputs; };
-        modules = [
-          sops-nix.homeManagerModules.sops
-          hyprland.homeManagerModules.default
-          {
-            wayland.windowManager.hyprland = {
-              enable = true;
-              #enableNvidiaPatches = true;
-              xwayland = {
-                enable = true;
-              };
-            };
-          }
-        ];
-      };
-
-      "guanranwang@imac-nixos" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = { inherit inputs; };
         modules = [
