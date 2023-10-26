@@ -205,7 +205,7 @@
       extensions = with pkgs.vscode-extensions; [
         ### LSP
         jnoortheen.nix-ide
-        ms-python.python
+        #ms-python.python
         rust-lang.rust-analyzer
         tamasfe.even-better-toml
         #bungcip.better-toml

@@ -29,7 +29,7 @@
       grim
       slurp
       swappy
-      udiskie
+      #udiskie
       swww
       mpvpaper
 
