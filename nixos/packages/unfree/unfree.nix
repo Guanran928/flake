@@ -9,7 +9,7 @@
     "xow_dongle-firmware"     # ../hardware/accessories/xbox.nix
     "facetimehd-firmware"     # ../hardware/hardwares/imac-2017.nix
 
-    "osu-lazer-bin-2023.1008.1" # what?
+    "osu-lazer-bin-2023.1026.0" # what?
     "spotify"
     "steam"
     "steam-original"
