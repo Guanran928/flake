@@ -32,10 +32,6 @@ in
       source = "${configPath}/rofi";
       recursive = true;
     };
-    "mpv" = {
-      source = "${configPath}/mpv";
-      recursive = true;
-    };
     "dunst" = {
       source = "${configPath}/dunst";
       recursive = true;
