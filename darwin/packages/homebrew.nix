@@ -15,6 +15,7 @@
       "balenaetcher"
       #"clashx"
       "opencore-patcher"
+      "squirrel"
 
       #"element"
       "telegram"
