@@ -6,11 +6,11 @@ It just works™
 - Flakes: Yes
 - Home Manager: Yes
 
-### Machine-specific
+### Machine-specific (81fw-nixos)
 - File system: Btrfs
 - System encryption: Yes (LUKS)
 
-### User-specific
+### User-specific (me)
 - Secrets: sops-nix
 - Display server: Wayland
 - Desktop-environment: Sway
