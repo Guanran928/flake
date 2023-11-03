@@ -1,4 +1,6 @@
 {
+  description = "Guanran928's Flake";
+
   inputs = {
     # Flake inputs
     ## Nixpkgs
