@@ -55,6 +55,7 @@
       android-tools
       skim
       ydict
+      nix-output-monitor
 
 
       ## GUI

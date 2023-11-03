@@ -6,7 +6,7 @@
     enabled = "fcitx5";
     fcitx5.addons = with pkgs; [
       fcitx5-chinese-addons
-      fcitx5-pinyin-moegirl # Using Berberman's FLake overlay
+      fcitx5-pinyin-moegirl # Using Berberman's Flake overlay
       fcitx5-pinyin-zhwiki
 
       #fcitx5-rime

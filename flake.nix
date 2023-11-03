@@ -210,15 +210,6 @@
         modules = [
           sops-nix.homeManagerModules.sops
           hyprland.homeManagerModules.default
-          {
-            wayland.windowManager.hyprland = {
-              enable = true;
-              #enableNvidiaPatches = true;
-              xwayland = {
-                enable = true;
-              };
-            };
-          }
         ];
       };
     };

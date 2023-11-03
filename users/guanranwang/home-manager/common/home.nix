@@ -193,7 +193,7 @@
         "terminal.integrated.cursorBlinking"  = true;
         "update.mode"                         = "none";
         "window.menuBarVisibility"            = "toggle";
-        "workbench.colorTheme"   = "Tokyo Night";
+        "workbench.colorTheme"                = "Tokyo Night";
 
         # Extensions
         ### Nix IDE
@@ -241,9 +241,24 @@
             normal = "block";
             select = "underline";
           };
-          file-picker = {
-            hidden = false;
+          statusline = {
+            mode = {
+              normal = "--NORMAL--";
+              insert = "--INSERT--";
+              select = "--SELECT--";
+            };
           };
+          indent-guides.render = true;
+          file-picker.hidden = false;
+        };
+        # i still use these keybinds somethimes, even its hard to reach
+        keys.insert = {
+          C-left = "move_prev_word_start";
+          C-right = "move_next_word_end";
+        };
+        keys.normal = {
+          C-left = "move_prev_word_start";
+          C-right = "move_next_word_end";
         };
       };
     };

@@ -5,12 +5,6 @@
     username = "guanranwang";
     homeDirectory = "/home/guanranwang";
 
-    # Environment variables
-    sessionVariables = {
-      # qt theme
-      #"QT_STYLE_OVERRIDE"="kvantum";
-    };
-
     packages = (with pkgs; [
       # x11 + wayland
       rofi-wayland
@@ -32,6 +26,8 @@
       #udiskie
       swww
       mpvpaper
+      libnotify
+      jq
 
       # x11
       #polybar
@@ -47,58 +43,20 @@
       mpv
       spicetify-cli
 
-      # TUI
-      cava
-      joshuto # rs
-      bottom
-      helix
-      skim
-      bat
-
-      # cli
-      fastfetch
-      wget
-      sops
-      skim
-      ydict
-      zoxide # rs
-      trashy
-      eza
-      ripgrep
-      fd
-      freshfetch
-      hyperfine
-
-      # themes
-      tela-icon-theme
-      tela-circle-icon-theme
-      papirus-icon-theme
-      adw-gtk3
-      libsForQt5.qtstyleplugin-kvantum # Kvantum, theme engine
-
-
-      ### flatpak-able
-
-      # browser
-      #brave
-      #google-chrome
-      #firefox
-      librewolf
-      #microsoft-edge
-
-      # matrix
+      ### matrix
       #fluffychat
       element-desktop
       cinny-desktop
       #nheko
 
-      # music
+      ### music
       easyeffects
       spotify
       yesplaymusic
       amberol
       netease-cloud-music-gtk
 
+      ### misc
       bitwarden
       #discord
       #qq
@@ -117,6 +75,40 @@
       gnome.gnome-weather
       gnome.gnome-calculator
       gnome.dconf-editor
+
+      # TUI
+      cava
+      joshuto # rs
+      bottom
+      helix
+      skim
+      bat
+
+      # cli
+      #fastfetch
+      wget
+      sops
+      skim
+      ydict
+      nix-output-monitor
+      zoxide # rs
+      trashy
+      eza
+      ripgrep
+      fd
+      freshfetch
+      hyperfine
+
+      # lsp
+      nil
+      gopls
+      libclang
+
+      # themes
+      tela-icon-theme
+      tela-circle-icon-theme
+      papirus-icon-theme
+      adw-gtk3
     ]) ++ (with pkgs.gnome; [
       # GNOME
       nautilus
@@ -231,11 +223,13 @@
 
   wayland.windowManager = {
     hyprland = {
-      enable = true;
+      #enable = true;
       enableNvidiaPatches = true;
-      xwayland = {
-        enable = true;
-      };
+      xwayland.enable = true;
+      plugins = [
+        #inputs.hyprland-plugins.packages.${pkgs.system}.csgo-vulkan-fix
+      ];
+
       extraConfig = ''
         #source = ~/.config/hypr/themes/mocha.conf
         #source = ~/.config/hypr/themes/colors.conf
@@ -269,5 +263,146 @@
     #  #
     #  #};
     #};
+
+    firefox = {
+      #enable = true;
+      profiles."default" = {};
+    };
+
+    librewolf = {
+      enable = true;
+      settings = {
+        "identity.fxaccounts.enabled" = true;
+
+        # https:#github.com/yokoffing/Betterfox/blob/main/librewolf.overrides.cfg
+        ### SECTION: FASTFOX
+        "layout.css.grid-template-masonry-value.enabled" = true;
+        "dom.enable_web_task_scheduling" = true;
+
+
+        ### SECTION: SECUREFOX
+        # TRACKING PROTECTION
+        "urlclassifier.trackingSkipURLs" = "*.reddit.com, *.twitter.com, *.twimg.com";
+        "urlclassifier.features.socialtracking.skipURLs" = "*.instagram.com, *.twitter.com, *.twimg.com";
+
+        ### OCSP & CERTS / HPKP
+        # Use CRLite instead of OCSP
+        "security.OCSP.enabled" = 0;
+        "security.OCSP.require" = false;
+        "security.pki.crlite_mode" = 2;
+
+        ### RFP
+        # Limits refresh rate to 60mHz, breaks timezone, and forced light theme
+        # [1] https:#librewolf.net/docs/faq/#what-are-the-most-common-downsides-of-rfp-resist-fingerprinting
+        "privacy.resistFingerprinting" = false;
+
+        ### WebGL
+        # Breaks Map sites, NYT articles, Nat Geo, and more
+        # [1] https:#manu.ninja/25-real-world-applications-using-webgl/
+        "webgl.disabled" = false;
+
+        # DRM
+        # Netflix, Udemy, Spotify, etc.
+        "media.eme.enabled" = true;
+
+        # HTTPS-ONLY MODE
+        "dom.security.https_only_mode_error_page_user_suggestions" = true;
+
+        # PASSWORDS AND AUTOFILL
+        "signon.generation.enabled" = false;
+
+        ### WEBRTC
+        # Breaks video conferencing
+        "media.peerconnection.ice.no_host" = false;
+
+        ### PERMISSIONS
+        "permissions.default.geo" = 2;
+        "permissions.default.desktop-notification" = 2;
+        "dom.push.enabled" = false;
+
+
+        ### SECTION: PESKYFOX
+        ### MOZILLA UI
+        "layout.css.prefers-color-scheme.content-override" = 2;
+        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+        "browser.compactmode.show" = true;
+
+        ### FULLSCREEN
+        "full-screen-api.transition-duration.enter" = "0 0";
+        "full-screen-api.transition-duration.leave" = "0 0";
+        "full-screen-api.warning.delay" = 0;
+        "full-screen-api.warning.timeout" = 0;
+
+        ### URL BAR
+        "browser.urlbar.suggest.engines" = false;
+        "browser.urlbar.suggest.topsites" = false;
+        "browser.urlbar.suggest.calculator" = true;
+        "browser.urlbar.unitConversion.enabled" = true;
+
+        ### AUTOPLAY
+        # Default breaks some video players
+        "media.autoplay.blocking_policy" = 0;
+
+        #### PASSWORDS
+        "editor.truncate_user_pastes" = false;
+
+        #### DOWNLOADS
+        "browser.download.autohideButton" = true;
+
+        ### PDF
+        "browser.download.open_pdf_attachments_inline" = true;
+
+        ### TAB BEHAVIOR
+        "browser.tabs.loadBookmarksInTabs" = true;
+        "browser.bookmarks.openInTabClosesMenu" = false;
+        "findbar.highlightAll" = true;
+
+
+        ### SECTION: SMOOTHFOX
+        "apz.overscroll.enabled" = true;
+        "general.smoothScroll" = true;
+        "general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS" = 12;
+        "general.smoothScroll.msdPhysics.enabled" = true;
+        "general.smoothScroll.msdPhysics.motionBeginSpringConstant" = 600;
+        "general.smoothScroll.msdPhysics.regularSpringConstant" = 650;
+        "general.smoothScroll.msdPhysics.slowdownMinDeltaMS" = 25;
+        "general.smoothScroll.msdPhysics.slowdownMinDeltaRatio" = "2.0";
+        "general.smoothScroll.msdPhysics.slowdownSpringConstant" = 250;
+        "general.smoothScroll.currentVelocityWeighting" = "1.0";
+        "general.smoothScroll.stopDecelerationWeighting" = "1.0";
+        "mousewheel.default.delta_multiplier_y" = 75;
+      };
+    };
+
+    chromium = {
+      enable = true;
+      #package = pkgs.ungoogled-chromium;
+      # ungoogled-chrome does not work with extensions for now
+      # https://github.com/nix-community/home-manager/issues/2216
+      # https://github.com/nix-community/home-manager/issues/2585
+      extensions = [
+        { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # ublock origin
+        { id = "mnjggcdmjocbbbhaepdhchncahnbgone"; } # sponsorblock
+        { id = "icallnadddjmdinamnolclfjanhfoafe"; } # fastforward
+        { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; } # vimium
+        { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden
+        { id = "gebbhagfogifgggkldgodflihgfeippi"; } # return youtube dislike
+        { id = "eimadpbcbfnmbkopoojfekhnkhdbieeh"; } # dark reader
+        { id = "njdfdhgcmkocbgbhcioffdbicglldapd"; } # localcdn
+        { id = "hipekcciheckooncpjeljhnekcoolahp"; } # tabliss
+        { id = "bgfofngpplpmpijncjegfdgilpgamhdk"; } # modern scrollbar
+        { id = "ajhmfdgkijocedmfjonnpjfojldioehi"; } # privacy pass
+        { id = "hkgfoiooedgoejojocmhlaklaeopbecg"; } # picture in picture
+        #{ id = "fnaicdffflnofjppbagibeoednhnbjhg"; } # floccus bookmark sync
+        #{ id = "jaoafjdoijdconemdmodhbfpianehlon"; } # skip redirect
+        #{ id = "dhdgffkkebhmkfjojejmpbldmpobfkfo"; } # tampermonkey
+        #{ id = "jinjaccalgkegednnccohejagnlnfdag"; } # violentmonkey
+        #{ id = "kdbmhfkmnlmbkgbabkdealhhbfhlmmon"; } # steamdb
+        #{ id = "cmeakgjggjdlcpncigglobpjbkabhmjl"; } # steam inventory helper
+        #{ id = "mgijmajocgfcbeboacabfgobmjgjcoja"; } # google dictionary
+        #{ id = "kbfnbcaeplbcioakkpcpgfkobkghlhen"; } # grammarly
+        #{ id = "ekbmhggedfdlajiikminikhcjffbleac"; } # 喵喵折+
+      ];
+    };
   };
 }
