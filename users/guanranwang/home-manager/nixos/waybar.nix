@@ -68,8 +68,32 @@
           "max-length" = 25;
         };
         "clock" = {
-          "format" = "{:%A %H:%M} ";
-          "tooltip-format" = "<tt>{calendar}</tt>";
+          # https://fmt.dev/latest/syntax.html#chrono-specs
+          "format" = "{:%a %b %d %I:%M %p} ";
+          "tooltip-format" = "{calendar}";
+          "calendar" = {
+            "mode"            = "month";
+            "mode-mon-col"    = 3;
+            "on-scroll"       = -1;
+            "format"."today"  = "<b><u>{}</u></b>";
+          };
+          "actions" = {
+            "on-click-right"    = "mode";
+            "on-scroll-up"      = "shift_down";
+            "on-scroll-down"    = "shift_up";
+          };
+        };
+        "cava" = {
+          "framerate" = 30;
+          "autosens" = 1;
+          #"sensitivity" = 1;
+          "bars" = 14;
+          "method" = "pipewire";
+          "bar_delimiter" = 0;
+          #"monstercat" = false;
+          #"waves" = false;
+          "format-icons" = [ "▁" "▂" "▃" "▄" "▅" "▆" "▇" "█" ];
+          "actions"."on-click-right" = "mode";
         };
       };
     };
@@ -86,6 +110,9 @@
         border: 2px solid #c0caf5;
         border-radius: 5px;
       }
+      tooltip label {
+        color: #c0caf5;
+      }
       #custom-launcher,
       #gamemode,
       #window,
@@ -93,15 +120,14 @@
       #tray,
       #pulseaudio,
       #battery,
-      #clock,
-      #cava {
+      #clock {
         text-shadow: 1px 1px 2px black;
         background: #1a1b26;
-        color: #c0caf5; /* text color */
+        color: #c0caf5;
         margin: 10px 4px 4px 4px;
         padding: 4px 10px;
         box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.4);
-        border-radius: 5px; /* rounded corners */
+        border-radius: 5px;
       }
       #custom-launcher {
         margin-left: 10px;
@@ -138,14 +164,14 @@
         background-size: 300% 100%;
         background-position: 0% 0%;
         animation: colored-gradient 2s linear infinite;
-        color: #1a1b26; /* icon(text) color */
+        color: #1a1b26;
         min-width: 36px;
       }
       #workspaces button.focused:hover {
-        background: #9fa7cc; /* hovered workspace color */
+        background: #9fa7cc;
       }
       #workspaces button:hover {
-        background: #11111b; /* hovered workspace color */
+        background: #11111b;
       }
       @keyframes colored-gradient {
         from {background-position: 0% 0%;}
