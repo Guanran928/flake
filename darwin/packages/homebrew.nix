@@ -24,8 +24,6 @@
       "librewolf"
       "google-chrome"
 
-      "steam"
-
       "activate" # koekeishiya/formulae
     ];
     taps = [

@@ -168,12 +168,22 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          ./nixos/presets/gaming.nix                          # OS-specific (with presets)
-          ./users/guanranwang/nixos/presets/gaming.nix        # User-specific (with presets)
-          ./machines/nixos/81fw-lenovo-legion-y7000           # Hardware-specific
-          ./machines/nixos/81fw-lenovo-legion-y7000/machine-1 # Machine-specific
+          ./nixos/presets/desktop.nix                                   # OS preset
+          ./nixos/presets/core/no-bootloader-menu.nix                   # Addtional, opt-in OS preset(s)
+          ./nixos/presets/desktop/gaming.nix
+          ./nixos/presets/desktop/virtualbox.nix
+          ./nixos/presets/desktop/wayland.nix
+
+          ./users/guanranwang/nixos/presets/desktop.nix                 # User preset
+          ./users/guanranwang/nixos/presets/core/clash-meta-client.nix  # Addtional, opt-in user preset(s)
+
+          ./machines/nixos/81fw-lenovo-legion-y7000                     # Hardware
+          ./machines/nixos/81fw-lenovo-legion-y7000/machine-1           # Machine
 
           {
+            # extra home-manager stuff
+            home-manager.users.guanranwang = import ./users/guanranwang/home-manager/nixos/presets/desktop/gaming.nix;
+
             networking.hostName = "81FW-NixOS"; # Hostname
             time.timeZone = "Asia/Shanghai";    # Timezone
           }
@@ -188,11 +198,14 @@
         system = "x86_64-darwin";
         specialArgs = { inherit inputs; };
         modules = [
-          ./darwin
-          ./users/guanranwang/darwin/presets/desktop.nix
-          ./machines/darwin/imac-2017
+          ./darwin/presets/desktop.nix                          # OS preset
+          ./users/guanranwang/darwin/presets/desktop.nix        # User preset
+          ./users/guanranwang/darwin/presets/core/proxy.nix     # Addtional user preset(s)
+          ./machines/darwin/imac-2017                           # Hardware
 
           {
+            #home-manager.users.guanranwang = import ./users/guanranwang/home-manager/darwin/presets/desktop/gaming.nix;
+
             networking.hostName = "iMac-macOS";
             time.timeZone = "Asia/Shanghai";
           }

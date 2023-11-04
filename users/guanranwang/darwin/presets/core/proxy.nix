@@ -10,8 +10,6 @@
 #
 
 {
-  #environment.systemPackages = with pkgs; [ clash-meta ];
-  # do i even need to add it to environment.systemPackages...
   launchd.daemons."clash-meta" = {
     command = "${pkgs.clash-meta}/bin/clash-meta -d /etc/clash-meta";
   };

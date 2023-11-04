@@ -59,10 +59,10 @@
     # i want to run it manually
     #beesd.filesystems = {
     #  root = {
-    #    spec = "UUID=6288ce7a-a153-4302-a4de-5dc71f58da79";
+    #    spec = "UUID=3e10ff73-e1f7-4b39-88f5-7f31dcc8f38c";
     #    hashTableSizeMB = 2048;
     #    verbosity = "crit";
-    #    extraOptions = [ "--loadavg-target" "5.0" ];
+    #    #extraOptions = [ "--loadavg-target" "5.0" ];
     #  };
     #};
   };

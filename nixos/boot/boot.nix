@@ -1,11 +1,9 @@
 { lib, ... }:
 
 {
-  # NOTE: secureboot enabled in flake.nix
   boot = {
     consoleLogLevel = lib.mkDefault 3;
     loader = {
-      timeout = 0;
       efi.canTouchEfiVariables = true;
       systemd-boot = {
         enable = lib.mkDefault true; # mkDefault for Lanzaboote

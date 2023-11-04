@@ -1,9 +1,6 @@
 { pkgs, ... }:
 
 {
-  imports = [
-    ./desktop.nix
-  ];
   programs.gamemode = {
     enable = true;
     settings.custom = {

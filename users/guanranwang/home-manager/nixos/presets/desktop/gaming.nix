@@ -1,10 +1,6 @@
 { pkgs, ... }:
 
 {
-  imports = [
-    ./desktop.nix
-  ];
-
   home.packages = with pkgs; [
     steam
     #lunar-client
