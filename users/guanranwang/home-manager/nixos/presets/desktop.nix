@@ -4,6 +4,7 @@
     ../home.nix
 
     ../dotfiles.nix
+    ../fonts.nix
     ../i18n.nix
     ../sway.nix
     ../waybar.nix
