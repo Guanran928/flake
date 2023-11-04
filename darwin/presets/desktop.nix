@@ -1,8 +1,8 @@
 {...}: {
   imports = [
-    ./networking
-    ./nix
-    ./packages
-    ./system
+    ../networking
+    ../nix
+    ../packages
+    ../system
   ];
 }
