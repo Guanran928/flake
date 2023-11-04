@@ -1,12 +1,9 @@
-{ ... }:
-
-let
+{...}: let
   homePath = ../common/dotfiles;
   binPath = ../common/dotfiles/bin;
   configPath = ../common/dotfiles/config;
   dataPath = ../common/dotfiles/data;
-in
-{
+in {
   xdg.configFile = {
     "foot" = {
       source = "${configPath}/foot";

@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   # Chinese IME
   i18n.inputMethod = {
     enabled = "fcitx5";

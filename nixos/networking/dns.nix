@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{...}: {
   networking.nameservers = [
     ### Google DNS
     "8.8.8.8"

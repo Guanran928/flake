@@ -1,6 +1,8 @@
-{ lib, modulesPath, ... }:
-
 {
+  lib,
+  modulesPath,
+  ...
+}: {
   imports = [
     ../hardware/misc/audio.nix
     ../hardware/misc/bluetooth.nix
@@ -11,10 +13,10 @@
     (modulesPath + "/installer/scan/not-detected.nix") # what is this
   ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "sdhci_pci" ];
+  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "sdhci_pci"];
 
   # Options from github:NixOS/nixos-hardware
-  boot.kernelParams = [ "hid_apple.iso_layout=0" ];
+  boot.kernelParams = ["hid_apple.iso_layout=0"];
   hardware.facetimehd.enable = true; # TODO: Camera already works before adding this, not sure what is the point...
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

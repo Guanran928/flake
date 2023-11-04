@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   services = {
     # GNOME applications
     gvfs.enable = true; # nautilus

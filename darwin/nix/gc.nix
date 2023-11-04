@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{...}: {
   nix = {
     ### Auto hard linking
     settings.auto-optimise-store = true;

@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   programs.gamemode = {
     enable = true;
     settings.custom = {

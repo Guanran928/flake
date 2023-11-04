@@ -1,6 +1,9 @@
-{ config, pkgs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   home = {
     username = "guanranwang";
     homeDirectory = "/Users/guanranwang";
@@ -14,25 +17,28 @@
           paths = config.home.packages;
           pathsToLink = "/Applications";
         };
-      in lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-        toDir="$HOME/Applications/Home Manager Trampolines"
-        fromDir="${apps}/Applications/"
-        rm -rf "$toDir"
-        mkdir "$toDir"
-        (
-          cd "$fromDir"
-          for app in *.app; do
-            /usr/bin/osacompile -o "$toDir/$app" -e 'do shell script "open '$fromDir/$app'"'
-          done
-        )
-      '';
-      setSystemProxy = let networksetup = /usr/sbin/networksetup;
-      in lib.hm.dag.entryAfter ["writeBoundary"] ''
-        ${networksetup} -setwebproxystate "Wi-fi" on
-        ${networksetup} -setwebproxy "Wi-fi" 127.0.0.1 7890
-        ${networksetup} -setwebproxystate "Ethernet" on
-        ${networksetup} -setwebproxy "Ethernet" 127.0.0.1 7890
-      '';
+      in
+        lib.hm.dag.entryAfter ["writeBoundary"] ''
+          toDir="$HOME/Applications/Home Manager Trampolines"
+          fromDir="${apps}/Applications/"
+          rm -rf "$toDir"
+          mkdir "$toDir"
+          (
+            cd "$fromDir"
+            for app in *.app; do
+              /usr/bin/osacompile -o "$toDir/$app" -e 'do shell script "open '$fromDir/$app'"'
+            done
+          )
+        '';
+      setSystemProxy = let
+        networksetup = /usr/sbin/networksetup;
+      in
+        lib.hm.dag.entryAfter ["writeBoundary"] ''
+          ${networksetup} -setwebproxystate "Wi-fi" on
+          ${networksetup} -setwebproxy "Wi-fi" 127.0.0.1 7890
+          ${networksetup} -setwebproxystate "Ethernet" on
+          ${networksetup} -setwebproxy "Ethernet" 127.0.0.1 7890
+        '';
     };
 
     packages = with pkgs; [
@@ -56,7 +62,6 @@
       skim
       ydict
       nix-output-monitor
-
 
       ## GUI
       ### Music

@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   #environment.systemPackages = with pkgs; [
@@ -9,7 +7,7 @@
   #];
 
   # Create /etc/zshrc that loads the nix-darwin environment.
-  programs.zsh.enable = true;  # default shell on catalina
+  programs.zsh.enable = true; # default shell on catalina
   programs.fish.enable = true;
 
   services = {
@@ -17,18 +15,18 @@
       enable = true;
       enableScriptingAddition = true;
       config = {
-        layout         = "bsp";
+        layout = "bsp";
         mouse_modifier = "fn";
 
         # very broken on slow cpu
         #focus_follows_mouse = "autoraise";
         #mouse_follows_focus = "on";
 
-        top_padding    = 10;
+        top_padding = 10;
         bottom_padding = 10;
-        left_padding   = 10;
-        right_padding  = 10;
-        window_gap     = 4;
+        left_padding = 10;
+        right_padding = 10;
+        window_gap = 4;
       };
     };
     skhd = {

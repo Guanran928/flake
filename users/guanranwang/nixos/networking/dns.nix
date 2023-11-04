@@ -1,6 +1,4 @@
-{ lib, ... }:
-
-{
+{lib, ...}: {
   networking.nameservers = lib.mkForce [
     ### AliDNS
     "223.5.5.5"

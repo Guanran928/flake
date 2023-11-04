@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{...}: {
   # All sysctl-s are from https://madaidans-insecurities.github.io/guides/linux-hardening.html#sysctl
   boot.kernel.sysctl = {
     # Kernel self-protection
@@ -22,7 +20,7 @@
     "net.ipv4.conf.all.rp_filter" = "1"; # against IP spoofing
     "net.ipv4.conf.default.rp_filter" = "1";
     "net.ipv4.conf.all.accept_redirects" = "0";
-    "net.ipv4.conf.default.accept_redirects" ="0"; # disable ICMP redirect acceptance and sending, against MITM
+    "net.ipv4.conf.default.accept_redirects" = "0"; # disable ICMP redirect acceptance and sending, against MITM
     "net.ipv4.conf.all.secure_redirects" = "0";
     "net.ipv4.conf.default.secure_redirects" = "0";
     "net.ipv6.conf.all.accept_redirects" = "0";

@@ -1,25 +1,26 @@
-{ pkgs, config, ... }:
-
-let
+{
+  pkgs,
+  config,
+  ...
+}: let
   etcDirectory = "hysteria";
   port = 43956;
-in
-{
+in {
   imports = [
     ../../../../../flakes/nixos/sops-nix.nix
   ];
 
   ### Firewall
   networking.firewall = {
-    allowedTCPPorts = [ port 80 443 ];
-    allowedUDPPorts = [ port 80 443 ];
+    allowedTCPPorts = [port 80 443];
+    allowedUDPPorts = [port 80 443];
   };
 
   #### sops-nix
   sops.secrets."hysteria-config" = {
     owner = config.users.users."hysteria".name;
     group = config.users.groups."hysteria".name;
-    restartUnits = [ "hysteria-server.service" ];
+    restartUnits = ["hysteria-server.service"];
     path = "/etc/${etcDirectory}/config.yaml";
   };
 
@@ -33,15 +34,15 @@ in
   ### Proxy service
   systemd.services."hysteria-server" = {
     description = "Hysteria Server";
-    after = [ "network.target" ];
+    after = ["network.target"];
 
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = ["multi-user.target"];
 
     serviceConfig = {
       Type = "simple";
       WorkingDirectory = "/etc/${etcDirectory}";
-      User = [ config.users.users."hysteria".name ];
-      Group = [ config.users.groups."hysteria".name ];
+      User = [config.users.users."hysteria".name];
+      Group = [config.users.groups."hysteria".name];
       ExecStart = "${pkgs.hysteria}/bin/hysteria server --config /etc/${etcDirectory}/config.yaml";
       Restart = "on-failure";
       CapabilityBoundingSet = [

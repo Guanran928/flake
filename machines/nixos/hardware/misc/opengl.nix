@@ -1,5 +1,4 @@
-{ ... }:
-
+{...}:
 # OpenGL
 {
   hardware = {

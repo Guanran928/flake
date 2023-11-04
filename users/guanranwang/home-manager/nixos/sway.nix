@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   programs.fish.loginShellInit = ''
     if test -z "$Display" -a "$XDG_VTNR" = 1
       exec sway
@@ -9,7 +11,7 @@
 
   wayland.windowManager.sway = {
     enable = true;
-    extraOptions = [ "--unsupported-gpu" "-D" "noscanout" ];
+    extraOptions = ["--unsupported-gpu" "-D" "noscanout"];
     wrapperFeatures.gtk = true;
     systemd = {
       enable = true;
@@ -43,29 +45,27 @@
 
       ### Autostarts
       startup = [
-        { command = "${pkgs.swww}/bin/swww init"; }
-        { command = "${pkgs.waybar}/bin/waybar"; }
-        { command = "${pkgs.wl-clipboard}/bin/wl-paste --watch cliphist store"; }
+        {command = "${pkgs.swww}/bin/swww init";}
+        {command = "${pkgs.waybar}/bin/waybar";}
+        {command = "${pkgs.wl-clipboard}/bin/wl-paste --watch cliphist store";}
         #{ command = "${pkgs.udiskie}/bin/udiskie --smart-tray"; }
       ];
 
       ### Keybinds
       modifier = "Mod4";
       modes = {};
-      keybindings =
-      let
-        modifier        = config.wayland.windowManager.sway.config.modifier;
-        setBrightness   = "/home/guanranwang/.local/bin/wrapped-brightnessctl";
-        setVolume       = "/home/guanranwang/.local/bin/wrapped-pamixer";
-        screenshot      = "/home/guanranwang/.local/bin/wrapped-grim";
-      in
-      {
+      keybindings = let
+        modifier = config.wayland.windowManager.sway.config.modifier;
+        setBrightness = "/home/guanranwang/.local/bin/wrapped-brightnessctl";
+        setVolume = "/home/guanranwang/.local/bin/wrapped-pamixer";
+        screenshot = "/home/guanranwang/.local/bin/wrapped-grim";
+      in {
         ### Sway itself
         # Window
-        "${modifier}+s"       = "split toggle";
-        "${modifier}+v"       = "floating toggle";
-        "${modifier}+f"       = "fullscreen";
-        "${modifier}+q"       = "kill";
+        "${modifier}+s" = "split toggle";
+        "${modifier}+v" = "floating toggle";
+        "${modifier}+f" = "fullscreen";
+        "${modifier}+q" = "kill";
         "${modifier}+Shift+e" = "exec ${pkgs.sway}/bin/swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' '${pkgs.sway}/bin/swaymsg exit'";
 
         # Move around
@@ -98,33 +98,33 @@
 
         ### Execute other stuff
         # Launch applications
-        "${modifier}+Return"    = "exec ${config.wayland.windowManager.sway.config. terminal}";
-        "${modifier}+w"         = "exec ${pkgs.xdg-utils}/bin/xdg-open http:";
-        "${modifier}+e"         = "exec ${pkgs.xdg-utils}/bin/xdg-open ~";
+        "${modifier}+Return" = "exec ${config.wayland.windowManager.sway.config.terminal}";
+        "${modifier}+w" = "exec ${pkgs.xdg-utils}/bin/xdg-open http:";
+        "${modifier}+e" = "exec ${pkgs.xdg-utils}/bin/xdg-open ~";
 
         # Rofi
-        "${modifier}+d"         = "exec ${config.wayland.windowManager.sway.config. menu} -show drun -show-icons -icon-theme ${config.gtk.iconTheme.name}";
-        "${modifier}+Shift+d"   = "exec ${pkgs.cliphist}/bin/cliphist list | ${config.  wayland.windowManager.sway.config.menu} -dmenu | ${pkgs.cliphist}/bin/cliphist  decode | ${pkgs.wl-clipboard}/bin/wl-copy";
-        "${modifier}+Shift+l"   = "exec ${config.wayland.windowManager.sway.config. menu} -modi \"power-menu:rofi-power-menu --confirm=reboot/shutdown\" -show   power-menu";
+        "${modifier}+d" = "exec ${config.wayland.windowManager.sway.config.menu} -show drun -show-icons -icon-theme ${config.gtk.iconTheme.name}";
+        "${modifier}+Shift+d" = "exec ${pkgs.cliphist}/bin/cliphist list | ${config.wayland.windowManager.sway.config.menu} -dmenu | ${pkgs.cliphist}/bin/cliphist  decode | ${pkgs.wl-clipboard}/bin/wl-copy";
+        "${modifier}+Shift+l" = "exec ${config.wayland.windowManager.sway.config.menu} -modi \"power-menu:rofi-power-menu --confirm=reboot/shutdown\" -show   power-menu";
 
         # Screenshot
-        "${modifier}+Shift+s"           = "exec ${screenshot} region";
-        "${modifier}+Control+Shift+s"   = "exec ${screenshot} region edit";
-        "Print"                         = "exec ${screenshot} fullscreen";
-        "Print+Control"                 = "exec ${screenshot} fullscreen edit";
+        "${modifier}+Shift+s" = "exec ${screenshot} region";
+        "${modifier}+Control+Shift+s" = "exec ${screenshot} region edit";
+        "Print" = "exec ${screenshot} fullscreen";
+        "Print+Control" = "exec ${screenshot} fullscreen edit";
 
         # Fn keys
-        "XF86MonBrightnessUp"   = "exec ${setBrightness} up";
+        "XF86MonBrightnessUp" = "exec ${setBrightness} up";
         "XF86MonBrightnessDown" = "exec ${setBrightness} down";
-        "XF86AudioRaiseVolume"  = "exec ${setVolume} up";
-        "XF86AudioLowerVolume"  = "exec ${setVolume} down";
-        "XF86AudioMute"         = "exec ${setVolume} mute";
-        "XF86AudioPlay"         = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
-        "XF86AudioPause"        = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
-        "XF86AudioPrev"         = "exec ${pkgs.playerctl}/bin/playerctl previous";
-        "XF86AudioNext"         = "exec ${pkgs.playerctl}/bin/playerctl next";
-        "XF86AudioStop"         = "exec ${pkgs.playerctl}/bin/playerctl stop";
-        "XF86AudioMedia"        = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
+        "XF86AudioRaiseVolume" = "exec ${setVolume} up";
+        "XF86AudioLowerVolume" = "exec ${setVolume} down";
+        "XF86AudioMute" = "exec ${setVolume} mute";
+        "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
+        "XF86AudioPause" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
+        "XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
+        "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
+        "XF86AudioStop" = "exec ${pkgs.playerctl}/bin/playerctl stop";
+        "XF86AudioMedia" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
       };
     };
   };

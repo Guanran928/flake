@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{...}: {
   # TPM is currently broken on latest kernel,
   # but luckily, linux-zen have a patch for it
   # UPDATE: it got fixed in 6.5.3

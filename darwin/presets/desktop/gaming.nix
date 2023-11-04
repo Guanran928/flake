@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{...}: {
   homebrew.casks = [
     "steam"
   ];

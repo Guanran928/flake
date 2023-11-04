@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{...}: {
   nix = {
     ### Auto hard linking
     settings.auto-optimise-store = true;
@@ -15,7 +13,7 @@
     ### optimiser
     optimise = {
       automatic = true;
-      dates = [ "03:45" ];
+      dates = ["03:45"];
     };
   };
 }

@@ -1,6 +1,8 @@
-{ lib, modulesPath, ... }:
-
 {
+  lib,
+  modulesPath,
+  ...
+}: {
   imports = [
     ../hardware/misc/audio.nix
     ../hardware/misc/bluetooth.nix
@@ -13,7 +15,7 @@
     (modulesPath + "/installer/scan/not-detected.nix") # what is this
   ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" ];
+  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid"];
   services.fstrim.enable = true;
 
   # Nvidia PRIME

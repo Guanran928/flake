@@ -1,5 +1,8 @@
-{ inputs, pkgs, ... }:
-
+{
+  inputs,
+  pkgs,
+  ...
+}:
 # README!!:
 # I HAVE NO IDEA HOW LAUNCHD DAEMON WORKS
 # USE AT YOUR OWN RISK
@@ -8,7 +11,6 @@
 # Remember to manually copy `config.yaml` to `/etc/clash-meta`
 # I have no idea how to get sops-nix working on darwin...
 #
-
 {
   launchd.daemons."clash-meta" = {
     command = "${pkgs.clash-meta}/bin/clash-meta -d /etc/clash-meta";

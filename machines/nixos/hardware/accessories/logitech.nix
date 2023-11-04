@@ -1,5 +1,4 @@
-{ ... }:
-
+{...}:
 # Logitech
 {
   hardware.logitech.wireless = {

@@ -1,8 +1,6 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   users = {
-    knownUsers = [ "guanranwang" ];
+    knownUsers = ["guanranwang"];
     users."guanranwang" = {
       createHome = true;
       description = "Guanran Wang";

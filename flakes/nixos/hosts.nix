@@ -1,7 +1,5 @@
-{ inputs, ... }:
-
-{
-  imports = [ inputs.hosts.nixosModule ];
+{inputs, ...}: {
+  imports = [inputs.hosts.nixosModule];
 
   networking.stevenBlackHosts = {
     enable = true;

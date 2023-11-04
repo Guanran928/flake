@@ -1,5 +1,4 @@
-{ config, ... }:
-
+{config, ...}:
 # Imported by default, check out ./desktop.nix or ./server.nix
 {
   imports = [

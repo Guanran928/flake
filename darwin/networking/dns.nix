@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{...}: {
   # please configure `networking.knownNetworkServices` in ../hosts/your-machine.nix
   networking.dns = [
     "223.5.5.5"

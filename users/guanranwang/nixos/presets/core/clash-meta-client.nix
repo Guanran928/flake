@@ -1,9 +1,11 @@
-{ pkgs, config, inputs, ... }:
-
-let
-  etcDirectory = "clash-meta";
-in
 {
+  pkgs,
+  config,
+  inputs,
+  ...
+}: let
+  etcDirectory = "clash-meta";
+in {
   imports = [
     ../../../../../flakes/nixos/sops-nix.nix
   ];
@@ -12,7 +14,7 @@ in
   sops.secrets."clash-config" = {
     owner = config.users.users."clash-meta".name;
     group = config.users.groups."clash-meta".name;
-    restartUnits = [ "clash-meta.service" ];
+    restartUnits = ["clash-meta.service"];
     path = "/etc/${etcDirectory}/config.yaml";
   };
 
@@ -29,15 +31,15 @@ in
   ### Proxy service
   systemd.services."clash-meta" = {
     description = "Clash.Meta Client";
-    after = [ "network-online.target" ];
+    after = ["network-online.target"];
 
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = ["multi-user.target"];
 
     serviceConfig = {
       Type = "simple";
       WorkingDirectory = "/etc/${etcDirectory}";
-      User = [ config.users.users."clash-meta".name ];
-      Group = [ config.users.groups."clash-meta".name ];
+      User = [config.users.users."clash-meta".name];
+      Group = [config.users.groups."clash-meta".name];
       ExecStart = "${pkgs.clash-meta}/bin/clash-meta -d /etc/${etcDirectory}";
       Restart = "on-failure";
       CapabilityBoundingSet = [

@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{...}: {
   imports = [
     ./hardware.nix # TODO: move this somewhere else?
 

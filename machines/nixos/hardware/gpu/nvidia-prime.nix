@@ -1,5 +1,4 @@
-{ ... }:
-
+{...}:
 # Nvidia Prime ( multi gpu on laptop )
 {
   hardware.nvidia.prime = {

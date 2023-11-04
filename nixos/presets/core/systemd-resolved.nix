@@ -1,11 +1,9 @@
-{ ... }:
-
-{
+{...}: {
   ### systemd-resolved
   services.resolved = {
     enable = true;
     dnssec = "true";
-    domains = [ "~." ];
+    domains = ["~."];
     fallbackDns = [
       "8.8.8.8#dns.google"
       "8.8.4.4#dns.google"

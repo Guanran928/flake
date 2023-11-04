@@ -1,10 +1,9 @@
-{ pkgs, ... }:
-
+{pkgs, ...}:
 # Bluetooth
 {
   # Bluetooth manager
   #services.blueman.enable = true;
-  environment.systemPackages = with pkgs; [ blueberry ];
+  environment.systemPackages = with pkgs; [blueberry];
 
   # Bluetooth service
   hardware.bluetooth = {

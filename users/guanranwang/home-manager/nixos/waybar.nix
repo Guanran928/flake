@@ -4,10 +4,10 @@
     settings = {
       mainBar = {
         "layer" = "top";
-        "modules-left" = [ "custom/launcher" "sway/workspaces" "gamemode" ];
-        "modules-center" = [ "sway/window" ];
-        "modules-right" = [ "tray" "pulseaudio" "battery" "clock" ];
-        "custom/launcher" = { "format" = ""; };
+        "modules-left" = ["custom/launcher" "sway/workspaces" "gamemode"];
+        "modules-center" = ["sway/window"];
+        "modules-right" = ["tray" "pulseaudio" "battery" "clock"];
+        "custom/launcher" = {"format" = "";};
         "gamemode" = {
           "format" = "{glyph} {count}";
           "glyph" = "󰊴";
@@ -50,7 +50,7 @@
             "phone" = "";
             "portable" = "";
             "car" = "";
-            "default" = [ "" "" ];
+            "default" = ["" ""];
           };
           "scroll-step" = 5;
           "on-click" = "pavucontrol";
@@ -64,7 +64,7 @@
             "critical" = 15;
           };
           "format" = "{capacity}% {icon}";
-          "format-icons" = [ "" "" "" "" "" ];
+          "format-icons" = ["" "" "" "" ""];
           "max-length" = 25;
         };
         "clock" = {
@@ -72,15 +72,15 @@
           "format" = "{:%a %b %d %I:%M %p} ";
           "tooltip-format" = "{calendar}";
           "calendar" = {
-            "mode"            = "month";
-            "mode-mon-col"    = 3;
-            "on-scroll"       = -1;
-            "format"."today"  = "<b><u>{}</u></b>";
+            "mode" = "month";
+            "mode-mon-col" = 3;
+            "on-scroll" = -1;
+            "format"."today" = "<b><u>{}</u></b>";
           };
           "actions" = {
-            "on-click-right"    = "mode";
-            "on-scroll-up"      = "shift_down";
-            "on-scroll-down"    = "shift_up";
+            "on-click-right" = "mode";
+            "on-scroll-up" = "shift_down";
+            "on-scroll-down" = "shift_up";
           };
         };
         "cava" = {
@@ -92,7 +92,7 @@
           "bar_delimiter" = 0;
           #"monstercat" = false;
           #"waves" = false;
-          "format-icons" = [ "▁" "▂" "▃" "▄" "▅" "▆" "▇" "█" ];
+          "format-icons" = ["▁" "▂" "▃" "▄" "▅" "▆" "▇" "█"];
           "actions"."on-click-right" = "mode";
         };
       };

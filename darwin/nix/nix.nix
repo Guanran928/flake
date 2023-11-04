@@ -1,13 +1,11 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   nix.settings = {
-    trusted-users = [ "@admin" ];
+    trusted-users = ["@admin"];
     substituters = [
-      "https://mirrors.ustc.edu.cn/nix-channels/store"            # USTC - 中国科学技术大学 Mirror
-      "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"   # TUNA - 清华大学 Mirror
-      "https://mirrors.bfsu.edu.cn/nix-channels/store"            # BFSU - 北京外国语大学 Mirror
-      "https://mirror.sjtu.edu.cn/nix-channels/store"             # SJTU - 上海交通大学 Mirror
+      "https://mirrors.ustc.edu.cn/nix-channels/store" # USTC - 中国科学技术大学 Mirror
+      "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" # TUNA - 清华大学 Mirror
+      "https://mirrors.bfsu.edu.cn/nix-channels/store" # BFSU - 北京外国语大学 Mirror
+      "https://mirror.sjtu.edu.cn/nix-channels/store" # SJTU - 上海交通大学 Mirror
 
       "https://nix-community.cachix.org"
       "https://cache.garnix.io"

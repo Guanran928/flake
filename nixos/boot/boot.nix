@@ -1,6 +1,4 @@
-{ lib, ... }:
-
-{
+{lib, ...}: {
   boot = {
     consoleLogLevel = lib.mkDefault 3;
     loader = {

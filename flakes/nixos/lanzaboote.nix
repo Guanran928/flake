@@ -1,9 +1,11 @@
-{ inputs, pkgs, ... }:
-
 {
-  imports = [ inputs.lanzaboote.nixosModules.lanzaboote ];
+  inputs,
+  pkgs,
+  ...
+}: {
+  imports = [inputs.lanzaboote.nixosModules.lanzaboote];
 
-  environment.systemPackages = with pkgs; [ sbctl ];
+  environment.systemPackages = with pkgs; [sbctl];
   boot.loader.systemd-boot.enable = false;
   boot.lanzaboote = {
     enable = true;

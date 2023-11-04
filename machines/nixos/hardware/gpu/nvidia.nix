@@ -1,10 +1,8 @@
-{ config, ... }:
-
+{config, ...}:
 # NVIDIA drivers
 # fuck you nvidia btw
 {
-
-  services.xserver.videoDrivers = [ "nvidia" ]; # tell xorg to use the nvidia driver, also valid for wayland
+  services.xserver.videoDrivers = ["nvidia"]; # tell xorg to use the nvidia driver, also valid for wayland
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.stable;
     open = false;

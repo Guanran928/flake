@@ -58,7 +58,6 @@
       inputs.nixpkgs-stable.follows = "nixpkgs-stable";
     };
 
-
     ### De-dupe
     crane = {
       url = "github:ipetkov/crane";
@@ -119,9 +118,6 @@
       inputs.systems.follows = "systems";
     };
 
-
-
-
     # TODO: Unused, Soon(TM)
     #daeuniverse.url = "github:daeuniverse/flake.nix";
     #nixos-hardware = {
@@ -147,63 +143,66 @@
     };
   };
 
-  outputs = { self,
-              nixpkgs,
-              berberman,
-              disko,
-              home-manager,
-              hosts,
-              hyprland,
-              lanzaboote,
-              nix-darwin,
-              sops-nix,
-              impermanence,
-              tokyonight,
-              metacubexd,
-              ... } @ inputs: {
-
+  outputs = {
+    self,
+    nixpkgs,
+    berberman,
+    disko,
+    home-manager,
+    hosts,
+    hyprland,
+    lanzaboote,
+    nix-darwin,
+    sops-nix,
+    impermanence,
+    tokyonight,
+    metacubexd,
+    ...
+  } @ inputs: {
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
 
     ### NixOS
     nixosConfigurations = {
       "81FW-NixOS" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
+        specialArgs = {inherit inputs;};
         modules = [
-          ./nixos/presets/desktop.nix                                   # OS preset
-          ./nixos/presets/core/no-bootloader-menu.nix                   # Addtional, opt-in OS preset(s)
+          # OS
+          ./nixos/presets/desktop.nix
+          ./nixos/presets/core/no-bootloader-menu.nix
           ./nixos/presets/desktop/gaming.nix
           ./nixos/presets/desktop/virtualbox.nix
           ./nixos/presets/desktop/wayland.nix
 
-          ./users/guanranwang/nixos/presets/desktop.nix                 # User preset
-          ./users/guanranwang/nixos/presets/core/clash-meta-client.nix  # Addtional, opt-in user preset(s)
+          # User
+          ./users/guanranwang/nixos/presets/desktop.nix
+          ./users/guanranwang/nixos/presets/core/clash-meta-client.nix
 
-          ./machines/nixos/81fw-lenovo-legion-y7000                     # Hardware
-          ./machines/nixos/81fw-lenovo-legion-y7000/machine-1           # Machine
+          # Hardware
+          ./machines/nixos/81fw-lenovo-legion-y7000
+          ./machines/nixos/81fw-lenovo-legion-y7000/machine-1
 
           {
             # extra home-manager stuff
             home-manager.users.guanranwang = import ./users/guanranwang/home-manager/nixos/presets/desktop/gaming.nix;
 
             networking.hostName = "81FW-NixOS"; # Hostname
-            time.timeZone = "Asia/Shanghai";    # Timezone
+            time.timeZone = "Asia/Shanghai"; # Timezone
           }
         ];
       };
     };
 
-
     ### nix-darwin (macOS)
     darwinConfigurations = {
       "iMac-macOS" = nix-darwin.lib.darwinSystem {
         system = "x86_64-darwin";
-        specialArgs = { inherit inputs; };
+        specialArgs = {inherit inputs;};
         modules = [
-          ./darwin/presets/desktop.nix                          # OS preset
-          ./users/guanranwang/darwin/presets/desktop.nix        # User preset
-          ./users/guanranwang/darwin/presets/core/proxy.nix     # Addtional user preset(s)
-          ./machines/darwin/imac-2017                           # Hardware
+          ./darwin/presets/desktop.nix
+          ./users/guanranwang/darwin/presets/desktop.nix
+          ./users/guanranwang/darwin/presets/core/proxy.nix
+          ./machines/darwin/imac-2017
 
           {
             #home-manager.users.guanranwang = import ./users/guanranwang/home-manager/darwin/presets/desktop/gaming.nix;
@@ -215,13 +214,12 @@
       };
     };
 
-
     ### Home-Manager
     # TODO: Actually figure out how this works
     homeConfigurations = {
       "guanranwang@81fw-nixos" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = { inherit inputs; };
+        extraSpecialArgs = {inherit inputs;};
         modules = [
           sops-nix.homeManagerModules.sops
           hyprland.homeManagerModules.default

@@ -1,141 +1,145 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   home = {
     username = "guanranwang";
     homeDirectory = "/home/guanranwang";
 
-    packages = (with pkgs; [
-      # x11 + wayland
-      rofi-wayland
-      rofi-power-menu
-      dunst
-      pamixer
-      brightnessctl
-      playerctl
-      #networkmanagerapplet
-      pavucontrol
+    packages =
+      (with pkgs; [
+        # x11 + wayland
+        rofi-wayland
+        rofi-power-menu
+        dunst
+        pamixer
+        brightnessctl
+        playerctl
+        #networkmanagerapplet
+        pavucontrol
 
-      # wayland
-      wl-clipboard
-      cliphist
-      swaylock-effects
-      grim
-      slurp
-      swappy
-      #udiskie
-      swww
-      mpvpaper
-      libnotify
-      jq
+        # wayland
+        wl-clipboard
+        cliphist
+        swaylock-effects
+        grim
+        slurp
+        swappy
+        #udiskie
+        swww
+        mpvpaper
+        libnotify
+        jq
 
-      # x11
-      #polybar
-      #picom
-      #feh
-      #flameshot
+        # x11
+        #polybar
+        #picom
+        #feh
+        #flameshot
 
+        # gui
+        gparted
+        timeshift
+        mpv
+        spicetify-cli
 
+        ### matrix
+        #fluffychat
+        element-desktop
+        cinny-desktop
+        #nheko
 
-      # gui
-      gparted
-      timeshift
-      mpv
-      spicetify-cli
+        ### music
+        easyeffects
+        spotify
+        yesplaymusic
+        amberol
+        netease-cloud-music-gtk
 
-      ### matrix
-      #fluffychat
-      element-desktop
-      cinny-desktop
-      #nheko
+        ### misc
+        bitwarden
+        #discord
+        #qq
+        tuba
+        mousai
+        protonup-qt
+        piper
+        telegram-desktop
+        qbittorrent
+        gradience
+        dippi
+        obs-studio
+        gnome.seahorse
+        gnome.eog
+        gnome.file-roller
+        gnome.gnome-weather
+        gnome.gnome-calculator
+        gnome.dconf-editor
 
-      ### music
-      easyeffects
-      spotify
-      yesplaymusic
-      amberol
-      netease-cloud-music-gtk
+        # TUI
+        cava
+        joshuto # rs
+        bottom
+        helix
+        skim
+        bat
 
-      ### misc
-      bitwarden
-      #discord
-      #qq
-      tuba
-      mousai
-      protonup-qt
-      piper
-      telegram-desktop
-      qbittorrent
-      gradience
-      dippi
-      obs-studio
-      gnome.seahorse
-      gnome.eog
-      gnome.file-roller
-      gnome.gnome-weather
-      gnome.gnome-calculator
-      gnome.dconf-editor
+        # cli
+        #fastfetch
+        wget
+        sops
+        skim
+        ydict
+        nix-output-monitor
+        zoxide # rs
+        trashy
+        eza
+        ripgrep
+        fd
+        freshfetch
+        hyperfine
 
-      # TUI
-      cava
-      joshuto # rs
-      bottom
-      helix
-      skim
-      bat
+        # lsp
+        nil
+        gopls
+        libclang
 
-      # cli
-      #fastfetch
-      wget
-      sops
-      skim
-      ydict
-      nix-output-monitor
-      zoxide # rs
-      trashy
-      eza
-      ripgrep
-      fd
-      freshfetch
-      hyperfine
+        # themes
+        tela-icon-theme
+        tela-circle-icon-theme
+        papirus-icon-theme
+        adw-gtk3
+      ])
+      ++ (with pkgs.gnome; [
+        # GNOME
+        nautilus
+        zenity
 
-      # lsp
-      nil
-      gopls
-      libclang
-
-      # themes
-      tela-icon-theme
-      tela-circle-icon-theme
-      papirus-icon-theme
-      adw-gtk3
-    ]) ++ (with pkgs.gnome; [
-      # GNOME
-      nautilus
-      zenity
-
-      # GNOME only
-      #gnome-tweaks
-      #gnome-software
-      #gnome-shell-extensions
-    ]) ++ (with pkgs.gnomeExtensions; [
-      # GNOME extensions
-      arcmenu
-      appindicator
-      blur-my-shell
-      caffeine
-      dash-to-panel
-      dash-to-dock
-      gamemode # outdated
-      just-perfection
-      kimpanel
-    ]) ++ (with pkgs.fishPlugins; [
-      autopair
-      done
-      #tide
-      sponge
-      puffer
-    ]);
+        # GNOME only
+        #gnome-tweaks
+        #gnome-software
+        #gnome-shell-extensions
+      ])
+      ++ (with pkgs.gnomeExtensions; [
+        # GNOME extensions
+        arcmenu
+        appindicator
+        blur-my-shell
+        caffeine
+        dash-to-panel
+        dash-to-dock
+        gamemode # outdated
+        just-perfection
+        kimpanel
+      ])
+      ++ (with pkgs.fishPlugins; [
+        autopair
+        done
+        #tide
+        sponge
+        puffer
+      ]);
 
     pointerCursor = {
       gtk.enable = true;
@@ -279,7 +283,6 @@
         "layout.css.grid-template-masonry-value.enabled" = true;
         "dom.enable_web_task_scheduling" = true;
 
-
         ### SECTION: SECUREFOX
         # TRACKING PROTECTION
         "urlclassifier.trackingSkipURLs" = "*.reddit.com, *.twitter.com, *.twimg.com";
@@ -320,7 +323,6 @@
         "permissions.default.desktop-notification" = 2;
         "dom.push.enabled" = false;
 
-
         ### SECTION: PESKYFOX
         ### MOZILLA UI
         "layout.css.prefers-color-scheme.content-override" = 2;
@@ -357,7 +359,6 @@
         "browser.bookmarks.openInTabClosesMenu" = false;
         "findbar.highlightAll" = true;
 
-
         ### SECTION: SMOOTHFOX
         "apz.overscroll.enabled" = true;
         "general.smoothScroll" = true;
@@ -381,18 +382,18 @@
       # https://github.com/nix-community/home-manager/issues/2216
       # https://github.com/nix-community/home-manager/issues/2585
       extensions = [
-        { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # ublock origin
-        { id = "mnjggcdmjocbbbhaepdhchncahnbgone"; } # sponsorblock
-        { id = "icallnadddjmdinamnolclfjanhfoafe"; } # fastforward
-        { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; } # vimium
-        { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden
-        { id = "gebbhagfogifgggkldgodflihgfeippi"; } # return youtube dislike
-        { id = "eimadpbcbfnmbkopoojfekhnkhdbieeh"; } # dark reader
-        { id = "njdfdhgcmkocbgbhcioffdbicglldapd"; } # localcdn
-        { id = "hipekcciheckooncpjeljhnekcoolahp"; } # tabliss
-        { id = "bgfofngpplpmpijncjegfdgilpgamhdk"; } # modern scrollbar
-        { id = "ajhmfdgkijocedmfjonnpjfojldioehi"; } # privacy pass
-        { id = "hkgfoiooedgoejojocmhlaklaeopbecg"; } # picture in picture
+        {id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";} # ublock origin
+        {id = "mnjggcdmjocbbbhaepdhchncahnbgone";} # sponsorblock
+        {id = "icallnadddjmdinamnolclfjanhfoafe";} # fastforward
+        {id = "dbepggeogbaibhgnhhndojpepiihcmeb";} # vimium
+        {id = "nngceckbapebfimnlniiiahkandclblb";} # bitwarden
+        {id = "gebbhagfogifgggkldgodflihgfeippi";} # return youtube dislike
+        {id = "eimadpbcbfnmbkopoojfekhnkhdbieeh";} # dark reader
+        {id = "njdfdhgcmkocbgbhcioffdbicglldapd";} # localcdn
+        {id = "hipekcciheckooncpjeljhnekcoolahp";} # tabliss
+        {id = "bgfofngpplpmpijncjegfdgilpgamhdk";} # modern scrollbar
+        {id = "ajhmfdgkijocedmfjonnpjfojldioehi";} # privacy pass
+        {id = "hkgfoiooedgoejojocmhlaklaeopbecg";} # picture in picture
         #{ id = "fnaicdffflnofjppbagibeoednhnbjhg"; } # floccus bookmark sync
         #{ id = "jaoafjdoijdconemdmodhbfpianehlon"; } # skip redirect
         #{ id = "dhdgffkkebhmkfjojejmpbldmpobfkfo"; } # tampermonkey

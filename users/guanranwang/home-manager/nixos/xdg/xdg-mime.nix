@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{...}: {
   # Default application associstions, ro.
   xdg.mimeApps = {
     enable = true;

@@ -1,7 +1,9 @@
-{ inputs, disks ? [ "/dev/vdb" ], ... }:
-
 {
-  imports = [ inputs.disko.nixosModules.disko ];
+  inputs,
+  disks ? ["/dev/sda"],
+  ...
+}: {
+  imports = [inputs.disko.nixosModules.disko];
 
   disko.devices = {
     disk = {
@@ -11,7 +13,7 @@
         content = {
           type = "gpt";
           partitions = {
-            ESP = {
+            "ESP" = {
               size = "2G";
               type = "EF00";
               content = {
@@ -19,17 +21,19 @@
                 format = "vfat";
                 mountpoint = "/boot";
                 mountOptions = [
-                  "defaults" "fmask=0077" "dmask=0077"
+                  "defaults"
+                  "fmask=0077"
+                  "dmask=0077"
                 ];
               };
             };
-            luks = {
+            "luks" = {
               #size = "100%";
               end = "-16G";
               content = {
                 type = "luks";
                 name = "crypted";
-                extraOpenArgs = [ "--allow-discards" ];
+                extraOpenArgs = ["--allow-discards"];
                 # if you want to use the key for interactive login be sure there is no trailing newline
                 # for example use `echo -n "password" > /tmp/secret.key`
                 passwordFile = "/tmp/secret.key"; # Interactive
@@ -37,22 +41,22 @@
                 #additionalKeyFiles = [ "/tmp/additionalSecret.key" ];
                 content = {
                   type = "btrfs";
-                  extraArgs = [ "-f" ];
+                  extraArgs = ["-f"];
                   mountpoint = "/btrfs";
                   subvolumes = {
                     "/@home" = {
                       mountpoint = "/home";
-                      mountOptions = [ "compress=zstd" "noatime" ];
+                      mountOptions = ["compress=zstd" "noatime"];
                     };
                     "/@nix" = {
                       mountpoint = "/nix";
-                      mountOptions = [ "compress=zstd" "noatime" ];
+                      mountOptions = ["compress=zstd" "noatime"];
                     };
                   };
                 };
               };
             };
-            swap = {
+            "swap" = {
               size = "100%";
               content = {
                 type = "swap";

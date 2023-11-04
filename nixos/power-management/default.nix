@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{...}: {
   imports = [
     ./cpu-governor.nix
     ./system76-scheduler.nix

@@ -1,16 +1,14 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   security.polkit.enable = true;
-  environment.systemPackages = with pkgs; [ polkit_gnome ];
+  environment.systemPackages = with pkgs; [polkit_gnome];
 
   # polkit_gnome autostart for wms
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {
       description = "polkit-gnome-authentication-agent-1";
-      wantedBy = [ "graphical-session.target" ];
-      wants = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
+      wantedBy = ["graphical-session.target"];
+      wants = ["graphical-session.target"];
+      after = ["graphical-session.target"];
       serviceConfig = {
         Type = "simple";
         ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";

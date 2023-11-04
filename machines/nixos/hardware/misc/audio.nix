@@ -1,5 +1,4 @@
-{ lib, ... }:
-
+{lib, ...}:
 # Audio system (pipewire)
 {
   security.rtkit.enable = true;

@@ -1,6 +1,10 @@
-{ pkgs, config, lib, inputs, ... }:
-
 {
+  pkgs,
+  config,
+  lib,
+  inputs,
+  ...
+}: {
   home = {
     # This value determines the Home Manager release that your
     # configuration is compatible with. This helps avoid breakage
@@ -35,7 +39,8 @@
       "clock" = "tty-clock -5Ccs";
 
       # proxy
-      "setproxy" = let proxy = "http://127.0.0.1:7890/";
+      "setproxy" = let
+        proxy = "http://127.0.0.1:7890/";
       in "export http_proxy=${proxy} https_proxy=${proxy} ftp_proxy=${proxy} rsync_proxy=${proxy}";
       "unsetproxy" = "set -e http_proxy https_proxy all_proxy"; # fish syntax (?)
     };
@@ -70,15 +75,17 @@
         {
           # should I use flake inputs / fetchurl?
           name = "sudo";
-          src = (pkgs.fetchFromGitHub {
-            owner = "ohmyzsh";
-            repo = "ohmyzsh";
-            rev = "f8bf8f0029a475831ebfba0799975ede20e08742";
-            hash = "sha256-9cJQQycahO+vo/YcAHjF+PVhsWxu7pa4MsK8Dgr69k0=";
-            sparseCheckout = [
-              "plugins/sudo"
-            ];
-          } + "/plugins/sudo");
+          src =
+            pkgs.fetchFromGitHub {
+              owner = "ohmyzsh";
+              repo = "ohmyzsh";
+              rev = "f8bf8f0029a475831ebfba0799975ede20e08742";
+              hash = "sha256-9cJQQycahO+vo/YcAHjF+PVhsWxu7pa4MsK8Dgr69k0=";
+              sparseCheckout = [
+                "plugins/sudo"
+              ];
+            }
+            + "/plugins/sudo";
         }
       ];
       initExtra = "zstyle ':fzf-tab:*' fzf-command sk";
@@ -125,7 +132,7 @@
     alacritty = {
       enable = true;
       settings = {
-        import = [ "${inputs.tokyonight}/extras/alacritty/tokyonight_night.yml" ];
+        import = ["${inputs.tokyonight}/extras/alacritty/tokyonight_night.yml"];
         cursor.style = "beam";
         env.WINIT_X11_SCALE_FACTOR = "1";
         window = {
@@ -176,31 +183,31 @@
       enableExtensionUpdateCheck = false;
       enableUpdateCheck = false;
       userSettings = {
-        "diffEditor.ignoreTrimWhitespace"     = false;
-        "editor.cursorBlinking"               = "smooth";
-        "editor.cursorSmoothCaretAnimation"   = "on";
-        "editor.fontFamily"     = lib.mkDefault "Monospace";
-        "editor.fontWeight"                   = 600;
-        "editor.tabSize"                      = 2;
-        "explorer.confirmDragAndDrop"         = false;
-        "explorer.confirmDelete"              = false;
-        "files.autoSave"                      = "onFocusChange";
-        "files.trimTrailingWhitespace"        = true;
-        "files.trimFinalNewlines"             = true;
-        "security.workspace.trust.enabled"    = false;
-        "telemetry.telemetryLevel"            = "off";
-        "terminal.external.osxExec"           = "Alacritty.app";
-        "terminal.integrated.cursorBlinking"  = true;
-        "update.mode"                         = "none";
-        "window.menuBarVisibility"            = "toggle";
-        "workbench.colorTheme"                = "Tokyo Night";
+        "diffEditor.ignoreTrimWhitespace" = false;
+        "editor.cursorBlinking" = "smooth";
+        "editor.cursorSmoothCaretAnimation" = "on";
+        "editor.fontFamily" = lib.mkDefault "Monospace";
+        "editor.fontWeight" = 600;
+        "editor.tabSize" = 2;
+        "explorer.confirmDragAndDrop" = false;
+        "explorer.confirmDelete" = false;
+        "files.autoSave" = "onFocusChange";
+        "files.trimTrailingWhitespace" = true;
+        "files.trimFinalNewlines" = true;
+        "security.workspace.trust.enabled" = false;
+        "telemetry.telemetryLevel" = "off";
+        "terminal.external.osxExec" = "Alacritty.app";
+        "terminal.integrated.cursorBlinking" = true;
+        "update.mode" = "none";
+        "window.menuBarVisibility" = "toggle";
+        "workbench.colorTheme" = "Tokyo Night";
 
         # Extensions
         ### Nix IDE
-        "nix.enableLanguageServer"    = true;
-        "nix.serverPath"              = "${pkgs.nil}/bin/nil";
+        "nix.enableLanguageServer" = true;
+        "nix.serverPath" = "${pkgs.nil}/bin/nil";
         ### GitLens
-        "gitlens.telemetry.enabled"   = false;
+        "gitlens.telemetry.enabled" = false;
       };
       extensions = with pkgs.vscode-extensions; [
         ### LSP

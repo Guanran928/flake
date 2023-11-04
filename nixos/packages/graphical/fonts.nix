@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   # Fonts
   fonts = {
     fontDir.enable = true;
@@ -38,10 +36,10 @@
     fontconfig = {
       cache32Bit = true;
       defaultFonts = {
-        emoji = [ "Noto Color Emoji" ];
-        serif = [ "Noto Serif" ];
-        sansSerif = [ "Inter" "Noto Sans" ];
-        monospace = [ "JetBrainsMono Nerd Font" "JetBrains Mono" "FiraCode Nerd Font" "Fira Code" "Noto Sans Mono" ];
+        emoji = ["Noto Color Emoji"];
+        serif = ["Noto Serif"];
+        sansSerif = ["Inter" "Noto Sans"];
+        monospace = ["JetBrainsMono Nerd Font" "JetBrains Mono" "FiraCode Nerd Font" "Fira Code" "Noto Sans Mono"];
       };
     };
     # fontconfig is too limited here, and appling it globally is **bad**, use Home Manager instead

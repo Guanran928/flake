@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{...}: {
   homebrew = {
     enable = true;
     brews = [
@@ -13,7 +11,7 @@
       #"vscodium"
 
       "alt-tab"
-    	"altserver"
+      "altserver"
       "balenaetcher"
       #"clashx"
       "opencore-patcher"

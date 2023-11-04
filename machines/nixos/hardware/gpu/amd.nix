@@ -1,10 +1,9 @@
-{ pkgs, ... }:
-
+{pkgs, ...}:
 # FOLLOWING https://nixos.wiki/wiki/AMD_GPU DIRECTLY
 # I HAVE NO IDEA WHAT AM I DOING
 {
-  boot.initrd.kernelModules = [ "amdgpu" ];
-  services.xserver.videoDrivers = [ "amdgpu" ];
+  boot.initrd.kernelModules = ["amdgpu"];
+  services.xserver.videoDrivers = ["amdgpu"];
 
   # OpenCL
   hardware.opengl = {

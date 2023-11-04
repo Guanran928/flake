@@ -1,5 +1,4 @@
-{ ... }:
-
+{...}:
 # Xbox accessories
 {
   hardware = {

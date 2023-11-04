@@ -1,13 +1,11 @@
-{ lib, ... }:
-
-{
+{lib, ...}: {
   nix.settings = {
-    trusted-users = [ "@wheel" ];
+    trusted-users = ["@wheel"];
     substituters = [
-      "https://mirrors.ustc.edu.cn/nix-channels/store"            # USTC - 中国科学技术大学 Mirror
-      "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"   # TUNA - 清华大学 Mirror
-      "https://mirrors.bfsu.edu.cn/nix-channels/store"            # BFSU - 北京外国语大学 Mirror
-      "https://mirror.sjtu.edu.cn/nix-channels/store"             # SJTU - 上海交通大学 Mirror
+      "https://mirrors.ustc.edu.cn/nix-channels/store" # USTC - 中国科学技术大学 Mirror
+      "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" # TUNA - 清华大学 Mirror
+      "https://mirrors.bfsu.edu.cn/nix-channels/store" # BFSU - 北京外国语大学 Mirror
+      "https://mirror.sjtu.edu.cn/nix-channels/store" # SJTU - 上海交通大学 Mirror
 
       "https://nix-community.cachix.org"
       "https://berberman.cachix.org"
@@ -36,7 +34,6 @@
 
     # Does not work with flake based configurations
     copySystemConfiguration = lib.mkDefault true;
-
 
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions
