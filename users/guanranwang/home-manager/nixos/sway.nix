@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
   programs.fish.loginShellInit = ''
@@ -8,6 +9,11 @@
       exec sway
     end
   '';
+
+  home.sessionVariables = {
+    # TODO: what is the correct way to unset this
+    GTK_IM_MODULE = lib.mkForce ""; # use text-input-v3
+  };
 
   wayland.windowManager.sway = {
     enable = true;
