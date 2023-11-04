@@ -12,7 +12,6 @@
         # x11 + wayland
         rofi-wayland
         rofi-power-menu
-        dunst
         pamixer
         brightnessctl
         playerctl

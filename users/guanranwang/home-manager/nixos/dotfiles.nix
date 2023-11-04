@@ -29,10 +29,6 @@ in {
       source = "${configPath}/rofi";
       recursive = true;
     };
-    "dunst" = {
-      source = "${configPath}/dunst";
-      recursive = true;
-    };
 
     "makepkgs.conf" = {
       source = "${configPath}/makepkgs.conf";
