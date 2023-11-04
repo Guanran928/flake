@@ -1,6 +1,6 @@
 {...}: {
   imports = [
-    ./core
+    ./core.nix
 
     ### Flakes
     ../../../../flakes/darwin/home-manager.nix
