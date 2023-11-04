@@ -162,6 +162,8 @@
               metacubexd,
               ... } @ inputs: {
 
+    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+
     ### NixOS
     nixosConfigurations = {
       "81FW-NixOS" = nixpkgs.lib.nixosSystem {
