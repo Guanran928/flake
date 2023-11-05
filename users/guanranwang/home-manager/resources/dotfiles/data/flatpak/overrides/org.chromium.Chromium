@@ -1,7 +1,0 @@
-[Context]
-filesystems=xdg-config/chromium-flags.conf
-
-[Environment]
-GOOGLE_DEFAULT_CLIENT_SECRET=AIzaSyB8p74jTSKYbe0qehukjyzg3jp4JUwbyW8
-GOOGLE_DEFAULT_CLIENT_ID=AIzaSyB8p74jTSKYbe0qehukjyzg3jp4JUwbyW8
-GOOGLE_API_KEY=AIzaSyB8p74jTSKYbe0qehukjyzg3jp4JUwbyW8
