@@ -22,7 +22,6 @@
     pavucontrol
     wl-clipboard
     cliphist
-    swaylock-effects
     grim
     slurp
     swappy
