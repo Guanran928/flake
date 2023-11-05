@@ -25,7 +25,6 @@
         grim
         slurp
         swappy
-        #udiskie
         swww
         mpvpaper
         libnotify
@@ -251,6 +250,11 @@
   #    enable = true;
   #  };
   #};
+
+
+  services = {
+    udiskie.enable = true;
+  };
 
   programs = {
     rofi = {

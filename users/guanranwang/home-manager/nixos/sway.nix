@@ -54,7 +54,6 @@
         {command = "${pkgs.swww}/bin/swww init";}
         {command = "${pkgs.waybar}/bin/waybar";}
         {command = "${pkgs.wl-clipboard}/bin/wl-paste --watch cliphist store";}
-        #{ command = "${pkgs.udiskie}/bin/udiskie --smart-tray"; }
       ];
 
       ### Keybinds
