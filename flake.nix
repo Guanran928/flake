@@ -170,6 +170,7 @@
           # OS
           ./nixos/presets/desktop.nix
           ./nixos/presets/core/no-bootloader-menu.nix
+          ./nixos/presets/core/zram-generator.nix
           ./nixos/presets/desktop/gaming.nix
           ./nixos/presets/desktop/virtualbox.nix
           ./nixos/presets/desktop/wayland.nix
