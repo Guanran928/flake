@@ -25,7 +25,6 @@
         grim
         slurp
         swappy
-        swww
         mpvpaper
         libnotify
         jq

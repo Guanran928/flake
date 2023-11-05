@@ -35,6 +35,11 @@
         outer = 4;
         #smartGaps = true;
       };
+      output = {
+        eDP-1 = {
+          bg = "~/.local/share/backgrounds/wallpaper1.png fill";
+        };
+      };
 
       ### Inputs
       input = {
@@ -51,7 +56,6 @@
 
       ### Autostarts
       startup = [
-        {command = "${pkgs.swww}/bin/swww init";}
         {command = "${pkgs.waybar}/bin/waybar";}
         {command = "${pkgs.wl-clipboard}/bin/wl-paste --watch cliphist store";}
       ];
