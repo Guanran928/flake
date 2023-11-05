@@ -40,6 +40,7 @@
   dconf.settings = {
     "org/gnome/desktop/wm/preferences" = {
       "titlebar-font" = "Sans Bold";
+      "button-layout" = "icon,appmenu:"; # remove csd window buttons
     };
     "org/gnome/desktop/interface" = {
       "document-font-name" = "Sans";
@@ -49,7 +50,6 @@
 
       "clock-format" = "12h";
       "color-scheme" = "prefer-dark";
-      "button-layout" = "icon,appmenu:"; # remove csd window buttons
 
       # i want to split dconf but
       #
