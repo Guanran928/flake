@@ -17,10 +17,6 @@ in {
       source = "${configPath}/picom";
       recursive = true;
     };
-    "rofi" = {
-      source = "${configPath}/rofi";
-      recursive = true;
-    };
 
     "makepkgs.conf" = {
       source = "${configPath}/makepkgs.conf";

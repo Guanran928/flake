@@ -8,6 +8,9 @@
     ../../resources/editor/neovim.nix
     ../../resources/editor/vscode.nix
 
+    ../browser/chromium.nix
+    ../browser/librewolf.nix
+
     ../home.nix
 
     ../dotfiles.nix

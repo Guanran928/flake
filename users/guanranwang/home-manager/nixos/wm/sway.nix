@@ -15,6 +15,22 @@
     GTK_IM_MODULE = lib.mkForce ""; # use text-input-v3
   };
 
+  home.packages = with pkgs; [
+    pamixer
+    brightnessctl
+    playerctl
+    pavucontrol
+    wl-clipboard
+    cliphist
+    swaylock-effects
+    grim
+    slurp
+    swappy
+    #mpvpaper
+    libnotify
+    jq
+  ];
+
   wayland.windowManager.sway = {
     enable = true;
     extraOptions = ["--unsupported-gpu" "-D" "noscanout"];
