@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   home = {
     username = "guanranwang";
     homeDirectory = "/home/guanranwang";
@@ -101,12 +97,6 @@
         nil
         gopls
         libclang
-
-        # themes
-        tela-icon-theme
-        tela-circle-icon-theme
-        papirus-icon-theme
-        adw-gtk3
       ])
       ++ (with pkgs.gnome; [
         # GNOME
@@ -130,89 +120,6 @@
         just-perfection
         kimpanel
       ]);
-
-    pointerCursor = {
-      gtk.enable = true;
-      x11.enable = true;
-      name = "Adwaita";
-      package = pkgs.gnome.adwaita-icon-theme;
-      size = 24;
-    };
-  };
-
-  gtk = {
-    enable = true;
-    font.name = "Sans";
-    cursorTheme = {
-      name = "Adwaita";
-      package = pkgs.gnome.adwaita-icon-theme;
-      size = 24;
-    };
-    theme = {
-      name = "adw-gtk3-dark";
-      package = pkgs.adw-gtk3;
-    };
-    iconTheme = {
-      #name = "Tela-dracula-dark";
-      #package = pkgs.tela-icon-theme;
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
-    };
-    gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
-  };
-
-  dconf.settings = {
-    "org/gnome/desktop/wm/preferences" = {
-      "titlebar-font" = "Sans Bold";
-      "button-layout" = "icon,appmenu:";
-    };
-    "org/gnome/desktop/interface" = {
-      "clock-format" = "12h";
-      "color-scheme" = "prefer-dark";
-      "document-font-name" = "Sans";
-      "font-name" = "Sans";
-      "monospace-font-name" = "Monospace";
-    };
-  };
-
-  fonts.fontconfig.enable = true;
-
-  # X resources file
-  # ~/.Xresources
-  xresources.properties = {
-    # Cursor
-    "Xcursor.theme" = "Adwaita";
-
-    # Fonts
-    "Xft.autohint" = "0";
-    "Xft.lcdfilter" = "lcddefault";
-    "Xft.hintstyle" = "hintslight";
-    "Xft.hinting" = "1";
-    "Xft.antialias" = "1";
-    "Xft.rgba" = "rgb";
-
-    # Tokyonight color scheme
-    # i have no idea what does it apply to
-    "*background" = "#1a1b26";
-    "*foreground" = "#c0caf5";
-
-    "*color0" = "#15161e";
-    "*color1" = "#f7768e";
-    "*color2" = "#9ece6a";
-    "*color3" = "#e0af68";
-    "*color4" = "#7aa2f7";
-    "*color5" = "#bb9af7";
-    "*color6" = "#7dcfff";
-    "*color7" = "#a9b1d6";
-
-    "*color8" = "#414868";
-    "*color9" = "#f7768e";
-    "*color10" = "#9ece6a";
-    "*color11" = "#e0af68";
-    "*color12" = "#7aa2f7";
-    "*color13" = "#bb9af7";
-    "*color14" = "#7dcfff";
-    "*color15" = "#c0caf5";
   };
 
   wayland.windowManager = {

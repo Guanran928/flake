@@ -13,6 +13,7 @@
     ../dotfiles.nix
     ../fonts.nix
     ../i18n.nix
+    ../theme.nix
 
     ../wm
     ../xdg

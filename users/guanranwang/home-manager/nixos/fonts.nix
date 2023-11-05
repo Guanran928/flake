@@ -1,4 +1,5 @@
 {pkgs, ...}: {
+  fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
     ### Noto Fonts
     noto-fonts
