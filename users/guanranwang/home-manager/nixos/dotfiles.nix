@@ -1,18 +1,10 @@
 {...}: let
-  homePath = ../common/dotfiles;
-  binPath = ../common/dotfiles/bin;
-  configPath = ../common/dotfiles/config;
-  dataPath = ../common/dotfiles/data;
+  homePath = ../resources/dotfiles;
+  binPath = ../resources/dotfiles/bin;
+  configPath = ../resources/dotfiles/config;
+  dataPath = ../resources/dotfiles/data;
 in {
   xdg.configFile = {
-    "foot" = {
-      source = "${configPath}/foot";
-      recursive = true;
-    };
-    "fish" = {
-      source = "${configPath}/fish";
-      recursive = true;
-    };
     "fontconfig" = {
       source = "${configPath}/fontconfig";
       recursive = true;

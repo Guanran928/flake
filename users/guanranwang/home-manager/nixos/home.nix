@@ -83,7 +83,7 @@
         bat
 
         # cli
-        fastfetch
+        #fastfetch
         wget
         sops
         skim
@@ -129,13 +129,6 @@
         gamemode # outdated
         just-perfection
         kimpanel
-      ])
-      ++ (with pkgs.fishPlugins; [
-        autopair
-        done
-        #tide
-        sponge
-        puffer
       ]);
 
     pointerCursor = {
