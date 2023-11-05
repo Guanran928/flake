@@ -83,7 +83,7 @@
         bat
 
         # cli
-        #fastfetch
+        fastfetch
         wget
         sops
         skim
