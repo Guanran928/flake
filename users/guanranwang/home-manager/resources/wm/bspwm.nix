@@ -5,6 +5,7 @@
     ./components/picom.nix
     ./components/polybar.nix
     ./components/sxhkd.nix
+    ./components/udiskie.nix
   ];
 
   xsession = {
