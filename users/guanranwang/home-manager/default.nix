@@ -72,6 +72,13 @@
       userName = "Guanran Wang";
       userEmail = "guanran928@outlook.com";
       delta.enable = true;
+      signing.signByDefault = true;
+      signing.key = "~/.ssh/id_github_signing";
+      extraConfig = {
+        gpg.format = "ssh";
+        pull.rebase = true;
+      };
     };
   };
+  services.ssh-agent.enable = true;
 }
