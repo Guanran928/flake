@@ -7,9 +7,8 @@
     ../../resources/editor/helix.nix
     ../../resources/editor/neovim.nix
     ../../resources/editor/vscode.nix
-
-    ../browser/chromium.nix
-    ../browser/librewolf.nix
+    ../../resources/browser/chromium.nix
+    ../../resources/browser/librewolf.nix
 
     ../home.nix
 
