@@ -3,9 +3,9 @@
   config,
   ...
 }: {
+  programs.go.enable = true;
+
   home.packages = with pkgs; [
-    ### Compiler
-    go
     ### LSP
     gopls
   ];
