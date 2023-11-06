@@ -23,4 +23,9 @@
       urgency_critical.frame_color = "#fab387";
     };
   };
+
+  xdg.dataFile."icons/dunst" = {
+    source = ../../dotfiles/data/icons/dunst;
+    recursive = true;
+  };
 }

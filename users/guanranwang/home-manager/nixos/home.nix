@@ -81,48 +81,8 @@
         #gnome-tweaks
         #gnome-software
         #gnome-shell-extensions
-      ])
-      ++ (with pkgs.gnomeExtensions; [
-        # GNOME extensions
-        #arcmenu
-        #appindicator
-        #blur-my-shell
-        #caffeine
-        #dash-to-panel
-        #dash-to-dock
-        #gamemode # outdated
-        #just-perfection
-        #kimpanel
       ]);
   };
-
-  wayland.windowManager = {
-    hyprland = {
-      #enable = true;
-      enableNvidiaPatches = true;
-      xwayland.enable = true;
-      plugins = [
-        #inputs.hyprland-plugins.packages.${pkgs.system}.csgo-vulkan-fix
-      ];
-
-      extraConfig = ''
-        #source = ~/.config/hypr/themes/mocha.conf
-        #source = ~/.config/hypr/themes/colors.conf
-        #source = ~/.config/hypr/plugins.conf
-        source = ~/.config/hypr/main.conf
-        source = ~/.config/hypr/keybinds.conf
-        source = ~/.config/hypr/autostart.conf
-        source = ~/.config/hypr/env.conf
-      '';
-    };
-  };
-
-  #xsession = {
-  #  enable = true;
-  #  windowManager.bspwm = {
-  #    enable = true;
-  #  };
-  #};
 
   #programs.boxxy = {
   #  enable = true;

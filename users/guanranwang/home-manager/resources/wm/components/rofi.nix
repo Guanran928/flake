@@ -10,7 +10,7 @@
 
   # Yes, because I have no idea how to use programs.rofi.theme
   xdg.configFile."rofi" = {
-    source = ../../resources/dotfiles/config/rofi;
+    source = ../../dotfiles/config/rofi;
     recursive = true;
   };
 }

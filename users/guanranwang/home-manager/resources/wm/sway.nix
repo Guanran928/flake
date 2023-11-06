@@ -4,6 +4,15 @@
   lib,
   ...
 }: {
+  imports = [
+    ./components/dunst.nix
+    ./components/rofi.nix
+    ./components/swayidle.nix
+    ./components/swaylock.nix
+    ./components/udiskie.nix
+    ./components/waybar.nix
+  ];
+
   programs.fish.loginShellInit = ''
     if test -z "$Display" -a "$XDG_VTNR" = 1
       exec sway

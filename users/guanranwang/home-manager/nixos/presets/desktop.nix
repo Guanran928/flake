@@ -10,14 +10,13 @@
     ../../resources/browser/chromium.nix
     ../../resources/browser/librewolf.nix
 
-    ../home.nix
+    ../../resources/wm/sway.nix
 
+    ../xdg
+    ../home.nix
     ../dotfiles.nix
     ../fonts.nix
     ../i18n.nix
     ../theme.nix
-
-    ../wm
-    ../xdg
   ];
 }

@@ -9,30 +9,21 @@ in {
       source = "${configPath}/fontconfig";
       recursive = true;
     };
-    "hypr" = {
-      source = "${configPath}/hyprland";
-      recursive = true;
-    };
-    "picom" = {
-      source = "${configPath}/picom";
-      recursive = true;
-    };
-
-    "makepkgs.conf" = {
-      source = "${configPath}/makepkgs.conf";
-    };
-    "alsoft.conf" = {
-      source = "${configPath}/alsoft.conf";
-    };
+    #"picom" = {
+    #  source = "${configPath}/picom";
+    #  recursive = true;
+    #};
+    #"makepkgs.conf" = {
+    #  source = "${configPath}/makepkgs.conf";
+    #};
+    #"alsoft.conf" = {
+    #  source = "${configPath}/alsoft.conf";
+    #};
   };
 
   xdg.dataFile = {
     "backgrounds" = {
       source = "${dataPath}/backgrounds";
-      recursive = true;
-    };
-    "icons" = {
-      source = "${dataPath}/icons";
       recursive = true;
     };
     #"flatpak" = {
