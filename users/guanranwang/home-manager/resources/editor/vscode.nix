@@ -29,15 +29,11 @@
       "workbench.colorTheme" = "Tokyo Night";
 
       # Extensions
-      ### Nix IDE
-      "nix.enableLanguageServer" = true;
-      "nix.serverPath" = "${pkgs.nil}/bin/nil";
       ### GitLens
       "gitlens.telemetry.enabled" = false;
     };
     extensions = with pkgs.vscode-extensions; [
       ### LSP
-      jnoortheen.nix-ide
       #ms-python.python
       rust-lang.rust-analyzer
       tamasfe.even-better-toml

@@ -66,11 +66,6 @@
         fd
         freshfetch
         hyperfine
-
-        # lsp
-        nil
-        gopls
-        libclang
       ])
       ++ (with pkgs.gnome; [
         # GNOME

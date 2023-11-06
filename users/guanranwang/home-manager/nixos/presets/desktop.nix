@@ -9,6 +9,8 @@
     ../../resources/editor/vscode.nix
     ../../resources/browser/chromium.nix
     ../../resources/browser/librewolf.nix
+    ../../resources/lang/nix.nix
+    ../../resources/lang/go.nix
 
     ../../resources/wm/sway.nix
 
