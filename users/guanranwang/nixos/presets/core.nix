@@ -19,8 +19,6 @@
   };
 
   imports = [
-    ### Overrides (overrides global config)
-    ../networking
     ### Flakes
     ../../../../flakes/nixos/sops-nix.nix
     ../../../../flakes/nixos/hosts.nix
