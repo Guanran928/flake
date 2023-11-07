@@ -8,6 +8,18 @@
     package = pkgs.vscodium; # foss
     enableExtensionUpdateCheck = false;
     enableUpdateCheck = false;
+    keybindings = [
+      {
+        key = "tab";
+        command = "selectNextSuggestion";
+        when = "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus || suggestWidgetVisible && textInputFocus && !suggestWidgetHasFocusedSuggestion";
+      }
+      {
+        "key" = "shift+tab";
+        "command" = "selectPrevSuggestion";
+        "when" = "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus || suggestWidgetVisible && textInputFocus && !suggestWidgetHasFocusedSuggestion";
+      }
+    ];
     userSettings = {
       "diffEditor.ignoreTrimWhitespace" = false;
       "editor.cursorBlinking" = "smooth";

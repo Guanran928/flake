@@ -10,13 +10,12 @@
           normal = "block";
           select = "underline";
         };
-        statusline = {
-          mode = {
-            normal = "--NORMAL--";
-            insert = "--INSERT--";
-            select = "--SELECT--";
-          };
+        statusline.mode = {
+          normal = "--NORMAL--";
+          insert = "--INSERT--";
+          select = "--SELECT--";
         };
+        soft-wrap.enable = true;
         indent-guides.render = true;
         file-picker.hidden = false;
       };
