@@ -171,7 +171,6 @@
           ./nixos/presets/desktop.nix
           ./nixos/presets/core/zram-generator.nix
           ./nixos/presets/core/boot/no-bootloader-menu.nix
-          ./nixos/presets/core/networking/alidns.nix
           ./nixos/presets/desktop/gaming.nix
           ./nixos/presets/desktop/virtualbox.nix
           ./nixos/presets/desktop/wayland.nix
@@ -185,11 +184,14 @@
           ./machines/nixos/81fw-lenovo-legion-y7000/machine-1
 
           {
-            # extra home-manager stuff
-            home-manager.users.guanranwang = import ./users/guanranwang/home-manager/nixos/presets/desktop/gaming.nix;
-
             networking.hostName = "81FW-NixOS"; # Hostname
             time.timeZone = "Asia/Shanghai"; # Timezone
+
+            ### Home-Manager
+            home-manager.users.guanranwang = import ./users/guanranwang/home-manager/nixos/presets/desktop/gaming.nix;
+
+            ### Options
+            myFlake.nixos.networking.dns = "alidns";
           }
         ];
       };
