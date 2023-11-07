@@ -4,7 +4,7 @@
   ...
 }: {
   options.myFlake.nixos.networking.dns = lib.mkOption {
-    type = lib.types.string;
+    type = lib.types.str;
     default = "google";
     example = "alidns";
     description = "Select your DNS provider";
