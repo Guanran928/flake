@@ -9,7 +9,7 @@
       timeouts = [
         {
           timeout = 900;
-          command = "loginctl lock-session";
+          command = "swaylock";
         }
         {
           timeout = 905;
