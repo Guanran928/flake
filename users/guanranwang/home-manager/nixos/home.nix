@@ -77,6 +77,8 @@
       ]);
   };
 
+  services.ssh-agent.enable = true;
+
   #programs.boxxy = {
   #  enable = true;
   #  #rules = {
