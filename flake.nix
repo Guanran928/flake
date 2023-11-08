@@ -189,7 +189,10 @@
             time.timeZone = "Asia/Shanghai"; # Timezone
 
             ### Home-Manager
-            home-manager.users.guanranwang = import ./users/guanranwang/home-manager/nixos/presets/desktop/gaming.nix;
+            home-manager.users.guanranwang.imports = [
+              ./users/guanranwang/home-manager/nixos/presets/desktop/gaming.nix
+              ./users/guanranwang/home-manager/nixos/presets/desktop/torrenting.nix
+            ];
 
             ### Options
             myFlake.nixos.networking.dns = "alidns";
@@ -198,7 +201,7 @@
       };
     };
 
-    ### nix-darwin (macOS)
+    ### nix-darwin
     darwinConfigurations = {
       "iMac-macOS" = nix-darwin.lib.darwinSystem {
         system = "x86_64-darwin";
@@ -219,17 +222,16 @@
       };
     };
 
-    ### Home-Manager
-    # TODO: Actually figure out how this works
-    homeConfigurations = {
-      "guanranwang@81fw-nixos" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs;};
-        modules = [
-          sops-nix.homeManagerModules.sops
-          hyprland.homeManagerModules.default
-        ];
-      };
-    };
+    ### Standalone Home-Manager
+    #homeConfigurations = {
+    #  "guanranwang@81fw-nixos" = home-manager.lib.homeManagerConfiguration {
+    #    pkgs = nixpkgs.legacyPackages.x86_64-linux;
+    #    extraSpecialArgs = {inherit inputs;};
+    #    modules = [
+    #      sops-nix.homeManagerModules.sops
+    #      hyprland.homeManagerModules.default
+    #    ];
+    #  };
+    #};
   };
 }
