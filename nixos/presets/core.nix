@@ -11,9 +11,7 @@
   ];
 
   # Installed packages (System wide)
-  environment = {
-    #defaultPackages = [];
-  };
+  environment.defaultPackages = []; # make sure to add another editor and set the $EDITOR variable, in this case I am using neovim
 
   users.mutableUsers = false;
   environment.etc.machine-id.text = "b08dfa6083e7567a1921a715000001fb"; # whonix id
@@ -25,11 +23,12 @@
   # Programs
   programs = {
     dconf.enable = true;
+    nano.enable = false;
     neovim = {
       enable = true;
       viAlias = true;
       vimAlias = true;
-      defaultEditor = true; # default editor, does not seem to set the $EDITOR variable idk
+      defaultEditor = true;
     };
     fish.enable = true;
     #zsh.enable = true;
