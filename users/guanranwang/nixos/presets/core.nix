@@ -12,6 +12,7 @@
       "tss" # access to tpm devices
       "vboxusers" # access to virtualbox
       "nix-access-tokens" # access to github tokens
+      "libvirtd" # access to virt-manager
     ];
     hashedPasswordFile = config.sops.secrets."hashed-passwd".path;
     shell = pkgs.fish;

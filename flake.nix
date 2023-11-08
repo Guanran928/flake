@@ -174,6 +174,7 @@
           ./nixos/presets/desktop/gaming.nix
           ./nixos/presets/desktop/virtualbox.nix
           ./nixos/presets/desktop/wayland.nix
+          ./nixos/presets/desktop/virt-manager.nix
 
           # User
           ./users/guanranwang/nixos/presets/desktop.nix
