@@ -9,6 +9,5 @@
     ../../resources/editor/vscode.nix
 
     ../home.nix
-    ../dotfiles.nix
   ];
 }
