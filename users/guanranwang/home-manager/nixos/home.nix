@@ -8,7 +8,6 @@
         # gui
         gparted
         timeshift
-        mpv
 
         ### matrix
         #fluffychat
@@ -16,18 +15,11 @@
         cinny-desktop
         #nheko
 
-        ### music
-        easyeffects
-        yesplaymusic
-        amberol
-        netease-cloud-music-gtk
-
         ### misc
         bitwarden
         #discord
         #qq
         tuba
-        mousai
         protonup-qt
         piper
         telegram-desktop
@@ -36,14 +28,12 @@
         dippi
         obs-studio
         gnome.seahorse
-        gnome.eog
         gnome.file-roller
         gnome.gnome-weather
         gnome.gnome-calculator
         gnome.dconf-editor
 
         # TUI
-        cava
         joshuto # rs
         bottom
         helix
