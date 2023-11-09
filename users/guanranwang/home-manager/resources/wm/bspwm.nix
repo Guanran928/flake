@@ -4,6 +4,8 @@
     ./components/feh.nix
     ./components/picom.nix
     ./components/polybar.nix
+    ./components/rofi.nix
+    ./components/scripts.nix
     ./components/sxhkd.nix
     ./components/udiskie.nix
   ];
@@ -27,6 +29,13 @@
         borderless_monocle = true;
         gapless_monocle = true;
       };
+    };
+  };
+
+  home.file = {
+    ".xinitrc" = {
+      source = "../dotfiles/.xinitrc";
+      recursive = true;
     };
   };
 }

@@ -1,0 +1,9 @@
+{...}: {
+  home.sessionPath = ["$HOME/.local/bin"];
+  home.file = {
+    ".local/bin" = {
+      source = ../../dotfiles/bin;
+      recursive = true;
+    };
+  };
+}

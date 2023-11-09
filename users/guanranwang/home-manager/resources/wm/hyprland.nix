@@ -6,6 +6,7 @@
   imports = [
     ./components/dunst.nix
     ./components/rofi.nix
+    ./components/scripts.nix
     ./components/swayidle.nix
     ./components/swaylock.nix
     ./components/swww.nix

@@ -1,5 +1,9 @@
 {pkgs, ...}: {
   fonts.fontconfig.enable = true;
+  xdg.configFile."fontconfig" = {
+    source = ../resources/dotfiles/config/fontconfig;
+    recursive = true;
+  };
   home.packages = with pkgs; [
     ### Sans
     inter

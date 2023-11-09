@@ -16,7 +16,6 @@
 
     ../xdg
     ../home.nix
-    ../dotfiles.nix
     ../fonts.nix
     ../i18n.nix
     ../spicetify.nix
