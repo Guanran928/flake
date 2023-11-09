@@ -19,6 +19,9 @@
     packages = [];
   };
 
+  # for default shell
+  programs.fish.enable = true;
+
   imports = [
     ### Flakes
     ../../../../flakes/nixos/sops-nix.nix

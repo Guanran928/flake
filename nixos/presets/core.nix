@@ -30,8 +30,6 @@
       vimAlias = true;
       defaultEditor = true;
     };
-    fish.enable = true;
-    #zsh.enable = true;
   };
 
   # Services
