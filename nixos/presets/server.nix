@@ -4,5 +4,4 @@
   imports = [
     ./core.nix
   ];
-  boot.plymouth.enable = false;
 }
