@@ -6,18 +6,8 @@
   options = {
     myFlake.nixos = {
       boot = {
-        silentBoot = lib.mkOption {
-          type = lib.types.bool;
-          default = false;
-          example = true;
-          description = "Enable silent boot";
-        };
-        noLoaderMenu = lib.mkOption {
-          type = lib.types.bool;
-          default = false;
-          example = true;
-          description = "Disable bootloader menu";
-        };
+        silentBoot = lib.mkEnableOption "Enable silent boot";
+        noLoaderMenu = lib.mkEnableOption "Disable bootloader menu";
       };
     };
   };
