@@ -1,6 +1,6 @@
 {...}: {
   imports = [
     ./dns.nix
-    ./iwd.nix
+    ./network-configuration-daemon.nix
   ];
 }
