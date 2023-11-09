@@ -1,9 +1,13 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
+    ### Games
     steam
-    #lunar-client
-    prismlauncher
     osu-lazer-bin
+    prismlauncher
+    #lunar-client
+
+    ### Tools
+    protonup-qt
   ];
 
   programs.mangohud = {

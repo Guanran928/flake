@@ -5,65 +5,63 @@
 
     packages =
       (with pkgs; [
-        # gui
-        gparted
-        timeshift
+        # Messaging
+        ### Matrix
+        neochat # kinda buggy with window resizing, but it works and its not electron
+        #nheko # wont let me login for some reason
+        #fractal # does not work with Mozilla's SAML login
 
-        ### matrix
-        #fluffychat
-        element-desktop
-        cinny-desktop
-        #nheko
+        ##                 # vvv 3 UI libraries I dislike vvv
+        #cinny-desktop #   # Tauri
+        #element-desktop # # Electron
+        #fluffychat #      # Flutter
 
-        ### misc
-        bitwarden
+        ### Misc
+        telegram-desktop
         #discord
         #qq
-        tuba
-        protonup-qt
-        piper
-        telegram-desktop
-        qbittorrent
-        gradience
-        dippi
-        obs-studio
-        gnome.seahorse
-        gnome.file-roller
-        gnome.gnome-weather
-        gnome.gnome-calculator
-        gnome.dconf-editor
 
+        # Misc
+        bitwarden
+        obs-studio
+        gparted
+        timeshift
+        #tuba
+        #piper
+        #gradience
+        #dippi
+
+        ### Terminal
         # TUI
-        joshuto # rs
+        joshuto
         bottom
         helix
         skim
         bat
 
-        # cli
+        # CLI
+        sops
+        nix-output-monitor
         fastfetch
         wget
-        sops
-        skim
         ydict
-        nix-output-monitor
-        zoxide # rs
-        trashy
-        eza
-        ripgrep
+        skim
         fd
+        ripgrep
+        eza
+        zoxide
+        trashy
         freshfetch
         hyperfine
       ])
       ++ (with pkgs.gnome; [
-        # GNOME
         nautilus
         zenity
-
-        # GNOME only
-        #gnome-tweaks
-        #gnome-software
-        #gnome-shell-extensions
+        seahorse
+        file-roller
+        gnome-weather
+        gnome-calculator
+        dconf-editor
       ]);
   };
 
