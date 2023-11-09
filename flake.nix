@@ -170,7 +170,6 @@
           # OS
           ./nixos/presets/desktop.nix
           ./nixos/presets/core/zram-generator.nix
-          ./nixos/presets/core/boot/no-bootloader-menu.nix
           ./nixos/presets/desktop/gaming.nix
           ./nixos/presets/desktop/virtualbox.nix
           ./nixos/presets/desktop/wayland.nix
@@ -195,6 +194,7 @@
             ];
 
             ### Options
+            myFlake.nixos.boot.noLoaderMenu = true;
             myFlake.nixos.networking.dns = "alidns";
           }
         ];
