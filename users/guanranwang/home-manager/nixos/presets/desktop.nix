@@ -19,6 +19,7 @@
     ../dotfiles.nix
     ../fonts.nix
     ../i18n.nix
+    ../spicetify.nix
     ../theme.nix
   ];
 }

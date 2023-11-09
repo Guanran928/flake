@@ -57,6 +57,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nixpkgs-stable.follows = "nixpkgs-stable";
     };
+    spicetify-nix = {
+      url = "github:the-argus/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
 
     ### De-dupe
     crane = {
@@ -154,6 +159,7 @@
     lanzaboote,
     nix-darwin,
     sops-nix,
+    spicetify-nix,
     impermanence,
     tokyonight,
     metacubexd,
@@ -192,6 +198,7 @@
               ./users/guanranwang/home-manager/nixos/presets/desktop/gaming.nix
               ./users/guanranwang/home-manager/nixos/presets/desktop/torrenting.nix
             ];
+            home-manager.extraSpecialArgs = {inherit spicetify-nix;}; # im consfused
 
             ### Options
             myFlake.nixos.boot.noLoaderMenu = true;

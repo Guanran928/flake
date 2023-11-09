@@ -9,7 +9,6 @@
         gparted
         timeshift
         mpv
-        spicetify-cli
 
         ### matrix
         #fluffychat
@@ -19,7 +18,6 @@
 
         ### music
         easyeffects
-        spotify
         yesplaymusic
         amberol
         netease-cloud-music-gtk
