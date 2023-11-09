@@ -1,9 +1,7 @@
 {...}: {
   imports = [
-    ./display-server
-
     ./gnome-keyring.nix
-    ./graphical.nix
+    ./display-server.nix
     ./polkit.nix
   ];
 }

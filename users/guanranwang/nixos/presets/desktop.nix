@@ -16,4 +16,39 @@
     wlr.enable = true;
     extraPortals = with pkgs; [xdg-desktop-portal-gtk];
   };
+  services = {
+    ratbagd.enable = true;
+    gvfs.enable = true;
+    gnome = {
+      sushi.enable = true;
+      gnome-online-accounts.enable = true;
+    };
+  };
+  programs = {
+    kdeconnect = {
+      enable = true;
+      #package = pkgs.gnomeExtensions.gsconnect;
+      package = pkgs.valent;
+    };
+  };
+  services.xserver.libinput = {
+    touchpad = {
+      accelProfile = "flat";
+      naturalScrolling = true;
+      middleEmulation = false;
+    };
+    mouse = {
+      accelProfile = "flat";
+      naturalScrolling = true;
+      middleEmulation = false;
+    };
+  };
+
+  ### Removes debounce time
+  # https://www.reddit.com/r/linux_gaming/comments/ku6gth
+  environment.etc."libinput/local-overrides.quirks".text = ''
+    [Never Debounce]
+    MatchUdevType=mouse
+    ModelBouncingKeys=1
+  '';
 }
