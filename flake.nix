@@ -52,6 +52,18 @@
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixpak = {
+      url = "github:nixpak/nixpak";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.hercules-ci-effects.follows = "hercules-ci-effects";
+    };
+    nixpak-pkgs = {
+      url = "github:nixpak/pkgs";
+      inputs.nixpak.follows = "nixpak";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.hercules-ci-effects.follows = "hercules-ci-effects";
+    };
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -83,6 +95,11 @@
     gitignore = {
       url = "github:hercules-ci/gitignore.nix";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hercules-ci-effects = {
+      url = "github:hercules-ci/hercules-ci-effects";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
     };
     hyprland-protocols = {
       url = "github:hyprwm/hyprland-protocols";
@@ -129,10 +146,6 @@
     #  url = "github:NixOS/nixos-hardware/master";
     #  #inputs.nixpkgs.follows = "nixpkgs";
     #};
-    #nixpak = {
-    #  url = "github:nixpak/nixpak";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #};
 
     ## Non-Flake
     ### Color scheme files
@@ -163,6 +176,7 @@
     impermanence,
     tokyonight,
     metacubexd,
+    nixpak,
     ...
   } @ inputs: {
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
