@@ -27,6 +27,7 @@
     ../../../../flakes/nixos/sops-nix.nix
     ../../../../flakes/nixos/hosts.nix
   ];
+
   ### sops-nix
   nix.extraOptions = "!include ${config.sops.secrets.nix-access-tokens.path}";
   users.groups."nix-access-tokens" = {};
@@ -43,4 +44,10 @@
       };
     };
   };
+
+  ### home-manager
+  home-manager.users.guanranwang.imports = [
+    ../../home-manager
+    ../../home-manager/profiles/command-line/nixos
+  ];
 }

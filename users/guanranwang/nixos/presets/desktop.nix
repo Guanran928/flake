@@ -8,7 +8,23 @@
   ];
 
   ### home-manager
-  home-manager.users.guanranwang = import ../../home-manager/nixos/presets/desktop.nix;
+  home-manager.users.guanranwang.imports = [
+    ../../home-manager/profiles/command-line/nixos/fancy-stuff.nix
+    ../../home-manager/profiles/graphical-stuff/nixos
+    ../../home-manager/profiles/media/nixos
+    ../../home-manager/modules/terms/alacritty.nix
+    ../../home-manager/modules/shell/fish.nix
+    ../../home-manager/modules/shell/bash.nix
+    ../../home-manager/modules/editor/helix.nix
+    ../../home-manager/modules/editor/neovim.nix
+    ../../home-manager/modules/editor/vscode.nix
+    ../../home-manager/modules/browser/chromium.nix
+    ../../home-manager/modules/browser/librewolf.nix
+    ../../home-manager/modules/lang/nix.nix
+    ../../home-manager/modules/lang/go.nix
+    ../../home-manager/modules/wm/sway.nix
+  ];
+
   fonts.enableDefaultPackages = false;
   security.pam.services.swaylock = {};
   xdg.portal = {

@@ -9,4 +9,13 @@
       uid = 501;
     };
   };
+
+  imports = [
+    ../../../../flakes/darwin/home-manager.nix
+  ];
+
+  home-manager.users.guanranwang.imports = [
+    ../..
+    ../../profiles/command-line/darwin
+  ];
 }

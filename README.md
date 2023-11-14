@@ -44,8 +44,6 @@ It just works™
 │     ├──  nixos
 │     │
 │     ├──  home-manager              ### (User-specific) Home Manager configuration
-│     │  ├──  darwin
-│     │  └──  nixos
 │     │
 │     └──  secrets                   ### User's secrets managed through sops-nix
 │

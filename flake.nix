@@ -198,6 +198,8 @@
           # User
           ./users/guanranwang/nixos/presets/desktop.nix
           ./users/guanranwang/nixos/presets/core/clash-meta-client.nix
+          ./users/guanranwang/nixos/presets/desktop/gaming.nix
+          ./users/guanranwang/nixos/presets/desktop/torrenting.nix
 
           # Hardware
           ./machines/nixos/81fw-lenovo-legion-y7000
@@ -206,13 +208,6 @@
           {
             networking.hostName = "81FW-NixOS"; # Hostname
             time.timeZone = "Asia/Shanghai"; # Timezone
-
-            ### Home-Manager
-            home-manager.users.guanranwang.imports = [
-              ./users/guanranwang/home-manager/nixos/presets/desktop/gaming.nix
-              ./users/guanranwang/home-manager/nixos/presets/desktop/torrenting.nix
-            ];
-            home-manager.extraSpecialArgs = {inherit spicetify-nix;}; # im consfused
 
             ### Options
             myFlake.nixos.boot.noLoaderMenu = true;
@@ -234,8 +229,6 @@
           ./machines/darwin/imac-2017
 
           {
-            #home-manager.users.guanranwang = import ./users/guanranwang/home-manager/darwin/presets/desktop/gaming.nix;
-
             networking.hostName = "iMac-macOS";
             time.timeZone = "Asia/Shanghai";
           }
