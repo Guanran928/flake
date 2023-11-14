@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   home = {
     shellAliases = {
       # navigation
@@ -41,19 +45,25 @@
 
     starship = {
       enable = true;
-      settings = {
-        add_newline = false;
-        line_break.disabled = true;
+      settings = lib.mkMerge [
+        {
+          add_newline = false;
+          line_break.disabled = true;
 
-        character = {
-          success_symbol = "[>](bold green)";
-          error_symbol = "[>](bold red)";
-          vimcmd_symbol = "[<](bold green)";
-          vimcmd_replace_one_symbol = "[<](bold purple)";
-          vimcmd_replace_symbol = "[<](bold purple)";
-          vimcmd_visual_symbol = "[<](bold yellow)";
-        };
-      };
+          character = {
+            success_symbol = "[>](bold green)";
+            error_symbol = "[>](bold red)";
+            vimcmd_symbol = "[<](bold green)";
+            vimcmd_replace_one_symbol = "[<](bold purple)";
+            vimcmd_replace_symbol = "[<](bold purple)";
+            vimcmd_visual_symbol = "[<](bold yellow)";
+          };
+        }
+        (builtins.fromTOML (builtins.readFile (pkgs.fetchurl {
+          url = "https://starship.rs/presets/toml/nerd-font-symbols.toml";
+          hash = "sha256-fPmZrfhwM9NakdlJ7Y4rZ5n6JjsqXNEQ9XuFa8en9n0=";
+        })))
+      ];
     };
 
     eza = {
