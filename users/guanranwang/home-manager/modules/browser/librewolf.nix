@@ -24,6 +24,10 @@
 
       # Specified in https://github.com/schizofox/schizofox/blob/main/modules/hm/default.nix
       # I really don't have any idea what am I doing, it just works™
+      dbus.policies = {
+        "io.gitlab.librewolf.*" = "own";
+      };
+
       bubblewrap = let
         envSuffix = envKey: sloth.concat' (sloth.env envKey);
       in {
@@ -38,7 +42,7 @@
           "/etc/localtime"
           "/sys/bus/pci"
 
-          ["${pkgs.firefox}/lib/firefox" "/app/etc/firefox"]
+          ["${config.app.package}/lib/firefox" "/app/etc/firefox"]
           (sloth.concat' sloth.xdgConfigHome "/dconf")
 
           # https://github.com/nixpak/pkgs/pull/22
