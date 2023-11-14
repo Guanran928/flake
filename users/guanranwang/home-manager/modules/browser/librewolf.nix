@@ -44,9 +44,6 @@
 
           ["${config.app.package}/lib/firefox" "/app/etc/firefox"]
           (sloth.concat' sloth.xdgConfigHome "/dconf")
-
-          # https://github.com/nixpak/pkgs/pull/22
-          (sloth.concat' sloth.xdgConfigHome "/fontconfig")
         ];
       };
     };
