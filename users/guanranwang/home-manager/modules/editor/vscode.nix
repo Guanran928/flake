@@ -40,6 +40,8 @@
       "window.menuBarVisibility" = "toggle";
       "workbench.colorTheme" = "Tokyo Night";
 
+      "window.titleBarStyle" = "custom"; # workaround
+
       # Extensions
       ### GitLens
       "gitlens.telemetry.enabled" = false;
