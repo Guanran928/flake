@@ -10,17 +10,10 @@
     #../specialisation # dont actually use this
   ];
 
-  # Installed packages (System wide)
-  environment.defaultPackages = []; # make sure to add another editor and set the $EDITOR variable, in this case I am using neovim
-
   users.mutableUsers = false;
-  environment.etc.machine-id.text = "b08dfa6083e7567a1921a715000001fb"; # whonix id
-  security = {
-    apparmor.enable = true;
-    sudo.execWheelOnly = true;
-  };
 
   # Programs
+  environment.defaultPackages = []; # make sure to add another editor and set the $EDITOR variable, in this case I am using neovim
   programs = {
     dconf.enable = true;
     nano.enable = false;
@@ -62,4 +55,46 @@
     #  };
     #};
   };
+
+  ### Basic hardening
+  # ref: https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/profiles/hardened.nix
+  # ref: https://madaidans-insecurities.github.io/guides/linux-hardening.html
+  #
+  # also see: nixos/boot/sysctl.nix
+
+  environment.etc.machine-id.text = "b08dfa6083e7567a1921a715000001fb"; # whonix id
+  security = {
+    apparmor.enable = true;
+    sudo.execWheelOnly = true;
+  };
+
+  boot.blacklistedKernelModules = [
+    # Obscure network protocols
+    "ax25"
+    "netrom"
+    "rose"
+
+    # Old or rare or insufficiently audited filesystems
+    "adfs"
+    "affs"
+    "bfs"
+    "befs"
+    "cramfs"
+    "efs"
+    "erofs"
+    "exofs"
+    "freevxfs"
+    "f2fs"
+    "hfs"
+    "hpfs"
+    "jfs"
+    "minix"
+    "nilfs2"
+    "ntfs"
+    "omfs"
+    "qnx4"
+    "qnx6"
+    "sysv"
+    "ufs"
+  ];
 }
