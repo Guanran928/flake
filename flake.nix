@@ -183,7 +183,7 @@
 
     ### NixOS
     nixosConfigurations = {
-      "81FW-NixOS" = nixpkgs.lib.nixosSystem {
+      "Aristotle" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {inherit inputs;};
         modules = [
@@ -206,7 +206,7 @@
           ./machines/nixos/81fw-lenovo-legion-y7000/machine-1
 
           {
-            networking.hostName = "81FW-NixOS"; # Hostname
+            networking.hostName = "Aristotle"; # Hostname
             time.timeZone = "Asia/Shanghai"; # Timezone
 
             ### Options
@@ -219,7 +219,7 @@
 
     ### nix-darwin
     darwinConfigurations = {
-      "iMac-macOS" = nix-darwin.lib.darwinSystem {
+      "Plato" = nix-darwin.lib.darwinSystem {
         system = "x86_64-darwin";
         specialArgs = {inherit inputs;};
         modules = [
@@ -229,7 +229,7 @@
           ./machines/darwin/imac-2017
 
           {
-            networking.hostName = "iMac-macOS";
+            networking.hostName = "Plato";
             time.timeZone = "Asia/Shanghai";
           }
         ];
