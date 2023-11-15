@@ -203,7 +203,7 @@
 
           # Hardware
           ./machines/nixos/81fw-lenovo-legion-y7000
-          ./machines/nixos/81fw-lenovo-legion-y7000/machine-1
+          ./machines/nixos/81fw-lenovo-legion-y7000/Aristotle
 
           {
             networking.hostName = "Aristotle"; # Hostname
