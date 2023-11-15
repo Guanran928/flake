@@ -4,6 +4,6 @@
 
     # TODO: should this be considered user-specific?
     ./overlays
-    ./unfree
+    ./anti-feature.nix
   ];
 }
