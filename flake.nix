@@ -188,64 +188,43 @@
         specialArgs = {inherit inputs;};
         modules = [
           # OS
-          ./nixos/presets/desktop.nix
-          ./nixos/presets/core/zram-generator.nix
-          ./nixos/presets/desktop/gaming.nix
-          ./nixos/presets/desktop/virtualbox.nix
-          ./nixos/presets/desktop/wayland.nix
-          ./nixos/presets/desktop/virt-manager.nix
+          ./nixos/profiles/desktop
+          ./nixos/profiles/core/addtional/zram-generator.nix
+          ./nixos/profiles/desktop/addtional/gaming.nix
+          ./nixos/profiles/desktop/addtional/virtualbox.nix
+          ./nixos/profiles/desktop/addtional/wayland.nix
+          ./nixos/profiles/desktop/addtional/virt-manager.nix
 
           # User
-          ./users/guanranwang/nixos/presets/desktop.nix
-          ./users/guanranwang/nixos/presets/core/clash-meta-client.nix
-          ./users/guanranwang/nixos/presets/desktop/gaming.nix
-          ./users/guanranwang/nixos/presets/desktop/torrenting.nix
+          ./users/guanranwang/nixos/profiles/desktop
+          ./users/guanranwang/nixos/profiles/core/addtional/clash-meta-client.nix
+          ./users/guanranwang/nixos/profiles/desktop/addtional/gaming.nix
+          ./users/guanranwang/nixos/profiles/desktop/addtional/torrenting.nix
 
           # Hardware
-          ./machines/nixos/81fw-lenovo-legion-y7000
-          ./machines/nixos/81fw-lenovo-legion-y7000/Aristotle
+          ./nixos/hardware/81fw-lenovo-legion-y7000/Aristotle
 
-          {
-            networking.hostName = "Aristotle"; # Hostname
-            time.timeZone = "Asia/Shanghai"; # Timezone
-
-            ### Options
-            myFlake.nixos.boot.noLoaderMenu = true;
-            myFlake.nixos.networking.dns = "alidns";
-          }
+          {networking.hostName = "Aristotle";}
         ];
       };
     };
 
-    ### nix-darwin
+    ### Darwin
     darwinConfigurations = {
       "Plato" = nix-darwin.lib.darwinSystem {
         system = "x86_64-darwin";
         specialArgs = {inherit inputs;};
         modules = [
-          ./darwin/presets/desktop.nix
-          ./users/guanranwang/darwin/presets/desktop.nix
-          ./users/guanranwang/darwin/presets/core/proxy.nix
-          ./machines/darwin/imac-2017
+          ./darwin/profiles/desktop
 
-          {
-            networking.hostName = "Plato";
-            time.timeZone = "Asia/Shanghai";
-          }
+          ./users/guanranwang/darwin/profiles/desktop
+          ./users/guanranwang/darwin/profiles/core/addtional/networking/clash-meta-client.nix
+
+          ./darwin/hardware/imac-2017
+
+          {networking.hostName = "Plato";}
         ];
       };
     };
-
-    ### Standalone Home-Manager
-    #homeConfigurations = {
-    #  "guanranwang@81fw-nixos" = home-manager.lib.homeManagerConfiguration {
-    #    pkgs = nixpkgs.legacyPackages.x86_64-linux;
-    #    extraSpecialArgs = {inherit inputs;};
-    #    modules = [
-    #      sops-nix.homeManagerModules.sops
-    #      hyprland.homeManagerModules.default
-    #    ];
-    #  };
-    #};
   };
 }

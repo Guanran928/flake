@@ -6,7 +6,7 @@ It just works™
 - Flakes: Yes
 - Home Manager: Yes
 
-### Machine-specific (81fw-nixos)
+### Machine-specific (Aristotle)
 - File system: Btrfs
 - System encryption: Yes (LUKS)
 
@@ -18,34 +18,21 @@ It just works™
 ## Structure
 ```
  .
-├──  darwin                          # System configuration
+│   ### System configuration
+├──  darwin
 ├──  nixos
+│  ├──  flake-modules
+│  ├──  hardware
+│  ├──  modules
+│  └──  profiles
 │
-├──  flakes                          # Import-able Flakes
-│  ├──  darwin
-│  └──  nixos
-│
-├──  machines                        # Hardware configuration
-│  ├──  darwin
-│  └──  nixos
-│     ├──  81fw-lenovo-legion-y7000  ### Model
-│     │  ├──  hardware.nix           #### Model-specific hardware configuration
-│     │  └──  machine-1              #### Machine-specific hardware configuration
-│     │
-│     └───  hardware                 ### Reusable hardware configuration
-│        ├──  cpu
-│        ├──  gpu
-│        └──  ...
-│
+│   ### User configuration
+│   # Adds user account, home-manager stuff, etc.
+│   # Do whatever you want here.
 ├──  users
-│  └──  guanranwang                  ## Your user
-│     │
-│     ├──  darwin                    ### (User-specific) System configuration
-│     ├──  nixos
-│     │
-│     ├──  home-manager              ### (User-specific) Home Manager configuration
-│     │
-│     └──  secrets                   ### User's secrets managed through sops-nix
+│  ├──  guanranwang
+│  ├──  foo
+│  └──  bar
 │
 ├──  flake.nix
 ├──  flake.lock
@@ -61,7 +48,7 @@ It just works™
     `$ git clone https://github.com/Guanran928/flake.git`
 
   2.
-    Add your device's hardware configuration in `./machines` and `./flake.nix`
+    Add your device's hardware configuration in `./ (nixos/darwin) /hardware` and `./flake.nix`
 
   3.
     Install NixOS

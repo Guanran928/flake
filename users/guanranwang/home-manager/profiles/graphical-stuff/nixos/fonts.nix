@@ -6,17 +6,11 @@
   };
 
   home.packages = with pkgs; [
-    ### Sans
+    ### Inter
     inter
 
-    ### Monospace
-    jetbrains-mono
-    (nerdfonts.override {
-      fonts = [
-        "JetBrainsMono"
-        "NerdFontsSymbolsOnly"
-      ];
-    })
+    ### JetBrains Mono Nerd Font
+    (nerdfonts.override {fonts = ["JetBrainsMono"];})
 
     ### Adobe Source Han
     source-han-sans
