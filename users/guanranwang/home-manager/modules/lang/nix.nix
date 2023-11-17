@@ -1,15 +1,21 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    ### LSP
-    nil
+    nil # LSP
+    alejandra # Formatter
   ];
 
   ### VSCode
   programs.vscode = {
     userSettings = {
-      ### Nix IDE
-      "nix.enableLanguageServer" = true;
-      "nix.serverPath" = "${pkgs.nil}/bin/nil";
+      # Extensions
+      ## Nix IDE
+      nix.enableLanguageServer = true;
+      ### For "nixd" LSP
+      nix.serverPath = "nil";
+      nix.serverSettings.nil = {
+        formatting.command = ["alejandra"];
+        nix.flake.autoArchive = true;
+      };
     };
     extensions = with pkgs.vscode-extensions; [
       jnoortheen.nix-ide
