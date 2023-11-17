@@ -1,9 +1,9 @@
 {...}: {
   imports = [
     ../default.nix
-    ../../../../nixos/flake-modules/lanzaboote.nix
-    ../../../../nixos/flake-modules/impermanence.nix
-    ../../../../nixos/flake-modules/disko.nix
+    ../../../../../flake-modules/lanzaboote.nix
+    ../../../../../flake-modules/impermanence.nix
+    ../../../../../flake-modules/disko.nix
   ];
 
   _module.args.disks = ["/dev/nvme0n1"]; # Disko

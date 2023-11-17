@@ -202,7 +202,7 @@
           ./users/guanranwang/nixos/profiles/desktop/addtional/torrenting.nix
 
           # Hardware
-          ./nixos/hardware/81fw-lenovo-legion-y7000/Aristotle
+          ./nixos/hardware/lenovo/legion/81fw/Aristotle
 
           {networking.hostName = "Aristotle";}
         ];
@@ -220,7 +220,7 @@
           ./users/guanranwang/darwin/profiles/desktop
           ./users/guanranwang/darwin/profiles/core/addtional/networking/clash-meta-client.nix
 
-          ./darwin/hardware/imac-2017
+          ./darwin/hardware/apple/imac/18-3
 
           {networking.hostName = "Plato";}
         ];

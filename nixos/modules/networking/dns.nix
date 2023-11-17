@@ -7,7 +7,7 @@
     type = lib.types.enum ["google" "alidns"];
     default = "google";
     example = "alidns";
-    description = "Select your DNS provider";
+    description = "Select desired DNS provider.";
   };
 
   config.networking.nameservers = lib.mkMerge [

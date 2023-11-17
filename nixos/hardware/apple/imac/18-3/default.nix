@@ -4,11 +4,11 @@
   ...
 }: {
   imports = [
-    ../hardware/misc/audio.nix
-    ../hardware/misc/bluetooth.nix
-    ../hardware/misc/opengl.nix
-    ../hardware/cpu/intel.nix
-    ../hardware/gpu/amd.nix
+    ../../../hardware/misc/audio.nix
+    ../../../hardware/misc/bluetooth.nix
+    ../../../hardware/misc/opengl.nix
+    ../../../hardware/cpu/intel.nix
+    ../../../hardware/gpu/amd.nix
     (modulesPath + "/hardware/network/broadcom-43xx.nix")
     (modulesPath + "/installer/scan/not-detected.nix") # what is this
   ];

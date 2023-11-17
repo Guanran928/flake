@@ -4,19 +4,23 @@
   ...
 }: {
   imports = [
-    ../hardware/misc/audio.nix
-    ../hardware/misc/bluetooth.nix
-    ../hardware/misc/opengl.nix
-    ../hardware/misc/tpm.nix
-    ../hardware/cpu/intel.nix
-    ../hardware/gpu/intel.nix
-    ../hardware/gpu/nvidia.nix
-    ../hardware/gpu/nvidia-prime.nix
     (modulesPath + "/installer/scan/not-detected.nix") # what is this
   ];
 
+  myFlake.nixos.hardware = {
+    cpu.intel.enable = true;
+
+    gpu.intel.enable = true;
+    gpu.nvidia.enable = true;
+    gpu.nvidia.prime = true;
+
+    misc.audio.enable = true;
+    misc.bluetooth.enable = true;
+    misc.fstrim.enable = true;
+    misc.tpm.enable = true;
+  };
+
   boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid"];
-  services.fstrim.enable = true;
 
   # Nvidia PRIME
   hardware.nvidia.prime = {
