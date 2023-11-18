@@ -30,6 +30,7 @@
     "modules/lang/nix.nix"
     "modules/lang/go.nix"
     "modules/wm/sway.nix"
+    "modules/misc/irssi.nix"
   ];
 
   fonts.enableDefaultPackages = false;
