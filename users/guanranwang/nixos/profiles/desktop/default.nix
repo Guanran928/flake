@@ -41,7 +41,6 @@
     extraPortals = with pkgs; [xdg-desktop-portal-gtk];
   };
   services = {
-    ratbagd.enable = true;
     gvfs.enable = true;
     gnome = {
       sushi.enable = true;

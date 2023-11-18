@@ -1,4 +1,10 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
+  myFlake.nixos.hardware.accessories.xboxOneController.enable = lib.mkDefault true;
+
   programs.gamemode = {
     enable = true;
     settings.custom = {

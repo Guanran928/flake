@@ -25,7 +25,7 @@
         "nvidia-x11"
         #"nvidia-settings"
         #"nvidia-persistenced"
-        #"xow_dongle-firmware"
+        "xow_dongle-firmware"
         #"facetimehd-firmware"
         "osu-lazer-bin-2023.1026.0"
         "spotify"
