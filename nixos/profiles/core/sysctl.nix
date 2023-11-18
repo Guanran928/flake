@@ -1,50 +1,62 @@
 {...}: {
-  # All sysctl-s are from https://madaidans-insecurities.github.io/guides/linux-hardening.html#sysctl
+  boot.kernelModules = ["tcp_bbr"];
   boot.kernel.sysctl = {
+    ### https://madaidans-insecurities.github.io/guides/linux-hardening.html#sysctl
     # Kernel self-protection
-    "kernel.kptr_restrict" = "2"; # Kernel pointer
-    "kernel.dmesg_restrict" = "1"; # restricts dmesg
-    "kernel.printk" = "3 3 3 3"; # disable kernel log at boot time
-    "kernel.unprivileged_bpf_disabled" = "1"; # eBPF
-    "net.core.bpf_jit_harden" = "2"; # eBPF
-    "dev.tty.ldisc_autoload" = "0"; # tty
+    "kernel.kptr_restrict" = "2";
+    "kernel.dmesg_restrict" = "1";
+    "kernel.printk" = "3 3 3 3"; #
+    "kernel.unprivileged_bpf_disabled" = "1";
+    "net.core.bpf_jit_harden" = "2";
+    "dev.tty.ldisc_autoload" = "0";
     "vm.unprivileged_userfaultfd" = "0";
     "kernel.kexec_load_disabled" = "1";
-    "kernel.sysrq" = "4"; # disable magic sysrq
+    "kernel.sysrq" = "4"; #
     #"kernel.unprivileged_userns_clone" = "0"; # does not exist on nixos
     "kernel.perf_event_paranoid" = "3";
 
     # Network
-    "net.ipv4.tcp_syncookies" = "1"; # against SYN flood attacks
-    "net.ipv4.tcp_rfc1337" = "1"; # against time-wait assassination
-    "net.ipv4.conf.all.rp_filter" = "1"; # against IP spoofing
+    "net.ipv4.tcp_syncookies" = "1";
+    "net.ipv4.tcp_rfc1337" = "1";
+    "net.ipv4.conf.all.rp_filter" = "1";
     "net.ipv4.conf.default.rp_filter" = "1";
     "net.ipv4.conf.all.accept_redirects" = "0";
-    "net.ipv4.conf.default.accept_redirects" = "0"; # disable ICMP redirect acceptance and sending, against MITM
+    "net.ipv4.conf.default.accept_redirects" = "0";
     "net.ipv4.conf.all.secure_redirects" = "0";
     "net.ipv4.conf.default.secure_redirects" = "0";
     "net.ipv6.conf.all.accept_redirects" = "0";
     "net.ipv6.conf.default.accept_redirects" = "0";
     "net.ipv4.conf.all.send_redirects" = "0";
     "net.ipv4.conf.default.send_redirects" = "0";
-    "net.ipv4.icmp_echo_ignore_all" = "1"; # ignore all ICMP req, against smurf attacks
+    "net.ipv4.icmp_echo_ignore_all" = "1";
     "net.ipv4.conf.all.accept_source_route" = "0";
     "net.ipv4.conf.default.accept_source_route" = "0";
     "net.ipv6.conf.all.accept_source_route" = "0";
     "net.ipv6.conf.default.accept_source_route" = "0";
-    "net.ipv6.conf.all.accept_ra" = "0"; # MITM
+    "net.ipv6.conf.all.accept_ra" = "0";
     "net.ipv6.conf.default.accept_ra" = "0";
-    "net.ipv4.tcp_sack" = "0"; # disable TCP SACK
+    "net.ipv4.tcp_sack" = "0";
     "net.ipv4.tcp_dsack" = "0";
     "net.ipv4.tcp_fack" = "0";
 
     # User Space
-    "kernel.yama.ptrace_scope" = "2"; # restricts usage of ptrace
-    "vm.mmap_rnd_bits" = "32"; # ASLR
+    "kernel.yama.ptrace_scope" = "2";
+    "vm.mmap_rnd_bits" = "32";
     "vm.mmap_rnd_compat_bits" = "16";
     "fs.protected_symlinks" = "1";
     "fs.protected_hardlinks" = "1";
     "fs.protected_fifos" = "2";
     "fs.protected_regular" = "2";
+
+    ### https://wiki.archlinux.org/title/Sysctl#Improving_performance
+    "net.ipv4.tcp_fastopen" = "3";
+
+    "net.ipv4.tcp_keepalive_time" = "80";
+    "net.ipv4.tcp_keepalive_intvl" = "10";
+    "net.ipv4.tcp_keepalive_probes" = "6";
+    "net.ipv4.tcp_mtu_probing" = "1";
+
+    "net.core.default_qdisc" = "cake";
+    "net.ipv4.tcp_congestion_control" = "bbr";
   };
 }
