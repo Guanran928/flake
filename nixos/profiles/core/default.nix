@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  config,
+  lib,
+  ...
+}: {
   # Imported by default, check out ./desktop.nix or ./server.nix
   imports = [
     ../../modules # idk where should i import it
@@ -25,10 +29,15 @@
 
   # Services
   services = {
-    getty.greetingLine = ''
-      NixOS ${config.system.nixos.label} ${config.system.nixos.codeName} (\m) - \l
-      --my-next-gpu-wont-be-nvidia
-    '';
+    getty.greetingLine = lib.strings.concatLines [
+      ''NixOS ${config.system.nixos.label} ${config.system.nixos.codeName} (\m) - \l''
+
+      (lib.strings.optionalString config.myFlake.nixos.hardware.gpu.nvidia.enable
+        "--my-next-gpu-wont-be-nvidia")
+
+      (lib.strings.optionalString config.myFlake.nixos.hardware.gpu.amd.enable
+        "[    5.996722] amdgpu 0000:67:00.0: Fatal error during GPU init--my-next-gpu-wont-be-nvidia")
+    ];
 
     openssh = {
       enable = true;
