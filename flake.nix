@@ -161,29 +161,12 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    berberman,
-    disko,
-    home-manager,
-    hosts,
-    hyprland,
-    lanzaboote,
-    nix-darwin,
-    sops-nix,
-    spicetify-nix,
-    impermanence,
-    tokyonight,
-    metacubexd,
-    nixpak,
-    ...
-  } @ inputs: {
-    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+  outputs = {...} @ inputs: {
+    formatter.x86_64-linux = inputs.nixpkgs.legacyPackages.x86_64-linux.alejandra;
 
     ### NixOS
     nixosConfigurations = {
-      "Aristotle" = nixpkgs.lib.nixosSystem {
+      "Aristotle" = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {inherit inputs;};
         modules = [
@@ -211,7 +194,7 @@
 
     ### Darwin
     darwinConfigurations = {
-      "Plato" = nix-darwin.lib.darwinSystem {
+      "Plato" = inputs.nix-darwin.lib.darwinSystem {
         system = "x86_64-darwin";
         specialArgs = {inherit inputs;};
         modules = [
