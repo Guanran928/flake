@@ -30,7 +30,6 @@
   ### Flakes
   imports = [
     ../../../../../nixos/flake-modules/sops-nix.nix
-    ../../../../../nixos/flake-modules/hosts.nix
   ];
 
   ### sops-nix

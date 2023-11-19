@@ -182,26 +182,6 @@
         "type": "github"
       }
     },
-    "hosts": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1699912377,
-        "narHash": "sha256-IOGZaaOr1H4YKDVHFe8ibPqGinNk7CRr+sw0b4jUF+8=",
-        "owner": "StevenBlack",
-        "repo": "hosts",
-        "rev": "3512f10a51a79383166c4411e3587fc98642ea51",
-        "type": "github"
-      },
-      "original": {
-        "owner": "StevenBlack",
-        "repo": "hosts",
-        "type": "github"
-      }
-    },
     "hyprland": {
       "inputs": {
         "hyprland-protocols": [
@@ -520,7 +500,6 @@
         "gitignore": "gitignore",
         "hercules-ci-effects": "hercules-ci-effects",
         "home-manager": "home-manager",
-        "hosts": "hosts",
         "hyprland": "hyprland",
         "hyprland-plugins": "hyprland-plugins",
         "hyprland-protocols": "hyprland-protocols",
