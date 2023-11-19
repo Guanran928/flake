@@ -15,7 +15,7 @@
   };
 
   ### Options
-  myFlake.darwin.networking.dns = lib.mkDefault "alidns";
+  myFlake.darwin.networking.dns.provider = lib.mkDefault "alidns";
   time.timeZone = lib.mkDefault "Asia/Shanghai";
 
   ### Flakes
