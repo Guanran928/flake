@@ -27,17 +27,5 @@ in {
           "systemd.show_status=auto"
           "rd.udev.log_level=3"
         ]);
-
-    ### Misc
-    boot.loader = {
-      efi.canTouchEfiVariables = true;
-      systemd-boot = {
-        enable = lib.mkDefault true; # mkDefault for Lanzaboote
-        editor = false; # Disabled for security
-        ### Utilities
-        #netbootxyz.enable = true;
-        #memtest86.enable = true;
-      };
-    };
   };
 }

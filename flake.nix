@@ -167,18 +167,19 @@
         specialArgs = {inherit inputs;};
         modules = [
           # OS
-          ./nixos/profiles/desktop
-          ./nixos/profiles/core/addtional/zram-generator.nix
-          ./nixos/profiles/desktop/addtional/gaming.nix
-          ./nixos/profiles/desktop/addtional/virtualbox.nix
-          ./nixos/profiles/desktop/addtional/wayland.nix
-          ./nixos/profiles/desktop/addtional/virt-manager.nix
+          ./nixos/profiles/core
+          ./nixos/profiles/device-type/laptop
+          ./nixos/profiles/use-cases/zram-generator.nix
+          ./nixos/profiles/use-cases/gaming.nix
+          ./nixos/profiles/use-cases/wayland.nix
+          ./nixos/profiles/use-cases/virt-manager.nix
 
           # User
-          ./users/guanranwang/nixos/profiles/desktop
-          ./users/guanranwang/nixos/profiles/core/addtional/clash-meta-client.nix
-          ./users/guanranwang/nixos/profiles/desktop/addtional/gaming.nix
-          ./users/guanranwang/nixos/profiles/desktop/addtional/torrenting.nix
+          ./users/guanranwang/nixos/profiles/core
+          ./users/guanranwang/nixos/profiles/device-type/laptop
+          ./users/guanranwang/nixos/profiles/use-cases/clash-meta-client.nix
+          ./users/guanranwang/nixos/profiles/use-cases/gaming.nix
+          ./users/guanranwang/nixos/profiles/use-cases/torrenting.nix
 
           # Hardware
           ./nixos/hardware/lenovo/legion/81fw/Aristotle
@@ -194,10 +195,12 @@
         system = "x86_64-darwin";
         specialArgs = {inherit inputs;};
         modules = [
-          ./darwin/profiles/desktop
+          ./darwin/profiles/core
+          ./darwin/profiles/device-type/desktop
 
-          ./users/guanranwang/darwin/profiles/desktop
-          ./users/guanranwang/darwin/profiles/core/addtional/networking/clash-meta-client.nix
+          ./users/guanranwang/darwin/profiles/core
+          ./users/guanranwang/darwin/profiles/device-type/desktop
+          ./users/guanranwang/darwin/profiles/use-cases/clash-meta-client.nix
 
           ./darwin/hardware/apple/imac/18-3
 

@@ -3,7 +3,5 @@
     ../../modules
 
     ./nix
-    ./packages
-    ./system
   ];
 }

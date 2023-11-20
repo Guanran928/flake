@@ -1,10 +1,6 @@
 {...}: {
-  imports = [
-    ../core
-  ];
-
   ### home-manager
-  home-manager.users.guanranwang.imports = map (n: ../../../home-manager/${n}) [
+  home-manager.users.guanranwang.imports = map (n: ../../../../home-manager/${n}) [
     "modules/terms/alacritty.nix"
     "modules/shell/fish.nix"
     "modules/shell/bash.nix"

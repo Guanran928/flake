@@ -3,22 +3,34 @@
   lib,
   ...
 }: {
-  # Imported by default, check out ./desktop.nix or ./server.nix
+  # Imported by default
   imports = [
-    ../../modules # idk where should i import it
+    ../../modules
 
     ./nix
     ./packages
     ./sysctl.nix
   ];
 
+  boot.initrd.systemd.enable = true;
+  boot.loader = {
+    efi.canTouchEfiVariables = true;
+    systemd-boot = {
+      enable = lib.mkDefault true; # mkDefault for Lanzaboote
+      editor = false; # Disabled for security
+      ### Utilities
+      #netbootxyz.enable = true;
+      #memtest86.enable = true;
+    };
+  };
+
   users.mutableUsers = false;
 
   # Programs
-  environment.defaultPackages = []; # make sure to add another editor and set the $EDITOR variable, in this case I am using neovim
+  environment.defaultPackages = [];
   programs = {
     dconf.enable = true;
-    nano.enable = false;
+    nano.enable = false; # make sure to add another editor and set the $EDITOR variable, in this case I am using neovim
     neovim = {
       enable = true;
       viAlias = true;
@@ -36,7 +48,7 @@
         "--my-next-gpu-wont-be-nvidia")
 
       (lib.strings.optionalString config.myFlake.nixos.hardware.gpu.amd.enable
-        "[    5.996722] amdgpu 0000:67:00.0: Fatal error during GPU init--my-next-gpu-wont-be-nvidia")
+        "[    5.996722] amdgpu 0000:67:00.0: Fatal error during GPU init")
     ];
 
     openssh = {
@@ -67,7 +79,7 @@
   # ref: https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/profiles/hardened.nix
   # ref: https://madaidans-insecurities.github.io/guides/linux-hardening.html
   #
-  # also see: nixos/boot/sysctl.nix
+  # also see: ./sysctl.nix
 
   environment.etc.machine-id.text = "b08dfa6083e7567a1921a715000001fb"; # whonix id
   security = {

@@ -3,6 +3,5 @@
 {
   imports = [
     (modulesPath + "/profiles/minimal.nix")
-    ../core
   ];
 }

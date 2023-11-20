@@ -4,18 +4,16 @@
   ...
 }: {
   imports = [
-    ../core
-
     ### Flakes
-    ../../../../../nixos/flake-modules/home-manager.nix
-    ../../../../../nixos/flake-modules/berberman.nix
+    ../../../../../../nixos/flake-modules/home-manager.nix
+    ../../../../../../nixos/flake-modules/berberman.nix
   ];
 
   ### Options
   myFlake.nixos.boot.noLoaderMenu = lib.mkDefault true;
 
   ### home-manager
-  home-manager.users.guanranwang.imports = map (n: ../../../home-manager/${n}) [
+  home-manager.users.guanranwang.imports = map (n: ../../../../home-manager/${n}) [
     "profiles/command-line/nixos/fancy-stuff.nix"
     "profiles/graphical-stuff/nixos"
     "profiles/media/nixos"

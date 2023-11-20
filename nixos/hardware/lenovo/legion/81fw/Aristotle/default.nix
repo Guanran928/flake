@@ -7,5 +7,4 @@
   ];
 
   _module.args.disks = ["/dev/nvme0n1"]; # Disko
-  boot.initrd.systemd.enable = true; # LUKS TPM unlocking
 }

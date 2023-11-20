@@ -7,7 +7,7 @@
   etcDirectory = "clash-meta";
 in {
   imports = [
-    ../../../../../../nixos/flake-modules/sops-nix.nix
+    ../../../../../nixos/flake-modules/sops-nix.nix
   ];
 
   ### sops-nix
