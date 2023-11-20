@@ -17,19 +17,8 @@
         src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
       }
       {
-        # should I use flake inputs / fetchurl?
         name = "sudo";
-        src =
-          pkgs.fetchFromGitHub {
-            owner = "ohmyzsh";
-            repo = "ohmyzsh";
-            rev = "f8bf8f0029a475831ebfba0799975ede20e08742";
-            hash = "sha256-9cJQQycahO+vo/YcAHjF+PVhsWxu7pa4MsK8Dgr69k0=";
-            sparseCheckout = [
-              "plugins/sudo"
-            ];
-          }
-          + "/plugins/sudo";
+        src = "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/sudo";
       }
     ];
     initExtra = "zstyle ':fzf-tab:*' fzf-command sk";
