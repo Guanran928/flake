@@ -15,8 +15,9 @@
     ./components/waybar.nix
   ];
 
+  # https://wiki.archlinux.org/title/Fish#Start_X_at_login
   programs.fish.loginShellInit = ''
-    if test -z "$Display" -a "$XDG_VTNR" = 1
+    if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
       exec sway
     end
   '';
