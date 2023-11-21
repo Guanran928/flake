@@ -1,12 +1,12 @@
 {
-  inputs,
   lib,
+  pkgs,
   ...
 }: {
   programs.alacritty = {
     enable = true;
     settings = {
-      import = ["${inputs.tokyonight}/extras/alacritty/tokyonight_night.yml"];
+      import = ["${pkgs.vimPlugins.tokyonight-nvim}/extras/alacritty/tokyonight_night.yml"];
       cursor.style = "beam";
       env.WINIT_X11_SCALE_FACTOR = "1";
       window = {

@@ -144,12 +144,6 @@
     #};
 
     ## Non-Flake
-    ### Color scheme files
-    tokyonight = {
-      # TODO: base16.nix/Stylix when?
-      url = "github:folke/tokyonight.nvim";
-      flake = false;
-    };
     ### Clash WebUI
     metacubexd = {
       url = "github:MetaCubeX/metacubexd/gh-pages";

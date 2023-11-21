@@ -1,13 +1,9 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
       set fish_greeting
-      source ${inputs.tokyonight}/extras/fish/tokyonight_night.fish
+      source ${pkgs.vimPlugins.tokyonight-nvim}/extras/fish/tokyonight_night.fish
     '';
     plugins = [
       {
