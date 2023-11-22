@@ -26,7 +26,8 @@
       editor.cursorSmoothCaretAnimation = "on";
       editor.fontFamily = lib.mkDefault "Monospace";
       editor.fontWeight = 600;
-      editor.tabSizem = 2;
+      editor.smoothScrolling = true;
+      editor.tabSize = 2;
       explorer.confirmDragAndDrop = false;
       explorer.confirmDelete = false;
       files.autoSave = "onFocusChange";
@@ -34,13 +35,17 @@
       files.trimFinalNewlines = true;
       security.workspace.trust.enabled = false;
       telemetry.telemetryLevel = "off";
-      terminal.external.osxExec = "Alacritty.app";
-      terminal.integrated.cursorBlinking = true;
-      update.mode = "none";
+      terminal.integrated.cursorStyle = "line";
+      terminal.integrated.smoothScrolling = true;
       window.menuBarVisibility = "toggle";
       workbench.colorTheme = "Tokyo Night";
+      workbench.list.smoothScrolling = true;
 
-      window.titleBarStyle = "custom"; # workaround
+      # Workaround for VSCode crashing
+      # https://github.com/microsoft/vscode/issues/184124
+      window.titleBarStyle = "custom";
+      workbench.layoutControl.enabled = false;
+      window.commandCenter = false;
 
       # Language specific
       ### Nix

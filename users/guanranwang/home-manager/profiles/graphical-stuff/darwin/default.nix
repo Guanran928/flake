@@ -53,14 +53,15 @@
     monospace = "JetBrainsMono Nerd Font";
   in {
     ### VSCode
-    vscode.userSettings."editor.fontFamily" = "${monospace}";
+    vscode.userSettings.editor.fontFamily = monospace;
+    vscode.userSettings.terminal.external.osxExec = "Alacritty.app";
 
     ### Alacritty
     alacritty.settings.font = {
-      normal.family = "${monospace}";
-      bold.family = "${monospace}";
-      bold_italic.family = "${monospace}";
-      italic.family = "${monospace}";
+      normal.family = monospace;
+      bold.family = monospace;
+      bold_italic.family = monospace;
+      italic.family = monospace;
     };
   };
 }
