@@ -3,7 +3,6 @@
   config,
   ...
 }: let
-  etcDirectory = "hysteria";
   port = 43956;
 in {
   imports = [
@@ -21,7 +20,7 @@ in {
     owner = config.users.users."hysteria".name;
     group = config.users.groups."hysteria".name;
     restartUnits = ["hysteria-server.service"];
-    path = "/etc/${etcDirectory}/config.yaml";
+    path = "/etc/hysteria/config.yaml";
   };
 
   ### User running proxy service
@@ -40,10 +39,10 @@ in {
 
     serviceConfig = {
       Type = "simple";
-      WorkingDirectory = "/etc/${etcDirectory}";
+      WorkingDirectory = "/etc/hysteria";
       User = [config.users.users."hysteria".name];
       Group = [config.users.groups."hysteria".name];
-      ExecStart = "${pkgs.hysteria}/bin/hysteria server --config /etc/${etcDirectory}/config.yaml";
+      ExecStart = "${pkgs.hysteria}/bin/hysteria server --config /etc/hysteria/config.yaml";
       Restart = "on-failure";
       CapabilityBoundingSet = [
         "CAP_NET_ADMIN"

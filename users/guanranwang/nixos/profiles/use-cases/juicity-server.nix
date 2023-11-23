@@ -3,7 +3,6 @@
   config,
   ...
 }: let
-  etcDirectory = "juicity";
   port = "33829";
 in {
   imports = [
@@ -21,7 +20,7 @@ in {
     owner = config.users.users."juicity".name;
     group = config.users.groups."juicity".name;
     restartUnits = ["juicity-server.service"];
-    path = "/etc/${etcDirectory}/config.yaml";
+    path = "/etc/juicity/config.yaml";
   };
 
   ### User running proxy service
@@ -40,10 +39,10 @@ in {
 
     serviceConfig = {
       Type = "simple";
-      WorkingDirectory = "/etc/${etcDirectory}";
+      WorkingDirectory = "/etc/juicity";
       User = [config.users.users."juicity".name];
       Group = [config.users.groups."juicity".name];
-      ExecStart = "${pkgs.juicity}/bin/juicity-server run -c /etc/${etcDirectory}/config.json";
+      ExecStart = "${pkgs.juicity}/bin/juicity-server run -c /etc/juicity/config.json";
       Restart = "on-failure";
       CapabilityBoundingSet = [
         "CAP_NET_ADMIN"

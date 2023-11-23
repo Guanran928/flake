@@ -3,9 +3,7 @@
   config,
   inputs,
   ...
-}: let
-  etcDirectory = "clash-meta";
-in {
+}: {
   imports = [
     ../../../../../nixos/flake-modules/sops-nix.nix
   ];
@@ -15,7 +13,7 @@ in {
     owner = config.users.users."clash-meta".name;
     group = config.users.groups."clash-meta".name;
     restartUnits = ["clash-meta.service"];
-    path = "/etc/${etcDirectory}/config.yaml";
+    path = "/etc/clash-meta/config.yaml";
   };
 
   ### System proxy settings
@@ -37,10 +35,10 @@ in {
 
     serviceConfig = {
       Type = "simple";
-      WorkingDirectory = "/etc/${etcDirectory}";
+      WorkingDirectory = "/etc/clash-meta";
       User = [config.users.users."clash-meta".name];
       Group = [config.users.groups."clash-meta".name];
-      ExecStart = "${pkgs.clash-meta}/bin/clash-meta -d /etc/${etcDirectory}";
+      ExecStart = "${pkgs.clash-meta}/bin/clash-meta -d /etc/clash-meta";
       Restart = "on-failure";
       CapabilityBoundingSet = [
         "CAP_NET_ADMIN"
@@ -65,5 +63,5 @@ in {
   #   - https://yacd.haishan.me
   # - clash-dashboard (buggy):
   #   - https://clash.razord.top
-  environment.etc."${etcDirectory}/metacubexd".source = inputs.metacubexd;
+  environment.etc."clash-meta/metacubexd".source = inputs.metacubexd;
 }

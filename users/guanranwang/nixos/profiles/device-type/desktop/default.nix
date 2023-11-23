@@ -5,12 +5,16 @@
 }: {
   imports = [
     ### Flakes
+    ../../../../../../nixos/flake-modules/sops-nix.nix
     ../../../../../../nixos/flake-modules/home-manager.nix
     ../../../../../../nixos/flake-modules/berberman.nix
   ];
 
   ### Options
   myFlake.nixos.boot.noLoaderMenu = lib.mkDefault true;
+
+  ### sops-nix
+  sops.secrets."wireless/home".path = "/var/lib/iwd/wangxiaobo.psk"; # Home wifi password
 
   ### home-manager
   home-manager.users.guanranwang.imports = map (n: ../../../../home-manager/${n}) [

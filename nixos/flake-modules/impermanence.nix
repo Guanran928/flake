@@ -1,5 +1,15 @@
-{inputs, ...}: {
-  imports = [inputs.impermanence.nixosModules.impermanence];
+{
+  inputs,
+  lib,
+  ...
+}: {
+  imports = [
+    inputs.impermanence.nixosModules.impermanence
+    ./sops-nix.nix
+  ];
+
+  ### sops-nix
+  sops.age.sshKeyPaths = lib.mkForce ["/nix/persist/system/etc/ssh/ssh_host_ed25519_key"];
 
   # this folder is where the files will be stored (don't put it in tmpfs)
   environment.persistence."/nix/persist/system" = {
