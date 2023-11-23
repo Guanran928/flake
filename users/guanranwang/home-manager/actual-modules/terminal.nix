@@ -1,11 +1,4 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}: let
-  cfg = config.myFlake.home-manager.terminal;
-in {
+{lib, ...}: {
   # 3 terminals, one module.
   #     -- The Orange Box (wtf)
 
@@ -49,36 +42,6 @@ in {
         example = 8;
         description = "Select desired terminal padding size (in px).";
       };
-
-      colorScheme = lib.mkOption {
-        type = lib.types.enum [null "tokyonight"];
-        default = "tokyonight";
-        description = "Select desired terminal color scheme.";
-      };
     };
   };
-
-  config.programs = lib.mkMerge [
-    {
-      alacritty.settings.cursor.style = cfg.cursorStyle;
-      kitty.settings.cursor_shape = cfg.cursorStyle;
-      foot.settings.cursor.style = cfg.cursorStyle;
-
-      alacritty.settings.font.size = cfg.fontSize;
-      kitty.settings.font_size = cfg.fontSize;
-      foot.settings.main.font = "monospace:size=${builtins.toString cfg.fontSize}";
-
-      alacritty.settings.window.padding.x = cfg.padding;
-      alacritty.settings.window.padding.y = cfg.padding;
-      kitty.settings.window_padding_width = builtins.toString (cfg.padding * (3.0 / 4.0)); # px -> pt
-      foot.settings.main.pad = "${builtins.toString cfg.padding}x${builtins.toString cfg.padding}";
-    }
-
-    # TODO: split this part to ./color-scheme.nix (???)
-    (lib.mkIf (cfg.colorScheme == "tokyonight") {
-      alacritty.settings.import = ["${pkgs.vimPlugins.tokyonight-nvim}/extras/alacritty/tokyonight_night.yml"];
-      kitty.settings.include = "${pkgs.vimPlugins.tokyonight-nvim}/extras/kitty/tokyonight_night.conf";
-      foot.settings.main.include = "${pkgs.vimPlugins.tokyonight-nvim}/extras/foot/tokyonight_night.ini";
-    })
-  ];
 }

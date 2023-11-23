@@ -1,9 +1,15 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
       set fish_greeting
-      source ${pkgs.vimPlugins.tokyonight-nvim}/extras/fish/tokyonight_night.fish
+      ${lib.strings.optionalString (config.myFlake.home-manager.colorScheme == "tokyonight")
+        "source ${pkgs.vimPlugins.tokyonight-nvim}/extras/fish/tokyonight_night.fish"}
     '';
     plugins = [
       {

@@ -1,9 +1,15 @@
-{...}: {
+{
+  config,
+  lib,
+  ...
+}: {
   programs.helix = {
     enable = true;
     defaultEditor = true;
     settings = {
-      theme = "tokyonight";
+      theme =
+        lib.mkIf (config.myFlake.home-manager.colorScheme == "tokyonight")
+        "tokyonight";
       editor = {
         cursor-shape = {
           insert = "bar";
