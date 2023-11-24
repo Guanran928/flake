@@ -22,9 +22,9 @@ in {
     # Load nvidia driver for Xorg and Wayland
     services.xserver.videoDrivers = ["nvidia"];
 
-    #nixpkgs.config.nvidia.acceptLicense = true;
+    nixpkgs.config.nvidia.acceptLicense = true;
     hardware.nvidia = {
-      #package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
+      package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
       modesetting.enable = true;
     };
 
