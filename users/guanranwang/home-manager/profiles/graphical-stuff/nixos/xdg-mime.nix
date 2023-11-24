@@ -5,8 +5,8 @@
     defaultApplications = {
       "audio/mpeg" = "io.bassi.Amberol.desktop";
       "audio/flac" = "io.bassi.Amberol.desktop";
-      "image/jpeg" = "org.gnome.eog.desktop";
-      "image/png" = "org.gnome.eog.desktop";
+      "image/jpeg" = "org.gnome.Loupe.desktop";
+      "image/png" = "org.gnome.Loupe.desktop";
       "inode/directory" = "org.gnome.Nautilus.desktop";
       "text/html" = "librewolf.desktop";
       "x-scheme-handler/http" = "librewolf.desktop";

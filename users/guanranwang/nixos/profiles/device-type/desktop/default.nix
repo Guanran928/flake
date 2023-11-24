@@ -41,6 +41,15 @@
     enable = true;
     wlr.enable = true;
     extraPortals = with pkgs; [xdg-desktop-portal-gtk];
+    config = {
+      common.default = [
+        "gtk"
+      ];
+      sway.default = [
+        "wlr"
+        "gtk"
+      ];
+    };
   };
   services = {
     gvfs.enable = true;
@@ -51,7 +60,7 @@
   };
   programs = {
     kdeconnect = {
-      enable = true;
+      #enable = true;
       #package = pkgs.gnomeExtensions.gsconnect;
       package = pkgs.valent;
     };
