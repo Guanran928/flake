@@ -33,6 +33,7 @@
     "modules/lang/go.nix"
     "modules/wm/sway.nix"
     "modules/misc/irssi.nix"
+    "modules/misc/mumble.nix"
   ];
 
   fonts.enableDefaultPackages = false;
