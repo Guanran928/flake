@@ -18,11 +18,11 @@ in {
       driSupport32Bit = true;
     };
 
-    nixpkgs.config.packageOverrides = pkgs: {vaapiIntel = pkgs.vaapiIntel.override {enableHybridCodec = true;};};
+    nixpkgs.config.packageOverrides = pkgs: {vaapiIntel = pkgs.intel-vaapi-driver.override {enableHybridCodec = true;};};
     hardware.opengl = {
       extraPackages = with pkgs; [
         intel-media-driver # libva_driver_name=ihd
-        vaapiIntel # libva_driver_name=i965 (older but works better for firefox/chromium)
+        intel-vaapi-driver # libva_driver_name=i965 (older but works better for firefox/chromium)
         vaapiVdpau
         libvdpau-va-gl
         intel-compute-runtime # intel opencl

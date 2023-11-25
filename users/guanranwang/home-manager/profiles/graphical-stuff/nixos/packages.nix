@@ -3,7 +3,7 @@
     (with pkgs; [
       # Messaging
       ### Matrix
-      neochat # kinda buggy with window resizing, but it works and its not electron
+      libsForQt5.neochat # kinda buggy with window resizing, but it works and its not electron
       #nheko # wont let me login for some reason
       #fractal # does not work with Mozilla's SAML login
 
