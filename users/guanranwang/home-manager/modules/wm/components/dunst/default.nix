@@ -31,7 +31,7 @@
   };
 
   xdg.dataFile."icons/dunst" = {
-    source = ../../../dotfiles/data/icons/dunst;
+    source = ./dunst;
     recursive = true;
   };
 }

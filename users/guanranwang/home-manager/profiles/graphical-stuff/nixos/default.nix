@@ -1,6 +1,9 @@
 {...}: {
   imports = [
-    ./fonts.nix
+    ./fonts
+    ./scripts
+    ./wallpapers
+
     ./packages.nix
     ./input-method.nix
     ./theme.nix

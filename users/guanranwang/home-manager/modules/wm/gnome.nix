@@ -1,8 +1,5 @@
 # why is this placed in ./wm
 {pkgs, ...}: {
-  imports = [
-    ./components/wallpaper.nix
-  ];
   home.packages =
     (with pkgs.gnomeExtensions; [
       # GNOME extensions

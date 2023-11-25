@@ -1,14 +1,14 @@
-{...}: {
+{pkgs, ...}: {
   imports = [
-    ./components/dunst.nix
-    ./components/feh.nix
+    ./components/dunst
     ./components/picom.nix
     ./components/polybar.nix
-    ./components/rofi.nix
-    ./components/scripts.nix
+    ./components/rofi
     ./components/sxhkd.nix
     ./components/udiskie.nix
   ];
+
+  home.packages = with pkgs; [flameshot feh];
 
   xsession = {
     enable = true;
@@ -32,8 +32,40 @@
     };
   };
 
-  home.file.".xinitrc" = {
-    source = ../../dotfiles/.xinitrc;
-    recursive = true;
-  };
+  home.file.".xinitrc".text = ''
+    #!/bin/sh
+
+    userresources=$HOME/.Xresources
+    usermodmap=$HOME/.Xmodmap
+    sysresources=/etc/X11/xinit/.Xresources
+    sysmodmap=/etc/X11/xinit/.Xmodmap
+
+    # merge in defaults and keymaps
+    if [ -f $sysresources ]; then
+        xrdb -merge $sysresources
+    fi
+
+    if [ -f $sysmodmap ]; then
+        xmodmap $sysmodmap
+    fi
+
+    if [ -f "$userresources" ]; then
+        xrdb -merge "$userresources"
+
+    fi
+
+    if [ -f "$usermodmap" ]; then
+        xmodmap "$usermodmap"
+    fi
+
+    # start some nice programs
+    if [ -d /etc/X11/xinit/xinitrc.d ] ; then
+     for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
+      [ -x "$f" ] && . "$f"
+     done
+     unset f
+    fi
+
+    exec bspwm
+  '';
 }

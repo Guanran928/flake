@@ -1,6 +1,6 @@
 {...}: {
   xdg.dataFile."backgrounds" = {
-    source = ../../../dotfiles/data/backgrounds;
+    source = ./wallpapers;
     recursive = true;
   };
 }

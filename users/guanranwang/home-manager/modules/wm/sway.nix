@@ -5,13 +5,11 @@
   ...
 }: {
   imports = [
-    ./components/dunst.nix
-    ./components/rofi.nix
-    ./components/scripts.nix
+    ./components/dunst
+    ./components/rofi
     ./components/swayidle.nix
     ./components/swaylock.nix
     ./components/udiskie.nix
-    ./components/wallpaper.nix
     ./components/waybar.nix
   ];
 

@@ -1,5 +1,0 @@
-[Context]
-filesystems=!xdg-config/kdeglobals;!xdg-download;!xdg-run/app/com.discordapp.Discord;xdg-documents/minecraft-packs:ro;xdg-documents/minecraft-shaders:ro;xdg-config/MangoHud:ro
-
-[Environment]
-__GL_THREADED_OPTIMIZATIONS=0

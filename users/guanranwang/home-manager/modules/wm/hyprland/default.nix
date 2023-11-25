@@ -4,15 +4,16 @@
   ...
 }: {
   imports = [
-    ./components/dunst.nix
-    ./components/rofi.nix
-    ./components/scripts.nix
-    ./components/swayidle.nix
-    ./components/swaylock.nix
-    ./components/swww.nix
-    ./components/udiskie.nix
-    ./components/waybar.nix
+    ../components/dunst
+    ../components/rofi
+    ../components/swayidle.nix
+    ../components/swaylock.nix
+    ../components/swww.nix
+    ../components/udiskie.nix
+    ../components/waybar.nix
   ];
+
+  home.packages = with pkgs; [swww];
 
   wayland.windowManager = {
     hyprland = {
@@ -36,7 +37,7 @@
   };
 
   xdg.configFile."hypr" = {
-    source = ../../dotfiles/config/hyprland;
+    source = ./hyprland;
     recursive = true;
   };
 }

@@ -1,8 +1,6 @@
 {...}: {
   imports = [
-    ./flameshot.nix
-    ./rofi.nix
-    ../../terms/alacritty.nix
+    ./rofi
   ];
 
   services.sxhkd = {
