@@ -25,7 +25,6 @@
 
   ### Options
   myFlake.nixos.networking.dns.provider = lib.mkDefault "alidns";
-  time.timeZone = lib.mkDefault "Asia/Shanghai";
 
   ### Flakes
   imports = [

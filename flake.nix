@@ -178,7 +178,10 @@
           # Hardware
           ./nixos/hardware/lenovo/legion/81fw/Aristotle
 
-          {networking.hostName = "Aristotle";}
+          {
+            networking.hostName = "Aristotle";
+            time.timeZone = "Asia/Shanghai";
+          }
         ];
       };
     };
@@ -198,7 +201,10 @@
 
           ./darwin/hardware/apple/imac/18-3
 
-          {networking.hostName = "Plato";}
+          {
+            networking.hostName = "Plato";
+            time.timeZone = "Asia/Shanghai";
+          }
         ];
       };
     };
