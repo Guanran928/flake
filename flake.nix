@@ -163,17 +163,17 @@
           # OS
           ./nixos/profiles/core
           ./nixos/profiles/device-type/laptop
-          ./nixos/profiles/use-cases/zram-generator.nix
-          ./nixos/profiles/use-cases/gaming.nix
-          ./nixos/profiles/use-cases/wayland.nix
-          ./nixos/profiles/use-cases/virt-manager.nix
+          ./nixos/profiles/opt-in/zram-generator.nix
+          ./nixos/profiles/opt-in/gaming.nix
+          ./nixos/profiles/opt-in/wayland.nix
+          ./nixos/profiles/opt-in/virt-manager.nix
 
           # User
           ./users/guanranwang/nixos/profiles/core
           ./users/guanranwang/nixos/profiles/device-type/laptop
-          ./users/guanranwang/nixos/profiles/use-cases/clash-meta-client.nix
-          ./users/guanranwang/nixos/profiles/use-cases/gaming.nix
-          ./users/guanranwang/nixos/profiles/use-cases/torrenting.nix
+          ./users/guanranwang/nixos/profiles/opt-in/clash-meta-client.nix
+          ./users/guanranwang/nixos/profiles/opt-in/gaming.nix
+          ./users/guanranwang/nixos/profiles/opt-in/torrenting.nix
 
           # Hardware
           ./nixos/hardware/lenovo/legion/81fw/Aristotle
@@ -197,7 +197,7 @@
 
           ./users/guanranwang/darwin/profiles/core
           ./users/guanranwang/darwin/profiles/device-type/desktop
-          ./users/guanranwang/darwin/profiles/use-cases/clash-meta-client.nix
+          ./users/guanranwang/darwin/profiles/opt-in/clash-meta-client.nix
 
           ./darwin/hardware/apple/imac/18-3
 
