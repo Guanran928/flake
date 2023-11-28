@@ -20,20 +20,6 @@
   home-manager.users.guanranwang.imports = map (n: ../../../../home-manager/${n}) [
     "profiles/command-line/nixos/fancy-stuff.nix"
     "profiles/graphical-stuff/nixos"
-    "profiles/media/nixos"
-    "modules/terms/alacritty.nix"
-    "modules/shell/fish.nix"
-    "modules/shell/bash.nix"
-    "modules/editor/helix.nix"
-    "modules/editor/neovim.nix"
-    "modules/editor/vscode.nix"
-    "modules/browser/chromium.nix"
-    "modules/browser/librewolf.nix"
-    "modules/lang/nix.nix"
-    "modules/lang/go.nix"
-    "modules/wm/sway.nix"
-    "modules/misc/irssi.nix"
-    "modules/misc/mumble.nix"
   ];
 
   fonts.enableDefaultPackages = false;

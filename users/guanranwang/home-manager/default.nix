@@ -25,6 +25,6 @@
   programs.home-manager.enable = true;
 
   imports = [
-    ./actual-modules
+    ./modules
   ];
 }
