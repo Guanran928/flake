@@ -2,6 +2,8 @@
   home.packages = with pkgs; [
     nil # LSP
     alejandra # Formatter
+    sops
+    nix-output-monitor
   ];
 
   ### VSCode
