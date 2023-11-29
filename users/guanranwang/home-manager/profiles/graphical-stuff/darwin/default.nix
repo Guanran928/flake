@@ -4,6 +4,28 @@
   lib,
   ...
 }: {
+  imports = map (n: ../../../../home-manager/applications/${n}) [
+    # Terminal
+    "alacritty"
+
+    # Shell
+    "fish"
+    "bash"
+
+    # Editor
+    "helix"
+    "neovim"
+    "vscode"
+
+    # Language
+    "nix"
+    "go"
+
+    # Media
+    "mpv"
+    "spotify"
+  ];
+
   home = {
     activation = {
       # Workaround for spotlight indexing

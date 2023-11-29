@@ -33,7 +33,7 @@
       # Media
       "loupe"
       "mpv"
-      "spotify"
+      "spotify/spicetify"
       "amberol"
       "mousai"
 
