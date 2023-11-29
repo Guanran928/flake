@@ -4,10 +4,10 @@
   pkgs,
   ...
 }: let
-  cfg = config.myFlake.nixos.hardware.gpu.intel;
+  cfg = config.myFlake.nixos.hardware.components.gpu.intel;
 in {
   options = {
-    myFlake.nixos.hardware.gpu.intel.enable = lib.mkEnableOption "Whether to enable Intel GPU.";
+    myFlake.nixos.hardware.components.gpu.intel.enable = lib.mkEnableOption "Whether to enable Intel GPU.";
   };
 
   # https://nixos.wiki/wiki/Intel_Graphics

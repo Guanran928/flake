@@ -3,11 +3,11 @@
   config,
   ...
 }: let
-  cfg = config.myFlake.nixos.hardware.misc.audio;
+  cfg = config.myFlake.nixos.hardware.components.misc.audio;
 in {
   options = {
-    myFlake.nixos.hardware.misc.audio.enable = lib.mkEnableOption "Whether to enable audio.";
-    myFlake.nixos.hardware.misc.audio.soundServer = lib.mkOption {
+    myFlake.nixos.hardware.components.misc.audio.enable = lib.mkEnableOption "Whether to enable audio.";
+    myFlake.nixos.hardware.components.misc.audio.soundServer = lib.mkOption {
       type = lib.types.enum ["pipewire" "pulseaudio"];
       default = "pipewire";
       example = "pulseaudio";

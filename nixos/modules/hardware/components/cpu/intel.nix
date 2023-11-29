@@ -3,10 +3,10 @@
   config,
   ...
 }: let
-  cfg = config.myFlake.nixos.hardware.cpu.intel;
+  cfg = config.myFlake.nixos.hardware.components.cpu.intel;
 in {
   options = {
-    myFlake.nixos.hardware.cpu.intel.enable = lib.mkEnableOption "Whether to enable Intel CPU.";
+    myFlake.nixos.hardware.components.cpu.intel.enable = lib.mkEnableOption "Whether to enable Intel CPU.";
   };
 
   config = lib.mkIf cfg.enable {

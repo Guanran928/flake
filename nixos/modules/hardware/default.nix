@@ -1,8 +1,6 @@
 {...}: {
   imports = [
     ./accessories
-    ./cpu
-    ./gpu
-    ./misc
+    ./components
   ];
 }

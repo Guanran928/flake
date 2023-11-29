@@ -3,11 +3,11 @@
   config,
   ...
 }: let
-  cfg = config.myFlake.nixos.hardware.gpu.nvidia;
+  cfg = config.myFlake.nixos.hardware.components.gpu.nvidia;
 in {
   options = {
-    myFlake.nixos.hardware.gpu.nvidia.enable = lib.mkEnableOption "Whether to enable NVIDIA GPU.";
-    myFlake.nixos.hardware.gpu.nvidia.prime = lib.mkEnableOption "Whether to enable NVIDIA Prime.";
+    myFlake.nixos.hardware.components.gpu.nvidia.enable = lib.mkEnableOption "Whether to enable NVIDIA GPU.";
+    myFlake.nixos.hardware.components.gpu.nvidia.prime = lib.mkEnableOption "Whether to enable NVIDIA Prime.";
   };
 
   # https://nixos.wiki/wiki/Nvidia

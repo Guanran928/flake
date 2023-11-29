@@ -4,10 +4,10 @@
   pkgs,
   ...
 }: let
-  cfg = config.myFlake.nixos.hardware.misc.bluetooth;
+  cfg = config.myFlake.nixos.hardware.components.misc.bluetooth;
 in {
   options = {
-    myFlake.nixos.hardware.misc.bluetooth.enable = lib.mkEnableOption "Whether to enable bluetooth.";
+    myFlake.nixos.hardware.components.misc.bluetooth.enable = lib.mkEnableOption "Whether to enable bluetooth.";
   };
 
   # https://nixos.wiki/wiki/Bluetooth
