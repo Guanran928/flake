@@ -176,11 +176,15 @@
           ./users/guanranwang/nixos/profiles/opt-in/torrenting.nix
 
           # Hardware
-          ./nixos/hardware/lenovo/legion/81fw/Aristotle
+          ./nixos/hardware/lenovo/legion/81fw
+          ./nixos/flake-modules/lanzaboote.nix
+          ./nixos/flake-modules/impermanence.nix
+          ./nixos/flake-modules/disko.nix
 
           {
             networking.hostName = "Aristotle";
             time.timeZone = "Asia/Shanghai";
+            _module.args.disks = ["/dev/nvme0n1"]; # Disko
           }
         ];
       };
