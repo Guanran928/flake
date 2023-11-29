@@ -1,3 +1,0 @@
-{...}: {
-  imports = [../resources/fancy-stuff];
-}

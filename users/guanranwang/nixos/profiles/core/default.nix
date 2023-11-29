@@ -50,7 +50,7 @@
 
   ### home-manager
   home-manager.users.guanranwang.imports = map (n: ../../../home-manager/${n}) [
-    "default.nix"
-    "profiles/command-line/nixos"
+    "profiles/core"
+    "profiles/device-type/non-graphical/nixos"
   ];
 }

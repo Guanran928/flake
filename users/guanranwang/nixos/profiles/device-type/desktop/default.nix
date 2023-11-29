@@ -18,8 +18,8 @@
 
   ### home-manager
   home-manager.users.guanranwang.imports = map (n: ../../../../home-manager/${n}) [
-    "profiles/command-line/nixos/fancy-stuff.nix"
-    "profiles/graphical-stuff/nixos"
+    "profiles/device-type/non-graphical/nixos"
+    "profiles/device-type/graphical/nixos"
   ];
 
   fonts.enableDefaultPackages = false;
