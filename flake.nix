@@ -78,7 +78,6 @@
     };
     flake-compat = {
       url = "github:edolstra/flake-compat";
-      flake = false;
     };
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
