@@ -1,28 +1,36 @@
-_: {
-  # Default application associstions, ro.
+{lib, ...}: {
+  # https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
   xdg.mimeApps = {
     enable = true;
-    defaultApplications = {
-      "audio/mpeg" = "io.bassi.Amberol.desktop";
-      "audio/flac" = "io.bassi.Amberol.desktop";
-      "image/jpeg" = "org.gnome.Loupe.desktop";
-      "image/png" = "org.gnome.Loupe.desktop";
-      "inode/directory" = "org.gnome.Nautilus.desktop";
-      "text/html" = "librewolf.desktop";
-      "x-scheme-handler/http" = "librewolf.desktop";
-      "x-scheme-handler/https" = "librewolf.desktop";
-      "x-scheme-handler/about" = "librewolf.desktop";
-      "x-scheme-handler/unknown" = "librewolf.desktop";
-      #"text/html" = "io.gitlab.librewolf-community.desktop";
-      #"x-scheme-handler/http" = "io.gitlab.librewolf-community.desktop";
-      #"x-scheme-handler/https" = "io.gitlab.librewolf-community.desktop";
-      #"x-scheme-handler/about" = "io.gitlab.librewolf-community.desktop";
-      #"x-scheme-handler/unknown" = "io.gitlab.librewolf-community.desktop";
-      #"text/html" = "org.mozilla.firefox.desktop";
-      #"x-scheme-handler/http" = "org.mozilla.firefox.desktop";
-      #"x-scheme-handler/https" = "org.mozilla.firefox.desktop";
-      #"x-scheme-handler/about" = "org.mozilla.firefox.desktop";
-      #"x-scheme-handler/unknown" = "org.mozilla.firefox.desktop";
-    };
+
+    # Default application associstions
+    defaultApplications =
+      {
+        "inode/directory" = ["org.gnome.Nautilus.desktop"];
+        "tg" = ["org.telegram.desktop.desktop"]; # https://t.me/nixos_zhcn/363204
+      }
+      ### Browser
+      // lib.genAttrs [
+        "text/html"
+        "x-scheme-handler/http"
+        "x-scheme-handler/https"
+        "x-scheme-handler/about"
+        "x-scheme-handler/unknown"
+      ] (n: ["librewolf.desktop" "firefox.desktop" "chromium-browser.desktop"])
+      ### Audio player
+      // lib.genAttrs [
+        "audio/aac"
+        "audio/flac"
+        "audio/mpeg"
+        "audio/ogg"
+        "audio/wav"
+      ] (n: ["io.bassi.Amberol.desktop" "mpv.desktop"])
+      ### Image viewer
+      // lib.genAttrs [
+        "image/gif"
+        "image/jpeg"
+        "image/png"
+        "image/webp"
+      ] (n: ["org.gnome.Loupe.desktop"]);
   };
 }
