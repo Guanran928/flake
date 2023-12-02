@@ -31,6 +31,12 @@
         "image/jpeg"
         "image/png"
         "image/webp"
-      ] (n: ["org.gnome.Loupe.desktop"]);
+      ] (n: ["org.gnome.Loupe.desktop"])
+      ### Video player
+      // lib.genAttrs [
+        "video/mp4"
+        "video/mpeg"
+        "video/webm"
+      ] (n: ["mpv.desktop"]);
   };
 }
