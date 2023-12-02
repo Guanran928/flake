@@ -1,4 +1,4 @@
-{...}: {
+_: {
   programs.skim = {
     enable = true;
     defaultCommand = "rg --files || fd --type f || find .";

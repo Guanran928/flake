@@ -1,4 +1,4 @@
-{...}: {
+_: {
   system.defaults = {
     # Apple... Do I really have to change literally
     # every setting in macOS to make it actually usable.

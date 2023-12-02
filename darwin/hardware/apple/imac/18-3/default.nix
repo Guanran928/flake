@@ -1,4 +1,4 @@
-{...}: {
+_: {
   networking.knownNetworkServices = [
     "Ethernet"
     "Wi-Fi"

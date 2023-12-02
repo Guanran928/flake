@@ -150,7 +150,7 @@
     };
   };
 
-  outputs = {...} @ inputs: {
+  outputs = inputs: {
     formatter.x86_64-linux = inputs.nixpkgs.legacyPackages.x86_64-linux.alejandra;
     formatter.x86_64-darwin = inputs.nixpkgs.legacyPackages.x86_64-darwin.alejandra;
 

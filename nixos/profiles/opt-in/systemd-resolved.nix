@@ -1,4 +1,4 @@
-{...}: {
+_: {
   ### systemd-resolved
   services.resolved = {
     enable = true;

@@ -88,7 +88,7 @@
       modifier = "Mod4";
       modes = {};
       keybindings = let
-        modifier = config.wayland.windowManager.sway.config.modifier;
+        inherit (config.wayland.windowManager.sway.config) modifier;
         setBrightness = "/home/guanranwang/.local/bin/wrapped-brightnessctl";
         setVolume = "/home/guanranwang/.local/bin/wrapped-pamixer";
         screenshot = "/home/guanranwang/.local/bin/wrapped-grim";

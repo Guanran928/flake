@@ -14,11 +14,11 @@
     plugins = [
       {
         name = "autopair";
-        src = pkgs.fishPlugins.autopair.src;
+        inherit (pkgs.fishPlugins.autopair) src;
       }
       {
         name = "done";
-        src = pkgs.fishPlugins.done.src;
+        inherit (pkgs.fishPlugins.done) src;
       }
       #{
       #  name = "tide";
@@ -26,11 +26,11 @@
       #}
       {
         name = "sponge";
-        src = pkgs.fishPlugins.sponge.src;
+        inherit (pkgs.fishPlugins.sponge) src;
       }
       {
         name = "puffer";
-        src = pkgs.fishPlugins.puffer.src;
+        inherit (pkgs.fishPlugins.puffer) src;
       }
       {
         name = "sudope";

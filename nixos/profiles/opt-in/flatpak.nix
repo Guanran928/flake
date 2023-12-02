@@ -1,4 +1,4 @@
-{...}: {
+_: {
   services.flatpak.enable = true;
   services.gnome.core-utilities.enable = false; # remove default gnome pkgs, for example, gnome-music, to use flatpaks instead
 
