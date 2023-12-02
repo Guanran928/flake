@@ -2,6 +2,7 @@
   home.packages = with pkgs; [
     nil # LSP
     alejandra # Formatter
+    statix # Linter
     sops
     nix-output-monitor
   ];
@@ -19,8 +20,6 @@
         nix.flake.autoArchive = true;
       };
     };
-    extensions = with pkgs.vscode-extensions; [
-      jnoortheen.nix-ide
-    ];
+    extensions = [pkgs.vscode-extensions.jnoortheen.nix-ide];
   };
 }
