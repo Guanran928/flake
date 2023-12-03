@@ -25,7 +25,7 @@
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.hyprland-protocols.follows = "hyprland-protocols";
-      inputs.systems.follows = "systems";
+      inputs.systems.follows = "systems-linux";
       inputs.wlroots.follows = "wlroots";
       inputs.xdph.follows = "xdph";
     };
@@ -70,6 +70,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
+    systems.url = "github:nix-systems/default";
+    systems-linux.url = "github:nix-systems/default-linux";
 
     ### De-dupe
     crane = {
@@ -99,7 +101,7 @@
     hyprland-protocols = {
       url = "github:hyprwm/hyprland-protocols";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.systems.follows = "systems";
+      inputs.systems.follows = "systems-linux";
     };
     nvfetcher = {
       url = "github:berberman/nvfetcher";
@@ -120,7 +122,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
-    systems.url = "github:nix-systems/default-linux";
+
     wlroots = {
       type = "gitlab";
       host = "gitlab.freedesktop.org";
@@ -132,7 +134,7 @@
       url = "github:hyprwm/xdg-desktop-portal-hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.hyprland-protocols.follows = "hyprland-protocols";
-      inputs.systems.follows = "systems";
+      inputs.systems.follows = "systems-linux";
     };
 
     # TODO: Unused, Soon(TM)
@@ -150,9 +152,10 @@
     };
   };
 
-  outputs = inputs: {
-    formatter.x86_64-linux = inputs.nixpkgs.legacyPackages.x86_64-linux.alejandra;
-    formatter.x86_64-darwin = inputs.nixpkgs.legacyPackages.x86_64-darwin.alejandra;
+  outputs = inputs: let
+    eachSystem = inputs.nixpkgs.lib.genAttrs (import inputs.systems);
+  in {
+    formatter = eachSystem (system: inputs.nixpkgs.legacyPackages.${system}.alejandra);
 
     ### NixOS
     nixosConfigurations = {
