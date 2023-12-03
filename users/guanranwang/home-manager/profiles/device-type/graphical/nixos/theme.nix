@@ -66,11 +66,8 @@
   };
 
   # Misc
-  xresources.properties = lib.mkMerge [
-    {
-      # Cursor
-      "Xcursor.theme" = "Adwaita";
-
+  xresources = {
+    properties = {
       # Fonts
       "Xft.autohint" = "0";
       "Xft.lcdfilter" = "lcddefault";
@@ -78,30 +75,9 @@
       "Xft.hinting" = "1";
       "Xft.antialias" = "1";
       "Xft.rgba" = "rgb";
-    }
-    (lib.mkIf (config.myFlake.home-manager.colorScheme == "tokyonight") {
-      # Tokyonight color scheme
-      # i have no idea what does it apply to
-      "*background" = "#1a1b26";
-      "*foreground" = "#c0caf5";
-
-      "*color0" = "#15161e";
-      "*color1" = "#f7768e";
-      "*color2" = "#9ece6a";
-      "*color3" = "#e0af68";
-      "*color4" = "#7aa2f7";
-      "*color5" = "#bb9af7";
-      "*color6" = "#7dcfff";
-      "*color7" = "#a9b1d6";
-
-      "*color8" = "#414868";
-      "*color9" = "#f7768e";
-      "*color10" = "#9ece6a";
-      "*color11" = "#e0af68";
-      "*color12" = "#7aa2f7";
-      "*color13" = "#bb9af7";
-      "*color14" = "#7dcfff";
-      "*color15" = "#c0caf5";
-    })
-  ];
+    };
+    extraConfig =
+      lib.mkIf (config.myFlake.home-manager.colorScheme == "tokyonight")
+      (builtins.readFile "${pkgs.vimPlugins.tokyonight-nvim}/extras/xresources/tokyonight_night.Xresources");
+  };
 }
