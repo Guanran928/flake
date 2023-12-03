@@ -1,11 +1,7 @@
-{
-  lib,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.starship = {
     enable = true;
-    settings = lib.mkMerge [
+    settings =
       {
         add_newline = false;
         line_break.disabled = true;
@@ -19,7 +15,6 @@
           vimcmd_visual_symbol = "[<](bold yellow)";
         };
       }
-      (builtins.fromTOML (builtins.readFile "${pkgs.starship}/share/starship/presets/nerd-font-symbols.toml"))
-    ];
+      // (builtins.fromTOML (builtins.readFile "${pkgs.starship}/share/starship/presets/nerd-font-symbols.toml"));
   };
 }
