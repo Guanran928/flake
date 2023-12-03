@@ -15,6 +15,28 @@
     };
   };
 
+  gtk.font.name = "Sans";
+  dconf.settings = {
+    "org/gnome/desktop/wm/preferences" = {
+      "titlebar-font" = "Sans Bold";
+    };
+    "org/gnome/desktop/interface" = {
+      "document-font-name" = "Sans";
+      "monospace-font-name" = "Monospace";
+      # "font-name" is unneeded
+      # https://github.com/nix-community/home-manager/blob/8765d4e38aa0be53cdeee26f7386173e6c65618d/modules/misc/gtk.nix#L237C19-L237C19
+    };
+  };
+  xresources.properties = {
+    # Fonts
+    "Xft.autohint" = "0";
+    "Xft.lcdfilter" = "lcddefault";
+    "Xft.hintstyle" = "hintslight";
+    "Xft.hinting" = "1";
+    "Xft.antialias" = "1";
+    "Xft.rgba" = "rgb";
+  };
+
   home.packages = with pkgs; [
     ### Inter
     inter

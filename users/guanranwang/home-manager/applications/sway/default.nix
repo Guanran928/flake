@@ -24,6 +24,12 @@
     GTK_IM_MODULE = lib.mkForce "wayland"; # use text-input-v3
   };
 
+  dconf.settings = {
+    "org/gnome/desktop/wm/preferences" = {
+      "button-layout" = "icon,appmenu:"; # remove csd window buttons
+    };
+  };
+
   home.packages = with pkgs; [
     pamixer
     brightnessctl
