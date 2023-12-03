@@ -14,6 +14,7 @@
         ];
       }
       .${config.time.timeZone}
+      or []
       ++ [
         "https://nix-community.cachix.org"
         "https://cache.garnix.io"
