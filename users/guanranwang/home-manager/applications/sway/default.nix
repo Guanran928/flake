@@ -97,7 +97,7 @@
         inherit (config.wayland.windowManager.sway.config) modifier;
         setBrightness = "/home/guanranwang/.local/bin/wrapped-brightnessctl";
         setVolume = "/home/guanranwang/.local/bin/wrapped-pamixer";
-        screenshot = "/home/guanranwang/.local/bin/wrapped-grim";
+        screenshot = "/home/guanranwang/.local/bin/screenshot";
       in {
         ### Sway itself
         # Window
@@ -148,9 +148,8 @@
 
         # Screenshot
         "${modifier}+Shift+s" = "exec ${screenshot} region";
-        "${modifier}+Control+Shift+s" = "exec ${screenshot} region edit";
         "Print" = "exec ${screenshot} fullscreen";
-        "Print+Control" = "exec ${screenshot} fullscreen edit";
+        "Print+Control" = "exec ${screenshot} swappy";
 
         # Fn keys
         "XF86MonBrightnessUp" = "exec ${setBrightness} up";
