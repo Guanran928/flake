@@ -41,15 +41,16 @@
 
   # Services
   services = {
-    getty.greetingLine = lib.strings.concatLines [
-      ''NixOS ${config.system.nixos.label} ${config.system.nixos.codeName} (\m) - \l''
-
-      (lib.strings.optionalString config.myFlake.nixos.hardware.components.gpu.nvidia.enable
-        "--my-next-gpu-wont-be-nvidia")
-
-      (lib.strings.optionalString config.myFlake.nixos.hardware.components.gpu.amd.enable
-        "[    5.996722] amdgpu 0000:67:00.0: Fatal error during GPU init")
-    ];
+    getty.greetingLine = let
+      inherit (config.system) nixos;
+      inherit (config.myFlake.nixos.hardware.components) gpu;
+    in ''
+      NixOS ${nixos.label} ${nixos.codeName} (\m) - \l
+      ${lib.strings.optionalString gpu.nvidia.enable
+        "--my-next-gpu-wont-be-nvidia"}
+      ${lib.strings.optionalString gpu.amd.enable
+        "[    5.996722] amdgpu 0000:67:00.0: Fatal error during GPU init"}
+    '';
 
     openssh = {
       enable = true;
