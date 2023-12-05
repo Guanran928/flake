@@ -2,6 +2,9 @@
   # Enable Flakes
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
+  # Disable nix-channel
+  nix.channel.enable = false;
+
   # Install Git
   environment.systemPackages = [pkgs.git];
 
