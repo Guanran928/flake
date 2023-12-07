@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     ../swaylock
   ];
@@ -9,7 +13,7 @@
       timeouts = [
         {
           timeout = 900;
-          command = "swaylock";
+          command = lib.getExe pkgs.swaylock-effects;
         } # lock screen
         {
           timeout = 905;
@@ -24,11 +28,11 @@
       events = [
         {
           event = "lock";
-          command = "swaylock";
+          command = lib.getExe pkgs.swaylock-effects;
         } # loginctl lock-session
         {
           event = "before-sleep";
-          command = "swaylock";
+          command = lib.getExe pkgs.swaylock-effects;
         } # systemctl syspend
       ];
     };

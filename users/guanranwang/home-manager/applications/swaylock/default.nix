@@ -3,6 +3,7 @@
     enable = true;
     package = pkgs.swaylock-effects;
     settings = {
+      daemonize = true;
       screenshots = true;
       clock = true;
       indicator = true;
