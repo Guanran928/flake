@@ -10,7 +10,7 @@ in {
     };
     "${binPATH}/lofi" = {
       source = pkgs.fetchurl {
-        url = "https://raw.githubusercontent.com/lime-desu/bin/main/lofi";
+        url = "https://raw.githubusercontent.com/lime-desu/bin/69422c37582c5914863997c75c268791a0de136e/lofi";
         hash = "sha256-hT+S/rqOHUYnnFcSDFfQht4l1DGasz1L3wDHKUWLraA=";
       };
       executable = true;

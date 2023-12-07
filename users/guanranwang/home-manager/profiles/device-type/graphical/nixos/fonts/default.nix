@@ -6,11 +6,11 @@
       recursive = true;
     };
     "fontconfig/conf.d/web-ui-fonts.conf".source = pkgs.fetchurl {
-      url = "https://raw.githubusercontent.com/lilydjwg/dotconfig/master/fontconfig/web-ui-fonts.conf";
+      url = "https://raw.githubusercontent.com/lilydjwg/dotconfig/1b22d4f0740bb5bbd7c65b6c468920775171b207/fontconfig/web-ui-fonts.conf";
       hash = "sha256-A4DcV6HTW/IRxXN3NaI1GUfoFdalwgFLpCjgbWENdZU=";
     };
     "fontconfig/conf.d/source-han-for-noto-cjk.conf".source = pkgs.fetchurl {
-      url = "https://raw.githubusercontent.com/lilydjwg/dotconfig/master/fontconfig/source-han-for-noto-cjk.conf";
+      url = "https://raw.githubusercontent.com/lilydjwg/dotconfig/1b22d4f0740bb5bbd7c65b6c468920775171b207/fontconfig/source-han-for-noto-cjk.conf";
       hash = "sha256-jcdDr5VW1qZXbApgfT5FZgxonpRnLs9AY0QagfdL8ic=";
     };
   };
