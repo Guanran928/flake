@@ -5,6 +5,7 @@
   ...
 }: {
   imports = [
+    ../cliphist
     ../dunst
     ../rofi
     ../swayidle
@@ -12,13 +13,6 @@
     ../udiskie
     ../waybar
   ];
-
-  # https://wiki.archlinux.org/title/Fish#Start_X_at_login
-  programs.fish.loginShellInit = ''
-    if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
-      exec sway
-    end
-  '';
 
   home.sessionVariables = {
     GTK_IM_MODULE = lib.mkForce "wayland"; # use text-input-v3
@@ -47,19 +41,26 @@
 
   wayland.windowManager.sway = {
     enable = true;
-    extraOptions = ["--unsupported-gpu" "-D" "noscanout"];
+    extraOptions = ["--unsupported-gpu" "-Dnoscanout"];
     wrapperFeatures.gtk = true;
-    systemd = {
-      enable = true;
-      xdgAutostart = true;
-    };
+    systemd.enable = true;
+    systemd.xdgAutostart = true;
     config = {
       ### Default Applications
       terminal = "${pkgs.alacritty}/bin/alacritty";
       menu = "${pkgs.rofi}/bin/rofi";
 
       ### Visuals
-      bars = [];
+      #window.titlebar = false;
+      bars = [
+        {
+          command = "${pkgs.waybar}/bin/waybar";
+        }
+        #{
+        #  statusCommand = "${lib.getExe pkgs.i3status-rust} $HOME/.config/i3status-rust/config-default.toml";
+        #  position = "top";
+        #}
+      ];
       gaps = {
         inner = 4;
         outer = 4;
@@ -85,16 +86,15 @@
       };
 
       ### Autostarts
-      startup = [
-        {command = "${pkgs.waybar}/bin/waybar";}
-        {command = "${pkgs.wl-clipboard}/bin/wl-paste --watch cliphist store";}
-      ];
+      startup = [];
 
       ### Keybinds
       modifier = "Mod4";
       modes = {};
       keybindings = let
         inherit (config.wayland.windowManager.sway.config) modifier;
+        inherit (config.wayland.windowManager.sway.config) terminal;
+        inherit (config.wayland.windowManager.sway.config) menu;
         setBrightness = "/home/guanranwang/.local/bin/wrapped-brightnessctl";
         setVolume = "/home/guanranwang/.local/bin/wrapped-pamixer";
         screenshot = "/home/guanranwang/.local/bin/screenshot";
@@ -137,14 +137,14 @@
 
         ### Execute other stuff
         # Launch applications
-        "${modifier}+Return" = "exec ${config.wayland.windowManager.sway.config.terminal}";
+        "${modifier}+Return" = "exec ${terminal}";
         "${modifier}+w" = "exec ${pkgs.xdg-utils}/bin/xdg-open http:";
         "${modifier}+e" = "exec ${pkgs.xdg-utils}/bin/xdg-open ~";
 
         # Rofi
-        "${modifier}+d" = "exec ${config.wayland.windowManager.sway.config.menu} -show drun -show-icons -icon-theme ${config.gtk.iconTheme.name}";
-        "${modifier}+Shift+d" = "exec ${pkgs.cliphist}/bin/cliphist list | ${config.wayland.windowManager.sway.config.menu} -dmenu | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy";
-        "${modifier}+Shift+l" = "exec ${config.wayland.windowManager.sway.config.menu} -modi \"power-menu:rofi-power-menu --confirm=reboot/shutdown\" -show   power-menu";
+        "${modifier}+d" = "exec ${menu} -show drun -show-icons -icon-theme ${config.gtk.iconTheme.name}";
+        "${modifier}+Shift+d" = "exec ${pkgs.cliphist}/bin/cliphist list | ${menu} -dmenu | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy";
+        "${modifier}+Shift+l" = ''exec ${menu} -modi "power-menu:rofi-power-menu --confirm=reboot/shutdown" -show power-menu'';
 
         # Screenshot
         "${modifier}+Shift+s" = "exec ${screenshot} region";
