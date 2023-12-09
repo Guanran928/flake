@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: {
   services.dunst = {
@@ -18,15 +19,8 @@
           max_icon_size = 128; # weird bug, default value (128) not working
         };
       }
-      (lib.mkIf (config.myFlake.home-manager.colorScheme == "tokyonight") {
-        # Tokyonight
-        global = {
-          frame_color = "#c0caf5";
-          background = "#1a1b26";
-          foreground = "#c0caf5";
-        };
-        urgency_critical.frame_color = "#fab387";
-      })
+      (lib.mkIf (config.myFlake.home-manager.colorScheme == "tokyonight")
+        (builtins.fromTOML (builtins.readFile "${pkgs.vimPlugins.tokyonight-nvim}/extras/dunst/tokyonight_night.dunstrc")))
     ];
   };
 
