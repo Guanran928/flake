@@ -11,7 +11,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     boot.kernelModules = ["kvm-intel"];
-    hardware.cpu.intel.updateMicrocode = true;
+    hardware.cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
     nixpkgs.hostPlatform = "x86_64-linux";
   };
 }

@@ -1,4 +1,7 @@
 {lib, ...}: {
+  hardware.enableRedistributableFirmware = true;
+  #hardware.enableAllFirmware = true;
+
   nixpkgs.config = {
     allowBroken = false;
     allowUnsupportedSystem = false;
