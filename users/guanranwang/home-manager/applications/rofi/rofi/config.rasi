@@ -29,7 +29,7 @@ window {
   border-radius: 0;
   border: 0;
   padding: 0;
-  background-color: @bg-blur;
+  background-color: @bg;
 }
 
 mainbox {
