@@ -175,14 +175,14 @@
           ./users/guanranwang/nixos/profiles/core
           ./users/guanranwang/nixos/profiles/device-type/laptop
           ./users/guanranwang/nixos/profiles/opt-in/clash-meta-client.nix
-          ./users/guanranwang/nixos/profiles/opt-in/gaming.nix
-          ./users/guanranwang/nixos/profiles/opt-in/torrenting.nix
+          ./users/guanranwang/nixos/profiles/opt-in/gaming
+          ./users/guanranwang/nixos/profiles/opt-in/torrenting
 
           # Hardware
           ./nixos/hardware/lenovo/legion/81fw
-          ./nixos/flake-modules/lanzaboote.nix
-          ./nixos/flake-modules/impermanence.nix
-          ./nixos/flake-modules/disko.nix
+          ./nixos/profiles/opt-in/lanzaboote.nix
+          ./nixos/profiles/opt-in/impermanence.nix
+          ./nixos/profiles/opt-in/disko.nix
 
           {
             networking.hostName = "Aristotle";

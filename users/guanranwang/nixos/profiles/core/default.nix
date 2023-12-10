@@ -23,12 +23,6 @@
   users.groups."nix-access-tokens" = {};
   nix.extraOptions = "!include ${config.sops.secrets.nix-access-tokens.path}";
 
-  ### Flakes
-  imports = [
-    ../../../../../nixos/flake-modules/sops-nix.nix
-    ../../../../../nixos/flake-modules/home-manager.nix
-  ];
-
   ### sops-nix
   sops = {
     defaultSopsFile = ../../../secrets/secrets.yaml;

@@ -4,10 +4,6 @@
   inputs,
   ...
 }: {
-  imports = [
-    ../../../../../nixos/flake-modules/sops-nix.nix
-  ];
-
   ### sops-nix
   sops.secrets."clash-config" = {
     owner = config.users.users."clash-meta".name;

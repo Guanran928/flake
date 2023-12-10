@@ -16,12 +16,5 @@
 
   ### Options
   myFlake.darwin.networking.dns.provider = lib.mkDefault "alidns";
-
-  ### Flakes
-  imports = [
-    ../../../../../darwin/flake-modules/home-manager.nix
-  ];
-
-  ### home-manager
   home-manager.users.guanranwang = import ./home;
 }

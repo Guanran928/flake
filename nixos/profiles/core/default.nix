@@ -1,15 +1,27 @@
 {
   config,
   lib,
+  inputs,
   ...
 }: {
-  # Imported by default
   imports = [
     ../../modules
 
     ./nix
     ./packages
     ./sysctl.nix
+
+    # Flake modules
+    inputs.disko.nixosModules.disko
+    inputs.home-manager.nixosModules.home-manager
+    inputs.impermanence.nixosModules.impermanence
+    inputs.lanzaboote.nixosModules.lanzaboote
+    inputs.sops-nix.nixosModules.sops
+  ];
+
+  # Flake overlays
+  nixpkgs.overlays = [
+    inputs.berberman.overlays.default
   ];
 
   boot.initrd.systemd.enable = true;
@@ -74,6 +86,12 @@
     #    #extraOptions = [ "--loadavg-target" "5.0" ];
     #  };
     #};
+  };
+
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    extraSpecialArgs = {inherit inputs;}; # ??? isnt specialArgs imported by default ???
   };
 
   ### Basic hardening

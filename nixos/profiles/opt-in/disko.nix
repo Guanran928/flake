@@ -1,10 +1,4 @@
-{
-  inputs,
-  disks ? ["/dev/sda"],
-  ...
-}: {
-  imports = [inputs.disko.nixosModules.disko];
-
+{disks ? ["/dev/sda"], ...}: {
   disko.devices = {
     disk = {
       "one" = {

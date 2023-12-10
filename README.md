@@ -21,7 +21,6 @@ It just works™
 │   ### System configuration
 ├──  darwin
 ├──  nixos
-│  ├──  flake-modules
 │  ├──  hardware
 │  ├──  modules
 │  └──  profiles

@@ -3,13 +3,6 @@
   lib,
   ...
 }: {
-  imports = [
-    ### Flakes
-    ../../../../../../nixos/flake-modules/sops-nix.nix
-    ../../../../../../nixos/flake-modules/home-manager.nix
-    ../../../../../../nixos/flake-modules/berberman.nix
-  ];
-
   ### Options
   myFlake.nixos.boot.noLoaderMenu = lib.mkDefault true;
 

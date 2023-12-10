@@ -1,13 +1,4 @@
-{
-  inputs,
-  lib,
-  ...
-}: {
-  imports = [
-    inputs.impermanence.nixosModules.impermanence
-    ./sops-nix.nix
-  ];
-
+{lib, ...}: {
   ### sops-nix
   sops.age.sshKeyPaths = lib.mkForce ["/nix/persist/system/etc/ssh/ssh_host_ed25519_key"];
 

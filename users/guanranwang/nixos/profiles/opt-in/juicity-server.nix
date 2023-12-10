@@ -5,10 +5,6 @@
 }: let
   port = "33829";
 in {
-  imports = [
-    ../../../../../../nixos/flake-modules/sops-nix.nix
-  ];
-
   ### Firewall
   networking.firewall = {
     allowedTCPPorts = [port];
