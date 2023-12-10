@@ -1,7 +1,6 @@
 {
   pkgs,
   config,
-  lib,
   ...
 }: {
   users.users."guanranwang" = {
@@ -21,7 +20,6 @@
   };
 
   programs.fish.enable = true;
-  myFlake.nixos.networking.dns.provider = lib.mkDefault "alidns";
   users.groups."nix-access-tokens" = {};
   nix.extraOptions = "!include ${config.sops.secrets.nix-access-tokens.path}";
 

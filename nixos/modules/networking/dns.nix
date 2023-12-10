@@ -9,7 +9,12 @@ in {
     myFlake.nixos.networking.dns = {
       provider = lib.mkOption {
         type = lib.types.enum ["google" "alidns"];
-        default = "google";
+        default =
+          {
+            "Asia/Shanghai" = "alidns";
+          }
+          .${config.time.timeZone}
+          or "google";
         example = "alidns";
         description = "Select desired DNS provider.";
       };
