@@ -3,5 +3,5 @@
     ../desktop
   ];
 
-  home-manager.users.guanranwang.services.batsignal.enable = true;
+  home-manager.users.guanranwang = import ./home;
 }

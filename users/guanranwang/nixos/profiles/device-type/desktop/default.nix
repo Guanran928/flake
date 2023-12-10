@@ -17,10 +17,7 @@
   sops.secrets."wireless/home".path = "/var/lib/iwd/wangxiaobo.psk"; # Home wifi password
 
   ### home-manager
-  home-manager.users.guanranwang.imports = map (n: ../../../../home-manager/${n}) [
-    "profiles/device-type/non-graphical/nixos"
-    "profiles/device-type/graphical/nixos"
-  ];
+  home-manager.users.guanranwang = import ./home;
 
   fonts.enableDefaultPackages = false;
   security.pam.services.swaylock = {};
@@ -47,7 +44,7 @@
   };
   programs = {
     kdeconnect = {
-      #enable = true;
+      enable = true;
       #package = pkgs.gnomeExtensions.gsconnect;
       package = pkgs.valent;
     };

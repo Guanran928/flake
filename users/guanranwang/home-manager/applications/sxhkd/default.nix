@@ -1,8 +1,4 @@
-{...}: {
-  imports = [
-    ./rofi
-  ];
-
+_: {
   services.sxhkd = {
     enable = true;
     keybindings = {

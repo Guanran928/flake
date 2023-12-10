@@ -1,5 +1,7 @@
 {pkgs, ...}: {
-  imports = [../common];
+  imports = [
+    ../../../../home-manager
+  ];
   home.packages = with pkgs; [
     ### Outdated macOS components
     coreutils

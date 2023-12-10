@@ -23,8 +23,5 @@
   ];
 
   ### home-manager
-  home-manager.users.guanranwang.imports = map (n: ../../../home-manager/${n}) [
-    "default.nix"
-    "profiles/command-line/darwin"
-  ];
+  home-manager.users.guanranwang = import ./home;
 }

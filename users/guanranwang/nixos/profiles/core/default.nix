@@ -20,11 +20,10 @@
     packages = [];
   };
 
-  ### for default shell
   programs.fish.enable = true;
-
-  ### Options
   myFlake.nixos.networking.dns.provider = lib.mkDefault "alidns";
+  users.groups."nix-access-tokens" = {};
+  nix.extraOptions = "!include ${config.sops.secrets.nix-access-tokens.path}";
 
   ### Flakes
   imports = [
@@ -33,14 +32,14 @@
   ];
 
   ### sops-nix
-  nix.extraOptions = "!include ${config.sops.secrets.nix-access-tokens.path}";
-  users.groups."nix-access-tokens" = {};
   sops = {
     defaultSopsFile = ../../../secrets/secrets.yaml;
     age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
     gnupg.sshKeyPaths = [];
     secrets = {
-      "hashed-passwd".neededForUsers = true; # Hashed user password
+      "hashed-passwd" = {
+        neededForUsers = true;
+      };
       "nix-access-tokens" = {
         group = config.users.groups."nix-access-tokens".name;
         mode = "0440";
@@ -49,8 +48,5 @@
   };
 
   ### home-manager
-  home-manager.users.guanranwang.imports = map (n: ../../../home-manager/${n}) [
-    "profiles/core"
-    "profiles/device-type/non-graphical/nixos"
-  ];
+  home-manager.users.guanranwang = import ./home;
 }

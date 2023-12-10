@@ -4,7 +4,7 @@
   lib,
   ...
 }: {
-  imports = map (n: ../../../../applications/${n}) [
+  imports = map (n: ../../../../../home-manager/applications/${n}) [
     # Terminal
     "alacritty"
 

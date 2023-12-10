@@ -9,7 +9,7 @@
       ./theme.nix
       ./xdg-mime.nix
     ]
-    ++ map (n: ../../../../applications/${n}) [
+    ++ map (n: ../../../../../home-manager/applications/${n}) [
       # Terminal
       "alacritty"
 
