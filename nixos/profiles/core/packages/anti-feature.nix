@@ -12,7 +12,7 @@
         "vscodium"
         "spotify"
         "adoptopenjdk-hotspot-bin"
-        "osu-lazer-bin-2023.1114.1"
+        "osu-lazer-bin-2023.1130.0"
         "protonup-qt-2.8.2"
         "cef-binary"
         "virtualbox"
@@ -30,10 +30,11 @@
         #"nvidia-persistenced"
         "xow_dongle-firmware"
         #"facetimehd-firmware"
-        "osu-lazer-bin-2023.1114.1"
+        "osu-lazer-bin-2023.1130.0"
         "spotify"
         "steam"
         "steam-original"
+        "steam-run"
       ];
   };
 }

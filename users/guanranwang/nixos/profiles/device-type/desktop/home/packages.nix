@@ -18,7 +18,7 @@
       #qq
 
       # Misc
-      bitwarden
+      #bitwarden
       #gparted
       #timeshift
       #tuba
