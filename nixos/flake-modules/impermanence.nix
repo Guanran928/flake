@@ -11,24 +11,49 @@
   ### sops-nix
   sops.age.sshKeyPaths = lib.mkForce ["/nix/persist/system/etc/ssh/ssh_host_ed25519_key"];
 
-  # this folder is where the files will be stored (don't put it in tmpfs)
-  environment.persistence."/nix/persist/system" = {
+  fileSystems."/persist".neededForBoot = true;
+  environment.persistence."/persist" = {
+    hideMounts = true;
     directories = [
-      # bind mounted from /nix/persist/system/etc/nixos to /etc/nixos
       "/var/log"
       "/var/lib"
 
-      #"/etc/NetworkManager/system-connections"
       "/etc/clash-meta" # clash-meta
-      "/etc/secureboot" # sbctl, lanzaboote, etc
+      "/etc/secureboot" # sbctl, lanzaboote
     ];
     files = [
-      # NOTE: if you persist /var/log directory, you should persist /etc/machine-id as well
-      # otherwise it will affect disk usage of log service
       "/etc/ssh/ssh_host_ed25519_key"
       "/etc/ssh/ssh_host_ed25519_key.pub"
       "/etc/ssh/ssh_host_rsa_key"
       "/etc/ssh/ssh_host_rsa_key.pub"
     ];
+    users.guanranwang = {
+      directories = [
+        "Desktop"
+        "Documents"
+        "Downloads"
+        "Music"
+        "Pictures"
+        #"Public"
+        #"Templates"
+        "Videos"
+
+        ".cache"
+        ".local/share" # ".local/bin" is managed through home-manager
+        ".local/state"
+        ".ssh"
+
+        ".librewolf"
+        ".config/chromium"
+        ".config/fcitx5"
+        ".config/Mumble"
+        ".config/nvim" # not managed with git because my configuration is trash and i do not want other people to see it
+      ];
+      files = [
+        ".config/sops/age/keys.txt"
+        ".config/KDE/neochat.conf"
+        ".config/neochatrc"
+      ];
+    };
   };
 }
