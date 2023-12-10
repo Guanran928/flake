@@ -8,7 +8,7 @@ in {
   options = {
     myFlake.nixos.networking.dns = {
       provider = lib.mkOption {
-        type = lib.types.enum ["google" "alidns"];
+        type = lib.types.enum ["dhcp" "google" "alidns"];
         default =
           {
             "Asia/Shanghai" = "alidns";
@@ -24,6 +24,7 @@ in {
   config = {
     networking.nameservers =
       {
+        dhcp = [];
         google = [
           ### Google DNS
           "8.8.8.8"
