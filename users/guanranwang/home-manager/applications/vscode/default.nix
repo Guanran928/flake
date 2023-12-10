@@ -54,6 +54,9 @@
 
         # Extensions
         ### GitLens
+        gitlens.showWelcomeOnInstall = false;
+        gitlens.showWhatsNewAfterUpgrades = false;
+        gitlens.plusFeatures.enabled = false;
         gitlens.telemetry.enabled = false;
       };
       extensions = with pkgs.vscode-extensions; [
