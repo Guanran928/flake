@@ -68,7 +68,7 @@
       };
       output = {
         eDP-1 = {
-          bg = "~/.local/share/backgrounds/wallpaper1.png fill";
+          bg = "~/.local/share/backgrounds/aqua.png fill";
         };
       };
 

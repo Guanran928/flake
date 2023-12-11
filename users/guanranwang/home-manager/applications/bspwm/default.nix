@@ -16,7 +16,7 @@
       enable = true;
       startupPrograms = [
         "pgrep -x sxhkd > /dev/null || sxhkd"
-        "pgrep -x feh > /dev/null || feh --bg-fill ~/.local/share/backgrounds/wallpaper1.png"
+        "pgrep -x feh > /dev/null || feh --bg-fill ~/.local/share/backgrounds/aqua.png"
       ];
       monitors = {
         eDP-1 = ["I" "II" "III" "IV" "V" "VI" "VII" "VIII" "IX" "X"];
