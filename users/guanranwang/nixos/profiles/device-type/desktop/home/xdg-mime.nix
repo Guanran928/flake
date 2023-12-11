@@ -37,6 +37,13 @@
         "video/mp4"
         "video/mpeg"
         "video/webm"
-      ] (n: ["mpv.desktop"]);
+      ] (n: ["mpv.desktop"])
+      ### Code editor
+      // lib.genAttrs [
+        "text/css"
+        "text/html"
+        "text/javascript"
+        "text/plain"
+      ] (n: ["codium.desktop" "Helix.desktop" "nvim.desktop"]);
   };
 }
