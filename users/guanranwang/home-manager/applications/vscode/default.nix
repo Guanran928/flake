@@ -7,7 +7,9 @@
   programs.vscode = lib.mkMerge [
     {
       enable = true;
-      package = pkgs.vscodium; # foss
+      package = pkgs.vscodium.override {
+        commandLineArgs = ''--password-store="gnome"'';
+      };
       enableExtensionUpdateCheck = false;
       enableUpdateCheck = false;
       keybindings = [
