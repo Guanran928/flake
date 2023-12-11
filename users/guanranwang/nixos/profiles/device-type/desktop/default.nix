@@ -7,7 +7,8 @@
   myFlake.nixos.boot.noLoaderMenu = lib.mkDefault true;
 
   ### sops-nix
-  sops.secrets."wireless/home".path = "/var/lib/iwd/wangxiaobo.psk"; # Home wifi password
+  sops.secrets."wireless/wangxiaobo".path = "/var/lib/iwd/wangxiaobo.psk";
+  sops.secrets."wireless/OpenWrt".path = "/var/lib/iwd/OpenWrt.psk";
 
   ### home-manager
   home-manager.users.guanranwang = import ./home;
