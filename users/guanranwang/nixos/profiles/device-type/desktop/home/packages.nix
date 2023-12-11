@@ -27,7 +27,6 @@
       #dippi
     ])
     ++ (with pkgs.gnome; [
-      nautilus
       zenity
       seahorse
       file-roller

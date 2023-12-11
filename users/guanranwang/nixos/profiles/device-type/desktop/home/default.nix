@@ -41,6 +41,7 @@
       "sway"
 
       # Misc
+      "nautilus"
       "fcitx5"
       "irssi"
       "mumble"
