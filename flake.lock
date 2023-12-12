@@ -456,6 +456,22 @@
         "type": "github"
       }
     },
+    "nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1702383418,
+        "narHash": "sha256-EYArlahHMWj4yVXTKldVZsbHjg0gxvXqgTxO5BvEfQ8=",
+        "owner": "Guanran928",
+        "repo": "nvim",
+        "rev": "655e863d2548cf9883e94e837f803ed2ae0d6aec",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Guanran928",
+        "repo": "nvim",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks-nix": {
       "inputs": {
         "flake-compat": [
@@ -511,6 +527,7 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
         "nvfetcher": "nvfetcher",
+        "nvim": "nvim",
         "pre-commit-hooks-nix": "pre-commit-hooks-nix",
         "rust-overlay": "rust-overlay",
         "sops-nix": "sops-nix",

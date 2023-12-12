@@ -38,7 +38,6 @@
         ".config/chromium"
         ".config/fcitx5"
         ".config/Mumble"
-        ".config/nvim" # not managed with git because my configuration is trash and i do not want other people to see it
       ];
       files = [
         ".config/sops/age/keys.txt"

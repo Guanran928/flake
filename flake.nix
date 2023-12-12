@@ -150,6 +150,11 @@
       url = "github:MetaCubeX/metacubexd/gh-pages";
       flake = false;
     };
+    ### My NeoVim configuration
+    nvim = {
+      url = "github:Guanran928/nvim";
+      flake = false;
+    };
   };
 
   outputs = inputs: let
