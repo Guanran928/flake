@@ -145,11 +145,6 @@
     #};
 
     ## Non-Flake
-    ### Clash WebUI
-    metacubexd = {
-      url = "github:MetaCubeX/metacubexd/gh-pages";
-      flake = false;
-    };
     ### My NeoVim configuration
     nvim = {
       url = "github:Guanran928/nvim";
@@ -161,6 +156,7 @@
     eachSystem = inputs.nixpkgs.lib.genAttrs (import inputs.systems);
   in {
     formatter = eachSystem (system: inputs.nixpkgs.legacyPackages.${system}.alejandra);
+    packages = eachSystem (system: import ./pkgs inputs.nixpkgs.legacyPackages.${system});
 
     ### NixOS
     nixosConfigurations = {

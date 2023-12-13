@@ -309,23 +309,6 @@
         "type": "github"
       }
     },
-    "metacubexd": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1701612695,
-        "narHash": "sha256-hFey2goRKGVP3u/xH22kprxyVSyPZGT6ffuDkj2sGMM=",
-        "owner": "MetaCubeX",
-        "repo": "metacubexd",
-        "rev": "cb12a6f49f421f4f6cc80ea225c2314877c72b5f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "MetaCubeX",
-        "ref": "gh-pages",
-        "repo": "metacubexd",
-        "type": "github"
-      }
-    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -520,7 +503,6 @@
         "hyprland-protocols": "hyprland-protocols",
         "impermanence": "impermanence",
         "lanzaboote": "lanzaboote",
-        "metacubexd": "metacubexd",
         "nix-darwin": "nix-darwin",
         "nixpak": "nixpak",
         "nixpak-pkgs": "nixpak-pkgs",

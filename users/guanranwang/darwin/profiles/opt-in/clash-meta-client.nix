@@ -21,5 +21,5 @@
     command = "${pkgs.clash-meta}/bin/clash-meta -d /etc/clash-meta";
   };
 
-  environment.etc."clash-meta/metacubexd".source = inputs.metacubexd;
+  environment.etc."clash-meta/metacubexd".source = inputs.self.packages.${pkgs.system}.metacubexd;
 }

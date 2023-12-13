@@ -59,5 +59,5 @@
   #   - https://yacd.haishan.me
   # - clash-dashboard (buggy):
   #   - https://clash.razord.top
-  environment.etc."clash-meta/metacubexd".source = inputs.metacubexd;
+  environment.etc."clash-meta/metacubexd".source = inputs.self.packages.${pkgs.system}.metacubexd;
 }
