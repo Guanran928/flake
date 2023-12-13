@@ -4,7 +4,6 @@ _: {
     casks = [
       "altserver"
       "squirrel"
-      "telegram"
       "librewolf"
       "google-chrome"
     ];

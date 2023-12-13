@@ -41,6 +41,7 @@
       "sway"
 
       # Misc
+      "telegram-desktop"
       "nautilus"
       "fcitx5"
       "irssi"

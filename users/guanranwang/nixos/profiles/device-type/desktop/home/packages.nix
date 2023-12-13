@@ -13,7 +13,6 @@
       #fluffychat #      # Flutter
 
       ### Misc
-      telegram-desktop
       #discord
       #qq
 

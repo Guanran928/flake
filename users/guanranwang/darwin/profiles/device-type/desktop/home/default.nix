@@ -24,6 +24,9 @@
     # Media
     "mpv"
     "spotify"
+
+    # Misc
+    "telegram-desktop"
   ];
 
   home = {
