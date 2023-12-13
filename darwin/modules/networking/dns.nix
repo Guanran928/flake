@@ -8,8 +8,13 @@ in {
   options = {
     myFlake.darwin.networking.dns = {
       provider = lib.mkOption {
-        type = lib.types.enum ["google" "alidns"];
-        default = "google";
+        type = lib.types.enum ["dhcp" "google" "alidns"];
+        default =
+          {
+            "Asia/Shanghai" = "alidns";
+          }
+          .${config.time.timeZone}
+          or "google";
         example = "alidns";
         description = "Select desired DNS provider.";
       };
@@ -17,21 +22,24 @@ in {
   };
 
   config = {
-    networking.dns = lib.mkMerge [
-      (lib.mkIf (cfg.provider == "google") [
-        ### Google DNS
-        "8.8.8.8"
-        "8.8.4.4"
-        "2001:4860:4860::8888"
-        "2001:4860:4860::8844"
-      ])
-      (lib.mkIf (cfg.provider == "alidns") [
-        ### AliDNS
-        "223.5.5.5"
-        "223.6.6.6"
-        "2400:3200::1"
-        "2400:3200:baba::1"
-      ])
-    ];
+    networking.dns =
+      {
+        dhcp = [];
+        google = [
+          ### Google DNS
+          "8.8.8.8"
+          "8.8.4.4"
+          "2001:4860:4860::8888"
+          "2001:4860:4860::8844"
+        ];
+        alidns = [
+          ### AliDNS
+          "223.5.5.5"
+          "223.6.6.6"
+          "2400:3200::1"
+          "2400:3200:baba::1"
+        ];
+      }
+      .${cfg.provider};
   };
 }

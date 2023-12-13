@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   programs.mpv = {
     enable = true;
     config = {
@@ -7,10 +11,11 @@
       profile = "gpu-hq";
       osc = "no";
     };
-    scripts = with pkgs.mpvScripts; [
-      mpris
-      thumbfast
-    ];
+    scripts = with pkgs.mpvScripts;
+      [
+        thumbfast
+      ]
+      ++ lib.optionals (!pkgs.stdenv.hostPlatform.isDarwin) (with pkgs.mpvScripts; [mpris]);
   };
 
   # for scripts that is not in nixpkgs
