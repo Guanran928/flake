@@ -6,8 +6,10 @@
   programs.mpv = {
     enable = true;
     config = {
+      ao = "pipewire,";
+      vo = "gpu-next,gpu,";
+
       hwdec = "auto-safe";
-      vo = "gpu-next";
       profile = "gpu-hq";
       osc = "no";
     };
@@ -15,7 +17,9 @@
       [
         thumbfast
       ]
-      ++ lib.optionals (!pkgs.stdenv.hostPlatform.isDarwin) (with pkgs.mpvScripts; [mpris]);
+      ++ lib.optionals (!pkgs.stdenv.hostPlatform.isDarwin) (with pkgs.mpvScripts; [
+        mpris
+      ]);
   };
 
   # for scripts that is not in nixpkgs
