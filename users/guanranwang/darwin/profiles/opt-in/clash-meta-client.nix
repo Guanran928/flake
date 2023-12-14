@@ -20,7 +20,10 @@ in {
   # launchd service
   launchd.daemons."clash-meta" = {
     command = "${lib.getExe pkgs.clash-meta} -d /etc/clash-meta";
-    serviceConfig.RunAtLoad = true;
+    serviceConfig = {
+      RunAtLoad = true;
+      KeepAlive.NetworkState = true;
+    };
   };
 
   # Web interface
