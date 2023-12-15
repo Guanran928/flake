@@ -55,7 +55,7 @@
   services = {
     getty.greetingLine = let
       inherit (config.system) nixos;
-      inherit (config.myFlake.nixos.hardware.components) gpu;
+      inherit (config.myFlake.hardware.components) gpu;
     in ''
       NixOS ${nixos.label} ${nixos.codeName} (\m) - \l
       ${lib.strings.optionalString gpu.nvidia.enable

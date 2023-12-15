@@ -3,10 +3,10 @@
   config,
   ...
 }: let
-  cfg = config.myFlake.nixos.hardware.accessories.xboxOneController;
+  cfg = config.myFlake.hardware.accessories.xboxOneController;
 in {
   options = {
-    myFlake.nixos.hardware.accessories.xboxOneController.enable =
+    myFlake.hardware.accessories.xboxOneController.enable =
       lib.mkEnableOption "Whether to enable support for Xbox One controllers.";
   };
 

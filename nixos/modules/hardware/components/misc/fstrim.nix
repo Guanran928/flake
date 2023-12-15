@@ -3,10 +3,10 @@
   config,
   ...
 }: let
-  cfg = config.myFlake.nixos.hardware.components.misc.fstrim;
+  cfg = config.myFlake.hardware.components.misc.fstrim;
 in {
   options = {
-    myFlake.nixos.hardware.components.misc.fstrim.enable = lib.mkEnableOption "Whether to enable SSD triming in background.";
+    myFlake.hardware.components.misc.fstrim.enable = lib.mkEnableOption "Whether to enable SSD triming in background.";
   };
 
   config = lib.mkIf cfg.enable {

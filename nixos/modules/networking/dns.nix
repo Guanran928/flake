@@ -3,10 +3,10 @@
   config,
   ...
 }: let
-  cfg = config.myFlake.nixos.networking.dns;
+  cfg = config.myFlake.networking.dns;
 in {
   options = {
-    myFlake.nixos.networking.dns = {
+    myFlake.networking.dns = {
       provider = lib.mkOption {
         type = lib.types.enum ["dhcp" "google" "alidns"];
         default =

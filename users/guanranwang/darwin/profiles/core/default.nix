@@ -15,6 +15,6 @@
   };
 
   ### Options
-  myFlake.darwin.networking.dns.provider = lib.mkDefault "alidns";
+  myFlake.networking.dns.provider = lib.mkDefault "alidns";
   home-manager.users.guanranwang = import ./home;
 }

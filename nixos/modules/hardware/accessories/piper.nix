@@ -4,10 +4,10 @@
   pkgs,
   ...
 }: let
-  cfg = config.myFlake.nixos.hardware.accessories.piper;
+  cfg = config.myFlake.hardware.accessories.piper;
 in {
   options = {
-    myFlake.nixos.hardware.accessories.piper.enable =
+    myFlake.hardware.accessories.piper.enable =
       lib.mkEnableOption "Whether to enable Piper.";
   };
 

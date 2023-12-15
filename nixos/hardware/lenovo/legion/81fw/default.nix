@@ -7,7 +7,7 @@
     (modulesPath + "/installer/scan/not-detected.nix") # what is this
   ];
 
-  myFlake.nixos.hardware.components = {
+  myFlake.hardware.components = {
     cpu.intel.enable = true;
 
     gpu.intel.enable = true;

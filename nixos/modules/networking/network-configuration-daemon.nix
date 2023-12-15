@@ -3,10 +3,10 @@
   config,
   ...
 }: let
-  cfg = config.myFlake.nixos.networking;
+  cfg = config.myFlake.networking;
 in {
   options = {
-    myFlake.nixos = {
+    myFlake = {
       networking = {
         network-configuration-daemon = lib.mkOption {
           type = lib.types.enum ["iwd" "networkmanager" "networkmanager-iwd"];

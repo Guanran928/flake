@@ -3,10 +3,10 @@
   lib,
   ...
 }: let
-  cfg = config.myFlake.nixos.boot;
+  cfg = config.myFlake.boot;
 in {
   options = {
-    myFlake.nixos = {
+    myFlake = {
       boot = {
         silentBoot = lib.mkEnableOption "Whether to enable silent boot.";
         noLoaderMenu = lib.mkEnableOption "Whether to disable bootloader menu.";

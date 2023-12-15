@@ -3,10 +3,10 @@
   config,
   ...
 }: let
-  cfg = config.myFlake.nixos.hardware.accessories.logitech-wireless;
+  cfg = config.myFlake.hardware.accessories.logitech-wireless;
 in {
   options = {
-    myFlake.nixos.hardware.accessories.logitech-wireless.enable =
+    myFlake.hardware.accessories.logitech-wireless.enable =
       lib.mkEnableOption "Whether to enable support for wireless Logitech hardwares.";
   };
 

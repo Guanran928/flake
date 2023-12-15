@@ -4,10 +4,10 @@
   pkgs,
   ...
 }: let
-  cfg = config.myFlake.nixos.hardware.components.gpu.amd;
+  cfg = config.myFlake.hardware.components.gpu.amd;
 in {
   options = {
-    myFlake.nixos.hardware.components.gpu.amd.enable = lib.mkEnableOption "Whether to enable AMD GPU.";
+    myFlake.hardware.components.gpu.amd.enable = lib.mkEnableOption "Whether to enable AMD GPU.";
   };
 
   # https://nixos.wiki/wiki/AMD_GPU

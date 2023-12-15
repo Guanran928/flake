@@ -4,7 +4,7 @@
   ...
 }: {
   ### Options
-  myFlake.nixos.boot.noLoaderMenu = lib.mkDefault true;
+  myFlake.boot.noLoaderMenu = lib.mkDefault true;
 
   ### sops-nix
   sops.secrets."wireless/wangxiaobo".path = "/var/lib/iwd/wangxiaobo.psk";
