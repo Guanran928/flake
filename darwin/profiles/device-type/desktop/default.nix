@@ -1,6 +1,5 @@
 {...}: {
   imports = [
     ./packages
-    ./system
   ];
 }
