@@ -5,13 +5,12 @@
   ...
 }: {
   imports = [
-    ../../modules
-
     ./nix
     ./packages
     ./sysctl.nix
 
     # Flake modules
+    inputs.self.nixosModules.default
     inputs.disko.nixosModules.disko
     inputs.home-manager.nixosModules.home-manager
     inputs.impermanence.nixosModules.impermanence

@@ -157,6 +157,7 @@
   in {
     formatter = eachSystem (system: inputs.nixpkgs.legacyPackages.${system}.alejandra);
     packages = eachSystem (system: import ./pkgs inputs.nixpkgs.legacyPackages.${system});
+    nixosModules.default = ./nixos/modules;
 
     ### NixOS
     nixosConfigurations = {
