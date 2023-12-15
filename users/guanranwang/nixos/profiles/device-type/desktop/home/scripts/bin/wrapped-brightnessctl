@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # Original Script: https://github.com/ericmurphyxyz/dotfiles/blob/master/.local/bin/changebrightness
 

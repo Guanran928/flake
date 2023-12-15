@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 ydotool key 20:1 20:0 # press t
 echo $(zenity --width 500 --entry) | wl-copy
