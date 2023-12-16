@@ -33,7 +33,9 @@
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
-    impermanence.url = "github:nix-community/impermanence";
+    impermanence = {
+      url = "github:nix-community/impermanence";
+    };
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -47,6 +49,9 @@
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware";
     };
     nixpak = {
       url = "github:nixpak/nixpak";
@@ -139,10 +144,6 @@
 
     # TODO: Unused, Soon(TM)
     #daeuniverse.url = "github:daeuniverse/flake.nix";
-    #nixos-hardware = {
-    #  url = "github:NixOS/nixos-hardware/master";
-    #  #inputs.nixpkgs.follows = "nixpkgs";
-    #};
 
     ## Non-Flake
     ### My NeoVim configuration

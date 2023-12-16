@@ -50,16 +50,20 @@
     };
   };
 
+  # WORKAROUND: Revert to NVIDIA version 470.223.02 due to performance issues in version 545.29.06,
+  #             this shouldn't affect non-nvidia machines.
+  nixpkgs.config.nvidia.acceptLicense = true;
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
+
   # Services
   services = {
     getty.greetingLine = let
       inherit (config.system) nixos;
-      inherit (config.myFlake.hardware.components) gpu;
     in ''
       NixOS ${nixos.label} ${nixos.codeName} (\m) - \l
-      ${lib.strings.optionalString gpu.nvidia.enable
+      ${lib.strings.optionalString (builtins.elem "nvidia" config.services.xserver.videoDrivers)
         "--my-next-gpu-wont-be-nvidia"}
-      ${lib.strings.optionalString gpu.amd.enable
+      ${lib.strings.optionalString (builtins.elem "amdgpu" config.boot.initrd.kernelModules)
         "[    5.996722] amdgpu 0000:67:00.0: Fatal error during GPU init"}
     '';
 
