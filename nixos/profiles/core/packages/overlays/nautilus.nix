@@ -1,23 +1,18 @@
-_final: prev: {
+{addPatches, ...}: _final: prev: {
   gnome =
     prev.gnome
     // {
-      # Restore Nautilus's typeahead ability
-      # .patch file from from aur/nautilus-typeahead
-      nautilus = prev.gnome.nautilus.overrideAttrs (old: {
-        patches =
-          (old.patches or [])
-          ++ [
-            (prev.fetchgit {
-                url = "https://aur.archlinux.org/nautilus-typeahead.git";
-                rev = "26776193230b0d56f714d31d79c5e716ac413a26";
-                hash = "sha256-hVWZCQwHzL4j+FcgsEhuumhBkl6d8IIbcYddh08QMJM=";
-                sparseCheckout = [
-                  "nautilus-restore-typeahead.patch"
-                ];
-              }
-              + "/nautilus-restore-typeahead.patch")
-          ];
-      });
+      nautilus = addPatches prev.gnome.nautilus [
+        # Restore Nautilus's typeahead ability
+        # https://aur.archlinux.org/packages/nautilus-typeahead
+        (prev.fetchpatch {
+          url = let
+            repo = "nautilus-typeahead";
+            file = "nautilus-restore-typeahead.patch";
+            commit = "6f75fbb04f6b108324850a0956f4bbdff0b6060b";
+          in "https://aur.archlinux.org/cgit/aur.git/plain/${file}?h=${repo}&id=${commit}";
+          hash = "sha256-a40vNo2Nw068GBtjVPUz6WAYRtjD0DB2bG/N14vSTxI=";
+        })
+      ];
     };
 }
