@@ -1,13 +1,19 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   i18n.inputMethod = {
     enabled = "fcitx5";
-    fcitx5.addons = with pkgs; [
-      fcitx5-chinese-addons
-      fcitx5-pinyin-moegirl # Using Berberman's Flake overlay
-      fcitx5-pinyin-zhwiki
-
-      #fcitx5-rime
-    ];
+    fcitx5.addons =
+      (with pkgs; [
+        fcitx5-chinese-addons
+        #fcitx5-rime
+      ])
+      ++ (with inputs.berberman.packages.${pkgs.system}; [
+        fcitx5-pinyin-moegirl
+        fcitx5-pinyin-zhwiki
+      ]);
   };
 
   home.sessionVariables = {

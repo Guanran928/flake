@@ -1,5 +1,4 @@
 _: {
-  boot.kernelModules = ["tcp_bbr"];
   boot.kernel.sysctl = {
     ### https://madaidans-insecurities.github.io/guides/linux-hardening.html#sysctl
     # Kernel self-protection
@@ -47,16 +46,5 @@ _: {
     "fs.protected_hardlinks" = "1";
     "fs.protected_fifos" = "2";
     "fs.protected_regular" = "2";
-
-    ### https://wiki.archlinux.org/title/Sysctl#Improving_performance
-    "net.ipv4.tcp_fastopen" = "3";
-
-    "net.ipv4.tcp_keepalive_time" = "80";
-    "net.ipv4.tcp_keepalive_intvl" = "10";
-    "net.ipv4.tcp_keepalive_probes" = "6";
-    "net.ipv4.tcp_mtu_probing" = "1";
-
-    "net.core.default_qdisc" = "cake";
-    "net.ipv4.tcp_congestion_control" = "bbr";
   };
 }
