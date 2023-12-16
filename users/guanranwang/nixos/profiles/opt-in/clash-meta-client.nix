@@ -2,6 +2,7 @@
   pkgs,
   config,
   inputs,
+  lib,
   ...
 }: {
   ### sops-nix
@@ -34,7 +35,7 @@
       WorkingDirectory = "/etc/clash-meta";
       User = [config.users.users."clash-meta".name];
       Group = [config.users.groups."clash-meta".name];
-      ExecStart = "${pkgs.clash-meta}/bin/clash-meta -d /etc/clash-meta";
+      ExecStart = "${lib.getExe pkgs.clash-meta} -d /etc/clash-meta";
       Restart = "on-failure";
       CapabilityBoundingSet = [
         "CAP_NET_ADMIN"

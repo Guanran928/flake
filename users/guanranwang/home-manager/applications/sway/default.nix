@@ -47,14 +47,14 @@
     systemd.xdgAutostart = true;
     config = {
       ### Default Applications
-      terminal = "${pkgs.alacritty}/bin/alacritty";
-      menu = "${pkgs.rofi}/bin/rofi";
+      terminal = lib.getExe pkgs.alacritty;
+      menu = lib.getExe config.programs.rofi.package;
 
       ### Visuals
       #window.titlebar = false;
       bars = [
         {
-          command = "${pkgs.waybar}/bin/waybar";
+          command = lib.getExe pkgs.waybar;
         }
         #{
         #  statusCommand = "${lib.getExe pkgs.i3status-rust} $HOME/.config/i3status-rust/config-default.toml";
@@ -143,7 +143,7 @@
 
         # Rofi
         "${modifier}+d" = "exec ${menu} -show drun -show-icons -icon-theme ${config.gtk.iconTheme.name}";
-        "${modifier}+Shift+d" = "exec ${pkgs.cliphist}/bin/cliphist list | ${menu} -dmenu | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy";
+        "${modifier}+Shift+d" = "exec ${lib.getExe pkgs.cliphist} list | ${menu} -dmenu | ${lib.getExe pkgs.cliphist} decode | ${pkgs.wl-clipboard}/bin/wl-copy";
         "${modifier}+Shift+l" = ''exec ${menu} -modi "power-menu:rofi-power-menu --confirm=reboot/shutdown" -show power-menu'';
 
         # Screenshot
@@ -157,12 +157,12 @@
         "XF86AudioRaiseVolume" = "exec ${setVolume} up";
         "XF86AudioLowerVolume" = "exec ${setVolume} down";
         "XF86AudioMute" = "exec ${setVolume} mute";
-        "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
-        "XF86AudioPause" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
-        "XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
-        "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
-        "XF86AudioStop" = "exec ${pkgs.playerctl}/bin/playerctl stop";
-        "XF86AudioMedia" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
+        "XF86AudioPlay" = "exec ${lib.getExe pkgs.playerctl} play-pause";
+        "XF86AudioPause" = "exec ${lib.getExe pkgs.playerctl} play-pause";
+        "XF86AudioPrev" = "exec ${lib.getExe pkgs.playerctl} previous";
+        "XF86AudioNext" = "exec ${lib.getExe pkgs.playerctl} next";
+        "XF86AudioStop" = "exec ${lib.getExe pkgs.playerctl} stop";
+        "XF86AudioMedia" = "exec ${lib.getExe pkgs.playerctl} play-pause";
       };
     };
   };

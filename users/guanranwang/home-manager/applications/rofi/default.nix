@@ -1,9 +1,13 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   programs.rofi = {
     enable = true;
     package = pkgs.rofi-wayland;
     font = "monospace";
-    terminal = "${pkgs.alacritty}/bin/alacritty";
+    terminal = lib.getExe pkgs.alacritty;
   };
 
   home.packages = with pkgs; [rofi-power-menu];

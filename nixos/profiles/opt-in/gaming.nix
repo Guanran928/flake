@@ -8,8 +8,8 @@
   programs.gamemode = {
     enable = true;
     settings.custom = {
-      start = "${pkgs.libnotify}/bin/notify-send 'GameMode Activated' 'GameMode Activated! Enjoy enhanced performance. 🚀'";
-      end = "${pkgs.libnotify}/bin/notify-send 'GameMode Deactivated' 'GameMode Deactivated. Back to normal mode. ⏹️'";
+      start = "${lib.getExe pkgs.libnotify} 'GameMode Activated' 'GameMode Activated! Enjoy enhanced performance. 🚀'";
+      end = "${lib.getExe pkgs.libnotify} 'GameMode Deactivated' 'GameMode Deactivated. Back to normal mode. ⏹️'";
     };
   };
 

@@ -17,7 +17,7 @@
     timeouts = [
       {
         timeout = 60 * 9;
-        command = ''${pkgs.libnotify}/bin/notify-send -u critical --expire-time 60000 "60 seconds until lock!"'';
+        command = ''${lib.getExe pkgs.libnotify} -u critical --expire-time 60000 "60 seconds until lock!"'';
       }
       {
         timeout = 60 * 10;
