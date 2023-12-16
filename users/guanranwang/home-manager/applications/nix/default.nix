@@ -1,9 +1,14 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    nil # LSP
-    alejandra # Formatter
-    statix # Linter
+    # LSP / Formatters / Linters
+    nil
+    alejandra
+    statix
+    deadnix
+
+    # Secret management
     sops
+    # Additional information while building
     nix-output-monitor
   ];
 
