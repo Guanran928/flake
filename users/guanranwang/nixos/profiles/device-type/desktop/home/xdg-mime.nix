@@ -16,7 +16,7 @@
         "x-scheme-handler/https"
         "x-scheme-handler/about"
         "x-scheme-handler/unknown"
-      ] (n: ["librewolf.desktop" "firefox.desktop" "chromium-browser.desktop"])
+      ] (_n: ["librewolf.desktop" "firefox.desktop" "chromium-browser.desktop"])
       ### Audio player
       // lib.genAttrs [
         "audio/aac"
@@ -24,26 +24,26 @@
         "audio/mpeg"
         "audio/ogg"
         "audio/wav"
-      ] (n: ["io.bassi.Amberol.desktop" "mpv.desktop"])
+      ] (_n: ["io.bassi.Amberol.desktop" "mpv.desktop"])
       ### Image viewer
       // lib.genAttrs [
         "image/gif"
         "image/jpeg"
         "image/png"
         "image/webp"
-      ] (n: ["org.gnome.Loupe.desktop"])
+      ] (_n: ["org.gnome.Loupe.desktop"])
       ### Video player
       // lib.genAttrs [
         "video/mp4"
         "video/mpeg"
         "video/webm"
-      ] (n: ["mpv.desktop"])
+      ] (_n: ["mpv.desktop"])
       ### Code editor
       // lib.genAttrs [
         "text/css"
         "text/html"
         "text/javascript"
         "text/plain"
-      ] (n: ["codium.desktop" "Helix.desktop" "nvim.desktop"]);
+      ] (_n: ["codium.desktop" "Helix.desktop" "nvim.desktop"]);
   };
 }

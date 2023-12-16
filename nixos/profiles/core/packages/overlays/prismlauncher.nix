@@ -1,4 +1,4 @@
-final: prev: {
+_final: prev: {
   prismlauncher = prev.prismlauncher.overrideAttrs (old: {
     # Offline mode for Prism Launcher
     # .patch file from some Misterio77's nix-config repo

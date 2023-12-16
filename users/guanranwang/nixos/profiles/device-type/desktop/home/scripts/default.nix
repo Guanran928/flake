@@ -2,7 +2,7 @@
   binPATH = ".local/bin";
 in {
   home.sessionPath = ["$HOME/${binPATH}"];
-  home.file = builtins.mapAttrs (name: value: value // {executable = true;}) {
+  home.file = builtins.mapAttrs (_name: value: value // {executable = true;}) {
     ${binPATH} = {
       source = ./bin;
       recursive = true;

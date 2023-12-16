@@ -1,4 +1,4 @@
-final: prev: {
+_final: prev: {
   sway-unwrapped = prev.sway-unwrapped.overrideAttrs (old: {
     # Add input panel to sway
     # .patch file from https://github.com/swaywm/sway/pull/7226

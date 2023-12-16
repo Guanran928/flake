@@ -1,4 +1,4 @@
-final: prev: {
+_final: prev: {
   firefox-unwrapped = prev.firefox-unwrapped.overrideAttrs (old: {
     # Firefox but with .mozilla moved to .config/mozilla
     # .patch file from aur/firefox-xdg
