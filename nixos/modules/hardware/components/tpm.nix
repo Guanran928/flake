@@ -3,10 +3,10 @@
   config,
   ...
 }: let
-  cfg = config.myFlake.hardware.components.misc.tpm;
+  cfg = config.myFlake.hardware.components.tpm;
 in {
   options = {
-    myFlake.hardware.components.misc.tpm.enable = lib.mkEnableOption "Whether to enable TPM.";
+    myFlake.hardware.components.tpm.enable = lib.mkEnableOption "Whether to enable TPM.";
   };
 
   # https://nixos.wiki/wiki/TPM

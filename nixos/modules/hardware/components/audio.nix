@@ -3,11 +3,11 @@
   config,
   ...
 }: let
-  cfg = config.myFlake.hardware.components.misc.audio;
+  cfg = config.myFlake.hardware.components.audio;
 in {
   options = {
-    myFlake.hardware.components.misc.audio.enable = lib.mkEnableOption "Whether to enable audio.";
-    myFlake.hardware.components.misc.audio.soundServer = lib.mkOption {
+    myFlake.hardware.components.audio.enable = lib.mkEnableOption "Whether to enable audio.";
+    myFlake.hardware.components.audio.soundServer = lib.mkOption {
       type = lib.types.enum ["pipewire" "pulseaudio"];
       default = "pipewire";
       example = "pulseaudio";

@@ -9,7 +9,7 @@
   ];
 
   services.hdapsd.enable = false;
-  myFlake.hardware.components.misc = {
+  myFlake.hardware.components = {
     audio.enable = true;
     bluetooth.enable = true;
     tpm.enable = true;

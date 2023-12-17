@@ -1,5 +1,7 @@
 {...}: {
   imports = [
-    ./misc
+    ./audio.nix
+    ./bluetooth.nix
+    ./tpm.nix
   ];
 }
