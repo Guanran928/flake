@@ -17,6 +17,10 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+      inputs.systems.follows = "systems";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -90,10 +94,6 @@
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
-    flake-utils = {
-      url = "github:numtide/flake-utils";
-      inputs.systems.follows = "systems";
-    };
     gitignore = {
       url = "github:hercules-ci/gitignore.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -154,10 +154,10 @@
   };
 
   outputs = inputs: let
-    eachSystem = inputs.nixpkgs.lib.genAttrs (import inputs.systems);
+    inherit (inputs.flake-utils.lib) eachDefaultSystemMap;
   in {
-    formatter = eachSystem (system: inputs.nixpkgs.legacyPackages.${system}.alejandra);
-    packages = eachSystem (system: import ./pkgs inputs.nixpkgs.legacyPackages.${system});
+    formatter = eachDefaultSystemMap (system: inputs.nixpkgs.legacyPackages.${system}.alejandra);
+    packages = eachDefaultSystemMap (system: import ./pkgs inputs.nixpkgs.legacyPackages.${system});
     nixosModules.default = ./nixos/modules;
 
     ### NixOS
