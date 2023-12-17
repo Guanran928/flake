@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  lib,
   ...
 }: {
   # Enable Flakes
@@ -12,8 +13,11 @@
   # Disable flake-registry
   # https://nixos-and-flakes.thiscute.world/best-practices/nix-path-and-flake-registry
   nix.settings.flake-registry = "";
-  nix.registry.nixpkgs.flake = inputs.nixpkgs;
-  nix.registry.nixpkgs-stable.flake = inputs.nixpkgs-stable;
+
+  # Add each flake input as a registry
+  # To make nix3 commands consistent with the flake
+  # https://github.com/Misterio77/nix-config/blob/main/hosts/common/global/nix.nix
+  nix.registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
 
   # Install Git
   environment.systemPackages = [pkgs.git];
