@@ -8,6 +8,7 @@
     inputs.nixos-hardware.nixosModules.lenovo-legion-y530-15ich
   ];
 
+  services.hdapsd.enable = false;
   myFlake.hardware.components.misc = {
     audio.enable = true;
     bluetooth.enable = true;
