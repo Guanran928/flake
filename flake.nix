@@ -155,6 +155,18 @@
 
   outputs = inputs: let
     inherit (inputs.flake-utils.lib) eachDefaultSystemMap;
+
+    mkNixOS = system: modules:
+      inputs.nixpkgs.lib.nixosSystem {
+        inherit system modules;
+        specialArgs = {inherit inputs;};
+      };
+
+    mkDarwin = system: modules:
+      inputs.nixpkgs.lib.nixosSystem {
+        inherit system modules;
+        specialArgs = {inherit inputs;};
+      };
   in {
     formatter = eachDefaultSystemMap (system: inputs.nixpkgs.legacyPackages.${system}.alejandra);
     packages = eachDefaultSystemMap (system: import ./pkgs inputs.nixpkgs.legacyPackages.${system});
@@ -162,61 +174,53 @@
 
     ### NixOS
     nixosConfigurations = {
-      "Aristotle" = inputs.nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {inherit inputs;};
-        modules = [
-          # OS
-          ./nixos/profiles/core
-          ./nixos/profiles/device-type/laptop
-          ./nixos/profiles/opt-in/zram-generator.nix
-          ./nixos/profiles/opt-in/gaming.nix
-          ./nixos/profiles/opt-in/wayland.nix
-          ./nixos/profiles/opt-in/virt-manager.nix
+      "Aristotle" = mkNixOS "x86_64-linux" [
+        # OS
+        ./nixos/profiles/core
+        ./nixos/profiles/device-type/laptop
+        ./nixos/profiles/opt-in/zram-generator.nix
+        ./nixos/profiles/opt-in/gaming.nix
+        ./nixos/profiles/opt-in/wayland.nix
+        ./nixos/profiles/opt-in/virt-manager.nix
 
-          # User
-          ./users/guanranwang/nixos/profiles/core
-          ./users/guanranwang/nixos/profiles/device-type/laptop
-          ./users/guanranwang/nixos/profiles/opt-in/clash-meta-client.nix
-          ./users/guanranwang/nixos/profiles/opt-in/gaming
-          ./users/guanranwang/nixos/profiles/opt-in/torrenting
+        # User
+        ./users/guanranwang/nixos/profiles/core
+        ./users/guanranwang/nixos/profiles/device-type/laptop
+        ./users/guanranwang/nixos/profiles/opt-in/clash-meta-client.nix
+        ./users/guanranwang/nixos/profiles/opt-in/gaming
+        ./users/guanranwang/nixos/profiles/opt-in/torrenting
 
-          # Hardware
-          ./nixos/hosts/Aristotle
-          ./nixos/profiles/opt-in/lanzaboote.nix
-          ./nixos/profiles/opt-in/impermanence.nix
-          ./nixos/profiles/opt-in/disko.nix
+        # Hardware
+        ./nixos/hosts/Aristotle
+        ./nixos/profiles/opt-in/lanzaboote.nix
+        ./nixos/profiles/opt-in/impermanence.nix
+        ./nixos/profiles/opt-in/disko.nix
 
-          {
-            networking.hostName = "Aristotle";
-            time.timeZone = "Asia/Shanghai";
-            _module.args.disks = ["/dev/nvme0n1"]; # Disko
-          }
-        ];
-      };
+        {
+          networking.hostName = "Aristotle";
+          time.timeZone = "Asia/Shanghai";
+          _module.args.disks = ["/dev/nvme0n1"]; # Disko
+        }
+      ];
     };
 
     ### Darwin
     darwinConfigurations = {
-      "Plato" = inputs.nix-darwin.lib.darwinSystem {
-        system = "x86_64-darwin";
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./darwin/profiles/core
-          ./darwin/profiles/device-type/desktop
+      "Plato" = mkDarwin "x86_64-darwin" [
+        ./darwin/profiles/core
+        ./darwin/profiles/device-type/desktop
 
-          ./users/guanranwang/darwin/profiles/core
-          ./users/guanranwang/darwin/profiles/device-type/desktop
-          ./users/guanranwang/darwin/profiles/opt-in/clash-meta-client.nix
+        ./users/guanranwang/darwin/profiles/core
+        ./users/guanranwang/darwin/profiles/device-type/desktop
+        ./users/guanranwang/darwin/profiles/opt-in/clash-meta-client.nix
 
-          ./darwin/hardware/apple/imac/18-3
+        ./darwin/hardware/apple/imac/18-3
 
-          {
-            networking.hostName = "Plato";
-            time.timeZone = "Asia/Shanghai";
-          }
-        ];
-      };
+        {
+          networking.hostName = "Plato";
+          time.timeZone = "Asia/Shanghai";
+        }
+      ];
     };
   };
 }
