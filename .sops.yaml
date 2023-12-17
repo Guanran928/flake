@@ -1,12 +1,15 @@
 keys:
+  # Users
+  - &users:
+    - &guanranwang age129yyxyz686qj88ce5v77ahelqqwt6zz94mzzls0ny4hq76psrd9qhc79kq
 
-  - &admin_guanranwang age129yyxyz686qj88ce5v77ahelqqwt6zz94mzzls0ny4hq76psrd9qhc79kq
-
+  # Hosts
   # nix-shell -p ssh-to-age --run 'cat /etc/ssh/ssh_host_ed25519_key.pub | ssh-to-age'
-  - &server_81fw age1hm6pkvt4d640wmjhxg5wxfwkp9zhcqre9klr4zg5kx2qx7vyhuuqlytmnp
+  - &hosts:
+    - &aristotle age1hm6pkvt4d640wmjhxg5wxfwkp9zhcqre9klr4zg5kx2qx7vyhuuqlytmnp
 creation_rules:
-  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+  - path_regex: users/guanranwang/secrets.yaml$
     key_groups:
-    - age:
-      - *admin_guanranwang
-      - *server_81fw
+      - age:
+          - *guanranwang
+          - *aristotle
