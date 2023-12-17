@@ -182,7 +182,7 @@
           ./users/guanranwang/nixos/profiles/opt-in/torrenting
 
           # Hardware
-          ./nixos/hardware/lenovo/legion/81fw
+          ./nixos/hosts/Aristotle
           ./nixos/profiles/opt-in/lanzaboote.nix
           ./nixos/profiles/opt-in/impermanence.nix
           ./nixos/profiles/opt-in/disko.nix
