@@ -1,5 +1,6 @@
 {
   #inputs,
+  lib,
   ...
 }: {
   imports = [
@@ -12,6 +13,12 @@
     ../udiskie
     ../waybar
   ];
+
+  home.sessionVariables = {
+    QT_IM_MODULE = lib.mkForce "wayland"; # use text-input-v2
+    GTK_IM_MODULE = lib.mkForce "wayland"; # use text-input-v3
+    NIXOS_OZONE_WL = "1"; # let electron applications use wayland
+  };
 
   wayland.windowManager.hyprland = {
     enable = true;
