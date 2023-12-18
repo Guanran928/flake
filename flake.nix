@@ -163,7 +163,7 @@
       };
 
     mkDarwin = system: modules:
-      inputs.nixpkgs.lib.nixosSystem {
+      inputs.nix-darwin.lib.darwinSystem {
         inherit system modules;
         specialArgs = {inherit inputs;};
       };
@@ -214,7 +214,7 @@
         ./users/guanranwang/darwin/profiles/device-type/desktop
         ./users/guanranwang/darwin/profiles/opt-in/clash-meta-client.nix
 
-        ./darwin/hardware/apple/imac/18-3
+        ./darwin/hosts/Plato
 
         {
           networking.hostName = "Plato";

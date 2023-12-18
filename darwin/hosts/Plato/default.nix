@@ -1,3 +1,4 @@
+# iMac 18,3 (2017)
 _: {
   networking.knownNetworkServices = [
     "Ethernet"
