@@ -1,21 +1,28 @@
-{
-  modulesPath,
-  inputs,
-  ...
-}: {
+{...}: {
   imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-    inputs.nixos-hardware.nixosModules.lenovo-legion-y530-15ich
+    # OS
+    ../../profiles/core
+    ../../profiles/device-type/laptop
+    ../../profiles/opt-in/zram-generator.nix
+    ../../profiles/opt-in/gaming.nix
+    ../../profiles/opt-in/wayland.nix
+    ../../profiles/opt-in/virt-manager.nix
+
+    # User
+    ../../../users/guanranwang/nixos/profiles/core
+    ../../../users/guanranwang/nixos/profiles/device-type/laptop
+    ../../../users/guanranwang/nixos/profiles/opt-in/clash-meta-client.nix
+    ../../../users/guanranwang/nixos/profiles/opt-in/gaming
+    ../../../users/guanranwang/nixos/profiles/opt-in/torrenting
+
+    # Hardware
+    ./hardware-configuration.nix
+    ../../profiles/opt-in/lanzaboote.nix
+    ../../profiles/opt-in/impermanence.nix
+    ../../profiles/opt-in/disko.nix
   ];
 
-  services.hdapsd.enable = false;
-  myFlake.hardware.components = {
-    audio.enable = true;
-    bluetooth.enable = true;
-    tpm.enable = true;
-  };
-
-  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid"];
-  boot.kernelModules = ["kvm-intel"];
-  nixpkgs.hostPlatform = "x86_64-linux";
+  networking.hostName = "Aristotle";
+  time.timeZone = "Asia/Shanghai";
+  _module.args.disks = ["/dev/nvme0n1"]; # Disko
 }

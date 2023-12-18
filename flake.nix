@@ -174,53 +174,12 @@
 
     ### NixOS
     nixosConfigurations = {
-      "Aristotle" = mkNixOS "x86_64-linux" [
-        # OS
-        ./nixos/profiles/core
-        ./nixos/profiles/device-type/laptop
-        ./nixos/profiles/opt-in/zram-generator.nix
-        ./nixos/profiles/opt-in/gaming.nix
-        ./nixos/profiles/opt-in/wayland.nix
-        ./nixos/profiles/opt-in/virt-manager.nix
-
-        # User
-        ./users/guanranwang/nixos/profiles/core
-        ./users/guanranwang/nixos/profiles/device-type/laptop
-        ./users/guanranwang/nixos/profiles/opt-in/clash-meta-client.nix
-        ./users/guanranwang/nixos/profiles/opt-in/gaming
-        ./users/guanranwang/nixos/profiles/opt-in/torrenting
-
-        # Hardware
-        ./nixos/hosts/Aristotle
-        ./nixos/profiles/opt-in/lanzaboote.nix
-        ./nixos/profiles/opt-in/impermanence.nix
-        ./nixos/profiles/opt-in/disko.nix
-
-        {
-          networking.hostName = "Aristotle";
-          time.timeZone = "Asia/Shanghai";
-          _module.args.disks = ["/dev/nvme0n1"]; # Disko
-        }
-      ];
+      "Aristotle" = mkNixOS "x86_64-linux" [./nixos/hosts/Aristotle];
     };
 
     ### Darwin
     darwinConfigurations = {
-      "Plato" = mkDarwin "x86_64-darwin" [
-        ./darwin/profiles/core
-        ./darwin/profiles/device-type/desktop
-
-        ./users/guanranwang/darwin/profiles/core
-        ./users/guanranwang/darwin/profiles/device-type/desktop
-        ./users/guanranwang/darwin/profiles/opt-in/clash-meta-client.nix
-
-        ./darwin/hosts/Plato
-
-        {
-          networking.hostName = "Plato";
-          time.timeZone = "Asia/Shanghai";
-        }
-      ];
+      "Plato" = mkDarwin "x86_64-darwin" [./darwin/hosts/Plato];
     };
   };
 }
