@@ -16,6 +16,7 @@
 
   home.sessionVariables = {
     GTK_IM_MODULE = lib.mkForce "wayland"; # use text-input-v3
+    NIXOS_OZONE_WL = "1"; # let electron applications use wayland
   };
 
   dconf.settings = {

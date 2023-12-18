@@ -5,7 +5,6 @@
     ../../profiles/device-type/laptop
     ../../profiles/opt-in/zram-generator.nix
     ../../profiles/opt-in/gaming.nix
-    ../../profiles/opt-in/wayland.nix
     ../../profiles/opt-in/virt-manager.nix
 
     # User
