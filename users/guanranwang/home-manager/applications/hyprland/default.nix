@@ -38,7 +38,7 @@
   };
 
   xdg.configFile."hypr" = {
-    source = ./hyprland;
+    source = ./hypr;
     recursive = true;
   };
 }
