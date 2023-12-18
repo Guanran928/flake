@@ -1,6 +1,5 @@
 {
   #inputs,
-  pkgs,
   ...
 }: {
   imports = [
@@ -13,8 +12,6 @@
     ../udiskie
     ../waybar
   ];
-
-  home.packages = with pkgs; [swww];
 
   wayland.windowManager = {
     hyprland = {
