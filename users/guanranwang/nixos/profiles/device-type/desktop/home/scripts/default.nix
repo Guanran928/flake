@@ -1,6 +1,18 @@
 {pkgs, ...}: let
   binPATH = ".local/bin";
 in {
+  home.packages = with pkgs; [
+    pamixer
+    brightnessctl
+    grim
+    slurp
+    swappy
+    jq
+    #mpvpaper
+    #swww
+    libnotify
+    dunst
+  ];
   home.sessionPath = ["$HOME/${binPATH}"];
   home.file = builtins.mapAttrs (_name: value: value // {executable = true;}) {
     ${binPATH} = {

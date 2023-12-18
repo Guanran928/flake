@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   imports = [
+    ../common/wm.nix
     ../dunst
     ../picom
     ../polybar

@@ -5,6 +5,8 @@
   ...
 }: {
   imports = [
+    ../common/wayland.nix
+    ../common/wm.nix
     ../cliphist
     ../dunst
     ../rofi
@@ -16,29 +18,7 @@
 
   home.sessionVariables = {
     GTK_IM_MODULE = lib.mkForce "wayland"; # use text-input-v3
-    NIXOS_OZONE_WL = "1"; # let electron applications use wayland
   };
-
-  dconf.settings = {
-    "org/gnome/desktop/wm/preferences" = {
-      "button-layout" = "icon,appmenu:"; # remove csd window buttons
-    };
-  };
-
-  home.packages = with pkgs; [
-    pamixer
-    brightnessctl
-    playerctl
-    pavucontrol
-    wl-clipboard
-    cliphist
-    grim
-    slurp
-    swappy
-    #mpvpaper
-    libnotify
-    jq
-  ];
 
   wayland.windowManager.sway = {
     enable = true;
