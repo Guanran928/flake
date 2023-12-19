@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }: {
   myFlake.hardware.accessories.xboxOneController.enable = lib.mkDefault true;
@@ -11,6 +12,18 @@
       start = "${lib.getExe pkgs.libnotify} 'GameMode Activated' 'GameMode Activated! Enjoy enhanced performance. 🚀'";
       end = "${lib.getExe pkgs.libnotify} 'GameMode Deactivated' 'GameMode Deactivated. Back to normal mode. ⏹️'";
     };
+  };
+
+  # Integrate with NVIDIA Optimus offloading.
+  # https://github.com/FeralInteractive/gamemode#note-for-hybrid-gpu-users
+  # https://github.com/NixOS/nixpkgs/pull/273177
+  environment.sessionVariables = {
+    "GAMEMODERUNEXEC" = let
+      inherit (config.hardware.nvidia.prime) offload;
+    in
+      lib.mkIf
+      (builtins.elem "nvidia" config.services.xserver.videoDrivers || offload.enable || offload.enableOffloadCmd)
+      (lib.mkDefault "nvidia-offload");
   };
 
   ### https://wiki.archlinux.org/title/Gaming#Improving_performance
