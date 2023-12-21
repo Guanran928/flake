@@ -1,6 +1,6 @@
 {lib, ...}: {
   ### sops-nix
-  sops.age.sshKeyPaths = lib.mkForce ["/nix/persist/system/etc/ssh/ssh_host_ed25519_key"];
+  sops.age.sshKeyPaths = lib.mkForce ["/persist/etc/ssh/ssh_host_ed25519_key"];
 
   fileSystems."/persist".neededForBoot = true;
   environment.persistence."/persist" = {
