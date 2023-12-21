@@ -1,7 +1,6 @@
 {...}: {
   imports = [
-    ./boot
-    ./hardware
-    ./networking
+    # utils that is used internally
+    ./myFlake
   ];
 }
