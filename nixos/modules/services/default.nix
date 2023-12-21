@@ -1,0 +1,5 @@
+{...}: {
+  imports = [
+    ./clash.nix
+  ];
+}

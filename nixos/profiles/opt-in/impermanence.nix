@@ -9,7 +9,7 @@
       "/var/log"
       "/var/lib"
 
-      "/etc/clash-meta" # clash-meta
+      "/etc/clash" # clash
       "/etc/secureboot" # sbctl, lanzaboote
     ];
     files = [
