@@ -54,6 +54,11 @@
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-monitored = {
+      url = "github:ners/nix-monitored";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nix-filter.follows = "nix-filter";
+    };
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware";
     };
@@ -108,6 +113,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.systems.follows = "systems-linux";
     };
+    nix-filter = {
+      url = "github:numtide/nix-filter";
+    };
     nvfetcher = {
       url = "github:berberman/nvfetcher";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -127,7 +135,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
-
     wlroots = {
       type = "gitlab";
       host = "gitlab.freedesktop.org";
@@ -141,9 +148,6 @@
       inputs.hyprland-protocols.follows = "hyprland-protocols";
       inputs.systems.follows = "systems-linux";
     };
-
-    # TODO: Unused, Soon(TM)
-    #daeuniverse.url = "github:daeuniverse/flake.nix";
 
     ## Non-Flake
     ### My NeoVim configuration
