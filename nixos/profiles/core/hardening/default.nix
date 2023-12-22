@@ -1,7 +1,10 @@
-_: {
+{...}: {
   ### Basic hardening
   # ref: https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/profiles/hardened.nix
   # ref: https://madaidans-insecurities.github.io/guides/linux-hardening.html
+  imports = [
+    ./sysctl.nix
+  ];
 
   environment.etc.machine-id.text = "b08dfa6083e7567a1921a715000001fb"; # whonix id
   security.apparmor.enable = true;
