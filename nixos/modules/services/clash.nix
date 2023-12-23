@@ -7,7 +7,7 @@
   cfg = config.services.clash;
 in {
   options.services.clash = {
-    enable = lib.mkEnableOption "Whether to enable Clash.";
+    enable = lib.mkEnableOption "Whether to enable Clash, A rule-based proxy in Go";
     package = lib.mkPackageOption pkgs "clash" {};
   };
 
@@ -20,27 +20,27 @@ in {
     };
 
     ### systemd service
+    # https://en.clash.wiki/introduction/service.html#systemd
+    # https://wiki.metacubex.one/startup/service/#systemd
     systemd.services."clash" = {
-      description = "Clash Daemon";
+      description = "Clash daemon, A rule-based proxy in Go.";
       after = ["network-online.target"];
       wantedBy = ["multi-user.target"];
       serviceConfig = {
-        Type = "simple";
-        WorkingDirectory = "/etc/clash";
+        # TODO: DynamicUser
+        # DynamicUser = true;
+        # LoadCredential = "credentials:${config.sops.secrets."clash-config".path}";
+
+        # https://man.archlinux.org/man/systemd.exec.5
+        ConfigurationDirectory = "clash";
         User = [config.users.users."clash".name];
         Group = [config.users.groups."clash".name];
         ExecStart = "${lib.getExe cfg.package} -d /etc/clash";
-        Restart = "on-failure";
-        CapabilityBoundingSet = [
-          "CAP_NET_ADMIN"
-          "CAP_NET_BIND_SERVICE"
-          "CAP_NET_RAW"
-        ];
-        AmbientCapabilities = [
-          "CAP_NET_ADMIN"
-          "CAP_NET_BIND_SERVICE"
-          "CAP_NET_RAW"
-        ];
+
+        # Capability, inherited from Clash wiki
+        # https://man.archlinux.org/man/core/man-pages/capabilities.7.en
+        CapabilityBoundingSet = ["CAP_NET_ADMIN" "CAP_NET_BIND_SERVICE" "CAP_NET_RAW"];
+        AmbientCapabilities = ["CAP_NET_ADMIN" "CAP_NET_BIND_SERVICE" "CAP_NET_RAW"];
       };
     };
   };
