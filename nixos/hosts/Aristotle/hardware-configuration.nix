@@ -15,6 +15,9 @@
     tpm.enable = true;
   };
 
+  # √(1920² + 1080²) px ÷ 15.60 in ≃ 141.211998082 dpi
+  services.xserver.dpi = 141;
+
   boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid"];
   boot.kernelModules = ["kvm-intel"];
   nixpkgs.hostPlatform = "x86_64-linux";
