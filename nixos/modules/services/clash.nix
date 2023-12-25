@@ -47,8 +47,8 @@ in {
 
         # https://man.archlinux.org/man/systemd.exec.5
         ConfigurationDirectory = "clash";
-        User = [config.users.users."clash".name];
-        Group = [config.users.groups."clash".name];
+        User = config.users.users."clash".name;
+        Group = config.users.groups."clash".name;
         ExecStart = builtins.replaceStrings ["\n"] [" "] ''
           ${lib.getExe cfg.package}
           -d /etc/clash

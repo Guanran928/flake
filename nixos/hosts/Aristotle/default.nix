@@ -10,7 +10,7 @@
     # User
     ../../../users/guanranwang/nixos/profiles/core
     ../../../users/guanranwang/nixos/profiles/device-type/laptop
-    ../../../users/guanranwang/nixos/profiles/opt-in/clash-meta-client.nix
+    ../../../users/guanranwang/nixos/profiles/opt-in/clash-meta-client
     ../../../users/guanranwang/nixos/profiles/opt-in/gaming
     ../../../users/guanranwang/nixos/profiles/opt-in/torrenting
 
