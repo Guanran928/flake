@@ -2,6 +2,7 @@
   config,
   lib,
   inputs,
+  pkgs,
   ...
 }: {
   imports = [
@@ -38,6 +39,21 @@
 
   ### Default Programs
   environment.defaultPackages = [];
+  # In addtion of https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/config/system-path.nix
+  environment.systemPackages = with pkgs; [
+    unzip
+    wget
+    tree
+    file
+    htop
+
+    lsof
+    ltrace
+
+    dnsutils
+    pciutils
+    usbutils
+  ];
   programs.dconf.enable = true;
   programs.nano.enable = false; # make sure to add another editor and set the $EDITOR variable
   programs.neovim = {
