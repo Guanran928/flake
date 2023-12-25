@@ -9,6 +9,20 @@ in {
   options.services.clash = {
     enable = lib.mkEnableOption "Whether to enable Clash, A rule-based proxy in Go";
     package = lib.mkPackageOption pkgs "clash" {};
+
+    # TODO
+    webui = lib.mkOption {
+      default = null;
+      type = lib.types.nullOr lib.types.path;
+    };
+    configFile = lib.mkOption {
+      default = null;
+      type = lib.types.nullOr lib.types.path;
+    };
+    extraOpts = lib.mkOption {
+      default = null;
+      type = lib.types.nullOr lib.types.string;
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -35,7 +49,13 @@ in {
         ConfigurationDirectory = "clash";
         User = [config.users.users."clash".name];
         Group = [config.users.groups."clash".name];
-        ExecStart = "${lib.getExe cfg.package} -d /etc/clash";
+        ExecStart = builtins.replaceStrings ["\n"] [" "] ''
+          ${lib.getExe cfg.package}
+          -d /etc/clash
+          ${lib.optionalString (cfg.webui != null) "-ext-ui ${cfg.webui}"}
+          ${lib.optionalString (cfg.configFile != null) "-f ${cfg.configFile}"}
+          ${lib.optionalString (cfg.extraOpts != null) cfg.extraOpts}
+        '';
 
         # Capability, inherited from Clash wiki
         # https://man.archlinux.org/man/core/man-pages/capabilities.7.en

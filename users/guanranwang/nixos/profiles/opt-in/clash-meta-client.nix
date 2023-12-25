@@ -7,6 +7,8 @@
   services.clash = {
     enable = true;
     package = pkgs.clash-meta;
+    configFile = config.sops.secrets."clash-config".path;
+    webui = inputs.self.packages.${pkgs.system}.metacubexd;
   };
 
   ### sops-nix
@@ -14,7 +16,6 @@
     owner = config.users.users."clash".name;
     group = config.users.groups."clash".name;
     restartUnits = ["clash.service"];
-    path = "/etc/clash/config.yaml";
   };
 
   ### System proxy settings
@@ -30,5 +31,4 @@
   #   - https://yacd.haishan.me
   # - clash-dashboard (buggy):
   #   - https://clash.razord.top
-  environment.etc."clash/metacubexd".source = inputs.self.packages.${pkgs.system}.metacubexd;
 }
