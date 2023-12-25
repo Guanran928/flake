@@ -61,6 +61,30 @@ in {
         # https://man.archlinux.org/man/core/man-pages/capabilities.7.en
         CapabilityBoundingSet = ["CAP_NET_ADMIN" "CAP_NET_BIND_SERVICE" "CAP_NET_RAW"];
         AmbientCapabilities = ["CAP_NET_ADMIN" "CAP_NET_BIND_SERVICE" "CAP_NET_RAW"];
+
+        # Hardening, experimental since I have no idea what am I doing
+        NoNewPrivileges = true;
+        MemoryDenyWriteExecute = true;
+        LockPersonality = true;
+
+        RestrictRealtime = true;
+        RestrictSUIDSGID = true;
+
+        ProtectSystem = "strict";
+        ProtectProc = "noaccess";
+        ProtectHome = true;
+        ProtectClock = true;
+        ProtectKernelLogs = true;
+        ProtectControlGroups = true;
+        ProtectKernelModules = true;
+        ProtectHostname = true;
+        ProtectKernelTunables = true;
+
+        PrivateDevices = true;
+        #PrivateNetwork = true;
+        PrivateTmp = true;
+        PrivateUsers = true;
+        PrivateMounts = true;
       };
     };
   };
