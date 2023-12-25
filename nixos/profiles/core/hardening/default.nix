@@ -8,7 +8,8 @@
 
   environment.etc.machine-id.text = "b08dfa6083e7567a1921a715000001fb"; # whonix id
   security.apparmor.enable = true;
-  security.sudo.execWheelOnly = true;
+  security.sudo-rs.enable = true;
+  security.sudo-rs.execWheelOnly = true;
 
   boot.blacklistedKernelModules = [
     # Obscure network protocols
