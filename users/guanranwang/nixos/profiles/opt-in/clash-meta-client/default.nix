@@ -25,14 +25,8 @@
     owner = config.systemd.services."clash".serviceConfig.User;
     group = config.systemd.services."clash".serviceConfig.Group;
     content =
-      ''
-        use: &use
-          type: select
-          use:
-          - efcloud
-          - spcloud
-          #- pawdroid
-
+      builtins.readFile ./config.yaml
+      + ''
         proxy-providers:
           efcloud:
             <<: *p
@@ -43,8 +37,7 @@
           #pawdroid:
           #  <<: *p
           #  url: "${config.sops.placeholder."clash/proxy-providers/pawdroid"}"
-      ''
-      + builtins.readFile ./config.yaml;
+      '';
   };
 
   ### System proxy settings

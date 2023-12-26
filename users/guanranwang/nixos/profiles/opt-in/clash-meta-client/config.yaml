@@ -5,6 +5,13 @@ pr: &pr { type: select, proxies: [ 默认, 香港, 台湾, 日本, 新加坡, �
 # 这里是订阅更新和延迟测试相关的
 p: &p { type: http, interval: 3600, health-check: { enable: true, url: https://www.gstatic.com/generate_204, interval: 300, }, }
 
+use: &use
+  type: select
+  use:
+  - efcloud
+  - spcloud
+  #- pawdroid
+
 ######### 锚点 end #######
 
 allow-lan: true
@@ -91,25 +98,25 @@ proxy-groups:
   - { name: 自动选择, <<: *use, tolerance: 2, type: url-test }
 
 rules:
-  - GEOIP,lan,直连,no-resolve
-  - GEOSITE,biliintl,哔哩东南亚
-  - GEOSITE,ehentai,ehentai
-  - GEOSITE,github,Github
-  - GEOSITE,twitter,Twitter
-  - GEOSITE,youtube,YouTube
-  - GEOSITE,google,Google
-  - GEOSITE,telegram,Telegram
-  - GEOSITE,netflix,NETFLIX
-  - GEOSITE,bilibili,哔哩哔哩
-  - GEOSITE,bahamut,巴哈姆特
-  - GEOSITE,spotify,Spotify
-  - GEOSITE,pixiv,Pixiv
-  - GEOSITE,geolocation-!cn,其他
+  - GEOIP, lan, DIRECT, no-resolve
+  - GEOSITE, biliintl, 哔哩东南亚
+  - GEOSITE, ehentai, ehentai
+  - GEOSITE, github, Github
+  - GEOSITE, twitter, Twitter
+  - GEOSITE, youtube, YouTube
+  - GEOSITE, google, Google
+  - GEOSITE, telegram, Telegram
+  - GEOSITE, netflix, NETFLIX
+  - GEOSITE, bilibili, 哔哩哔哩
+  - GEOSITE, bahamut, 巴哈姆特
+  - GEOSITE, spotify, Spotify
+  - GEOSITE, pixiv, Pixiv
+  - GEOSITE, geolocation-!cn, 其他
 
-  - GEOIP,google,Google
-  - GEOIP,netflix,NETFLIX
-  - GEOIP,telegram,Telegram
-  - GEOIP,twitter,Twitter
-  - GEOSITE,CN,国内
-  - GEOIP,CN,国内
-  - MATCH,其他
+  - GEOIP, google, Google
+  - GEOIP, netflix, NETFLIX
+  - GEOIP, telegram, Telegram
+  - GEOIP, twitter, Twitter
+  - GEOSITE, CN, 国内
+  - GEOIP, CN, 国内
+  - MATCH, 其他
