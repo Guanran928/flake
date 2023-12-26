@@ -2,6 +2,8 @@
   xdg.dataFile = {
     ### Local
     "backgrounds/unixcloud.jpg".source = ./wallpapers/unixcloud.jpg; # https://www.deviantart.com/georgegach/art/Unix-Cloud-818259008
+    "backgrounds/Minato-Aqua.png".source = ./wallpapers/Minato-Aqua.png; # https://t.me/AnotherCreations/600
+    "backgrounds/Minato-Aqua-Dark.png".source = ./wallpapers/Minato-Aqua-Dark.png; # https://t.me/AnotherCreations/602
 
     ### Online
     "backgrounds/aqua.png".source = pkgs.fetchurl {

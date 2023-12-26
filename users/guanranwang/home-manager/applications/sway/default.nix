@@ -49,7 +49,7 @@
       };
       output = {
         eDP-1 = {
-          bg = "~/.local/share/backgrounds/aqua.png fill";
+          bg = "~/.local/share/backgrounds/Minato-Aqua-Dark.png fill";
         };
       };
 
