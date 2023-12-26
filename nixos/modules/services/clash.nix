@@ -43,17 +43,17 @@ in {
       serviceConfig = {
         # TODO: DynamicUser
         # DynamicUser = true;
-        # LoadCredential = "credentials:${config.sops.secrets."clash-config".path}";
+        User = config.users.users."clash".name;
+        Group = config.users.groups."clash".name;
 
         # https://man.archlinux.org/man/systemd.exec.5
         ConfigurationDirectory = "clash";
-        User = config.users.users."clash".name;
-        Group = config.users.groups."clash".name;
+        LoadCredential = "configuration:${cfg.configFile}";
         ExecStart = builtins.replaceStrings ["\n"] [" "] ''
           ${lib.getExe cfg.package}
           -d /etc/clash
           ${lib.optionalString (cfg.webui != null) "-ext-ui ${cfg.webui}"}
-          ${lib.optionalString (cfg.configFile != null) "-f ${cfg.configFile}"}
+          ${lib.optionalString (cfg.configFile != null) "-f \${CREDENTIALS_DIRECTORY}/configuration"}
           ${lib.optionalString (cfg.extraOpts != null) cfg.extraOpts}
         '';
 
