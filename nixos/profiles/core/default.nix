@@ -7,6 +7,7 @@
 }: {
   imports = [
     ./hardening
+    ./networking
     ./nix
     ./packages
 
@@ -82,18 +83,4 @@
   #               this shouldn't affect non-nvidia machines.
   nixpkgs.config.nvidia.acceptLicense = true;
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
-
-  ### https://wiki.archlinux.org/title/Sysctl#Improving_performance
-  boot.kernelModules = ["tcp_bbr"];
-  boot.kernel.sysctl = {
-    "net.ipv4.tcp_fastopen" = "3";
-
-    "net.ipv4.tcp_keepalive_time" = "80";
-    "net.ipv4.tcp_keepalive_intvl" = "10";
-    "net.ipv4.tcp_keepalive_probes" = "6";
-    "net.ipv4.tcp_mtu_probing" = "1";
-
-    "net.core.default_qdisc" = "cake";
-    "net.ipv4.tcp_congestion_control" = "bbr";
-  };
 }

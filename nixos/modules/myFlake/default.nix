@@ -2,6 +2,5 @@
   imports = [
     ./boot
     ./hardware
-    ./networking
   ];
 }
