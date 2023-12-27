@@ -8,7 +8,7 @@
     enable = true;
     package = pkgs.clash-meta;
     configFile = config.sops.templates."clash.yaml".path;
-    webui = inputs.self.packages.${pkgs.system}.metacubexd;
+    webui = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.metacubexd;
   };
 
   ### sops-nix

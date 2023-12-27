@@ -24,7 +24,7 @@
   wayland.windowManager.hyprland = {
     enable = true;
     enableNvidiaPatches = true;
-    #plugins = with inputs.hyprland-plugins.packages.${pkgs.system}; [
+    #plugins = with inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}; [
     #  csgo-vulkan-fix
     #];
 

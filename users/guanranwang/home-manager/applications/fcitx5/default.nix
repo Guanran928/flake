@@ -10,7 +10,7 @@
         fcitx5-chinese-addons
         #fcitx5-rime
       ])
-      ++ (with inputs.berberman.packages.${pkgs.system}; [
+      ++ (with inputs.berberman.packages.${pkgs.stdenv.hostPlatform.system}; [
         fcitx5-pinyin-moegirl
         fcitx5-pinyin-zhwiki
       ]);

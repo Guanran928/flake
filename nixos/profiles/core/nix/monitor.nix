@@ -3,7 +3,7 @@
   inputs,
   ...
 }: let
-  nom = inputs.nix-monitored.packages.${pkgs.system}.default;
+  nom = inputs.nix-monitored.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in {
   nix.package = nom;
   nixpkgs.overlays = [

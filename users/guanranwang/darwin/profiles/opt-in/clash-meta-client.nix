@@ -27,5 +27,5 @@ in {
   };
 
   # Web interface
-  environment.etc."clash-meta/metacubexd".source = inputs.self.packages.${pkgs.system}.metacubexd;
+  environment.etc."clash-meta/metacubexd".source = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.metacubexd;
 }
