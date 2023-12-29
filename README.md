@@ -1,27 +1,16 @@
 # nix{os,-darwin} config
+
 It just works™
 
-
-## Infomation
-- Flakes: Yes
-- Home Manager: Yes
-
-### Machine-specific (Aristotle)
-- File system: Btrfs
-- System encryption: Yes (LUKS)
-
-### User-specific (me)
-- Secrets: sops-nix
-- Display server: Wayland
-- Desktop-environment: Sway
-
 ## Structure
+
 ```
  .
 │   ### System configuration
+│   # Darwin configuration is not actively maintained and sometimes it might break.
 ├──  darwin
 ├──  nixos
-│  ├──  hardware
+│  ├──  hosts
 │  ├──  modules
 │  └──  profiles
 │
@@ -38,17 +27,19 @@ It just works™
 │
 └──  README.md
 ```
+
 ## Installation:
 
-  ~~Please don't.~~
+Please don't.
 
-  1.
-    Clone this repository
-    `$ git clone https://github.com/Guanran928/flake.git`
+### NixOS:
 
-  2.
-    Add your device's hardware configuration in `./ (nixos/darwin) /hardware` and `./flake.nix`
+1. Clone this repository
 
-  3.
-    Install NixOS
-    `$ nixos-install --flake <this flake's directory>#<hostname>`
+   `$ git clone https://github.com/Guanran928/flake.git`
+
+2. Add your device's hardware configuration in `./flake.nix` and `./nixos/hosts/<hostname>`
+
+3. Install NixOS
+
+   `$ nixos-install --flake <this flake's directory>#<hostname>`
