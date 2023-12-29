@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-ydotool key 20:1 20:0 # press t
-echo $(zenity --width 500 --entry) | wl-copy
-ydotool key 29:1 47:1 # press ctrl + v
-sleep 0.1
-ydotool key 29:0 47:0 28:1 28:0 # release ctrl + v, press return
