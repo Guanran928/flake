@@ -4,9 +4,11 @@
   ...
 }: {
   programs.go.enable = true;
-
-  ### LSP
-  home.packages = with pkgs; [gopls];
+  home.packages = with pkgs; [
+    gopls # lsp
+    delve # debugger
+    go-tools # linter and static analysis
+  ];
   ### VSCode
   programs.vscode.extensions = with pkgs.vscode-extensions; [golang.go];
 
