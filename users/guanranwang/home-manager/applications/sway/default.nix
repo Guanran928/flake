@@ -24,7 +24,6 @@
     enable = true;
     extraOptions = ["--unsupported-gpu" "-Dnoscanout"];
     wrapperFeatures.gtk = true;
-    systemd.enable = true;
     systemd.xdgAutostart = true;
     config = {
       ### Default Applications
@@ -32,7 +31,10 @@
       menu = lib.getExe config.programs.rofi.package;
 
       ### Visuals
-      #window.titlebar = false;
+      output."*".bg = "~/.local/share/backgrounds/Minato-Aqua-Dark.png fill";
+      window.titlebar = false;
+      gaps.inner = 4;
+      gaps.outer = 4;
       bars = [
         {
           command = lib.getExe pkgs.waybar;
@@ -42,32 +44,17 @@
         #  position = "top";
         #}
       ];
-      gaps = {
-        inner = 4;
-        outer = 4;
-        #smartGaps = true;
-      };
-      output = {
-        eDP-1 = {
-          bg = "~/.local/share/backgrounds/Minato-Aqua-Dark.png fill";
-        };
-      };
 
       ### Inputs
-      input = {
-        "*" = {
-          accel_profile = "flat";
-          natural_scroll = "enabled";
+      input."*" = {
+        accel_profile = "flat";
+        natural_scroll = "enabled";
 
-          # touchpad
-          tap = "enabled";
-          drag = "enabled";
-          dwt = "disabled";
-        };
+        # touchpad
+        tap = "enabled";
+        drag = "enabled";
+        dwt = "disabled";
       };
-
-      ### Autostarts
-      startup = [];
 
       ### Keybinds
       modifier = "Mod4";
@@ -85,9 +72,9 @@
           # Window
           "${modifier}+s" = "split toggle";
           "${modifier}+v" = "floating toggle";
-          "${modifier}+f" = "fullscreen";
+          "${modifier}+f" = "fullscreen toggle";
           "${modifier}+q" = "kill";
-          "${modifier}+Shift+e" = "exec ${pkgs.sway}/bin/swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' '${pkgs.sway}/bin/swaymsg exit'";
+          "${modifier}+Shift+e" = "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'";
 
           # Move around
           "${modifier}+h" = "focus left";
