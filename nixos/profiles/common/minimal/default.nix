@@ -1,6 +1,4 @@
-{modulesPath, ...}:
-# no i dont actually own a server
-{
+{modulesPath, ...}: {
   imports = [
     (modulesPath + "/profiles/minimal.nix")
   ];

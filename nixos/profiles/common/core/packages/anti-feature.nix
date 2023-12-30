@@ -30,7 +30,7 @@
         #"nvidia-persistenced"
         "xow_dongle-firmware"
         #"facetimehd-firmware"
-        "osu-lazer-bin-2023.1221.0"
+        "osu-lazer-bin-2023.1224.0"
         "spotify"
         "steam"
         "steam-original"

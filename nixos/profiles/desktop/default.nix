@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
-    ./graphical
+    ../common/core
+    ../common/graphical
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_zen;

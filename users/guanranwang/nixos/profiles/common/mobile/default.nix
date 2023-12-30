@@ -1,7 +1,3 @@
-{...}: {
-  imports = [
-    ../desktop
-  ];
-
+_: {
   home-manager.users.guanranwang = import ./home;
 }
