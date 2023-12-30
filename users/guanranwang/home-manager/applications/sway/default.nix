@@ -79,72 +79,63 @@
         setBrightness = "/home/guanranwang/.local/bin/wrapped-brightnessctl";
         setVolume = "/home/guanranwang/.local/bin/wrapped-pamixer";
         screenshot = "/home/guanranwang/.local/bin/screenshot";
-      in {
-        ### Sway itself
-        # Window
-        "${modifier}+s" = "split toggle";
-        "${modifier}+v" = "floating toggle";
-        "${modifier}+f" = "fullscreen";
-        "${modifier}+q" = "kill";
-        "${modifier}+Shift+e" = "exec ${pkgs.sway}/bin/swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' '${pkgs.sway}/bin/swaymsg exit'";
+      in
+        {
+          ### Sway itself
+          # Window
+          "${modifier}+s" = "split toggle";
+          "${modifier}+v" = "floating toggle";
+          "${modifier}+f" = "fullscreen";
+          "${modifier}+q" = "kill";
+          "${modifier}+Shift+e" = "exec ${pkgs.sway}/bin/swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' '${pkgs.sway}/bin/swaymsg exit'";
 
-        # Move around
-        "${modifier}+h" = "focus left";
-        "${modifier}+j" = "focus down";
-        "${modifier}+k" = "focus up";
-        "${modifier}+l" = "focus right";
+          # Move around
+          "${modifier}+h" = "focus left";
+          "${modifier}+j" = "focus down";
+          "${modifier}+k" = "focus up";
+          "${modifier}+l" = "focus right";
 
-        # Workspaces
-        # Switch to workspace
-        "${modifier}+1" = "workspace 1";
-        "${modifier}+2" = "workspace 2";
-        "${modifier}+3" = "workspace 3";
-        "${modifier}+4" = "workspace 4";
-        "${modifier}+5" = "workspace 5";
-        "${modifier}+6" = "workspace 6";
-        "${modifier}+7" = "workspace 7";
-        "${modifier}+8" = "workspace 8";
-        "${modifier}+9" = "workspace 9";
-        # Move focused Window to workspace
-        "${modifier}+Shift+1" = "move container to workspace 1";
-        "${modifier}+Shift+2" = "move container to workspace 2";
-        "${modifier}+Shift+3" = "move container to workspace 3";
-        "${modifier}+Shift+4" = "move container to workspace 4";
-        "${modifier}+Shift+5" = "move container to workspace 5";
-        "${modifier}+Shift+6" = "move container to workspace 6";
-        "${modifier}+Shift+7" = "move container to workspace 7";
-        "${modifier}+Shift+8" = "move container to workspace 8";
-        "${modifier}+Shift+9" = "move container to workspace 9";
+          ### Execute other stuff
+          # Launch applications
+          "${modifier}+Return" = "exec ${terminal}";
+          "${modifier}+w" = "exec ${pkgs.xdg-utils}/bin/xdg-open http:";
+          "${modifier}+e" = "exec ${pkgs.xdg-utils}/bin/xdg-open ~";
 
-        ### Execute other stuff
-        # Launch applications
-        "${modifier}+Return" = "exec ${terminal}";
-        "${modifier}+w" = "exec ${pkgs.xdg-utils}/bin/xdg-open http:";
-        "${modifier}+e" = "exec ${pkgs.xdg-utils}/bin/xdg-open ~";
+          # Rofi
+          "${modifier}+d" = "exec ${menu} -show drun -show-icons -icon-theme ${config.gtk.iconTheme.name}";
+          "${modifier}+Shift+d" = "exec ${lib.getExe pkgs.cliphist} list | ${menu} -dmenu | ${lib.getExe pkgs.cliphist} decode | ${pkgs.wl-clipboard}/bin/wl-copy";
+          "${modifier}+Shift+l" = ''exec ${menu} -modi "power-menu:rofi-power-menu --confirm=reboot/shutdown" -show power-menu'';
 
-        # Rofi
-        "${modifier}+d" = "exec ${menu} -show drun -show-icons -icon-theme ${config.gtk.iconTheme.name}";
-        "${modifier}+Shift+d" = "exec ${lib.getExe pkgs.cliphist} list | ${menu} -dmenu | ${lib.getExe pkgs.cliphist} decode | ${pkgs.wl-clipboard}/bin/wl-copy";
-        "${modifier}+Shift+l" = ''exec ${menu} -modi "power-menu:rofi-power-menu --confirm=reboot/shutdown" -show power-menu'';
+          # Screenshot
+          "${modifier}+Shift+s" = "exec ${screenshot} region";
+          "Print" = "exec ${screenshot} fullscreen";
+          "Print+Control" = "exec ${screenshot} swappy";
 
-        # Screenshot
-        "${modifier}+Shift+s" = "exec ${screenshot} region";
-        "Print" = "exec ${screenshot} fullscreen";
-        "Print+Control" = "exec ${screenshot} swappy";
-
-        # Fn keys
-        "XF86MonBrightnessUp" = "exec ${setBrightness} up";
-        "XF86MonBrightnessDown" = "exec ${setBrightness} down";
-        "XF86AudioRaiseVolume" = "exec ${setVolume} up";
-        "XF86AudioLowerVolume" = "exec ${setVolume} down";
-        "XF86AudioMute" = "exec ${setVolume} mute";
-        "XF86AudioPlay" = "exec ${lib.getExe pkgs.playerctl} play-pause";
-        "XF86AudioPause" = "exec ${lib.getExe pkgs.playerctl} play-pause";
-        "XF86AudioPrev" = "exec ${lib.getExe pkgs.playerctl} previous";
-        "XF86AudioNext" = "exec ${lib.getExe pkgs.playerctl} next";
-        "XF86AudioStop" = "exec ${lib.getExe pkgs.playerctl} stop";
-        "XF86AudioMedia" = "exec ${lib.getExe pkgs.playerctl} play-pause";
-      };
+          # Fn keys
+          "XF86MonBrightnessUp" = "exec ${setBrightness} up";
+          "XF86MonBrightnessDown" = "exec ${setBrightness} down";
+          "XF86AudioRaiseVolume" = "exec ${setVolume} up";
+          "XF86AudioLowerVolume" = "exec ${setVolume} down";
+          "XF86AudioMute" = "exec ${setVolume} mute";
+          "XF86AudioPlay" = "exec ${lib.getExe pkgs.playerctl} play";
+          "XF86AudioPause" = "exec ${lib.getExe pkgs.playerctl} pause";
+          "XF86AudioPrev" = "exec ${lib.getExe pkgs.playerctl} previous";
+          "XF86AudioNext" = "exec ${lib.getExe pkgs.playerctl} next";
+          "XF86AudioStop" = "exec ${lib.getExe pkgs.playerctl} stop";
+          "XF86AudioMedia" = "exec ${lib.getExe pkgs.playerctl} play-pause";
+        }
+        //
+        # workspace binds
+        builtins.listToAttrs (builtins.concatMap (x: [
+          {
+            name = "${modifier}+${x}";
+            value = "workspace ${x}";
+          }
+          {
+            name = "${modifier}+Shift+${x}";
+            value = "move container to workspace ${x}";
+          }
+        ]) (builtins.genList (x: toString (x + 1)) 9));
     };
   };
 }
