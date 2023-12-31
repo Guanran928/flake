@@ -11,42 +11,39 @@
     webui = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.metacubexd;
   };
 
-  ### sops-nix
-  sops.secrets = builtins.mapAttrs (_name: value: value // {restartUnits = ["clash.service"];}) {
-    "clash/proxy-providers/efcloud" = {};
-    "clash/proxy-providers/spcloud" = {};
-    "clash/proxy-providers/pawdroid" = {};
-  };
-
-  # TODO: Using example config
-  # https://wiki.metacubex.one/example/conf/
-  # MetaCubeX/Meta-Docs doesnt look reliable through commit messages, no fetchers was used
-  sops.templates."clash.yaml".content =
-    builtins.readFile ./config.yaml
-    + ''
-      proxy-providers:
-        efcloud:
-          <<: *p
-          url: "${config.sops.placeholder."clash/proxy-providers/efcloud"}"
-        spcloud:
-          <<: *p
-          url: "${config.sops.placeholder."clash/proxy-providers/spcloud"}"
-        #pawdroid:
-        #  <<: *p
-        #  url: "${config.sops.placeholder."clash/proxy-providers/pawdroid"}"
-    '';
-
   ### System proxy settings
   networking.proxy.default = "http://127.0.0.1:7890/";
 
-  ### Local Clash WebUI
-  # You can also use the following website, just in case:
-  # - metacubexd:
-  #   - GH Pages Custom Domain: http://d.metacubex.one
-  #   - GH Pages: https://metacubex.github.io/metacubexd
-  #   - Cloudflare Pages: https://metacubexd.pages.dev
-  # - yacd (Yet Another Clash Dashboard):
-  #   - https://yacd.haishan.me
-  # - clash-dashboard (buggy):
-  #   - https://clash.razord.top
+  ### sops-nix
+  sops.secrets = builtins.mapAttrs (_name: value: value // {restartUnits = ["clash.service"];}) {
+    "clash/secret" = {};
+    "clash/proxy-providers/efcloud" = {};
+    "clash/proxy-providers/spcloud" = {};
+  };
+
+  sops.templates."clash.yaml".content = let
+    convert = url: "https://sub.maoxiongnet.com/sub?target=clash&list=true&url=${url}";
+  in
+    builtins.readFile ./config.yaml
+    + ''
+      secret: "${config.sops.placeholder."clash/secret"}"
+      proxy-providers:
+        efcloud:
+          <<: *fetch
+          url: "${config.sops.placeholder."clash/proxy-providers/efcloud"}"
+        spcloud:
+          <<: *fetch
+          url: "${config.sops.placeholder."clash/proxy-providers/spcloud"}"
+
+        # Free servers that I dont really care about
+        pawdroid:
+          <<: *fetch
+          url: "${convert "https://cdn.jsdelivr.net/gh/Pawdroid/Free-servers@main/sub"}"
+        ermaozi:
+          <<: *fetch
+          url: "${convert "https://cdn.jsdelivr.net/gh/ermaozi/get_subscribe@main/subscribe/v2ray.txt"}"
+        #jsnzkpg:
+        #  <<: *fetch
+        #  url: "${convert "https://cdn.jsdelivr.net/gh/Jsnzkpg/Jsnzkpg@Jsnzkpg/Jsnzkpg"}"
+    '';
 }
