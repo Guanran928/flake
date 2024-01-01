@@ -78,9 +78,8 @@
       "[    5.996722] amdgpu 0000:67:00.0: Fatal error during GPU init"}
   '';
 
-  hardware.nvidia.nvidiaSettings = false;
-  ### WORKAROUND: Revert to NVIDIA version 470.223.02 due to performance issues in version 545.29.06,
+  ### WORKAROUND: Revert to NVIDIA version 535.146.02 due to performance issues introduced in version 545.29.06,
   #               this shouldn't affect non-nvidia machines.
-  nixpkgs.config.nvidia.acceptLicense = true;
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.production;
+  hardware.nvidia.nvidiaSettings = false;
 }
