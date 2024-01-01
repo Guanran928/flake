@@ -39,6 +39,8 @@
         ".config/fcitx5"
         ".config/Mumble"
         ".config/spotify"
+        ".config/obs-studio"
+        ".config/qBittorrent"
       ];
       files = [
         ".config/sops/age/keys.txt"
