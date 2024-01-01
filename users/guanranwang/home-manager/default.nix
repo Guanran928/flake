@@ -29,6 +29,7 @@
     ./modules
 
     ./applications/git
+    ./applications/gpg
     ./applications/starship
     ./applications/eza
     ./applications/skim
