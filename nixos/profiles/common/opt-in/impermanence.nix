@@ -9,7 +9,6 @@
       "/var/log"
       "/var/lib"
 
-      "/etc/clash" # clash
       "/etc/secureboot" # sbctl, lanzaboote
     ];
     files = [

@@ -39,13 +39,6 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    ### User running clash
-    users.groups."clash" = {};
-    users.users."clash" = {
-      isSystemUser = true;
-      group = config.users.groups."clash".name;
-    };
-
     ### systemd service
     # https://en.clash.wiki/introduction/service.html#systemd
     # https://wiki.metacubex.one/startup/service/#systemd
@@ -54,17 +47,13 @@ in {
       after = ["network-online.target"];
       wantedBy = ["multi-user.target"];
       serviceConfig = {
-        # TODO: DynamicUser
-        # DynamicUser = true;
-        User = config.users.users."clash".name;
-        Group = config.users.groups."clash".name;
-
         # https://man.archlinux.org/man/systemd.exec.5
-        ConfigurationDirectory = "clash";
+        DynamicUser = true;
+        StateDirectory = "clash";
         LoadCredential = "configuration:${cfg.configFile}";
         ExecStart = builtins.replaceStrings ["\n"] [" "] ''
           ${lib.getExe cfg.package}
-          -d /etc/clash
+          -d /var/lib/private/clash
           ${lib.optionalString (cfg.configFile != null) "-f \${CREDENTIALS_DIRECTORY}/configuration"}
           ${lib.optionalString (cfg.webui != null) "-ext-ui ${cfg.webui}"}
           ${lib.optionalString (cfg.extraOpts != null) cfg.extraOpts}
