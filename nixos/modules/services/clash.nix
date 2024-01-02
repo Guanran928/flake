@@ -40,31 +40,29 @@ in {
 
   config = lib.mkIf cfg.enable {
     ### systemd service
-    # https://en.clash.wiki/introduction/service.html#systemd
-    # https://wiki.metacubex.one/startup/service/#systemd
     systemd.services."clash" = {
       description = "Clash daemon, A rule-based proxy in Go.";
+      documentation = ["https://clash.wiki/" "https://wiki.metacubex.one/"];
       after = ["network-online.target"];
       wantedBy = ["multi-user.target"];
       serviceConfig = {
-        # https://man.archlinux.org/man/systemd.exec.5
+        ExecStart = builtins.concatStringsSep " " [
+          (lib.getExe cfg.package)
+          "-d /var/lib/private/clash"
+          (lib.optionalString (cfg.configFile != null) "-f \${CREDENTIALS_DIRECTORY}/configuration")
+          (lib.optionalString (cfg.webui != null) "-ext-ui ${cfg.webui}")
+          (lib.optionalString (cfg.extraOpts != null) cfg.extraOpts)
+        ];
+
         DynamicUser = true;
         StateDirectory = "clash";
         LoadCredential = "configuration:${cfg.configFile}";
-        ExecStart = builtins.replaceStrings ["\n"] [" "] ''
-          ${lib.getExe cfg.package}
-          -d /var/lib/private/clash
-          ${lib.optionalString (cfg.configFile != null) "-f \${CREDENTIALS_DIRECTORY}/configuration"}
-          ${lib.optionalString (cfg.webui != null) "-ext-ui ${cfg.webui}"}
-          ${lib.optionalString (cfg.extraOpts != null) cfg.extraOpts}
-        '';
 
-        # Capability, inherited from Clash wiki
-        # https://man.archlinux.org/man/core/man-pages/capabilities.7.en
+        ### Hardening
+        # Experimental, since I have no idea what am I doing...
         CapabilityBoundingSet = ["CAP_NET_ADMIN" "CAP_NET_BIND_SERVICE" "CAP_NET_RAW"];
         AmbientCapabilities = ["CAP_NET_ADMIN" "CAP_NET_BIND_SERVICE" "CAP_NET_RAW"];
 
-        # Hardening, experimental since I have no idea what am I doing
         NoNewPrivileges = true;
         MemoryDenyWriteExecute = true;
         LockPersonality = true;
@@ -83,7 +81,6 @@ in {
         ProtectKernelTunables = true;
 
         PrivateDevices = true;
-        #PrivateNetwork = true;
         PrivateTmp = true;
         PrivateUsers = true;
         PrivateMounts = true;
