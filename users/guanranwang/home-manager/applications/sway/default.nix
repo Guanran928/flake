@@ -26,10 +26,6 @@
     wrapperFeatures.gtk = true;
     systemd.xdgAutostart = true;
     config = {
-      ### Default Applications
-      terminal = lib.getExe pkgs.alacritty;
-      menu = lib.getExe config.programs.rofi.package;
-
       ### Visuals
       output."*".bg = "~/.local/share/backgrounds/Minato-Aqua-Dark.png fill";
       window.titlebar = false;
@@ -61,8 +57,6 @@
       modes = {};
       keybindings = let
         inherit (config.wayland.windowManager.sway.config) modifier;
-        inherit (config.wayland.windowManager.sway.config) terminal;
-        inherit (config.wayland.windowManager.sway.config) menu;
         setBrightness = "/home/guanranwang/.local/bin/wrapped-brightnessctl";
         setVolume = "/home/guanranwang/.local/bin/wrapped-pamixer";
         screenshot = "/home/guanranwang/.local/bin/screenshot";
@@ -84,14 +78,14 @@
 
           ### Execute other stuff
           # Launch applications
-          "${modifier}+Return" = "exec ${terminal}";
+          "${modifier}+Return" = "exec alacritty";
           "${modifier}+w" = "exec ${pkgs.xdg-utils}/bin/xdg-open http:";
           "${modifier}+e" = "exec ${pkgs.xdg-utils}/bin/xdg-open ~";
 
           # Rofi
-          "${modifier}+d" = "exec ${menu} -show drun -show-icons -icon-theme ${config.gtk.iconTheme.name}";
-          "${modifier}+Shift+d" = "exec ${lib.getExe pkgs.cliphist} list | ${menu} -dmenu | ${lib.getExe pkgs.cliphist} decode | ${pkgs.wl-clipboard}/bin/wl-copy";
-          "${modifier}+Shift+l" = ''exec ${menu} -modi "power-menu:rofi-power-menu --confirm=reboot/shutdown" -show power-menu'';
+          "${modifier}+d" = "exec rofi -show drun -show-icons -icon-theme ${config.gtk.iconTheme.name}";
+          "${modifier}+Shift+d" = "exec ${lib.getExe pkgs.cliphist} list | rofi -dmenu | ${lib.getExe pkgs.cliphist} decode | ${pkgs.wl-clipboard}/bin/wl-copy";
+          "${modifier}+Shift+l" = ''exec rofi -modi "power-menu:rofi-power-menu --confirm=reboot/shutdown" -show power-menu'';
 
           # Screenshot
           "${modifier}+Shift+s" = "exec ${screenshot} region";
