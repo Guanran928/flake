@@ -7,7 +7,7 @@
         content = {
           type = "gpt";
           partitions = {
-            "ESP" = {
+            "esp" = {
               size = "2G";
               type = "EF00";
               content = {
@@ -26,20 +26,17 @@
               content = {
                 type = "luks";
                 name = "crypted";
-                extraOpenArgs = ["--allow-discards"];
-                passwordFile = "/tmp/secret.key"; # Interactive
+                settings.allowDiscards = true;
                 content = {
                   type = "btrfs";
-                  extraArgs = ["-f"];
-                  mountpoint = "/btrfs";
                   subvolumes = {
                     "/@nix" = {
                       mountpoint = "/nix";
-                      mountOptions = ["compress=zstd" "noatime"];
+                      mountOptions = ["defaults" "compress=zstd" "noatime"];
                     };
                     "/@persist" = {
                       mountpoint = "/persist";
-                      mountOptions = ["compress=zstd" "noatime"];
+                      mountOptions = ["defaults" "compress=zstd" "noatime"];
                     };
                   };
                 };
@@ -50,7 +47,7 @@
               content = {
                 type = "swap";
                 randomEncryption = true;
-                resumeDevice = true; # resume from hiberation from this device
+                #resumeDevice = true; # resume from hiberation from this device
               };
             };
           };
@@ -61,9 +58,11 @@
       "/" = {
         fsType = "tmpfs";
         mountOptions = [
-          "size=2G"
           "defaults"
+          "size=2G"
           "mode=755"
+          "nodev"
+          "nosuid"
         ];
       };
     };
