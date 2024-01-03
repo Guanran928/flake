@@ -45,7 +45,7 @@ in {
 
       padding = lib.mkOption {
         type = lib.types.int;
-        default = 12;
+        default = 0;
         example = 8;
         description = "Select desired terminal padding size (in px).";
       };
