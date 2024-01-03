@@ -1,1 +1,6 @@
-_: {}
+{...}: {
+  imports = [
+    ./networking
+    ./services
+  ];
+}

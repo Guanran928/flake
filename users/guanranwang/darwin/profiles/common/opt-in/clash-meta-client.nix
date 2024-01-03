@@ -1,31 +1,14 @@
 {
   inputs,
   pkgs,
-  lib,
   ...
-}: let
-  env = {
-    "http_proxy" = "http://127.0.0.1:7890";
-    "https_proxy" = "http://127.0.0.1:7890";
-    "ftp_proxy" = "http://127.0.0.1:7890";
-    "rsync_proxy" = "http://127.0.0.1:7890";
-  };
-in {
-  # TODO: not run as root
-
-  # Proxy environment variables
-  environment.variables = env;
-  launchd.daemons."nix-daemon".environment = env;
-
-  # launchd service
-  launchd.daemons."clash-meta" = {
-    command = "${lib.getExe pkgs.clash-meta} -d /etc/clash-meta";
-    serviceConfig = {
-      RunAtLoad = true;
-      KeepAlive.NetworkState = true;
-    };
+}: {
+  services.clash = {
+    enable = true;
+    package = pkgs.clash-meta;
+    webui = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.metacubexd;
   };
 
-  # Web interface
-  environment.etc."clash-meta/metacubexd".source = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.metacubexd;
+  ### System proxy settings
+  networking.proxy.default = "http://127.0.0.1:7890/";
 }
