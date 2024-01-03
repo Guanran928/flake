@@ -1,4 +1,5 @@
 {pkgs, ...}: {
+  home.packages = [pkgs.lunarvim];
   programs.neovim = {
     enable = true;
     #defaultEditor = true;
