@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ../common/core
     ./packages
   ];
 }

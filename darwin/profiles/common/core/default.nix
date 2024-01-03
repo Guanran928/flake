@@ -1,9 +1,10 @@
 {inputs, ...}: {
   imports = [
-    ../../modules
     ./nix
     ./anti-features.nix
+    ./networking.nix
 
+    inputs.self.darwinModules.default
     inputs.home-manager.darwinModules.home-manager
   ];
 

@@ -173,6 +173,7 @@
     formatter = eachDefaultSystemMap (system: inputs.nixpkgs.legacyPackages.${system}.alejandra);
     packages = eachDefaultSystemMap (system: import ./pkgs inputs.nixpkgs.legacyPackages.${system});
     nixosModules.default = ./nixos/modules;
+    darwinModules.default = ./darwin/modules;
 
     ### NixOS
     nixosConfigurations = {

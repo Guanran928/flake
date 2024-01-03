@@ -1,11 +1,16 @@
-{config, ...}: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   programs.gpg = {
     enable = true;
     homedir = "${config.xdg.dataHome}/gnupg";
   };
 
   services.gpg-agent = {
-    enable = true;
+    enable = lib.mkIf (!pkgs.stdenv.hostPlatform.isDarwin) true;
     pinentryFlavor = "gnome3";
   };
 }

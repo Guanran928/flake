@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   users = {
     knownUsers = ["guanranwang"];
     users."guanranwang" = {
@@ -15,6 +11,5 @@
   };
 
   ### Options
-  myFlake.networking.dns.provider = lib.mkDefault "alidns";
   home-manager.users.guanranwang = import ./home;
 }

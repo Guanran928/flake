@@ -1,6 +1,6 @@
 {...}: {
   imports = [
-    ../../../../home-manager
+    ../../../../../home-manager
   ];
 
   # https://github.com/mathiasbynens/dotfiles/blob/main/.macos
