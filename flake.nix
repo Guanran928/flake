@@ -148,13 +148,6 @@
       inputs.hyprland-protocols.follows = "hyprland-protocols";
       inputs.systems.follows = "systems-linux";
     };
-
-    ## Non-Flake
-    ### My NeoVim configuration
-    nvim = {
-      url = "github:Guanran928/nvim";
-      flake = false;
-    };
   };
 
   outputs = inputs: let
