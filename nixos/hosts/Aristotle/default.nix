@@ -4,7 +4,6 @@
     ../../profiles/laptop
     ../../profiles/common/opt-in/zram-generator.nix
     ../../profiles/common/opt-in/gaming.nix
-    ../../profiles/common/opt-in/virt-manager.nix
 
     # User
     ../../../users/guanranwang/nixos/profiles/laptop
