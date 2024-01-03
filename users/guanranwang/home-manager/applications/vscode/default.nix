@@ -30,6 +30,7 @@
         editor.cursorSmoothCaretAnimation = "on";
         editor.fontFamily = lib.mkDefault "Monospace";
         editor.fontWeight = 600;
+        editor.lineNumbers = "relative";
         editor.smoothScrolling = true;
         editor.tabSize = 2;
         explorer.confirmDragAndDrop = false;
