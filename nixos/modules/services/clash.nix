@@ -59,31 +59,32 @@ in {
         LoadCredential = "configuration:${cfg.configFile}";
 
         ### Hardening
-        # Experimental, since I have no idea what am I doing...
-        CapabilityBoundingSet = ["CAP_NET_ADMIN" "CAP_NET_BIND_SERVICE" "CAP_NET_RAW"];
-        AmbientCapabilities = ["CAP_NET_ADMIN" "CAP_NET_BIND_SERVICE" "CAP_NET_RAW"];
-
-        NoNewPrivileges = true;
-        MemoryDenyWriteExecute = true;
+        CapabilityBoundingSet = "";
+        DeviceAllow = "";
         LockPersonality = true;
-
-        RestrictRealtime = true;
-        RestrictSUIDSGID = true;
-
-        ProtectSystem = "strict";
-        ProtectProc = "noaccess";
-        ProtectHome = true;
-        ProtectClock = true;
-        ProtectKernelLogs = true;
-        ProtectControlGroups = true;
-        ProtectKernelModules = true;
-        ProtectHostname = true;
-        ProtectKernelTunables = true;
-
+        MemoryDenyWriteExecute = true;
+        NoNewPrivileges = true;
         PrivateDevices = true;
+        PrivateMounts = true;
         PrivateTmp = true;
         PrivateUsers = true;
-        PrivateMounts = true;
+        ProcSubset = "pid";
+        ProtectClock = true;
+        ProtectControlGroups = true;
+        ProtectHome = true;
+        ProtectHostname = true;
+        ProtectKernelLogs = true;
+        ProtectKernelModules = true;
+        ProtectKernelTunables = true;
+        ProtectProc = "invisible";
+        ProtectSystem = "strict";
+        RestrictRealtime = true;
+        RestrictSUIDSGID = true;
+        RestrictNamespaces = true;
+        RestrictAddressFamilies = "AF_INET AF_INET6";
+        SystemCallArchitectures = "native";
+        SystemCallFilter = "@system-service bpf";
+        UMask = "0077";
       };
     };
   };
