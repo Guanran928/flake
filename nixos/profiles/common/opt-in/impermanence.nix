@@ -40,6 +40,7 @@
         ".config/spotify"
         ".config/obs-studio"
         ".config/qBittorrent"
+        ".config/VSCodium" # UI states, GitHub account state, etc
       ];
       files = [
         ".config/sops/age/keys.txt"
