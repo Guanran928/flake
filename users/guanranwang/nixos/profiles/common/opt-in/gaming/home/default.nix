@@ -3,6 +3,7 @@
     "steam"
     "prismlauncher"
     "osu-lazer"
+    "osu-stable"
     "mangohud"
     "protonup-qt"
   ];
