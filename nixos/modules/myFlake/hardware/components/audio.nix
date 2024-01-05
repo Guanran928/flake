@@ -27,6 +27,9 @@ in {
         alsa.support32Bit = true;
         pulse.enable = true;
         jack.enable = true;
+
+        # pipewireLowLatency module from github:fufexan/nix-gaming
+        lowLatency.enable = true;
       };
     })
     (lib.mkIf (cfg.soundServer == "pulseaudio") {

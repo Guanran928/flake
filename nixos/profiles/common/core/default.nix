@@ -18,6 +18,7 @@
     inputs.impermanence.nixosModules.impermanence
     inputs.lanzaboote.nixosModules.lanzaboote
     inputs.sops-nix.nixosModules.sops
+    inputs.nix-gaming.nixosModules.pipewireLowLatency
   ];
 
   users.mutableUsers = false;
