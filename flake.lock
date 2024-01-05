@@ -344,6 +344,29 @@
         "type": "github"
       }
     },
+    "nix-gaming": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1704244428,
+        "narHash": "sha256-n3KZlxx1QS3919I1O77OhBouUeetlLpmQQcIx3dqAso=",
+        "owner": "fufexan",
+        "repo": "nix-gaming",
+        "rev": "bd7442917422de061bcf61323b07abbb93bdb766",
+        "type": "github"
+      },
+      "original": {
+        "owner": "fufexan",
+        "repo": "nix-gaming",
+        "type": "github"
+      }
+    },
     "nix-monitored": {
       "inputs": {
         "nix-filter": [
@@ -542,6 +565,7 @@
         "lanzaboote": "lanzaboote",
         "nix-darwin": "nix-darwin",
         "nix-filter": "nix-filter",
+        "nix-gaming": "nix-gaming",
         "nix-monitored": "nix-monitored",
         "nixos-hardware": "nixos-hardware",
         "nixpak": "nixpak",
