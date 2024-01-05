@@ -5,6 +5,5 @@
     "osu-lazer"
     "osu-stable"
     "mangohud"
-    "protonup-qt"
   ];
 }
