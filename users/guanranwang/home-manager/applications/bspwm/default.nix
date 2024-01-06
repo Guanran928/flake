@@ -67,6 +67,9 @@
      unset f
     fi
 
+    # https://wiki.archlinux.org/title/Cursor_themes#Change_X_shaped_default_cursor
+    xsetroot -cursor_name left_ptr
+
     exec bspwm
   '';
 }
