@@ -13,7 +13,7 @@ _: {
       shadow-offset-y = -8;
       shadow-opacity = 0.2;
       shadow-exclude = [
-        "_GTK_FRAME_EXTENTS@=c"
+        "_GTK_FRAME_EXTENTS@:c"
       ];
 
       # Fade
@@ -36,10 +36,10 @@ _: {
       popup_menu = {opacity = 1;};
 
       opacity-rule = [
-        "100=_NET_WM_STATE@=32a = '_NET_WM_STATE_FULLSCREEN'"
-        "90=class_g	= 'Polybar'"
-        "90=class_g	= 'Rofi'"
-        "90=class_g	= 'Alacritty'"
+        "100:_NET_WM_STATE@:32a = '_NET_WM_STATE_FULLSCREEN'"
+        "90:class_g	= 'Polybar'"
+        "90:class_g	= 'Rofi'"
+        "90:class_g	= 'Alacritty'"
       ];
 
       # Blur
@@ -48,7 +48,7 @@ _: {
         strength = 9;
       };
       blur-background-exclude = [
-        "_GTK_FRAME_EXTENTS@=c"
+        "_GTK_FRAME_EXTENTS@:c"
         "class_g = 'Main'"
       ];
 
