@@ -41,6 +41,7 @@
       "sway"
 
       # Misc
+      "thunderbird"
       "telegram-desktop"
       "nautilus"
       "fcitx5"

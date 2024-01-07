@@ -34,6 +34,7 @@
         ".ssh"
 
         ".librewolf"
+        ".thunderbird"
         ".config/chromium"
         ".config/fcitx5"
         ".config/Mumble"
