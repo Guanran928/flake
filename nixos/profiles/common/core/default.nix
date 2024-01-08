@@ -31,13 +31,7 @@
   ### Boot
   boot.initrd.systemd.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.systemd-boot = {
-    enable = lib.mkDefault true; # mkDefault for Lanzaboote
-    editor = false; # Disabled for security
-    ### Utilities
-    #netbootxyz.enable = true;
-    #memtest86.enable = true;
-  };
+  boot.loader.systemd-boot.enable = lib.mkDefault true; # mkDefault for Lanzaboote
 
   ### Default Programs
   environment.defaultPackages = [];
