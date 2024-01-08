@@ -22,7 +22,7 @@
       inherit (config.hardware.nvidia.prime) offload;
     in
       lib.mkIf
-      (builtins.elem "nvidia" config.services.xserver.videoDrivers || offload.enable || offload.enableOffloadCmd)
+      (builtins.elem "nvidia" config.services.xserver.videoDrivers && offload.enable && offload.enableOffloadCmd)
       (lib.mkDefault "nvidia-offload");
   };
 
