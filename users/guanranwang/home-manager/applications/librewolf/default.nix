@@ -80,4 +80,8 @@ in {
       "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
     };
   };
+
+  home.sessionVariables = {
+    MOZ_USE_XINPUT2 = "1";
+  };
 }

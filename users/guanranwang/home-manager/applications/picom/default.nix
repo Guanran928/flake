@@ -20,6 +20,9 @@
       # Blur
       blur-method = "dual_kawase";
       blur-strength = 10;
+      blur-background-exclude = [
+        "_GTK_FRAME_EXTENTS@:c"
+      ];
 
       # Corners
       corner-radius = 12;

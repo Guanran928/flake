@@ -60,4 +60,8 @@ in {
   #  # TODO
   #  profiles."default" = {};
   #};
+
+  home.sessionVariables = {
+    MOZ_USE_XINPUT2 = "1";
+  };
 }
