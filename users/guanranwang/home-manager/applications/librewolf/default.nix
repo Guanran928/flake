@@ -42,7 +42,7 @@
           "/etc/localtime"
           "/sys/bus/pci"
 
-          ["${config.app.package}/lib/firefox" "/app/etc/firefox"]
+          ["${config.app.package}/lib/librewolf" "/app/etc/librewolf"]
           (sloth.concat' sloth.xdgConfigHome "/dconf")
         ];
       };
