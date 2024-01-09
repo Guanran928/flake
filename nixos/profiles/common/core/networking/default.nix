@@ -1,11 +1,11 @@
 _: {
   networking.wireless.iwd.enable = true;
   networking.nameservers = [
-    ### Google DNS
-    "8.8.8.8#dns.google"
-    "8.8.4.4#dns.google"
-    "2001:4860:4860::8888#dns.google"
-    "2001:4860:4860::8844#dns.google"
+    ### AliDNS
+    "223.5.5.5"
+    "223.6.6.6"
+    "2400:3200::1"
+    "2400:3200:baba::1"
   ];
 
   ### systemd-resolved
