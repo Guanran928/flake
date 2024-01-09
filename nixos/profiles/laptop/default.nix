@@ -1,5 +1,7 @@
 {...}: {
   imports = [
-    ../desktop
+    ../common/core
+    ../common/graphical
+    ../common/physical
   ];
 }

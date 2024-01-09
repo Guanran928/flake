@@ -32,6 +32,7 @@
   boot.initrd.systemd.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.enable = lib.mkDefault true; # mkDefault for Lanzaboote
+  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen; # mkDefault for server
 
   ### Default Programs
   environment.defaultPackages = [];
