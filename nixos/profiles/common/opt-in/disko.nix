@@ -14,11 +14,7 @@
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = [
-                  "defaults"
-                  "fmask=0077"
-                  "dmask=0077"
-                ];
+                mountOptions = ["defaults" "umask=007"];
               };
             };
             "luks" = {
@@ -29,14 +25,16 @@
                 settings.allowDiscards = true;
                 content = {
                   type = "btrfs";
-                  subvolumes = {
+                  subvolumes = let
+                    mountOptions = ["defaults" "compress=zstd" "noatime"];
+                  in {
                     "/@nix" = {
                       mountpoint = "/nix";
-                      mountOptions = ["defaults" "compress=zstd" "noatime"];
+                      inherit mountOptions;
                     };
                     "/@persist" = {
                       mountpoint = "/persist";
-                      mountOptions = ["defaults" "compress=zstd" "noatime"];
+                      inherit mountOptions;
                     };
                   };
                 };
