@@ -10,23 +10,23 @@
 
   services.swayidle = let
     lock = lib.getExe config.programs.swaylock.package;
-    displayOn = ''${pkgs.sway}/bin/swaymsg "output * power on"'';
-    displayOff = ''${pkgs.sway}/bin/swaymsg "output * power off"'';
+    brightness = lib.getExe pkgs.brightnessctl;
   in {
     enable = true;
     timeouts = [
       {
         timeout = 60 * 9;
-        command = ''${lib.getExe pkgs.libnotify} -u critical --expire-time 60000 "60 seconds until lock!"'';
-      }
+        command = "${brightness} set $(($(${brightness} get)/4))";
+        resumeCommand = "${brightness} set $(($(${brightness} get)*4))";
+      } # dim screen
       {
         timeout = 60 * 10;
         command = lock;
       } # lock screen
       {
         timeout = 60 * 20;
-        command = displayOff;
-        resumeCommand = displayOn;
+        command = ''${pkgs.sway}/bin/swaymsg "output * power off"'';
+        resumeCommand = ''${pkgs.sway}/bin/swaymsg "output * power on"'';
       } # turn off screen
       {
         timeout = 60 * 30;
