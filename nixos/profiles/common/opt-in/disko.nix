@@ -22,7 +22,10 @@
               content = {
                 type = "luks";
                 name = "crypted";
-                settings.allowDiscards = true;
+                settings = {
+                  allowDiscards = true;
+                  bypassWorkqueues = true;
+                };
                 content = {
                   type = "btrfs";
                   subvolumes = let
