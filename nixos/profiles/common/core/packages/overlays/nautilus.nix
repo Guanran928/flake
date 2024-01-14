@@ -9,7 +9,7 @@
           url = let
             repo = "nautilus-typeahead";
             file = "nautilus-restore-typeahead.patch";
-            commit = "6f75fbb04f6b108324850a0956f4bbdff0b6060b";
+            commit = "524d92c42ea768e5e4ab965511287152ed885d22"; # v45.2.1
           in "https://aur.archlinux.org/cgit/aur.git/plain/${file}?h=${repo}&id=${commit}";
           hash = "sha256-a40vNo2Nw068GBtjVPUz6WAYRtjD0DB2bG/N14vSTxI=";
         })

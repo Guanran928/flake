@@ -42,7 +42,7 @@
     ./applications/hyperfine
 
     ./applications/ydict
-    #./applications/fastfetch # broken on x86_64-darwin, https://github.com/NixOS/nixpkgs/issues/273947
+    ./applications/fastfetch
     ./applications/android-tools
     ./applications/tealdeer
   ];

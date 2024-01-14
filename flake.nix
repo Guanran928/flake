@@ -56,7 +56,7 @@
     };
     nix-gaming = {
       url = "github:fufexan/nix-gaming";
-      inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.nixpkgs.follows = "nixpkgs"; # NOTE: I have to build wine-osu...
       inputs.flake-parts.follows = "flake-parts";
     };
     nix-monitored = {
@@ -118,6 +118,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.systems.follows = "systems-linux";
     };
+    hyprlang = {
+      url = "github:hyprwm/hyprlang";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-filter = {
       url = "github:numtide/nix-filter";
     };
@@ -152,6 +156,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.hyprland-protocols.follows = "hyprland-protocols";
       inputs.systems.follows = "systems-linux";
+      inputs.hyprlang.follows = "hyprlang";
     };
   };
 

@@ -55,9 +55,12 @@ in {
   config = {
     programs = {
       alacritty.settings = {
-        import =
-          lib.mkIf (config.myFlake.home-manager.colorScheme == "tokyonight")
-          ["${pkgs.vimPlugins.tokyonight-nvim}/extras/alacritty/tokyonight_night.yml"];
+        import = [
+          # Workaround until pkgs.vimPlugins.tokyonight-nvim switch to .toml formats
+          (lib.mkIf (config.myFlake.home-manager.colorScheme == "tokyonight") (pkgs.runCommandNoCC "tokyonight_night.toml" {} ''
+            ${lib.getExe pkgs.yj} -yt < "${pkgs.vimPlugins.tokyonight-nvim}/extras/alacritty/tokyonight_night.yml" > $out
+          ''))
+        ];
         cursor.style = cfg.cursorStyle;
         font.size = cfg.fontSize;
         window.padding.x = cfg.padding;
