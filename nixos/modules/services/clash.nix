@@ -49,14 +49,14 @@ in {
         ExecStart = builtins.concatStringsSep " " [
           (lib.getExe cfg.package)
           "-d /var/lib/private/clash"
-          (lib.optionalString (cfg.configFile != null) "-f \${CREDENTIALS_DIRECTORY}/configuration")
+          (lib.optionalString (cfg.configFile != null) "-f \${CREDENTIALS_DIRECTORY}/config.yaml")
           (lib.optionalString (cfg.webui != null) "-ext-ui ${cfg.webui}")
           (lib.optionalString (cfg.extraOpts != null) cfg.extraOpts)
         ];
 
         DynamicUser = true;
         StateDirectory = "clash";
-        LoadCredential = "configuration:${cfg.configFile}";
+        LoadCredential = "config.yaml:${cfg.configFile}";
 
         ### Hardening
         CapabilityBoundingSet = "";
