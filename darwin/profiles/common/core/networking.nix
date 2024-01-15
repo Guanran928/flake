@@ -1,4 +1,4 @@
-_: {
+{
   networking.dns = [
     ### AliDNS
     "223.5.5.5"

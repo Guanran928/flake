@@ -1,4 +1,4 @@
-_: {
+{
   boot.kernel.sysctl = {
     ### https://madaidans-insecurities.github.io/guides/linux-hardening.html#sysctl
     # Kernel self-protection
