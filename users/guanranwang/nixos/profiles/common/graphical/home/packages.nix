@@ -3,9 +3,9 @@
     (with pkgs; [
       # Messaging
       ### Matrix
-      libsForQt5.neochat # kinda buggy with window resizing, but it works and its not electron
+      #libsForQt5.neochat # kinda buggy with window resizing, but it works and its not electron
       #nheko # wont let me login for some reason
-      #fractal # does not work with Mozilla's SAML login
+      fractal # does not work with Mozilla's SAML login
 
       ##                 # vvv 3 UI libraries I dislike vvv
       #cinny-desktop #   # Tauri

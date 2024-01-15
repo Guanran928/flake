@@ -45,8 +45,8 @@
       ];
       files = [
         ".config/sops/age/keys.txt"
-        ".config/KDE/neochat.conf"
-        ".config/neochatrc"
+        #".config/KDE/neochat.conf"
+        #".config/neochatrc"
       ];
     };
   };
