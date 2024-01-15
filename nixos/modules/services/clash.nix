@@ -36,6 +36,11 @@ in {
       type = lib.types.nullOr lib.types.str;
       description = "Extra command line options to use.";
     };
+    tunMode = lib.mkEnableOption ''
+      Whether to grant necessary permission for Clash's systemd service for TUN mode to function properly.
+
+      Keep in mind, that you still need to enable TUN mode manually in Clash's configuration.
+    '';
   };
 
   config = lib.mkIf cfg.enable {
@@ -45,47 +50,56 @@ in {
       documentation = ["https://clash.wiki/" "https://wiki.metacubex.one/"];
       after = ["network-online.target"];
       wantedBy = ["multi-user.target"];
-      serviceConfig = {
-        ExecStart = builtins.concatStringsSep " " [
-          (lib.getExe cfg.package)
-          "-d /var/lib/private/clash"
-          (lib.optionalString (cfg.configFile != null) "-f \${CREDENTIALS_DIRECTORY}/config.yaml")
-          (lib.optionalString (cfg.webui != null) "-ext-ui ${cfg.webui}")
-          (lib.optionalString (cfg.extraOpts != null) cfg.extraOpts)
-        ];
+      serviceConfig =
+        {
+          ExecStart = builtins.concatStringsSep " " [
+            (lib.getExe cfg.package)
+            "-d /var/lib/private/clash"
+            (lib.optionalString (cfg.configFile != null) "-f \${CREDENTIALS_DIRECTORY}/config.yaml")
+            (lib.optionalString (cfg.webui != null) "-ext-ui ${cfg.webui}")
+            (lib.optionalString (cfg.extraOpts != null) cfg.extraOpts)
+          ];
 
-        DynamicUser = true;
-        StateDirectory = "clash";
-        LoadCredential = "config.yaml:${cfg.configFile}";
+          DynamicUser = true;
+          StateDirectory = "clash";
+          LoadCredential = "config.yaml:${cfg.configFile}";
 
-        ### Hardening
-        CapabilityBoundingSet = "";
-        DeviceAllow = "";
-        LockPersonality = true;
-        MemoryDenyWriteExecute = true;
-        NoNewPrivileges = true;
-        PrivateDevices = true;
-        PrivateMounts = true;
-        PrivateTmp = true;
-        PrivateUsers = true;
-        ProcSubset = "pid";
-        ProtectClock = true;
-        ProtectControlGroups = true;
-        ProtectHome = true;
-        ProtectHostname = true;
-        ProtectKernelLogs = true;
-        ProtectKernelModules = true;
-        ProtectKernelTunables = true;
-        ProtectProc = "invisible";
-        ProtectSystem = "strict";
-        RestrictRealtime = true;
-        RestrictSUIDSGID = true;
-        RestrictNamespaces = true;
-        RestrictAddressFamilies = "AF_INET AF_INET6";
-        SystemCallArchitectures = "native";
-        SystemCallFilter = "@system-service bpf";
-        UMask = "0077";
-      };
+          ### Hardening
+          AmbientCapabilities = "";
+          CapabilityBoundingSet = "";
+          DeviceAllow = "";
+          LockPersonality = true;
+          MemoryDenyWriteExecute = true;
+          NoNewPrivileges = true;
+          PrivateDevices = true;
+          PrivateMounts = true;
+          PrivateTmp = true;
+          PrivateUsers = true;
+          ProcSubset = "pid";
+          ProtectClock = true;
+          ProtectControlGroups = true;
+          ProtectHome = true;
+          ProtectHostname = true;
+          ProtectKernelLogs = true;
+          ProtectKernelModules = true;
+          ProtectKernelTunables = true;
+          ProtectProc = "invisible";
+          ProtectSystem = "strict";
+          RestrictRealtime = true;
+          RestrictSUIDSGID = true;
+          RestrictNamespaces = true;
+          RestrictAddressFamilies = "AF_INET AF_INET6";
+          SystemCallArchitectures = "native";
+          SystemCallFilter = "@system-service bpf";
+          UMask = "0077";
+        }
+        // lib.optionalAttrs cfg.tunMode {
+          AmbientCapabilities = "CAP_NET_ADMIN CAP_NET_RAW";
+          CapabilityBoundingSet = "CAP_NET_ADMIN CAP_NET_RAW";
+          PrivateDevices = false;
+          PrivateUsers = false;
+          RestrictAddressFamilies = "AF_INET AF_INET6 AF_NETLINK";
+        };
     };
   };
 }
