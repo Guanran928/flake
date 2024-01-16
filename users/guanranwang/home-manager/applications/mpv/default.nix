@@ -17,6 +17,7 @@
     scripts =
       (with pkgs.mpvScripts; [
         thumbfast
+        sponsorblock
       ])
       ++ (with inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.mpvScripts; [
         modernx
