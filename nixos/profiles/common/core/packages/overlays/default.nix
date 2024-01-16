@@ -1,4 +1,4 @@
-_: let
+let
   addPatches = pkg: patches:
     pkg.overrideAttrs (old: {
       patches = (old.patches or []) ++ patches;
