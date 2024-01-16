@@ -5,7 +5,7 @@
 }:
 # TODO: use buildLua
 # error: evaluation aborted with the following error message: 'lib.customisation.callPackageWith: Function called without required argument "buildLua"
-stdenvNoCC.mkDerivation rec {
+stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "modernx";
   version = "0.2.4";
 
@@ -13,7 +13,7 @@ stdenvNoCC.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "zydezu";
     repo = "ModernX";
-    rev = version;
+    rev = finalAttrs.version;
     hash = "sha256-b5dJeJ5GPEKhyznYIAQ3YzUq01rYUhDbci1ilNuXrdk=";
   };
 
@@ -36,4 +36,4 @@ stdenvNoCC.mkDerivation rec {
     license = licenses.gpl2; # https://github.com/maoiscat/mpv-osc-modern/issues/43
     platforms = platforms.all;
   };
-}
+})

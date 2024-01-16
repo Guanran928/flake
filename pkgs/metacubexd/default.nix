@@ -3,12 +3,12 @@
   stdenvNoCC,
   fetchurl,
 }:
-stdenvNoCC.mkDerivation rec {
+stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "metacubexd";
   version = "1.134.0";
 
   src = fetchurl {
-    url = "https://github.com/MetaCubeX/metacubexd/releases/download/v${version}/compressed-dist.tgz";
+    url = "https://github.com/MetaCubeX/metacubexd/releases/download/v${finalAttrs.version}/compressed-dist.tgz";
     hash = "sha256-Xx2UReUAxHg4CrKqGs9vGmWRsosJE1OqnYSmp2wOC9M=";
   };
 
@@ -27,4 +27,4 @@ stdenvNoCC.mkDerivation rec {
     license = licenses.mit;
     platforms = platforms.all;
   };
-}
+})
