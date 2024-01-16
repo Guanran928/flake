@@ -20,13 +20,13 @@
     wlr.enable = true;
     extraPortals = with pkgs; [xdg-desktop-portal-gtk];
     config = {
-      common.default = [
-        "gtk"
-      ];
-      sway.default = [
-        "wlr"
-        "gtk"
-      ];
+      # from Arch Linux
+      # https://gitlab.archlinux.org/archlinux/packaging/packages/sway/-/blob/main/sway-portals.conf
+      sway = {
+        default = "gtk";
+        "org.freedesktop.impl.portal.ScreenCast" = "wlr";
+        "org.freedesktop.impl.portal.Screenshot" = "wlr";
+      };
     };
   };
   services = {
