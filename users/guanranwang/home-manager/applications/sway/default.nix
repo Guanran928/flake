@@ -26,6 +26,11 @@
     wrapperFeatures.gtk = true;
     systemd.xdgAutostart = true;
     config = {
+      ### Startup
+      startup = [
+        {command = "systemctl --user import-environment PATH";}
+      ];
+
       ### Visuals
       output."*".bg = "~/.local/share/backgrounds/Minato-Aqua-Dark.png fill";
       window.titlebar = false;
