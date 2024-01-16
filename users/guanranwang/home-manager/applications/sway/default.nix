@@ -9,11 +9,11 @@
     ../common/wm.nix
     ../cliphist
     ../dunst
+    ../i3status-rust
     ../rofi
     ../swayidle
     ../swaylock
     ../udiskie
-    ../waybar
   ];
 
   home.sessionVariables = {
@@ -32,13 +32,16 @@
       gaps.inner = 4;
       gaps.outer = 4;
       bars = [
-        {
-          command = lib.getExe pkgs.waybar;
-        }
         #{
-        #  statusCommand = "${lib.getExe pkgs.i3status-rust} $HOME/.config/i3status-rust/config-default.toml";
-        #  position = "top";
+        #  command = lib.getExe pkgs.waybar;
         #}
+        {
+          statusCommand = "${lib.getExe pkgs.i3status-rust} $HOME/.config/i3status-rust/config-default.toml";
+          position = "top";
+          extraConfig = ''
+            icon_theme ${config.gtk.iconTheme.name}
+          '';
+        }
       ];
 
       ### Inputs
