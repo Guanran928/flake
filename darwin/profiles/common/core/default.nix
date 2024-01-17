@@ -1,4 +1,11 @@
-{inputs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
+  ### Options
+  home-manager.users.guanranwang = import ./home;
+
   imports = [
     ./nix
     ./anti-features.nix
@@ -7,6 +14,17 @@
     inputs.self.darwinModules.default
     inputs.home-manager.darwinModules.home-manager
   ];
+
+  users = {
+    knownUsers = ["guanranwang"];
+    users."guanranwang" = {
+      createHome = true;
+      description = "Guanran Wang";
+      home = "/Users/guanranwang";
+      shell = pkgs.fish;
+      uid = 501;
+    };
+  };
 
   home-manager = {
     useGlobalPkgs = true;

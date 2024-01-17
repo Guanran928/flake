@@ -8,7 +8,7 @@ keys:
   - &hosts:
     - &aristotle age1hm6pkvt4d640wmjhxg5wxfwkp9zhcqre9klr4zg5kx2qx7vyhuuqlytmnp
 creation_rules:
-  - path_regex: users/guanranwang/secrets.yaml$
+  - path_regex: secrets.yaml$
     key_groups:
       - age:
           - *guanranwang

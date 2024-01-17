@@ -2,9 +2,7 @@
 {...}: {
   imports = [
     ../../profiles/desktop
-
-    ../../../users/guanranwang/darwin/profiles/desktop
-    ../../../users/guanranwang/darwin/profiles/common/opt-in/clash-meta-client.nix
+    ../../profiles/common/opt-in/clash-meta-client.nix
 
     ./hardware-configuration.nix
   ];

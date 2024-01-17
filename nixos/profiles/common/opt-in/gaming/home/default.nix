@@ -1,5 +1,5 @@
 {...}: {
-  imports = map (n: ../../../../../../home-manager/applications/${n}) [
+  imports = map (n: ../../../../../../home/applications/${n}) [
     "steam"
     "prismlauncher"
     "osu-lazer"
