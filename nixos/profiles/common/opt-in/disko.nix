@@ -1,4 +1,10 @@
-{disks ? ["/dev/sda"], ...}: {
+{disks ? ["/dev/sda"], ...}: let
+  mountOptions = ["defaults" "compress=zstd" "noatime"];
+  cryptSettings = {
+    allowDiscards = true;
+    bypassWorkqueues = true;
+  };
+in {
   disko.devices = {
     disk = {
       "one" = {
@@ -17,20 +23,15 @@
                 mountOptions = ["defaults" "umask=007"];
               };
             };
-            "luks" = {
+            "cryptedroot" = {
               end = "-16G";
               content = {
                 type = "luks";
-                name = "crypted";
-                settings = {
-                  allowDiscards = true;
-                  bypassWorkqueues = true;
-                };
+                name = "cryptedroot";
+                settings = cryptSettings;
                 content = {
                   type = "btrfs";
-                  subvolumes = let
-                    mountOptions = ["defaults" "compress=zstd" "noatime"];
-                  in {
+                  subvolumes = {
                     "/@nix" = {
                       mountpoint = "/nix";
                       inherit mountOptions;
@@ -43,12 +44,16 @@
                 };
               };
             };
-            "swap" = {
-              size = "100%";
+            "cryptedswap" = {
+              end = "-16G";
               content = {
-                type = "swap";
-                randomEncryption = true;
-                #resumeDevice = true; # resume from hiberation from this device
+                type = "luks";
+                name = "cryptedswap";
+                settings = cryptSettings;
+                content = {
+                  type = "swap";
+                  resumeDevice = true;
+                };
               };
             };
           };
