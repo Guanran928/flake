@@ -2,6 +2,7 @@
   lib,
   stdenvNoCC,
   fetchurl,
+  nix-update-script,
 }:
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "metacubexd";
@@ -20,6 +21,8 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     mkdir -p $out
     cp -r ./* $out
   '';
+
+  passthru.updateScript = nix-update-script {};
 
   meta = with lib; {
     description = "Clash.Meta Dashboard, The Official One, XD";

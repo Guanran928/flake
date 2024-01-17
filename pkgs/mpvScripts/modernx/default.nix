@@ -2,6 +2,7 @@
   lib,
   stdenvNoCC,
   fetchFromGitHub,
+  nix-update-script,
 }:
 # TODO: use buildLua
 # error: evaluation aborted with the following error message: 'lib.customisation.callPackageWith: Function called without required argument "buildLua"
@@ -29,6 +30,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   '';
 
   passthru.scriptName = "modernx.lua";
+  passthru.updateScript = nix-update-script {};
 
   meta = with lib; {
     description = "A modern OSC UI replacement for MPV that retains the functionality of the default OSC. (@zydezu's fork)";
