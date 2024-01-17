@@ -68,6 +68,13 @@
         esbenp.prettier-vscode
         ritwickdey.liveserver
         vscodevim.vim
+        editorconfig.editorconfig
+
+        ### Markup formats
+        redhat.vscode-yaml
+        redhat.vscode-xml
+        tamasfe.even-better-toml
+        #bungcip.better-toml
       ];
     }
 
