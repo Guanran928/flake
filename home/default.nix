@@ -40,6 +40,7 @@
     ./applications/wget
     ./applications/fd
     ./applications/hyperfine
+    ./applications/atuin
 
     ./applications/ydict
     ./applications/fastfetch
