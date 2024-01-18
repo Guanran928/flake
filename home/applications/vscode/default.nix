@@ -61,6 +61,10 @@
         gitlens.showWhatsNewAfterUpgrades = false;
         gitlens.plusFeatures.enabled = false;
         gitlens.telemetry.enabled = false;
+
+        ### Material icons
+        workbench.iconTheme = "material-icon-theme";
+        workbench.productIconTheme = "material-product-icons";
       };
       extensions = with pkgs.vscode-extensions; [
         ### QoL
@@ -75,6 +79,10 @@
         redhat.vscode-xml
         tamasfe.even-better-toml
         #bungcip.better-toml
+
+        ### Material icons
+        pkief.material-icon-theme
+        pkief.material-product-icons
       ];
     }
 
