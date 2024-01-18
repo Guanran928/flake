@@ -49,7 +49,7 @@
         # https://github.com/microsoft/vscode/issues/184124
         window.titleBarStyle = "custom";
         workbench.layoutControl.enabled = false;
-        window.commandCenter = false;
+        #window.commandCenter = false;
 
         # Language specific
         ### Nix
