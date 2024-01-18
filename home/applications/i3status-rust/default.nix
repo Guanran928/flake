@@ -16,7 +16,7 @@
 
           ### Stuff that I actually need
           {block = "sound";}
-          #{block = "battery";} # i cant get it working
+          {block = "battery";}
           {block = "time";}
         ];
       };
