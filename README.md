@@ -6,21 +6,12 @@ It just works™
 
 ```
  .
-│   ### System configuration
 │   # Darwin configuration is not actively maintained and sometimes it might break.
 ├──  darwin
 ├──  nixos
 │  ├──  hosts
 │  ├──  modules
 │  └──  profiles
-│
-│   ### User configuration
-│   # Adds user account, home-manager stuff, etc.
-│   # Do whatever you want here.
-├──  users
-│  ├──  guanranwang
-│  ├──  foo
-│  └──  bar
 │
 ├──  flake.nix
 ├──  flake.lock
