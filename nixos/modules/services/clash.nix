@@ -22,7 +22,7 @@ in {
 
         You can also use the following website, just in case:
         - metacubexd:
-          - http://d.metacubex.one
+          - https://d.metacubex.one
           - https://metacubex.github.io/metacubexd
           - https://metacubexd.pages.dev
         - yacd:
