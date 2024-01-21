@@ -48,6 +48,7 @@ in {
     systemd.services."clash" = {
       description = "Clash daemon, A rule-based proxy in Go.";
       documentation = ["https://clash.wiki/" "https://wiki.metacubex.one/"];
+      requires = ["network-online.target"];
       after = ["network-online.target"];
       wantedBy = ["multi-user.target"];
       serviceConfig =
