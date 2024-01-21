@@ -10,7 +10,7 @@
   };
 
   services.gpg-agent = {
-    enable = lib.mkIf (!pkgs.stdenv.hostPlatform.isDarwin) true;
+    enable = lib.mkIf pkgs.stdenv.hostPlatform.isLinux true;
     pinentryFlavor = "gnome3";
   };
 }

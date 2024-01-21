@@ -22,7 +22,7 @@
       ++ (with inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.mpvScripts; [
         modernx
       ])
-      ++ lib.optionals (!pkgs.stdenv.hostPlatform.isDarwin) (with pkgs.mpvScripts; [
+      ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux (with pkgs.mpvScripts; [
         mpris
       ]);
   };
