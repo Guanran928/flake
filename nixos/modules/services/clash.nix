@@ -95,8 +95,8 @@ in {
           UMask = "0077";
         }
         // lib.optionalAttrs cfg.tunMode {
-          AmbientCapabilities = "CAP_NET_ADMIN CAP_NET_RAW";
-          CapabilityBoundingSet = "CAP_NET_ADMIN CAP_NET_RAW";
+          AmbientCapabilities = "CAP_NET_ADMIN";
+          CapabilityBoundingSet = "CAP_NET_ADMIN";
           PrivateDevices = false;
           PrivateUsers = false;
           RestrictAddressFamilies = "AF_INET AF_INET6 AF_NETLINK";
