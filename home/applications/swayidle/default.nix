@@ -16,8 +16,8 @@
     timeouts = [
       {
         timeout = 60 * 9;
-        command = "${brightness} set $(($(${brightness} get)/4))";
-        resumeCommand = "${brightness} set $(($(${brightness} get)*4))";
+        command = "${brightness} set 75%-";
+        resumeCommand = "${brightness} set 75%+";
       } # dim screen
       {
         timeout = 60 * 10;
