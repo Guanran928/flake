@@ -1,6 +1,5 @@
 {config, ...}: {
   nix.settings = {
-    trusted-users = ["@wheel"];
     substituters =
       {
         "Asia/Shanghai" = [
@@ -25,6 +24,12 @@
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
     ];
+
+    trusted-users = ["@wheel"];
+    experimental-features = ["auto-allocate-uids" "cgroups"];
+    auto-allocate-uids = true;
+    builders-use-substitutes = true;
+    use-cgroups = true;
     use-xdg-base-directories = true;
   };
 
