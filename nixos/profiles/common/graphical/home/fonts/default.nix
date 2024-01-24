@@ -45,8 +45,11 @@
     (nerdfonts.override {fonts = ["JetBrainsMono"];})
 
     ### Adobe Source Han
-    source-han-sans
-    source-han-serif
+    # The reason I use Source Han instead of Noto CJK,
+    # is because I heard from #archlinux-cn, Adobe packages font better.
+    # You can 100% use noto-fonts-cjk-{sans,serif} if you prefer consistency/other reason.
+    source-han-sans-vf-otf
+    source-han-serif-vf-otf
     source-han-mono
 
     ### Noto Fonts
