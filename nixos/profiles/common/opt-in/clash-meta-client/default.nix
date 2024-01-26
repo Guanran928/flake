@@ -11,6 +11,11 @@
     webui = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.metacubexd;
   };
 
+  systemd.services.clash.serviceConfig.ExecStartPre = [
+    "${pkgs.coreutils}/bin/ln -sf ${pkgs.v2ray-geoip}/share/v2ray/geoip.dat /var/lib/private/clash/GeoIP.dat"
+    "${pkgs.coreutils}/bin/ln -sf ${pkgs.v2ray-domain-list-community}/share/v2ray/geosite.dat /var/lib/private/clash/GeoSite.dat"
+  ];
+
   ### System proxy settings
   networking.proxy.default = "http://127.0.0.1:7890/";
 

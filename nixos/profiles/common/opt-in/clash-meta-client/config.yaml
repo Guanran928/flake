@@ -20,29 +20,15 @@ use-backup: &use-backup
     - ermaozi
     #- jsnzkpg
 
-allow-lan: true
 port: 7890
-unified-delay: true
-tcp-concurrent: true
 external-controller: 127.0.0.1:9090
 log-level: warning
-
+unified-delay: true
+tcp-concurrent: true
 geodata-mode: true
-geox-url:
-  geoip: "https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat"
-  geosite: "https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
-  mmdb: "https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb"
-
-find-process-mode: strict
-global-client-fingerprint: chrome
-
-profile:
-  store-selected: true
-  store-fake-ip: true
 
 proxy-groups:
   - { name: PROXY, type: select, proxies: [自动选择, 备用自动选择, DIRECT, lon0] }
-
   - { name: 自动选择, <<: *use, tolerance: 2, type: url-test }
   - { name: 备用自动选择, <<: *use-backup, tolerance: 2, type: url-test }
 
@@ -54,11 +40,11 @@ proxy-groups:
   #- { name: 新加坡, <<: *use, type: url-test, filter: "(?i)(新|sg|singapore)" }
 
 rules:
-  - GEOIP,   lan,       DIRECT, no-resolve
-  - GEOSITE, bilibili,  DIRECT
-  - GEOSITE, spotify,   台湾
-  - GEOSITE, CN,        DIRECT
-  - GEOIP,   CN,        DIRECT
+  - GEOIP,   lan,           DIRECT, no-resolve
+  - GEOSITE, category-ads,  REJECT
+  - GEOSITE, spotify,       台湾
+  - GEOIP,   cn,            DIRECT
+  - GEOSITE, cn,            DIRECT
 
   # 未匹配到任何规则
   - MATCH, PROXY
