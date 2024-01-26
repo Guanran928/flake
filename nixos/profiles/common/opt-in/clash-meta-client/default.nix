@@ -4,6 +4,9 @@
   inputs,
   ...
 }: {
+  ### home-manager
+  home-manager.users.guanranwang.imports = [./home];
+
   services.clash = {
     enable = true;
     package = pkgs.clash-meta;
