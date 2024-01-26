@@ -22,7 +22,10 @@
 
   wayland.windowManager.sway = {
     enable = true;
-    extraOptions = ["--unsupported-gpu" "-Dnoscanout"];
+    extraOptions = [
+      "--unsupported-gpu"
+      #"-Dnoscanout"
+    ];
     wrapperFeatures.gtk = true;
     systemd.xdgAutostart = true;
     config = {
