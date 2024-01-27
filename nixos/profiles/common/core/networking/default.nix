@@ -6,6 +6,12 @@
     "223.6.6.6"
     "2400:3200::1"
     "2400:3200:baba::1"
+
+    ### Google DNS
+    #"8.8.8.8#dns.google"
+    #"8.8.4.4#dns.google"
+    #"2001:4860:4860::8888#dns.google"
+    #"2001:4860:4860::8844#dns.google"
   ];
 
   ### systemd-resolved
@@ -13,13 +19,7 @@
     enable = true;
     domains = ["~."];
     dnssec = "true";
-    extraConfig = "DNSOverTLS=yes";
-    fallbackDns = [
-      #"8.8.8.8#dns.google"
-      #"8.8.4.4#dns.google"
-      #"2001:4860:4860::8888#dns.google"
-      #"2001:4860:4860::8844#dns.google"
-    ];
+    dnsovertls = "true";
   };
 
   ### https://wiki.archlinux.org/title/Sysctl#Improving_performance
