@@ -65,7 +65,6 @@
 
       ### Keybinds
       modifier = "Mod4";
-      modes = {};
       keybindings = let
         inherit (config.wayland.windowManager.sway.config) modifier;
         setBrightness = "/home/guanranwang/.local/bin/wrapped-brightnessctl";
@@ -78,6 +77,7 @@
           "${modifier}+s" = "split toggle";
           "${modifier}+v" = "floating toggle";
           "${modifier}+f" = "fullscreen toggle";
+          "${modifier}+r" = "mode resize";
           "${modifier}+q" = "kill";
           "${modifier}+Shift+e" = "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'";
 
@@ -86,6 +86,10 @@
           "${modifier}+j" = "focus down";
           "${modifier}+k" = "focus up";
           "${modifier}+l" = "focus right";
+          "${modifier}+Shift+h" = "move left";
+          "${modifier}+Shift+j" = "move down";
+          "${modifier}+Shift+k" = "move up";
+          "${modifier}+Shift+l" = "move right";
 
           ### Execute other stuff
           # Launch applications
@@ -96,7 +100,7 @@
           # Rofi
           "${modifier}+d" = "exec rofi -show drun -show-icons -icon-theme ${config.gtk.iconTheme.name}";
           "${modifier}+Shift+d" = "exec ${lib.getExe pkgs.cliphist} list | rofi -dmenu | ${lib.getExe pkgs.cliphist} decode | ${pkgs.wl-clipboard}/bin/wl-copy";
-          "${modifier}+Shift+l" = ''exec rofi -modi "power-menu:rofi-power-menu --confirm=reboot/shutdown" -show power-menu'';
+          "${modifier}+Shift+Semicolon" = ''exec rofi -modi "power-menu:rofi-power-menu --confirm=reboot/shutdown" -show power-menu'';
 
           # Screenshot
           "${modifier}+Shift+s" = "exec ${screenshot} region";
