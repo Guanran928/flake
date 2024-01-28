@@ -1,10 +1,6 @@
-{
-  modulesPath,
-  inputs,
-  ...
-}: {
+{inputs, ...}: {
   imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
+    inputs.nixpkgs.nixosModules.notDetected
     inputs.nixos-hardware.nixosModules.lenovo-legion-y530-15ich
   ];
 
