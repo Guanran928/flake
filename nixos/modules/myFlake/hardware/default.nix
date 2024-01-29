@@ -1,6 +1,0 @@
-{...}: {
-  imports = [
-    ./accessories
-    ./components
-  ];
-}

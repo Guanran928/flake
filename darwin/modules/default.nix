@@ -1,6 +1,6 @@
 {...}: {
   imports = [
-    ./networking
-    ./services
+    ./networking/proxy.nix
+    ./services/clash.nix
   ];
 }
