@@ -56,7 +56,7 @@
     };
     nix-gaming = {
       url = "github:fufexan/nix-gaming";
-      #inputs.nixpkgs.follows = "nixpkgs"; # NOTE: I have to build wine-osu...
+      inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
     nix-monitored = {
