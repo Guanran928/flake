@@ -1,5 +1,6 @@
 {disks ? ["/dev/sda"], ...}: let
-  mountOptions = ["defaults" "compress=zstd" "noatime"];
+  # compress-force: https://t.me/archlinuxcn_group/3054167
+  mountOptions = ["defaults" "compress-force=zstd" "noatime"];
   cryptSettings = {
     allowDiscards = true;
     bypassWorkqueues = true;
