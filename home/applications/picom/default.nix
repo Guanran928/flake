@@ -1,15 +1,11 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   services.picom = {
     enable = true;
-    package = pkgs.picom.overrideAttrs (old: {
-      src = pkgs.fetchFromGitHub {
-        owner = "FT-Labs";
-        repo = "picom";
-        rev = "ad8feaad127746beaf2afe2b2ea37e7af204a2ac";
-        sha256 = "sha256-3lZ41DkNi7FVyEwvMaWwOjLD2aZ6DxZhhvVQMnU6JrI=";
-      };
-      buildInputs = old.buildInputs ++ [pkgs.pcre2];
-    });
+    package = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.picom-ft-labs;
     settings = {
       # Animations
       animations = true;
