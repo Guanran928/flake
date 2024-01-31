@@ -10,6 +10,7 @@ fetch: &fetch
 use: &use
   type: select
   use:
+    - kogeki
     - efcloud
     - spcloud
 

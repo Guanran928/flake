@@ -26,6 +26,7 @@
   sops.secrets = builtins.mapAttrs (_name: value: value // {restartUnits = ["clash.service"];}) {
     "clash/secret" = {};
     "clash/proxies/lon0" = {};
+    "clash/proxy-providers/kogeki" = {};
     "clash/proxy-providers/efcloud" = {};
     "clash/proxy-providers/spcloud" = {};
   };
@@ -41,6 +42,9 @@
         ${config.sops.placeholder."clash/proxies/lon0"}
 
       proxy-providers:
+        kogeki:
+          <<: *fetch
+          url: "${config.sops.placeholder."clash/proxy-providers/kogeki"}"
         efcloud:
           <<: *fetch
           url: "${config.sops.placeholder."clash/proxy-providers/efcloud"}"
