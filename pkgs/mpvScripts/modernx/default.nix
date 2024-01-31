@@ -8,14 +8,14 @@
 # error: evaluation aborted with the following error message: 'lib.customisation.callPackageWith: Function called without required argument "buildLua"
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "modernx";
-  version = "0.2.4";
+  version = "0.2.6.5";
 
   # zydezu's fork
   src = fetchFromGitHub {
     owner = "zydezu";
     repo = "ModernX";
     rev = finalAttrs.version;
-    hash = "sha256-b5dJeJ5GPEKhyznYIAQ3YzUq01rYUhDbci1ilNuXrdk=";
+    hash = "sha256-hqKqa9GoWV2MjuEYdrMtihTMWZ7/UjDROPR/7dAu9oY=";
   };
 
   dontConfigure = true;
