@@ -7,12 +7,14 @@ It just works™
 ```
  .
 │   # Darwin configuration is not actively maintained and sometimes it might break.
+├── 󱂵 home
 ├──  darwin
 ├──  nixos
 │  ├──  hosts
 │  ├──  modules
 │  └──  profiles
-│
+│ 
+├──  hosts
 ├──  flake.nix
 ├──  flake.lock
 │

@@ -1,8 +1,8 @@
 # iMac 18,3 (2017)
 {...}: {
   imports = [
-    ../../profiles/desktop
-    ../../profiles/common/opt-in/clash-meta-client.nix
+    ../../darwin/profiles/desktop
+    ../../darwin/profiles/common/opt-in/clash-meta-client.nix
 
     ./hardware-configuration.nix
   ];

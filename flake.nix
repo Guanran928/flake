@@ -182,12 +182,12 @@
 
     ### NixOS
     nixosConfigurations = {
-      "Aristotle" = mkNixOS "x86_64-linux" [./nixos/hosts/Aristotle];
+      "Aristotle" = mkNixOS "x86_64-linux" [./hosts/Aristotle];
     };
 
     ### Darwin
     darwinConfigurations = {
-      "Plato" = mkDarwin "x86_64-darwin" [./darwin/hosts/Plato];
+      "Plato" = mkDarwin "x86_64-darwin" [./hosts/Plato];
     };
   };
 }
