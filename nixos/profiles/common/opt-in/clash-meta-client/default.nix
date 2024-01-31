@@ -27,7 +27,6 @@
     "clash/secret" = {};
     "clash/proxies/lon0" = {};
     "clash/proxy-providers/kogeki" = {};
-    "clash/proxy-providers/efcloud" = {};
     "clash/proxy-providers/spcloud" = {};
   };
 
@@ -45,9 +44,6 @@
         kogeki:
           <<: *fetch
           url: "${config.sops.placeholder."clash/proxy-providers/kogeki"}"
-        efcloud:
-          <<: *fetch
-          url: "${config.sops.placeholder."clash/proxy-providers/efcloud"}"
         spcloud:
           <<: *fetch
           url: "${config.sops.placeholder."clash/proxy-providers/spcloud"}"
