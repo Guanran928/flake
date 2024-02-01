@@ -59,11 +59,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
-    nix-monitored = {
-      url = "github:ners/nix-monitored";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nix-filter.follows = "nix-filter";
-    };
+    #nix-monitored = {
+    #  url = "github:ners/nix-monitored";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #  inputs.nix-filter.follows = "nix-filter";
+    #};
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware";
     };
@@ -122,9 +122,9 @@
       url = "github:hyprwm/hyprlang";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-filter = {
-      url = "github:numtide/nix-filter";
-    };
+    #nix-filter = {
+    #  url = "github:numtide/nix-filter";
+    #};
     nvfetcher = {
       url = "github:berberman/nvfetcher";
       inputs.nixpkgs.follows = "nixpkgs";

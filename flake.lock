@@ -349,21 +349,6 @@
         "type": "github"
       }
     },
-    "nix-filter": {
-      "locked": {
-        "lastModified": 1705332318,
-        "narHash": "sha256-kcw1yFeJe9N4PjQji9ZeX47jg0p9A0DuU4djKvg1a7I=",
-        "owner": "numtide",
-        "repo": "nix-filter",
-        "rev": "3449dc925982ad46246cfc36469baf66e1b64f17",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "nix-filter",
-        "type": "github"
-      }
-    },
     "nix-gaming": {
       "inputs": {
         "flake-parts": [
@@ -384,29 +369,6 @@
       "original": {
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "type": "github"
-      }
-    },
-    "nix-monitored": {
-      "inputs": {
-        "nix-filter": [
-          "nix-filter"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1692605628,
-        "narHash": "sha256-jBasvDCk9V32JuwtPy1G4KyVAc2eaBSf2X5eRNQgIkY=",
-        "owner": "ners",
-        "repo": "nix-monitored",
-        "rev": "6be92b0c1eca7ef501b4f92735885e7cb4db414b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ners",
-        "repo": "nix-monitored",
         "type": "github"
       }
     },
@@ -585,9 +547,7 @@
         "impermanence": "impermanence",
         "lanzaboote": "lanzaboote",
         "nix-darwin": "nix-darwin",
-        "nix-filter": "nix-filter",
         "nix-gaming": "nix-gaming",
-        "nix-monitored": "nix-monitored",
         "nixos-hardware": "nixos-hardware",
         "nixpak": "nixpak",
         "nixpak-pkgs": "nixpak-pkgs",

@@ -6,6 +6,8 @@
     statix
     deadnix
 
+    # Nix helper
+    nh
     # Secret management
     sops
     # Additional information while building
