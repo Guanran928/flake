@@ -7,7 +7,7 @@
   home-manager.users.guanranwang = import ./home;
 
   # plymouth
-  boot.plymouth.enable = true;
+  #boot.plymouth.enable = true;
 
   # xserver
   services.xserver = {
