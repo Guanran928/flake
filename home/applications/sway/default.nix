@@ -8,8 +8,8 @@
     ../common/wayland.nix
     ../common/wm.nix
     ../cliphist
-    ../dunst
     ../i3status-rust
+    ../mako
     ../rofi
     ../swayidle
     ../swaylock
