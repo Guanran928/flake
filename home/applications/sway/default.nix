@@ -67,8 +67,6 @@
       modifier = "Mod4";
       keybindings = let
         inherit (config.wayland.windowManager.sway.config) modifier;
-        setBrightness = "/home/guanranwang/.local/bin/wrapped-brightnessctl";
-        setVolume = "/home/guanranwang/.local/bin/wrapped-pamixer";
         screenshot = "/home/guanranwang/.local/bin/screenshot";
       in
         {
@@ -108,11 +106,11 @@
           "Print+Control" = "exec ${screenshot} swappy";
 
           # Fn keys
-          "XF86MonBrightnessUp" = "exec ${setBrightness} up";
-          "XF86MonBrightnessDown" = "exec ${setBrightness} down";
-          "XF86AudioRaiseVolume" = "exec ${setVolume} up";
-          "XF86AudioLowerVolume" = "exec ${setVolume} down";
-          "XF86AudioMute" = "exec ${setVolume} mute";
+          "XF86MonBrightnessUp" = "exec ${lib.getExe pkgs.brightnessctl} set 5%+";
+          "XF86MonBrightnessDown" = "exec ${lib.getExe pkgs.brightnessctl} set 5%-";
+          "XF86AudioRaiseVolume" = "exec ${lib.getExe pkgs.pamixer} -i5";
+          "XF86AudioLowerVolume" = "exec ${lib.getExe pkgs.pamixer} -d5";
+          "XF86AudioMute" = "exec ${lib.getExe pkgs.pamixer} -t";
           "XF86AudioPlay" = "exec ${lib.getExe pkgs.playerctl} play";
           "XF86AudioPause" = "exec ${lib.getExe pkgs.playerctl} pause";
           "XF86AudioPrev" = "exec ${lib.getExe pkgs.playerctl} previous";

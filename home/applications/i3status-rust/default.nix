@@ -15,6 +15,7 @@
           {block = "load";}
 
           ### Stuff that I actually need
+          {block = "backlight";}
           {block = "sound";}
           {block = "battery";}
           {block = "time";}

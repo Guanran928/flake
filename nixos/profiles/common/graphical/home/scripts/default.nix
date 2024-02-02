@@ -2,8 +2,8 @@
   binPATH = ".local/bin";
 in {
   home.packages = with pkgs; [
-    pamixer
-    brightnessctl
+    #pamixer
+    #brightnessctl
     grim
     slurp
     swappy
@@ -11,14 +11,14 @@ in {
     #mpvpaper
     #swww
     libnotify
-    dunst
+    #dunst
   ];
   home.sessionPath = ["$HOME/${binPATH}"];
   home.file = builtins.mapAttrs (_name: value: value // {executable = true;}) {
-    ${binPATH} = {
-      source = ./bin;
-      recursive = true;
-    };
+    #${binPATH} = {
+    #  source = ./bin;
+    #  recursive = true;
+    #};
 
     "${binPATH}/lofi".source = pkgs.fetchurl {
       url = "https://raw.githubusercontent.com/lime-desu/bin/69422c37582c5914863997c75c268791a0de136e/lofi";
