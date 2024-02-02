@@ -37,8 +37,8 @@
       ### Visuals
       output."*".bg = "~/.local/share/backgrounds/Minato-Aqua-Dark.png fill";
       #window.titlebar = false;
-      gaps.inner = 4;
-      gaps.outer = 4;
+      #gaps.inner = 4;
+      #gaps.outer = 4;
       bars = [
         #{
         #  command = lib.getExe pkgs.waybar;
