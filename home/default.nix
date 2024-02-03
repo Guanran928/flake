@@ -41,6 +41,7 @@
     ./applications/fd
     ./applications/hyperfine
     ./applications/atuin
+    ./applications/zellij
 
     ./applications/ydict
     ./applications/fastfetch
