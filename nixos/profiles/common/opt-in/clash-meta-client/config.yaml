@@ -40,11 +40,27 @@ proxy-groups:
   #- { name: 新加坡, <<: *use, type: url-test, filter: "(?i)(新|sg|singapore)" }
 
 rules:
-  - GEOIP,   lan,           DIRECT, no-resolve
-  - GEOSITE, category-ads,  REJECT
-  - GEOSITE, spotify,       台湾
-  - GEOIP,   cn,            DIRECT
-  - GEOSITE, cn,            DIRECT
+  ### WHITELIST
+  # FILTER
+  - GEOIP,   lan,               DIRECT, no-resolve
+  - GEOSITE, private,           DIRECT
+  - GEOSITE, category-ads,      REJECT
 
-  # 未匹配到任何规则
-  - MATCH, PROXY
+  # DIRECT
+  - DOMAIN-SUFFIX, envs.net,      DIRECT
+  - DOMAIN-SUFFIX, catgirl.cloud, DIRECT
+  - GEOSITE, freecodecamp,      DIRECT # music radio
+  - GEOSITE, icloud,            DIRECT
+  - GEOSITE, apple@cn,          DIRECT
+  - GEOSITE, google@cn,         DIRECT
+  - GEOSITE, category-games@cn, DIRECT
+
+  # PROXY
+  - GEOSITE, spotify,           台湾
+  - GEOSITE, google,            PROXY
+  - GEOSITE, telegram,          PROXY
+
+  # NOMATCH
+  - GEOSITE, cn,                DIRECT
+  - GEOIP,   cn,                DIRECT
+  - MATCH,                      PROXY
