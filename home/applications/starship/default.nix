@@ -18,7 +18,7 @@
       // builtins.fromTOML (builtins.readFile "${pkgs.starship}/share/starship/presets/nerd-font-symbols.toml")
       // builtins.fromTOML (builtins.readFile (pkgs.substitute {
         src = "${pkgs.starship}/share/starship/presets/tokyo-night.toml";
-        replacements = ["--replace" "" ""];
+        replacements = ["--replace-warn" "" ""];
       }));
   };
 }
