@@ -5,6 +5,7 @@
     alejandra
     statix
     deadnix
+    nixpkgs-fmt # for nixpkgs PRs
 
     # Nix helper
     nh
@@ -14,19 +15,20 @@
     nix-output-monitor
   ];
 
+  ### nh
+  # yes, i know, weird and long path
+  home.sessionVariables.FLAKE = "/home/guanranwang/Documents/Projects/git-repos/github.com/Guanran928/flake";
+
   ### VSCode
   programs.vscode = {
-    userSettings = {
-      # Extensions
-      ## Nix IDE
-      nix.enableLanguageServer = true;
-      ### For "nixd" LSP
-      nix.serverPath = "nil";
-      nix.serverSettings.nil = {
+    extensions = [pkgs.vscode-extensions.jnoortheen.nix-ide];
+    userSettings.nix = {
+      enableLanguageServer = true;
+      serverPath = "nil";
+      serverSettings.nil = {
         formatting.command = ["alejandra"];
         nix.flake.autoArchive = true;
       };
     };
-    extensions = [pkgs.vscode-extensions.jnoortheen.nix-ide];
   };
 }
