@@ -2,10 +2,10 @@
   networking.wireless.iwd.enable = true;
   networking.nameservers = [
     ### AliDNS
-    "223.5.5.5"
-    "223.6.6.6"
-    "2400:3200::1"
-    "2400:3200:baba::1"
+    "223.5.5.5#dns.alidns.com"
+    "223.6.6.6#dns.alidns.com"
+    "2400:3200::1#dns.alidns.com"
+    "2400:3200:baba::1#dns.alidns.com"
 
     ### Google DNS
     #"8.8.8.8#dns.google"
