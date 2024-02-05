@@ -1,4 +1,5 @@
 {
+  programs.gh.enable = true;
   programs.git = {
     enable = true;
     userName = "Guanran Wang";
@@ -11,4 +12,10 @@
       pull.rebase = true;
     };
   };
+
+  xdg.configFile."gh/hosts.yml".text = ''
+    github.com:
+      git_protocol: https
+      user: Guanran928
+  '';
 }
