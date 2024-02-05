@@ -45,7 +45,7 @@ in {
 
       padding = lib.mkOption {
         type = lib.types.int;
-        default = 8;
+        default = 0;
         example = config.myFlake.home-manager.terminal.fontSize;
         description = "Select desired terminal padding size (in px).";
       };
