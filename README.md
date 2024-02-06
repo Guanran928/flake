@@ -30,7 +30,7 @@ Please don't.
 
    `$ git clone https://github.com/Guanran928/flake.git`
 
-2. Add your device's hardware configuration in `./flake.nix` and `./nixos/hosts/<hostname>`
+2. Add your device's hardware configuration in `./flake.nix` and `./hosts/<hostname>`
 
 3. Install NixOS
 
