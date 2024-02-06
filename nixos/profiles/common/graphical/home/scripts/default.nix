@@ -15,17 +15,17 @@ with pkgs; let
       inherit name;
       executable = true;
       destination = "/bin/${name}";
-      text = lib.concatStringsSep "\n" [
-        "#!${runtimeShell}"
-        (lib.optionalString (runtimeInputs != []) ''export PATH="${lib.makeBinPath runtimeInputs}:$PATH"'')
-        (builtins.readFile file)
-      ];
+      text = ''
+        #!${runtimeShell}
+        ${lib.optionalString (runtimeInputs != []) ''export PATH="${lib.makeBinPath runtimeInputs}:$PATH"''}
+        ${builtins.readFile file}
+      '';
     };
 in {
   home.packages = [
     (makeScript {
       name = "lofi";
-      runtimeInputs = [mpv];
+      runtimeInputs = [coreutils mpv];
       file = pkgs.fetchurl {
         url = "https://raw.githubusercontent.com/lime-desu/bin/69422c37582c5914863997c75c268791a0de136e/lofi";
         hash = "sha256-hT+S/rqOHUYnnFcSDFfQht4l1DGasz1L3wDHKUWLraA=";
