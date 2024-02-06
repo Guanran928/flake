@@ -50,7 +50,6 @@
     # You can 100% use noto-fonts-cjk-{sans,serif} if you prefer consistency/other reason.
     source-han-sans-vf-otf
     source-han-serif-vf-otf
-    source-han-mono
 
     ### Noto Fonts
     noto-fonts
