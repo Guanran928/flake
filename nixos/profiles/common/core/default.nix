@@ -9,7 +9,7 @@
     ./hardening
     ./networking
     ./nix
-    ./packages
+    ./anti-feature.nix
 
     # Flake modules
     inputs.self.nixosModules.default
@@ -19,6 +19,12 @@
     inputs.lanzaboote.nixosModules.lanzaboote
     inputs.sops-nix.nixosModules.sops
     inputs.nix-gaming.nixosModules.pipewireLowLatency
+  ];
+
+  nixpkgs.overlays = [
+    inputs.self.overlays.sway
+    inputs.self.overlays.prismlauncher
+    inputs.self.overlays.nautilus
   ];
 
   ### home-manager

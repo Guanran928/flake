@@ -177,6 +177,7 @@
   in {
     formatter = eachDefaultSystemMap (system: inputs.nixpkgs.legacyPackages.${system}.alejandra);
     packages = eachDefaultSystemMap (system: import ./pkgs inputs.nixpkgs.legacyPackages.${system});
+    overlays = import ./overlays;
     nixosModules.default = ./nixos/modules;
     darwinModules.default = ./darwin/modules;
 
