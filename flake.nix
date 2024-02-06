@@ -180,6 +180,7 @@
     overlays = import ./overlays;
     nixosModules.default = ./nixos/modules;
     darwinModules.default = ./darwin/modules;
+    homeManagerModules.default = ./home/modules;
 
     ### NixOS
     nixosConfigurations = {

@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   config,
   ...
@@ -26,7 +27,7 @@
 
   # Default applications
   imports = [
-    ./modules
+    inputs.self.homeManagerModules.default
 
     ./applications/git
     ./applications/gpg
