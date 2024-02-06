@@ -10,7 +10,6 @@ It just works™
 ├── 󱂵 home
 ├──  darwin
 ├──  nixos
-│  ├──  hosts
 │  ├──  modules
 │  └──  profiles
 │ 
