@@ -4,6 +4,8 @@
     flags = ["--disable-up-arrow"];
     settings = {
       style = "compact";
+      show_help = false;
+      update_check = false;
 
       stats = {
         common_subcommands =
