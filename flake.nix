@@ -25,18 +25,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.hyprland-protocols.follows = "hyprland-protocols";
-      inputs.systems.follows = "systems-linux";
-      inputs.wlroots.follows = "wlroots";
-      inputs.xdph.follows = "xdph";
-    };
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
     impermanence = {
       url = "github:nix-community/impermanence";
     };
@@ -59,11 +47,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
-    #nix-monitored = {
-    #  url = "github:ners/nix-monitored";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #  inputs.nix-filter.follows = "nix-filter";
-    #};
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware";
     };
@@ -113,18 +96,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
-    hyprland-protocols = {
-      url = "github:hyprwm/hyprland-protocols";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.systems.follows = "systems-linux";
-    };
-    hyprlang = {
-      url = "github:hyprwm/hyprlang";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    #nix-filter = {
-    #  url = "github:numtide/nix-filter";
-    #};
     nvfetcher = {
       url = "github:berberman/nvfetcher";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -143,20 +114,6 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
-    };
-    wlroots = {
-      type = "gitlab";
-      host = "gitlab.freedesktop.org";
-      owner = "wlroots";
-      repo = "wlroots";
-      flake = false;
-    };
-    xdph = {
-      url = "github:hyprwm/xdg-desktop-portal-hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.hyprland-protocols.follows = "hyprland-protocols";
-      inputs.systems.follows = "systems-linux";
-      inputs.hyprlang.follows = "hyprlang";
     };
   };
 
