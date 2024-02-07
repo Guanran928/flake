@@ -9,7 +9,6 @@
     ./hardening
     ./networking
     ./nix
-    ./anti-feature.nix
 
     # Flake modules
     inputs.self.nixosModules.default

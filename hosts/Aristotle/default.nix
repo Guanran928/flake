@@ -9,6 +9,7 @@
 
     # Hardware
     ./hardware-configuration.nix
+    ./anti-feature.nix
     ../../nixos/profiles/common/opt-in/lanzaboote.nix
     ../../nixos/profiles/common/opt-in/impermanence.nix
     ../../nixos/profiles/common/opt-in/disko.nix
