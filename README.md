@@ -4,15 +4,19 @@ It just works™
 
 ## Structure
 
+Any directory or file that is prefixed with an `_` (underscore) means that the
+whole directory/file is unused in this repository.
+
 ```
  .
-│   # Darwin configuration is not actively maintained and sometimes it might break.
+│   # Darwin configuration is not actively maintained and sometimes it might
+│   # break.
 ├── 󱂵 home
 ├──  darwin
 ├──  nixos
 │  ├──  modules
 │  └──  profiles
-│ 
+│
 ├──  hosts
 ├──  flake.nix
 ├──  flake.lock
@@ -30,7 +34,8 @@ Please don't.
 
    `$ git clone https://github.com/Guanran928/flake.git`
 
-2. Add your device's hardware configuration in `./flake.nix` and `./hosts/<hostname>`
+2. Add your device's hardware configuration in `./flake.nix` and
+   `./hosts/<hostname>`
 
 3. Install NixOS
 
