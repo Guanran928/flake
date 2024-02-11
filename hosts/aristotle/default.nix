@@ -15,7 +15,7 @@
     ../../nixos/profiles/common/opt-in/disko.nix
   ];
 
-  networking.hostName = "Aristotle";
+  networking.hostName = "aristotle";
   time.timeZone = "Asia/Shanghai";
   _module.args.disks = ["/dev/nvme0n1"]; # Disko
 }

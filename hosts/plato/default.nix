@@ -7,7 +7,7 @@
     ./hardware-configuration.nix
   ];
 
-  networking.hostName = "Plato";
+  networking.hostName = "plato";
   time.timeZone = "Asia/Shanghai";
   system.stateVersion = 4;
 }
