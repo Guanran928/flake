@@ -9,7 +9,7 @@
     theme "tokyo-night-dark"
     simplified_ui true
     pane_frames false
-    // default_layout "compact" // still learning the keybinds!
+    default_layout "compact" // still learning the keybinds!
 
     on_force_close "quit"
     mirror_session false
