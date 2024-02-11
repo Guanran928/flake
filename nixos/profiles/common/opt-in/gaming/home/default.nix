@@ -3,7 +3,7 @@
     "steam"
     "prismlauncher"
     "osu-lazer"
-    "osu-stable"
+    #"osu-stable"
     "mangohud"
   ];
 }
