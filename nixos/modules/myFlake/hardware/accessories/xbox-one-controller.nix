@@ -12,7 +12,7 @@ in {
 
   # https://wiki.archlinux.org/title/Gamepad#Connect_Xbox_Wireless_Controller_with_Bluetooth
   config = lib.mkIf cfg.enable {
-    hardware.xone.enable = true; # via Bluetooth
-    hardware.xpadneo.enable = true; # via wired or wireless dongle
+    hardware.xone.enable = true; # via wired or wireless dongle
+    hardware.xpadneo.enable = true; # via Bluetooth
   };
 }
