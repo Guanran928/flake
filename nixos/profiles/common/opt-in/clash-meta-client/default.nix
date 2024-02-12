@@ -37,7 +37,7 @@
     + ''
       secret: "${config.sops.placeholder."clash/secret"}"
       proxy-providers:
-        efcloud: 
+        efcloud:
           <<: *fetch
           url: "${config.sops.placeholder."clash/proxy-providers/efcloud"}"
         kogeki:
