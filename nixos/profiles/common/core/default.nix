@@ -21,9 +21,10 @@
   ];
 
   nixpkgs.overlays = [
-    inputs.self.overlays.sway
-    inputs.self.overlays.prismlauncher
-    inputs.self.overlays.nautilus
+    inputs.self.overlays.nautilus.typeahead
+    inputs.self.overlays.prismlauncher.offline-mode
+    inputs.self.overlays.sway.input-method-popup
+    inputs.self.overlays.sway.tray-dbus-menu
   ];
 
   ### home-manager
