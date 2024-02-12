@@ -1,4 +1,7 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  # curlOpts for pixiv, or it returns 403.
+  curlOptsList = ["-e" "https://www.pixiv.net/"];
+in {
   xdg.dataFile = {
     ### Local
     "backgrounds/unixcloud.jpg".source = ./wallpapers/unixcloud.jpg; # https://www.deviantart.com/georgegach/art/Unix-Cloud-818259008
@@ -7,12 +10,14 @@
 
     ### Online
     "backgrounds/aqua.png".source = pkgs.fetchurl {
-      url = "https://github.com/mashumarodesu/dots/blob/master/Assets/Aqua.png?raw=true"; # https://www.pixiv.net/en/artworks/106654974
-      hash = "sha256-JIat75RKz48a0BtniJBR1ifEk0tkkrHUrLPAHAz3Z1o=";
+      inherit curlOptsList;
+      url = "https://i.pximg.net/img-original/img/2023/03/29/01/29/52/106654974_p0.jpg"; # https://www.pixiv.net/en/artworks/106654974
+      hash = "sha256-mB/D46JCddOlMUtFQu7R0OtRMIoApbT1nnRv0VyzEb8=";
     };
     "backgrounds/summer.jpg".source = pkgs.fetchurl {
-      url = "https://images.hdqwalls.com/wallpapers/anime-couple-on-bicycle-1u.jpg"; # https://www.pixiv.net/en/artworks/49983419
-      hash = "sha256-J6ckWjfPyviUsDfswOYVPB4UEOBQ63Yr5yeJtOd9/2k=";
+      inherit curlOptsList;
+      url = "https://i.pximg.net/img-original/img/2015/04/23/12/43/35/49983419_p0.jpg"; # https://www.pixiv.net/en/artworks/49983419
+      hash = "sha256-JZ5VmsjVjZfHXpx3JxzAyYzZppZmgH38AiAA+B0TDiw=";
     };
     "backgrounds/macos-mojave-day.jpg".source = pkgs.fetchurl {
       url = "https://media.idownloadblog.com/wp-content/uploads/2018/06/macOS-Mojave-Day-wallpaper.jpg";
