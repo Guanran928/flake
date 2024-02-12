@@ -10,6 +10,7 @@ fetch: &fetch
 use: &use
   type: select
   use:
+    - efcloud
     - kogeki
     - spcloud
 
@@ -28,7 +29,7 @@ tcp-concurrent: true
 geodata-mode: true
 
 proxy-groups:
-  - { name: PROXY, type: select, proxies: [自动选择, 备用自动选择, DIRECT, lon0] }
+  - { name: PROXY, type: select, proxies: [自动选择, 备用自动选择, DIRECT] }
   - { name: 自动选择, <<: *use, tolerance: 2, type: url-test }
   - { name: 备用自动选择, <<: *use-backup, tolerance: 2, type: url-test }
 
