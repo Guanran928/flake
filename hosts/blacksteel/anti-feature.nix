@@ -14,6 +14,7 @@
         "sof-firmware"
         "spotify"
         "vscodium"
+        "papermc"
       ];
 
     allowUnfree = false;
@@ -22,6 +23,7 @@
         "nvidia-x11"
         "spotify"
         "broadcom-sta"
+        "papermc"
       ];
   };
 }

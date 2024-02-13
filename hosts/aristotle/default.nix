@@ -18,4 +18,6 @@
   networking.hostName = "aristotle";
   time.timeZone = "Asia/Shanghai";
   _module.args.disks = ["/dev/nvme0n1"]; # Disko
+
+  services.tailscale.enable = true;
 }
