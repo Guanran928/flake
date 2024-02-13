@@ -142,6 +142,7 @@
     ### NixOS
     nixosConfigurations = {
       "aristotle" = mkNixOS "x86_64-linux" [./hosts/aristotle];
+      "blacksteel" = mkNixOS "x86_64-linux" [./hosts/blacksteel];
     };
 
     ### Darwin
