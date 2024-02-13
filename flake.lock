@@ -138,29 +138,6 @@
         "type": "github"
       }
     },
-    "hercules-ci-effects": {
-      "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1704029560,
-        "narHash": "sha256-a4Iu7x1OP+uSYpqadOu8VCPY+MPF3+f6KIi+MAxlgyw=",
-        "owner": "hercules-ci",
-        "repo": "hercules-ci-effects",
-        "rev": "d5cbf433a6ae9cae05400189a8dbc6412a03ba16",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hercules-ci",
-        "repo": "hercules-ci-effects",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -292,58 +269,6 @@
         "type": "github"
       }
     },
-    "nixpak": {
-      "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "hercules-ci-effects": [
-          "hercules-ci-effects"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1707358904,
-        "narHash": "sha256-WYP9+8nHYWmBh3tsQhos7GJ+SozP9/jv0dZsQLYlwo0=",
-        "owner": "nixpak",
-        "repo": "nixpak",
-        "rev": "903020fdc3e77e896404a2888f4b896638400854",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixpak",
-        "repo": "nixpak",
-        "type": "github"
-      }
-    },
-    "nixpak-pkgs": {
-      "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "hercules-ci-effects": [
-          "hercules-ci-effects"
-        ],
-        "nixpak": [
-          "nixpak"
-        ]
-      },
-      "locked": {
-        "lastModified": 1707374866,
-        "narHash": "sha256-aivOcd9Qw1HeU+Fs/3EF3jmFSOAcl86DEfnC1zd+lsQ=",
-        "owner": "nixpak",
-        "repo": "pkgs",
-        "rev": "b45f46c1cd7f151c71b61294df7394a7deb3698b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixpak",
-        "repo": "pkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1707546158,
@@ -443,15 +368,12 @@
         "flake-parts": "flake-parts",
         "flake-utils": "flake-utils",
         "gitignore": "gitignore",
-        "hercules-ci-effects": "hercules-ci-effects",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
         "lanzaboote": "lanzaboote",
         "nix-darwin": "nix-darwin",
         "nix-gaming": "nix-gaming",
         "nixos-hardware": "nixos-hardware",
-        "nixpak": "nixpak",
-        "nixpak-pkgs": "nixpak-pkgs",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
         "nvfetcher": "nvfetcher",

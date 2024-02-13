@@ -50,18 +50,6 @@
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware";
     };
-    nixpak = {
-      url = "github:nixpak/nixpak";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
-      inputs.hercules-ci-effects.follows = "hercules-ci-effects";
-    };
-    nixpak-pkgs = {
-      url = "github:nixpak/pkgs";
-      inputs.nixpak.follows = "nixpak";
-      inputs.flake-parts.follows = "flake-parts";
-      inputs.hercules-ci-effects.follows = "hercules-ci-effects";
-    };
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -90,11 +78,6 @@
     gitignore = {
       url = "github:hercules-ci/gitignore.nix";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hercules-ci-effects = {
-      url = "github:hercules-ci/hercules-ci-effects";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
     };
     nvfetcher = {
       url = "github:berberman/nvfetcher";
