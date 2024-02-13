@@ -24,7 +24,6 @@
   boot.kernelModules = ["kvm-intel" "wl"];
   boot.extraModulePackages = [config.boot.kernelPackages.broadcom_sta];
 
-
   #hardware.nvidia.modesetting.enable = true;
   #hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
 
