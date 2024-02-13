@@ -25,6 +25,7 @@
   ### sops-nix
   sops.secrets = builtins.mapAttrs (_name: value: value // {restartUnits = ["clash.service"];}) {
     "clash/secret" = {};
+    "clash/proxy-providers/flyairport" = {};
     "clash/proxy-providers/efcloud" = {};
     "clash/proxy-providers/kogeki" = {};
     "clash/proxy-providers/spcloud" = {};
@@ -37,6 +38,9 @@
     + ''
       secret: "${config.sops.placeholder."clash/secret"}"
       proxy-providers:
+        flyairport:
+          <<: *fetch
+          url: "${config.sops.placeholder."clash/proxy-providers/flyairport"}"
         efcloud:
           <<: *fetch
           url: "${config.sops.placeholder."clash/proxy-providers/efcloud"}"
