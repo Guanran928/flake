@@ -1,15 +1,12 @@
 {lib, ...}: {
-  ### sops-nix
   sops.age.sshKeyPaths = lib.mkForce ["/persist/etc/ssh/ssh_host_ed25519_key"];
-
   fileSystems."/persist".neededForBoot = true;
   environment.persistence."/persist" = {
     hideMounts = true;
     directories = [
       "/var/log"
       "/var/lib"
-
-      "/etc/secureboot" # sbctl, lanzaboote
+      "/etc/secureboot"
     ];
     files = [
       "/etc/ssh/ssh_host_ed25519_key"
@@ -24,24 +21,26 @@
         "Downloads"
         "Music"
         "Pictures"
+        "Videos"
         #"Public"
         #"Templates"
-        "Videos"
+
+        ".ssh"
+        #".librewolf"
+        ".mozilla/firefox"
+        ".thunderbird"
 
         ".cache"
-        ".local/share" # ".local/bin" is managed through home-manager
+        ".local/share"
         ".local/state"
-        ".ssh"
 
-        ".librewolf"
-        ".thunderbird"
+        ".config/Mumble"
+        ".config/VSCodium"
         ".config/chromium"
         ".config/fcitx5"
-        ".config/Mumble"
-        ".config/spotify"
         ".config/obs-studio"
         ".config/qBittorrent"
-        ".config/VSCodium" # UI states, GitHub account state, etc
+        ".config/spotify"
       ];
       files = [
         ".config/sops/age/keys.txt"

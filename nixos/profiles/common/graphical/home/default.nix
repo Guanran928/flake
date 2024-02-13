@@ -24,7 +24,8 @@
 
       # Browser
       "chromium"
-      "librewolf"
+      #"librewolf"
+      "firefox"
 
       # Language
       "nix"
