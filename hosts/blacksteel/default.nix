@@ -22,6 +22,11 @@
   # [ ] fan is *blasting* even after I installed mbpfans
   # [ ] audio quality isnt too great (compared to macOS, or i might have wooden ears)
 
+
+  ######## Services
+  services.tailscale.enable = true;
+
+  # Minecraft
   services.minecraft-server = {
     enable = true;
     eula = true;
@@ -33,7 +38,7 @@
     serverProperties = {
       motd = "NixOS Minecraft server!";
       white-list = true;
-      
+
       difficulty = 3;
       gamemode = 0;
       max-players = 5;
@@ -44,5 +49,20 @@
     };
   };
 
-  services.tailscale.enable = true;
+  # Samba
+  services.samba = {
+    enable = true;
+    openFirewall = true;
+    shares."share" = {
+      path = "/srv/samba/share";
+      "read only" = "no";
+    };
+  };
+  services.samba-wsdd = {
+    enable = true;
+    openFirewall = true;
+  };
+  systemd.tmpfiles.rules = [
+    "d /srv/samba/share 0700 guanranwang root"
+  ];
 }
