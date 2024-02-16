@@ -19,5 +19,8 @@
   time.timeZone = "Asia/Shanghai";
   _module.args.disks = ["/dev/nvme0n1"]; # Disko
 
-  services.tailscale.enable = true;
+  services.tailscale = {
+    enable = true;
+    openFirewall = true;
+  };
 }

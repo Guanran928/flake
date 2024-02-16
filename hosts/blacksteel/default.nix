@@ -24,7 +24,10 @@
 
 
   ######## Services
-  services.tailscale.enable = true;
+  services.tailscale = {
+    enable = true;
+    openFirewall = true;
+  };
 
   # Minecraft
   services.minecraft-server = {
