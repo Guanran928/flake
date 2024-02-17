@@ -101,7 +101,10 @@
     ];
     hashedPasswordFile = config.sops.secrets."hashed-passwd".path;
     shell = pkgs.fish;
-    packages = [];
+    openssh.authorizedKeys.keys = [
+      # same as git signing
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMmd/uqiBahzKcKMJ+gT3dkUIdrWQgudspsDchDlx1E/ guanran928@outlook.com"
+    ];
   };
 
   programs.fish.enable = true;
