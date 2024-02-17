@@ -22,7 +22,6 @@
   # [ ] fan is *blasting* even after I installed mbpfans
   # [ ] audio quality isnt too great (compared to macOS, or i might have wooden ears)
 
-
   ######## Services
   services.tailscale = {
     enable = true;
@@ -68,4 +67,7 @@
   systemd.tmpfiles.rules = [
     "d /srv/samba/share 0700 guanranwang root"
   ];
+
+  # qBitTorrent
+  environment.systemPackages = with pkgs; [qbittorrent];
 }
