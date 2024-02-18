@@ -1,10 +1,8 @@
 {pkgs, ...}: {
-  fonts.fontconfig.enable = true;
+  # Fontconfig
   xdg.configFile = {
-    "fontconfig" = {
-      source = ./fontconfig;
-      recursive = true;
-    };
+    "fontconfig/fonts.conf".source = ./fonts.conf;
+
     "fontconfig/conf.d/web-ui-fonts.conf".source = pkgs.fetchurl {
       url = "https://raw.githubusercontent.com/lilydjwg/dotconfig/1b22d4f0740bb5bbd7c65b6c468920775171b207/fontconfig/web-ui-fonts.conf";
       hash = "sha256-A4DcV6HTW/IRxXN3NaI1GUfoFdalwgFLpCjgbWENdZU=";
@@ -15,28 +13,20 @@
     };
   };
 
-  gtk.font.name = "Sans";
+  # Make GTK listen to fontconfig
   dconf.settings = {
     "org/gnome/desktop/wm/preferences" = {
       "titlebar-font" = "Sans Bold";
     };
     "org/gnome/desktop/interface" = {
+      "font-name" = "Sans";
       "document-font-name" = "Sans";
       "monospace-font-name" = "Monospace";
-      # "font-name" is unneeded
-      # https://github.com/nix-community/home-manager/blob/8765d4e38aa0be53cdeee26f7386173e6c65618d/modules/misc/gtk.nix#L237C19-L237C19
     };
   };
-  xresources.properties = {
-    # Fonts
-    "Xft.autohint" = "0";
-    "Xft.lcdfilter" = "lcddefault";
-    "Xft.hintstyle" = "hintslight";
-    "Xft.hinting" = "1";
-    "Xft.antialias" = "1";
-    "Xft.rgba" = "rgb";
-  };
 
+  # HM managed fonts
+  fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
     ### Inter
     inter
