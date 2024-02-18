@@ -1,6 +1,7 @@
 ### About this device
 
 ### Hardware
+
 ```
 $ hostnamectl --json short | jq -r '.HardwareVendor, .HardwareModel'
 Lenovo
