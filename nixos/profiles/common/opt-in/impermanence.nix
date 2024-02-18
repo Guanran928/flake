@@ -39,7 +39,6 @@
         ".config/chromium"
         ".config/fcitx5"
         ".config/obs-studio"
-        ".config/qBittorrent"
         ".config/spotify"
       ];
       files = [
