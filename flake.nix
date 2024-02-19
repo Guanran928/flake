@@ -50,6 +50,11 @@
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware";
     };
+    neovim = {
+      url = "github:Guanran928/nvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";

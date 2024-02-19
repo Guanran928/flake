@@ -1,15 +1,23 @@
-{pkgs, ...}: {
-  #home.packages = [pkgs.lunarvim];
-  programs.neovim = {
-    enable = true;
-    #defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-  };
-  xdg.configFile."nvim".source = pkgs.fetchFromGitHub {
-    owner = "Guanran928";
-    repo = "nvim";
-    rev = "2a3a14de15d28f97dafea4be6e91df72d4a45e42";
-    hash = "sha256-CFdRSYAC5FPPC45gc+vSYpSHfZL78Wf7IugA6pEASXE=";
-  };
+{
+  pkgs,
+  inputs,
+  ...
+}: {
+  home.packages = [
+    inputs.neovim.packages.${pkgs.stdenv.hostPlatform.system}.default
+    #pkgs.lunarvim
+
+    # stupid way to make {vi,vim}Alias work without a module
+    (pkgs.writeShellScriptBin "vi" ''nvim "$@"'')
+    (pkgs.writeShellScriptBin "vim" ''nvim "$@"'')
+  ];
+
+  # TODO: couldn't make it work
+  #programs.neovim = {
+  #  enable = true;
+  #  viAlias = true;
+  #  vimAlias = true;
+  #
+  #  package = inputs.neovim.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  #};
 }

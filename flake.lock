@@ -211,6 +211,29 @@
         "type": "github"
       }
     },
+    "neovim": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1708372533,
+        "narHash": "sha256-r6L+hXIzg+EGH9CHQ+nPMVAmvkMFIoeZBkg0zn+LuWk=",
+        "owner": "Guanran928",
+        "repo": "nvim",
+        "rev": "0bdb35d845bad9af4160ca04fe71b6a5e3c4723e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Guanran928",
+        "repo": "nvim",
+        "type": "github"
+      }
+    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -371,6 +394,7 @@
         "home-manager": "home-manager",
         "impermanence": "impermanence",
         "lanzaboote": "lanzaboote",
+        "neovim": "neovim",
         "nix-darwin": "nix-darwin",
         "nix-gaming": "nix-gaming",
         "nixos-hardware": "nixos-hardware",
