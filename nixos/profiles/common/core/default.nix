@@ -45,7 +45,7 @@
 
   ### Default Programs
   environment.defaultPackages = [];
-  # In addtion of https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/config/system-path.nix
+  # In addition of https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/config/system-path.nix
   environment.systemPackages = with pkgs; [
     unzip
     wget

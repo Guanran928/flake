@@ -25,7 +25,7 @@
         indent-guides.render = true;
         file-picker.hidden = false;
       };
-      # i still use these keybinds somethimes, even its hard to reach
+      # i still use these keybinds sometimes, even its hard to reach
       keys.insert = {
         C-left = "move_prev_word_start";
         C-right = "move_next_word_end";
