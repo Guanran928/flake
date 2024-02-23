@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     # OS
     ../../nixos/profiles/laptop
@@ -24,8 +28,47 @@
     enable = true;
     eula = true;
     openFirewall = true;
-    package = pkgs.papermc;
-    jvmOpts = "-Xms2G -Xmx2G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true";
+
+    # Updated pkgs.papermc
+    package = let
+      mcVersion = "1.20.4";
+      buildNum = "431";
+    in
+      pkgs.papermc.overrideAttrs {
+        version = "${mcVersion}.${buildNum}";
+        src = pkgs.fetchurl {
+          url = "https://papermc.io/api/v2/projects/paper/versions/${mcVersion}/builds/${buildNum}/downloads/paper-${mcVersion}-${buildNum}.jar";
+          hash = "sha256-Wml6p9OkFPYKjwEjVnWgRybQDsmG/taG2lWr3nNSlrQ=";
+        };
+      };
+
+    # Aikar's flag
+    # https://aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft/
+    # https://docs.papermc.io/paper/aikars-flags
+    jvmOpts = lib.concatStringsSep " " [
+      "-Xms2G"
+      "-Xmx2G"
+      "-XX:+UseG1GC"
+      "-XX:+ParallelRefProcEnabled"
+      "-XX:MaxGCPauseMillis=200"
+      "-XX:+UnlockExperimentalVMOptions"
+      "-XX:+DisableExplicitGC"
+      "-XX:+AlwaysPreTouch"
+      "-XX:G1NewSizePercent=30"
+      "-XX:G1MaxNewSizePercent=40"
+      "-XX:G1HeapRegionSize=8M"
+      "-XX:G1ReservePercent=20"
+      "-XX:G1HeapWastePercent=5"
+      "-XX:G1MixedGCCountTarget=4"
+      "-XX:InitiatingHeapOccupancyPercent=15"
+      "-XX:G1MixedGCLiveThresholdPercent=90"
+      "-XX:G1RSetUpdatingPauseTimePercent=5"
+      "-XX:SurvivorRatio=32"
+      "-XX:+PerfDisableSharedMem"
+      "-XX:MaxTenuringThreshold=1"
+      "-Dusing.aikars.flags=https://mcflags.emc.gs"
+      "-Daikars.new.flags=true"
+    ];
 
     declarative = true;
     serverProperties = {
