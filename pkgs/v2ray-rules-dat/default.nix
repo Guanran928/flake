@@ -5,16 +5,16 @@
 }:
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "v2ray-rules-dat";
-  version = "202402042209";
+  version = "202402242208";
 
   srcs = [
     (fetchurl {
       url = "https://github.com/Loyalsoldier/${finalAttrs.pname}/releases/download/${finalAttrs.version}/geoip.dat";
-      hash = "sha256-85OXgvpCa7qLzYGaX+YLMDTPBGvZaMpb1INOFnGM1Tw=";
+      hash = "sha256-NxnsYH80dPAq6Cd0z0G5dBmdyOH1/rOEe4Mjxu9vlQc=";
     })
     (fetchurl {
       url = "https://github.com/Loyalsoldier/${finalAttrs.pname}/releases/download/${finalAttrs.version}/geosite.dat";
-      hash = "sha256-XP9X0l6E9cbvc8AS9yW0mBIyDXfjrV0nxB2tkBHDOFE=";
+      hash = "sha256-edPBydJ7pbf9hG92q5GewFxHgjI8qEBQh3N2GQ9JH30=";
     })
   ];
 
