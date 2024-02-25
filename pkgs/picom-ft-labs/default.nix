@@ -5,13 +5,13 @@
 }:
 picom.overrideAttrs (old: {
   pname = "picom-ft-labs";
-  version = "unstable-2024-01-22";
+  version = "unstable-2024-02-17";
 
   src = fetchFromGitHub {
     owner = "FT-Labs";
     repo = "picom";
-    rev = "fe5b416ed6f43c31418d21dde7a9f20c12d7dfb0";
-    sha256 = "sha256-jouBx8fqoy/psD/P9dX3Q4/D4IWsLSxA210CKcBbh4I=";
+    rev = "df4c6a3d9b11e14ed7f3142540babea4c775ddb1";
+    sha256 = "sha256-FmORxY7SLFnAmtQyC82sK36RoUBa94rJ7BsDXjXUCXk=";
   };
 
   buildInputs = old.buildInputs ++ [pcre2];
