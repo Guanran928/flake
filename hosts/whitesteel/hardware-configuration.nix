@@ -1,10 +1,8 @@
 {
   networking.knownNetworkServices = [
-    "Ethernet"
     "Wi-Fi"
+    "Bluetooth PAN"
     "Thunderbolt Bridge"
-    "Thunderbolt Bridge 2"
-    "iPhone USB"
   ];
 
   # The platform the configuration will be used on.
