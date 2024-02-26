@@ -119,5 +119,20 @@ in {
     # Install the proxy environment variables
     environment.variables = cfg.proxy.envVars;
     launchd.daemons."nix-daemon".environment = cfg.proxy.envVars;
+
+    # Set macOS's system level proxy setting
+    system.activationScripts."extraActivation".text = let
+      inherit (cfg) knownNetworkServices;
+      networksetup = /usr/sbin/networksetup;
+
+      # naive but works(tm)
+      # "http://127.0.0.1:1234/" -> "127.0.0.1 1234"
+      proxy = builtins.replaceStrings ["http://" ":" "/"] ["" " " ""] cfg.proxy.httpProxy;
+    in
+      lib.concatMapStrings (x: ''
+        ${networksetup} -setwebproxystate "${x}" on
+        ${networksetup} -setwebproxy "${x}" ${proxy}
+      '')
+      knownNetworkServices;
   };
 }

@@ -1,6 +1,5 @@
 {
   config,
-  osConfig,
   pkgs,
   lib,
   ...
@@ -53,23 +52,6 @@
             done
           )
         '';
-
-      # I should've putted it in /darwin/modules/networking/proxy.nix,
-      # but I am too stupid to figure out how nix-darwin works...
-      setSystemProxy = let
-        inherit (osConfig.networking) knownNetworkServices;
-        networksetup = /usr/sbin/networksetup;
-
-        # naive but works(tm)
-        # "http://127.0.0.1:1234/" -> "127.0.0.1 1234"
-        proxy = builtins.replaceStrings ["http://" ":" "/"] ["" " " ""] osConfig.networking.proxy.httpProxy;
-      in
-        lib.hm.dag.entryAfter ["writeBoundary"]
-        (lib.concatMapStrings (x: ''
-            ${networksetup} -setwebproxystate "${x}" on
-            ${networksetup} -setwebproxy "${x}" ${proxy}
-          '')
-          knownNetworkServices);
     };
 
     packages = with pkgs; [
