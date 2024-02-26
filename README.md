@@ -56,4 +56,4 @@ Please don't.
 
 4. Install [`nix-darwin`](https://github.com/LnL7/nix-darwin?tab=readme-ov-file#flakes)
 
-   `nix run nix-darwin -- switch --flake <this flake's directory>#<hostname>`
+   `$ nix run nix-darwin -- switch --flake <this flake's directory>#<hostname>`
