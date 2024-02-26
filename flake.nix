@@ -136,6 +136,7 @@
     ### Darwin
     darwinConfigurations = {
       "plato" = mkDarwin "x86_64-darwin" [./hosts/plato];
+      "whitesteel" = mkDarwin "x86_64-darwin" [./hosts/whitesteel];
     };
   };
 }
