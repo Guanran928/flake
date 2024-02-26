@@ -277,6 +277,26 @@
         "type": "github"
       }
     },
+    "nixcasks": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-stable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1708897147,
+        "narHash": "sha256-IZthUAu/4qH8EtUbpREVue2E83x4ofHcBjxXSRfdj3s=",
+        "owner": "jacekszymanski",
+        "repo": "nixcasks",
+        "rev": "9351c986bb5cfb940485f57e2595186d1ab68e4a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jacekszymanski",
+        "repo": "nixcasks",
+        "type": "github"
+      }
+    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1708594753,
@@ -397,6 +417,7 @@
         "neovim": "neovim",
         "nix-darwin": "nix-darwin",
         "nix-gaming": "nix-gaming",
+        "nixcasks": "nixcasks",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
@@ -405,8 +426,7 @@
         "rust-overlay": "rust-overlay",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
-        "systems": "systems",
-        "systems-linux": "systems-linux"
+        "systems": "systems"
       }
     },
     "rust-overlay": {
@@ -490,21 +510,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
-        "type": "github"
-      }
-    },
-    "systems-linux": {
-      "locked": {
-        "lastModified": 1689347949,
-        "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",
-        "owner": "nix-systems",
-        "repo": "default-linux",
-        "rev": "31732fcf5e8fea42e59c2488ad31a0e651500f68",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default-linux",
         "type": "github"
       }
     }

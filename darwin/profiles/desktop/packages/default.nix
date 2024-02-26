@@ -1,7 +1,7 @@
 {...}: {
   imports = [
     ./fonts.nix
-    ./homebrew.nix
+    # ./homebrew.nix
     ./window-manager.nix
   ];
 }

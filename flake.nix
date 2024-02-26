@@ -38,6 +38,11 @@
       inputs.pre-commit-hooks-nix.follows = "pre-commit-hooks-nix";
       inputs.rust-overlay.follows = "rust-overlay";
     };
+    neovim = {
+      url = "github:Guanran928/nvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -50,10 +55,10 @@
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware";
     };
-    neovim = {
-      url = "github:Guanran928/nvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
+    nixcasks = {
+      # contains unfree
+      url = "github:jacekszymanski/nixcasks";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -66,7 +71,6 @@
       inputs.flake-utils.follows = "flake-utils";
     };
     systems.url = "github:nix-systems/default";
-    systems-linux.url = "github:nix-systems/default-linux";
 
     ### De-dupe
     crane = {
