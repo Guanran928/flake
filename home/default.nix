@@ -28,6 +28,7 @@
   # Default applications
   imports = [
     inputs.self.homeManagerModules.default
+    inputs.nur.hmModules.nur
 
     ./applications/git
     ./applications/gpg

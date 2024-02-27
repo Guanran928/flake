@@ -1,7 +1,6 @@
 {
   pkgs,
   config,
-  inputs,
   ...
 }: {
   ### home-manager
@@ -11,7 +10,7 @@
     enable = true;
     package = pkgs.clash-meta;
     configFile = config.sops.templates."clash.yaml".path;
-    webui = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.metacubexd;
+    webui = config.nur.repos.guanran928.metacubexd;
   };
 
   systemd.services.clash.serviceConfig.ExecStartPre = [

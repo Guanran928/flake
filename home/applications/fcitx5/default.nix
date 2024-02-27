@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   inputs,
   ...
@@ -14,7 +15,7 @@
         fcitx5-pinyin-moegirl
         fcitx5-pinyin-zhwiki
       ])
-      ++ (with inputs.self.packages.${pkgs.stdenv.hostPlatform.system}; [
+      ++ (with config.nur.repos.guanran928; [
         fcitx5-tokyonight
       ]);
   };

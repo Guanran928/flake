@@ -11,13 +11,14 @@
     ./nix
 
     # Flake modules
-    inputs.self.nixosModules.default
     inputs.disko.nixosModules.disko
     inputs.home-manager.nixosModules.home-manager
     inputs.impermanence.nixosModules.impermanence
     inputs.lanzaboote.nixosModules.lanzaboote
-    inputs.sops-nix.nixosModules.sops
     inputs.nix-gaming.nixosModules.pipewireLowLatency
+    inputs.nur.nixosModules.nur
+    inputs.self.nixosModules.default
+    inputs.sops-nix.nixosModules.sops
   ];
 
   nixpkgs.overlays = [

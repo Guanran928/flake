@@ -1,12 +1,12 @@
 {
-  inputs,
   pkgs,
+  config,
   ...
 }: {
   services.clash = {
     enable = true;
     package = pkgs.clash-meta;
-    webui = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.metacubexd;
+    webui = config.nur.repos.guanran928.metacubexd;
   };
 
   ### System proxy settings

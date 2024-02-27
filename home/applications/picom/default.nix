@@ -1,11 +1,7 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
+{config, ...}: {
   services.picom = {
     enable = true;
-    package = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.picom-ft-labs;
+    package = config.nur.repos.guanran928.picom-ft-labs;
     settings = {
       # Animations
       animations = true;
