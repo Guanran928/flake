@@ -11,6 +11,7 @@
         "sof-firmware"
         "spotify"
         "vscodium"
+        "temurin-bin"
       ];
 
     allowUnfree = false;

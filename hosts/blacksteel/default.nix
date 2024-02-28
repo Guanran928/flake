@@ -29,6 +29,8 @@
     eula = true;
     openFirewall = true;
 
+    package = pkgs.papermc;
+
     # Updated pkgs.papermc
     # package = let
     #   mcVersion = "1.20.4";

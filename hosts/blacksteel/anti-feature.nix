@@ -15,6 +15,7 @@
         "spotify"
         "vscodium"
         "papermc"
+        "temurin-bin"
       ];
 
     allowUnfree = false;
