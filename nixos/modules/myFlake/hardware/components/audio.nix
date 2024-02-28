@@ -29,7 +29,7 @@ in {
         jack.enable = true;
 
         # pipewireLowLatency module from github:fufexan/nix-gaming
-        lowLatency.enable = true;
+        # lowLatency.enable = true;
       };
     })
     (lib.mkIf (cfg.soundServer == "pulseaudio") {
