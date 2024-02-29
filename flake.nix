@@ -2,12 +2,14 @@
   description = "Guanran928's Flake";
 
   inputs = {
-    # Flake inputs
-    ## Nixpkgs
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # INFO: `nixos-unstable` and `nixpkgs-unstable` contains the same set of packages,
+    #       the difference between those channels is their jobsets,
+    #       `nixpkgs-unstable` contains less(?) jobs, and usually updates faster.
+    #
+    # REFERENCE: https://discourse.nixos.org/t/differences-between-nix-channels/13998/5
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
 
-    ## Flakes
     berberman = {
       url = "github:berberman/flakes";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -75,7 +77,7 @@
     };
     systems.url = "github:nix-systems/default";
 
-    ### De-dupe
+    ### De-dupe flake dependencies
     crane = {
       url = "github:ipetkov/crane";
       inputs.nixpkgs.follows = "nixpkgs";
