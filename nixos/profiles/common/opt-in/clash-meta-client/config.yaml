@@ -1,11 +1,11 @@
 ### YAML Anchors
 fetch: &fetch
   type: http
-  interval: 3600
+  interval: 43200 # 12 hours
   health-check:
     enable: true
     url: https://www.gstatic.com/generate_204
-    interval: 300
+    interval: 600 # 10 minutes
 
 use: &use
   type: select
@@ -55,12 +55,13 @@ rules:
   - GEOSITE, icloud,            DIRECT
   - GEOSITE, apple@cn,          DIRECT
   - GEOSITE, google@cn,         DIRECT
+  - GEOSITE, microsoft@cn,      DIRECT
   - GEOSITE, category-games@cn, DIRECT
 
   # PROXY
   - GEOSITE, spotify,           台湾
-  - GEOSITE, google,            PROXY
-  - GEOSITE, telegram,          PROXY
+  # - GEOSITE, google,            PROXY
+  # - GEOSITE, telegram,          PROXY
 
   # NOMATCH
   - GEOSITE, cn,                DIRECT
