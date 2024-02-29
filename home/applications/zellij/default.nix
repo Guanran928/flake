@@ -4,15 +4,21 @@
     enableFishIntegration = true;
   };
 
-  # not sure how to write keybinds in nix (see line 16)
+  # Unsure about the syntax for defining keybindings in Nix (refer to line 16)
   xdg.configFile."zellij/config.kdl".text = lib.mkForce ''
+    // TODO: Text selection is not displayed due to the use of the same color as
+    //       my terminal background.
     theme "tokyo-night-dark"
     simplified_ui true
     pane_frames false
-    default_layout "compact" // still learning the keybinds!
+    default_layout "compact"
 
     on_force_close "quit"
     mirror_session false
+
+    // WORKAROUND: This feature slows down startup speed, and I don't need it anyway.
+    // See: https://github.com/zellij-org/zellij/issues/1757#issuecomment-1962981641
+    session_serialization false
 
     keybinds {
       normal {
