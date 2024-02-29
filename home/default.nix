@@ -36,18 +36,13 @@
     ./applications/eza
     ./applications/skim
     ./applications/bat
-    ./applications/bottom
     ./applications/zoxide
     ./applications/ripgrep
     ./applications/wget
     ./applications/fd
-    ./applications/hyperfine
     ./applications/atuin
     ./applications/zellij
-
-    ./applications/ydict
     ./applications/fastfetch
-    ./applications/android-tools
     ./applications/tealdeer
   ];
 

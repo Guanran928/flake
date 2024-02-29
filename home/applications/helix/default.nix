@@ -5,7 +5,7 @@
 }: {
   programs.helix = {
     enable = true;
-    defaultEditor = true;
+    # defaultEditor = true;
     settings = {
       theme =
         lib.mkIf (config.myFlake.home-manager.colorScheme == "tokyonight")

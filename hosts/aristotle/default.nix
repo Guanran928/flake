@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   imports = [
     # OS
     ../../nixos/profiles/laptop
@@ -22,4 +22,28 @@
     enable = true;
     openFirewall = true;
   };
+
+  # Stuff that I only want on my main machine
+  home-manager.users.guanranwang = {
+    imports = map (n: ../../home/applications/${n}) [
+      "spotify/spicetify.nix"
+      "amberol"
+      "mousai"
+      "thunderbird"
+      "telegram-desktop"
+      "hyperfine"
+      "ydict"
+      "android-tools"
+    ];
+
+    home.packages = with pkgs; [
+      fractal
+      gnome.gnome-calculator
+    ];
+
+    programs.obs-studio.enable = true;
+  };
+
+  # for udev rules
+  programs.adb.enable = true;
 }

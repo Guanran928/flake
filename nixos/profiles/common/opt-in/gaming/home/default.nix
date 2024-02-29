@@ -5,5 +5,8 @@
     "osu-lazer"
     #"osu-stable"
     "mangohud"
+
+    # VOIP
+    "mumble"
   ];
 }

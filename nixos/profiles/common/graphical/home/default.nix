@@ -1,11 +1,10 @@
-{...}: {
+{pkgs, ...}: {
   imports =
     [
       ./fonts
       ./scripts
       ./wallpapers
 
-      ./packages.nix
       ./theme.nix
       ./xdg-mime.nix
     ]
@@ -18,14 +17,14 @@
       "bash"
 
       # Editor
-      "helix"
       "neovim"
-      "vscode"
+      # "helix"
+      # "vscode"
 
       # Browser
-      "chromium"
-      #"librewolf"
       "firefox"
+      # "chromium"
+      # "librewolf"
 
       # Language
       "nix"
@@ -34,20 +33,13 @@
       # Media
       "loupe"
       "mpv"
-      "spotify/spicetify.nix"
-      "amberol"
-      "mousai"
 
       # WM
       "sway"
 
       # Misc
-      "thunderbird"
-      "telegram-desktop"
       "nautilus"
       "fcitx5"
-      "irssi"
-      "mumble"
     ];
 
   # https://wiki.archlinux.org/title/Fish#Start_X_at_login
@@ -56,4 +48,15 @@
       exec sway
     end
   '';
+
+  home.packages = with pkgs.gnome; [
+    seahorse
+    file-roller
+    gnome-calculator
+    dconf-editor
+  ];
+
+  services = {
+    ssh-agent.enable = true;
+  };
 }

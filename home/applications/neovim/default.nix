@@ -12,6 +12,8 @@
     (pkgs.writeShellScriptBin "vim" ''nvim "$@"'')
   ];
 
+  home.sessionVariables."EDITOR" = "nvim";
+
   # TODO: couldn't make it work
   #programs.neovim = {
   #  enable = true;
