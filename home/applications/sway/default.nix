@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }: {
   imports = [
@@ -67,6 +68,7 @@
       modifier = "Mod4";
       keybindings = let
         inherit (config.wayland.windowManager.sway.config) modifier;
+        inherit (inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.scripts) screenshot;
       in
         {
           ### Sway itself
@@ -100,9 +102,9 @@
           "${modifier}+Shift+Semicolon" = ''exec rofi -modi "power-menu:rofi-power-menu --confirm=reboot/shutdown" -show power-menu'';
 
           # Screenshot
-          "${modifier}+Shift+s" = "exec screenshot region";
-          "Print" = "exec screenshot fullscreen";
-          "Print+Control" = "exec screenshot swappy";
+          "${modifier}+Shift+s" = "exec ${screenshot} region";
+          "Print" = "exec ${screenshot} fullscreen";
+          "Print+Control" = "exec ${screenshot} swappy";
 
           # Fn keys
           "XF86MonBrightnessUp" = "exec ${lib.getExe pkgs.brightnessctl} set 5%+";

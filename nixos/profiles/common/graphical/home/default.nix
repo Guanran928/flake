@@ -2,7 +2,6 @@
   imports =
     [
       ./fonts
-      ./scripts
       ./wallpapers
 
       ./theme.nix
