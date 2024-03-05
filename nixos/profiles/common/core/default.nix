@@ -44,7 +44,6 @@
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen; # mkDefault for server
 
   ### Default Programs
-  environment.defaultPackages = [];
   # In addition of https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/config/system-path.nix
   environment.systemPackages = with pkgs; [
     unzip
@@ -55,24 +54,27 @@
 
     lsof
     ltrace
+    strace
 
     dnsutils
     pciutils
     usbutils
   ];
-  programs.dconf.enable = true;
-  programs.nano.enable = false; # make sure to add another editor and set the $EDITOR variable
+
+  programs.nano.enable = false;
   programs.neovim = {
     enable = true;
     viAlias = true;
     vimAlias = true;
-    defaultEditor = true;
+    defaultEditor = true; # important!
   };
+
   services.openssh = {
     enable = true;
     settings.PermitRootLogin = "no";
     settings.PasswordAuthentication = false;
   };
+
   services.getty.greetingLine = let
     inherit (config.system) nixos;
   in ''
@@ -82,6 +84,9 @@
     ${lib.strings.optionalString (builtins.elem "amdgpu" config.boot.initrd.kernelModules)
       "[    5.996722] amdgpu 0000:67:00.0: Fatal error during GPU init"}
   '';
+
+  # https://archlinux.org/news/making-dbus-broker-our-default-d-bus-daemon/
+  services.dbus.implementation = "broker";
 
   ### WORKAROUND: Use NVIDIA beta version 550.40.07 due to performance issues introduced in version 545.29.06,
   #               this shouldn't affect non-nvidia machines.
@@ -107,6 +112,7 @@
     ];
   };
 
+  programs.dconf.enable = true;
   programs.fish.enable = true;
   users.groups."nix-access-tokens" = {};
   nix.extraOptions = "!include ${config.sops.secrets.nix-access-tokens.path}";
