@@ -20,7 +20,10 @@
       ]);
   };
 
-  xdg.configFile."fcitx5/conf/classicui.conf".text = "Theme=Tokyonight-Storm";
+  xdg.configFile."fcitx5/conf/classicui.conf".text = ''
+    Theme=Tokyonight-Storm
+    Vertical Candidate List=True
+  '';
   home.sessionVariables = {
     "FCITX_NO_PREEDIT_APPS" = "gvim.*,wps.*,wpp.*,et.*,cinny,epiphany";
   };
