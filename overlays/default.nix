@@ -6,5 +6,5 @@ let
 in {
   nautilus = import ./nautilus.nix {inherit addPatches;};
   prismlauncher = import ./prismlauncher.nix {inherit addPatches;};
-  sway = import ./sway;
+  sway = import ./sway/git;
 }
