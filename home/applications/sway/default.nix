@@ -54,14 +54,21 @@
       ];
 
       ### Inputs
-      input."*" = {
-        accel_profile = "flat";
-        natural_scroll = "enabled";
+      input = {
+        "*" = {
+          accel_profile = "flat";
+          natural_scroll = "enabled";
+        };
 
-        # touchpad
-        tap = "enabled";
-        drag = "enabled";
-        dwt = "disabled";
+        "type:touchpad" = {
+          tap = "enabled";
+          drag = "enabled";
+          dwt = "disabled";
+        };
+
+        "type:keyboard" = {
+          xkb_options = "caps:escape";
+        };
       };
 
       ### Keybinds
