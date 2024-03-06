@@ -68,7 +68,7 @@
       modifier = "Mod4";
       keybindings = let
         inherit (config.wayland.windowManager.sway.config) modifier;
-        inherit (inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.scripts) screenshot;
+        screenshot = lib.getExe inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.scripts.screenshot;
       in
         {
           ### Sway itself
