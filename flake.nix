@@ -76,6 +76,10 @@
       inputs.flake-utils.follows = "flake-utils";
     };
     systems.url = "github:nix-systems/default";
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     ### De-dupe flake dependencies
     crane = {
@@ -128,8 +132,11 @@
         inherit system modules;
         specialArgs = {inherit inputs;};
       };
+
+    treefmtEval = eachDefaultSystemMap (system: inputs.treefmt-nix.lib.evalModule inputs.nixpkgs.legacyPackages.${system} ./treefmt.nix);
   in {
-    formatter = eachDefaultSystemMap (system: inputs.nixpkgs.legacyPackages.${system}.alejandra);
+    formatter = eachDefaultSystemMap (system: treefmtEval.${system}.config.build.wrapper);
+    checks = eachDefaultSystemMap (system: {formatting = treefmtEval.${system}.config.build.check inputs.self;});
     packages = eachDefaultSystemMap (system: import ./pkgs inputs.nixpkgs.legacyPackages.${system});
     overlays = import ./overlays;
     nixosModules.default = ./nixos/modules;

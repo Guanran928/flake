@@ -6,7 +6,6 @@ user_pref("browser.cache.memory.capacity", 1);
 user_pref("privacy.clearOnShutdown.cache", false);
 user_pref("mail.imap.use_disk_cache2", true);
 
-
 // View related.
 // Makes messages prettier.
 user_pref("permissions.default.image", 1);
