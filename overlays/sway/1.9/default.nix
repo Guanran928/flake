@@ -18,8 +18,17 @@
       hash = "sha256-PzhQBRpyB1WhErn05UBtBfaDW5bxnQLRKWu8jy7dEiM=";
     })
 
-    # (rebased) Tray D-Bus Menu
+    # Tray D-Bus Menu
     # https://github.com/swaywm/sway/pull/6249
-    ./0001-Tray-Implement-dbusmenu.patch
+    (prev.fetchpatch {
+      name = "0001-Tray-Implement-dbusmenu.patch";
+      url = "https://github.com/NickHu/sway/commit/0fc5d7aed84415a77b718ca9dc3c0b3ad2c05b02.patch";
+      hash = "sha256-1KuGZGwyGJK8KO4OngS+tWKV/3Yu++bCNnp+xTrlGoY=";
+    })
+    (prev.fetchpatch {
+      name = "0002-Tray-dont-invoke-dbus-menu-when-tray-is-disabled.patch";
+      url = "https://github.com/NickHu/sway/commit/03c14421354e54332e12f78d029dcaa9919fd161.patch";
+      hash = "sha256-GhBlCnk7aB6s57wV1FNOPAt6s0oJxLgf2bMw+8ktn8A";
+    })
   ];
 }
