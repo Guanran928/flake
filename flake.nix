@@ -118,41 +118,50 @@
     };
   };
 
-  outputs = inputs: let
-    inherit (inputs.flake-utils.lib) eachDefaultSystemMap;
+  outputs = inputs:
+    inputs.flake-utils.lib.eachDefaultSystem (system: let
+      pkgs = inputs.nixpkgs.legacyPackages.${system};
+      treefmtEval = inputs.treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
 
-    mkNixOS = system: modules:
-      inputs.nixpkgs.lib.nixosSystem {
-        inherit system modules;
-        specialArgs = {inherit inputs;};
+      mkNixOS = system: modules:
+        inputs.nixpkgs.lib.nixosSystem {
+          inherit system modules;
+          specialArgs = {inherit inputs;};
+        };
+
+      mkDarwin = system: modules:
+        inputs.nix-darwin.lib.darwinSystem {
+          inherit system modules;
+          specialArgs = {inherit inputs;};
+        };
+    in {
+      ### nix fmt
+      formatter = treefmtEval.config.build.wrapper;
+
+      ### nix flake check
+      checks = {formatting = treefmtEval.config.build.check inputs.self;};
+
+      ### nix {run,shell,build}
+      packages = import ./pkgs pkgs;
+
+      ### nixpkgs.overlays = [];
+      overlays = import ./overlays;
+
+      ### imports = [];
+      nixosModules.default = ./nixos/modules;
+      darwinModules.default = ./darwin/modules;
+      homeManagerModules.default = ./home/modules;
+
+      ### NixOS
+      nixosConfigurations = {
+        "aristotle" = mkNixOS "x86_64-linux" [./hosts/aristotle];
+        "blacksteel" = mkNixOS "x86_64-linux" [./hosts/blacksteel];
       };
 
-    mkDarwin = system: modules:
-      inputs.nix-darwin.lib.darwinSystem {
-        inherit system modules;
-        specialArgs = {inherit inputs;};
+      ### Darwin
+      darwinConfigurations = {
+        "plato" = mkDarwin "x86_64-darwin" [./hosts/plato];
+        "whitesteel" = mkDarwin "x86_64-darwin" [./hosts/whitesteel];
       };
-
-    treefmtEval = eachDefaultSystemMap (system: inputs.treefmt-nix.lib.evalModule inputs.nixpkgs.legacyPackages.${system} ./treefmt.nix);
-  in {
-    formatter = eachDefaultSystemMap (system: treefmtEval.${system}.config.build.wrapper);
-    checks = eachDefaultSystemMap (system: {formatting = treefmtEval.${system}.config.build.check inputs.self;});
-    packages = eachDefaultSystemMap (system: import ./pkgs inputs.nixpkgs.legacyPackages.${system});
-    overlays = import ./overlays;
-    nixosModules.default = ./nixos/modules;
-    darwinModules.default = ./darwin/modules;
-    homeManagerModules.default = ./home/modules;
-
-    ### NixOS
-    nixosConfigurations = {
-      "aristotle" = mkNixOS "x86_64-linux" [./hosts/aristotle];
-      "blacksteel" = mkNixOS "x86_64-linux" [./hosts/blacksteel];
-    };
-
-    ### Darwin
-    darwinConfigurations = {
-      "plato" = mkDarwin "x86_64-darwin" [./hosts/plato];
-      "whitesteel" = mkDarwin "x86_64-darwin" [./hosts/whitesteel];
-    };
-  };
+    });
 }
