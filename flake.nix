@@ -122,7 +122,17 @@
     inputs.flake-utils.lib.eachDefaultSystem (system: let
       pkgs = inputs.nixpkgs.legacyPackages.${system};
       treefmtEval = inputs.treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
+    in {
+      ### nix fmt
+      formatter = treefmtEval.config.build.wrapper;
 
+      ### nix flake check
+      checks = {formatting = treefmtEval.config.build.check inputs.self;};
+
+      ### nix {run,shell,build}
+      packages = import ./pkgs pkgs;
+    })
+    // (let
       mkNixOS = system: modules:
         inputs.nixpkgs.lib.nixosSystem {
           inherit system modules;
@@ -135,22 +145,13 @@
           specialArgs = {inherit inputs;};
         };
     in {
-      ### nix fmt
-      formatter = treefmtEval.config.build.wrapper;
-
-      ### nix flake check
-      checks = {formatting = treefmtEval.config.build.check inputs.self;};
-
-      ### nix {run,shell,build}
-      packages = import ./pkgs pkgs;
-
-      ### nixpkgs.overlays = [];
-      overlays = import ./overlays;
-
       ### imports = [];
       nixosModules.default = ./nixos/modules;
       darwinModules.default = ./darwin/modules;
       homeManagerModules.default = ./home/modules;
+
+      ### nixpkgs.overlays = [];
+      overlays = import ./overlays;
 
       ### NixOS
       nixosConfigurations = {
