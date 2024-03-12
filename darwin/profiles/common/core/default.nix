@@ -42,8 +42,9 @@
   # WORKAROUND: Fix $PATH orders when using Fish shell
   # https://github.com/LnL7/nix-darwin/issues/122#issuecomment-1659465635
   programs.fish.loginShellInit = let
-    # ["$HOME/.local" "/usr/local"] -> "'$HOME/.local/bin' '/usr/local/bin'"
-     makePath = path: lib.concatMapStringsSep " " (path: lib.escapeShellArg "${path}/bin") path;
+    # Double quotes instead of single quotes are necessary
+    # ["$HOME/.local" "/usr/local"] -> "\"$HOME/.local/bin' '/usr/local/bin\""
+     makePath = path: lib.concatMapStringsSep " " (path: "\"${path}/bin\"") path;
   in ''
     fish_add_path --move --prepend --path ${makePath config.environment.profiles}
     set fish_user_paths $fish_user_paths
