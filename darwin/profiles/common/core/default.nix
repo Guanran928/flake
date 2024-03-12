@@ -39,14 +39,13 @@
   programs.zsh.enable = true; # default shell on catalina
   programs.fish.enable = true;
 
-  # fucking horrible
+  # WORKAROUND: Fix $PATH orders when using Fish shell
   # https://github.com/LnL7/nix-darwin/issues/122#issuecomment-1659465635
   programs.fish.loginShellInit = let
-    dquote = str: "\"" + str + "\"";
-
-    makeBinPathList = map (path: path + "/bin");
+    # ["$HOME/.local" "/usr/local"] -> "'$HOME/.local/bin' '/usr/local/bin'"
+     makePath = path: lib.concatMapStringsSep " " (path: lib.escapeShellArg "${path}/bin") path;
   in ''
-    fish_add_path --move --prepend --path ${lib.concatMapStringsSep " " dquote (makeBinPathList config.environment.profiles)}
+    fish_add_path --move --prepend --path ${makePath config.environment.profiles}
     set fish_user_paths $fish_user_paths
   '';
 
