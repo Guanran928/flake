@@ -44,7 +44,7 @@
   programs.fish.loginShellInit = let
     # Double quotes instead of single quotes are necessary
     # ["$HOME/.local" "/usr/local"] -> "\"$HOME/.local/bin' '/usr/local/bin\""
-     makePath = path: lib.concatMapStringsSep " " (path: "\"${path}/bin\"") path;
+    makePath = path: lib.concatMapStringsSep " " (path: "\"${path}/bin\"") path;
   in ''
     fish_add_path --move --prepend --path ${makePath config.environment.profiles}
     set fish_user_paths $fish_user_paths
