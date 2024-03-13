@@ -13,7 +13,6 @@
     "bash"
 
     # Editor
-    "helix"
     "neovim"
     "vscode"
 
@@ -23,9 +22,6 @@
 
     # Media
     "mpv"
-    "spotify"
-
-    # Misc
     "telegram-desktop"
   ];
 
@@ -49,15 +45,6 @@
     rsync
     dockutil
     gawk
-  ];
-
-  home.packages = with pkgs; [
-    ## GUI
-    ### Tools
-    keka # un-archive-r
-    iterm2
-    ### Misc
-    element-desktop
   ];
 
   # macOS don't have fontconfig
