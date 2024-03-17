@@ -29,20 +29,14 @@
     eula = true;
     openFirewall = true;
 
-    package = pkgs.papermc;
-
-    # Updated pkgs.papermc
-    # package = let
-    #   mcVersion = "1.20.4";
-    #   buildNum = "431";
-    # in
-    #   pkgs.papermc.overrideAttrs {
-    #     version = "${mcVersion}.${buildNum}";
-    #     src = pkgs.fetchurl {
-    #       url = "https://papermc.io/api/v2/projects/paper/versions/${mcVersion}/builds/${buildNum}/downloads/paper-${mcVersion}-${buildNum}.jar";
-    #       hash = "sha256-Wml6p9OkFPYKjwEjVnWgRybQDsmG/taG2lWr3nNSlrQ=";
-    #     };
-    #   };
+    package =
+      (pkgs.papermc.overrideAttrs (old: {
+        version = "1.20.4.454";
+        src = old.src.overrideAttrs {
+          outputHash = "sha256-vH098T6gt/QpM0QOGTzu5VPNWPDYnmF8LQiRK6mDPS8=";
+        };
+      }))
+      .override {jre = pkgs.temurin-bin;};
 
     # Aikar's flag
     # https://aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft/
