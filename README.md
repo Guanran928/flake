@@ -1,4 +1,4 @@
-# nix{os,-darwin} config
+# nix{os,-darwin,-on-droid} config
 
 It just works™
 
@@ -11,13 +11,17 @@ whole directory/file is unused in this repository.
  .
 │   # Darwin configuration is not actively maintained and sometimes it might
 │   # break.
-├── 󱂵 home
+├── 󱂵 home # <-- See here for dotfiles!
 ├──  darwin
 ├──  nixos
 │  ├──  modules
 │  └──  profiles
 │
+│   # Personal packages, please see github:Guanran928/nur-packages instead
+├──  pkgs
 ├──  hosts
+├──  overlays
+│
 ├──  flake.nix
 ├──  flake.lock
 │
@@ -56,4 +60,21 @@ Please don't.
 
 4. Install [`nix-darwin`](https://github.com/LnL7/nix-darwin?tab=readme-ov-file#flakes)
 
-   `$ nix run nix-darwin -- switch --flake <this flake's directory>#<hostname>`
+   `$ nix run nix-darwin -- --flake <this flake's directory>#<hostname> switch`
+
+### Nix-On-Droid:
+
+1. Install [`nix-on-droid`](https://github.com/nix-community/nix-on-droid) and bootstrap with Flakes
+
+   F-Droid: https://f-droid.org/packages/com.termux.nix
+
+2. Clone this repository
+
+   `$ nix shell nixpkgs#git`
+   `$ git clone https://github.com/Guanran928/flake.git`
+
+3. Add your device's configuration in `./flake.nix` and `./hosts/<hostname>`
+
+4. Setup Nix-On-Droid
+
+   `$ nix-on-droid --flake <this flake's directory>#<hostname>switch`
