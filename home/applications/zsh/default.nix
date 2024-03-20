@@ -5,12 +5,12 @@
 }: {
   programs.zsh = {
     enable = true;
-    ### XDG
     dotDir = ".config/zsh";
-    ### Plugins
-    syntaxHighlighting.enable = true;
-    historySubstringSearch.enable = true;
+    initExtra = "zstyle ':fzf-tab:*' fzf-command sk";
+
     enableAutosuggestions = true;
+    historySubstringSearch.enable = true;
+    syntaxHighlighting.enable = true;
     plugins = [
       {
         name = "fzf-tab";
@@ -21,10 +21,9 @@
         src = "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/sudo";
       }
     ];
-    initExtra = "zstyle ':fzf-tab:*' fzf-command sk";
-    ### History
+
     history = {
-      path = "${config.xdg.configHome}/zsh/.zsh_history";
+      path = "${config.xdg.dataHome}/zsh/zsh_history";
       save = 1000000;
       size = 1000000;
     };
