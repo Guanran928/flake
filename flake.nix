@@ -57,6 +57,14 @@
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware";
     };
+    nix-on-droid = {
+      url = "github:nix-community/nix-on-droid/release-23.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-docs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+      inputs.nix-formatter-pack.follows = "nix-formatter-pack";
+      inputs.nmd.follows = "nmd";
+    };
     nixcasks = {
       # contains unfree
       url = "github:jacekszymanski/nixcasks";
@@ -97,6 +105,21 @@
       url = "github:hercules-ci/gitignore.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-formatter-pack = {
+      url = "github:Gerschtli/nix-formatter-pack";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nmd.follows = "nmd";
+      inputs.nmt.follows = "nmt";
+    };
+    nmd = {
+      url = "sourcehut:~rycee/nmd";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.scss-reset.follows = "scss-reset";
+    };
+    nmt = {
+      url = "sourcehut:~rycee/nmt";
+      flake = false;
+    };
     nvfetcher = {
       url = "github:berberman/nvfetcher";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -115,6 +138,10 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
+    };
+    scss-reset = {
+      url = "github:andreymatin/scss-reset";
+      flake = false;
     };
   };
 
@@ -144,6 +171,12 @@
           inherit system modules;
           specialArgs = {inherit inputs;};
         };
+
+      mkDroid = modules:
+        inputs.nix-on-droid.lib.nixOnDroidConfiguration {
+          inherit modules;
+          extraSpecialArgs = {inherit inputs;};
+        };
     in {
       ### imports = [];
       nixosModules.default = ./nixos/modules;
@@ -163,6 +196,10 @@
       darwinConfigurations = {
         "plato" = mkDarwin "x86_64-darwin" [./hosts/plato];
         "whitesteel" = mkDarwin "x86_64-darwin" [./hosts/whitesteel];
+      };
+
+      nixOnDroidConfigurations = {
+        "socrates" = mkDroid [./hosts/socrates];
       };
     });
 }
