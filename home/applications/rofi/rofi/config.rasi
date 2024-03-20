@@ -16,7 +16,7 @@ configuration {
 @import "~/.config/rofi/colors.rasi"
 
 * {
-  font: "JetBrainsMono Nerd Font SemiBold 14";
+  font: "JetBrains Mono SemiBold 14";
   separatorcolor: transparent;
   border: 0;
   margin: 0;
