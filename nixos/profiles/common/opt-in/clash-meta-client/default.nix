@@ -3,26 +3,28 @@
   config,
   ...
 }: {
-  ### home-manager
-  home-manager.users.guanranwang.imports = [./home];
-
-  services.clash = {
+  services.mihomo = {
     enable = true;
-    package = pkgs.clash-meta;
     configFile = config.sops.templates."clash.yaml".path;
     webui = config.nur.repos.guanran928.metacubexd;
   };
 
-  systemd.services.clash.serviceConfig.ExecStartPre = [
-    "${pkgs.coreutils}/bin/ln -sf ${pkgs.v2ray-geoip}/share/v2ray/geoip.dat /var/lib/private/clash/GeoIP.dat"
-    "${pkgs.coreutils}/bin/ln -sf ${pkgs.v2ray-domain-list-community}/share/v2ray/geosite.dat /var/lib/private/clash/GeoSite.dat"
+  systemd.services.mihomo.serviceConfig.ExecStartPre = [
+    "${pkgs.coreutils}/bin/ln -sf ${pkgs.v2ray-geoip}/share/v2ray/geoip.dat /var/lib/private/mihomo/GeoIP.dat"
+    "${pkgs.coreutils}/bin/ln -sf ${pkgs.v2ray-domain-list-community}/share/v2ray/geosite.dat /var/lib/private/mihomo/GeoSite.dat"
   ];
 
   ### System proxy settings
   networking.proxy.default = "http://127.0.0.1:7890/";
+  environment.shellAliases = let
+    inherit (config.networking) proxy;
+  in {
+    "setproxy" = "export http_proxy=${proxy.httpProxy} https_proxy=${proxy.httpsProxy} all_proxy=${proxy.allProxy} ftp_proxy=${proxy.ftpProxy} rsync_proxy=${proxy.rsyncProxy}";
+    "unsetproxy" = "set -e http_proxy https_proxy all_proxy ftp_proxy rsync_proxy";
+  };
 
   ### sops-nix
-  sops.secrets = builtins.mapAttrs (_name: value: value // {restartUnits = ["clash.service"];}) {
+  sops.secrets = builtins.mapAttrs (_name: value: value // {restartUnits = ["mihomo.service"];}) {
     "clash/secret" = {};
     "clash/proxy-providers/flyairport" = {};
     "clash/proxy-providers/efcloud" = {};

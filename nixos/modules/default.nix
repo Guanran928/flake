@@ -8,8 +8,5 @@
     ./myFlake/hardware/components/audio.nix
     ./myFlake/hardware/components/bluetooth.nix
     ./myFlake/hardware/components/tpm.nix
-
-    # nixpkgs styled options
-    ./services/clash.nix
   ];
 }
