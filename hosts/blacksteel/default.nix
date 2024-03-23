@@ -29,14 +29,16 @@
     eula = true;
     openFirewall = true;
 
-    package =
-      (pkgs.papermc.overrideAttrs (old: {
-        version = "1.20.4.454";
-        src = old.src.overrideAttrs {
-          outputHash = "sha256-vH098T6gt/QpM0QOGTzu5VPNWPDYnmF8LQiRK6mDPS8=";
-        };
-      }))
-      .override {jre = pkgs.temurin-bin;};
+    package = pkgs.papermc.override {jre = pkgs.temurin-bin;};
+
+    # TODO: error: list index 1 is out of bounds
+    # (pkgs.papermc.overrideAttrs (old: {
+    #   version = "1.20.4.454";
+    #   src = old.src.overrideAttrs {
+    #     outputHash = "sha256-vH098T6gt/QpM0QOGTzu5VPNWPDYnmF8LQiRK6mDPS8=";
+    #   };
+    # }))
+    # .override {jre = pkgs.temurin-bin;};
 
     # Aikar's flag
     # https://aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft/

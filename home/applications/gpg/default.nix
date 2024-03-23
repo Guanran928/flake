@@ -11,6 +11,6 @@
 
   services.gpg-agent = {
     enable = lib.mkIf pkgs.stdenv.hostPlatform.isLinux true;
-    pinentryFlavor = "gnome3";
+    pinentryPackage = pkgs.pinentry-gnome3;
   };
 }
