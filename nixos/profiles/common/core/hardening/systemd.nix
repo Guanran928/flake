@@ -1,4 +1,5 @@
-# Stolen from https://github.com/CPlusPatch/infra/blob/main/traits/hardening/systemd.nix
+# https://github.com/CPlusPatch/infra/blob/fe96d6cc9a71c81fc5326cd1b1115ed8ae8f0073/traits/hardening/systemd.nix
+# https://github.com/accelbread/config-flake/blob/d69a8b2d636b322fa1e8ba853bfbf23f9a858e38/nix/nixosModules/tailscale.nix
 {
   systemd.services = {
     NetworkManager.serviceConfig = {
@@ -207,6 +208,38 @@
       MemoryDenyWriteExecute = true;
       RestrictRealtime = true;
       RestrictSUIDSGID = true;
+    };
+
+    tailscaled.environment.TS_DEBUG_FIREWALL_MODE = "nftables"; # iptables requires root
+    tailscaled.serviceConfig = {
+      AmbientCapabilities = ["CAP_NET_RAW" "CAP_NET_ADMIN"];
+      CapabilityBoundingSet = ["CAP_NET_RAW" "CAP_NET_ADMIN"];
+      DeviceAllow = "/dev/net/tun rw";
+      DevicePolicy = "closed";
+      DynamicUser = true;
+      LockPersonality = true;
+      MemoryDenyWriteExecute = true;
+      NoNewPrivileges = true;
+      PrivateIPC = true;
+      PrivateMounts = true;
+      PrivateTmp = true;
+      ProtectClock = true;
+      ProtectControlGroups = true;
+      ProtectHome = true;
+      ProtectHostname = true;
+      ProtectKernelLogs = true;
+      ProtectKernelModules = true;
+      ProtectKernelTunables = true;
+      ProtectProc = "invisible";
+      ProtectSystem = "strict";
+      RemoveIPC = true;
+      RestrictAddressFamilies = ["AF_UNIX" "AF_INET" "AF_INET6" "AF_NETLINK"];
+      RestrictNamespaces = true;
+      RestrictRealtime = true;
+      RestrictSUIDSGID = true;
+      SystemCallArchitectures = "native";
+      SystemCallFilter = ["@system-service" "~@privileged"];
+      UMask = 077;
     };
   };
 }
