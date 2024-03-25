@@ -1,0 +1,21 @@
+---
+ lineage_socrates.mk | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/lineage_socrates.mk b/lineage_socrates.mk
+index c3e5c0a..f9f0f74 100644
+--- a/lineage_socrates.mk
++++ b/lineage_socrates.mk
+@@ -14,9 +14,6 @@ $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+ # Inherit device configurations
+ $(call inherit-product, device/xiaomi/socrates/device.mk)
+
+-# Inherit from Gapps
+-$(call inherit-product, vendor/gapps/arm64/arm64-vendor.mk)
+-
+ ## Device identifier
+ PRODUCT_DEVICE := socrates
+ PRODUCT_NAME := lineage_socrates
+--
+2.44.0
+
