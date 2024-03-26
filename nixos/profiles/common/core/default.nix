@@ -28,7 +28,7 @@
   ];
 
   ### home-manager
-  home-manager.users.guanranwang = import ./home;
+  home-manager.users.guanranwang = import ../../../../home;
 
   users.mutableUsers = false;
   home-manager = {

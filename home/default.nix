@@ -35,21 +35,21 @@
     inputs.self.homeManagerModules.default
     inputs.nur.hmModules.nur
 
+    ./applications/atuin
+    ./applications/bat
+    ./applications/eza
+    ./applications/fastfetch
     ./applications/git
     ./applications/gpg
-    ./applications/starship
-    ./applications/eza
     ./applications/skim
-    ./applications/bat
-    ./applications/zoxide
-    ./applications/ripgrep
-    ./applications/wget
-    ./applications/fd
-    ./applications/atuin
-    ./applications/zellij
-    ./applications/fastfetch
+    ./applications/starship
     ./applications/tealdeer
+    ./applications/zellij
   ];
+
+  programs.ripgrep.enable = true;
+  programs.zoxide.enable = true;
+  home.packages = with pkgs; [fd] ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux (with pkgs; [trashy]);
 
   home.shellAliases = {
     ".." = "cd ..";

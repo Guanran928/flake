@@ -8,14 +8,15 @@
   imports = [
     ../common/wayland.nix
     ../common/wm.nix
-    ../cliphist
     ../i3status-rust
     ../mako
     ../rofi
     ../swayidle
     ../swaylock
-    ../udiskie
   ];
+
+  services.cliphist.enable = true;
+  services.udiskie.enable = true;
 
   home.sessionVariables = {
     GTK_IM_MODULE = lib.mkForce "wayland"; # use text-input-v3

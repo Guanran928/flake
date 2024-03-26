@@ -27,18 +27,17 @@
   home-manager.users.guanranwang = {
     imports = map (n: ../../home/applications/${n}) [
       "spotify/spicetify.nix"
-      "amberol"
-      "mousai"
       "thunderbird"
       "telegram-desktop"
-      "hyperfine"
       "ydict"
-      "android-tools"
     ];
 
     home.packages = with pkgs; [
+      amberol
       fractal
       gnome.gnome-calculator
+      hyperfine
+      mousai
     ];
 
     programs.obs-studio.enable = true;
