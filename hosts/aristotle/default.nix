@@ -2,7 +2,6 @@
   imports = [
     # OS
     ../../nixos/profiles/laptop
-    ../../nixos/profiles/common/opt-in/zram-generator.nix
     ../../nixos/profiles/common/opt-in/clash-meta-client
     ../../nixos/profiles/common/opt-in/gaming
 

@@ -19,6 +19,7 @@
     inputs.nur.nixosModules.nur
     inputs.self.nixosModules.default
     inputs.sops-nix.nixosModules.sops
+    inputs.nixos-sensible.nixosModules.default
   ];
 
   nixpkgs.overlays = [
@@ -30,7 +31,6 @@
   ### home-manager
   home-manager.users.guanranwang = import ../../../../home;
 
-  users.mutableUsers = false;
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
@@ -38,7 +38,6 @@
   };
 
   ### Boot
-  boot.initrd.systemd.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.enable = lib.mkDefault true; # mkDefault for Lanzaboote
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen; # mkDefault for server
@@ -61,14 +60,6 @@
     usbutils
   ];
 
-  programs.nano.enable = false;
-  programs.neovim = {
-    enable = true;
-    viAlias = true;
-    vimAlias = true;
-    defaultEditor = true; # important!
-  };
-
   services.openssh = {
     enable = true;
     settings.PermitRootLogin = "no";
@@ -84,9 +75,6 @@
     ${lib.strings.optionalString (builtins.elem "amdgpu" config.boot.initrd.kernelModules)
       "[    5.996722] amdgpu 0000:67:00.0: Fatal error during GPU init"}
   '';
-
-  # https://archlinux.org/news/making-dbus-broker-our-default-d-bus-daemon/
-  services.dbus.implementation = "broker";
 
   ### WORKAROUND: Use NVIDIA beta version 550.40.07 due to performance issues introduced in version 545.29.06,
   #               this shouldn't affect non-nvidia machines.

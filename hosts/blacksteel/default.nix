@@ -6,7 +6,6 @@
   imports = [
     # OS
     ../../nixos/profiles/laptop
-    ../../nixos/profiles/common/opt-in/zram-generator.nix
     ../../nixos/profiles/common/opt-in/clash-meta-client
 
     # Hardware

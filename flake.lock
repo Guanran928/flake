@@ -378,6 +378,21 @@
         "type": "github"
       }
     },
+    "nixos-sensible": {
+      "locked": {
+        "lastModified": 1711449784,
+        "narHash": "sha256-DEMOWReMJ3gCi/0czu9hCJH716dmofhtDc2FWfbB0ew=",
+        "owner": "Guanran928",
+        "repo": "nixos-sensible",
+        "rev": "f278a4775e668760a6f2da5f9de6bc512f507871",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Guanran928",
+        "repo": "nixos-sensible",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1711106783,
@@ -557,6 +572,7 @@
         "nix-on-droid": "nix-on-droid",
         "nixcasks": "nixcasks",
         "nixos-hardware": "nixos-hardware",
+        "nixos-sensible": "nixos-sensible",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
         "nmd": "nmd",

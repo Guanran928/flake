@@ -59,6 +59,9 @@
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware";
     };
+    nixos-sensible = {
+      url = "github:Guanran928/nixos-sensible";
+    };
     nix-on-droid = {
       url = "github:nix-community/nix-on-droid/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";

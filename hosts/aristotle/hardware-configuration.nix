@@ -2,6 +2,7 @@
   imports = [
     inputs.nixpkgs.nixosModules.notDetected
     inputs.nixos-hardware.nixosModules.lenovo-legion-y530-15ich
+    inputs.nixos-sensible.nixosModules.zram
   ];
 
   services.hdapsd.enable = false;

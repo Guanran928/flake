@@ -12,6 +12,7 @@
     inputs.nixos-hardware.nixosModules.common-hidpi
     inputs.nixos-hardware.nixosModules.common-pc-laptop
     inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
+    inputs.nixos-sensible.nixosModules.zram
   ];
 
   myFlake.hardware.components = {
