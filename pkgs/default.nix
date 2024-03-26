@@ -7,7 +7,6 @@ pkgs: {
 
     # scripts
     # TODO: Do I really have to inherit `makeScript` for every script?
-    # NOTE: ./scripts/_bin/* is unused, I probably should to remove them.
     lofi = pkgs.callPackage ./scripts/lofi.nix {inherit makeScript;};
     screenshot = pkgs.callPackage ./scripts/screenshot.nix {inherit makeScript;};
   };

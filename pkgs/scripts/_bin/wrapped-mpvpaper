@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-# this is kinda dumb too
-
-pkill mpvpaper
-mpvpaper -o "loop no-audio" "*" "$1"
