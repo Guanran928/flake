@@ -39,10 +39,6 @@
   ### Options
   myFlake.boot.noLoaderMenu = lib.mkDefault true;
 
-  ### sops-nix
-  sops.secrets."wireless/wangxiaobo".path = "/var/lib/iwd/wangxiaobo.psk";
-  sops.secrets."wireless/OpenWrt".path = "/var/lib/iwd/OpenWrt.psk";
-
   fonts.enableDefaultPackages = false;
   security.pam.services.swaylock = {};
   xdg.portal = {
