@@ -13,4 +13,5 @@
   };
 
   programs.gh.enable = true;
+  programs.gitui.enable = true;
 }
