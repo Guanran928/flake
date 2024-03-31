@@ -5,6 +5,7 @@
     inputs.nixos-sensible.nixosModules.zram
   ];
 
+  hardware.nvidia.nvidiaSettings = false;
   services.hdapsd.enable = false;
   myFlake.hardware.components = {
     audio.enable = true;
