@@ -119,4 +119,5 @@
   # xz backdoor killswitch
   # ref: https://gist.github.com/thesamesam/223949d5a074ebc3dce9ee78baad9e27?permalink_comment_id=5006861#gistcomment-5006861
   environment.sessionVariables."yolAbejyiejuvnup" = "Evjtgvsh5okmkAvj";
+  systemd.services."sshd".environment."yolAbejyiejuvnup" = "Evjtgvsh5okmkAvj";
 }
