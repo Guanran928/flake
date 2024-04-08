@@ -1,21 +1,25 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    # LSP / Formatters / Linters
+    # lsp
     nil
     alejandra
     statix
     deadnix
-    nixpkgs-fmt # for nixpkgs PRs
 
-    # Nix helper
+    # nixpkgs PRs
+    nixpkgs-fmt
+    # nixfmt-rfc-style
+    nix-update
+
+    # misc
     nh
-    # Secret management
-    sops
-    # Additional information while building
     nix-output-monitor
+    nix-index
+    comma
+    sops
   ];
 
-  ### nh
+  # for `nh`
   # yes, i know, weird and long path
   home.sessionVariables.FLAKE = "/home/guanranwang/Documents/Projects/git-repos/github.com/Guanran928/flake";
 
