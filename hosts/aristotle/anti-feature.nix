@@ -10,7 +10,6 @@
         "rustc-bootstrap-wrapper"
         "sof-firmware"
         "spotify"
-        "vscodium"
         "temurin-bin"
       ];
 

@@ -4,17 +4,16 @@
   ...
 }: {
   home.packages = [
-    inputs.neovim.packages.${pkgs.stdenv.hostPlatform.system}.default
+    (inputs.neovim.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
+      viAlias = true;
+      vimAlias = true;
+    })
     #pkgs.lunarvim
-
-    # stupid way to make {vi,vim}Alias work without a module
-    (pkgs.writeShellScriptBin "vi" ''nvim "$@"'')
-    (pkgs.writeShellScriptBin "vim" ''nvim "$@"'')
   ];
 
   home.sessionVariables."EDITOR" = "nvim";
 
-  # TODO: couldn't make it work
+  # TODO: still couldn't make it work
   #programs.neovim = {
   #  enable = true;
   #  viAlias = true;
