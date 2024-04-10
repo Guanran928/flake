@@ -53,7 +53,7 @@
             "default" = ["" ""];
           };
           "scroll-step" = 5;
-          "on-click" = "pavucontrol";
+          "on-click" = "pwvucontrol";
           "ignored-sinks" = ["Easy Effects Sink"];
         };
         "battery" = {

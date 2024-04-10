@@ -158,7 +158,7 @@
         label-muted = "%{T1}%percentage%%%{T-}";
         label-muted-padding = 1;
 
-        click-right = "pavucontrol&";
+        click-right = "pwvucontrol&";
       };
 
       "module/title" = {
