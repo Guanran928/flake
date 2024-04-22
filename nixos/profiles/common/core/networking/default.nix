@@ -1,9 +1,13 @@
 {
-  networking.wireless.iwd.enable = true;
+  lib,
+  config,
+  ...
+}: {
+  networking.wireless.iwd.enable = lib.mkDefault true;
   services.resolved.enable = true;
 
-  sops.secrets."wireless/wangxiaobo".path = "/var/lib/iwd/wangxiaobo.psk";
-  sops.secrets."wireless/OpenWrt".path = "/var/lib/iwd/OpenWrt.psk";
+  sops.secrets."wireless/wangxiaobo".path = lib.mkIf config.networking.wireless.iwd.enable "/var/lib/iwd/wangxiaobo.psk";
+  sops.secrets."wireless/OpenWrt".path = lib.mkIf config.networking.wireless.iwd.enable "/var/lib/iwd/OpenWrt.psk";
 
   ### https://wiki.archlinux.org/title/Sysctl#Improving_performance
   boot.kernelModules = ["tcp_bbr"];

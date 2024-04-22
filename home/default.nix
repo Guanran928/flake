@@ -36,9 +36,11 @@
     inputs.nur.hmModules.nur
 
     ./applications/atuin
+    ./applications/bash
     ./applications/bat
     ./applications/eza
     ./applications/fastfetch
+    ./applications/fish
     ./applications/git
     ./applications/gpg
     ./applications/skim

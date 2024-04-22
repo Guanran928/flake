@@ -17,6 +17,7 @@
   networking.hostName = "aristotle";
   time.timeZone = "Asia/Shanghai";
   _module.args.disks = ["/dev/nvme0n1"]; # Disko
+  system.stateVersion = "23.11";
 
   services.tailscale = {
     enable = true;

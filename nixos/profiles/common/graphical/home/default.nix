@@ -11,10 +11,6 @@
       # Terminal
       "alacritty"
 
-      # Shell
-      "fish"
-      "bash"
-
       # Editor
       "neovim"
       # "helix"

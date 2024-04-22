@@ -13,11 +13,11 @@
     ./anti-feature.nix
   ];
 
-
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.enable = true;
   networking.hostName = "blacksteel";
   time.timeZone = "Asia/Shanghai";
+  system.stateVersion = "23.11";
 
   ######## Services
   services.tailscale = {

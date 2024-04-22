@@ -59,7 +59,7 @@
 
   services.openssh = {
     enable = true;
-    settings.PermitRootLogin = "no";
+    settings.PermitRootLogin = lib.mkDefault "no"; # mkDefault for colmena
     settings.PasswordAuthentication = false;
   };
 

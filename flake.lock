@@ -584,6 +584,7 @@
         "scss-reset": "scss-reset",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
+        "srvos": "srvos",
         "systems": "systems",
         "treefmt-nix": "treefmt-nix"
       }
@@ -670,6 +671,26 @@
       "original": {
         "owner": "the-argus",
         "repo": "spicetify-nix",
+        "type": "github"
+      }
+    },
+    "srvos": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1713747325,
+        "narHash": "sha256-3Rh1372yHv7TYA8yJqSCcKeVsHdhmDa4veN9kb3fNx8=",
+        "owner": "nix-community",
+        "repo": "srvos",
+        "rev": "e00e421468806a7a245bc76f0a23eb9e91593918",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "srvos",
         "type": "github"
       }
     },

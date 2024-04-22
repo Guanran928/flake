@@ -60,8 +60,6 @@
     sharedModules = [
       ({...}: {
         imports = [
-          ../../home/applications/bash
-          ../../home/applications/fish
           ../../home/applications/neovim
           ../../home/applications/nix
         ];

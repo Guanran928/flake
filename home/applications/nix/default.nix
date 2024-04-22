@@ -17,6 +17,7 @@
     nix-index
     comma
     sops
+    colmena
   ];
 
   # for `nh`

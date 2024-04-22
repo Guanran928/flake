@@ -29,7 +29,6 @@
   #hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
 
   nixpkgs.hostPlatform = "x86_64-linux";
-  system.stateVersion = "23.11";
 
   # no disko because dual booting with macOS isnt very flexible
   boot.initrd.luks.devices."luks-8c26de19-f0d4-4ac7-a73c-a28dafd30544".device = "/dev/disk/by-uuid/8c26de19-f0d4-4ac7-a73c-a28dafd30544";

@@ -1,9 +1,14 @@
-{pkgs, ...}:
-# no i dont actually own a server
 {
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
-    ../common/minimal
+    ../common/core
+    # ../common/minimal
+    inputs.srvos.nixosModules.mixins-terminfo
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages; # mkDefault for server
+  boot.kernelPackages = pkgs.linuxPackages;
+  networking.wireless.iwd.enable = false;
 }

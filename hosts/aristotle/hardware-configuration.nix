@@ -16,5 +16,4 @@
   boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid"];
   boot.kernelModules = ["kvm-intel"];
   nixpkgs.hostPlatform = "x86_64-linux";
-  system.stateVersion = "23.11";
 }

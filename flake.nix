@@ -88,6 +88,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
+    srvos = {
+      url = "github:nix-community/srvos";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     systems.url = "github:nix-systems/default";
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
@@ -205,6 +209,20 @@
 
       nixOnDroidConfigurations = {
         "socrates" = mkDroid [./hosts/socrates];
+      };
+
+      colmena = {
+        meta = {
+          specialArgs = {inherit inputs;};
+          nixpkgs = import inputs.nixpkgs {
+            system = "x86_64-linux"; # How does this work?
+          };
+        };
+
+        "lightsail-tokyo" = {
+          imports = [./hosts/lightsail-tokyo];
+          deployment.targetHost = "18.177.132.61";
+        };
       };
     });
 }
