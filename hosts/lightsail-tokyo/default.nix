@@ -27,15 +27,15 @@
   };
 
   sops.templates."hysteria.yaml".content = ''
-     tls:
-       cert: /run/credentials/hysteria.service/cert
-       key: /run/credentials/hysteria.service/key
+    tls:
+      cert: /run/credentials/hysteria.service/cert
+      key: /run/credentials/hysteria.service/key
 
-     masquerade:
-       type: proxy
-       proxy:
-         url: https://news.ycombinator.com/
-         rewriteHost: true
+    masquerade:
+      type: proxy
+      proxy:
+        url: https://news.ycombinator.com/
+        rewriteHost: true
 
     ${config.sops.placeholder."hysteria/auth"}
   '';
