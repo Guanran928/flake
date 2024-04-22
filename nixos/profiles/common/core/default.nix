@@ -37,10 +37,7 @@
     extraSpecialArgs = {inherit inputs;}; # ??? isnt specialArgs imported by default ???
   };
 
-  ### Boot
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.systemd-boot.enable = lib.mkDefault true; # mkDefault for Lanzaboote
-  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen; # mkDefault for server
+  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
 
   ### Default Programs
   # In addition of https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/config/system-path.nix

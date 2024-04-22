@@ -13,6 +13,7 @@
     ../../nixos/profiles/common/opt-in/disko.nix
   ];
 
+  boot.loader.efi.canTouchEfiVariables = true;
   networking.hostName = "aristotle";
   time.timeZone = "Asia/Shanghai";
   _module.args.disks = ["/dev/nvme0n1"]; # Disko

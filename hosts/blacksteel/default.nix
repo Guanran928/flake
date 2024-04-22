@@ -13,6 +13,9 @@
     ./anti-feature.nix
   ];
 
+
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.enable = true;
   networking.hostName = "blacksteel";
   time.timeZone = "Asia/Shanghai";
 
@@ -28,16 +31,13 @@
     eula = true;
     openFirewall = true;
 
-    package = pkgs.papermc.override {jre = pkgs.temurin-bin;};
-
-    # TODO: error: list index 1 is out of bounds
-    # (pkgs.papermc.overrideAttrs (old: {
-    #   version = "1.20.4.454";
-    #   src = old.src.overrideAttrs {
-    #     outputHash = "sha256-vH098T6gt/QpM0QOGTzu5VPNWPDYnmF8LQiRK6mDPS8=";
-    #   };
-    # }))
-    # .override {jre = pkgs.temurin-bin;};
+    # I should switch to vanilla/fabric one day...
+    package = pkgs.papermc.overrideAttrs {
+      version = "1.20.4-485";
+      hash = "sha256-8bhlv/MU7KDmdL8Ngvg/zLMlGiO4Fswoyn/1diFE65k=";
+    };
+    # TODO: not working for some reason
+    #.override {jre = pkgs.temurin-bin;};
 
     # Aikar's flag
     # https://aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft/
