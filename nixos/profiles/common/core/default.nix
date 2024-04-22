@@ -79,16 +79,12 @@
   users.users."guanranwang" = {
     isNormalUser = true;
     description = "Guanran Wang";
-    extraGroups = [
-      "wheel" # administrator
-      "networkmanager" # access to networkmanager
-      "tss" # access to tpm devices
-      "vboxusers" # access to virtualbox
-      "nix-access-tokens" # access to github tokens
-      "libvirtd" # access to virt-manager
-    ];
     hashedPasswordFile = config.sops.secrets."hashed-passwd".path;
     shell = pkgs.fish;
+    extraGroups = [
+      "wheel"
+      "nix-access-tokens"
+    ];
     openssh.authorizedKeys.keys = [
       # same as git signing
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMmd/uqiBahzKcKMJ+gT3dkUIdrWQgudspsDchDlx1E/ guanran928@outlook.com"
