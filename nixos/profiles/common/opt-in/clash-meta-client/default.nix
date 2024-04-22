@@ -26,6 +26,7 @@
   ### sops-nix
   sops.secrets = builtins.mapAttrs (_name: value: value // {restartUnits = ["mihomo.service"];}) {
     "clash/secret" = {};
+    "clash/proxies/lightsail" = {};
     "clash/proxy-providers/flyairport" = {};
     "clash/proxy-providers/efcloud" = {};
     "clash/proxy-providers/kogeki" = {};
@@ -38,6 +39,10 @@
     builtins.readFile ./config.yaml
     + ''
       secret: "${config.sops.placeholder."clash/secret"}"
+
+      proxies:
+        ${config.sops.placeholder."clash/proxies/lightsail"}
+
       proxy-providers:
         flyairport:
           <<: *fetch
