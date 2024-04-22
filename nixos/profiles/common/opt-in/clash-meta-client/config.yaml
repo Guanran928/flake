@@ -30,7 +30,11 @@ tcp-concurrent: true
 geodata-mode: true
 
 proxy-groups:
-  - { name: PROXY, type: select, proxies: [自动选择, 备用自动选择, DIRECT, lightsail] }
+  - {
+      name: PROXY,
+      type: select,
+      proxies: [自动选择, 备用自动选择, DIRECT, lightsail],
+    }
   - { name: 自动选择, <<: *use, tolerance: 2, type: url-test }
   - { name: 备用自动选择, <<: *use-backup, tolerance: 2, type: url-test }
 
