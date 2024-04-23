@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, inputs, ...}: {
   imports = [
     # OS
     ../../nixos/profiles/laptop
@@ -41,7 +41,7 @@
         hyperfine
         mousai
       ]
-      ++ (with inputs.self.packages.${pkgs.stdenv.hostPlatform.system}; [
+      ++ (with inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.scripts; [
         lofi
       ]);
 
