@@ -65,7 +65,7 @@
   };
   programs = {
     kdeconnect = {
-      # enable = true;
+      enable = true;
       #package = pkgs.gnomeExtensions.gsconnect;
       package = pkgs.valent;
     };

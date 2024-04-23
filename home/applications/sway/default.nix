@@ -24,6 +24,7 @@
 
   wayland.windowManager.sway = {
     enable = true;
+    checkConfig = false; # wtf?
     extraOptions = [
       "--unsupported-gpu"
       #"-Dnoscanout"

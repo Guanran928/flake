@@ -33,13 +33,17 @@
       "ydict"
     ];
 
-    home.packages = with pkgs; [
-      amberol
-      fractal
-      gnome.gnome-calculator
-      hyperfine
-      mousai
-    ];
+    home.packages = with pkgs;
+      [
+        amberol
+        fractal
+        gnome.gnome-calculator
+        hyperfine
+        mousai
+      ]
+      ++ (with inputs.self.packages.${pkgs.stdenv.hostPlatform.system}; [
+        lofi
+      ]);
 
     programs.obs-studio.enable = true;
   };
