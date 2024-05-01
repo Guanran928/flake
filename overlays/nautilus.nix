@@ -1,4 +1,8 @@
-{addPatches, ...}: _final: prev: {
+{
+  addPatches,
+  prev,
+  ...
+}: {
   gnome =
     prev.gnome
     // {

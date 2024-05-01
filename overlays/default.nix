@@ -4,7 +4,10 @@ let
       patches = (old.patches or []) ++ patches;
     });
 in {
-  nautilus = import ./nautilus.nix {inherit addPatches;};
-  prismlauncher = import ./prismlauncher.nix {inherit addPatches;};
-  sway = import ./sway.nix {inherit addPatches;};
+  patches = _final: prev:
+    {}
+    // import ./nautilus.nix {inherit addPatches prev;}
+    // import ./prismlauncher.nix {inherit addPatches prev;}
+    // import ./sway.nix {inherit addPatches prev;}
+    // import ./tailscale.nix {inherit addPatches prev;};
 }

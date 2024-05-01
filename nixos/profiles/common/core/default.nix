@@ -23,9 +23,7 @@
   ];
 
   nixpkgs.overlays = [
-    inputs.self.overlays.nautilus
-    inputs.self.overlays.prismlauncher
-    inputs.self.overlays.sway
+    inputs.self.overlays.patches
   ];
 
   ### home-manager

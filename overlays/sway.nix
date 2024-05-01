@@ -1,4 +1,8 @@
-{addPatches, ...}: _final: prev: {
+{
+  addPatches,
+  prev,
+  ...
+}: {
   sway-unwrapped = addPatches prev.sway-unwrapped [
     # text_input: Implement input-method popups
     # https://github.com/swaywm/sway/pull/7226

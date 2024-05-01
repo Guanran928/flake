@@ -1,4 +1,8 @@
-{addPatches, ...}: _final: prev: {
+{
+  addPatches,
+  prev,
+  ...
+}: {
   prismlauncher = addPatches prev.prismlauncher [
     # Offline mode for Prism Launcher
     # https://github.com/Misterio77/nix-config/blob/main/overlays/offline-mode-prism-launcher.diff
