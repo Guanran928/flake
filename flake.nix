@@ -221,7 +221,7 @@
 
         "lightsail-tokyo" = {
           imports = [./hosts/lightsail-tokyo];
-          deployment.targetHost = "18.177.132.61";
+          deployment.targetHost = "ny4.dev";
         };
       };
     });
