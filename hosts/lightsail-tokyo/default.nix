@@ -43,46 +43,15 @@
   networking.firewall.allowedUDPPorts = [443]; # h3 hysteria -> caddy
   networking.firewall.allowedTCPPorts = [80 443]; # caddy
 
+  systemd.tmpfiles.settings = {
+    "10-www" = {
+      "/var/www/robots/robots.txt".C.argument = toString ./robots.txt;
+    };
+  };
+
   services.caddy = {
     enable = true;
-    configFile = pkgs.writeText "Caddyfile" ''
-      {
-        # Disables HTTP/3 for Hysteria
-        # https://github.com/apernet/hysteria/issues/768
-        servers :443 {
-          protocols h1 h2 h2c
-        }
-      }
-
-      www.ny4.dev {
-        redir https://ny4.dev
-      }
-
-      ny4.dev {
-        encode zstd gzip
-        respond "Hello, world!"
-      }
-
-      searx.ny4.dev {
-        encode zstd gzip
-        reverse_proxy localhost:8100
-      }
-
-      pb.ny4.dev {
-        encode zstd gzip
-        reverse_proxy localhost:8200
-      }
-
-      uptime.ny4.dev {
-        encode zstd gzip
-        reverse_proxy localhost:8300
-      }
-
-      ntfy.ny4.dev {
-        encode zstd gzip
-        reverse_proxy localhost:8400
-      }
-    '';
+    configFile = ./Caddyfile;
   };
 
   services.hysteria = {

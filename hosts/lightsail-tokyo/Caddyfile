@@ -1,0 +1,69 @@
+{
+	# Disables HTTP/3 for Hysteria
+	# https://github.com/apernet/hysteria/issues/768
+	servers :443 {
+		protocols h1 h2 h2c
+	}
+}
+
+(header) {
+	header {
+		# https://observatory.mozilla.org/analyze/ny4.dev
+		# https://infosec.mozilla.org/guidelines/web_security
+		# https://caddyserver.com/docs/caddyfile/directives/header#examples
+
+		Content-Security-Policy "default-src https: 'unsafe-eval' 'unsafe-inline'; object-src 'none'"
+		Permissions-Policy interest-Hpcohort=()
+		Strict-Transport-Security max-age=31536000;
+		X-Content-Type-Options nosniff
+		X-Frame-Options DENY
+	}
+}
+
+(compression) {
+	encode zstd gzip
+}
+
+(robots) {
+	handle_path /robots.txt {
+		file_server * {
+			root /var/www/robots/robots.txt
+		}
+	}
+}
+
+(default) {
+	import header
+	import compression
+	import robots
+}
+
+www.ny4.dev {
+	import default
+	redir https://ny4.dev
+}
+
+ny4.dev {
+	import default
+	respond "Hello, world!"
+}
+
+searx.ny4.dev {
+	import default
+	reverse_proxy localhost:8100
+}
+
+pb.ny4.dev {
+	import default
+	reverse_proxy localhost:8200
+}
+
+uptime.ny4.dev {
+	import default
+	reverse_proxy localhost:8300
+}
+
+ntfy.ny4.dev {
+	import default
+	reverse_proxy localhost:8400
+}
