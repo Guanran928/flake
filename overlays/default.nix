@@ -9,6 +9,5 @@ in {
     // import ./nautilus.nix {inherit addPatches prev;}
     // import ./prismlauncher.nix {inherit addPatches prev;}
     // import ./sway.nix {inherit addPatches prev;}
-    // import ./tailscale.nix {inherit addPatches prev;}
     // import ./fcitx5.nix {inherit addPatches prev;};
 }

@@ -1,22 +1,21 @@
-{
-  addPatches,
-  prev,
-  ...
-}: {
+{prev, ...}: {
   gnome =
     prev.gnome
     // {
-      nautilus = addPatches prev.gnome.nautilus [
-        # Restore Nautilus's typeahead ability
-        # https://aur.archlinux.org/packages/nautilus-typeahead
-        (prev.fetchpatch {
-          url = let
-            repo = "nautilus-typeahead";
-            file = "nautilus-restore-typeahead.patch";
-            commit = "524d92c42ea768e5e4ab965511287152ed885d22"; # v45.2.1
-          in "https://aur.archlinux.org/cgit/aur.git/plain/${file}?h=${repo}&id=${commit}";
-          hash = "sha256-a40vNo2Nw068GBtjVPUz6WAYRtjD0DB2bG/N14vSTxI=";
-        })
-      ];
+      # https://aur.archlinux.org/pkgbase/nautilus-typeahead
+      nautilus = prev.gnome.nautilus.overrideAttrs (old: {
+        src = prev.fetchFromGitLab {
+          domain = "gitlab.gnome.org";
+          owner = "albertvaka";
+          repo = "nautilus";
+          rev = "f5f593bf36c41756a29d5112a10cf7ec70b8eafb";
+          hash = "sha256-PfkCY2gQ8jfPIgTRC9Xzxh4N3f2oB339Hym5RCbKwkw=";
+        };
+
+        # Enable type-ahead behavior by default
+        postPatch = ''
+          awk -i inplace '/type-ahead-search/{c++;} c==1 && /true/{sub("true", "false"); c++;} 1' data/org.gnome.nautilus.gschema.xml
+        '';
+      });
     };
 }

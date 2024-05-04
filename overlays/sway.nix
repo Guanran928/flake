@@ -32,7 +32,7 @@
     (prev.fetchpatch {
       name = "0002-Tray-dont-invoke-dbus-menu-when-tray-is-disabled.patch";
       url = "https://github.com/NickHu/sway/commit/03c14421354e54332e12f78d029dcaa9919fd161.patch";
-      hash = "sha256-GhBlCnk7aB6s57wV1FNOPAt6s0oJxLgf2bMw+8ktn8A";
+      hash = "sha256-GhBlCnk7aB6s57wV1FNOPAt6s0oJxLgf2bMw+8ktn8A=";
     })
   ];
 }
