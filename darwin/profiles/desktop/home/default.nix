@@ -18,7 +18,6 @@
 
     # Media
     "mpv"
-    "telegram-desktop"
   ];
 
   # Install MacOS applications to the user Applications folder. Also update Docked applications

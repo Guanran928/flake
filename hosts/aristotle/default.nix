@@ -33,7 +33,6 @@
     imports = map (n: ../../home/applications/${n}) [
       "spotify/spicetify.nix"
       "thunderbird"
-      "telegram-desktop"
       "ydict"
     ];
 

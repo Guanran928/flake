@@ -7,7 +7,6 @@
     defaultApplications =
       {
         "inode/directory" = ["org.gnome.Nautilus.desktop"];
-        "tg" = ["org.telegram.desktop.desktop"]; # https://t.me/nixos_zhcn/363204
       }
       ### Browser
       // lib.genAttrs [
