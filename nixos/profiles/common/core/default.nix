@@ -5,22 +5,24 @@
   pkgs,
   ...
 }: {
-  imports = [
-    ./hardening
-    ./networking
-    ./nix
-
-    # Flake modules
-    inputs.disko.nixosModules.disko
-    inputs.home-manager.nixosModules.home-manager
-    inputs.impermanence.nixosModules.impermanence
-    inputs.lanzaboote.nixosModules.lanzaboote
-    inputs.nix-gaming.nixosModules.pipewireLowLatency
-    inputs.nur.nixosModules.nur
-    inputs.self.nixosModules.default
-    inputs.sops-nix.nixosModules.sops
-    inputs.nixos-sensible.nixosModules.default
-  ];
+  imports =
+    [
+      ./hardening
+      ./networking
+      ./nix
+    ]
+    ++ (with inputs; [
+      aagl.nixosModules.default
+      disko.nixosModules.disko
+      home-manager.nixosModules.home-manager
+      impermanence.nixosModules.impermanence
+      lanzaboote.nixosModules.lanzaboote
+      nix-gaming.nixosModules.pipewireLowLatency
+      nixos-sensible.nixosModules.default
+      nur.nixosModules.nur
+      self.nixosModules.default
+      sops-nix.nixosModules.sops
+    ]);
 
   nixpkgs.overlays = [
     inputs.self.overlays.patches

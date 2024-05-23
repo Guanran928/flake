@@ -10,7 +10,7 @@ MacBookPro11,3
 
 ### Description
 
-Homelab, hosting random stuff through tailscale.
+Homelab, hosting random stuff through tailscale and rathole.
 
 ### TODOs:
 
@@ -20,4 +20,4 @@ Homelab, hosting random stuff through tailscale.
 - [ ] luks1 -> luks2
   - [ ] tpm luks unlocking
 - [ ] nouveau -> nvidia
-- [x] networkmanager - > iwd
+- [x] networkmanager -> iwd

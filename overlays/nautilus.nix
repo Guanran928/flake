@@ -3,7 +3,7 @@
     prev.gnome
     // {
       # https://aur.archlinux.org/pkgbase/nautilus-typeahead
-      nautilus = prev.gnome.nautilus.overrideAttrs (old: {
+      nautilus = prev.gnome.nautilus.overrideAttrs {
         src = prev.fetchFromGitLab {
           domain = "gitlab.gnome.org";
           owner = "albertvaka";
@@ -16,6 +16,6 @@
         postPatch = ''
           awk -i inplace '/type-ahead-search/{c++;} c==1 && /true/{sub("true", "false"); c++;} 1' data/org.gnome.nautilus.gschema.xml
         '';
-      });
+      };
     };
 }

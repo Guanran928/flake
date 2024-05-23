@@ -1,0 +1,8 @@
+{
+  "m.homeserver": {
+    "base_url": "https://matrix.ny4.dev"
+  },
+  "org.matrix.msc3575.proxy": {
+    "url": "https://syncv3.ny4.dev"
+  }
+}

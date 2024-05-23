@@ -17,41 +17,84 @@
   boot.loader.grub.device = lib.mkForce "/dev/nvme0n1";
   system.stateVersion = "23.11";
 
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 4 * 1024; # 4 GiB
+    }
+  ];
+
   # WORKAROUND:
   systemd.services."print-host-key".enable = false;
 
   ### Secrets
-  sops.secrets = builtins.mapAttrs (_name: value: value // {sopsFile = ./secrets.yaml;}) {
-    "hysteria/auth".restartUnits = ["hysteria.service"];
-    "searx/environment".restartUnits = ["searx.service"];
+  sops = {
+    secrets = builtins.mapAttrs (_name: value: value // {sopsFile = ./secrets.yaml;}) {
+      "hysteria/auth" = {
+        restartUnits = ["hysteria.service"];
+      };
+      "pixivfe/environment" = {
+        restartUnits = ["pixivfe.service"];
+      };
+      "searx/environment" = {
+        restartUnits = ["searx.service"];
+      };
+    };
+
+    templates = {
+      "hysteria.yaml".content = ''
+        tls:
+          cert: /run/credentials/hysteria.service/cert
+          key: /run/credentials/hysteria.service/key
+
+        masquerade:
+          type: proxy
+          proxy:
+            url: http://localhost/
+
+        ${config.sops.placeholder."hysteria/auth"}
+      '';
+    };
   };
 
-  sops.templates."hysteria.yaml".content = ''
-    tls:
-      cert: /run/credentials/hysteria.service/cert
-      key: /run/credentials/hysteria.service/key
-
-    masquerade:
-      type: proxy
-      proxy:
-        url: http://localhost/
-
-    ${config.sops.placeholder."hysteria/auth"}
-  '';
-
   ### Services
-  networking.firewall.allowedUDPPorts = [443]; # h3 hysteria -> caddy
-  networking.firewall.allowedTCPPorts = [80 443]; # caddy
+  networking.firewall.allowedUDPPorts = [
+    # hysteria
+    443
+  ];
+  networking.firewall.allowedTCPPorts = [
+    # caddy
+    80
+    443
+
+    # frp
+    7000
+  ];
 
   systemd.tmpfiles.settings = {
     "10-www" = {
       "/var/www/robots/robots.txt".C.argument = toString ./robots.txt;
+      "/var/www/matrix/client".C.argument = toString ./matrix-client.json;
+      "/var/www/matrix/server".C.argument = toString ./matrix-server.json;
     };
   };
 
   services.caddy = {
     enable = true;
-    configFile = ./Caddyfile;
+    configFile = pkgs.substituteAll {
+      src = ./Caddyfile;
+
+      "element" = pkgs.element-web.override {
+        conf.default_server_config."m.homeserver" = let
+          inherit (config.services.matrix-synapse) settings;
+        in {
+          base_url = "https://matrix.ny4.dev";
+          inherit (settings) server_name;
+        };
+      };
+
+      "mastodon" = pkgs.mastodon;
+    };
   };
 
   services.hysteria = {
@@ -64,11 +107,21 @@
     ];
   };
 
+  services.frp = {
+    enable = true;
+    role = "server";
+    settings = {
+      bindPort = 7000;
+      auth.method = "token";
+      auth.token = "p4$m93060THuwtYaF0Jnr(RvYGZkI*Lqvh!kGXNesZCm4JQubMQlFDzr#F7rAycE";
+    };
+  };
+
   # `journalctl -u murmur.service | grep Password`
   services.murmur = {
     enable = true;
     openFirewall = true;
-    bandwidth = 128000;
+    bandwidth = 256 * 1024; # 256 Kbit/s
   };
 
   services.searx = {
@@ -99,8 +152,43 @@
     enable = true;
     settings = {
       base-url = "https://ntfy.ny4.dev";
-      listen-http = "127.0.0.1:8400";
+      listen-http = "";
+      listen-unix = "/run/ntfy-sh/ntfy.sock";
+      listen-unix-mode = 511; # 0777
+      behind-proxy = true;
     };
+  };
+
+  systemd.services.ntfy-sh.serviceConfig.RuntimeDirectory = ["ntfy-sh"];
+
+  services.pixivfe = {
+    enable = true;
+    EnvironmentFile = config.sops.secrets."pixivfe/environment".path;
+    settings = {
+      PIXIVFE_UNIXSOCKET = "/run/pixivfe/pixiv.sock";
+      PIXIVFE_IMAGEPROXY = "https://i.pixiv.re";
+    };
+  };
+
+  systemd.services.pixivfe.serviceConfig = {
+    RuntimeDirectory = ["pixivfe"];
+    ExecStartPost = pkgs.writeShellScript "pixivfe-unixsocket" ''
+      ${pkgs.coreutils}/bin/sleep 5
+      ${pkgs.coreutils}/bin/chmod 777 /run/pixivfe/pixiv.sock
+    '';
+  };
+
+  services.keycloak = {
+    enable = true;
+    settings = {
+      http-host = "127.0.0.1";
+      http-port = 8800;
+      proxy = "edge";
+      hostname-strict-backchannel = true;
+      hostname = "id.ny4.dev";
+      cache = "local";
+    };
+    database.passwordFile = toString (pkgs.writeText "password" "keycloak");
   };
 
   ### Prevents me from bankrupt

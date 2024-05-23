@@ -12,11 +12,11 @@
 		# https://infosec.mozilla.org/guidelines/web_security
 		# https://caddyserver.com/docs/caddyfile/directives/header#examples
 
-		Content-Security-Policy "default-src https: 'unsafe-eval' 'unsafe-inline'; object-src 'none'"
-		Permissions-Policy interest-Hpcohort=()
-		Strict-Transport-Security max-age=31536000;
-		X-Content-Type-Options nosniff
-		X-Frame-Options DENY
+		?Content-Security-Policy "default-src https: blob: 'unsafe-eval' 'unsafe-inline'; object-src 'none'"
+		?Permissions-Policy interest-Hpcohort=()
+		?Strict-Transport-Security max-age=31536000;
+		?X-Content-Type-Options nosniff
+		?X-Frame-Options DENY
 	}
 }
 
@@ -45,7 +45,19 @@ www.ny4.dev {
 
 ny4.dev {
 	import default
-	respond "Hello, world!"
+
+	# Synapse
+	header /.well-known/matrix/* Content-Type application/json
+	header /.well-known/matrix/* Access-Control-Allow-Origin *
+	handle_path /.well-known/matrix/* {
+		file_server * {
+			root /var/www/matrix
+		}
+	}
+
+	# Mastodon
+	header /.well-known/webfinger Access-Control-Allow-Origin *
+	redir /.well-known/webfinger https://mastodon.ny4.dev{uri} permanent
 }
 
 searx.ny4.dev {
@@ -65,5 +77,61 @@ uptime.ny4.dev {
 
 ntfy.ny4.dev {
 	import default
-	reverse_proxy localhost:8400
+	reverse_proxy unix//run/ntfy-sh/ntfy.sock
+}
+
+pixiv.ny4.dev {
+	import default
+	basicauth {
+		Guanran928 $2a$14$aI977hGZCX6H9IiyG7avdOFxXFGtlt7DcIahTkInPhEx9Sfhk7bri
+	}
+	reverse_proxy unix//run/pixivfe/pixiv.sock
+}
+
+matrix.ny4.dev {
+	import default
+	reverse_proxy /_matrix/* localhost:8600
+	reverse_proxy /_synapse/client/* localhost:8600
+	reverse_proxy /health localhost:8600
+}
+
+syncv3.ny4.dev {
+	import default
+	reverse_proxy localhost:8700
+}
+
+id.ny4.dev {
+	import default
+	reverse_proxy localhost:8800
+}
+
+element.ny4.dev {
+	import default
+	root * @element@
+	file_server
+}
+
+mastodon.ny4.dev {
+	import default
+	handle_path /system/* {
+		reverse_proxy localhost:9100
+	}
+
+	handle /api/v1/streaming/* {
+		reverse_proxy localhost:9000
+	}
+
+	route * {
+		file_server * {
+			root @mastodon@/public
+			pass_thru
+		}
+		reverse_proxy * localhost:8900
+	}
+
+	handle_errors {
+		root * @mastodon@/public
+		rewrite 500.html
+		file_server
+	}
 }

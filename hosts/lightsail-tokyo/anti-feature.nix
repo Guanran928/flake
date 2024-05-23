@@ -7,6 +7,8 @@
         "cargo-bootstrap"
         "rustc-bootstrap"
         "rustc-bootstrap-wrapper"
+        "keycloak"
+        "temurin-bin"
       ];
 
     allowUnfree = false;

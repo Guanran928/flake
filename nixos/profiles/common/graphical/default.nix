@@ -52,6 +52,7 @@
         default = "gtk";
         "org.freedesktop.impl.portal.ScreenCast" = "wlr";
         "org.freedesktop.impl.portal.Screenshot" = "wlr";
+        "org.freedesktop.impl.portal.Inhibit" = "none";
       };
     };
   };
@@ -70,7 +71,7 @@
       package = pkgs.valent;
     };
   };
-  services.xserver.libinput = {
+  services.libinput = {
     touchpad = {
       accelProfile = "flat";
       naturalScrolling = true;

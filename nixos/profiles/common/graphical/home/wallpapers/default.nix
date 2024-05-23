@@ -18,6 +18,23 @@ in {
       url = "https://i.pximg.net/img-original/img/2023/03/29/01/29/52/106654974_p0.jpg"; # https://www.pixiv.net/en/artworks/106654974
       hash = "sha256-mB/D46JCddOlMUtFQu7R0OtRMIoApbT1nnRv0VyzEb8=";
     };
+    "backgrounds/genshin1.jpg".source = pkgs.fetchurl {
+      inherit curlOptsList;
+      url = "https://i.pximg.net/img-original/img/2022/09/29/00/00/15/101553430_p0.jpg"; # https://www.pixiv.net/artworks/101553430
+      hash = "sha256-VMUxBExuA5LDNQVeBBf4btyWsETN0B7pr0bTrBiJHaI=";
+    };
+
+    "backgrounds/genshin2.jpg".source = pkgs.fetchurl {
+      url = "https://imglf3.lf127.net/img/7196a1c5f06b5e38/T0FlK2VJTUI4Q1ZGbkhrc0ZWMlpiT3RJU1RQOXdJcGhrS3ZMOTBKdmR3OD0.jpeg"; # https://57friend.lofter.com/post/1d7a55da_2b5bc7172
+      hash = "sha256-jO8S+WNWfel74+CtMbfd9F78CuyXFK5ka72Br9b10P4=";
+    };
+
+    "backgrounds/genshin3.jpg".source = pkgs.fetchurl {
+      inherit curlOptsList;
+      url = "https://i.pximg.net/img-original/img/2022/06/21/20/00/28/99170653_p0.jpg"; # https://www.pixiv.net/artworks/99170653
+      hash = "sha256-7DmmJRZyJKU06j89X3x5NlOElFhdilIhzQMs3ynZKh4=";
+    };
+
     "backgrounds/summer.jpg".source = let
       image = pkgs.fetchurl {
         inherit curlOptsList;

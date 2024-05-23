@@ -7,9 +7,13 @@
     #       `nixpkgs-unstable` contains less(?) jobs, and usually updates faster.
     #
     # REFERENCE: https://discourse.nixos.org/t/differences-between-nix-channels/13998/5
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
 
+    aagl = {
+      url = "github:ezKEa/aagl-gtk-on-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     berberman = {
       url = "github:berberman/flakes";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -140,7 +144,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nixpkgs-stable.follows = "nixpkgs-stable";
       inputs.flake-compat.follows = "flake-compat";
-      inputs.flake-utils.follows = "flake-utils";
       inputs.gitignore.follows = "gitignore";
     };
     rust-overlay = {

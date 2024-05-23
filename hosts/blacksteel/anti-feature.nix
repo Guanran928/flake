@@ -9,22 +9,22 @@
         "adoptopenjdk-hotspot-bin"
         "cargo-bootstrap"
         "cef-binary"
+        "minecraft-server"
         "rustc-bootstrap"
         "rustc-bootstrap-wrapper"
         "sof-firmware"
         "spotify"
-        "vscodium"
-        "papermc"
         "temurin-bin"
+        "vscodium"
       ];
 
     allowUnfree = false;
     allowUnfreePredicate = pkg:
       builtins.elem (lib.getName pkg) [
+        "broadcom-sta"
+        "minecraft-server"
         "nvidia-x11"
         "spotify"
-        "broadcom-sta"
-        "papermc"
       ];
   };
 }

@@ -8,6 +8,11 @@ keys:
   - &blacksteel age174knn6hjtukp32ymcdvjwj6x0j54g7yw02dqfjmua3fkyltwcqrsxccjdk
   - &lightsail-tokyo age1vw4kf5v8cfnhfhvl0eyvqzpvy9hpfv9enffvzyt95tx5mu7s5dxqjqw0fa
 creation_rules:
+  - path_regex: hosts/blacksteel/secrets.yaml$
+    key_groups:
+      - age:
+          - *guanranwang
+          - *blacksteel
   - path_regex: hosts/lightsail-tokyo/secrets.yaml$
     key_groups:
       - age:
