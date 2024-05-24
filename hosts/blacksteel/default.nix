@@ -287,6 +287,7 @@
     enable = true;
     localDomain = "ny4.dev";
     streamingProcesses = 1;
+    mediaAutoRemove.olderThanDays = 14;
     # FIXME: this doesn't exist
     smtp = {
       createLocally = false;
