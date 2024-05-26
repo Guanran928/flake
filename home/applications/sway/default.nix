@@ -38,7 +38,7 @@
       ];
 
       ### Visuals
-      output."*".bg = "~/.local/share/backgrounds/Minato-Aqua-Dark.png fill";
+      output."*".bg = "${pkgs.nixos-artwork.wallpapers.nineish-dark-gray.src} fill";
       #window.titlebar = false;
       #gaps.inner = 4;
       #gaps.outer = 4;

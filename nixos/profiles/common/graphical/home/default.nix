@@ -2,8 +2,6 @@
   imports =
     [
       ./fonts
-      ./wallpapers
-
       ./theme.nix
       ./xdg-mime.nix
     ]
