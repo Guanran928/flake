@@ -43,17 +43,15 @@
   security.pam.services.swaylock = {};
   xdg.portal = {
     enable = true;
+    xdgOpenUsePortal = true;
     wlr.enable = true;
     extraPortals = with pkgs; [xdg-desktop-portal-gtk];
-    config = {
-      # from Arch Linux
-      # https://gitlab.archlinux.org/archlinux/packaging/packages/sway/-/blob/main/sway-portals.conf
-      sway = {
-        default = "gtk";
-        "org.freedesktop.impl.portal.ScreenCast" = "wlr";
-        "org.freedesktop.impl.portal.Screenshot" = "wlr";
-        "org.freedesktop.impl.portal.Inhibit" = "none";
-      };
+    # https://gitlab.archlinux.org/archlinux/packaging/packages/sway/-/blob/main/sway-portals.conf
+    config."sway" = {
+      default = "gtk";
+      "org.freedesktop.impl.portal.ScreenCast" = "wlr";
+      "org.freedesktop.impl.portal.Screenshot" = "wlr";
+      "org.freedesktop.impl.portal.Inhibit" = "none";
     };
   };
   services = {
