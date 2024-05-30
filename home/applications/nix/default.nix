@@ -7,9 +7,9 @@
     deadnix
 
     # nixpkgs PRs
-    nixpkgs-fmt
-    # nixfmt-rfc-style
+    nixfmt-rfc-style
     nix-update
+    nix-init
 
     # misc
     nh
