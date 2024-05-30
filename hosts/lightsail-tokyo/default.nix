@@ -50,7 +50,7 @@
         masquerade:
           type: proxy
           proxy:
-            url: http://localhost/
+            url: https://ny4.dev/
 
         ${config.sops.placeholder."hysteria/auth"}
       '';
