@@ -122,12 +122,10 @@
           "XF86AudioRaiseVolume" = "exec ${lib.getExe pkgs.pamixer} -i5";
           "XF86AudioLowerVolume" = "exec ${lib.getExe pkgs.pamixer} -d5";
           "XF86AudioMute" = "exec ${lib.getExe pkgs.pamixer} -t";
-          "XF86AudioPlay" = "exec ${lib.getExe pkgs.playerctl} play";
-          "XF86AudioPause" = "exec ${lib.getExe pkgs.playerctl} pause";
+          "XF86AudioPlay" = "exec ${lib.getExe pkgs.playerctl} play-pause";
           "XF86AudioPrev" = "exec ${lib.getExe pkgs.playerctl} previous";
           "XF86AudioNext" = "exec ${lib.getExe pkgs.playerctl} next";
           "XF86AudioStop" = "exec ${lib.getExe pkgs.playerctl} stop";
-          "XF86AudioMedia" = "exec ${lib.getExe pkgs.playerctl} play-pause";
         }
         //
         # workspace binds
