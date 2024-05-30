@@ -19,16 +19,15 @@
   services.udiskie.enable = true;
 
   home.sessionVariables = {
-    GTK_IM_MODULE = lib.mkForce "wayland"; # use text-input-v3
+    # NOTE: don't use "wayland" in GTK_IM_MODULE! it will crash X11 electron apps
+    GTK_IM_MODULE = lib.mkForce ""; # use text-input-v3
+    QT_IM_MODULE = lib.mkForce ""; # use text-input-v3
   };
 
   wayland.windowManager.sway = {
     enable = true;
     checkConfig = false; # wtf?
-    extraOptions = [
-      "--unsupported-gpu"
-      #"-Dnoscanout"
-    ];
+    extraOptions = ["--unsupported-gpu"];
     wrapperFeatures.gtk = true;
     systemd.xdgAutostart = true;
     config = {

@@ -12,9 +12,6 @@ in {
       (prismlauncher.override {glfw = glfw-wayland-minecraft;})
       (steam.override {
         extraEnv = {
-          # https://github.com/ValveSoftware/steam-for-linux/issues/781#issuecomment-2004757379
-          GTK_IM_MODULE = "xim";
-
           # STEAM_EXTRA_COMPAT_TOOLS_PATHS = gamePkgs.proton-ge;
         };
       })
