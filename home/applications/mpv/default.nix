@@ -12,6 +12,9 @@
       hwdec = "auto-safe";
       profile = "gpu-hq";
       osc = "no";
+
+      alang = "jpn,ja";
+      slang = "eng,en";
     };
     scripts =
       (with pkgs.mpvScripts; [
