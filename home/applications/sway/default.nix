@@ -37,14 +37,9 @@
       ];
 
       ### Visuals
-      output."*".bg = "${pkgs.nixos-artwork.wallpapers.nineish-dark-gray.src} fill";
-      #window.titlebar = false;
-      #gaps.inner = 4;
-      #gaps.outer = 4;
+      # https://danbooru.donmai.us/posts/6018861
+      output."*".bg = "${./background.png} fill";
       bars = [
-        #{
-        #  command = lib.getExe pkgs.waybar;
-        #}
         {
           statusCommand = "${lib.getExe pkgs.i3status-rust} $HOME/.config/i3status-rust/config-default.toml";
           position = "top";
