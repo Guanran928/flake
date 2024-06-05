@@ -57,4 +57,15 @@
     ".." = "cd ..";
     "farsee" = "curl -F 'c=@-' 'https://fars.ee/'"; # pb
   };
+
+  programs.fish.functions = {
+    "pb" = let
+      jq = lib.getExe pkgs.jq;
+      curl = lib.getExe pkgs.curl;
+    in ''
+      ${jq} -Rns '{text: inputs}' | \
+        ${curl} -s -H 'Content-Type: application/json' --data-binary @- https://pb.ny4.dev | \
+        ${jq} -r '. | "https://pb.ny4.dev\(.path)"'
+    '';
+  };
 }
