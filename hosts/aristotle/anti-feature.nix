@@ -6,6 +6,7 @@
         "adoptopenjdk-hotspot-bin"
         "cargo-bootstrap"
         "cef-binary"
+        "osu-lazer-bin"
         "rustc-bootstrap"
         "rustc-bootstrap-wrapper"
         "sof-firmware"
@@ -17,6 +18,7 @@
     allowUnfreePredicate = pkg:
       builtins.elem (lib.getName pkg) [
         "nvidia-x11"
+        "osu-lazer-bin"
         "spotify"
         "steam"
         "steam-original"

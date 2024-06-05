@@ -17,7 +17,6 @@
       home-manager.nixosModules.home-manager
       impermanence.nixosModules.impermanence
       lanzaboote.nixosModules.lanzaboote
-      nix-gaming.nixosModules.pipewireLowLatency
       nixos-sensible.nixosModules.default
       nur.nixosModules.nur
       self.nixosModules.default

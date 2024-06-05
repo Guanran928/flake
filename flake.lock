@@ -323,29 +323,6 @@
         "type": "github"
       }
     },
-    "nix-gaming": {
-      "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1717550333,
-        "narHash": "sha256-QebVpP3Z0zVBTSqExNQRg3FLOi2h0bPML6urBbUPzLY=",
-        "owner": "fufexan",
-        "repo": "nix-gaming",
-        "rev": "de70cdf224bd40928fe2af7fa558e1bdb7d8d619",
-        "type": "github"
-      },
-      "original": {
-        "owner": "fufexan",
-        "repo": "nix-gaming",
-        "type": "github"
-      }
-    },
     "nix-on-droid": {
       "inputs": {
         "home-manager": [
@@ -603,7 +580,6 @@
         "neovim": "neovim",
         "nix-darwin": "nix-darwin",
         "nix-formatter-pack": "nix-formatter-pack",
-        "nix-gaming": "nix-gaming",
         "nix-on-droid": "nix-on-droid",
         "nixcasks": "nixcasks",
         "nixos-hardware": "nixos-hardware",
