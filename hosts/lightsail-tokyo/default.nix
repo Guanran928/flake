@@ -198,20 +198,6 @@
     settings = {
       useEqualHeights = true;
       cardBlur = "sm";
-
-      background = let
-        # https://www.pixiv.net/en/artworks/49983419
-        image = pkgs.fetchurl {
-          url = "https://i.pximg.net/img-original/img/2015/04/23/12/43/35/49983419_p0.jpg";
-          hash = "sha256-JZ5VmsjVjZfHXpx3JxzAyYzZppZmgH38AiAA+B0TDiw=";
-          curlOptsList = ["-e" "https://www.pixiv.net/"];
-        };
-        # Crop 100px on top and bottom
-        cropped = pkgs.runCommandNoCC "49983419_p0.jpg" {} ''
-          ${lib.getExe pkgs.imagemagick} convert ${image} -crop 3500x1600+0+100 $out
-        '';
-      in "file://${cropped}";
-
       layout."Services" = {
         style = "row";
         columns = "4";
