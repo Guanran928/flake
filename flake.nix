@@ -224,7 +224,12 @@
 
         "lightsail-tokyo" = {
           imports = [./hosts/lightsail-tokyo];
-          deployment.targetHost = "ny4.dev";
+          deployment.targetHost = "tyo0.ny4.dev";
+        };
+
+        "blacksteel" = {
+          imports = [./hosts/blacksteel];
+          deployment.targetHost = "blacksteel"; # thru tailscale
         };
       };
     });

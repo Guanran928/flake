@@ -73,19 +73,25 @@
       "[    5.996722] amdgpu 0000:67:00.0: Fatal error during GPU init"}
   '';
 
-  users.users."guanranwang" = {
-    isNormalUser = true;
-    description = "Guanran Wang";
-    hashedPasswordFile = config.sops.secrets."hashed-passwd".path;
-    shell = pkgs.fish;
-    extraGroups = [
-      "wheel"
-      "nix-access-tokens"
-    ];
-    openssh.authorizedKeys.keys = [
-      # same as git signing
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMmd/uqiBahzKcKMJ+gT3dkUIdrWQgudspsDchDlx1E/ guanran928@outlook.com"
-    ];
+  users.users = rec {
+    "guanranwang" = {
+      isNormalUser = true;
+      description = "Guanran Wang";
+      hashedPasswordFile = config.sops.secrets."hashed-passwd".path;
+      shell = pkgs.fish;
+      extraGroups = [
+        "wheel"
+        "nix-access-tokens"
+      ];
+      openssh.authorizedKeys.keys = [
+        # same as git signing
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMmd/uqiBahzKcKMJ+gT3dkUIdrWQgudspsDchDlx1E/ guanran928@outlook.com"
+      ];
+    };
+
+    "root" = {
+      openssh.authorizedKeys.keys = guanranwang.openssh.authorizedKeys.keys;
+    };
   };
 
   programs.dconf.enable = true;
