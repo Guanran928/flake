@@ -191,6 +191,102 @@
     database.passwordFile = toString (pkgs.writeText "password" "keycloak");
   };
 
+  services.homepage-dashboard = {
+    enable = true;
+    listenPort = 9200;
+
+    settings = {
+      useEqualHeights = true;
+      cardBlur = "sm";
+
+      background = let
+        # https://www.pixiv.net/en/artworks/49983419
+        image = pkgs.fetchurl {
+          url = "https://i.pximg.net/img-original/img/2015/04/23/12/43/35/49983419_p0.jpg";
+          hash = "sha256-JZ5VmsjVjZfHXpx3JxzAyYzZppZmgH38AiAA+B0TDiw=";
+          curlOptsList = ["-e" "https://www.pixiv.net/"];
+        };
+        # Crop 100px on top and bottom
+        cropped = pkgs.runCommandNoCC "49983419_p0.jpg" {} ''
+          ${lib.getExe pkgs.imagemagick} convert ${image} -crop 3500x1600+0+100 $out
+        '';
+      in "file://${cropped}";
+
+      layout."Services" = {
+        style = "row";
+        columns = "4";
+      };
+    };
+
+    services = [
+      {
+        "Services" = [
+          {
+            "SearXNG" = {
+              description = "A privacy-respecting, open metasearch engine.";
+              href = "https://searx.ny4.dev";
+            };
+          }
+          {
+            "Wastebin" = {
+              description = "A minimal pastebin with a design shamelessly copied from bin.";
+              href = "https://pb.ny4.dev";
+            };
+          }
+          {
+            "Ntfy" = {
+              description = "Send push notifications to your phone or desktop using PUT/POST.";
+              href = "https://ntfy.ny4.dev/";
+            };
+          }
+          {
+            "Mumble" = {
+              description = "Open Source, Low Latency, High Quality Voice Chat. (Connect with ny4.dev:64738)";
+            };
+          }
+        ];
+      }
+      {
+        "Private stuff" = [
+          {
+            "Mastodon" = rec {
+              description = "Free, open-source decentralized social media platform.";
+              href = "https://mastodon.ny4.dev/";
+              widget.type = "mastodon";
+              widget.url = href;
+            };
+          }
+          {
+            "Matrix" = {
+              description = "An open network for secure, decentralised communication.";
+              href = "https://element.ny4.dev/";
+            };
+          }
+          {
+            "PixivFE" = {
+              description = "A privacy respecting frontend for Pixiv.";
+              href = "https://pixiv.ny4.dev";
+            };
+          }
+          {
+            "Uptime Kuma" = {
+              description = "A fancy self-hosted monitoring tool.";
+              href = "https://uptime.ny4.dev/";
+            };
+          }
+        ];
+      }
+      {
+        "Links" = [
+          {"Blog".href = "https://blog.ny4.dev/";}
+          {"GitHub".href = "https://github.com/Guanran928";}
+          {"Mastodon".herf = "https://mastodon.ny4.dev/@nyancat";}
+          {"Matrix".href = "https://matrix.to/#/@root:ny4.dev";}
+        ];
+      }
+    ];
+  };
+
   ### Prevents me from bankrupt
   # https://fmk.im/p/shutdown-aws/
   services.vnstat.enable = true;

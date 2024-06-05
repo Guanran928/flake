@@ -58,6 +58,9 @@ ny4.dev {
 	# Mastodon
 	header /.well-known/webfinger Access-Control-Allow-Origin *
 	redir /.well-known/webfinger https://mastodon.ny4.dev{uri} permanent
+
+  # Homepage Dashboard
+	reverse_proxy localhost:9200
 }
 
 searx.ny4.dev {
