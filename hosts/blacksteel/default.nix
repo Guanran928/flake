@@ -225,7 +225,7 @@
   };
 
   systemd.tmpfiles.rules = [
-    "d /srv/samba/share 0700 guanranwang root"
+    "d /srv/samba/share 0755 guanranwang root"
   ];
 
   services.matrix-synapse = {
@@ -320,4 +320,9 @@
   };
 
   systemd.services.mastodon-sidekiq-all.environment = config.networking.proxy.envVars;
+
+  services.jellyfin = {
+    enable = true;
+    openFirewall = true;
+  };
 }
