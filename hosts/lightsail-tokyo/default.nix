@@ -204,30 +204,32 @@
       };
     };
 
-    services = [
+    services = let
+      getDesc = pkg: pkg.meta.description;
+    in [
       {
         "Services" = [
           {
             "SearXNG" = {
-              description = "A privacy-respecting, open metasearch engine.";
+              description = getDesc pkgs.searxng;
               href = "https://searx.ny4.dev";
             };
           }
           {
             "Wastebin" = {
-              description = "A minimal pastebin with a design shamelessly copied from bin.";
+              description = getDesc pkgs.wastebin;
               href = "https://pb.ny4.dev";
             };
           }
           {
             "Ntfy" = {
-              description = "Send push notifications to your phone or desktop using PUT/POST.";
+              description = getDesc pkgs.ntfy;
               href = "https://ntfy.ny4.dev/";
             };
           }
           {
             "Mumble" = {
-              description = "Open Source, Low Latency, High Quality Voice Chat. (Connect with ny4.dev:64738)";
+              description = "${getDesc pkgs.mumble} (Connect with ny4.dev:64738)";
             };
           }
         ];
@@ -236,7 +238,7 @@
         "Private stuff" = [
           {
             "Mastodon" = rec {
-              description = "Free, open-source decentralized social media platform.";
+              description = getDesc pkgs.mastodon;
               href = "https://mastodon.ny4.dev/";
               widget.type = "mastodon";
               widget.url = href;
@@ -244,7 +246,7 @@
           }
           {
             "Matrix" = {
-              description = "An open network for secure, decentralised communication.";
+              description = getDesc pkgs.element-web;
               href = "https://element.ny4.dev/";
             };
           }
@@ -256,8 +258,14 @@
           }
           {
             "Uptime Kuma" = {
-              description = "A fancy self-hosted monitoring tool.";
+              description = getDesc pkgs.uptime-kuma;
               href = "https://uptime.ny4.dev/";
+            };
+          }
+          {
+            "Forgejo" = {
+              description = getDesc pkgs.forgejo;
+              href = "https://git.ny4.dev/";
             };
           }
         ];
@@ -268,9 +276,27 @@
           {"GitHub".href = "https://github.com/Guanran928";}
           {"Mastodon".herf = "https://mastodon.ny4.dev/@nyancat";}
           {"Matrix".href = "https://matrix.to/#/@root:ny4.dev";}
+          {"Forgejo".href = "https://git.ny4.dev/nyancat";}
         ];
       }
     ];
+  };
+
+  services.forgejo = {
+    enable = true;
+    database.type = "postgres";
+    settings = {
+      server = {
+        # TODO: whats the difference between this and fcgi+unix
+        DOMAIN = "git.ny4.dev";
+        PROTOCOL = "http+unix";
+        ROOT_URL = "https://git.ny4.dev/";
+      };
+
+      service = {
+        ALLOW_ONLY_EXTERNAL_REGISTRATION = true;
+      };
+    };
   };
 
   ### Prevents me from bankrupt
