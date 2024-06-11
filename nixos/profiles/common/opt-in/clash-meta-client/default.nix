@@ -6,7 +6,7 @@
   services.mihomo = {
     enable = true;
     configFile = config.sops.templates."clash.yaml".path;
-    webui = config.nur.repos.guanran928.metacubexd;
+    webui = pkgs.metacubexd;
   };
 
   systemd.services.mihomo.serviceConfig.ExecStartPre = [
