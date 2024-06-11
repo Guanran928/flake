@@ -57,7 +57,4 @@
 
   # fucking hell
   programs.anime-game-launcher.enable = true;
-
-  # novideo
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
 }
