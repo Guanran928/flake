@@ -4,8 +4,8 @@
     profiles."default" = {
       extraConfig = ''
         ${builtins.readFile (pkgs.fetchurl {
-          url = "https://raw.githubusercontent.com/arkenfox/user.js/122.0/user.js";
-          hash = "sha256-H3Nk5sDxSElGRgK+cyQpVyjtlMF2Okxbstu9A+eJtGk=";
+          url = "https://raw.githubusercontent.com/arkenfox/user.js/126.1/user.js";
+          hash = "sha256-XRtG0iLKh8uqbeX7Rc2H6VJwZYJoNZPBlAfZEfrSCP4=";
         })}
         ${builtins.readFile ./user-overrides.js}
       '';

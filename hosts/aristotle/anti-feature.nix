@@ -17,6 +17,7 @@
     allowUnfree = false;
     allowUnfreePredicate = pkg:
       builtins.elem (lib.getName pkg) [
+        "libXNVCtrl"
         "nvidia-x11"
         "osu-lazer-bin"
         "spotify"
