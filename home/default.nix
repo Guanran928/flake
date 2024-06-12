@@ -58,14 +58,22 @@
     "farsee" = "curl -F 'c=@-' 'https://fars.ee/'"; # pb
   };
 
-  programs.fish.functions = {
-    "pb" = let
-      jq = lib.getExe pkgs.jq;
-      curl = lib.getExe pkgs.curl;
-    in ''
+  programs.fish.functions = let
+    jq = lib.getExe pkgs.jq;
+    nix = lib.getExe pkgs.nix;
+    curl = lib.getExe pkgs.curl;
+    awk = lib.getExe pkgs.gawk;
+  in {
+    "pb" = ''
       ${jq} -Rns '{text: inputs}' | \
         ${curl} -s -H 'Content-Type: application/json' --data-binary @- https://pb.ny4.dev | \
         ${jq} -r '. | "https://pb.ny4.dev\(.path)"'
+    '';
+
+    "getmnter" = ''
+      ${nix} eval nixpkgs#{$argv}.meta.maintainers --json | \
+        ${jq} '.[].github' -r | \
+        ${awk} '{ print "@" $1 }'
     '';
   };
 }
