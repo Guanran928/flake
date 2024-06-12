@@ -7,7 +7,7 @@
     enabled = "fcitx5";
     fcitx5.addons =
       (with pkgs; [
-        fcitx5-chinese-addons
+        libsForQt5.fcitx5-chinese-addons
         fcitx5-tokyonight
       ])
       ++ (with inputs.berberman.packages.${pkgs.stdenv.hostPlatform.system}; [

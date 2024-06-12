@@ -1,5 +1,7 @@
 {lib, ...}: {
   nixpkgs.config = {
+    allowAliases = false;
+
     allowNonSource = false;
     allowNonSourcePredicate = pkg:
       builtins.elem (lib.getName pkg) [
