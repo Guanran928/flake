@@ -1,6 +1,6 @@
 // Restore disabled functions
 user_pref("browser.cache.disk.enable", true);
-user_pref("browser.download.always_ask_before_handling_new_types", true);
+user_pref("browser.download.always_ask_before_handling_new_types", false);
 user_pref("browser.download.useDownloadDir", true);
 user_pref("browser.newtabpage.enabled", true);
 user_pref("browser.shell.shortcutFavicons", true);
