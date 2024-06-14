@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }: {
   imports = [
@@ -166,6 +167,13 @@
     enable = true;
     eula = true;
     openFirewall = true;
+
+    package = pkgs.callPackage "${inputs.nixpkgs}/pkgs/games/minecraft-servers/derivation.nix" {
+      version = "1.21";
+      sha1 = "450698d1863ab5180c25d7c804ef0fe6369dd1ba";
+      url = "https://piston-data.mojang.com/v1/objects/450698d1863ab5180c25d7c804ef0fe6369dd1ba/server.jar";
+      jre_headless = pkgs.javaPackages.compiler.openjdk21.headless;
+    };
 
     # Aikar's flag
     # https://aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft/
