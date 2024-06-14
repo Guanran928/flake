@@ -82,11 +82,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nixpkgs-stable.follows = "nixpkgs-stable";
     };
-    spicetify-nix = {
-      url = "github:the-argus/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
-    };
     srvos = {
       url = "github:nix-community/srvos";
       inputs.nixpkgs.follows = "nixpkgs";

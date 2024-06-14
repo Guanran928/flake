@@ -13,7 +13,6 @@
         "rustc-bootstrap"
         "rustc-bootstrap-wrapper"
         "sof-firmware"
-        "spotify"
         "temurin-bin"
         "vscodium"
       ];
@@ -24,7 +23,6 @@
         "broadcom-sta"
         "minecraft-server"
         "nvidia-x11"
-        "spotify"
       ];
   };
 }

@@ -26,7 +26,6 @@
         #"Templates"
 
         ".ssh"
-        #".librewolf"
         ".mozilla/firefox"
         ".thunderbird"
 
@@ -34,17 +33,13 @@
         ".local/share"
         ".local/state"
 
+        ".config/gh"
         ".config/Mumble"
-        ".config/VSCodium"
-        ".config/chromium"
         ".config/fcitx5"
         ".config/obs-studio"
-        ".config/spotify"
       ];
       files = [
         ".config/sops/age/keys.txt"
-        #".config/KDE/neochat.conf"
-        #".config/neochatrc"
       ];
     };
   };

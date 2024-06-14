@@ -12,7 +12,6 @@
         "rustc-bootstrap"
         "rustc-bootstrap-wrapper"
         "sof-firmware"
-        "spotify"
         "temurin-bin"
       ];
 
@@ -22,7 +21,6 @@
         "libXNVCtrl"
         "nvidia-x11"
         "osu-lazer-bin"
-        "spotify"
         "steam"
         "steam-original"
         "xow_dongle-firmware"

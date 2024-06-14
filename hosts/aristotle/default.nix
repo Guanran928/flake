@@ -31,7 +31,6 @@
   # Stuff that I only want on my main machine
   home-manager.users.guanranwang = {
     imports = map (n: ../../home/applications/${n}) [
-      "spotify/spicetify.nix"
       "thunderbird"
       "ydict"
     ];
