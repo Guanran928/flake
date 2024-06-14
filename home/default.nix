@@ -62,7 +62,6 @@
     jq = lib.getExe pkgs.jq;
     nix = lib.getExe pkgs.nix;
     curl = lib.getExe pkgs.curl;
-    awk = lib.getExe pkgs.gawk;
   in {
     "pb" = ''
       ${jq} -Rns '{text: inputs}' | \
@@ -72,8 +71,7 @@
 
     "getmnter" = ''
       ${nix} eval nixpkgs#{$argv}.meta.maintainers --json | \
-        ${jq} '.[].github' -r | \
-        ${awk} '{ print "@" $1 }'
+        ${jq} '.[].github | "@" + .' -r
     '';
   };
 }
