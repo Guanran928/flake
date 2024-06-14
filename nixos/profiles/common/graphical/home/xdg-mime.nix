@@ -2,8 +2,6 @@
   # https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
   xdg.mimeApps = {
     enable = true;
-
-    # Default application associstions
     defaultApplications =
       {
         "inode/directory" = ["org.gnome.Nautilus.desktop"];
@@ -15,7 +13,7 @@
         "x-scheme-handler/https"
         "x-scheme-handler/about"
         "x-scheme-handler/unknown"
-      ] (_n: ["librewolf.desktop" "firefox.desktop" "chromium-browser.desktop"])
+      ] (_n: ["firefox.desktop"])
       ### Audio player
       // lib.genAttrs [
         "audio/aac"
@@ -23,7 +21,7 @@
         "audio/mpeg"
         "audio/ogg"
         "audio/wav"
-      ] (_n: ["io.bassi.Amberol.desktop" "mpv.desktop"])
+      ] (_n: ["io.bassi.Amberol.desktop"])
       ### Image viewer
       // lib.genAttrs [
         "image/gif"
@@ -43,6 +41,6 @@
         "text/html"
         "text/javascript"
         "text/plain"
-      ] (_n: ["codium.desktop" "Helix.desktop" "nvim.desktop"]);
+      ] (_n: ["nvim.desktop"]);
   };
 }

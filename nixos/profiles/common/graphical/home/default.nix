@@ -6,33 +6,14 @@
       ./xdg-mime.nix
     ]
     ++ map (n: ../../../../../home/applications/${n}) [
-      # Terminal
       "alacritty"
-
-      # Editor
-      "neovim"
-      # "helix"
-      # "vscode"
-
-      # Browser
-      "firefox"
-      # "chromium"
-      # "librewolf"
-
-      # Language
-      "nix"
-      "go"
-
-      # Media
-      "loupe"
-      "mpv"
-
-      # WM
-      "sway"
-
-      # Misc
-      "nautilus"
       "fcitx5"
+      "firefox"
+      "go"
+      "mpv"
+      "nautilus"
+      "nix"
+      "sway"
     ];
 
   # https://wiki.archlinux.org/title/Fish#Start_X_at_login
@@ -42,12 +23,16 @@
     end
   '';
 
-  home.packages = with pkgs.gnome; [
-    seahorse
-    file-roller
-    gnome-calculator
-    dconf-editor
-  ];
+  home.packages =
+    (with pkgs; [
+      loupe
+    ])
+    ++ (with pkgs.gnome; [
+      seahorse
+      file-roller
+      gnome-calculator
+      dconf-editor
+    ]);
 
   services = {
     ssh-agent.enable = true;

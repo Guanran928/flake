@@ -6,7 +6,7 @@
   imports = [
     # OS
     ../../nixos/profiles/laptop
-    ../../nixos/profiles/common/opt-in/clash-meta-client
+    ../../nixos/profiles/common/opt-in/mihomo
     ../../nixos/profiles/common/opt-in/gaming
 
     # Hardware

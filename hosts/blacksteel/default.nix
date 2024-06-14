@@ -11,7 +11,7 @@
     ../../nixos/profiles/common/core
     ../../nixos/profiles/common/physical
     ../../nixos/profiles/common/mobile
-    ../../nixos/profiles/common/opt-in/clash-meta-client
+    ../../nixos/profiles/common/opt-in/mihomo
 
     # Hardware
     ./hardware-configuration.nix

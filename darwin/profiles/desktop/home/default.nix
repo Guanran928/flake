@@ -5,19 +5,10 @@
   ...
 }: {
   imports = map (n: ../../../../home/applications/${n}) [
-    # Terminal
     "alacritty"
-
-    # Editor
-    "neovim"
-    "vscode"
-
-    # Language
-    "nix"
     "go"
-
-    # Media
     "mpv"
+    "nix"
   ];
 
   # Install MacOS applications to the user Applications folder. Also update Docked applications
@@ -46,15 +37,6 @@
   programs = let
     monospace = "JetBrainsMono Nerd Font";
   in {
-    ### VSCode
-    vscode.userSettings.editor.fontFamily = monospace;
-
-    ### Alacritty
-    alacritty.settings.font = {
-      normal.family = monospace;
-      bold.family = monospace;
-      bold_italic.family = monospace;
-      italic.family = monospace;
-    };
+    alacritty.settings.font.normal.family = monospace;
   };
 }

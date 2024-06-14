@@ -32,14 +32,13 @@
 
   # Default applications
   imports = [
-    inputs.self.homeManagerModules.default
     inputs.nur.hmModules.nur
 
     ./applications/atuin
     ./applications/bash
     ./applications/bat
     ./applications/eza
-    ./applications/fastfetch
+    ./applications/neovim
     ./applications/fish
     ./applications/git
     ./applications/gpg
@@ -51,7 +50,14 @@
 
   programs.ripgrep.enable = true;
   programs.zoxide.enable = true;
-  home.packages = with pkgs; [fd] ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux (with pkgs; [trashy]);
+  home.packages =
+    (with pkgs; [
+      fd
+      fastfetch
+    ])
+    ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux (with pkgs; [
+      trashy
+    ]);
 
   home.shellAliases = {
     ".." = "cd ..";

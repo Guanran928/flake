@@ -1,7 +1,7 @@
 {...}: {
   imports = [
     ../../darwin/profiles/desktop
-    ../../darwin/profiles/common/opt-in/clash-meta-client.nix
+    ../../darwin/profiles/common/opt-in/mihomo.nix
 
     ./hardware-configuration.nix
   ];

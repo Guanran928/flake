@@ -21,10 +21,6 @@
     ];
 
     iconTheme = {
-      #name = "Tela-dracula-dark";
-      #package = pkgs.tela-icon-theme;
-      #name = "Papirus-Dark";
-      #package = pkgs.papirus-icon-theme;
       name = "Adwaita";
       package = pkgs.gnome.adwaita-icon-theme;
     };

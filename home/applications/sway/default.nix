@@ -6,14 +6,26 @@
   ...
 }: {
   imports = [
-    ../common/wayland.nix
-    ../common/wm.nix
     ../i3status-rust
     ../mako
     ../rofi
     ../swayidle
     ../swaylock
   ];
+
+  home.sessionVariables = {
+    NIXOS_OZONE_WL = "1"; # let electron applications use wayland
+  };
+
+  home.packages = with pkgs; [
+    wl-clipboard
+    pwvucontrol
+  ];
+
+  # remove csd window buttons
+  # https://github.com/localsend/localsend/blob/2457acd8a7412723b174672d174e4853dccd7d99/app/linux/my_application.cc#L45
+  home.sessionVariables.GTK_CSD = 0;
+  dconf.settings."org/gnome/desktop/wm/preferences"."button-layout" = "icon,appmenu:";
 
   services.cliphist.enable = true;
   services.udiskie.enable = true;

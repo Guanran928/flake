@@ -60,7 +60,6 @@
     sharedModules = [
       ({...}: {
         imports = [
-          ../../home/applications/neovim
           ../../home/applications/nix
         ];
       })
