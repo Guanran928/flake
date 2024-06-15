@@ -37,7 +37,7 @@
   };
 
   ### Options
-  myFlake.boot.noLoaderMenu = lib.mkDefault true;
+  my.boot.noLoaderMenu = lib.mkDefault true;
 
   fonts.enableDefaultPackages = false;
   security.pam.services.swaylock = {};

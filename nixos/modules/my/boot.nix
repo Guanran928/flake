@@ -3,14 +3,12 @@
   lib,
   ...
 }: let
-  cfg = config.myFlake.boot;
+  cfg = config.my.boot;
 in {
   options = {
-    myFlake = {
-      boot = {
-        silentBoot = lib.mkEnableOption "Whether to enable silent boot.";
-        noLoaderMenu = lib.mkEnableOption "Whether to disable bootloader menu.";
-      };
+    my.boot = {
+      silentBoot = lib.mkEnableOption "silent boot";
+      noLoaderMenu = lib.mkEnableOption "" // {description = "Whether to disable bootloader menu.";};
     };
   };
 

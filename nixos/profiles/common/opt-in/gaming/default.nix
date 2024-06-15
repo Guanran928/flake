@@ -11,7 +11,9 @@
   # https://github.com/NixOS/nixpkgs/issues/47932
   hardware.opengl.driSupport32Bit = true;
 
-  myFlake.hardware.accessories.xboxOneController.enable = lib.mkDefault true;
+  # https://wiki.archlinux.org/title/Gamepad#Connect_Xbox_Wireless_Controller_with_Bluetooth
+  hardware.xone.enable = true; # via wired or wireless dongle
+  hardware.xpadneo.enable = true; # via Bluetooth
 
   programs.gamemode = {
     enable = true;
@@ -23,7 +25,6 @@
 
   # Integrate with NVIDIA Optimus offloading.
   # https://github.com/FeralInteractive/gamemode#note-for-hybrid-gpu-users
-  # https://github.com/NixOS/nixpkgs/pull/273177
   environment.sessionVariables = {
     "GAMEMODERUNEXEC" = let
       inherit (config.hardware.nvidia.prime) offload;

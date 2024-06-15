@@ -7,7 +7,7 @@
 
   hardware.nvidia.nvidiaSettings = false;
   services.hdapsd.enable = false;
-  myFlake.hardware.components = {
+  my.hardware ={
     audio.enable = true;
     bluetooth.enable = true;
     tpm.enable = true;

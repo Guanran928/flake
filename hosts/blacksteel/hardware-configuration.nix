@@ -14,7 +14,7 @@
     inputs.nixos-sensible.nixosModules.zram
   ];
 
-  myFlake.hardware.components = {
+  my.hardware = {
     audio.enable = true;
     bluetooth.enable = true;
     tpm.enable = true;
