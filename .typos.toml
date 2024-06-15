@@ -3,9 +3,12 @@ extend-exclude = [
   "secrets.yaml",
 
   # hex color
-  "home/applications/hyprland/hypr/themes",
   "home/applications/swaylock/default.nix",
 ]
 
 [default.extend-words]
-lazer = "lazer" # osu
+# osu
+lazer = "lazer"
+
+# https://en.wikipedia.org/wiki/IATA_airport_code
+tyo = "tyo"
