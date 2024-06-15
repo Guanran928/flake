@@ -13,6 +13,7 @@
     aagl = {
       url = "github:ezKEa/aagl-gtk-on-nix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-compat.follows = "flake-compat";
     };
     berberman = {
       url = "github:berberman/flakes";
@@ -64,6 +65,7 @@
     nix-on-droid = {
       url = "github:nix-community/nix-on-droid/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-for-bootstrap.follows = "nixpkgs";
       inputs.nixpkgs-docs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
       inputs.nix-formatter-pack.follows = "nix-formatter-pack";
