@@ -7,7 +7,7 @@
 
   hardware.nvidia.nvidiaSettings = false;
   services.hdapsd.enable = false;
-  my.hardware ={
+  my.hardware = {
     audio.enable = true;
     bluetooth.enable = true;
     tpm.enable = true;
