@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   config,
   ...
@@ -27,45 +28,23 @@
   sops.secrets = builtins.mapAttrs (_name: value: value // {restartUnits = ["mihomo.service"];}) {
     "clash/secret" = {};
     "clash/proxies/lightsail" = {};
-    "clash/proxy-providers/flyairport" = {};
     "clash/proxy-providers/efcloud" = {};
-    "clash/proxy-providers/kogeki" = {};
+    "clash/proxy-providers/flyairport" = {};
     "clash/proxy-providers/spcloud" = {};
   };
 
-  sops.templates."clash.yaml".content = let
-    convert = url: "https://sub.maoxiongnet.com/sub?target=clash&list=true&url=${url}";
-  in
-    builtins.readFile ./config.yaml
-    + ''
-      secret: "${config.sops.placeholder."clash/secret"}"
-
-      proxies:
-        ${config.sops.placeholder."clash/proxies/lightsail"}
-
-      proxy-providers:
-        flyairport:
-          <<: *fetch
-          url: "${config.sops.placeholder."clash/proxy-providers/flyairport"}"
-        efcloud:
-          <<: *fetch
-          url: "${config.sops.placeholder."clash/proxy-providers/efcloud"}"
-        kogeki:
-          <<: *fetch
-          url: "${config.sops.placeholder."clash/proxy-providers/kogeki"}"
-        spcloud:
-          <<: *fetch
-          url: "${config.sops.placeholder."clash/proxy-providers/spcloud"}"
-
-        # Free servers that I dont really care about
-        pawdroid:
-          <<: *fetch
-          url: "${convert "https://cdn.jsdelivr.net/gh/Pawdroid/Free-servers@main/sub"}"
-        ermaozi:
-          <<: *fetch
-          url: "${convert "https://cdn.jsdelivr.net/gh/ermaozi/get_subscribe@main/subscribe/v2ray.txt"}"
-        #jsnzkpg:
-        #  <<: *fetch
-        #  url: "${convert "https://cdn.jsdelivr.net/gh/Jsnzkpg/Jsnzkpg@Jsnzkpg/Jsnzkpg"}"
-    '';
+  # why not substituteAll? see https://github.com/NixOS/nixpkgs/issues/237216
+  sops.templates."clash.yaml".file = pkgs.substitute {
+    src = ./config.yaml;
+    replacements = let
+      inherit' = list: lib.flatten (map (attr: ["--subst-var-by" attr config.sops.placeholder.${attr}]) list);
+    in
+      inherit' [
+        "clash/secret"
+        "clash/proxies/lightsail"
+        "clash/proxy-providers/efcloud"
+        "clash/proxy-providers/flyairport"
+        "clash/proxy-providers/spcloud"
+      ];
+  };
 }

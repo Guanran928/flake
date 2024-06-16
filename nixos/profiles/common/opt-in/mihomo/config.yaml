@@ -10,17 +10,18 @@ fetch: &fetch
 use: &use
   type: select
   use:
-    - flyairport
     - efcloud
-    - kogeki
+    - flyairport
     - spcloud
 
 use-backup: &use-backup
   type: select
   use:
-    - pawdroid
     - ermaozi
-    #- jsnzkpg
+    - jsnzkpg
+    - pawdroid
+
+convert: &convert "https://sub.maoxiongnet.com/sub?target=clash&list=true&url="
 
 port: 7890
 external-controller: 127.0.0.1:9090
@@ -28,6 +29,39 @@ log-level: warning
 unified-delay: true
 tcp-concurrent: true
 geodata-mode: true
+
+secret: "@clash/secret@"
+
+proxies:
+  # @clash/proxies/lightsail@
+
+proxy-providers:
+  efcloud:
+    <<: *fetch
+    url: "@clash/proxy-providers/efcloud@"
+  flyairport:
+    <<: *fetch
+    url: "@clash/proxy-providers/flyairport@"
+  spcloud:
+    <<: *fetch
+    url: "@clash/proxy-providers/spcloud@"
+
+  # Free servers that I dont really care about
+  ermaozi:
+    <<: *fetch
+    url: >
+      *convert
+      https://cdn.jsdelivr.net/gh/ermaozi/get_subscribe@main/subscribe/v2ray.txt
+  jsnzkpg:
+    <<: *fetch
+    url: >
+      *convert
+      https://cdn.jsdelivr.net/gh/Jsnzkpg/Jsnzkpg@Jsnzkpg/Jsnzkpg
+  pawdroid:
+    <<: *fetch
+    url: >
+      *convert
+      https://cdn.jsdelivr.net/gh/Pawdroid/Free-servers@main/sub
 
 proxy-groups:
   - {
