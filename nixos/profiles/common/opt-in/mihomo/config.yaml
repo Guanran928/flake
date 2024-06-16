@@ -49,19 +49,13 @@ proxy-providers:
   # Free servers that I dont really care about
   ermaozi:
     <<: *fetch
-    url: >
-      *convert
-      https://cdn.jsdelivr.net/gh/ermaozi/get_subscribe@main/subscribe/v2ray.txt
+    url: "@ermaozi@"
   jsnzkpg:
     <<: *fetch
-    url: >
-      *convert
-      https://cdn.jsdelivr.net/gh/Jsnzkpg/Jsnzkpg@Jsnzkpg/Jsnzkpg
+    url: "@jsnzkpg@"
   pawdroid:
     <<: *fetch
-    url: >
-      *convert
-      https://cdn.jsdelivr.net/gh/Pawdroid/Free-servers@main/sub
+    url: "@pawdroid"
 
 proxy-groups:
   - {

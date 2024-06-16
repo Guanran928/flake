@@ -34,17 +34,30 @@
   };
 
   # why not substituteAll? see https://github.com/NixOS/nixpkgs/issues/237216
-  sops.templates."clash.yaml".file = pkgs.substitute {
-    src = ./config.yaml;
-    replacements = let
-      inherit' = list: lib.flatten (map (attr: ["--subst-var-by" attr config.sops.placeholder.${attr}]) list);
+  sops.templates."clash.yaml".file = let
+    convert = url: "https://sub.maoxiongnet.com/sub?target=clash&list=true&url=${url}";
+    substituteV2 = {src, ...} @ args: let
+      args' = builtins.removeAttrs args ["src"];
     in
-      inherit' [
+      pkgs.substitute {
+        inherit src;
+        substitutions = lib.flatten (lib.mapAttrsToList (n: v: ["--subst-var-by" n v]) args');
+      };
+  in
+    substituteV2 {
+      src = ./config.yaml;
+      inherit
+        (config.sops.placeholder)
         "clash/secret"
         "clash/proxies/lightsail"
         "clash/proxy-providers/efcloud"
         "clash/proxy-providers/flyairport"
         "clash/proxy-providers/spcloud"
-      ];
-  };
+        ;
+
+      # Free servers that I dont really care about
+      pawdroid = convert "https://cdn.jsdelivr.net/gh/Pawdroid/Free-servers@main/sub";
+      ermaozi = convert "https://cdn.jsdelivr.net/gh/ermaozi/get_subscribe@main/subscribe/v2ray.txt";
+      jsnzkpg = convert "https://cdn.jsdelivr.net/gh/Jsnzkpg/Jsnzkpg@Jsnzkpg/Jsnzkpg";
+    };
 }
