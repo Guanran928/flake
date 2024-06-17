@@ -85,11 +85,19 @@
       src = ./Caddyfile;
 
       "element" = pkgs.element-web.override {
-        conf.default_server_config."m.homeserver" = let
-          inherit (config.services.matrix-synapse) settings;
-        in {
+        element-web-unwrapped = pkgs.element-web-unwrapped.overrideAttrs (oldAttrs: {
+          version = "1.11.69-rc.1";
+          src = oldAttrs.src.overrideAttrs {
+            outputHash = "sha256-vL21wTI9qeIhrFdbI0WsehVy0ZLBj9rayuQnTPC7k8g=";
+          };
+          offlineCache = oldAttrs.offlineCache.overrideAttrs {
+            outputHash = "sha256-nZWclW2tEq7vPRPG5zzhYfExVnmPxYDm8DxME5w5ORI=";
+          };
+        });
+
+        conf.default_server_config."m.homeserver" = {
           base_url = "https://matrix.ny4.dev";
-          inherit (settings) server_name;
+          server_name = "ny4.dev";
         };
       };
 
