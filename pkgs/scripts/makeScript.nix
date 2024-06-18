@@ -6,12 +6,12 @@
   makeBinaryWrapper,
 }: {
   name,
-  file,
+  src,
   runtimeInputs ? [],
 }:
 # FIXME: incorrect argv0
 runCommandNoCCLocal name {
-  src = file;
+  inherit src;
   nativeBuildInputs = [makeBinaryWrapper];
 } ''
   install -Dm755 $src $out/bin/.$name
