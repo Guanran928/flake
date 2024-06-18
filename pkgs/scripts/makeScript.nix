@@ -1,16 +1,21 @@
-# trimmed down version of writeShellApplication
-# https://github.com/NixOS/nixpkgs/blob/master/pkgs/build-support/trivial-builders/default.nix#L245
 {
   lib,
   runtimeShell,
   writeScriptBin,
+  runCommandNoCCLocal,
+  makeBinaryWrapper,
 }: {
   name,
   file,
   runtimeInputs ? [],
 }:
-writeScriptBin name ''
-  #!${runtimeShell}
-  ${lib.optionalString (runtimeInputs != []) ''export PATH="${lib.makeBinPath runtimeInputs}:$PATH"''}
-  ${builtins.readFile file}
+# FIXME: incorrect argv0
+runCommandNoCCLocal name {
+  src = file;
+  nativeBuildInputs = [makeBinaryWrapper];
+} ''
+  install -Dm755 $src $out/bin/.$name
+  makeBinaryWrapper ${runtimeShell} $out/bin/$name \
+    --add-flags $out/bin/.$name \
+    --prefix PATH : ${lib.makeBinPath runtimeInputs}
 ''
