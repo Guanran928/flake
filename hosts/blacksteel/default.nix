@@ -66,14 +66,15 @@
         {
           name = "synapse";
           type = "tcp";
-          localIP = "127.0.0.1";
-          localPort = 8100;
           remotePort = 8600;
+          plugin = {
+            type = "unix_domain_socket";
+            unixPath = "/run/matrix-synapse/synapse.sock";
+          };
         }
         {
           name = "syncv3";
           type = "tcp";
-          localIP = "127.0.0.1";
           remotePort = 8700;
           plugin = {
             type = "unix_domain_socket";
@@ -83,7 +84,6 @@
         {
           name = "mastodon-web";
           type = "tcp";
-          localIP = "127.0.0.1";
           remotePort = 8900;
           plugin = {
             type = "unix_domain_socket";
@@ -93,7 +93,6 @@
         {
           name = "mastodon-streaming";
           type = "tcp";
-          localIP = "127.0.0.1";
           remotePort = 9000;
           plugin = {
             type = "unix_domain_socket";
@@ -103,9 +102,9 @@
         {
           name = "mastodon-system";
           type = "tcp";
-          localIP = "127.0.0.1";
           remotePort = 9100;
           plugin = {
+            # FIXME:
             type = "static_file";
             localPath = "/var/lib/mastodon/public-system";
           };
@@ -114,7 +113,7 @@
     };
   };
 
-  systemd.services.frp.serviceConfig.SupplementaryGroups = ["mastodon"];
+  systemd.services.frp.serviceConfig.SupplementaryGroups = ["mastodon" "matrix-synapse"];
 
   services.postgresql = {
     enable = true;
@@ -239,6 +238,7 @@
   services.matrix-synapse = {
     enable = true;
     withJemalloc = true;
+    enableRegistrationScript = false;
     extraConfigFiles = [config.sops.secrets."synapse/secret".path];
     settings = {
       server_name = "ny4.dev";
@@ -246,11 +246,8 @@
       presence.enabled = false; # tradeoff
       listeners = [
         {
-          port = 8100;
-          bind_addresses = ["127.0.0.1"];
+          path = "/run/matrix-synapse/synapse.sock";
           type = "http";
-          tls = false;
-          x_forwarded = true;
           resources = [
             {
               names = ["client" "federation"];
@@ -280,18 +277,24 @@
     };
   };
 
-  systemd.services.matrix-synapse.environment = config.networking.proxy.envVars;
+  systemd.services.matrix-synapse = {
+    environment = config.networking.proxy.envVars;
+    serviceConfig.RuntimeDirectory = ["matrix-synapse"];
+  };
 
   services.matrix-sliding-sync = {
     enable = true;
     environmentFile = config.sops.secrets."syncv3/environment".path;
     settings = {
-      SYNCV3_SERVER = "http://127.0.0.1:8100";
+      SYNCV3_SERVER = "/run/matrix-synapse/synapse.sock";
       SYNCV3_BINDADDR = "/run/matrix-sliding-sync/sync.sock";
     };
   };
 
-  systemd.services.matrix-sliding-sync.serviceConfig.RuntimeDirectory = ["matrix-sliding-sync"];
+  systemd.services.matrix-sliding-sync.serviceConfig = {
+    RuntimeDirectory = ["matrix-sliding-sync"];
+    SupplementaryGroups = ["matrix-synapse"];
+  };
 
   services.mastodon = {
     enable = true;
