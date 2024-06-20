@@ -54,6 +54,5 @@
   programs.adb.enable = true;
 
   # fucking hell
-  # FIXME: IFD
   programs.anime-game-launcher.enable = true;
 }

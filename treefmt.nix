@@ -22,5 +22,9 @@
 
   ### misc
   programs.prettier.enable = true;
-  settings.formatter.prettier.excludes = ["secrets.yaml"];
+  settings.formatter.prettier.excludes = [
+    "secrets.yaml"
+    "hosts/blacksteel/secrets.yaml"
+    "hosts/lightsail-tokyo/secrets.yaml"
+  ];
 }
