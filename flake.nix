@@ -161,6 +161,16 @@
 
       ### nix {run,shell,build}
       packages = import ./pkgs pkgs;
+
+      ### nix develop
+      devShells.default = pkgs.mkShell {
+        packages = with pkgs; [
+          alejandra
+          colmena
+          git
+          sops
+        ];
+      };
     })
     // (let
       mkNixOS = system: modules:
