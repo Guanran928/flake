@@ -43,6 +43,9 @@
       "mastodon/environment" = {
         restartUnits = ["mastodon-web.service"];
       };
+      "frp/environment" = {
+        restartUnits = ["frp.service"];
+      };
     };
   };
 
@@ -61,7 +64,7 @@
       serverAddr = "18.177.132.61"; # TODO: can I use a domain name?
       serverPort = 7000;
       auth.method = "token";
-      auth.token = "p4$m93060THuwtYaF0Jnr(RvYGZkI*Lqvh!kGXNesZCm4JQubMQlFDzr#F7rAycE"; # FIXME: secret!
+      auth.token = "{{ .Envs.FRP_AUTH_TOKEN }}";
       proxies = [
         {
           name = "synapse";
@@ -113,7 +116,10 @@
     };
   };
 
-  systemd.services.frp.serviceConfig.SupplementaryGroups = ["mastodon" "matrix-synapse"];
+  systemd.services.frp.serviceConfig = {
+    EnvironmentFile = [config.sops.secrets."frp/environment".path];
+    SupplementaryGroups = ["mastodon" "matrix-synapse"];
+  };
 
   services.postgresql = {
     enable = true;

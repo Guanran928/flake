@@ -39,6 +39,9 @@
       "searx/environment" = {
         restartUnits = ["searx.service"];
       };
+      "frp/environment" = {
+        restartUnits = ["frp.service"];
+      };
     };
 
     templates = {
@@ -121,8 +124,12 @@
     settings = {
       bindPort = 7000;
       auth.method = "token";
-      auth.token = "p4$m93060THuwtYaF0Jnr(RvYGZkI*Lqvh!kGXNesZCm4JQubMQlFDzr#F7rAycE";
+      auth.token = "{{ .Envs.FRP_AUTH_TOKEN }}";
     };
+  };
+
+  systemd.services.frp.serviceConfig = {
+    EnvironmentFile = [config.sops.secrets."frp/environment".path];
   };
 
   # `journalctl -u murmur.service | grep Password`
