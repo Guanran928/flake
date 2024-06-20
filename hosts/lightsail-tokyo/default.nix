@@ -110,8 +110,8 @@
     configFile = config.sops.templates."hysteria.yaml".path;
     credentials = [
       # FIXME: remove hardcoded path
-      "cert:/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/ny4.dev/ny4.dev.crt"
-      "key:/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/ny4.dev/ny4.dev.key"
+      "cert:/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/tyo0.ny4.dev/tyo0.ny4.dev.crt"
+      "key:/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/tyo0.ny4.dev/tyo0.ny4.dev.key"
     ];
   };
 
@@ -237,7 +237,7 @@
           }
           {
             "Mumble" = {
-              description = "${getDesc pkgs.mumble} (Connect with ny4.dev:64738)";
+              description = "${getDesc pkgs.mumble} (Connect with tyo0.ny4.dev:64738)";
             };
           }
         ];

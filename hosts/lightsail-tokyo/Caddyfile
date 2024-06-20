@@ -43,6 +43,12 @@ www.ny4.dev {
 	redir https://ny4.dev
 }
 
+# get the certificate for hysteria
+tyo0.ny4.dev {
+	import default
+	redir https://ny4.dev
+}
+
 ny4.dev {
 	import default
 
