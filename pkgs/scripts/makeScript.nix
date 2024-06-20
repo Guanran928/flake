@@ -1,7 +1,6 @@
 {
   lib,
   runtimeShell,
-  writeScriptBin,
   runCommandNoCCLocal,
   makeBinaryWrapper,
 }: {
