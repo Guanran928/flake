@@ -262,7 +262,7 @@
         {
           idp_id = "keycloak";
           idp_name = "id.ny4.dev";
-          issuer = "https://id.ny4.dev/realms/master";
+          issuer = "https://id.ny4.dev/realms/ny4";
           client_id = "synapse";
           client_secret_path = config.sops.secrets."synapse/oidc".path;
           scopes = ["openid" "profile"];
@@ -317,7 +317,7 @@
       # OIDC_CLIENT_SECRET # EnvironmentFile
       OIDC_DISCOVERY = "true";
       OIDC_DISPLAY_NAME = "id.ny4.dev";
-      OIDC_ISSUER = "https://id.ny4.dev/realms/master";
+      OIDC_ISSUER = "https://id.ny4.dev/realms/ny4";
       OIDC_REDIRECT_URI = "https://${WEB_DOMAIN}/auth/auth/openid_connect/callback";
       OIDC_SCOPE = "openid,profile,email";
       OIDC_SECURITY_ASSUME_EMAIL_IS_VERIFIED = "true";
