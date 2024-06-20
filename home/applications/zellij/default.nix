@@ -6,9 +6,6 @@
 
   # Unsure about the syntax for defining keybindings in Nix (refer to line 16)
   xdg.configFile."zellij/config.kdl".text = lib.mkForce ''
-    // TODO: Text selection is not displayed due to the use of the same color as
-    //       my terminal background.
-    theme "tokyo-night-dark"
     simplified_ui true
     pane_frames false
     default_layout "compact"

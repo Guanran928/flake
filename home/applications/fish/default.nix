@@ -3,7 +3,6 @@
     enable = true;
     interactiveShellInit = ''
       set fish_greeting
-      source ${pkgs.vimPlugins.tokyonight-nvim}/extras/fish/tokyonight_night.fish
     '';
     plugins = [
       {
