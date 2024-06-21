@@ -1,11 +1,9 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   programs.starship = {
     enable = true;
-    # FIXME: IFD
-    settings = lib.importTOML "${pkgs.starship}/share/starship/presets/nerd-font-symbols.toml";
+  };
+
+  home.sessionVariables = {
+    "STARSHIP_CONFIG" = "${pkgs.starship}/share/starship/presets/nerd-font-symbols.toml";
   };
 }
