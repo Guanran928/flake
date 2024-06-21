@@ -6,7 +6,9 @@
 	}
 }
 
-(header) {
+(default) {
+	encode zstd gzip
+
 	header {
 		# https://observatory.mozilla.org/analyze/ny4.dev
 		# https://infosec.mozilla.org/guidelines/web_security
@@ -18,24 +20,12 @@
 		?X-Content-Type-Options nosniff
 		?X-Frame-Options DENY
 	}
-}
 
-(compression) {
-	encode zstd gzip
-}
-
-(robots) {
 	handle_path /robots.txt {
 		file_server * {
 			root /var/www/robots/robots.txt
 		}
 	}
-}
-
-(default) {
-	import header
-	import compression
-	import robots
 }
 
 www.ny4.dev {
@@ -97,13 +87,6 @@ pixiv.ny4.dev {
 	reverse_proxy unix//run/pixivfe/pixiv.sock
 }
 
-matrix.ny4.dev {
-	import default
-	reverse_proxy /_matrix/* localhost:8600
-	reverse_proxy /_synapse/client/* localhost:8600
-	reverse_proxy /health localhost:8600
-}
-
 syncv3.ny4.dev {
 	import default
 	reverse_proxy localhost:8700
@@ -118,31 +101,6 @@ element.ny4.dev {
 	import default
 	root * @element@
 	file_server
-}
-
-mastodon.ny4.dev {
-	import default
-	handle_path /system/* {
-		reverse_proxy localhost:9100
-	}
-
-	handle /api/v1/streaming/* {
-		reverse_proxy localhost:9000
-	}
-
-	route * {
-		file_server * {
-			root @mastodon@/public
-			pass_thru
-		}
-		reverse_proxy * localhost:8900
-	}
-
-	handle_errors {
-		root * @mastodon@/public
-		rewrite 500.html
-		file_server
-	}
 }
 
 git.ny4.dev {

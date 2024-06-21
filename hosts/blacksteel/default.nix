@@ -42,8 +42,9 @@
       "mastodon/environment" = {
         restartUnits = ["mastodon-web.service"];
       };
-      "frp/environment" = {
-        restartUnits = ["frp.service"];
+      "cloudflared/secret" = {
+        restartUnits = ["cloudflared-tunnel-6222a3e0-98da-4325-be19-0f86a7318a41.service"];
+        owner = config.systemd.services."cloudflared-tunnel-6222a3e0-98da-4325-be19-0f86a7318a41".serviceConfig.User;
       };
     };
   };
@@ -56,68 +57,40 @@
     openFirewall = true;
   };
 
-  services.frp = {
+  services.cloudflared = {
     enable = true;
-    role = "client";
-    settings = {
-      serverAddr = "18.177.132.61"; # TODO: can I use a domain name?
-      serverPort = 7000;
-      auth.method = "token";
-      auth.token = "{{ .Envs.FRP_AUTH_TOKEN }}";
-      proxies = [
-        {
-          name = "synapse";
-          type = "tcp";
-          remotePort = 8600;
-          plugin = {
-            type = "unix_domain_socket";
-            unixPath = "/run/matrix-synapse/synapse.sock";
-          };
-        }
-        {
-          name = "syncv3";
-          type = "tcp";
-          remotePort = 8700;
-          plugin = {
-            type = "unix_domain_socket";
-            unixPath = "/run/matrix-sliding-sync/sync.sock";
-          };
-        }
-        {
-          name = "mastodon-web";
-          type = "tcp";
-          remotePort = 8900;
-          plugin = {
-            type = "unix_domain_socket";
-            unixPath = "/run/mastodon-web/web.socket";
-          };
-        }
-        {
-          name = "mastodon-streaming";
-          type = "tcp";
-          remotePort = 9000;
-          plugin = {
-            type = "unix_domain_socket";
-            unixPath = "/run/mastodon-streaming/streaming-1.socket";
-          };
-        }
-        {
-          name = "mastodon-system";
-          type = "tcp";
-          remotePort = 9100;
-          plugin = {
-            # FIXME:
-            type = "static_file";
-            localPath = "/var/lib/mastodon/public-system";
-          };
-        }
-      ];
+    tunnels = {
+      "6222a3e0-98da-4325-be19-0f86a7318a41" = {
+        credentialsFile = config.sops.secrets."cloudflared/secret".path;
+        default = "http_status:404";
+        ingress = {
+          # TODO: is this safe?
+          # browser <-> cloudflare cdn <-> cloudflared <-> caddy <-> mastodon
+          #                                             ^ no tls in this part?
+          "mastodon.ny4.dev" = "http://localhost:80";
+          "matrix.ny4.dev" = "http://localhost:80";
+          "syncv3.ny4.dev" = "http://localhost:80";
+        };
+      };
     };
   };
 
-  systemd.services.frp.serviceConfig = {
-    EnvironmentFile = [config.sops.secrets."frp/environment".path];
+  services.caddy = {
+    enable = true;
+    configFile = pkgs.substituteAll {
+      src = ./Caddyfile;
+      inherit (pkgs) mastodon;
+    };
+  };
+
+  systemd.services.caddy.serviceConfig = {
     SupplementaryGroups = ["mastodon" "matrix-synapse"];
+  };
+
+  systemd.tmpfiles.settings = {
+    "10-www" = {
+      "/var/www/robots/robots.txt".C.argument = toString ../lightsail-tokyo/robots.txt;
+    };
   };
 
   services.postgresql = {

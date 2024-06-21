@@ -39,9 +39,6 @@
       "searx/environment" = {
         restartUnits = ["searx.service"];
       };
-      "frp/environment" = {
-        restartUnits = ["frp.service"];
-      };
     };
 
     templates = {
@@ -69,9 +66,6 @@
     # caddy
     80
     443
-
-    # frp
-    7000
   ];
 
   systemd.tmpfiles.settings = {
@@ -116,20 +110,6 @@
       "cert:/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/tyo0.ny4.dev/tyo0.ny4.dev.crt"
       "key:/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/tyo0.ny4.dev/tyo0.ny4.dev.key"
     ];
-  };
-
-  services.frp = {
-    enable = true;
-    role = "server";
-    settings = {
-      bindPort = 7000;
-      auth.method = "token";
-      auth.token = "{{ .Envs.FRP_AUTH_TOKEN }}";
-    };
-  };
-
-  systemd.services.frp.serviceConfig = {
-    EnvironmentFile = [config.sops.secrets."frp/environment".path];
   };
 
   # `journalctl -u murmur.service | grep Password`

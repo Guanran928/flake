@@ -1,0 +1,64 @@
+(default) {
+	encode zstd gzip
+
+	header {
+		# https://observatory.mozilla.org/analyze/ny4.dev
+		# https://infosec.mozilla.org/guidelines/web_security
+		# https://caddyserver.com/docs/caddyfile/directives/header#examples
+
+		?Content-Security-Policy "default-src https: blob: 'unsafe-eval' 'unsafe-inline'; object-src 'none'"
+		?Permissions-Policy interest-Hpcohort=()
+		?Strict-Transport-Security max-age=31536000;
+		?X-Content-Type-Options nosniff
+		?X-Frame-Options DENY
+	}
+
+	handle_path /robots.txt {
+		file_server * {
+			root /var/www/robots/robots.txt
+		}
+	}
+}
+
+http://mastodon.ny4.dev:80 {
+	import default
+	handle_path /system/* {
+		file_server * {
+			root /var/lib/mastodon/public-system
+		}
+	}
+
+	handle /api/v1/streaming/* {
+		reverse_proxy unix//run/mastodon-streaming/streaming-1.socket {
+			header_up X-Forwarded-Proto "https"
+		}
+	}
+
+	route * {
+		file_server * {
+			root @mastodon@/public
+			pass_thru
+		}
+		reverse_proxy * unix//run/mastodon-web/web.socket {
+			header_up X-Forwarded-Proto "https"
+		}
+	}
+
+	handle_errors {
+		root * @mastodon@/public
+		rewrite 500.html
+		file_server
+	}
+}
+
+http://matrix.ny4.dev:80 {
+	import default
+	reverse_proxy /_matrix/* unix//run/matrix-synapse/synapse.sock
+	reverse_proxy /_synapse/client/* unix//run/matrix-synapse/synapse.sock
+	reverse_proxy /health unix//run/matrix-synapse/synapse.sock
+}
+
+http://syncv3.ny4.dev:80 {
+	import default
+	reverse_proxy unix//run/matrix-sliding-sync/sync.sock
+}
