@@ -1,13 +1,14 @@
 # NOTE: 301: All packages are migrated to `github:Guanran928/nur-packages`,
 #       only keeping some packages that only fits for personal use.
-pkgs: {
-  scripts = rec {
+pkgs: let
+  inherit (pkgs) lib;
+in {
+  scripts = lib.makeScope pkgs.newScope (self: {
     # util
-    makeScript = pkgs.callPackage ./scripts/makeScript.nix {};
+    makeScript = self.callPackage ./scripts/makeScript.nix {};
 
     # scripts
-    # TODO: Do I really have to inherit `makeScript` for every script?
-    lofi = pkgs.callPackage ./scripts/lofi.nix {inherit makeScript;};
-    screenshot = pkgs.callPackage ./scripts/screenshot.nix {inherit makeScript;};
-  };
+    lofi = self.callPackage ./scripts/lofi.nix {};
+    screenshot = self.callPackage ./scripts/screenshot.nix {};
+  });
 }
