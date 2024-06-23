@@ -12,6 +12,7 @@
 runCommandNoCCLocal name {
   inherit src;
   nativeBuildInputs = [makeBinaryWrapper];
+  meta.mainProgram = name;
 } ''
   install -Dm755 $src $out/bin/.$name
   makeBinaryWrapper ${runtimeShell} $out/bin/$name \
