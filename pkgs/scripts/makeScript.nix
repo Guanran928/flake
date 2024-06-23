@@ -1,7 +1,7 @@
 {
   lib,
   runtimeShell,
-  runCommandNoCCLocal,
+  runCommandLocal,
   makeBinaryWrapper,
 }: {
   name,
@@ -9,7 +9,7 @@
   runtimeInputs ? [],
 }:
 # FIXME: incorrect argv0
-runCommandNoCCLocal name {
+runCommandLocal name {
   inherit src;
   nativeBuildInputs = [makeBinaryWrapper];
   meta.mainProgram = name;
