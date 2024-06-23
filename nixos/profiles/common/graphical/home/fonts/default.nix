@@ -26,12 +26,12 @@
   # Make GTK listen to fontconfig
   dconf.settings = {
     "org/gnome/desktop/wm/preferences" = {
-      "titlebar-font" = "Sans Bold";
+      "titlebar-font" = "Sans Bold 11";
     };
     "org/gnome/desktop/interface" = {
-      "font-name" = "Sans";
-      "document-font-name" = "Sans";
-      "monospace-font-name" = "Monospace";
+      "font-name" = "Sans 11";
+      "document-font-name" = "Sans 11";
+      "monospace-font-name" = "Monospace 10";
     };
   };
 
