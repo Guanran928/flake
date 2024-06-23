@@ -5,7 +5,6 @@
   ...
 }: {
   imports = map (n: ../../../../home/applications/${n}) [
-    "alacritty"
     "go"
     "mpv"
     "nix"
@@ -32,11 +31,4 @@
     dockutil
     gawk
   ];
-
-  # macOS don't have fontconfig
-  programs = let
-    monospace = "JetBrainsMono Nerd Font";
-  in {
-    alacritty.settings.font.normal.family = monospace;
-  };
 }

@@ -21,6 +21,7 @@
     skhd = {
       enable = true;
       skhdConfig = ''
+        # FIXME
         cmd - return : open -n ${pkgs.alacritty}/Applications/Alacritty.app
 
         cmd - 1 : yabai -m space --focus 1             # Focus space

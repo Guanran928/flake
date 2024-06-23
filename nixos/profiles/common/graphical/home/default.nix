@@ -6,9 +6,9 @@
       ./xdg-mime.nix
     ]
     ++ map (n: ../../../../../home/applications/${n}) [
-      "alacritty"
       "fcitx5"
       "firefox"
+      "foot"
       "go"
       "mpv"
       "nautilus"

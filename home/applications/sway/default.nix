@@ -109,7 +109,7 @@
 
           ### Execute other stuff
           # Launch applications
-          "${modifier}+Return" = "exec alacritty";
+          "${modifier}+Return" = "exec ${lib.getExe pkgs.foot}";
           "${modifier}+w" = "exec ${pkgs.xdg-utils}/bin/xdg-open http:";
           "${modifier}+e" = "exec ${pkgs.xdg-utils}/bin/xdg-open ~";
 

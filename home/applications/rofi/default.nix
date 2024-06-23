@@ -7,7 +7,7 @@
     enable = true;
     package = pkgs.rofi-wayland;
     font = "monospace";
-    terminal = lib.getExe pkgs.alacritty;
+    terminal = lib.getExe pkgs.foot;
   };
 
   home.packages = with pkgs; [rofi-power-menu];
