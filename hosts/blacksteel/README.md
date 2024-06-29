@@ -21,3 +21,4 @@ Homelab, hosting random stuff through tailscale and rathole.
   - [ ] tpm luks unlocking
 - [ ] nouveau -> nvidia
 - [x] networkmanager -> iwd
+- [ ] jellyfin hardware acceleration

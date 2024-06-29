@@ -58,15 +58,8 @@
   };
 
   ### Services
-  networking.firewall.allowedUDPPorts = [
-    # hysteria
-    443
-  ];
-  networking.firewall.allowedTCPPorts = [
-    # caddy
-    80
-    443
-  ];
+  networking.firewall.allowedUDPPorts = [443]; # hysteria
+  networking.firewall.allowedTCPPorts = [80 443]; # caddy
 
   systemd.tmpfiles.settings = {
     "10-www" = {
@@ -83,12 +76,12 @@
 
       "element" = pkgs.element-web.override {
         element-web-unwrapped = pkgs.element-web-unwrapped.overrideAttrs (oldAttrs: {
-          version = "1.11.69";
+          version = "1.11.70-rc.0";
           src = oldAttrs.src.overrideAttrs {
-            outputHash = "sha256-oFSaKtig1z3jepLpwJW4i5VskMBhKUIbPsCfLQuCgMY=";
+            outputHash = "sha256-LnPqwXczECH7XnVvGnoUQpZct2jmGEFVpJ1nTewAHC8=";
           };
           offlineCache = oldAttrs.offlineCache.overrideAttrs {
-            outputHash = "sha256-ClpD/PIW3P1+d7KqDTl6gWNbqKaUi6JypE/yaVsB+Oc=";
+            outputHash = "sha256-yAAZXnxrBGuTWUJcL6Su0F5H2D5MNg9PUU7Uj8XT8N8=";
           };
         });
 
@@ -176,12 +169,12 @@
   services.keycloak = {
     enable = true;
     settings = {
+      cache = "local";
+      hostname = "id.ny4.dev";
       http-host = "127.0.0.1";
       http-port = 8800;
       proxy = "edge";
-      hostname-strict-backchannel = true;
-      hostname = "id.ny4.dev";
-      cache = "local";
+      # proxy-headers = "xforwarded"; # FIXME: Key material not provided to setup HTTPS.
     };
     database.passwordFile = toString (pkgs.writeText "password" "keycloak");
   };
