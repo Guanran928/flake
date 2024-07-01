@@ -10,11 +10,13 @@
     nixfmt-rfc-style
     nix-update
     nix-init
+    nixpkgs-review
 
     # misc
     nh
     nix-output-monitor
     nix-index
+    nix-tree
     comma
     sops
     colmena
