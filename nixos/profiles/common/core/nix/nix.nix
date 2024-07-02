@@ -13,15 +13,11 @@
       ++ [
         "https://nix-community.cachix.org"
         "https://cache.garnix.io"
-
-        # Personal cachix-s
-        "https://berberman.cachix.org"
         "https://guanran928.cachix.org"
       ];
     trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-      "berberman.cachix.org-1:UHGhodNXVruGzWrwJ12B1grPK/6Qnrx2c3TjKueQPds="
       "guanran928.cachix.org-1:BE/iBCj2/pqJXG908wHRrcaV0B2fC+KbFjHsXY6b91c="
     ];
 

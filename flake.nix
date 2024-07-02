@@ -15,11 +15,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-compat.follows = "flake-compat";
     };
-    berberman = {
-      url = "github:berberman/flakes";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nvfetcher.follows = "nvfetcher";
-    };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -124,12 +119,6 @@
     nmt = {
       url = "sourcehut:~rycee/nmt";
       flake = false;
-    };
-    nvfetcher = {
-      url = "github:berberman/nvfetcher";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-compat.follows = "flake-compat";
-      inputs.flake-utils.follows = "flake-utils";
     };
     pre-commit-hooks-nix = {
       url = "github:cachix/pre-commit-hooks.nix";

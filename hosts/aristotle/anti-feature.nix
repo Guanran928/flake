@@ -24,6 +24,8 @@
         "steam"
         "steam-original"
         "xow_dongle-firmware"
+        "fcitx5-pinyin-minecraft"
+        "fcitx5-pinyin-moegirl"
       ];
   };
 }
