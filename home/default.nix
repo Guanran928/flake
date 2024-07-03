@@ -48,6 +48,7 @@
     ./applications/zellij
   ];
 
+  programs.jq.enable = true;
   programs.ripgrep.enable = true;
   programs.zoxide.enable = true;
   home.packages =
