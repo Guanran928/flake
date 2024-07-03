@@ -8,7 +8,10 @@
     signing.signByDefault = true;
     signing.key = "91F97D9ED12639CF";
 
-    extraConfig.pull.rebase = true;
+    extraConfig = {
+      pull.rebase = true;
+      push.autoSetupRemote = true;
+    };
   };
 
   programs.gh.enable = true;
