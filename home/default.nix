@@ -38,14 +38,14 @@
     ./applications/bash
     ./applications/bat
     ./applications/eza
-    ./applications/neovim
     ./applications/fish
     ./applications/git
     ./applications/gpg
+    ./applications/neovim
     ./applications/skim
     ./applications/starship
     ./applications/tealdeer
-    ./applications/zellij
+    ./applications/tmux
   ];
 
   programs.jq.enable = true;
