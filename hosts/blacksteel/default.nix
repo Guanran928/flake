@@ -193,9 +193,15 @@
   services.samba = {
     enable = true;
     openFirewall = true;
-    shares."share" = {
-      path = "/srv/samba/share";
-      "read only" = "no";
+    shares = {
+      "share" = {
+        path = "/srv/samba/share";
+        "read only" = "no";
+      };
+      "external" = {
+        path = "/mnt";
+        "read only" = "no";
+      };
     };
   };
 
