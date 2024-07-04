@@ -41,7 +41,7 @@
       inputs.rust-overlay.follows = "rust-overlay";
     };
     neovim = {
-      url = "github:Guanran928/nvim";
+      url = "git+https://git.ny4.dev/nyancat/nvim";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
       inputs.treefmt-nix.follows = "treefmt-nix";

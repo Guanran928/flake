@@ -229,15 +229,15 @@
       "locked": {
         "lastModified": 1718491861,
         "narHash": "sha256-nnKZRkwXoCtGN8Rgv6FcHttX1JOPWQt2y7yY4Bz/hWk=",
-        "owner": "Guanran928",
-        "repo": "nvim",
+        "ref": "refs/heads/master",
         "rev": "49f55400d06fa113e4b4ae5a6fa97a6d83c59983",
-        "type": "github"
+        "revCount": 64,
+        "type": "git",
+        "url": "https://git.ny4.dev/nyancat/nvim"
       },
       "original": {
-        "owner": "Guanran928",
-        "repo": "nvim",
-        "type": "github"
+        "type": "git",
+        "url": "https://git.ny4.dev/nyancat/nvim"
       }
     },
     "nix-darwin": {
