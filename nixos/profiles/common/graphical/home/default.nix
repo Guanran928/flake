@@ -23,16 +23,13 @@
     end
   '';
 
-  home.packages =
-    (with pkgs; [
-      loupe
-    ])
-    ++ (with pkgs.gnome; [
-      seahorse
-      file-roller
-      gnome-calculator
-      dconf-editor
-    ]);
+  home.packages = with pkgs; [
+    loupe
+    gnome-calculator
+    seahorse
+    file-roller
+    dconf-editor
+  ];
 
   services = {
     ssh-agent.enable = true;

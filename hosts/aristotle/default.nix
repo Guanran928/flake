@@ -35,14 +35,14 @@
       "ydict"
     ];
 
-    home.packages = with pkgs;
-      [
+    home.packages =
+      (with pkgs; [
         amberol
         fractal
-        gnome.gnome-calculator
+        gnome-calculator
         hyperfine
         mousai
-      ]
+      ])
       ++ (with inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.scripts; [
         lofi
       ]);
