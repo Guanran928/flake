@@ -55,4 +55,18 @@
 
   # fucking hell
   programs.anime-game-launcher.enable = true;
+
+  # nouveou
+  services.xserver.videoDrivers = [];
+
+  # novideo
+  # hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
+  # environment.sessionVariables."MOZ_ENABLE_WAYLAND" = "0";
+  # networking.networkmanager.enable = false;
+  # services.xserver.desktopManager.gnome.enable = true;
+  # services.xserver.displayManager.gdm.enable = true;
+  # # https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/1562
+  # services.udev.extraRules = ''
+  #   ENV{DEVNAME}=="/dev/dri/card1", TAG+="mutter-device-preferred-primary"
+  # '';
 }
