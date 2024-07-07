@@ -19,7 +19,6 @@ in {
   imports = [
     ../i3status-rust
     ../mako
-    ../rofi
     ../swayidle
     ../swaylock
   ];
@@ -123,10 +122,10 @@ in {
           "${modifier}+w" = "exec ${pkgs.xdg-utils}/bin/xdg-open http:";
           "${modifier}+e" = "exec ${pkgs.xdg-utils}/bin/xdg-open ~";
 
-          # Rofi
-          "${modifier}+d" = "exec rofi -show drun -show-icons -icon-theme ${config.gtk.iconTheme.name}";
-          "${modifier}+Shift+d" = "exec ${lib.getExe pkgs.cliphist} list | rofi -dmenu | ${lib.getExe pkgs.cliphist} decode | ${pkgs.wl-clipboard}/bin/wl-copy";
-          "${modifier}+Shift+Semicolon" = ''exec rofi -modi "power-menu:rofi-power-menu --confirm=reboot/shutdown" -show power-menu'';
+          # Launcher
+          "${modifier}+d" = "exec ${lib.getExe' pkgs.wmenu "wmenu-run"}";
+          "${modifier}+Shift+d" = "exec ${lib.getExe pkgs.cliphist} list | ${lib.getExe pkgs.wmenu} -l 10 | ${lib.getExe pkgs.cliphist} decode | ${lib.getExe' pkgs.wl-clipboard "wl-copy"}";
+          "${modifier}+Shift+Semicolon" = "exec loginctl lock-session";
 
           # Screenshot
           "${modifier}+Shift+s" = "exec ${screenshot} region";
