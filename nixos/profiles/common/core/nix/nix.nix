@@ -22,7 +22,12 @@
     ];
 
     trusted-users = ["@wheel"];
-    experimental-features = ["auto-allocate-uids" "cgroups"];
+    experimental-features = [
+      "auto-allocate-uids"
+      "cgroups"
+      "no-url-literals"
+    ];
+    allow-import-from-derivation = false;
     auto-allocate-uids = true;
     builders-use-substitutes = true;
     use-cgroups = true;
