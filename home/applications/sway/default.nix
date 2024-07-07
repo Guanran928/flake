@@ -18,6 +18,7 @@
 in {
   imports = [
     ../i3status-rust
+    ../kanshi
     ../mako
     ../swayidle
     ../swaylock
