@@ -4,7 +4,18 @@
   lib,
   inputs,
   ...
-}: {
+}: let
+  # https://www.pixiv.net/en/artworks/49983419
+  image = pkgs.fetchurl {
+    url = "https://i.pximg.net/img-original/img/2015/04/23/12/43/35/49983419_p0.jpg";
+    hash = "sha256-JZ5VmsjVjZfHXpx3JxzAyYzZppZmgH38AiAA+B0TDiw=";
+    curlOptsList = ["-e" "https://www.pixiv.net/"];
+  };
+  # Crop 100px on top and bottom
+  background = pkgs.runCommandLocal "49983419_p0.jpg" {} ''
+    ${lib.getExe pkgs.imagemagick} convert ${image} -crop 3500x1600+0+100 $out
+  '';
+in {
   imports = [
     ../i3status-rust
     ../mako
@@ -49,8 +60,7 @@
       ];
 
       ### Visuals
-      # https://danbooru.donmai.us/posts/6018861
-      output."*".bg = "${./background.png} fill";
+      output."*".bg = "${background} fill";
       bars = [
         {
           statusCommand = "${lib.getExe pkgs.i3status-rust} $HOME/.config/i3status-rust/config-default.toml";
