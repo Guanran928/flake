@@ -6,7 +6,7 @@
 }: {
   imports = map (n: ../../../../home/applications/${n}) [
     "go"
-    "mpv"
+    # "mpv"
     "nix"
   ];
 

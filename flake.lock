@@ -322,26 +322,6 @@
         "type": "github"
       }
     },
-    "nixcasks": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs-stable"
-        ]
-      },
-      "locked": {
-        "lastModified": 1720301939,
-        "narHash": "sha256-yP2+IPhcUscJbwbuAaHQRAIKrrnF1ePQBwwzGFlfqmE=",
-        "owner": "jacekszymanski",
-        "repo": "nixcasks",
-        "rev": "b3ebbbc306d051edb9bc2fa9dc791dabfd3d106b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "jacekszymanski",
-        "repo": "nixcasks",
-        "type": "github"
-      }
-    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1719895800,
@@ -503,7 +483,6 @@
         "nix-darwin": "nix-darwin",
         "nix-formatter-pack": "nix-formatter-pack",
         "nix-on-droid": "nix-on-droid",
-        "nixcasks": "nixcasks",
         "nixos-hardware": "nixos-hardware",
         "nixos-sensible": "nixos-sensible",
         "nixpkgs": "nixpkgs",

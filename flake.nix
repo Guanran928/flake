@@ -66,11 +66,6 @@
       inputs.nix-formatter-pack.follows = "nix-formatter-pack";
       inputs.nmd.follows = "nmd";
     };
-    nixcasks = {
-      # contains unfree
-      url = "github:jacekszymanski/nixcasks";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
-    };
     nur = {
       url = "github:nix-community/NUR";
     };

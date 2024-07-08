@@ -1,12 +1,7 @@
-{
-  pkgs,
-  config,
-  ...
-}: {
-  services.clash = {
+{pkgs, ...}: {
+  services.mihomo = {
     enable = true;
-    package = pkgs.clash-meta;
-    webui = config.nur.repos.guanran928.metacubexd;
+    webui = pkgs.metacubexd;
   };
 
   ### System proxy settings
