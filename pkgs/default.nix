@@ -9,6 +9,5 @@ in {
 
     # scripts
     lofi = self.callPackage ./scripts/lofi.nix {};
-    screenshot = self.callPackage ./scripts/screenshot.nix {};
   });
 }

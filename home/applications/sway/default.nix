@@ -95,7 +95,6 @@ in {
       modifier = "Mod4";
       keybindings = let
         inherit (config.wayland.windowManager.sway.config) modifier;
-        screenshot = lib.getExe inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.scripts.screenshot;
       in
         {
           ### Sway itself
@@ -129,9 +128,7 @@ in {
           "${modifier}+Shift+Semicolon" = "exec loginctl lock-session";
 
           # Screenshot
-          "${modifier}+Shift+s" = "exec ${screenshot} region";
-          "Print" = "exec ${screenshot} fullscreen";
-          "Print+Control" = "exec ${screenshot} swappy";
+          "Print" = "exec env XDG_SCREENSHOTS_DIR=$HOME/Pictures/Screenshots ${lib.getExe pkgs.sway-contrib.grimshot} --notify savecopy anything";
 
           # Fn keys
           "XF86MonBrightnessUp" = "exec ${lib.getExe pkgs.brightnessctl} set 5%+";
