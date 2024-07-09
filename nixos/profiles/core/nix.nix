@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  inputs,
   ...
 }: {
   nix.settings = {
@@ -17,29 +18,43 @@
       "guanran928.cachix.org-1:BE/iBCj2/pqJXG908wHRrcaV0B2fC+KbFjHsXY6b91c="
     ];
 
-    trusted-users = ["@wheel"];
     experimental-features = [
       "auto-allocate-uids"
       "cgroups"
+      "flakes"
+      "nix-command"
       "no-url-literals"
     ];
+    flake-registry = "";
+    trusted-users = ["@wheel"];
     allow-import-from-derivation = false;
     auto-allocate-uids = true;
+    auto-optimise-store = true;
     builders-use-substitutes = true;
     use-cgroups = true;
     use-xdg-base-directories = true;
   };
 
-  documentation = {
-    doc.enable = false;
-    info.enable = false;
-    nixos.enable = false;
+  nix = {
+    # Add each flake input as a registry
+    # To make nix3 commands consistent with the flake
+    registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
+
+    # Disable nix-channel
+    channel.enable = false;
+
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
+
+    extraOptions = "!include ${config.sops.secrets.nix-access-tokens.path}";
   };
 
-  # https://github.com/NixOS/nixpkgs/pull/308801
-  # nixos/switch-to-configuration: add new implementation
-  system.switch = {
-    enable = false;
-    enableNg = true;
+  users.groups."nix-access-tokens" = {};
+  sops.secrets."nix-access-tokens" = {
+    group = config.users.groups."nix-access-tokens".name;
+    mode = "0440";
   };
 }

@@ -7,9 +7,10 @@
 }: {
   imports =
     [
-      ./nix
       ./hardening.nix
       ./networking.nix
+      ./nix.nix
+      "${inputs.srvos}/nixos/common/well-known-hosts.nix"
     ]
     ++ (with inputs; [
       aagl.nixosModules.default
@@ -27,10 +28,8 @@
     inputs.self.overlays.patches
   ];
 
-  ### home-manager
-  home-manager.users.guanranwang = import ../../../home;
-
   home-manager = {
+    users.guanranwang = import ../../../home;
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = {inherit inputs;}; # ??? isnt specialArgs imported by default ???
@@ -85,22 +84,27 @@
 
   programs.dconf.enable = true;
   programs.fish.enable = true;
-  users.groups."nix-access-tokens" = {};
-  nix.extraOptions = "!include ${config.sops.secrets.nix-access-tokens.path}";
+  programs.command-not-found.enable = false;
+  environment.stub-ld.enable = false;
+
+  documentation = {
+    doc.enable = false;
+    info.enable = false;
+    nixos.enable = false;
+  };
+
+  # https://github.com/NixOS/nixpkgs/pull/308801
+  # nixos/switch-to-configuration: add new implementation
+  system.switch = {
+    enable = false;
+    enableNg = true;
+  };
 
   ### sops-nix
   sops = {
     defaultSopsFile = ../../../secrets.yaml;
     age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
     gnupg.sshKeyPaths = [];
-    secrets = {
-      "hashed-passwd" = {
-        neededForUsers = true;
-      };
-      "nix-access-tokens" = {
-        group = config.users.groups."nix-access-tokens".name;
-        mode = "0440";
-      };
-    };
+    secrets."hashed-passwd".neededForUsers = true;
   };
 }
