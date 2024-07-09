@@ -1,10 +1,12 @@
 {
-  pkgs,
   config,
   lib,
+  pkgs,
+  utils,
   ...
 }: let
   cfg = config.services.hysteria;
+  settingsFormat = pkgs.formats.json {};
 in {
   options.services.hysteria = {
     enable = lib.mkEnableOption "Hysteria, a powerful, lightning fast and censorship resistant proxy";
@@ -17,54 +19,39 @@ in {
       description = "Whether to use Hysteria as a client or a server.";
     };
 
-    configFile = lib.mkOption {
-      default = null;
-      type = lib.types.nullOr lib.types.path;
-      description = "Configuration file to use.";
-    };
-
-    credentials = lib.mkOption {
-      type = lib.types.listOf lib.types.str;
-      default = [];
-      example = lib.literalExpression ''
-        [
-          "cert:/tmp/certificate.crt"
-          "key:/tmp/private-key.key"
-        ];
-      '';
+    settings = lib.mkOption {
+      type = lib.types.submodule {
+        freeformType = settingsFormat.type;
+      };
+      default = {};
       description = ''
-        Extra credentials loaded by systemd, you can access them by `/run/credentials/hysteria.service/foobar`.
+        The Hysteria configuration, see https://hysteria.network/ for documentation.
 
-        See `systemd.exec(5)` for more information.
+        Options containing secret data should be set to an attribute set
+        containing the attribute `_secret` - a string pointing to a file
+        containing the value the option should be set to.
+
+        Ignored when `services.hysteria.configFile` is set.
       '';
     };
   };
   config = lib.mkIf cfg.enable {
-    assertions = [
-      {
-        assertion = cfg.configFile != null;
-        message = "A configuration file is required for Hysteria";
-      }
-    ];
-
     systemd.services."hysteria" = {
       description = "Hysteria daemon, a powerful, lightning fast and censorship resistant proxy.";
       documentation = ["https://hysteria.network/"];
       wantedBy = ["multi-user.target"];
       after = ["network-online.target"];
       wants = ["network-online.target"];
-      restartTriggers = [cfg.configFile];
+      preStart = utils.genJqSecretsReplacementSnippet cfg.settings "/var/lib/private/hysteria/config.json";
       serviceConfig = {
         ExecStart = lib.concatStringsSep " " [
           (lib.getExe cfg.package)
           cfg.mode
-          "--disable-update-check"
-          "--config $\{CREDENTIALS_DIRECTORY}/config.yaml" # TODO: support other formats
+          "--config /var/lib/private/hysteria/config.json"
         ];
 
         DynamicUser = true;
         StateDirectory = "hysteria";
-        LoadCredential = ["config.yaml:${cfg.configFile}"] ++ cfg.credentials;
 
         ### Hardening
         AmbientCapabilities = ["CAP_NET_ADMIN" "CAP_NET_BIND_SERVICE" "CAP_NET_RAW"];

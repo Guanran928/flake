@@ -40,21 +40,6 @@
         restartUnits = ["searx.service"];
       };
     };
-
-    templates = {
-      "hysteria.yaml".content = ''
-        tls:
-          cert: /run/credentials/hysteria.service/cert
-          key: /run/credentials/hysteria.service/key
-
-        masquerade:
-          type: proxy
-          proxy:
-            url: https://ny4.dev/
-
-        ${config.sops.placeholder."hysteria/auth"}
-      '';
-    };
   };
 
   ### Services
@@ -76,12 +61,12 @@
 
       "element" = pkgs.element-web.override {
         element-web-unwrapped = pkgs.element-web-unwrapped.overrideAttrs (oldAttrs: {
-          version = "1.11.70-rc.0";
+          version = "1.11.70";
           src = oldAttrs.src.overrideAttrs {
-            outputHash = "sha256-LnPqwXczECH7XnVvGnoUQpZct2jmGEFVpJ1nTewAHC8=";
+            outputHash = "sha256-kx6xQIuYSXkkBTYb+fZLL3cuHFcNj7RkC60o6Fyp8LI=";
           };
           offlineCache = oldAttrs.offlineCache.overrideAttrs {
-            outputHash = "sha256-yAAZXnxrBGuTWUJcL6Su0F5H2D5MNg9PUU7Uj8XT8N8=";
+            outputHash = "sha256-q/KbpU/haBhXZbGBITLYSywCluwN6ZZarVLmzB9tDN8=";
           };
         });
 
@@ -97,13 +82,31 @@
 
   services.hysteria = {
     enable = true;
-    configFile = config.sops.templates."hysteria.yaml".path;
-    credentials = [
-      # FIXME: remove hardcoded path
-      "cert:/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/tyo0.ny4.dev/tyo0.ny4.dev.crt"
-      "key:/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/tyo0.ny4.dev/tyo0.ny4.dev.key"
-    ];
+    settings = {
+      auth = {
+        type = "userpass";
+        userpass = {
+          _secret = "/run/credentials/hysteria.service/auth";
+          quote = false;
+        };
+      };
+      masquerade = {
+        type = "proxy";
+        proxy.url = "https://ny4.dev/";
+      };
+      tls = {
+        cert = "/run/credentials/hysteria.service/cert";
+        key = "/run/credentials/hysteria.service/key";
+      };
+    };
   };
+
+  systemd.services."hysteria".serviceConfig.LoadCredential = [
+    # FIXME: remove hardcoded path
+    "auth:${config.sops.secrets."hysteria/auth".path}"
+    "cert:/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/tyo0.ny4.dev/tyo0.ny4.dev.crt"
+    "key:/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/tyo0.ny4.dev/tyo0.ny4.dev.key"
+  ];
 
   # `journalctl -u murmur.service | grep Password`
   services.murmur = {
