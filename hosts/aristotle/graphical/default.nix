@@ -1,13 +1,6 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   ### home-manager
   home-manager.users.guanranwang = import ./home;
-
-  # plymouth
-  #boot.plymouth.enable = true;
 
   # xserver
   services.xserver = {
@@ -21,7 +14,6 @@
 
   # polkit
   security.polkit.enable = true;
-  environment.systemPackages = with pkgs; [polkit_gnome];
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
     description = "polkit-gnome-authentication-agent-1";
     wantedBy = ["graphical-session.target"];
@@ -36,16 +28,13 @@
     };
   };
 
-  ### Options
-  my.boot.noLoaderMenu = lib.mkDefault true;
-
   fonts.enableDefaultPackages = false;
   security.pam.services.swaylock = {};
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
     wlr.enable = true;
-    extraPortals = with pkgs; [xdg-desktop-portal-gtk];
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
     # https://gitlab.archlinux.org/archlinux/packaging/packages/sway/-/blob/main/sway-portals.conf
     config."sway" = {
       default = "gtk";
@@ -54,33 +43,24 @@
       "org.freedesktop.impl.portal.Inhibit" = "none";
     };
   };
+
   services = {
     gvfs.enable = true;
     gnome = {
       gnome-keyring.enable = true;
-      sushi.enable = true;
       gnome-online-accounts.enable = true;
+      sushi.enable = true;
     };
   };
-  programs = {
-    kdeconnect = {
-      enable = true;
-      #package = pkgs.gnomeExtensions.gsconnect;
-      package = pkgs.valent;
-    };
+
+  programs.kdeconnect = {
+    enable = true;
+    package = pkgs.valent;
   };
-  services.libinput = {
-    touchpad = {
-      accelProfile = "flat";
-      naturalScrolling = true;
-      middleEmulation = false;
-    };
-    mouse = {
-      accelProfile = "flat";
-      naturalScrolling = true;
-      middleEmulation = false;
-    };
-  };
+
+  environment.systemPackages = [pkgs.localsend];
+  networking.firewall.allowedTCPPorts = [53317];
+  networking.firewall.allowedUDPPorts = [53317];
 
   ### Removes debounce time
   # https://www.reddit.com/r/linux_gaming/comments/ku6gth

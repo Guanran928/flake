@@ -8,13 +8,11 @@
       builtins.elem (lib.getName pkg) [
         "adoptopenjdk-hotspot-bin"
         "cargo-bootstrap"
-        "cef-binary"
         "minecraft-server"
         "rustc-bootstrap"
         "rustc-bootstrap-wrapper"
         "sof-firmware"
         "temurin-bin"
-        "vscodium"
       ];
 
     allowUnfree = false;
@@ -22,7 +20,6 @@
       builtins.elem (lib.getName pkg) [
         "broadcom-sta"
         "minecraft-server"
-        "nvidia-x11"
       ];
   };
 }

@@ -1,4 +1,5 @@
-{disks ? ["/dev/sda"], ...}: let
+let
+  disks = ["/dev/nvme0n1"];
   # compress-force: https://t.me/archlinuxcn_group/3054167
   mountOptions = ["defaults" "compress-force=zstd" "noatime"];
   cryptSettings = {

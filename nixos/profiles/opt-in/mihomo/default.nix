@@ -25,7 +25,12 @@
   };
 
   ### sops-nix
-  sops.secrets = builtins.mapAttrs (_name: value: value // {restartUnits = ["mihomo.service"];}) {
+  sops.secrets = builtins.mapAttrs (_name: value:
+    value
+    // {
+      restartUnits = ["mihomo.service"];
+      sopsFile = ./secrets.yaml;
+    }) {
     "clash/secret" = {};
     "clash/proxies/lightsail" = {};
     "clash/proxy-providers/efcloud" = {};

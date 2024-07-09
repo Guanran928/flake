@@ -1,26 +1,18 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
-    # OS
-    ../../nixos/profiles/laptop
-    ../../nixos/profiles/common/opt-in/mihomo
-    ../../nixos/profiles/common/opt-in/gaming
+    ../../nixos/profiles/opt-in/mihomo
+    ../../nixos/profiles/opt-in/wireless
 
-    # Hardware
-    ./hardware-configuration.nix
     ./anti-feature.nix
-    ../../nixos/profiles/common/opt-in/lanzaboote.nix
-    ../../nixos/profiles/common/opt-in/impermanence.nix
-    ../../nixos/profiles/common/opt-in/disko.nix
+    ./disko.nix
+    ./graphical
+    ./hardware-configuration.nix
+    ./impermanence.nix
+    ./lanzaboote.nix
   ];
 
-  boot.loader.efi.canTouchEfiVariables = true;
   networking.hostName = "aristotle";
   time.timeZone = "Asia/Shanghai";
-  _module.args.disks = ["/dev/nvme0n1"]; # Disko
   system.stateVersion = "23.11";
 
   services.tailscale = {
@@ -28,45 +20,34 @@
     openFirewall = true;
   };
 
-  # Stuff that I only want on my main machine
-  home-manager.users.guanranwang = {
-    imports = map (n: ../../home/applications/${n}) [
-      "thunderbird"
-      "ydict"
-    ];
-
-    home.packages =
-      (with pkgs; [
-        amberol
-        fractal
-        gnome-calculator
-        hyperfine
-        mousai
-      ])
-      ++ (with inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.scripts; [
-        lofi
-      ]);
-
-    programs.obs-studio.enable = true;
-  };
-
-  # for udev rules
   programs.adb.enable = true;
-
-  # fucking hell
   programs.anime-game-launcher.enable = true;
+  programs.steam.enable = true;
+  services.power-profiles-daemon.enable = true;
 
-  # nouveou
-  services.xserver.videoDrivers = [];
+  # https://wiki.archlinux.org/title/Gamepad#Connect_Xbox_Wireless_Controller_with_Bluetooth
+  hardware.xone.enable = true; # via wired or wireless dongle
+  hardware.xpadneo.enable = true; # via Bluetooth
 
-  # novideo
-  # hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
-  # environment.sessionVariables."MOZ_ENABLE_WAYLAND" = "0";
-  # networking.networkmanager.enable = false;
-  # services.xserver.desktopManager.gnome.enable = true;
-  # services.xserver.displayManager.gdm.enable = true;
-  # # https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/1562
-  # services.udev.extraRules = ''
-  #   ENV{DEVNAME}=="/dev/dri/card1", TAG+="mutter-device-preferred-primary"
-  # '';
+  ### https://wiki.archlinux.org/title/Gaming#Improving_performance
+  systemd.tmpfiles.rules = [
+    "w /proc/sys/vm/min_free_kbytes - - - - 1048576"
+    "w /proc/sys/vm/swappiness - - - - 10"
+    "w /sys/kernel/mm/lru_gen/enabled - - - - 5"
+    "w /proc/sys/vm/zone_reclaim_mode - - - - 0"
+    "w /proc/sys/vm/page_lock_unfairness - - - - 1"
+    "w /proc/sys/kernel/sched_child_runs_first - - - - 0"
+    "w /proc/sys/kernel/sched_autogroup_enabled - - - - 1"
+    "w /proc/sys/kernel/sched_cfs_bandwidth_slice_us - - - - 500"
+    "w /sys/kernel/debug/sched/latency_ns  - - - - 1000000"
+    "w /sys/kernel/debug/sched/migration_cost_ns - - - - 500000"
+    "w /sys/kernel/debug/sched/min_granularity_ns - - - - 500000"
+    "w /sys/kernel/debug/sched/wakeup_granularity_ns  - - - - 0"
+    "w /sys/kernel/debug/sched/nr_migrate - - - - 8"
+  ];
+
+  # yubikey
+  environment.systemPackages = [pkgs.yubikey-manager];
+  services.pcscd.enable = true;
+  services.udev.packages = [pkgs.yubikey-personalization];
 }

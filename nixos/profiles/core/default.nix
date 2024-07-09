@@ -7,10 +7,10 @@
 }: {
   imports =
     [
-      ./hardening
-      ./networking
       ./nix
       ./fun.nix
+      ./hardening.nix
+      ./networking.nix
     ]
     ++ (with inputs; [
       aagl.nixosModules.default
@@ -29,7 +29,7 @@
   ];
 
   ### home-manager
-  home-manager.users.guanranwang = import ../../../../home;
+  home-manager.users.guanranwang = import ../../../home;
 
   home-manager = {
     useGlobalPkgs = true;
@@ -37,7 +37,7 @@
     extraSpecialArgs = {inherit inputs;}; # ??? isnt specialArgs imported by default ???
   };
 
-  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
+  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
   ### Default Programs
   # In addition of https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/config/system-path.nix
@@ -91,7 +91,7 @@
 
   ### sops-nix
   sops = {
-    defaultSopsFile = ../../../../secrets.yaml;
+    defaultSopsFile = ../../../secrets.yaml;
     age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
     gnupg.sshKeyPaths = [];
     secrets = {

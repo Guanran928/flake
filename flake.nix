@@ -159,7 +159,8 @@
     // (let
       mkNixOS = system: modules:
         inputs.nixpkgs.lib.nixosSystem {
-          inherit system modules;
+          inherit system;
+          modules = [./nixos/profiles/core] ++ modules;
           specialArgs = {inherit inputs;};
         };
 
@@ -208,12 +209,18 @@
         };
 
         "lightsail-tokyo" = {
-          imports = [./hosts/lightsail-tokyo];
+          imports = [
+            ./nixos/profiles/core
+            ./hosts/lightsail-tokyo
+          ];
           deployment.targetHost = "tyo0.ny4.dev";
         };
 
         "blacksteel" = {
-          imports = [./hosts/blacksteel];
+          imports = [
+            ./nixos/profiles/core
+            ./hosts/blacksteel
+          ];
           deployment.targetHost = "blacksteel"; # thru tailscale
         };
       };

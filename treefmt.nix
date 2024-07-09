@@ -23,8 +23,10 @@
   ### misc
   programs.prettier.enable = true;
   settings.formatter.prettier.excludes = [
-    "secrets.yaml"
     "hosts/blacksteel/secrets.yaml"
     "hosts/lightsail-tokyo/secrets.yaml"
+    "nixos/profiles/opt-in/mihomo/secrets.yaml"
+    "nixos/profiles/opt-in/wireless/secrets.yaml"
+    "secrets.yaml"
   ];
 }

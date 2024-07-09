@@ -1,6 +1,5 @@
 {pkgs, ...}: {
-  environment.systemPackages = with pkgs; [sbctl];
-  boot.loader.systemd-boot.enable = false;
+  environment.systemPackages = [pkgs.sbctl];
   boot.lanzaboote = {
     enable = true;
     pkiBundle = "/etc/secureboot";

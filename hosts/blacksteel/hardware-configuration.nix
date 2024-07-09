@@ -14,11 +14,7 @@
     inputs.nixos-sensible.nixosModules.zram
   ];
 
-  my.hardware = {
-    audio.enable = true;
-    bluetooth.enable = true;
-    tpm.enable = true;
-  };
+  services.thermald.enable = true;
 
   boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
   boot.kernelModules = ["kvm-intel" "wl"];

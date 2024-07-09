@@ -2,7 +2,6 @@
   config,
   pkgs,
   lib,
-  inputs,
   ...
 }: let
   # https://www.pixiv.net/en/artworks/49983419

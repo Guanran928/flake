@@ -6,11 +6,8 @@
 }: {
   imports = [
     # OS
-    # FIXME:
-    ../../nixos/profiles/common/core
-    ../../nixos/profiles/common/physical
-    ../../nixos/profiles/common/mobile
-    ../../nixos/profiles/common/opt-in/mihomo
+    ../../nixos/profiles/opt-in/mihomo
+    ../../nixos/profiles/opt-in/wireless
 
     # Hardware
     ./hardware-configuration.nix

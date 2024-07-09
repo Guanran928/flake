@@ -8,6 +8,7 @@
         "adoptopenjdk-hotspot-bin"
         "cargo-bootstrap"
         "cef-binary"
+        "dart"
         "osu-lazer-bin"
         "rustc-bootstrap"
         "rustc-bootstrap-wrapper"
@@ -18,14 +19,15 @@
     allowUnfree = false;
     allowUnfreePredicate = pkg:
       builtins.elem (lib.getName pkg) [
+        "fcitx5-pinyin-minecraft"
+        "fcitx5-pinyin-moegirl"
         "libXNVCtrl"
         "nvidia-x11"
         "osu-lazer-bin"
         "steam"
         "steam-original"
+        "steam-run"
         "xow_dongle-firmware"
-        "fcitx5-pinyin-minecraft"
-        "fcitx5-pinyin-moegirl"
       ];
   };
 }
