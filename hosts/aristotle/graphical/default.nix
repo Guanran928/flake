@@ -2,13 +2,6 @@
   ### home-manager
   home-manager.users.guanranwang = import ./home;
 
-  # xserver
-  services.xserver = {
-    enable = true;
-    excludePackages = with pkgs; [xterm];
-    displayManager.startx.enable = true;
-  };
-
   # gnome keyring
   programs.seahorse.enable = true;
 
