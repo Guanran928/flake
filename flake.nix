@@ -208,19 +208,17 @@
           };
         };
 
+        defaults.imports = [
+          ./nixos/profiles/core
+        ];
+
         "lightsail-tokyo" = {
-          imports = [
-            ./nixos/profiles/core
-            ./hosts/lightsail-tokyo
-          ];
+          imports = [./hosts/lightsail-tokyo];
           deployment.targetHost = "tyo0.ny4.dev";
         };
 
         "blacksteel" = {
-          imports = [
-            ./nixos/profiles/core
-            ./hosts/blacksteel
-          ];
+          imports = [./hosts/blacksteel];
           deployment.targetHost = "blacksteel"; # thru tailscale
         };
       };
