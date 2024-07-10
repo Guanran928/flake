@@ -2,13 +2,11 @@
   modulesPath,
   lib,
   config,
-  inputs,
   pkgs,
   ...
 }: {
   imports = [
     "${modulesPath}/virtualisation/amazon-image.nix"
-    inputs.nixos-sensible.nixosModules.zram
     ../../nixos/profiles/server
     ./anti-feature.nix
   ];

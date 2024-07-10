@@ -19,6 +19,7 @@
       impermanence.nixosModules.impermanence
       lanzaboote.nixosModules.lanzaboote
       nixos-sensible.nixosModules.default
+      nixos-sensible.nixosModules.zram
       nur.nixosModules.nur
       self.nixosModules.default
       sops-nix.nixosModules.sops
