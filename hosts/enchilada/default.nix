@@ -8,6 +8,7 @@
   environment.packages = with pkgs; [
     git
     openssh
+    curl
 
     diffutils
     findutils

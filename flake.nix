@@ -197,7 +197,7 @@
       };
 
       nixOnDroidConfigurations = {
-        "socrates" = mkDroid [./hosts/socrates];
+        "enchilada" = mkDroid [./hosts/enchilada];
       };
 
       colmena = {
