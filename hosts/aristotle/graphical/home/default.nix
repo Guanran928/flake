@@ -30,27 +30,25 @@
   '';
 
   home.packages =
-    (
-      with pkgs; [
-        amberol
-        dconf-editor
-        file-roller
-        fractal
-        gnome-calculator
-        hyperfine
-        loupe
-        mousai
-        seahorse
+    (with pkgs; [
+      amberol
+      dconf-editor
+      file-roller
+      fractal
+      gnome-calculator
+      hyperfine
+      loupe
+      mousai
+      seahorse
 
-        (prismlauncher.override {
-          glfw = glfw-wayland-minecraft;
-          gamemodeSupport = false;
-        })
-        mumble
-        osu-lazer-bin
-      ]
-    )
-    ++ (with inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.scripts; [
+      (prismlauncher.override {
+        glfw = glfw-wayland-minecraft;
+        gamemodeSupport = false;
+      })
+      mumble
+      osu-lazer-bin
+    ])
+    ++ (with inputs.self.legacyPackages.${pkgs.stdenv.hostPlatform.system}.scripts; [
       lofi
     ]);
 

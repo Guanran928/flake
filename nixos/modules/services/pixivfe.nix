@@ -10,7 +10,7 @@ in {
   options.services.pixivfe = {
     enable = lib.mkEnableOption "PixivFE, a privacy respecting frontend for Pixiv";
 
-    package = lib.mkPackageOption inputs.self.packages.${pkgs.stdenv.hostPlatform.system} "pixivfe" {};
+    package = lib.mkPackageOption inputs.self.legacyPackages.${pkgs.stdenv.hostPlatform.system} "pixivfe" {};
 
     openFirewall = lib.mkEnableOption "open ports in the firewall needed for the daemon to function";
 

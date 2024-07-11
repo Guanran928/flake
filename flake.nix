@@ -144,7 +144,7 @@
       checks = {formatting = treefmtEval.config.build.check inputs.self;};
 
       ### nix {run,shell,build}
-      packages = import ./pkgs pkgs;
+      legacyPackages = import ./pkgs pkgs;
 
       ### nix develop
       devShells.default = pkgs.mkShell {
