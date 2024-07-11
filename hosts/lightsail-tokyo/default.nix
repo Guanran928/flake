@@ -1,7 +1,8 @@
 {
-  modulesPath,
   lib,
   config,
+  inputs,
+  modulesPath,
   pkgs,
   ...
 }: {
@@ -230,7 +231,7 @@
             href = "https://element.ny4.dev/";
           };
           "PixivFE" = {
-            description = "Privacy respecting frontend for Pixiv";
+            description = getDesc inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.pixivfe;
             href = "https://pixiv.ny4.dev";
           };
           "Uptime Kuma" = {

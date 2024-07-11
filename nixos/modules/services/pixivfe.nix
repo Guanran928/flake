@@ -1,7 +1,8 @@
 {
-  pkgs,
-  config,
   lib,
+  config,
+  inputs,
+  pkgs,
   ...
 }: let
   cfg = config.services.pixivfe;
@@ -9,10 +10,7 @@ in {
   options.services.pixivfe = {
     enable = lib.mkEnableOption "PixivFE, a privacy respecting frontend for Pixiv";
 
-    # package = lib.mkPackageOption pkgs "pixivfe" {};
-    package = lib.mkOption {
-      default = pkgs.callPackage ./pixivfe-pkg.nix {};
-    };
+    package = lib.mkPackageOption inputs.self.packages.${pkgs.stdenv.hostPlatform.system} "pixivfe" {};
 
     openFirewall = lib.mkEnableOption "open ports in the firewall needed for the daemon to function";
 

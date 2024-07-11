@@ -1,13 +1,18 @@
 # NOTE: 301: All packages are migrated to `github:Guanran928/nur-packages`,
 #       only keeping some packages that only fits for personal use.
 pkgs: let
-  inherit (pkgs) lib;
+  inherit (pkgs) lib callPackage;
 in {
-  scripts = lib.makeScope pkgs.newScope (self: {
+  # https://github.com/NixOS/nixpkgs/pull/308720
+  pixivfe = callPackage ./pixivfe.nix {};
+
+  scripts = lib.makeScope pkgs.newScope (self: let
+    inherit (self) callPackage;
+  in {
     # util
-    makeScript = self.callPackage ./scripts/makeScript.nix {};
+    makeScript = callPackage ./scripts/makeScript.nix {};
 
     # scripts
-    lofi = self.callPackage ./scripts/lofi.nix {};
+    lofi = callPackage ./scripts/lofi.nix {};
   });
 }

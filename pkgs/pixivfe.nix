@@ -18,18 +18,22 @@ buildGoModule rec {
 
   vendorHash = "sha256-QapDR964Tn+RxXdkGqCQXacdmlSapF841Y84n4d/6VI=";
 
-  ldflags = ["-s" "-w"];
+  ldflags = [
+    "-s"
+    "-w"
+  ];
 
   nativeBuildInputs = [makeBinaryWrapper];
 
-  # PixivFE require files from source code
   postInstall = ''
+    mkdir -p $out/share/pixivfe
+    cp -r ./views/ $out/share/pixivfe/views
     wrapProgram $out/bin/pixivfe \
-      --chdir ${src}
+      --chdir $out/share/pixivfe
   '';
 
   meta = {
-    description = "A privacy respecting frontend for Pixiv";
+    description = "Privacy respecting frontend for Pixiv";
     homepage = "https://codeberg.org/VnPower/PixivFE";
     license = lib.licenses.agpl3Only;
     mainProgram = "pixivfe";
