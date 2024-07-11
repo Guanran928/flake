@@ -87,11 +87,6 @@ pixiv.ny4.dev {
 	reverse_proxy unix//run/pixivfe/pixiv.sock
 }
 
-syncv3.ny4.dev {
-	import default
-	reverse_proxy localhost:8700
-}
-
 id.ny4.dev {
 	import default
 	reverse_proxy localhost:8800
