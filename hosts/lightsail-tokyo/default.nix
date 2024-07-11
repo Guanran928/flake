@@ -37,6 +37,9 @@
       "searx/environment" = {
         restartUnits = ["searx.service"];
       };
+      "miniflux/credentials" = {
+        restartUnits = ["miniflux.service"];
+      };
     };
   };
 
@@ -195,80 +198,58 @@
 
     services = let
       getDesc = pkg: pkg.meta.description;
-    in [
-      {
-        "Services" = [
-          {
-            "SearXNG" = {
-              description = getDesc pkgs.searxng;
-              href = "https://searx.ny4.dev";
-            };
-          }
-          {
-            "Wastebin" = {
-              description = getDesc pkgs.wastebin;
-              href = "https://pb.ny4.dev";
-            };
-          }
-          {
-            "Ntfy" = {
-              description = getDesc pkgs.ntfy;
-              href = "https://ntfy.ny4.dev/";
-            };
-          }
-          {
-            "Mumble" = {
-              description = "${getDesc pkgs.mumble} (Connect with tyo0.ny4.dev:64738)";
-            };
-          }
-        ];
-      }
-      {
-        "Private stuff" = [
-          {
-            "Mastodon" = rec {
-              description = getDesc pkgs.mastodon;
-              href = "https://mastodon.ny4.dev/";
-              widget.type = "mastodon";
-              widget.url = href;
-            };
-          }
-          {
-            "Matrix" = {
-              description = getDesc pkgs.element-web;
-              href = "https://element.ny4.dev/";
-            };
-          }
-          {
-            "PixivFE" = {
-              description = "A privacy respecting frontend for Pixiv.";
-              href = "https://pixiv.ny4.dev";
-            };
-          }
-          {
-            "Uptime Kuma" = {
-              description = getDesc pkgs.uptime-kuma;
-              href = "https://uptime.ny4.dev/";
-            };
-          }
-          {
-            "Forgejo" = {
-              description = getDesc pkgs.forgejo;
-              href = "https://git.ny4.dev/";
-            };
-          }
-        ];
-      }
-      {
-        "Links" = [
-          {"Blog".href = "https://blog.ny4.dev/";}
-          {"GitHub".href = "https://github.com/Guanran928";}
-          {"Mastodon".herf = "https://mastodon.ny4.dev/@nyancat";}
-          {"Matrix".href = "https://matrix.to/#/@root:ny4.dev";}
-          {"Forgejo".href = "https://git.ny4.dev/nyancat";}
-        ];
-      }
-    ];
+      mapAttrsToList' = lib.mapAttrsToList (name: value: {"${name}" = value;}); # also sorts the thing alphabetically
+    in
+      mapAttrsToList' {
+        "Services" = mapAttrsToList' {
+          "SearXNG" = {
+            description = getDesc pkgs.searxng;
+            href = "https://searx.ny4.dev/";
+          };
+          "Wastebin" = {
+            description = getDesc pkgs.wastebin;
+            href = "https://pb.ny4.dev/";
+          };
+          "Ntfy" = {
+            description = getDesc pkgs.ntfy;
+            href = "https://ntfy.ny4.dev/";
+          };
+          "Mumble" = {
+            description = "${getDesc pkgs.mumble} (Connect with tyo0.ny4.dev:64738)";
+          };
+        };
+        "Private stuff" = mapAttrsToList' {
+          "Mastodon" = rec {
+            description = getDesc pkgs.mastodon;
+            href = "https://mastodon.ny4.dev/";
+            widget.type = "mastodon";
+            widget.url = href;
+          };
+          "Matrix" = {
+            description = getDesc pkgs.element-web;
+            href = "https://element.ny4.dev/";
+          };
+          "PixivFE" = {
+            description = "Privacy respecting frontend for Pixiv";
+            href = "https://pixiv.ny4.dev";
+          };
+          "Uptime Kuma" = {
+            description = getDesc pkgs.uptime-kuma;
+            href = "https://uptime.ny4.dev/";
+          };
+          "Forgejo" = {
+            description = getDesc pkgs.forgejo;
+            href = "https://git.ny4.dev/";
+          };
+        };
+        "Links" = mapAttrsToList' {
+          "Blog".href = "https://blog.ny4.dev/";
+          "Forgejo".href = "https://git.ny4.dev/nyancat";
+          "GitHub".href = "https://github.com/Guanran928";
+          "Mastodon".herf = "https://mastodon.ny4.dev/@nyancat";
+          "Matrix".href = "https://matrix.to/#/@nyancat:ny4.dev";
+        };
+      };
   };
 
   services.forgejo = {
@@ -276,7 +257,6 @@
     database.type = "postgres";
     settings = {
       server = {
-        # TODO: whats the difference between this and fcgi+unix
         DOMAIN = "git.ny4.dev";
         PROTOCOL = "http+unix";
         ROOT_URL = "https://git.ny4.dev/";
@@ -285,6 +265,15 @@
       service = {
         ALLOW_ONLY_EXTERNAL_REGISTRATION = true;
       };
+    };
+  };
+
+  services.miniflux = {
+    enable = true;
+    adminCredentialsFile = config.sops.secrets."miniflux/credentials".path;
+    config = {
+      LISTEN_ADDR = "127.0.0.1:9300";
+      BASE_URL = "https://rss.ny4.dev";
     };
   };
 

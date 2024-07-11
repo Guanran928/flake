@@ -107,3 +107,8 @@ git.ny4.dev {
 	import default
 	reverse_proxy unix//run/forgejo/forgejo.sock
 }
+
+rss.ny4.dev {
+	import default
+	reverse_proxy localhost:9300
+}
