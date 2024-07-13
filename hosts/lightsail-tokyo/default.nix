@@ -184,6 +184,7 @@
     database.passwordFile = toString (pkgs.writeText "password" "keycloak");
   };
 
+  # TODO: eventually, use blog homepage
   services.homepage-dashboard = {
     enable = true;
     listenPort = 9200;
@@ -203,6 +204,17 @@
     in
       mapAttrsToList' {
         "Services" = mapAttrsToList' {
+          "Mumble" = {
+            description = "${getDesc pkgs.mumble} (Connect with tyo0.ny4.dev:64738)";
+          };
+          "Ntfy" = {
+            description = getDesc pkgs.ntfy;
+            href = "https://ntfy.ny4.dev/";
+          };
+          "Redlib" = {
+            description = getDesc pkgs.redlib;
+            href = "https://reddit.ny4.dev/";
+          };
           "SearXNG" = {
             description = getDesc pkgs.searxng;
             href = "https://searx.ny4.dev/";
@@ -211,15 +223,19 @@
             description = getDesc pkgs.wastebin;
             href = "https://pb.ny4.dev/";
           };
-          "Ntfy" = {
-            description = getDesc pkgs.ntfy;
-            href = "https://ntfy.ny4.dev/";
-          };
-          "Mumble" = {
-            description = "${getDesc pkgs.mumble} (Connect with tyo0.ny4.dev:64738)";
-          };
+        };
+        "Links" = mapAttrsToList' {
+          "Blog".href = "https://blog.ny4.dev/";
+          "Forgejo".href = "https://git.ny4.dev/nyancat";
+          "GitHub".href = "https://github.com/Guanran928";
+          "Mastodon".herf = "https://mastodon.ny4.dev/@nyancat";
+          "Matrix".href = "https://matrix.to/#/@nyancat:ny4.dev";
         };
         "Private stuff" = mapAttrsToList' {
+          "Forgejo" = {
+            description = getDesc pkgs.forgejo;
+            href = "https://git.ny4.dev/";
+          };
           "Mastodon" = rec {
             description = getDesc pkgs.mastodon;
             href = "https://mastodon.ny4.dev/";
@@ -230,25 +246,18 @@
             description = getDesc pkgs.element-web;
             href = "https://element.ny4.dev/";
           };
+          "Miniflux" = {
+            description = getDesc pkgs.miniflux;
+            href = "https://rss.ny4.dev/";
+          };
           "PixivFE" = {
-            description = getDesc inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.pixivfe;
+            description = getDesc inputs.self.legacyPackages.${pkgs.stdenv.hostPlatform.system}.pixivfe;
             href = "https://pixiv.ny4.dev";
           };
           "Uptime Kuma" = {
             description = getDesc pkgs.uptime-kuma;
             href = "https://uptime.ny4.dev/";
           };
-          "Forgejo" = {
-            description = getDesc pkgs.forgejo;
-            href = "https://git.ny4.dev/";
-          };
-        };
-        "Links" = mapAttrsToList' {
-          "Blog".href = "https://blog.ny4.dev/";
-          "Forgejo".href = "https://git.ny4.dev/nyancat";
-          "GitHub".href = "https://github.com/Guanran928";
-          "Mastodon".herf = "https://mastodon.ny4.dev/@nyancat";
-          "Matrix".href = "https://matrix.to/#/@nyancat:ny4.dev";
         };
       };
   };
@@ -276,6 +285,13 @@
       LISTEN_ADDR = "127.0.0.1:9300";
       BASE_URL = "https://rss.ny4.dev";
     };
+  };
+
+  services.libreddit = {
+    enable = true;
+    package = pkgs.redlib;
+    address = "127.0.0.1";
+    port = 9400;
   };
 
   ### Prevents me from bankrupt

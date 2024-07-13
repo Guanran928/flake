@@ -107,3 +107,8 @@ rss.ny4.dev {
 	import default
 	reverse_proxy localhost:9300
 }
+
+reddit.ny4.dev {
+	import default
+	reverse_proxy localhost:9400
+}
