@@ -36,19 +36,11 @@
   };
 
   # HM managed fonts
-  #
-  # The reason I use Source Han instead of Noto CJK,
-  # is because I heard from #archlinux-cn, Adobe packages font better.
-  # You can 100% use noto-fonts-cjk-{sans,serif} if you prefer consistency/other reason.
-  #
-  # Using VF to reduce closure size:
-  #   Version 1579 -> 1580:
-  #   home-manager: -10.4 KiB
-  #   inter: -12695.6 KiB
-  #   jetbrains-mono: -7621.0 KiB
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
-    (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
+    (nerdfonts.override {
+      fonts = ["NerdFontsSymbolsOnly"];
+    })
     (inter.overrideAttrs {
       installPhase = ''
         runHook preInstall
@@ -63,9 +55,22 @@
         runHook postInstall
       '';
     })
-    noto-fonts
-    noto-fonts-color-emoji
+    (source-sans.overrideAttrs {
+      installPhase = ''
+        runHook preInstall
+        install -Dm444 VF/*.otf -t $out/share/fonts/variable
+        runHook postInstall
+      '';
+    })
+    (source-serif.overrideAttrs {
+      installPhase = ''
+        runHook preInstall
+        install -Dm444 VAR/*.otf -t $out/share/fonts/variable
+        runHook postInstall
+      '';
+    })
     source-han-sans-vf-otf
     source-han-serif-vf-otf
+    noto-fonts-color-emoji
   ];
 }
