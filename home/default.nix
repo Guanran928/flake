@@ -42,7 +42,6 @@
     ./applications/git
     ./applications/gpg
     ./applications/neovim
-    ./applications/skim
     ./applications/starship
     ./applications/tealdeer
     ./applications/tmux
@@ -50,6 +49,7 @@
 
   programs.jq.enable = true;
   programs.ripgrep.enable = true;
+  programs.skim.enable = true;
   programs.zoxide.enable = true;
   home.packages =
     (with pkgs; [

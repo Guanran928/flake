@@ -30,7 +30,21 @@
     };
   };
 
-  dconf.settings."org/gnome/desktop/interface"."color-scheme" = "prefer-dark";
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      "color-scheme" = "prefer-dark";
+    };
+
+    # Make GTK listen to fontconfig
+    "org/gnome/desktop/wm/preferences" = {
+      "titlebar-font" = "Sans Bold 11";
+    };
+    "org/gnome/desktop/interface" = {
+      "font-name" = "Sans 11";
+      "document-font-name" = "Sans 11";
+      "monospace-font-name" = "Monospace 10";
+    };
+  };
 
   # ??? this commit broke nautilus's spacing ???
   # https://github.com/nix-community/home-manager/commit/e9b9ecef4295a835ab073814f100498716b05a96
