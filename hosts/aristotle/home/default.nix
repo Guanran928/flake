@@ -5,11 +5,10 @@
 }: {
   imports =
     [
-      ./fonts
       ./theme.nix
       ./xdg-mime.nix
     ]
-    ++ map (n: ../../../../home/applications/${n}) [
+    ++ map (n: ../../../home/applications/${n}) [
       "fcitx5"
       "firefox"
       "foot"
