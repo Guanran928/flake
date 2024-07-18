@@ -69,10 +69,10 @@
         element-web-unwrapped = pkgs.element-web-unwrapped.overrideAttrs (oldAttrs: {
           version = "1.11.70";
           src = oldAttrs.src.overrideAttrs {
-            outputHash = "sha256-kx6xQIuYSXkkBTYb+fZLL3cuHFcNj7RkC60o6Fyp8LI=";
+            outputHash = "sha256-UzSqChCa94LqaQpMzwQGPX3G2xxOpP3jp5OvR1iBzRs=";
           };
           offlineCache = oldAttrs.offlineCache.overrideAttrs {
-            outputHash = "sha256-q/KbpU/haBhXZbGBITLYSywCluwN6ZZarVLmzB9tDN8=";
+            outputHash = "sha256-M4FTUtx7vpZIEdu/NM98/zIDGyPOtfocrj29/qChyyQ=";
           };
         });
 
