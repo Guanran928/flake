@@ -270,6 +270,7 @@
         DOMAIN = "git.ny4.dev";
         PROTOCOL = "http+unix";
         ROOT_URL = "https://git.ny4.dev/";
+        SSH_DOMAIN = "tyo0.ny4.dev";
       };
 
       service = {
