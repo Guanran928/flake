@@ -21,6 +21,9 @@ in {
     ../mako
     ../swayidle
     ../swaylock
+
+    # FIXME: hack
+    ./unset-im-module.nix
   ];
 
   home.sessionVariables = {
@@ -35,16 +38,10 @@ in {
   # remove csd window buttons
   # https://github.com/localsend/localsend/blob/2457acd8a7412723b174672d174e4853dccd7d99/app/linux/my_application.cc#L45
   home.sessionVariables.GTK_CSD = 0;
-  dconf.settings."org/gnome/desktop/wm/preferences"."button-layout" = "icon,appmenu:";
+  dconf.settings."org/gnome/desktop/wm/preferences"."button-layout" = "appmenu:";
 
   services.cliphist.enable = true;
   services.udiskie.enable = true;
-
-  home.sessionVariables = {
-    # NOTE: don't use "wayland" in GTK_IM_MODULE! it will crash X11 electron apps
-    GTK_IM_MODULE = lib.mkForce ""; # use text-input-v3
-    QT_IM_MODULE = lib.mkForce ""; # use text-input-v3
-  };
 
   wayland.windowManager.sway = {
     enable = true;
