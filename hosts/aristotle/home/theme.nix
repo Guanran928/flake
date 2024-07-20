@@ -16,7 +16,7 @@
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
 
     gtk3.bookmarks = [
-      "file://${config.home.homeDirectory}/Documents/Projects/git-repos/github.com/Guanran928/flake"
+      "file://${config.home.homeDirectory}/Documents/Projects/flake"
     ];
 
     iconTheme = {
