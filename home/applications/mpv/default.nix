@@ -19,9 +19,8 @@
 
     scripts =
       (with pkgs.mpvScripts; [
-        thumbfast
-        sponsorblock
         modernx-zydezu
+        thumbfast
       ])
       ++ lib.optional pkgs.stdenv.hostPlatform.isLinux pkgs.mpvScripts.mpris;
 
