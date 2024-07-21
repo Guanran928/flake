@@ -127,7 +127,7 @@ in {
 
       # naive but works(tm)
       # "http://127.0.0.1:1234/" -> "127.0.0.1 1234"
-      proxy = builtins.replaceStrings ["http://" ":" "/"] ["" " " ""] cfg.proxy.httpProxy;
+      proxy = lib.replaceStrings ["http://" ":" "/"] ["" " " ""] cfg.proxy.httpProxy;
     in
       lib.concatMapStrings (x: ''
         ${networksetup} -setwebproxystate "${x}" on

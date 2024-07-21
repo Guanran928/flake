@@ -4,7 +4,7 @@
 
     allowNonSource = false;
     allowNonSourcePredicate = pkg:
-      builtins.elem (lib.getName pkg) [
+      lib.elem (lib.getName pkg) [
         "adoptopenjdk-hotspot-bin"
         "cargo-bootstrap"
         "cef-binary"
@@ -18,7 +18,7 @@
 
     allowUnfree = false;
     allowUnfreePredicate = pkg:
-      builtins.elem (lib.getName pkg) [
+      lib.elem (lib.getName pkg) [
         "fcitx5-pinyin-minecraft"
         "fcitx5-pinyin-moegirl"
         "libXNVCtrl"

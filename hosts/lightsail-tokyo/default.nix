@@ -31,20 +31,18 @@
   boot.kernelPackages = pkgs.linuxPackages;
 
   ### Secrets
-  sops = {
-    secrets = builtins.mapAttrs (_name: value: value // {sopsFile = ./secrets.yaml;}) {
-      "hysteria/auth" = {
-        restartUnits = ["hysteria.service"];
-      };
-      "pixivfe/environment" = {
-        restartUnits = ["pixivfe.service"];
-      };
-      "searx/environment" = {
-        restartUnits = ["searx.service"];
-      };
-      "miniflux/environment" = {
-        restartUnits = ["miniflux.service"];
-      };
+  sops.secrets = lib.mapAttrs (_name: value: value // {sopsFile = ./secrets.yaml;}) {
+    "hysteria/auth" = {
+      restartUnits = ["hysteria.service"];
+    };
+    "pixivfe/environment" = {
+      restartUnits = ["pixivfe.service"];
+    };
+    "searx/environment" = {
+      restartUnits = ["searx.service"];
+    };
+    "miniflux/environment" = {
+      restartUnits = ["miniflux.service"];
     };
   };
 

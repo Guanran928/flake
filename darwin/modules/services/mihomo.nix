@@ -36,7 +36,7 @@ in {
     ### launchd service
     # TODO: not run as root user
     launchd.daemons."mihomo" = {
-      command = builtins.concatStringsSep " " [
+      command = lib.concatStringsSep " " [
         (lib.getExe cfg.package)
         "-d /etc/mihomo"
         (lib.optionalString (cfg.webui != null) "-ext-ui ${cfg.webui}")

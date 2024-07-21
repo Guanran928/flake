@@ -24,7 +24,7 @@
 
   ######## Secrets
   sops = {
-    secrets = builtins.mapAttrs (_name: value: value // {sopsFile = ./secrets.yaml;}) {
+    secrets = lib.mapAttrs (_name: value: value // {sopsFile = ./secrets.yaml;}) {
       "synapse/secret" = {
         restartUnits = ["matrix-synapse.service"];
         owner = config.systemd.services.matrix-synapse.serviceConfig.User;

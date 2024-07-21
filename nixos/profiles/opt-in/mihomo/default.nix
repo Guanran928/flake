@@ -25,7 +25,7 @@
   };
 
   ### sops-nix
-  sops.secrets = builtins.mapAttrs (_name: value:
+  sops.secrets = lib.mapAttrs (_name: value:
     value
     // {
       restartUnits = ["mihomo.service"];
@@ -42,7 +42,7 @@
   sops.templates."clash.yaml".file = let
     convert = url: "https://sub.maoxiongnet.com/sub?target=clash&list=true&url=${url}";
     substituteV2 = {src, ...} @ args: let
-      args' = builtins.removeAttrs args ["src"];
+      args' = lib.removeAttrs args ["src"];
     in
       pkgs.substitute {
         inherit src;

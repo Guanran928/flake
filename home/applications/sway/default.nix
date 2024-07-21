@@ -129,7 +129,7 @@
         }
         //
         # workspace binds
-        builtins.listToAttrs (builtins.concatMap (x: [
+        lib.listToAttrs (lib.concatMap (x: [
           {
             name = "${modifier}+${x}";
             value = "workspace ${x}";
@@ -138,7 +138,7 @@
             name = "${modifier}+Shift+${x}";
             value = "move container to workspace ${x}";
           }
-        ]) (builtins.genList (x: toString (x + 1)) 9));
+        ]) (lib.genList (x: toString (x + 1)) 9));
     };
   };
 }

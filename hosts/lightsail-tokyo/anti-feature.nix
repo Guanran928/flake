@@ -2,7 +2,7 @@
   nixpkgs.config = {
     allowNonSource = false;
     allowNonSourcePredicate = pkg:
-      builtins.elem (lib.getName pkg) [
+      lib.elem (lib.getName pkg) [
         "adoptopenjdk-hotspot-bin"
         "cargo-bootstrap"
         "rustc-bootstrap"
@@ -13,7 +13,7 @@
 
     allowUnfree = false;
     allowUnfreePredicate = pkg:
-      builtins.elem (lib.getName pkg) [
+      lib.elem (lib.getName pkg) [
       ];
   };
 }
