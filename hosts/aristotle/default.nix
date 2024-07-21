@@ -120,6 +120,11 @@
     };
   };
 
+  console = {
+    earlySetup = true;
+    keyMap = "dvorak";
+  };
+
   services.greetd = {
     enable = true;
     settings.default_session.command = "${lib.getExe pkgs.greetd.tuigreet} --cmd sway";
