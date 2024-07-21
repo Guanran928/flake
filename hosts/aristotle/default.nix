@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     ../../nixos/profiles/opt-in/mihomo
     ../../nixos/profiles/opt-in/wireless
@@ -116,36 +120,41 @@
     };
   };
 
+  services.greetd = {
+    enable = true;
+    settings.default_session.command = "${lib.getExe pkgs.greetd.tuigreet} --cmd sway";
+  };
+
   # polkit
   security.polkit.enable = true;
-  # systemd.user.services.polkit-gnome-authentication-agent-1 = {
-  #   description = "polkit-gnome-authentication-agent-1";
-  #   wantedBy = ["graphical-session.target"];
-  #   wants = ["graphical-session.target"];
-  #   after = ["graphical-session.target"];
-  #   serviceConfig = {
-  #     Type = "simple";
-  #     ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-  #     Restart = "on-failure";
-  #     RestartSec = 1;
-  #     TimeoutStopSec = 10;
-  #   };
-  # };
+  systemd.user.services.polkit-gnome-authentication-agent-1 = {
+    description = "polkit-gnome-authentication-agent-1";
+    wantedBy = ["graphical-session.target"];
+    wants = ["graphical-session.target"];
+    after = ["graphical-session.target"];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+      Restart = "on-failure";
+      RestartSec = 1;
+      TimeoutStopSec = 10;
+    };
+  };
 
-  # security.pam.services.swaylock = {};
-  # xdg.portal = {
-  #   enable = true;
-  #   xdgOpenUsePortal = true;
-  #   wlr.enable = true;
-  #   extraPortals = [pkgs.xdg-desktop-portal-gtk];
-  #   # https://gitlab.archlinux.org/archlinux/packaging/packages/sway/-/blob/main/sway-portals.conf
-  #   config."sway" = {
-  #     default = "gtk";
-  #     "org.freedesktop.impl.portal.ScreenCast" = "wlr";
-  #     "org.freedesktop.impl.portal.Screenshot" = "wlr";
-  #     "org.freedesktop.impl.portal.Inhibit" = "none";
-  #   };
-  # };
+  security.pam.services.swaylock = {};
+  xdg.portal = {
+    enable = true;
+    xdgOpenUsePortal = true;
+    wlr.enable = true;
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    # https://gitlab.archlinux.org/archlinux/packaging/packages/sway/-/blob/main/sway-portals.conf
+    config."sway" = {
+      default = "gtk";
+      "org.freedesktop.impl.portal.ScreenCast" = "wlr";
+      "org.freedesktop.impl.portal.Screenshot" = "wlr";
+      "org.freedesktop.impl.portal.Inhibit" = "none";
+    };
+  };
 
   ### Removes debounce time
   # https://www.reddit.com/r/linux_gaming/comments/ku6gth
