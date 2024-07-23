@@ -52,7 +52,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware = {
-      url = "github:NixOS/nixos-hardware";
+      url = "github:Guanran928/nixos-hardware/lenovo-thinkpad-x1-12th-gen";
     };
     nixos-sensible = {
       url = "github:Guanran928/nixos-sensible";
@@ -188,6 +188,7 @@
       nixosConfigurations = {
         "aristotle" = mkNixOS "x86_64-linux" [./hosts/aristotle];
         "blacksteel" = mkNixOS "x86_64-linux" [./hosts/blacksteel];
+        "dust" = mkNixOS "x86_64-linux" [./hosts/dust];
       };
 
       ### Darwin

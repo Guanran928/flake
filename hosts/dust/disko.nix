@@ -1,7 +1,6 @@
 let
-  disks = ["/dev/nvme0n1"];
   # compress-force: https://t.me/archlinuxcn_group/3054167
-  mountOptions = ["defaults" "compress-force=zstd" "noatime"];
+  mountOptions = ["compress-force=zstd" "noatime"];
   cryptSettings = {
     allowDiscards = true;
     bypassWorkqueues = true;
@@ -11,13 +10,14 @@ in {
     disk = {
       "one" = {
         type = "disk";
-        device = builtins.elemAt disks 0;
+        device = "/dev/nvme0n1";
         content = {
           type = "gpt";
           partitions = {
             "esp" = {
               size = "2G";
               type = "EF00";
+              priority = -100;
               content = {
                 type = "filesystem";
                 format = "vfat";
@@ -30,6 +30,7 @@ in {
               content = {
                 type = "luks";
                 name = "cryptroot";
+                passwordFile = "/tmp/secret.key";
                 settings = cryptSettings;
                 content = {
                   type = "btrfs";
@@ -51,6 +52,7 @@ in {
               content = {
                 type = "luks";
                 name = "cryptswap";
+                passwordFile = "/tmp/secret.key";
                 settings = cryptSettings;
                 content = {
                   type = "swap";

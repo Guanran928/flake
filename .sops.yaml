@@ -6,6 +6,7 @@ keys:
   # nix-shell -p ssh-to-age --run 'cat /etc/ssh/ssh_host_ed25519_key.pub | ssh-to-age'
   - &aristotle age1hm6pkvt4d640wmjhxg5wxfwkp9zhcqre9klr4zg5kx2qx7vyhuuqlytmnp
   - &blacksteel age174knn6hjtukp32ymcdvjwj6x0j54g7yw02dqfjmua3fkyltwcqrsxccjdk
+  - &dust age193x79xx8snu82w3t3hax6nruuw57g7pduwnkpvzkzmd7fs5jvfrquqa3sl
   - &lightsail-tokyo age1vw4kf5v8cfnhfhvl0eyvqzpvy9hpfv9enffvzyt95tx5mu7s5dxqjqw0fa
 creation_rules:
   - path_regex: hosts/blacksteel/secrets.yaml$
@@ -24,16 +25,19 @@ creation_rules:
           - *guanranwang
           - *aristotle
           - *blacksteel
+          - *dust
   - path_regex: nixos/profiles/opt-in/wireless/secrets.yaml$
     key_groups:
       - age:
           - *guanranwang
           - *aristotle
           - *blacksteel
+          - *dust
   - path_regex: secrets.yaml$
     key_groups:
       - age:
           - *guanranwang
           - *aristotle
           - *blacksteel
+          - *dust
           - *lightsail-tokyo

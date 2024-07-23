@@ -324,15 +324,16 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1721413321,
-        "narHash": "sha256-0GdiQScDceUrVGbxYpV819LHesK3szHOhJ09e6sgES4=",
-        "owner": "NixOS",
+        "lastModified": 1721750544,
+        "narHash": "sha256-u0aiWIcd95vRQdGjia3X5V6tP618r68gbvjuaIwUBgw=",
+        "owner": "Guanran928",
         "repo": "nixos-hardware",
-        "rev": "ab165a8a6cd12781d76fe9cbccb9e975d0fb634f",
+        "rev": "d24b6083f8101c3b91d6327c06e5bb24f50f18ba",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
+        "owner": "Guanran928",
+        "ref": "lenovo-thinkpad-x1-12th-gen",
         "repo": "nixos-hardware",
         "type": "github"
       }
