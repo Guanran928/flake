@@ -42,6 +42,7 @@
     ./applications/git
     ./applications/gpg
     ./applications/neovim
+    ./applications/ssh
     ./applications/starship
     ./applications/tealdeer
     ./applications/tmux
