@@ -30,9 +30,6 @@
     localsend
   ];
 
-  networking.firewall.allowedTCPPorts = [53317];
-  networking.firewall.allowedUDPPorts = [53317];
-
   programs.adb.enable = true;
   programs.anime-game-launcher.enable = true;
   programs.seahorse.enable = true;

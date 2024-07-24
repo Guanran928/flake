@@ -27,13 +27,13 @@
 
   environment.systemPackages = with pkgs; [
     yubikey-manager
-    localsend
   ];
 
   networking.firewall.allowedTCPPorts = [53317];
   networking.firewall.allowedUDPPorts = [53317];
 
   programs.adb.enable = true;
+  programs.localsend.enable = true;
   programs.seahorse.enable = true;
   programs.steam.enable = true;
   programs.kdeconnect = {

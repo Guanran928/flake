@@ -47,7 +47,7 @@
   };
 
   ######## Services
-  environment.systemPackages = with pkgs; [qbittorrent];
+  environment.systemPackages = with pkgs; [qbittorrent-nox];
 
   services.tailscale = {
     enable = true;
@@ -60,14 +60,11 @@
       "6222a3e0-98da-4325-be19-0f86a7318a41" = {
         credentialsFile = config.sops.secrets."cloudflared/secret".path;
         default = "http_status:404";
-        ingress = {
-          # TODO: is this safe?
-          # browser <-> cloudflare cdn <-> cloudflared <-> caddy <-> mastodon
-          #                                             ^ no tls in this part?
-          "mastodon.ny4.dev" = "http://localhost:80";
-          "matrix.ny4.dev" = "http://localhost:80";
-          "syncv3.ny4.dev" = "http://localhost:80";
-        };
+        ingress = lib.genAttrs [
+          "mastodon.ny4.dev"
+          "matrix.ny4.dev"
+          "syncv3.ny4.dev"
+        ] (_: "http://localhost");
       };
     };
   };
