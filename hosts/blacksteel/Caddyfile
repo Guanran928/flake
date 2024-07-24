@@ -40,12 +40,20 @@ http://mastodon.ny4.dev:80 {
 
 http://matrix.ny4.dev:80 {
 	import default
-	reverse_proxy /_matrix/* unix//run/matrix-synapse/synapse.sock
-	reverse_proxy /_synapse/client/* unix//run/matrix-synapse/synapse.sock
-	reverse_proxy /health unix//run/matrix-synapse/synapse.sock
+	reverse_proxy /_matrix/* unix//run/matrix-synapse/synapse.sock {
+		header_up X-Forwarded-Proto "https"
+	}
+	reverse_proxy /_synapse/client/* unix//run/matrix-synapse/synapse.sock {
+		header_up X-Forwarded-Proto "https"
+	}
+	reverse_proxy /health unix//run/matrix-synapse/synapse.sock {
+		header_up X-Forwarded-Proto "https"
+	}
 }
 
 http://syncv3.ny4.dev:80 {
 	import default
-	reverse_proxy unix//run/matrix-sliding-sync/sync.sock
+	reverse_proxy unix//run/matrix-sliding-sync/sync.sock {
+		header_up X-Forwarded-Proto "https"
+	}
 }
