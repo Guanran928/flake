@@ -4,9 +4,6 @@
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-12th-gen
   ];
 
-  services.hdapsd.enable = false;
-  services.thermald.enable = true;
-
   security.rtkit.enable = true;
   hardware.pulseaudio.enable = false;
   services.pipewire = {
