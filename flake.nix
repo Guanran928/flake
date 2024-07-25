@@ -36,7 +36,6 @@
       inputs.crane.follows = "crane";
       inputs.flake-compat.follows = "flake-compat";
       inputs.flake-parts.follows = "flake-parts";
-      inputs.flake-utils.follows = "flake-utils";
       inputs.pre-commit-hooks-nix.follows = "pre-commit-hooks-nix";
       inputs.rust-overlay.follows = "rust-overlay";
     };
@@ -52,7 +51,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware = {
-      url = "github:Guanran928/nixos-hardware/lenovo-thinkpad-x1-12th-gen";
+      url = "github:NixOS/nixos-hardware";
     };
     nixos-sensible = {
       url = "github:Guanran928/nixos-sensible";
