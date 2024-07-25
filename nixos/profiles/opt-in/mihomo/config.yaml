@@ -14,15 +14,6 @@ use: &use
     - flyairport
     - spcloud
 
-use-backup: &use-backup
-  type: select
-  use:
-    - ermaozi
-    - jsnzkpg
-    - pawdroid
-
-convert: &convert "https://sub.maoxiongnet.com/sub?target=clash&list=true&url="
-
 port: 7890
 external-controller: 127.0.0.1:9090
 log-level: warning
@@ -46,32 +37,9 @@ proxy-providers:
     <<: *fetch
     url: "@clash/proxy-providers/spcloud@"
 
-  # Free servers that I dont really care about
-  ermaozi:
-    <<: *fetch
-    url: "@ermaozi@"
-  jsnzkpg:
-    <<: *fetch
-    url: "@jsnzkpg@"
-  pawdroid:
-    <<: *fetch
-    url: "@pawdroid"
-
 proxy-groups:
-  - {
-      name: PROXY,
-      type: select,
-      proxies: [自动选择, 备用自动选择, DIRECT, lightsail],
-    }
+  - { name: PROXY, type: select, proxies: [自动选择, lightsail, DIRECT] }
   - { name: 自动选择, <<: *use, tolerance: 2, type: url-test }
-  - { name: 备用自动选择, <<: *use-backup, tolerance: 2, type: url-test }
-
-  # 分隔,下面是地区分组
-  #- { name: 香港, <<: *use, type: url-test, filter: "(?i)港|hk|hongkong|hong kong" }
-  - { name: 台湾, <<: *use, type: url-test, filter: "(?i)台|tw|taiwan" }
-  #- { name: 日本, <<: *use, type: url-test, filter: "(?i)日本|jp|japan" }
-  #- { name: 美国, <<: *use, type: url-test, filter: "(?i)美|us|unitedstates|united states" }
-  #- { name: 新加坡, <<: *use, type: url-test, filter: "(?i)(新|sg|singapore)" }
 
 rules:
   - GEOIP,   lan,               DIRECT, no-resolve

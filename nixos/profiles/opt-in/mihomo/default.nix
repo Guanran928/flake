@@ -40,7 +40,6 @@
 
   # why not substituteAll? see https://github.com/NixOS/nixpkgs/issues/237216
   sops.templates."clash.yaml".file = let
-    convert = url: "https://sub.maoxiongnet.com/sub?target=clash&list=true&url=${url}";
     substituteV2 = {src, ...} @ args: let
       args' = lib.removeAttrs args ["src"];
     in
@@ -59,10 +58,5 @@
         "clash/proxy-providers/flyairport"
         "clash/proxy-providers/spcloud"
         ;
-
-      # Free servers that I dont really care about
-      pawdroid = convert "https://cdn.jsdelivr.net/gh/Pawdroid/Free-servers@main/sub";
-      ermaozi = convert "https://cdn.jsdelivr.net/gh/ermaozi/get_subscribe@main/subscribe/v2ray.txt";
-      jsnzkpg = convert "https://cdn.jsdelivr.net/gh/Jsnzkpg/Jsnzkpg@Jsnzkpg/Jsnzkpg";
     };
 }
