@@ -28,35 +28,19 @@
     end
   '';
 
-  home.packages =
-    (with pkgs; [
-      amberol
-      dconf-editor
-      file-roller
-      fractal
-      gnome-calculator
-      hyperfine
-      loupe
-      mousai
-      seahorse
+  home.packages = with pkgs; [
+    amberol
+    dconf-editor
+    file-roller
+    fractal
+    gnome-calculator
+    hyperfine
+    loupe
+    mousai
+    seahorse
+    inputs.self.legacyPackages.${pkgs.stdenv.hostPlatform.system}.scripts.lofi
+  ];
 
-      (prismlauncher.override {
-        glfw = glfw-wayland-minecraft;
-        gamemodeSupport = false;
-      })
-      mumble
-      osu-lazer-bin
-    ])
-    ++ (with inputs.self.legacyPackages.${pkgs.stdenv.hostPlatform.system}.scripts; [
-      lofi
-    ]);
-
-  home.sessionVariables = {
-    # https://github.com/ppy/osu-framework/pull/6292
-    "OSU_SDL3" = "1";
-  };
-
-  programs.mangohud.enable = true;
   programs.obs-studio.enable = true;
   services.ssh-agent.enable = true;
 }

@@ -35,7 +35,6 @@
   programs.adb.enable = true;
   programs.localsend.enable = true;
   programs.seahorse.enable = true;
-  programs.steam.enable = true;
   programs.kdeconnect = {
     enable = true;
     package = pkgs.valent;
@@ -48,10 +47,6 @@
     gnome-online-accounts.enable = true;
     sushi.enable = true;
   };
-
-  # https://wiki.archlinux.org/title/Gamepad#Connect_Xbox_Wireless_Controller_with_Bluetooth
-  hardware.xone.enable = true; # via wired or wireless dongle
-  hardware.xpadneo.enable = true; # via Bluetooth
 
   # yubikey
   services.pcscd.enable = true;
@@ -159,12 +154,4 @@
       "org.freedesktop.impl.portal.Inhibit" = "none";
     };
   };
-
-  ### Removes debounce time
-  # https://www.reddit.com/r/linux_gaming/comments/ku6gth
-  environment.etc."libinput/local-overrides.quirks".text = ''
-    [Never Debounce]
-    MatchUdevType=mouse
-    ModelBouncingKeys=1
-  '';
 }

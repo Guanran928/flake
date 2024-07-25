@@ -34,7 +34,6 @@
         ".local/state"
 
         ".config/gh"
-        ".config/Mumble"
         ".config/fcitx5"
         ".config/obs-studio"
       ];
