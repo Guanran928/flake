@@ -5,8 +5,8 @@
       isDefault = true;
       extraConfig = ''
         ${builtins.readFile (builtins.fetchurl {
-          url = "https://raw.githubusercontent.com/HorlogeSkynet/thunderbird-user.js/d6b18302e46349d9924c8a76951bae6efca51501/user.js";
-          sha256 = "sha256-66B1yLQkQnydAUXD7KGt32OhWSYcdWX+BUozrgW9uAg=";
+          url = "https://raw.githubusercontent.com/HorlogeSkynet/thunderbird-user.js/824edabe6303d6b85a32fcba96901706ed4c5922/user.js";
+          sha256 = "0jg7i39yp21r66azlzk7978qj57rgb8c09d1hccpcw058isgymq6";
         })}
         ${builtins.readFile ./user-overrides.js}
       '';
