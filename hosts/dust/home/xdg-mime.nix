@@ -41,6 +41,11 @@
         "text/html"
         "text/javascript"
         "text/plain"
-      ] (_n: ["nvim.desktop"]);
+      ] (_n: ["nvim.desktop"])
+      ### Mail client
+      // lib.genAttrs [
+        "x-scheme-handler/mailto"
+        "x-scheme-handler/mid"
+      ] (_n: ["thunderbird.desktop"]);
   };
 }
