@@ -9,6 +9,7 @@
     signing.key = "91F97D9ED12639CF";
 
     extraConfig = {
+      init.defaultBranch = "master";
       pull.rebase = true;
       push.autoSetupRemote = true;
     };
