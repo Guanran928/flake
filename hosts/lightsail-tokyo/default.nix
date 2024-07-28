@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  inputs,
   modulesPath,
   pkgs,
   ...
@@ -65,12 +64,12 @@
 
       "element" = pkgs.element-web.override {
         element-web-unwrapped = pkgs.element-web-unwrapped.overrideAttrs (oldAttrs: {
-          version = "1.11.70";
+          version = "1.11.72-rc.0";
           src = oldAttrs.src.overrideAttrs {
-            outputHash = "sha256-UzSqChCa94LqaQpMzwQGPX3G2xxOpP3jp5OvR1iBzRs=";
+            outputHash = "sha256-IftQCQ3m7w2F9/q0n2W9JMIouu79cYkwVRLjWY1CQGg=";
           };
           offlineCache = oldAttrs.offlineCache.overrideAttrs {
-            outputHash = "sha256-M4FTUtx7vpZIEdu/NM98/zIDGyPOtfocrj29/qChyyQ=";
+            outputHash = "sha256-xBpwEbHeJSVKsEvmH2SNZOtEZkPRgPIiChbTkmjJQa4=";
           };
         });
 
@@ -184,84 +183,6 @@
       # proxy-headers = "xforwarded"; # FIXME: Key material not provided to setup HTTPS.
     };
     database.passwordFile = toString (pkgs.writeText "password" "keycloak");
-  };
-
-  # TODO: eventually, use blog homepage
-  services.homepage-dashboard = {
-    enable = true;
-    listenPort = 9200;
-
-    settings = {
-      useEqualHeights = true;
-      cardBlur = "sm";
-      layout."Services" = {
-        style = "row";
-        columns = "4";
-      };
-    };
-
-    services = let
-      getDesc = pkg: pkg.meta.description;
-      mapAttrsToList' = lib.mapAttrsToList (name: value: {"${name}" = value;}); # also sorts the thing alphabetically
-    in
-      mapAttrsToList' {
-        "Services" = mapAttrsToList' {
-          "Mumble" = {
-            description = "${getDesc pkgs.mumble} (Connect with tyo0.ny4.dev:64738)";
-          };
-          "Ntfy" = {
-            description = getDesc pkgs.ntfy;
-            href = "https://ntfy.ny4.dev/";
-          };
-          "Redlib" = {
-            description = getDesc pkgs.redlib;
-            href = "https://reddit.ny4.dev/";
-          };
-          "SearXNG" = {
-            description = getDesc pkgs.searxng;
-            href = "https://searx.ny4.dev/";
-          };
-          "Wastebin" = {
-            description = getDesc pkgs.wastebin;
-            href = "https://pb.ny4.dev/";
-          };
-        };
-        "Links" = mapAttrsToList' {
-          "Blog".href = "https://blog.ny4.dev/";
-          "Forgejo".href = "https://git.ny4.dev/nyancat";
-          "GitHub".href = "https://github.com/Guanran928";
-          "Mastodon".herf = "https://mastodon.ny4.dev/@nyancat";
-          "Matrix".href = "https://matrix.to/#/@nyancat:ny4.dev";
-        };
-        "Private stuff" = mapAttrsToList' {
-          "Forgejo" = {
-            description = getDesc pkgs.forgejo;
-            href = "https://git.ny4.dev/";
-          };
-          "Mastodon" = rec {
-            description = getDesc pkgs.mastodon;
-            href = "https://mastodon.ny4.dev/";
-            widget.type = "mastodon";
-            widget.url = href;
-          };
-          "Matrix" = {
-            description = getDesc pkgs.element-web;
-            href = "https://element.ny4.dev/";
-          };
-          "Miniflux" = {
-            description = getDesc pkgs.miniflux;
-            href = "https://rss.ny4.dev/";
-          };
-          "PixivFE" = {
-            description = getDesc inputs.self.legacyPackages.${pkgs.stdenv.hostPlatform.system}.pixivfe;
-            href = "https://pixiv.ny4.dev";
-          };
-          "Uptime Kuma" = {
-            description = getDesc pkgs.uptime-kuma;
-            href = "https://uptime.ny4.dev/";
-          };
-        };
-      };
   };
 
   services.forgejo = {

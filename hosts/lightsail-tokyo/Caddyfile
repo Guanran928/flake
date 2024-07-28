@@ -17,13 +17,13 @@
 
 www.ny4.dev {
 	import default
-	redir https://ny4.dev
+	redir https://blog.ny4.dev
 }
 
 # get the certificate for hysteria
 tyo0.ny4.dev {
 	import default
-	redir https://ny4.dev
+	redir https://blog.ny4.dev
 }
 
 ny4.dev {
@@ -42,8 +42,9 @@ ny4.dev {
 	header /.well-known/webfinger Access-Control-Allow-Origin *
 	redir /.well-known/webfinger https://mastodon.ny4.dev{uri} permanent
 
-	# Homepage Dashboard
-	reverse_proxy localhost:9200
+  # TODO: Build Hugo blog with Nix
+  # How do I use hugo modules without using FOD?
+	redir https://blog.ny4.dev
 }
 
 searx.ny4.dev {
