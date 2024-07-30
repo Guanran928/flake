@@ -44,7 +44,9 @@ ny4.dev {
 
   # TODO: Build Hugo blog with Nix
   # How do I use hugo modules without using FOD?
-	redir https://blog.ny4.dev
+  route * {
+	  redir https://blog.ny4.dev
+  }
 }
 
 searx.ny4.dev {
