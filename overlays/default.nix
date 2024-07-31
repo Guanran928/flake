@@ -23,9 +23,14 @@ in {
 
     # HACK: no more qt5
     libsForQt5 = prev.libsForQt5.overrideScope (_qt5final: _qt5prev: {
-      fcitx5-with-addons = prev.qt6Packages.fcitx5-with-addons;
       fcitx5-qt = prev.emptyDirectory;
     });
+
+    # HACK: no more gtk2
+    gtk2 = prev.emptyDirectory;
+    gnome-themes-extra = prev.gnome-themes-extra.overrideAttrs {
+      configureFlags = ["--disable-gtk2-engine"];
+    };
 
     sway-unwrapped = addPatches prev.sway-unwrapped [
       # text_input: Implement input-method popups
@@ -35,7 +40,7 @@ in {
         url = "https://github.com/swaywm/sway/commit/de74d1f6360810c0a5fd11d8022fbffe56fc97c5.patch";
         hash = "sha256-iTZIYHBp8vxjVdmH/k+jlN0/Zj6Ofe/qefv7ubtowHs=";
       })
-      (prev.fetchpatch2  {
+      (prev.fetchpatch2 {
         name = "0002-chore-fractal-scale-handle.patch";
         url = "https://github.com/swaywm/sway/commit/2aa72e8dfd3b3d051fdec6b2d05c5635adcfb57b.patch";
         hash = "sha256-aJYXoZ7xEEy8J8DjxANOe14HdHRni6IXSNcAzLzNvIo=";

@@ -11,9 +11,6 @@
     ../mako
     ../swayidle
     ../swaylock
-
-    # FIXME: hack
-    ./unset-im-module.nix
   ];
 
   home.sessionVariables = {
