@@ -42,11 +42,11 @@ ny4.dev {
 	header /.well-known/webfinger Access-Control-Allow-Origin *
 	redir /.well-known/webfinger https://mastodon.ny4.dev{uri} permanent
 
-  # TODO: Build Hugo blog with Nix
-  # How do I use hugo modules without using FOD?
-  route * {
-	  redir https://blog.ny4.dev
-  }
+	# TODO: Build Hugo blog with Nix
+	# How do I use hugo modules without using FOD?
+	route * {
+		redir https://blog.ny4.dev
+	}
 }
 
 searx.ny4.dev {
@@ -89,9 +89,23 @@ element.ny4.dev {
 }
 
 cinny.ny4.dev {
-  import default
+	import default
+
+  @index {
+    not path /index.html
+    not path /public/*
+    not path /assets/*
+    not path /config.json
+    not path /manifest.json
+    not path /pdf.worker.min.js
+    not path /olm.wasm
+    path /*
+  }
+
   root * @cinny@
-  file_server
+  rewrite /*/olm.wasm /olm.wasm
+  rewrite @index /index.html
+	file_server
 }
 
 git.ny4.dev {
