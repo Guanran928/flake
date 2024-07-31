@@ -30,20 +30,20 @@ in {
     sway-unwrapped = addPatches prev.sway-unwrapped [
       # text_input: Implement input-method popups
       # https://github.com/swaywm/sway/pull/7226
-      (prev.fetchpatch2 rec {
+      (prev.fetchpatch2 {
         name = "0001-text_input-Implement-input-method-popups.patch";
-        url = "https://aur.archlinux.org/cgit/aur.git/plain/${name}?h=sway-im&id=b8434b3ad9e8c6946dbf7b14b0f7ef5679452b94";
-        hash = "sha256-aO21HgHVccD8vOlffcenSAn2spW7iEs0nTa5Tmebe3o=";
+        url = "https://github.com/swaywm/sway/commit/de74d1f6360810c0a5fd11d8022fbffe56fc97c5.patch";
+        hash = "sha256-iTZIYHBp8vxjVdmH/k+jlN0/Zj6Ofe/qefv7ubtowHs=";
       })
-      (prev.fetchpatch2 rec {
+      (prev.fetchpatch2  {
         name = "0002-chore-fractal-scale-handle.patch";
-        url = "https://aur.archlinux.org/cgit/aur.git/plain/${name}?h=sway-im&id=b8434b3ad9e8c6946dbf7b14b0f7ef5679452b94";
-        hash = "sha256-QuV8J0sqh5L9kyYEOTDjWlPNKVb6zolG/cHO+wq2Qa8=";
+        url = "https://github.com/swaywm/sway/commit/2aa72e8dfd3b3d051fdec6b2d05c5635adcfb57b.patch";
+        hash = "sha256-aJYXoZ7xEEy8J8DjxANOe14HdHRni6IXSNcAzLzNvIo=";
       })
-      (prev.fetchpatch2 rec {
+      (prev.fetchpatch2 {
         name = "0003-chore-left_pt-on-method-popup.patch";
-        url = "https://aur.archlinux.org/cgit/aur.git/plain/${name}?h=sway-im&id=b8434b3ad9e8c6946dbf7b14b0f7ef5679452b94";
-        hash = "sha256-4zvVbAdxK05UWy+QMsHPHrVBwmO5279GqhYgJUPsCNI=";
+        url = "https://github.com/swaywm/sway/commit/0789c12a8edf46fbc1c7024e153f3e8f8f35fe12.patch";
+        hash = "sha256-zvhp5eXqDngMNtctzVpryZY3zKi3IVjV7oFIBMC2jMk=";
       })
 
       # Tray D-Bus Menu
