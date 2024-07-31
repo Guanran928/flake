@@ -56,15 +56,6 @@
     nixos-sensible = {
       url = "github:Guanran928/nixos-sensible";
     };
-    nix-on-droid = {
-      url = "github:nix-community/nix-on-droid/release-23.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs-for-bootstrap.follows = "nixpkgs";
-      inputs.nixpkgs-docs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-      inputs.nix-formatter-pack.follows = "nix-formatter-pack";
-      inputs.nmd.follows = "nmd";
-    };
     nur = {
       url = "github:nix-community/NUR";
     };
@@ -168,12 +159,6 @@
           inherit system modules;
           specialArgs = {inherit inputs;};
         };
-
-      mkDroid = modules:
-        inputs.nix-on-droid.lib.nixOnDroidConfiguration {
-          inherit modules;
-          extraSpecialArgs = {inherit inputs;};
-        };
     in {
       ### imports = [];
       nixosModules.default = ./nixos/modules;
@@ -193,10 +178,6 @@
       darwinConfigurations = {
         "plato" = mkDarwin "x86_64-darwin" [./hosts/plato];
         "whitesteel" = mkDarwin "x86_64-darwin" [./hosts/whitesteel];
-      };
-
-      nixOnDroidConfigurations = {
-        "enchilada" = mkDroid [./hosts/enchilada];
       };
 
       colmena = {

@@ -6,15 +6,10 @@
   ...
 }: {
   home = {
-    # for nix-on-droid
-    username = lib.mkDefault "guanranwang";
-    homeDirectory =
-      lib.mkDefault
-      (
-        if pkgs.stdenv.hostPlatform.isDarwin
-        then "/Users/${config.home.username}"
-        else "/home/${config.home.username}"
-      );
+    username = "guanranwang";
+    homeDirectory = if pkgs.stdenv.hostPlatform.isDarwin
+      then "/Users/${config.home.username}"
+      else "/home/${config.home.username}";
 
     # This value determines the Home Manager release that your
     # configuration is compatible with. This helps avoid breakage

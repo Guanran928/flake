@@ -1,4 +1,4 @@
-# nix{os,-darwin,-on-droid} config
+# nix{os,-darwin} config
 
 It just works™
 
