@@ -21,6 +21,12 @@ in {
       '';
     };
 
+    # HACK: no more qt5
+    libsForQt5 = prev.libsForQt5.overrideScope (_qt5final: _qt5prev: {
+      fcitx5-with-addons = prev.qt6Packages.fcitx5-with-addons;
+      fcitx5-qt = prev.emptyDirectory;
+    });
+
     sway-unwrapped = addPatches prev.sway-unwrapped [
       # text_input: Implement input-method popups
       # https://github.com/swaywm/sway/pull/7226
