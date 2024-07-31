@@ -56,11 +56,6 @@
       trashy
     ]);
 
-  home.shellAliases = {
-    ".." = "cd ..";
-    "farsee" = "curl -F 'c=@-' 'https://fars.ee/'"; # pb
-  };
-
   programs.fish.functions = let
     jq = lib.getExe pkgs.jq;
     nix = lib.getExe pkgs.nix;
