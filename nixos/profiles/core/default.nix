@@ -13,7 +13,6 @@
       "${inputs.srvos}/nixos/common/well-known-hosts.nix"
     ]
     ++ (with inputs; [
-      aagl.nixosModules.default
       disko.nixosModules.disko
       home-manager.nixosModules.home-manager
       impermanence.nixosModules.impermanence

@@ -8,13 +8,7 @@
     #
     # REFERENCE: https://discourse.nixos.org/t/differences-between-nix-channels/13998/5
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
 
-    aagl = {
-      url = "github:ezKEa/aagl-gtk-on-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-compat.follows = "flake-compat";
-    };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -62,7 +56,7 @@
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs-stable.follows = "nixpkgs-stable";
+      inputs.nixpkgs-stable.follows = "nixpkgs";
     };
     srvos = {
       url = "github:nix-community/srvos";
@@ -90,35 +84,16 @@
       url = "github:hercules-ci/gitignore.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-formatter-pack = {
-      url = "github:Gerschtli/nix-formatter-pack";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nmd.follows = "nmd";
-      inputs.nmt.follows = "nmt";
-    };
-    nmd = {
-      url = "sourcehut:~rycee/nmd";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.scss-reset.follows = "scss-reset";
-    };
-    nmt = {
-      url = "sourcehut:~rycee/nmt";
-      flake = false;
-    };
     pre-commit-hooks-nix = {
       url = "github:cachix/pre-commit-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs-stable.follows = "nixpkgs-stable";
+      inputs.nixpkgs-stable.follows = "nixpkgs";
       inputs.flake-compat.follows = "flake-compat";
       inputs.gitignore.follows = "gitignore";
     };
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    scss-reset = {
-      url = "github:andreymatin/scss-reset";
-      flake = false;
     };
   };
 
