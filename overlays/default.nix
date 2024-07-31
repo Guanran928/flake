@@ -22,15 +22,20 @@ in {
     };
 
     # HACK: no more qt5
-    libsForQt5 = prev.libsForQt5.overrideScope (_qt5final: _qt5prev: {
-      fcitx5-qt = prev.emptyDirectory;
+    qt6Packages = prev.qt6Packages.overrideScope (_qt6final: qt6prev: {
+      fcitx5-with-addons = qt6prev.fcitx5-with-addons.override {
+        libsForQt5.fcitx5-qt = prev.emptyDirectory;
+      };
     });
 
     # HACK: no more gtk2
-    gtk2 = prev.emptyDirectory;
-    gnome-themes-extra = prev.gnome-themes-extra.overrideAttrs {
-      configureFlags = ["--disable-gtk2-engine"];
-    };
+    gnome-themes-extra =
+      (prev.gnome-themes-extra.override {
+        gtk2 = prev.emptyDirectory;
+      })
+      .overrideAttrs {
+        configureFlags = ["--disable-gtk2-engine"];
+      };
 
     sway-unwrapped = addPatches prev.sway-unwrapped [
       # text_input: Implement input-method popups
