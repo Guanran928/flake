@@ -79,6 +79,13 @@
         };
       };
 
+      "cinny" = pkgs.cinny.override {
+        conf = {
+          defaultHomeserver = 0;
+          homeserverList = ["ny4.dev"];
+        };
+      };
+
       "mastodon" = pkgs.mastodon;
     };
   };

@@ -88,6 +88,12 @@ element.ny4.dev {
 	file_server
 }
 
+cinny.ny4.dev {
+  import default
+  root * @cinny@
+  file_server
+}
+
 git.ny4.dev {
 	import default
 	reverse_proxy unix//run/forgejo/forgejo.sock
