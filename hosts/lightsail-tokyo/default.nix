@@ -25,10 +25,6 @@
   # WORKAROUND:
   systemd.services."print-host-key".enable = false;
 
-  # FIXME:
-  # error: 1 dependencies of derivation '/nix/store/h0wkpjfh0hr1vswyz2f7wk8n03yj0l81-linux-6.10-modules.drv' failed to build
-  boot.kernelPackages = pkgs.linuxPackages;
-
   ### Secrets
   sops.secrets = lib.mapAttrs (_name: value: value // {sopsFile = ./secrets.yaml;}) {
     "hysteria/auth" = {
