@@ -8,15 +8,15 @@
   hardware.pulseaudio.enable = false;
   services.pipewire = {
     enable = true;
-    alsa.enable = true;
     pulse.enable = true;
-    jack.enable = true;
   };
 
   hardware.bluetooth = {
     enable = true;
     settings.General.FastConnectable = true;
   };
+
+  services.fprintd.enable = true;
 
   boot.loader.timeout = 0;
   boot.loader.efi.canTouchEfiVariables = true;
