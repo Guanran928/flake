@@ -35,6 +35,10 @@
   programs.adb.enable = true;
   programs.localsend.enable = true;
   programs.seahorse.enable = true;
+  programs.ssh = {
+    startAgent = true;
+    enableAskPassword = true;
+  };
 
   services.power-profiles-daemon.enable = true;
   services.gvfs.enable = true;

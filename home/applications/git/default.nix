@@ -1,6 +1,7 @@
-{
-  programs.git = {
+{pkgs, ...}: {
+  programs.git = rec {
     enable = true;
+    package = pkgs.gitFull; # overriding takes forever to compile
     delta.enable = true;
 
     userName = "Guanran Wang";
@@ -12,6 +13,7 @@
       init.defaultBranch = "master";
       pull.rebase = true;
       push.autoSetupRemote = true;
+      credential.helper = "${package}/bin/git-credential-libsecret";
     };
   };
 

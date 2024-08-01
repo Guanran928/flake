@@ -42,5 +42,4 @@
   ];
 
   programs.obs-studio.enable = true;
-  services.ssh-agent.enable = true;
 }
