@@ -1,5 +1,4 @@
 {
-  inputs,
   pkgs,
   config,
   lib,
@@ -28,8 +27,6 @@
 
   # Default applications
   imports = [
-    inputs.nur.hmModules.nur
-
     ./applications/atuin
     ./applications/bash
     ./applications/bat

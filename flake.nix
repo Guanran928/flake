@@ -47,20 +47,10 @@
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware";
     };
-    nixos-sensible = {
-      url = "github:Guanran928/nixos-sensible";
-    };
-    nur = {
-      url = "github:nix-community/NUR";
-    };
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nixpkgs-stable.follows = "nixpkgs";
-    };
-    srvos = {
-      url = "github:nix-community/srvos";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     systems.url = "github:nix-systems/default";
     treefmt-nix = {

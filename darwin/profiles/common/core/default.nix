@@ -14,7 +14,6 @@
 
     inputs.self.darwinModules.default
     inputs.home-manager.darwinModules.home-manager
-    inputs.nur.nixosModules.nur # doesn't sound very smart
   ];
 
   users = {

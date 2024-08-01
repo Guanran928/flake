@@ -35,16 +35,11 @@
   programs.adb.enable = true;
   programs.localsend.enable = true;
   programs.seahorse.enable = true;
-  programs.kdeconnect = {
-    enable = true;
-    package = pkgs.valent;
-  };
 
   services.power-profiles-daemon.enable = true;
   services.gvfs.enable = true;
   services.gnome = {
     gnome-keyring.enable = true;
-    gnome-online-accounts.enable = true;
     sushi.enable = true;
   };
 
@@ -121,10 +116,15 @@
 
   services.greetd = {
     enable = true;
-    settings.default_session.command = "${lib.getExe pkgs.greetd.tuigreet} --cmd sway";
+    settings.default_session.command = "${lib.getExe pkgs.greetd.tuigreet} --cmd ${pkgs.writeShellScript "sway" ''
+      while read -r l; do
+        eval export $l
+      done < <(/run/current-system/systemd/lib/systemd/user-environment-generators/30-systemd-environment-d-generator)
+
+      exec systemd-cat --identifier=sway sway
+    ''}";
   };
 
-  # polkit
   security.polkit.enable = true;
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
     description = "polkit-gnome-authentication-agent-1";
@@ -143,7 +143,6 @@
   security.pam.services.swaylock = {};
   xdg.portal = {
     enable = true;
-    xdgOpenUsePortal = true;
     wlr.enable = true;
     extraPortals = [pkgs.xdg-desktop-portal-gtk];
     # https://gitlab.archlinux.org/archlinux/packaging/packages/sway/-/blob/main/sway-portals.conf

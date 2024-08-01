@@ -10,16 +10,13 @@
       ./hardening.nix
       ./networking.nix
       ./nix.nix
-      "${inputs.srvos}/nixos/common/well-known-hosts.nix"
+      ./zram.nix
     ]
     ++ (with inputs; [
       disko.nixosModules.disko
       home-manager.nixosModules.home-manager
       impermanence.nixosModules.impermanence
       lanzaboote.nixosModules.lanzaboote
-      nixos-sensible.nixosModules.default
-      nixos-sensible.nixosModules.zram
-      nur.nixosModules.nur
       self.nixosModules.default
       sops-nix.nixosModules.sops
     ]);
@@ -32,13 +29,11 @@
     users.guanranwang = import ../../../home;
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = {inherit inputs;}; # ??? isnt specialArgs imported by default ???
+    extraSpecialArgs = {inherit inputs;};
   };
 
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
-  ### Default Programs
-  # In addition of https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/config/system-path.nix
   environment.systemPackages = with pkgs; [
     unzip
     wget
@@ -55,12 +50,7 @@
     usbutils
   ];
 
-  services.openssh = {
-    enable = true;
-    settings.PermitRootLogin = lib.mkDefault "no"; # mkDefault for colmena
-    settings.PasswordAuthentication = false;
-  };
-
+  users.mutableUsers = false;
   users.users = rec {
     "guanranwang" = {
       isNormalUser = true;
@@ -72,7 +62,6 @@
         "nix-access-tokens"
       ];
       openssh.authorizedKeys.keys = [
-        # same as git signing
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMmd/uqiBahzKcKMJ+gT3dkUIdrWQgudspsDchDlx1E/ guanran928@outlook.com"
       ];
     };
@@ -82,10 +71,43 @@
     };
   };
 
+  boot.initrd.systemd.enable = true;
+  environment.stub-ld.enable = false;
+
+  programs.command-not-found.enable = false;
   programs.dconf.enable = true;
   programs.fish.enable = true;
-  programs.command-not-found.enable = false;
-  environment.stub-ld.enable = false;
+  programs.nano.enable = false;
+  programs.vim = {
+    enable = true;
+    defaultEditor = true;
+  };
+
+  # Avoid TOFU MITM with github by providing their public key here.
+  programs.ssh.knownHosts = {
+    "github.com".hostNames = ["github.com"];
+    "github.com".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl";
+
+    "gitlab.com".hostNames = ["gitlab.com"];
+    "gitlab.com".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAfuCHKVTjquxvt6CM6tdG4SLp1Btn/nOeHHE5UOzRdf";
+
+    "git.sr.ht".hostNames = ["git.sr.ht"];
+    "git.sr.ht".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMZvRd4EtM7R+IHVMWmDkVU3VLQTSwQDSAvW0t2Tkj60";
+  };
+
+  # https://archlinux.org/news/making-dbus-broker-our-default-d-bus-daemon/
+  services.dbus.implementation = lib.mkDefault "broker";
+
+  services.openssh = {
+    enable = true;
+    settings.PermitRootLogin = lib.mkDefault "no"; # mkDefault for colmena
+    settings.PasswordAuthentication = false;
+  };
+
+  security.sudo.execWheelOnly = true;
+  security.sudo.extraConfig = ''
+    Defaults lecture = never
+  '';
 
   documentation = {
     doc.enable = false;

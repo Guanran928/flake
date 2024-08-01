@@ -20,8 +20,6 @@
   time.timeZone = "Asia/Shanghai";
   system.stateVersion = "23.11";
 
-  services.openssh.settings.PermitRootLogin = "prohibit-password";
-
   ######## Secrets
   sops = {
     secrets = lib.mapAttrs (_name: value: value // {sopsFile = ./secrets.yaml;}) {

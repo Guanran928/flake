@@ -7,7 +7,6 @@
     inputs.nixpkgs.nixosModules.notDetected
     inputs.nixos-hardware.nixosModules.apple-macbook-pro
     inputs.nixos-hardware.nixosModules.common-cpu-intel
-    #inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
     inputs.nixos-hardware.nixosModules.common-hidpi
     inputs.nixos-hardware.nixosModules.common-pc-laptop
     inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
@@ -18,9 +17,6 @@
   boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
   boot.kernelModules = ["kvm-intel" "wl"];
   boot.extraModulePackages = [config.boot.kernelPackages.broadcom_sta];
-
-  #hardware.nvidia.modesetting.enable = true;
-  #hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
 
   nixpkgs.hostPlatform = "x86_64-linux";
 

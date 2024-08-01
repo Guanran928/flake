@@ -1,8 +1,5 @@
 {lib, ...}: {
   nixpkgs.config = {
-    # only needed on older version of nvidia
-    #nvidia.acceptLicense = true;
-
     allowNonSource = false;
     allowNonSourcePredicate = pkg:
       lib.elem (lib.getName pkg) [

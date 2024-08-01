@@ -26,7 +26,7 @@
       "no-url-literals"
     ];
     flake-registry = "";
-    trusted-users = ["@wheel"];
+    trusted-users = ["root" "@wheel"];
     allow-import-from-derivation = false;
     auto-allocate-uids = true;
     auto-optimise-store = true;
