@@ -7,7 +7,7 @@
     #       `nixpkgs-unstable` contains less(?) jobs, and usually updates faster.
     #
     # REFERENCE: https://discourse.nixos.org/t/differences-between-nix-channels/13998/5
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";
 
     disko = {
       url = "github:nix-community/disko";
