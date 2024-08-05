@@ -15,7 +15,7 @@
   ];
 
   networking.hostName = "dust";
-  time.timeZone = "Asia/Shanghai";
+  time.timeZone = "Asia/Seoul";
   system.stateVersion = "23.11";
 
   home-manager.users.guanranwang = import ./home;
