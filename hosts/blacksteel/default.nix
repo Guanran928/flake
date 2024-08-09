@@ -6,6 +6,7 @@
 }: {
   imports = [
     # OS
+    ../../nixos/profiles/server
     ../../nixos/profiles/opt-in/mihomo
     ../../nixos/profiles/opt-in/wireless
 
@@ -21,26 +22,24 @@
   system.stateVersion = "23.11";
 
   ######## Secrets
-  sops = {
-    secrets = lib.mapAttrs (_name: value: value // {sopsFile = ./secrets.yaml;}) {
-      "synapse/secret" = {
-        restartUnits = ["matrix-synapse.service"];
-        owner = config.systemd.services.matrix-synapse.serviceConfig.User;
-      };
-      "synapse/oidc" = {
-        restartUnits = ["matrix-synapse.service"];
-        owner = config.systemd.services.matrix-synapse.serviceConfig.User;
-      };
-      "syncv3/environment" = {
-        restartUnits = ["matrix-sliding-sync.service"];
-      };
-      "mastodon/environment" = {
-        restartUnits = ["mastodon-web.service"];
-      };
-      "cloudflared/secret" = {
-        restartUnits = ["cloudflared-tunnel-6222a3e0-98da-4325-be19-0f86a7318a41.service"];
-        owner = config.systemd.services."cloudflared-tunnel-6222a3e0-98da-4325-be19-0f86a7318a41".serviceConfig.User;
-      };
+  sops.secrets = lib.mapAttrs (_name: value: value // {sopsFile = ./secrets.yaml;}) {
+    "synapse/secret" = {
+      restartUnits = ["matrix-synapse.service"];
+      owner = config.systemd.services.matrix-synapse.serviceConfig.User;
+    };
+    "synapse/oidc" = {
+      restartUnits = ["matrix-synapse.service"];
+      owner = config.systemd.services.matrix-synapse.serviceConfig.User;
+    };
+    "syncv3/environment" = {
+      restartUnits = ["matrix-sliding-sync.service"];
+    };
+    "mastodon/environment" = {
+      restartUnits = ["mastodon-web.service"];
+    };
+    "cloudflared/secret" = {
+      restartUnits = ["cloudflared-tunnel-6222a3e0-98da-4325-be19-0f86a7318a41.service"];
+      owner = config.systemd.services."cloudflared-tunnel-6222a3e0-98da-4325-be19-0f86a7318a41".serviceConfig.User;
     };
   };
 

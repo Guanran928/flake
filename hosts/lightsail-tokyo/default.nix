@@ -60,12 +60,12 @@
 
       "element" = pkgs.element-web.override {
         element-web-unwrapped = pkgs.element-web-unwrapped.overrideAttrs (oldAttrs: {
-          version = "1.11.72";
+          version = "1.11.74-rc.0";
           src = oldAttrs.src.overrideAttrs {
-            outputHash = "sha256-ZLSCbt00R3azFz2lOuj8yqaLFyobnmGmQKYOYLHCA1w=";
+            outputHash = "sha256-Dik4vBzybkb6Q7OgEDrQ3FBaUGOmUxr9SplyNm1JWZU=";
           };
           offlineCache = oldAttrs.offlineCache.overrideAttrs {
-            outputHash = "sha256-7NXXjv7xNEBVRmWawpdfZBFV51hAspdP1oAURGaRg48=";
+            outputHash = "sha256-+SSsFUVIVuNpy+CQT6+oFIGvzQLAHEokibXtxsidumQ=";
           };
         });
 
