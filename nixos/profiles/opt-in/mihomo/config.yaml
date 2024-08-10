@@ -11,7 +11,6 @@ use: &use
   type: select
   use:
     - efcloud
-    - flyairport
     - spcloud
 
 port: 7890
@@ -30,9 +29,6 @@ proxy-providers:
   efcloud:
     <<: *fetch
     url: "@clash/proxy-providers/efcloud@"
-  flyairport:
-    <<: *fetch
-    url: "@clash/proxy-providers/flyairport@"
   spcloud:
     <<: *fetch
     url: "@clash/proxy-providers/spcloud@"
