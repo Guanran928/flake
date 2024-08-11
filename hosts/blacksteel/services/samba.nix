@@ -2,15 +2,9 @@
   services.samba = {
     enable = true;
     openFirewall = true;
-    shares = {
-      "share" = {
-        path = "/srv/samba/share";
-        "read only" = "no";
-      };
-      "external" = {
-        path = "/mnt";
-        "read only" = "no";
-      };
+    shares."external" = {
+      "path" = "/mnt";
+      "read only" = "no";
     };
   };
 
@@ -18,8 +12,4 @@
     enable = true;
     openFirewall = true;
   };
-
-  systemd.tmpfiles.rules = [
-    "d /srv/samba/share 0755 guanranwang root"
-  ];
 }
