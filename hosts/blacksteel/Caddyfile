@@ -2,7 +2,7 @@
 	encode zstd gzip
 	handle_path /robots.txt {
 		file_server * {
-			root /var/www/robots/robots.txt
+			root @robots@
 		}
 	}
 }
