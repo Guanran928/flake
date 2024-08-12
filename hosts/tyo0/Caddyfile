@@ -91,20 +91,20 @@ element.ny4.dev {
 cinny.ny4.dev {
 	import default
 
-  @index {
-    not path /index.html
-    not path /public/*
-    not path /assets/*
-    not path /config.json
-    not path /manifest.json
-    not path /pdf.worker.min.js
-    not path /olm.wasm
-    path /*
-  }
+	@index {
+		not path /index.html
+		not path /public/*
+		not path /assets/*
+		not path /config.json
+		not path /manifest.json
+		not path /pdf.worker.min.js
+		not path /olm.wasm
+		path /*
+	}
 
-  root * @cinny@
-  rewrite /*/olm.wasm /olm.wasm
-  rewrite @index /index.html
+	root * @cinny@
+	rewrite /*/olm.wasm /olm.wasm
+	rewrite @index /index.html
 	file_server
 }
 
@@ -121,4 +121,9 @@ rss.ny4.dev {
 reddit.ny4.dev {
 	import default
 	reverse_proxy localhost:9400
+}
+
+vault.ny4.dev {
+	import default
+	reverse_proxy localhost:9500
 }

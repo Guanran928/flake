@@ -17,6 +17,7 @@
     ./services/ntfy.nix
     ./services/pixivfe.nix
     ./services/searx.nix
+    ./services/vaultwarden.nix
   ];
 
   time.timeZone = "Asia/Tokyo";
@@ -46,6 +47,9 @@
     };
     "miniflux/environment" = {
       restartUnits = ["miniflux.service"];
+    };
+    "vaultwarden/environment" = {
+      restartUnits = ["vaultwarden.service"];
     };
   };
 
