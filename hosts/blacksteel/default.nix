@@ -8,7 +8,6 @@
     # OS
     ../../nixos/profiles/server
     ../../nixos/profiles/opt-in/mihomo
-    ../../nixos/profiles/opt-in/wireless
 
     # Hardware
     ./hardware-configuration.nix
