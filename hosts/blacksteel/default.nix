@@ -26,7 +26,7 @@
   boot.loader.systemd-boot.enable = true;
   networking.hostName = "blacksteel";
   time.timeZone = "Asia/Shanghai";
-  system.stateVersion = "23.11";
+  system.stateVersion = "24.05";
 
   ######## Secrets
   sops.secrets = lib.mapAttrs (_name: value: value // {sopsFile = ./secrets.yaml;}) {

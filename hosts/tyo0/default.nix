@@ -21,7 +21,7 @@
 
   time.timeZone = "Asia/Tokyo";
   boot.loader.grub.device = lib.mkForce "/dev/nvme0n1";
-  system.stateVersion = "23.11";
+  system.stateVersion = "24.05";
 
   swapDevices = [
     {
