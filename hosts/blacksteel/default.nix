@@ -74,7 +74,7 @@
     enable = true;
     configFile = pkgs.substituteAll {
       src = ./Caddyfile;
-      robots = toString ../lightsail-tokyo/robots.txt;
+      robots = toString ../tyo0/robots.txt;
       inherit (pkgs) mastodon;
     };
   };

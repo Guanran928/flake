@@ -104,9 +104,7 @@
       ### nix develop
       devShells.default = pkgs.mkShell {
         packages = with pkgs; [
-          alejandra
           colmena
-          git
           sops
         ];
       };
@@ -135,7 +133,6 @@
 
       ### NixOS
       nixosConfigurations = {
-        "blacksteel" = mkNixOS "x86_64-linux" [./hosts/blacksteel];
         "dust" = mkNixOS "x86_64-linux" [./hosts/dust];
       };
 
@@ -157,8 +154,8 @@
           ./nixos/profiles/core
         ];
 
-        "lightsail-tokyo" = {
-          imports = [./hosts/lightsail-tokyo];
+        "tyo0" = {
+          imports = [./hosts/tyo0];
           deployment.targetHost = "tyo0.ny4.dev";
         };
 
