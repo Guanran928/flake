@@ -85,6 +85,10 @@ id.ny4.dev {
 element.ny4.dev {
 	import default
 	root * @element@
+	header X-Frame-Options SAMEORIGIN;
+	header X-Content-Type-Options nosniff;
+	header X-XSS-Protection "1; mode=block";
+	header Content-Security-Policy "frame-ancestors 'self'";
 	file_server
 }
 
