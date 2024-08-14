@@ -1,25 +1,22 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    # lsp
     alejandra
+    colmena
+    comma
     deadnix
+    nh
     nil
-    statix
-
-    # nixpkgs PRs
+    nix-diff
+    nix-index
     nix-init
+    nix-output-monitor
+    nix-tree
     nix-update
     nixfmt-rfc-style
     nixpkgs-review
-
-    # misc
-    colmena
-    comma
-    nh
-    nix-index
-    nix-output-monitor
-    nix-tree
+    nurl
     sops
+    statix
   ];
 
   # nh

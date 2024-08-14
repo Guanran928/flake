@@ -36,7 +36,6 @@
 
   environment.systemPackages = with pkgs; [
     unzip
-    wget
     tree
     file
     htop

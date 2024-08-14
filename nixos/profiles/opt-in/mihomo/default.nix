@@ -10,7 +10,7 @@
     webui = pkgs.metacubexd;
   };
 
-  systemd.services.mihomo.serviceConfig.preStart = ''
+  systemd.services.mihomo.preStart = ''
     ${pkgs.coreutils}/bin/ln -sf ${pkgs.v2ray-geoip}/share/v2ray/geoip.dat /var/lib/private/mihomo/GeoIP.dat
     ${pkgs.coreutils}/bin/ln -sf ${pkgs.v2ray-domain-list-community}/share/v2ray/geosite.dat /var/lib/private/mihomo/GeoSite.dat
   '';
