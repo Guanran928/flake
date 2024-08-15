@@ -71,13 +71,6 @@
           runHook postInstall
         '';
       })
-      (source-sans.overrideAttrs {
-        installPhase = ''
-          runHook preInstall
-          install -Dm444 VF/*.otf -t $out/share/fonts/variable
-          runHook postInstall
-        '';
-      })
       (source-serif.overrideAttrs {
         installPhase = ''
           runHook preInstall
@@ -87,29 +80,44 @@
       })
       source-han-sans-vf-otf
       source-han-serif-vf-otf
+      noto-fonts
       noto-fonts-color-emoji
     ];
-    fontconfig.defaultFonts = {
-      emoji = [
-        "Noto Color Emoji"
-      ];
-      # Append emoji font for Qt apps, they might use the monochrome emoji
-      monospace = [
-        "JetBrains Mono"
-        "Source Han Sans SC VF"
-        "Symbols Nerd Font"
-        "Noto Color Emoji"
-      ];
-      sansSerif = [
-        "Inter Variable"
-        "Source Han Sans SC VF"
-        "Noto Color Emoji"
-      ];
-      serif = [
-        "Source Serif 4 Variable"
-        "Source Han Serif SC VF"
-        "Noto Color Emoji"
-      ];
+    fontconfig = {
+      defaultFonts = {
+        emoji = [
+          "Noto Color Emoji"
+        ];
+        # Append emoji font for Qt apps, they might use the monochrome emoji
+        monospace = [
+          "JetBrains Mono"
+          "Source Han Sans SC VF"
+          "Symbols Nerd Font"
+          "Noto Color Emoji"
+        ];
+        sansSerif = [
+          "Inter Variable"
+          "Source Han Sans SC VF"
+          "Noto Color Emoji"
+        ];
+        serif = [
+          "Source Serif 4 Variable"
+          "Source Han Serif SC VF"
+          "Noto Color Emoji"
+        ];
+      };
+      # GitHub perfers Noto Sans...
+      localConf = ''
+        <selectfont>
+          <rejectfont>
+            <pattern>
+              <patelt name="family">
+                <string>Noto Sans</string>
+              </patelt>
+            </pattern>
+          </rejectfont>
+        </selectfont>
+      '';
     };
   };
 
