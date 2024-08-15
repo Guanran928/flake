@@ -35,12 +35,8 @@
     checkConfig = false; # wtf?
     wrapperFeatures.gtk = true;
     systemd.xdgAutostart = true;
+    xwayland = false;
     config = {
-      ### Startup
-      startup = [
-        {command = "systemctl --user import-environment PATH";}
-      ];
-
       ### Visuals
       output."*".bg = "${inputs.self.legacyPackages.${pkgs.stdenv.hostPlatform.system}.background} fill";
       bars = [
