@@ -1,8 +1,4 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   imports =
     [
       ./theme.nix
@@ -38,7 +34,6 @@
     loupe
     mousai
     seahorse
-    inputs.self.legacyPackages.${pkgs.stdenv.hostPlatform.system}.scripts.lofi
   ];
 
   programs.obs-studio.enable = true;
