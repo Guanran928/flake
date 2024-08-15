@@ -6,7 +6,7 @@ in {
   # https://github.com/NixOS/nixpkgs/pull/308720
   pixivfe = callPackage ./pixivfe.nix {};
 
-  background = callPackage ./background.nix {};
+  background = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.src;
 
   scripts = lib.makeScope pkgs.newScope (self: let
     inherit (self) callPackage;

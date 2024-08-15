@@ -9,7 +9,7 @@
       daemonize = true;
       show-failed-attempts = true;
       show-keyboard-layout = true;
-      image = toString inputs.self.legacyPackages.${pkgs.stdenv.hostPlatform.system}.background.dark;
+      image = toString inputs.self.legacyPackages.${pkgs.stdenv.hostPlatform.system}.background;
       scaling = "fill";
     };
   };
