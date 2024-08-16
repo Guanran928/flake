@@ -14,11 +14,12 @@
     ./anti-feature.nix
 
     # Services
-    ./services/samba.nix
-    ./services/matrix.nix
-    ./services/mastodon.nix
-    ./services/minecraft.nix
     ./services/jellyfin.nix
+    ./services/mastodon.nix
+    ./services/matrix.nix
+    ./services/minecraft.nix
+    ./services/qbittorrent.nix
+    ./services/samba.nix
   ];
 
   boot.loader.efi.canTouchEfiVariables = true;
