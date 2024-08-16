@@ -20,7 +20,7 @@
           }
           {
             criteria = "ASUSTek COMPUTER INC VG27AQML1A S5LMQS059959";
-            mode = "2560x1440@240.001007";
+            mode = "2560x1440@119.998";
             status = "enable";
           }
         ];
