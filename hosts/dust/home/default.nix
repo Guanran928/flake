@@ -18,14 +18,12 @@
     ];
 
   home.packages = with pkgs; [
-    amberol
     dconf-editor
     file-roller
     fractal
     gnome-calculator
     hyperfine
     loupe
-    mousai
     seahorse
   ];
 

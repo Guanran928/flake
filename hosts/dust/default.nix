@@ -20,6 +20,8 @@
 
   home-manager.users.guanranwang = import ./home;
 
+  boot.tmp.useTmpfs = true;
+
   services.tailscale = {
     enable = true;
     openFirewall = true;

@@ -12,11 +12,6 @@
           ["nix" "nom" "nh" "podman" "docker" "atuin" "hugo" "adb"]
           # default
           ++ ["cargo" "go" "git" "npm" "yarn" "pnpm" "kubectl"];
-
-        common_prefix =
-          ["env"]
-          # default
-          ++ ["sudo"];
       };
     };
   };

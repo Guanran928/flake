@@ -2,7 +2,6 @@
   home.packages = with pkgs; [
     alejandra
     colmena
-    comma
     deadnix
     nh
     nil
@@ -14,7 +13,6 @@
     nix-update
     nixfmt-rfc-style
     nixpkgs-review
-    nurl
     sops
     statix
   ];
