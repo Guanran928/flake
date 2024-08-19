@@ -21,11 +21,29 @@ in {
       '';
     };
 
-    # HACK: no more qt5
-    qt6Packages = prev.qt6Packages.overrideScope (_qt6final: qt6prev: {
-      fcitx5-with-addons = qt6prev.fcitx5-with-addons.override {
+    qt6Packages = prev.qt6Packages.overrideScope (_final': prev': {
+      # HACK: no more qt5
+      fcitx5-with-addons = prev'.fcitx5-with-addons.override {
         libsForQt5.fcitx5-qt = prev.emptyDirectory;
       };
+
+      # HACK: no more qtwebengine, opencc
+      fcitx5-chinese-addons =
+        (prev'.fcitx5-chinese-addons.override {
+          curl = prev.emptyDirectory;
+          opencc = prev.emptyDirectory;
+          qtwebengine = prev.emptyDirectory;
+        })
+        .overrideAttrs (oldAttrs: {
+          buildInputs = oldAttrs.buildInputs ++ [prev.gettext prev'.qtbase];
+          cmakeFlags =
+            oldAttrs.cmakeFlags
+            ++ [
+              (prev.lib.cmakeBool "ENABLE_BROWSER" false)
+              (prev.lib.cmakeBool "ENABLE_CLOUDPINYIN" false)
+              (prev.lib.cmakeBool "ENABLE_OPENCC" false)
+            ];
+        });
     });
 
     # HACK: no more gtk2
