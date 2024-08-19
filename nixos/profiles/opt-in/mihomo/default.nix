@@ -37,24 +37,13 @@
     "clash/proxy-providers/spcloud" = {};
   };
 
-  # why not substituteAll? see https://github.com/NixOS/nixpkgs/issues/237216
-  sops.templates."clash.yaml".file = let
-    substituteAll' = {src, ...} @ args: let
-      args' = lib.removeAttrs args ["src"];
-    in
-      pkgs.substitute {
-        inherit src;
-        substitutions = lib.flatten (lib.mapAttrsToList (n: v: ["--subst-var-by" n v]) args');
-      };
-  in
-    substituteAll' {
-      src = ./config.yaml;
-      inherit
-        (config.sops.placeholder)
-        "clash/secret"
-        "clash/proxies/lightsail"
-        "clash/proxy-providers/efcloud"
-        "clash/proxy-providers/spcloud"
-        ;
-    };
+  sops.templates."clash.yaml".file = pkgs.replaceVars ./config.yaml {
+    inherit
+      (config.sops.placeholder)
+      "clash/secret"
+      "clash/proxies/lightsail"
+      "clash/proxy-providers/efcloud"
+      "clash/proxy-providers/spcloud"
+      ;
+  };
 }

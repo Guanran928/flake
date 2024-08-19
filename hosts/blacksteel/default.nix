@@ -72,8 +72,7 @@
 
   services.caddy = {
     enable = true;
-    configFile = pkgs.substituteAll {
-      src = ./Caddyfile;
+    configFile = pkgs.replaceVars ./Caddyfile {
       robots = toString ../tyo0/robots.txt;
       inherit (pkgs) mastodon;
     };

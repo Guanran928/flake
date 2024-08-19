@@ -67,9 +67,7 @@
 
   services.caddy = {
     enable = true;
-    configFile = pkgs.substituteAll {
-      src = ./Caddyfile;
-
+    configFile = pkgs.replaceVars ./Caddyfile {
       "element" = pkgs.element-web.override {
         element-web-unwrapped = pkgs.element-web-unwrapped.overrideAttrs (oldAttrs: {
           version = "1.11.74-rc.0";
@@ -93,8 +91,6 @@
           homeserverList = ["ny4.dev"];
         };
       };
-
-      "mastodon" = pkgs.mastodon;
     };
   };
 
