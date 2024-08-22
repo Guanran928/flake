@@ -69,16 +69,6 @@
     enable = true;
     configFile = pkgs.replaceVars ./Caddyfile {
       "element" = pkgs.element-web.override {
-        element-web-unwrapped = pkgs.element-web-unwrapped.overrideAttrs (oldAttrs: {
-          version = "1.11.74-rc.0";
-          src = oldAttrs.src.overrideAttrs {
-            outputHash = "sha256-Dik4vBzybkb6Q7OgEDrQ3FBaUGOmUxr9SplyNm1JWZU=";
-          };
-          offlineCache = oldAttrs.offlineCache.overrideAttrs {
-            outputHash = "sha256-+SSsFUVIVuNpy+CQT6+oFIGvzQLAHEokibXtxsidumQ=";
-          };
-        });
-
         conf.default_server_config."m.homeserver" = {
           base_url = "https://matrix.ny4.dev";
           server_name = "ny4.dev";
