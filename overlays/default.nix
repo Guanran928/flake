@@ -86,6 +86,11 @@ in {
         url = "https://github.com/NickHu/sway/commit/03c14421354e54332e12f78d029dcaa9919fd161.patch";
         hash = "sha256-8RGtpfN/tnkA7nuGdXGHoKUoKVeG7brSQR6V4RU3z88=";
       })
+      (prev.fetchpatch2 {
+        name = "0003-swaybar-dbusmenu-fix-crash-if-the-program-exits-while-menu.patch";
+        url = "https://github.com/llyyr/sway/commit/84481c26a4c55674da5804bb2619d3575ba405b3.patch";
+        hash = "sha256-+JJoHNOmDzqT1TaFM83DR3/BdCab240tfs21VNMv6wE=";
+      })
     ];
   };
 }
