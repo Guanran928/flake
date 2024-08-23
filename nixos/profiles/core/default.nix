@@ -50,7 +50,7 @@
   ];
 
   users.mutableUsers = false;
-  users.users = rec {
+  users.users = {
     "guanranwang" = {
       isNormalUser = true;
       description = "Guanran Wang";
@@ -63,10 +63,6 @@
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMmd/uqiBahzKcKMJ+gT3dkUIdrWQgudspsDchDlx1E/ guanran928@outlook.com"
       ];
-    };
-
-    "root" = {
-      openssh.authorizedKeys.keys = guanranwang.openssh.authorizedKeys.keys;
     };
   };
 

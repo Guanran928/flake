@@ -6,7 +6,6 @@
 }: {
   imports = [
     # OS
-    ../../nixos/profiles/server
     ../../nixos/profiles/opt-in/mihomo
 
     # Hardware
@@ -25,7 +24,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.enable = true;
   networking.hostName = "blacksteel";
-  time.timeZone = "Asia/Shanghai";
   system.stateVersion = "24.05";
 
   ######## Secrets

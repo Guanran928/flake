@@ -152,6 +152,7 @@
 
         defaults.imports = [
           ./nixos/profiles/core
+          ./nixos/profiles/server
         ];
 
         "tyo0" = {
