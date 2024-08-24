@@ -6,6 +6,10 @@
   services.sing-box = {
     enable = true;
     settings = {
+      log = {
+        level = "info";
+      };
+
       inbounds = [
         {
           type = "http";
@@ -67,12 +71,15 @@
   };
 
   ### System proxy settings
-  networking.proxy.default = "http://127.0.0.1:1080/";
+  networking.proxy = {
+    httpProxy = "http://127.0.0.1:1080/";
+    httpsProxy = "http://127.0.0.1:1080/";
+  };
   environment.shellAliases = let
-    inherit (config.networking) proxy;
+    inherit (config.networking.proxy) httpProxy httpsProxy;
   in {
-    "setproxy" = "export http_proxy=${proxy.httpProxy} https_proxy=${proxy.httpsProxy} all_proxy=${proxy.allProxy} ftp_proxy=${proxy.ftpProxy} rsync_proxy=${proxy.rsyncProxy}";
-    "unsetproxy" = "set -e http_proxy https_proxy all_proxy ftp_proxy rsync_proxy";
+    "setproxy" = "export http_proxy=${httpProxy} https_proxy=${httpsProxy}";
+    "unsetproxy" = "set -e http_proxy https_proxy";
   };
 
   ### sops-nix
