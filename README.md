@@ -1,4 +1,4 @@
-# nix{os,-darwin} config
+# nixos config
 
 It just works™
 
@@ -6,12 +6,9 @@ It just works™
 
 ```
  .
-│   # Darwin configuration is not actively maintained and sometimes it might
-│   # break.
 ├── 󱂵 home # <-- See here for dotfiles!
-├──  darwin
 ├──  nixos
-│  ├──  modules
+│  ├──  modules # nixos options
 │  └──  profiles
 │
 │   # Internal packages, please see github:Guanran928/nur-packages instead

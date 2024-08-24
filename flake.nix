@@ -40,10 +40,6 @@
       inputs.treefmt-nix.follows = "treefmt-nix";
       inputs.systems.follows = "systems";
     };
-    nix-darwin = {
-      url = "github:LnL7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware";
     };
@@ -96,7 +92,7 @@
       formatter = treefmtEval.config.build.wrapper;
 
       ### nix flake check
-      checks = {formatting = treefmtEval.config.build.check inputs.self;};
+      checks.formatting = treefmtEval.config.build.check inputs.self;
 
       ### nix {run,shell,build}
       legacyPackages = import ./pkgs pkgs;
@@ -109,37 +105,22 @@
         ];
       };
     })
-    // (let
-      mkNixOS = system: modules:
-        inputs.nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [./nixos/profiles/core] ++ modules;
-          specialArgs = {inherit inputs;};
-        };
-
-      mkDarwin = system: modules:
-        inputs.nix-darwin.lib.darwinSystem {
-          inherit system modules;
-          specialArgs = {inherit inputs;};
-        };
-    in {
+    // {
       ### imports = [];
       nixosModules.default = ./nixos/modules;
-      darwinModules.default = ./darwin/modules;
       homeManagerModules.default = ./home/modules;
 
       ### nixpkgs.overlays = [];
       overlays = import ./overlays;
 
       ### NixOS
-      nixosConfigurations = {
-        "dust" = mkNixOS "x86_64-linux" [./hosts/dust];
-      };
-
-      ### Darwin
-      darwinConfigurations = {
-        "plato" = mkDarwin "x86_64-darwin" [./hosts/plato];
-        "whitesteel" = mkDarwin "x86_64-darwin" [./hosts/whitesteel];
+      nixosConfigurations."dust" = inputs.nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./nixos/profiles/core
+          ./hosts/dust
+        ];
+        specialArgs = {inherit inputs;};
       };
 
       colmena = {
@@ -165,5 +146,5 @@
           deployment.targetHost = "blacksteel"; # thru tailscale
         };
       };
-    });
+    };
 }
