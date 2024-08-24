@@ -39,10 +39,21 @@
       route = {
         rules = [
           {
-            rule_set = ["geoip-cn" "geosite-cn"];
+            rule_set = [
+              "geoip-cn"
+              "geosite-cn"
+            ];
+            outbound = "direct";
+          }
+          {
+            rule_set = [
+              "geosite-private"
+            ];
+            ip_is_private = true;
             outbound = "direct";
           }
         ];
+
         rule_set = [
           {
             tag = "geoip-cn";
@@ -56,7 +67,14 @@
             format = "binary";
             path = "${pkgs.sing-geosite}/share/sing-box/rule-set/geosite-cn.srs";
           }
+          {
+            tag = "geosite-private";
+            type = "local";
+            format = "binary";
+            path = "${pkgs.sing-geosite}/share/sing-box/rule-set/geosite-private.srs";
+          }
         ];
+
         final = "tyo0";
       };
 
@@ -75,6 +93,7 @@
     httpProxy = "http://127.0.0.1:1080/";
     httpsProxy = "http://127.0.0.1:1080/";
   };
+
   environment.shellAliases = let
     inherit (config.networking.proxy) httpProxy httpsProxy;
   in {
