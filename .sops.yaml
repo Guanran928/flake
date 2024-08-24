@@ -18,13 +18,13 @@ creation_rules:
       - age:
           - *guanranwang
           - *lightsail-tokyo
-  - path_regex: nixos/profiles/opt-in/mihomo/secrets.yaml$
+  - path_regex: nixos/profiles/sing-box/secrets.yaml$
     key_groups:
       - age:
           - *guanranwang
           - *blacksteel
           - *dust
-  - path_regex: nixos/profiles/opt-in/wireless/secrets.yaml$
+  - path_regex: nixos/profiles/wireless/secrets.yaml$
     key_groups:
       - age:
           - *guanranwang

@@ -6,7 +6,7 @@
 }: {
   imports = [
     # OS
-    ../../nixos/profiles/opt-in/mihomo
+    ../../nixos/profiles/sing-box
 
     # Hardware
     ./hardware-configuration.nix

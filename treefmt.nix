@@ -11,8 +11,8 @@
   settings.formatter.prettier.excludes = [
     "hosts/blacksteel/secrets.yaml"
     "hosts/tyo0/secrets.yaml"
-    "nixos/profiles/opt-in/mihomo/secrets.yaml"
-    "nixos/profiles/opt-in/wireless/secrets.yaml"
+    "nixos/profiles/sing-box/secrets.yaml"
+    "nixos/profiles/wireless/secrets.yaml"
     "secrets.yaml"
   ];
 }

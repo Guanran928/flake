@@ -4,8 +4,8 @@
   ...
 }: {
   imports = [
-    ../../nixos/profiles/opt-in/mihomo
-    ../../nixos/profiles/opt-in/wireless
+    ../../nixos/profiles/sing-box
+    ../../nixos/profiles/wireless
 
     ./anti-feature.nix
     ./disko.nix
