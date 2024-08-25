@@ -25,6 +25,12 @@
         }
       ];
 
+      experimental_features = {
+        # MSC3575 (Sliding Sync API endpoints)
+        # TODO: drop matrix-sliding-sync proxy
+        msc3575_enabled = true;
+      };
+
       # https://element-hq.github.io/synapse/latest/openid.html#keycloak
       oidc_providers = [
         {
