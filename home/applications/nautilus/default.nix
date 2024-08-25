@@ -1,5 +1,6 @@
-{pkgs, ...}: {
-  home.packages = [pkgs.nautilus];
+{ pkgs, ... }:
+{
+  home.packages = [ pkgs.nautilus ];
   dconf.settings = {
     "org/gnome/nautilus/list-view".default-zoom-level = "small";
     "org/gnome/nautilus/preferences".default-folder-viewer = "list-view";

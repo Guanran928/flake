@@ -10,5 +10,5 @@
     };
   };
 
-  systemd.services.ntfy-sh.serviceConfig.RuntimeDirectory = ["ntfy-sh"];
+  systemd.services.ntfy-sh.serviceConfig.RuntimeDirectory = [ "ntfy-sh" ];
 }

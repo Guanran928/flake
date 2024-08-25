@@ -201,11 +201,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1722181846,
-        "narHash": "sha256-/yyqi39qr7Z+Bkv8gVVqB5q/gu1cLna3TtzbADLzEbc=",
+        "lastModified": 1724599287,
+        "narHash": "sha256-M4OllWFNDcvgY2rgx/9uWn9jpunSb2CzmqPDcuS27SQ=",
         "ref": "refs/heads/master",
-        "rev": "214725ef364950e5b086f0cd3f7978f38655a58b",
-        "revCount": 70,
+        "rev": "a2f4145923cbbabb63e7749a49c86052a17389f7",
+        "revCount": 72,
         "type": "git",
         "url": "https://git.ny4.dev/nyancat/nvim"
       },

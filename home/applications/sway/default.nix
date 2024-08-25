@@ -4,7 +4,8 @@
   inputs,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     ../i3status-rust
     ../kanshi
@@ -67,9 +68,10 @@
 
       ### Keybinds
       modifier = "Mod4";
-      keybindings = let
-        inherit (config.wayland.windowManager.sway.config) modifier;
-      in
+      keybindings =
+        let
+          inherit (config.wayland.windowManager.sway.config) modifier;
+        in
         {
           ### Sway itself
           # Window
@@ -116,17 +118,19 @@
           "XF86AudioStop" = "exec ${lib.getExe pkgs.playerctl} stop";
         }
         //
-        # workspace binds
-        lib.listToAttrs (lib.concatMap (x: [
-          {
-            name = "${modifier}+${x}";
-            value = "workspace ${x}";
-          }
-          {
-            name = "${modifier}+Shift+${x}";
-            value = "move container to workspace ${x}";
-          }
-        ]) (lib.genList (x: toString (x + 1)) 9));
+          # workspace binds
+          lib.listToAttrs (
+            lib.concatMap (x: [
+              {
+                name = "${modifier}+${x}";
+                value = "workspace ${x}";
+              }
+              {
+                name = "${modifier}+Shift+${x}";
+                value = "move container to workspace ${x}";
+              }
+            ]) (lib.genList (x: toString (x + 1)) 9)
+          );
     };
   };
 }

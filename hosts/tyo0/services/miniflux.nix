@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   services.miniflux = {
     enable = true;
     adminCredentialsFile = config.sops.secrets."miniflux/environment".path;

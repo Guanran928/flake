@@ -1,5 +1,6 @@
-{pkgs, ...}: {
-  home.packages = [pkgs.ydict];
+{ pkgs, ... }:
+{
+  home.packages = [ pkgs.ydict ];
   home.shellAliases = {
     "yd" = "ydict -c";
   };

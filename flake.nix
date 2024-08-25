@@ -83,28 +83,33 @@
     };
   };
 
-  outputs = inputs:
-    inputs.flake-utils.lib.eachDefaultSystem (system: let
-      pkgs = inputs.nixpkgs.legacyPackages.${system};
-      treefmtEval = inputs.treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
-    in {
-      ### nix fmt
-      formatter = treefmtEval.config.build.wrapper;
+  outputs =
+    inputs:
+    inputs.flake-utils.lib.eachDefaultSystem (
+      system:
+      let
+        pkgs = inputs.nixpkgs.legacyPackages.${system};
+        treefmtEval = inputs.treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
+      in
+      {
+        ### nix fmt
+        formatter = treefmtEval.config.build.wrapper;
 
-      ### nix flake check
-      checks.formatting = treefmtEval.config.build.check inputs.self;
+        ### nix flake check
+        checks.formatting = treefmtEval.config.build.check inputs.self;
 
-      ### nix {run,shell,build}
-      legacyPackages = import ./pkgs pkgs;
+        ### nix {run,shell,build}
+        legacyPackages = import ./pkgs pkgs;
 
-      ### nix develop
-      devShells.default = pkgs.mkShell {
-        packages = with pkgs; [
-          colmena
-          sops
-        ];
-      };
-    })
+        ### nix develop
+        devShells.default = pkgs.mkShell {
+          packages = with pkgs; [
+            colmena
+            sops
+          ];
+        };
+      }
+    )
     // {
       ### imports = [];
       nixosModules.default = ./nixos/modules;
@@ -120,12 +125,16 @@
           ./nixos/profiles/core
           ./hosts/dust
         ];
-        specialArgs = {inherit inputs;};
+        specialArgs = {
+          inherit inputs;
+        };
       };
 
       colmena = {
         meta = {
-          specialArgs = {inherit inputs;};
+          specialArgs = {
+            inherit inputs;
+          };
           nixpkgs = import inputs.nixpkgs {
             system = "x86_64-linux"; # How does this work?
           };
@@ -137,12 +146,12 @@
         ];
 
         "tyo0" = {
-          imports = [./hosts/tyo0];
+          imports = [ ./hosts/tyo0 ];
           deployment.targetHost = "tyo0.ny4.dev";
         };
 
         "blacksteel" = {
-          imports = [./hosts/blacksteel];
+          imports = [ ./hosts/blacksteel ];
           deployment.targetHost = "blacksteel"; # thru tailscale
         };
       };

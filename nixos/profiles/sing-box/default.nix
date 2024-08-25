@@ -2,7 +2,8 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   services.sing-box = {
     enable = true;
     settings = {
@@ -94,16 +95,18 @@
     httpsProxy = "http://127.0.0.1:1080/";
   };
 
-  environment.shellAliases = let
-    inherit (config.networking.proxy) httpProxy httpsProxy;
-  in {
-    "setproxy" = "export http_proxy=${httpProxy} https_proxy=${httpsProxy}";
-    "unsetproxy" = "set -e http_proxy https_proxy";
-  };
+  environment.shellAliases =
+    let
+      inherit (config.networking.proxy) httpProxy httpsProxy;
+    in
+    {
+      "setproxy" = "export http_proxy=${httpProxy} https_proxy=${httpsProxy}";
+      "unsetproxy" = "set -e http_proxy https_proxy";
+    };
 
   ### sops-nix
   sops.secrets."sing-box/tyo0" = {
-    restartUnits = ["sing-box.service"];
+    restartUnits = [ "sing-box.service" ];
     sopsFile = ./secrets.yaml;
   };
 }

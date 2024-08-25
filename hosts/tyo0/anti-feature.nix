@@ -1,7 +1,9 @@
-{lib, ...}: {
+{ lib, ... }:
+{
   nixpkgs.config = {
     allowNonSource = false;
-    allowNonSourcePredicate = pkg:
+    allowNonSourcePredicate =
+      pkg:
       lib.elem (lib.getName pkg) [
         "adoptopenjdk-hotspot-bin"
         "cargo-bootstrap"
@@ -12,9 +14,11 @@
       ];
 
     allowUnfree = false;
-    allowUnfreePredicate = pkg:
-      lib.elem (lib.getName pkg) [
-      ];
+    allowUnfreePredicate =
+      pkg:
+      lib.elem (lib.getName pkg)
+        [
+        ];
 
     permittedInsecurePackages = [
       "cinny-4.1.0"

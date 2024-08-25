@@ -1,4 +1,5 @@
-{lib, ...}: {
+{ lib, ... }:
+{
   services.zram-generator = {
     enable = true;
     settings.zram0 = {

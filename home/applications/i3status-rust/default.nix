@@ -4,10 +4,10 @@
     bars.default = {
       icons = "material-nf";
       blocks = [
-        {block = "backlight";}
-        {block = "sound";}
-        {block = "battery";}
-        {block = "time";}
+        { block = "backlight"; }
+        { block = "sound"; }
+        { block = "battery"; }
+        { block = "time"; }
       ];
     };
   };

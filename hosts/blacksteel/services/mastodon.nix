@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   services.mastodon = {
     enable = true;
     localDomain = "ny4.dev";
@@ -30,7 +31,7 @@
 
   systemd.services.mastodon-web = {
     environment = config.networking.proxy.envVars;
-    serviceConfig.EnvironmentFile = [config.sops.secrets."mastodon/environment".path];
+    serviceConfig.EnvironmentFile = [ config.sops.secrets."mastodon/environment".path ];
   };
 
   systemd.services.mastodon-sidekiq-all.environment = config.networking.proxy.envVars;

@@ -4,17 +4,22 @@
   pkgs,
   utils,
   ...
-}: let
+}:
+let
   cfg = config.services.hysteria;
-  settingsFormat = pkgs.formats.json {};
-in {
+  settingsFormat = pkgs.formats.json { };
+in
+{
   options.services.hysteria = {
     enable = lib.mkEnableOption "Hysteria, a powerful, lightning fast and censorship resistant proxy";
 
-    package = lib.mkPackageOption pkgs "hysteria" {};
+    package = lib.mkPackageOption pkgs "hysteria" { };
 
     mode = lib.mkOption {
-      type = lib.types.enum ["server" "client"];
+      type = lib.types.enum [
+        "server"
+        "client"
+      ];
       default = "server";
       description = "Whether to use Hysteria as a client or a server.";
     };
@@ -23,7 +28,7 @@ in {
       type = lib.types.submodule {
         freeformType = settingsFormat.type;
       };
-      default = {};
+      default = { };
       description = ''
         The Hysteria configuration, see https://hysteria.network/ for documentation.
 
@@ -38,10 +43,10 @@ in {
   config = lib.mkIf cfg.enable {
     systemd.services."hysteria" = {
       description = "Hysteria daemon, a powerful, lightning fast and censorship resistant proxy.";
-      documentation = ["https://hysteria.network/"];
-      wantedBy = ["multi-user.target"];
-      after = ["network-online.target"];
-      wants = ["network-online.target"];
+      documentation = [ "https://hysteria.network/" ];
+      wantedBy = [ "multi-user.target" ];
+      after = [ "network-online.target" ];
+      wants = [ "network-online.target" ];
       preStart = utils.genJqSecretsReplacementSnippet cfg.settings "/var/lib/private/hysteria/config.json";
       serviceConfig = {
         ExecStart = lib.concatStringsSep " " [
@@ -54,8 +59,16 @@ in {
         StateDirectory = "hysteria";
 
         ### Hardening
-        AmbientCapabilities = ["CAP_NET_ADMIN" "CAP_NET_BIND_SERVICE" "CAP_NET_RAW"];
-        CapabilityBoundingSet = ["CAP_NET_ADMIN" "CAP_NET_BIND_SERVICE" "CAP_NET_RAW"];
+        AmbientCapabilities = [
+          "CAP_NET_ADMIN"
+          "CAP_NET_BIND_SERVICE"
+          "CAP_NET_RAW"
+        ];
+        CapabilityBoundingSet = [
+          "CAP_NET_ADMIN"
+          "CAP_NET_BIND_SERVICE"
+          "CAP_NET_RAW"
+        ];
         NoNewPrivileges = true;
         PrivateMounts = true;
         PrivateTmp = true;

@@ -23,7 +23,7 @@ buildGoModule rec {
     "-w"
   ];
 
-  nativeBuildInputs = [makeBinaryWrapper];
+  nativeBuildInputs = [ makeBinaryWrapper ];
 
   postInstall = ''
     mkdir -p $out/share/pixivfe
@@ -37,7 +37,7 @@ buildGoModule rec {
     homepage = "https://codeberg.org/VnPower/PixivFE";
     license = lib.licenses.agpl3Only;
     mainProgram = "pixivfe";
-    maintainers = with lib.maintainers; [Guanran928];
+    maintainers = with lib.maintainers; [ Guanran928 ];
     platforms = lib.platforms.linux;
   };
 }

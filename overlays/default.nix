@@ -1,9 +1,11 @@
 let
-  addPatches = pkg: patches:
+  addPatches =
+    pkg: patches:
     pkg.overrideAttrs (old: {
-      patches = (old.patches or []) ++ patches;
+      patches = (old.patches or [ ]) ++ patches;
     });
-in {
+in
+{
   patches = _final: prev: {
     # https://aur.archlinux.org/pkgbase/nautilus-typeahead
     nautilus = prev.nautilus.overrideAttrs {
@@ -21,39 +23,42 @@ in {
       '';
     };
 
-    qt6Packages = prev.qt6Packages.overrideScope (_final': prev': {
-      # HACK: no more qt5
-      fcitx5-with-addons = prev'.fcitx5-with-addons.override {
-        libsForQt5.fcitx5-qt = prev.emptyDirectory;
-      };
+    qt6Packages = prev.qt6Packages.overrideScope (
+      _final': prev': {
+        # HACK: no more qt5
+        fcitx5-with-addons = prev'.fcitx5-with-addons.override {
+          libsForQt5.fcitx5-qt = prev.emptyDirectory;
+        };
 
-      # HACK: no more qtwebengine, opencc
-      fcitx5-chinese-addons =
-        (prev'.fcitx5-chinese-addons.override {
-          curl = prev.emptyDirectory;
-          opencc = prev.emptyDirectory;
-          qtwebengine = prev.emptyDirectory;
-        })
-        .overrideAttrs (oldAttrs: {
-          buildInputs = oldAttrs.buildInputs ++ [prev.gettext prev'.qtbase];
-          cmakeFlags =
-            oldAttrs.cmakeFlags
-            ++ [
-              (prev.lib.cmakeBool "ENABLE_BROWSER" false)
-              (prev.lib.cmakeBool "ENABLE_CLOUDPINYIN" false)
-              (prev.lib.cmakeBool "ENABLE_OPENCC" false)
-            ];
-        });
-    });
+        # HACK: no more qtwebengine, opencc
+        fcitx5-chinese-addons =
+          (prev'.fcitx5-chinese-addons.override {
+            curl = prev.emptyDirectory;
+            opencc = prev.emptyDirectory;
+            qtwebengine = prev.emptyDirectory;
+          }).overrideAttrs
+            (oldAttrs: {
+              buildInputs = oldAttrs.buildInputs ++ [
+                prev.gettext
+                prev'.qtbase
+              ];
+              cmakeFlags = oldAttrs.cmakeFlags ++ [
+                (prev.lib.cmakeBool "ENABLE_BROWSER" false)
+                (prev.lib.cmakeBool "ENABLE_CLOUDPINYIN" false)
+                (prev.lib.cmakeBool "ENABLE_OPENCC" false)
+              ];
+            });
+      }
+    );
 
     # HACK: no more gtk2
     gnome-themes-extra =
       (prev.gnome-themes-extra.override {
         gtk2 = prev.emptyDirectory;
-      })
-      .overrideAttrs {
-        configureFlags = ["--disable-gtk2-engine"];
-      };
+      }).overrideAttrs
+        {
+          configureFlags = [ "--disable-gtk2-engine" ];
+        };
 
     sway-unwrapped = addPatches prev.sway-unwrapped [
       # text_input: Implement input-method popups

@@ -2,7 +2,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   home = {
     username = "guanranwang";
     homeDirectory = "/home/guanranwang";
@@ -33,20 +34,22 @@
     fd
   ];
 
-  programs.fish.functions = let
-    jq = lib.getExe pkgs.jq;
-    nix = lib.getExe pkgs.nix;
-    curl = lib.getExe pkgs.curl;
-  in {
-    "pb" = ''
-      ${jq} -Rns '{text: inputs}' | \
-        ${curl} -s -H 'Content-Type: application/json' --data-binary @- https://pb.ny4.dev | \
-        ${jq} -r '. | "https://pb.ny4.dev\(.path)"'
-    '';
+  programs.fish.functions =
+    let
+      jq = lib.getExe pkgs.jq;
+      nix = lib.getExe pkgs.nix;
+      curl = lib.getExe pkgs.curl;
+    in
+    {
+      "pb" = ''
+        ${jq} -Rns '{text: inputs}' | \
+          ${curl} -s -H 'Content-Type: application/json' --data-binary @- https://pb.ny4.dev | \
+          ${jq} -r '. | "https://pb.ny4.dev\(.path)"'
+      '';
 
-    "getmnter" = ''
-      ${nix} eval nixpkgs#{$argv}.meta.maintainers --json | \
-        ${jq} '.[].github | "@" + .' -r
-    '';
-  };
+      "getmnter" = ''
+        ${nix} eval nixpkgs#{$argv}.meta.maintainers --json | \
+          ${jq} '.[].github | "@" + .' -r
+      '';
+    };
 }

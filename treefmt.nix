@@ -2,7 +2,7 @@
   projectRootFile = "flake.nix";
 
   ### nix
-  programs.alejandra.enable = true;
+  programs.nixfmt.enable = true;
   programs.deadnix.enable = true;
   programs.statix.enable = true;
 

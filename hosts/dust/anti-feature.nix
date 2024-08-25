@@ -1,9 +1,11 @@
-{lib, ...}: {
+{ lib, ... }:
+{
   nixpkgs.config = {
     allowAliases = false;
 
     allowNonSource = false;
-    allowNonSourcePredicate = pkg:
+    allowNonSourcePredicate =
+      pkg:
       lib.elem (lib.getName pkg) [
         "cargo-bootstrap"
         "cef-binary"
@@ -15,7 +17,8 @@
       ];
 
     allowUnfree = false;
-    allowUnfreePredicate = pkg:
+    allowUnfreePredicate =
+      pkg:
       lib.elem (lib.getName pkg) [
         "fcitx5-pinyin-minecraft"
         "fcitx5-pinyin-moegirl"

@@ -2,7 +2,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     ../../nixos/profiles/sing-box
     ../../nixos/profiles/wireless
@@ -31,8 +32,8 @@
     yubikey-manager
   ];
 
-  networking.firewall.allowedTCPPorts = [53317];
-  networking.firewall.allowedUDPPorts = [53317];
+  networking.firewall.allowedTCPPorts = [ 53317 ];
+  networking.firewall.allowedUDPPorts = [ 53317 ];
 
   programs.adb.enable = true;
   programs.localsend.enable = true;
@@ -51,13 +52,13 @@
 
   # yubikey
   services.pcscd.enable = true;
-  services.udev.packages = [pkgs.yubikey-personalization];
+  services.udev.packages = [ pkgs.yubikey-personalization ];
 
   fonts = {
     enableDefaultPackages = false;
     packages = with pkgs; [
       (nerdfonts.override {
-        fonts = ["NerdFontsSymbolsOnly"];
+        fonts = [ "NerdFontsSymbolsOnly" ];
       })
       (inter.overrideAttrs {
         installPhase = ''
@@ -139,9 +140,9 @@
   security.polkit.enable = true;
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
     description = "polkit-gnome-authentication-agent-1";
-    wantedBy = ["graphical-session.target"];
-    wants = ["graphical-session.target"];
-    after = ["graphical-session.target"];
+    wantedBy = [ "graphical-session.target" ];
+    wants = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
     serviceConfig = {
       Type = "simple";
       ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
@@ -151,11 +152,11 @@
     };
   };
 
-  security.pam.services.swaylock = {};
+  security.pam.services.swaylock = { };
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-    extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     # https://gitlab.archlinux.org/archlinux/packaging/packages/sway/-/blob/main/sway-portals.conf
     config."sway" = {
       default = "gtk";

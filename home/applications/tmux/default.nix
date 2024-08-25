@@ -1,5 +1,6 @@
-{pkgs, ...}: {
-  home.packages = [pkgs.tmux];
+{ pkgs, ... }:
+{
+  home.packages = [ pkgs.tmux ];
 
   xdg.configFile."tmux/tmux.conf".text = ''
     run-shell ${pkgs.tmuxPlugins.sensible.rtp}

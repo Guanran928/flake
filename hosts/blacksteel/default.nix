@@ -3,7 +3,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     # OS
     ../../nixos/profiles/sing-box
@@ -27,24 +28,25 @@
   system.stateVersion = "24.05";
 
   ######## Secrets
-  sops.secrets = lib.mapAttrs (_name: value: value // {sopsFile = ./secrets.yaml;}) {
+  sops.secrets = lib.mapAttrs (_name: value: value // { sopsFile = ./secrets.yaml; }) {
     "synapse/secret" = {
-      restartUnits = ["matrix-synapse.service"];
+      restartUnits = [ "matrix-synapse.service" ];
       owner = config.systemd.services.matrix-synapse.serviceConfig.User;
     };
     "synapse/oidc" = {
-      restartUnits = ["matrix-synapse.service"];
+      restartUnits = [ "matrix-synapse.service" ];
       owner = config.systemd.services.matrix-synapse.serviceConfig.User;
     };
     "syncv3/environment" = {
-      restartUnits = ["matrix-sliding-sync.service"];
+      restartUnits = [ "matrix-sliding-sync.service" ];
     };
     "mastodon/environment" = {
-      restartUnits = ["mastodon-web.service"];
+      restartUnits = [ "mastodon-web.service" ];
     };
     "cloudflared/secret" = {
-      restartUnits = ["cloudflared-tunnel-6222a3e0-98da-4325-be19-0f86a7318a41.service"];
-      owner = config.systemd.services."cloudflared-tunnel-6222a3e0-98da-4325-be19-0f86a7318a41".serviceConfig.User;
+      restartUnits = [ "cloudflared-tunnel-6222a3e0-98da-4325-be19-0f86a7318a41.service" ];
+      owner =
+        config.systemd.services."cloudflared-tunnel-6222a3e0-98da-4325-be19-0f86a7318a41".serviceConfig.User;
     };
   };
 
@@ -77,7 +79,10 @@
   };
 
   systemd.services.caddy.serviceConfig = {
-    SupplementaryGroups = ["mastodon" "matrix-synapse"];
+    SupplementaryGroups = [
+      "mastodon"
+      "matrix-synapse"
+    ];
   };
 
   services.postgresql = {

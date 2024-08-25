@@ -3,7 +3,8 @@
   modulesPath,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     "${modulesPath}/virtualisation/amazon-image.nix"
     ./anti-feature.nix
@@ -33,27 +34,30 @@
   systemd.services."print-host-key".enable = false;
 
   ### Secrets
-  sops.secrets = lib.mapAttrs (_name: value: value // {sopsFile = ./secrets.yaml;}) {
+  sops.secrets = lib.mapAttrs (_name: value: value // { sopsFile = ./secrets.yaml; }) {
     "hysteria/auth" = {
-      restartUnits = ["hysteria.service"];
+      restartUnits = [ "hysteria.service" ];
     };
     "pixivfe/environment" = {
-      restartUnits = ["pixivfe.service"];
+      restartUnits = [ "pixivfe.service" ];
     };
     "searx/environment" = {
-      restartUnits = ["searx.service"];
+      restartUnits = [ "searx.service" ];
     };
     "miniflux/environment" = {
-      restartUnits = ["miniflux.service"];
+      restartUnits = [ "miniflux.service" ];
     };
     "vaultwarden/environment" = {
-      restartUnits = ["vaultwarden.service"];
+      restartUnits = [ "vaultwarden.service" ];
     };
   };
 
   ### Services
-  networking.firewall.allowedUDPPorts = [443]; # hysteria
-  networking.firewall.allowedTCPPorts = [80 443]; # caddy
+  networking.firewall.allowedUDPPorts = [ 443 ]; # hysteria
+  networking.firewall.allowedTCPPorts = [
+    80
+    443
+  ]; # caddy
 
   systemd.tmpfiles.settings = {
     "10-www" = {
@@ -76,7 +80,7 @@
       "cinny" = pkgs.cinny.override {
         conf = {
           defaultHomeserver = 0;
-          homeserverList = ["ny4.dev"];
+          homeserverList = [ "ny4.dev" ];
         };
       };
     };
@@ -122,7 +126,12 @@
   services.vnstat.enable = true;
   systemd.services."no-bankrupt" = {
     serviceConfig.Type = "oneshot";
-    path = with pkgs; [coreutils gawk vnstat systemd];
+    path = with pkgs; [
+      coreutils
+      gawk
+      vnstat
+      systemd
+    ];
     script = ''
       TRAFF_TOTAL=1900
       TRAFF_USED=$(vnstat --oneline b | awk -F ';' '{print $11}')

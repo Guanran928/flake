@@ -4,13 +4,17 @@
   inputs,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.services.pixivfe;
-in {
+in
+{
   options.services.pixivfe = {
     enable = lib.mkEnableOption "PixivFE, a privacy respecting frontend for Pixiv";
 
-    package = lib.mkPackageOption inputs.self.legacyPackages.${pkgs.stdenv.hostPlatform.system} "pixivfe" {};
+    package =
+      lib.mkPackageOption inputs.self.legacyPackages.${pkgs.stdenv.hostPlatform.system} "pixivfe"
+        { };
 
     openFirewall = lib.mkEnableOption "open ports in the firewall needed for the daemon to function";
 
@@ -46,10 +50,7 @@ in {
   config = lib.mkIf cfg.enable {
     assertions = [
       {
-        assertion =
-          if cfg.openFirewall
-          then (cfg.settings ? PIXIVFE_PORT)
-          else true;
+        assertion = if cfg.openFirewall then (cfg.settings ? PIXIVFE_PORT) else true;
         message = ''
           PIXIVFE_PORT must be specified for NixOS to open a port.
 
@@ -58,9 +59,10 @@ in {
       }
       {
         assertion =
-          if (cfg.EnvironmentFile == null)
-          then (cfg.settings ? PIXIVFE_UNIXSOCKET) || (cfg.settings ? PIXIVFE_PORT)
-          else true;
+          if (cfg.EnvironmentFile == null) then
+            (cfg.settings ? PIXIVFE_UNIXSOCKET) || (cfg.settings ? PIXIVFE_PORT)
+          else
+            true;
         message = ''
           PIXIVFE_PORT or PIXIVFE_UNIXSOCKET must be set for PixivFE to run.
 
@@ -68,10 +70,7 @@ in {
         '';
       }
       {
-        assertion =
-          if (cfg.EnvironmentFile == null)
-          then cfg.settings ? PIXIVFE_TOKEN
-          else true;
+        assertion = if (cfg.EnvironmentFile == null) then cfg.settings ? PIXIVFE_TOKEN else true;
         message = ''
           PIXIVFE_TOKEN must be set for PixivFE to run.
 
@@ -82,23 +81,21 @@ in {
 
     systemd.services."pixivfe" = {
       description = "PixivFE, a privacy respecting frontend for Pixiv.";
-      documentation = ["https://pixivfe.pages.dev/"];
-      wantedBy = ["multi-user.target"];
-      after = ["network-online.target"];
-      wants = ["network-online.target"];
-      environment = lib.mkIf (cfg.settings != null) (lib.mapAttrs (_: v:
-        if lib.isBool v
-        then lib.boolToString v
-        else toString v)
-      cfg.settings);
+      documentation = [ "https://pixivfe.pages.dev/" ];
+      wantedBy = [ "multi-user.target" ];
+      after = [ "network-online.target" ];
+      wants = [ "network-online.target" ];
+      environment = lib.mkIf (cfg.settings != null) (
+        lib.mapAttrs (_: v: if lib.isBool v then lib.boolToString v else toString v) cfg.settings
+      );
       serviceConfig = {
         inherit (cfg) EnvironmentFile;
         ExecStart = lib.getExe cfg.package;
         DynamicUser = true;
 
         ### Hardening
-        AmbientCapabilities = ["CAP_NET_BIND_SERVICE"]; # For ports <= 1024
-        CapabilityBoundingSet = ["CAP_NET_BIND_SERVICE"];
+        AmbientCapabilities = [ "CAP_NET_BIND_SERVICE" ]; # For ports <= 1024
+        CapabilityBoundingSet = [ "CAP_NET_BIND_SERVICE" ];
         NoNewPrivileges = true;
         PrivateMounts = true;
         PrivateTmp = true;
@@ -122,7 +119,7 @@ in {
     };
 
     networking.firewall = lib.mkIf cfg.openFirewall {
-      allowedTCPPorts = [cfg.settings.PIXIVFE_PORT];
+      allowedTCPPorts = [ cfg.settings.PIXIVFE_PORT ];
     };
   };
 }

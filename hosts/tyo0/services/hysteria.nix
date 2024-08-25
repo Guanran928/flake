@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   services.hysteria = {
     enable = true;
     settings = {

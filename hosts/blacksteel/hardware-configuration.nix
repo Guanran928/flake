@@ -2,7 +2,8 @@
   inputs,
   config,
   ...
-}: {
+}:
+{
   imports = [
     inputs.nixpkgs.nixosModules.notDetected
     inputs.nixos-hardware.nixosModules.apple-macbook-pro
@@ -14,9 +15,18 @@
 
   services.thermald.enable = true;
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
-  boot.kernelModules = ["kvm-intel" "wl"];
-  boot.extraModulePackages = [config.boot.kernelPackages.broadcom_sta];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "ahci"
+    "usbhid"
+    "usb_storage"
+    "sd_mod"
+  ];
+  boot.kernelModules = [
+    "kvm-intel"
+    "wl"
+  ];
+  boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
 
   nixpkgs.hostPlatform = "x86_64-linux";
 
@@ -26,7 +36,7 @@
     "/" = {
       device = "/dev/disk/by-uuid/ab9b92a9-b67b-43b4-b0d9-9dd59ccd594b";
       fsType = "btrfs";
-      options = ["subvol=@"];
+      options = [ "subvol=@" ];
     };
     "/boot" = {
       device = "/dev/disk/by-uuid/E5DE-9C92";
@@ -34,6 +44,6 @@
     };
   };
   swapDevices = [
-    {device = "/dev/disk/by-uuid/8a2e90a9-5cc2-40fc-82fe-69ef3cd88e29";}
+    { device = "/dev/disk/by-uuid/8a2e90a9-5cc2-40fc-82fe-69ef3cd88e29"; }
   ];
 }

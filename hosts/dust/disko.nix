@@ -1,11 +1,15 @@
 let
   # compress-force: https://t.me/archlinuxcn_group/3054167
-  mountOptions = ["compress-force=zstd" "noatime"];
+  mountOptions = [
+    "compress-force=zstd"
+    "noatime"
+  ];
   cryptSettings = {
     allowDiscards = true;
     bypassWorkqueues = true;
   };
-in {
+in
+{
   disko.devices = {
     disk = {
       "one" = {
@@ -22,7 +26,10 @@ in {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = ["defaults" "umask=007"];
+                mountOptions = [
+                  "defaults"
+                  "umask=007"
+                ];
               };
             };
             "cryptroot" = {

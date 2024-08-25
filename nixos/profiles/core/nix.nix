@@ -3,7 +3,8 @@
   config,
   inputs,
   ...
-}: {
+}:
+{
   nix.settings = {
     substituters =
       (lib.optionals (config.time.timeZone == "Asia/Shanghai") [
@@ -26,7 +27,7 @@
       "no-url-literals"
     ];
     flake-registry = "";
-    trusted-users = ["@wheel"];
+    trusted-users = [ "@wheel" ];
     allow-import-from-derivation = false;
     auto-allocate-uids = true;
     auto-optimise-store = true;
@@ -38,7 +39,7 @@
   nix = {
     # Add each flake input as a registry
     # To make nix3 commands consistent with the flake
-    registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
+    registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
 
     # Disable nix-channel
     channel.enable = false;
@@ -52,7 +53,7 @@
     extraOptions = "!include ${config.sops.secrets.nix-access-tokens.path}";
   };
 
-  users.groups."nix-access-tokens" = {};
+  users.groups."nix-access-tokens" = { };
   sops.secrets."nix-access-tokens" = {
     group = config.users.groups."nix-access-tokens".name;
     mode = "0440";

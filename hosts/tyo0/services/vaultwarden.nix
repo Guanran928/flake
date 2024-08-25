@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   services.vaultwarden = {
     enable = true;
     environmentFile = config.sops.secrets."vaultwarden/environment".path;

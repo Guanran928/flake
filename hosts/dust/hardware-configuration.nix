@@ -1,4 +1,5 @@
-{inputs, ...}: {
+{ inputs, ... }:
+{
   imports = [
     inputs.nixpkgs.nixosModules.notDetected
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-12th-gen
@@ -21,12 +22,18 @@
   boot.loader.timeout = 0;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.kernelParams = ["ia32_emulation=0"];
+  boot.kernelParams = [ "ia32_emulation=0" ];
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-intel"];
-  boot.extraModulePackages = [];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "thunderbolt"
+    "nvme"
+    "usb_storage"
+    "sd_mod"
+  ];
+  boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [ "kvm-intel" ];
+  boot.extraModulePackages = [ ];
 
   nixpkgs.hostPlatform = "x86_64-linux";
 }

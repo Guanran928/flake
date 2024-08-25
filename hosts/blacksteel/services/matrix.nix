@@ -1,9 +1,10 @@
-{config, ...}: {
+{ config, ... }:
+{
   services.matrix-synapse = {
     enable = true;
     withJemalloc = true;
     enableRegistrationScript = false;
-    extraConfigFiles = [config.sops.secrets."synapse/secret".path];
+    extraConfigFiles = [ config.sops.secrets."synapse/secret".path ];
     settings = {
       server_name = "ny4.dev";
       public_baseurl = "https://matrix.ny4.dev";
@@ -14,7 +15,10 @@
           type = "http";
           resources = [
             {
-              names = ["client" "federation"];
+              names = [
+                "client"
+                "federation"
+              ];
               compress = true;
             }
           ];
@@ -29,7 +33,10 @@
           issuer = "https://id.ny4.dev/realms/ny4";
           client_id = "synapse";
           client_secret_path = config.sops.secrets."synapse/oidc".path;
-          scopes = ["openid" "profile"];
+          scopes = [
+            "openid"
+            "profile"
+          ];
           user_mapping_provider.config = {
             localpart_template = "{{ user.preferred_username }}";
             display_name_template = "{{ user.name }}";
@@ -43,7 +50,7 @@
 
   systemd.services.matrix-synapse = {
     environment = config.networking.proxy.envVars;
-    serviceConfig.RuntimeDirectory = ["matrix-synapse"];
+    serviceConfig.RuntimeDirectory = [ "matrix-synapse" ];
   };
 
   services.matrix-sliding-sync = {
@@ -56,7 +63,7 @@
   };
 
   systemd.services.matrix-sliding-sync.serviceConfig = {
-    RuntimeDirectory = ["matrix-sliding-sync"];
-    SupplementaryGroups = ["matrix-synapse"];
+    RuntimeDirectory = [ "matrix-sliding-sync" ];
+    SupplementaryGroups = [ "matrix-synapse" ];
   };
 }
