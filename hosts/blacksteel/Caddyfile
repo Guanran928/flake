@@ -1,3 +1,10 @@
+{
+	servers {
+		trusted_proxies static private_ranges
+		trusted_proxies_strict
+	}
+}
+
 (default) {
 	encode zstd gzip
 	handle_path /robots.txt {
