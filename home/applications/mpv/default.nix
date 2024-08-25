@@ -6,15 +6,15 @@
   programs.mpv = {
     enable = true;
     config = {
-      ao = "pipewire,";
-      vo = "gpu-next,gpu,";
-
+      ao = "pipewire";
+      vo = "gpu-next";
       hwdec = "auto-safe";
       profile = "gpu-hq";
-      osc = "no";
 
       alang = "jpn,ja";
       slang = "eng,en";
+
+      osc = "no";
     };
 
     scripts =
@@ -22,7 +22,9 @@
         modernx-zydezu
         thumbfast
       ])
-      ++ lib.optional pkgs.stdenv.hostPlatform.isLinux pkgs.mpvScripts.mpris;
+      ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux (with pkgs.mpvScripts; [
+        mpris
+      ]);
 
     bindings = let
       inherit (pkgs) anime4k;
