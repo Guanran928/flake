@@ -10,7 +10,7 @@
       ao = "pipewire";
       vo = "gpu-next";
       hwdec = "auto-safe";
-      profile = "gpu-hq";
+      profile = "high-quality";
 
       alang = "jpn,ja";
       slang = "eng,en";
