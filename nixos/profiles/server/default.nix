@@ -1,17 +1,18 @@
-{
-  pkgs,
-  config,
-  ...
-}:
+{ pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
     foot.terminfo
   ];
 
-  # TODO: colmena
-  services.openssh.settings.PermitRootLogin = "prohibit-password";
-  users.users."root".openssh.authorizedKeys.keys =
-    config.users.users.guanranwang.openssh.authorizedKeys.keys;
+  services.openssh = {
+    enable = true;
+    settings.PermitRootLogin = "prohibit-password";
+    settings.PasswordAuthentication = false;
+  };
+
+  users.users."root".openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMmd/uqiBahzKcKMJ+gT3dkUIdrWQgudspsDchDlx1E/ guanran928@outlook.com"
+  ];
 
   time.timeZone = "UTC";
 }

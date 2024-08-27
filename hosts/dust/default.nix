@@ -1,6 +1,8 @@
 {
   lib,
+  config,
   pkgs,
+  inputs,
   ...
 }:
 {
@@ -19,7 +21,27 @@
   time.timeZone = "Asia/Shanghai";
   system.stateVersion = "24.05";
 
-  home-manager.users.guanranwang = import ./home;
+  users.users = {
+    "guanranwang" = {
+      isNormalUser = true;
+      description = "Guanran Wang";
+      hashedPasswordFile = config.sops.secrets."hashed-passwd".path;
+      shell = pkgs.fish;
+      extraGroups = [
+        "wheel"
+        "nix-access-tokens"
+      ];
+    };
+  };
+
+  home-manager = {
+    users.guanranwang = import ../../home;
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    extraSpecialArgs = {
+      inherit inputs;
+    };
+  };
 
   boot.tmp.useTmpfs = true;
 
@@ -36,6 +58,8 @@
   networking.firewall.allowedUDPPorts = [ 53317 ];
 
   programs.adb.enable = true;
+  programs.dconf.enable = true;
+  programs.fish.enable = true;
   programs.localsend.enable = true;
   programs.seahorse.enable = true;
   programs.ssh = {

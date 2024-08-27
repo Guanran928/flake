@@ -5,10 +5,14 @@
     matchBlocks =
       let
         inherit (config.home) homeDirectory;
+        serverConfig = {
+          identityFile = "${homeDirectory}/.ssh/id_github_signing";
+          user = "root";
+        };
       in
       {
-        "blacksteel".identityFile = "${homeDirectory}/.ssh/id_github_signing";
-        "tyo0.ny4.dev".identityFile = "${homeDirectory}/.ssh/id_github_signing";
+        "blacksteel" = serverConfig;
+        "tyo0.ny4.dev" = serverConfig;
       };
   };
 }

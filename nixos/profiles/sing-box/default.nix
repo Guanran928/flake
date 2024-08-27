@@ -89,7 +89,7 @@
     httpsProxy = "http://127.0.0.1:1080/";
   };
 
-  environment.shellAliases =
+  programs.fish.shellAliases =
     let
       inherit (config.networking.proxy) httpProxy httpsProxy;
     in

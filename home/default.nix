@@ -1,5 +1,4 @@
 {
-  lib,
   pkgs,
   ...
 }:
@@ -10,46 +9,52 @@
     stateVersion = "23.05";
   };
 
-  imports = [
-    ./applications/atuin
-    ./applications/bash
-    ./applications/bat
-    ./applications/eza
-    ./applications/fish
-    ./applications/git
-    ./applications/gpg
-    ./applications/neovim
-    ./applications/ssh
-    ./applications/starship
-    ./applications/tealdeer
-    ./applications/tmux
-  ];
+  imports =
+    [
+      ./theme.nix
+      ./xdg-mime.nix
+    ]
+    ++ map (n: ./applications/${n}) [
+      "atuin"
+      "bash"
+      "bat"
+      "eza"
+      "fcitx5"
+      "firefox"
+      "fish"
+      "foot"
+      "git"
+      "go"
+      "gpg"
+      "mpv"
+      "nautilus"
+      "neovim"
+      "nix"
+      "ssh"
+      "starship"
+      "sway"
+      "tealdeer"
+      "thunderbird"
+      "tmux"
+      "ydict"
+    ];
 
   programs.jq.enable = true;
+  programs.obs-studio.enable = true;
   programs.ripgrep.enable = true;
   programs.skim.enable = true;
   programs.zoxide.enable = true;
+
   home.packages = with pkgs; [
     fastfetch
     fd
+    dconf-editor
+    file-roller
+    fractal
+    gnome-calculator
+    hyperfine
+    loupe
+    seahorse
   ];
 
-  programs.fish.functions =
-    let
-      jq = lib.getExe pkgs.jq;
-      nix = lib.getExe pkgs.nix;
-      curl = lib.getExe pkgs.curl;
-    in
-    {
-      "pb" = ''
-        ${jq} -Rns '{text: inputs}' | \
-          ${curl} -s -H 'Content-Type: application/json' --data-binary @- https://pb.ny4.dev | \
-          ${jq} -r '. | "https://pb.ny4.dev\(.path)"'
-      '';
-
-      "getmnter" = ''
-        ${nix} eval nixpkgs#{$argv}.meta.maintainers --json | \
-          ${jq} '.[].github | "@" + .' -r
-      '';
-    };
 }
