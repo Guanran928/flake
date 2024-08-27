@@ -16,8 +16,11 @@
     ./services/murmur.nix
     ./services/ntfy.nix
     ./services/pixivfe.nix
+    ./services/redlib.nix
     ./services/searx.nix
+    ./services/uptime-kuma.nix
     ./services/vaultwarden.nix
+    ./services/wastebin.nix
   ];
 
   boot.loader.grub.device = lib.mkForce "/dev/nvme0n1";
@@ -103,22 +106,6 @@
       min_wal_size = "1GB";
       max_wal_size = "4GB";
     };
-  };
-
-  services.wastebin = {
-    enable = true;
-    settings.WASTEBIN_ADDRESS_PORT = "127.0.0.1:8200";
-  };
-
-  services.uptime-kuma = {
-    enable = true;
-    settings.PORT = "8300";
-  };
-
-  services.redlib = {
-    enable = true;
-    address = "127.0.0.1";
-    port = 9400;
   };
 
   ### Prevents me from bankrupt
