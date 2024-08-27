@@ -165,4 +165,30 @@
       "org.freedesktop.impl.portal.Inhibit" = "none";
     };
   };
+
+  services.sing-box.settings = {
+    outbounds = [
+      {
+        type = "selector";
+        tag = "select";
+        outbounds = [
+          "tyo0"
+          "direct"
+        ];
+        default = "tyo0";
+      }
+    ];
+
+    route = {
+      final = "select";
+    };
+
+    experimental = {
+      clash_api = {
+        external_controller = "127.0.0.1:9090";
+        external_ui = pkgs.metacubexd;
+        secret = "hunter2";
+      };
+    };
+  };
 }

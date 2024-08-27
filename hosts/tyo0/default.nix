@@ -10,7 +10,6 @@
     ./anti-feature.nix
 
     ./services/forgejo.nix
-    ./services/hysteria.nix
     ./services/keycloak.nix
     ./services/miniflux.nix
     ./services/murmur.nix
@@ -18,6 +17,7 @@
     ./services/pixivfe.nix
     ./services/redlib.nix
     ./services/searx.nix
+    ./services/sing-box.nix
     ./services/uptime-kuma.nix
     ./services/vaultwarden.nix
     ./services/wastebin.nix
@@ -38,8 +38,8 @@
 
   ### Secrets
   sops.secrets = lib.mapAttrs (_name: value: value // { sopsFile = ./secrets.yaml; }) {
-    "hysteria/auth" = {
-      restartUnits = [ "hysteria.service" ];
+    "sing-box/auth" = {
+      restartUnits = [ "sing-box.service" ];
     };
     "pixivfe/environment" = {
       restartUnits = [ "pixivfe.service" ];
@@ -56,11 +56,11 @@
   };
 
   ### Services
-  networking.firewall.allowedUDPPorts = [ 443 ]; # hysteria
+  networking.firewall.allowedUDPPorts = [ 443 ];
   networking.firewall.allowedTCPPorts = [
     80
     443
-  ]; # caddy
+  ];
 
   systemd.tmpfiles.settings = {
     "10-www" = {

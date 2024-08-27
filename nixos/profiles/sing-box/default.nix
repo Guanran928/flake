@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   config,
   ...
@@ -24,11 +25,12 @@
 
       outbounds = [
         {
-          type = "hysteria2";
+          type = "vless";
           tag = "tyo0";
           server = "tyo0.ny4.dev";
-          server_port = 443;
-          password._secret = config.sops.secrets."sing-box/tyo0".path;
+          server_port = 27253;
+          uuid = "29e54ee5-43f5-4891-b750-ca73c7e3b2b3";
+          flow = "xtls-rprx-vision";
           tls.enabled = true;
         }
         {
@@ -76,15 +78,7 @@
           }
         ];
 
-        final = "tyo0";
-      };
-
-      experimental = {
-        clash_api = {
-          external_controller = "127.0.0.1:9090";
-          external_ui = pkgs.metacubexd;
-          secret = "hunter2";
-        };
+        final = lib.mkDefault "tyo0";
       };
     };
   };

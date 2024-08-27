@@ -1,11 +1,3 @@
-{
-	# Disables HTTP/3 for Hysteria
-	# https://github.com/apernet/hysteria/issues/768
-	servers :443 {
-		protocols h1 h2 h2c
-	}
-}
-
 (default) {
 	encode zstd gzip
 	handle_path /robots.txt {
