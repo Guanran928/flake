@@ -25,12 +25,10 @@
   boot.loader.grub.device = lib.mkForce "/dev/nvme0n1";
   system.stateVersion = "24.05";
 
-  swapDevices = [
-    {
-      device = "/var/lib/swapfile";
-      size = 4 * 1024; # 4 GiB
-    }
-  ];
+  swapDevices = lib.singleton {
+    device = "/var/lib/swapfile";
+    size = 4 * 1024; # 4 GiB
+  };
 
   # WORKAROUND:
   systemd.services."print-host-key".enable = false;

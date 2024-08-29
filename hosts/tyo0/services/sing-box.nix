@@ -1,4 +1,4 @@
-{ config, ... }:
+{ lib, config, ... }:
 {
   networking.firewall.allowedTCPPorts = [
     27253
@@ -30,12 +30,10 @@
         }
       ];
 
-      outbounds = [
-        {
-          type = "direct";
-          tag = "direct";
-        }
-      ];
+      outbounds = lib.singleton {
+        type = "direct";
+        tag = "direct";
+      };
 
       route = {
         final = "direct";

@@ -36,15 +36,13 @@
     config = {
       ### Visuals
       output."*".bg = "${inputs.self.legacyPackages.${pkgs.stdenv.hostPlatform.system}.background} fill";
-      bars = [
-        {
-          statusCommand = "${lib.getExe pkgs.i3status-rust} $HOME/.config/i3status-rust/config-default.toml";
-          position = "top";
-          extraConfig = ''
-            icon_theme ${config.gtk.iconTheme.name}
-          '';
-        }
-      ];
+      bars = lib.singleton {
+        statusCommand = "${lib.getExe pkgs.i3status-rust} $HOME/.config/i3status-rust/config-default.toml";
+        position = "top";
+        extraConfig = ''
+          icon_theme ${config.gtk.iconTheme.name}
+        '';
+      };
 
       ### Inputs
       input = {

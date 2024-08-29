@@ -12,16 +12,14 @@
         level = "info";
       };
 
-      inbounds = [
-        {
-          type = "http";
-          tag = "inbound";
-          listen = "127.0.0.1";
-          listen_port = 1080;
-          sniff = true;
-          sniff_override_destination = true;
-        }
-      ];
+      inbounds = lib.singleton {
+        type = "http";
+        tag = "inbound";
+        listen = "127.0.0.1";
+        listen_port = 1080;
+        sniff = true;
+        sniff_override_destination = true;
+      };
 
       outbounds = [
         {

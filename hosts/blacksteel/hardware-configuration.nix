@@ -1,4 +1,5 @@
 {
+  lib,
   inputs,
   config,
   ...
@@ -43,7 +44,5 @@
       fsType = "vfat";
     };
   };
-  swapDevices = [
-    { device = "/dev/disk/by-uuid/8a2e90a9-5cc2-40fc-82fe-69ef3cd88e29"; }
-  ];
+  swapDevices = lib.singleton { device = "/dev/disk/by-uuid/8a2e90a9-5cc2-40fc-82fe-69ef3cd88e29"; };
 }

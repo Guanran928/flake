@@ -1,4 +1,4 @@
-{ config, ... }:
+{ lib, config, ... }:
 {
   services.matrix-synapse = {
     enable = true;
@@ -13,15 +13,13 @@
         {
           path = "/run/matrix-synapse/synapse.sock";
           type = "http";
-          resources = [
-            {
-              names = [
-                "client"
-                "federation"
-              ];
-              compress = true;
-            }
-          ];
+          resources = lib.singleton {
+            names = [
+              "client"
+              "federation"
+            ];
+            compress = true;
+          };
         }
       ];
 
@@ -32,25 +30,23 @@
       };
 
       # https://element-hq.github.io/synapse/latest/openid.html#keycloak
-      oidc_providers = [
-        {
-          idp_id = "keycloak";
-          idp_name = "id.ny4.dev";
-          issuer = "https://id.ny4.dev/realms/ny4";
-          client_id = "synapse";
-          client_secret_path = config.sops.secrets."synapse/oidc".path;
-          scopes = [
-            "openid"
-            "profile"
-          ];
-          user_mapping_provider.config = {
-            localpart_template = "{{ user.preferred_username }}";
-            display_name_template = "{{ user.name }}";
-          };
-          backchannel_logout_enabled = true;
-          allow_existing_users = true;
-        }
-      ];
+      oidc_providers = lib.singleton {
+        idp_id = "keycloak";
+        idp_name = "id.ny4.dev";
+        issuer = "https://id.ny4.dev/realms/ny4";
+        client_id = "synapse";
+        client_secret_path = config.sops.secrets."synapse/oidc".path;
+        scopes = [
+          "openid"
+          "profile"
+        ];
+        user_mapping_provider.config = {
+          localpart_template = "{{ user.preferred_username }}";
+          display_name_template = "{{ user.name }}";
+        };
+        backchannel_logout_enabled = true;
+        allow_existing_users = true;
+      };
     };
   };
 
