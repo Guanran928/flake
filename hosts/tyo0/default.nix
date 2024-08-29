@@ -16,7 +16,6 @@
     ./services/ntfy.nix
     ./services/pixivfe.nix
     ./services/redlib.nix
-    ./services/searx.nix
     ./services/sing-box.nix
     ./services/vaultwarden.nix
     ./services/wastebin.nix
@@ -42,9 +41,6 @@
     };
     "pixivfe/environment" = {
       restartUnits = [ "pixivfe.service" ];
-    };
-    "searx/environment" = {
-      restartUnits = [ "searx.service" ];
     };
     "miniflux/environment" = {
       restartUnits = [ "miniflux.service" ];

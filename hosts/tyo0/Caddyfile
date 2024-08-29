@@ -41,11 +41,6 @@ ny4.dev {
 	}
 }
 
-searx.ny4.dev {
-	import default
-	reverse_proxy localhost:8100
-}
-
 pb.ny4.dev {
 	import default
 	reverse_proxy localhost:8200
