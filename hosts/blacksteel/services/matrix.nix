@@ -58,18 +58,4 @@
     environment = config.networking.proxy.envVars;
     serviceConfig.RuntimeDirectory = [ "matrix-synapse" ];
   };
-
-  services.matrix-sliding-sync = {
-    enable = true;
-    environmentFile = config.sops.secrets."syncv3/environment".path;
-    settings = {
-      SYNCV3_SERVER = "/run/matrix-synapse/synapse.sock";
-      SYNCV3_BINDADDR = "/run/matrix-sliding-sync/sync.sock";
-    };
-  };
-
-  systemd.services.matrix-sliding-sync.serviceConfig = {
-    RuntimeDirectory = [ "matrix-sliding-sync" ];
-    SupplementaryGroups = [ "matrix-synapse" ];
-  };
 }

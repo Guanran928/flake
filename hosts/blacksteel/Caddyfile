@@ -57,10 +57,3 @@ http://matrix.ny4.dev:80 {
 		header_up X-Forwarded-Proto "https"
 	}
 }
-
-http://syncv3.ny4.dev:80 {
-	import default
-	reverse_proxy unix//run/matrix-sliding-sync/sync.sock {
-		header_up X-Forwarded-Proto "https"
-	}
-}

@@ -37,9 +37,6 @@
       restartUnits = [ "matrix-synapse.service" ];
       owner = config.systemd.services.matrix-synapse.serviceConfig.User;
     };
-    "syncv3/environment" = {
-      restartUnits = [ "matrix-sliding-sync.service" ];
-    };
     "mastodon/environment" = {
       restartUnits = [ "mastodon-web.service" ];
     };
@@ -64,7 +61,6 @@
         ingress = lib.genAttrs [
           "mastodon.ny4.dev"
           "matrix.ny4.dev"
-          "syncv3.ny4.dev"
         ] (_: "http://localhost");
       };
     };
