@@ -1,5 +1,6 @@
 {
   lib,
+  config,
   modulesPath,
   pkgs,
   ...
@@ -14,6 +15,7 @@
     ./services/miniflux.nix
     ./services/murmur.nix
     ./services/ntfy.nix
+    ./services/prometheus.nix
     ./services/redlib.nix
     ./services/sing-box.nix
     ./services/vaultwarden.nix
@@ -37,6 +39,10 @@
   sops.secrets = lib.mapAttrs (_name: value: value // { sopsFile = ./secrets.yaml; }) {
     "sing-box/auth" = {
       restartUnits = [ "sing-box.service" ];
+    };
+    "prometheus/auth" = {
+      owner = config.systemd.services.prometheus.serviceConfig.User;
+      restartUnits = [ "prometheus.service" ];
     };
     "miniflux/environment" = {
       restartUnits = [ "miniflux.service" ];

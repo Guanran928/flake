@@ -1,5 +1,9 @@
 { pkgs, ... }:
 {
+  imports = [
+    ../prometheus
+  ];
+
   environment.systemPackages = with pkgs; [
     foot.terminfo
   ];

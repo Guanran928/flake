@@ -15,7 +15,10 @@ www.ny4.dev {
 # get the certificate for hysteria
 tyo0.ny4.dev {
 	import default
-	redir https://blog.ny4.dev
+	basicauth {
+		prometheus $2a$14$2Phk4tobM04H4XiGegB3TuEXkyORCKMKW8TptYPTPXUWmZgtGBj/.
+	}
+	reverse_proxy localhost:9091
 }
 
 ny4.dev {
@@ -104,4 +107,9 @@ reddit.ny4.dev {
 vault.ny4.dev {
 	import default
 	reverse_proxy localhost:9500
+}
+
+prom.ny4.dev {
+	import default
+	reverse_proxy localhost:9090
 }

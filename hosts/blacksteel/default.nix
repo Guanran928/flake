@@ -61,6 +61,7 @@
         ingress = lib.genAttrs [
           "mastodon.ny4.dev"
           "matrix.ny4.dev"
+          "pek0.ny4.dev"
         ] (_: "http://localhost");
       };
     };

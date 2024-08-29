@@ -14,6 +14,14 @@
 	}
 }
 
+http://pek0.ny4.dev:80 {
+	import default
+	basicauth {
+		prometheus $2a$14$2Phk4tobM04H4XiGegB3TuEXkyORCKMKW8TptYPTPXUWmZgtGBj/.
+	}
+	reverse_proxy localhost:9091
+}
+
 http://mastodon.ny4.dev:80 {
 	import default
 	handle_path /system/* {
