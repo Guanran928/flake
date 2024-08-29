@@ -5,6 +5,9 @@
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-12th-gen
   ];
 
+  services.fwupd.enable = true;
+  services.fprintd.enable = true;
+
   security.rtkit.enable = true;
   hardware.pulseaudio.enable = false;
   services.pipewire = {
@@ -16,8 +19,6 @@
     enable = true;
     settings.General.FastConnectable = true;
   };
-
-  services.fprintd.enable = true;
 
   boot.loader.timeout = 0;
   boot.loader.efi.canTouchEfiVariables = true;
