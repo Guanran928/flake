@@ -14,7 +14,6 @@
     ./services/miniflux.nix
     ./services/murmur.nix
     ./services/ntfy.nix
-    ./services/pixivfe.nix
     ./services/redlib.nix
     ./services/sing-box.nix
     ./services/vaultwarden.nix
@@ -38,9 +37,6 @@
   sops.secrets = lib.mapAttrs (_name: value: value // { sopsFile = ./secrets.yaml; }) {
     "sing-box/auth" = {
       restartUnits = [ "sing-box.service" ];
-    };
-    "pixivfe/environment" = {
-      restartUnits = [ "pixivfe.service" ];
     };
     "miniflux/environment" = {
       restartUnits = [ "miniflux.service" ];
