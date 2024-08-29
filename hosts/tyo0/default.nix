@@ -18,7 +18,6 @@
     ./services/redlib.nix
     ./services/searx.nix
     ./services/sing-box.nix
-    ./services/uptime-kuma.nix
     ./services/vaultwarden.nix
     ./services/wastebin.nix
   ];

@@ -51,11 +51,6 @@ pb.ny4.dev {
 	reverse_proxy localhost:8200
 }
 
-uptime.ny4.dev {
-	import default
-	reverse_proxy localhost:8300
-}
-
 ntfy.ny4.dev {
 	import default
 	reverse_proxy unix//run/ntfy-sh/ntfy.sock
