@@ -98,6 +98,7 @@
             {
               alert = "MemoryFull";
               expr = ''node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes < 0.1'';
+              for = "5m";
             }
             {
               alert = "DiskFull";
