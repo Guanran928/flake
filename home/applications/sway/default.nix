@@ -6,14 +6,6 @@
   ...
 }:
 {
-  imports = [
-    ../i3status-rust
-    ../kanshi
-    ../mako
-    ../swayidle
-    ../swaylock
-  ];
-
   home.packages = with pkgs; [
     wl-clipboard
     pwvucontrol

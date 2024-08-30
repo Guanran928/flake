@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   ...
 }:
@@ -6,49 +7,26 @@
   home = {
     username = "guanranwang";
     homeDirectory = "/home/guanranwang";
-    stateVersion = "23.05";
+    stateVersion = "24.05";
   };
 
-  imports =
-    [
-      ./theme.nix
-      ./xdg-mime.nix
-    ]
-    ++ map (n: ./applications/${n}) [
-      "atuin"
-      "bash"
-      "bat"
-      "eza"
-      "fcitx5"
-      "firefox"
-      "fish"
-      "foot"
-      "git"
-      "go"
-      "gpg"
-      "mpv"
-      "nautilus"
-      "neovim"
-      "nix"
-      "ssh"
-      "starship"
-      "sway"
-      "tealdeer"
-      "thunderbird"
-      "tmux"
-      "ydict"
-    ];
+  imports = [
+    ./theme.nix
+    ./xdg-mime.nix
+  ] ++ lib.filter (x: lib.hasSuffix "default.nix" x) (lib.fileset.toList ./applications);
 
-  programs.jq.enable = true;
-  programs.obs-studio.enable = true;
-  programs.ripgrep.enable = true;
-  programs.skim.enable = true;
-  programs.zoxide.enable = true;
+  programs = {
+    jq.enable = true;
+    obs-studio.enable = true;
+    ripgrep.enable = true;
+    skim.enable = true;
+    zoxide.enable = true;
+  };
 
   home.packages = with pkgs; [
+    dconf-editor
     fastfetch
     fd
-    dconf-editor
     file-roller
     fractal
     gnome-calculator
@@ -56,5 +34,4 @@
     loupe
     seahorse
   ];
-
 }

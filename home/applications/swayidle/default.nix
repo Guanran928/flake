@@ -1,14 +1,9 @@
 {
-  pkgs,
   lib,
   config,
   ...
 }:
 {
-  imports = [
-    ../swaylock
-  ];
-
   services.swayidle = {
     enable = true;
     timeouts = [
