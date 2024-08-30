@@ -21,6 +21,13 @@
   time.timeZone = "Asia/Shanghai";
   system.stateVersion = "24.05";
 
+  # TODO: move to 'core' profile
+  system.etc.overlay.enable = true;
+  services.userborn.enable = true;
+
+  # TODO: this is currently broken
+  # system.etc.overlay.mutable = false;
+
   users.users = {
     "guanranwang" = {
       isNormalUser = true;
