@@ -25,7 +25,7 @@
     inputs.self.overlays.patches
   ];
 
-  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   environment.systemPackages = with pkgs; [
     unzip
@@ -54,7 +54,7 @@
   };
 
   # https://archlinux.org/news/making-dbus-broker-our-default-d-bus-daemon/
-  services.dbus.implementation = lib.mkDefault "broker";
+  services.dbus.implementation = "broker";
 
   security.sudo.execWheelOnly = true;
   security.sudo.extraConfig = ''

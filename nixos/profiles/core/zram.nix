@@ -1,10 +1,9 @@
-{ lib, ... }:
 {
   services.zram-generator = {
     enable = true;
     settings.zram0 = {
-      compression-algorithm = lib.mkDefault "zstd";
-      zram-size = lib.mkDefault "ram";
+      compression-algorithm = "zstd";
+      zram-size = "ram";
     };
   };
 

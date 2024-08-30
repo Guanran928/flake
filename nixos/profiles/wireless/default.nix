@@ -5,5 +5,5 @@
     "wireless/ImmortalWrt".path = "/var/lib/iwd/ImmortalWrt.psk";
   };
 
-  networking.wireless.iwd.enable = lib.mkDefault true;
+  networking.wireless.iwd.enable = true;
 }
