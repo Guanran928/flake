@@ -18,8 +18,8 @@
     ./services/mastodon.nix
     ./services/matrix.nix
     ./services/minecraft.nix
-    ./services/qbittorrent.nix
     ./services/samba.nix
+    ./services/transmission.nix
   ];
 
   boot.loader.efi.canTouchEfiVariables = true;
