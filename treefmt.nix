@@ -9,7 +9,7 @@
   ### misc
   programs.prettier.enable = true;
   settings.formatter.prettier.excludes = [
-    "hosts/blacksteel/secrets.yaml"
+    "hosts/pek0/secrets.yaml"
     "hosts/tyo0/secrets.yaml"
     "nixos/profiles/sing-box/secrets.yaml"
     "nixos/profiles/wireless/secrets.yaml"

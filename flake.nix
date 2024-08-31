@@ -151,8 +151,8 @@
           deployment.targetHost = "tyo0.ny4.dev";
         };
 
-        "blacksteel" = {
-          imports = [ ./hosts/blacksteel ];
+        "pek0" = {
+          imports = [ ./hosts/pek0 ];
           deployment.targetHost = "blacksteel"; # thru tailscale
         };
       };

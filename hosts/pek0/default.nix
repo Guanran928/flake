@@ -24,7 +24,7 @@
 
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.enable = true;
-  networking.hostName = "blacksteel";
+  networking.hostName = "pek0";
   system.stateVersion = "24.05";
 
   ######## Secrets

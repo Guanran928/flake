@@ -11,8 +11,10 @@
         };
       in
       {
-        "blacksteel" = serverConfig;
         "tyo0.ny4.dev" = serverConfig;
+        "pek0.ny4.dev" = serverConfig // {
+          hostname = "blacksteel";
+        };
       };
   };
 }
