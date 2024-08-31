@@ -139,4 +139,14 @@
       };
     };
   };
+
+  services.caddy.settings.apps.http.servers.srv0.routes = lib.singleton {
+    match = lib.singleton {
+      host = [ "prom.ny4.dev" ];
+    };
+    handle = lib.singleton {
+      handler = "reverse_proxy";
+      upstreams = [ { dial = "127.0.0.1:9090"; } ];
+    };
+  };
 }

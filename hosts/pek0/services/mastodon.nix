@@ -1,4 +1,9 @@
-{ config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 {
   services.mastodon = {
     enable = true;
@@ -35,4 +40,82 @@
   };
 
   systemd.services.mastodon-sidekiq-all.environment = config.networking.proxy.envVars;
+
+  services.caddy.settings.apps.http.servers.srv0.routes = lib.singleton {
+    match = lib.singleton {
+      host = [ "mastodon.ny4.dev" ];
+    };
+    handle = lib.singleton {
+      handler = "subroute";
+      routes = [
+        {
+          match = lib.singleton {
+            path = [ "/api/v1/streaming/*" ];
+          };
+          handle = lib.singleton {
+            handler = "reverse_proxy";
+            headers.request.set."X-Forwarded-Proto" = [ "https" ];
+            upstreams = lib.singleton {
+              dial = "unix//run/mastodon-streaming/streaming-1.socket";
+            };
+          };
+        }
+        {
+          match = lib.singleton {
+            path = [ "/system/*" ];
+          };
+          handle = [
+            {
+              handler = "rewrite";
+              strip_path_prefix = "/system";
+            }
+            {
+              handler = "file_server";
+              root = "/var/lib/mastodon/public-system";
+            }
+          ];
+        }
+        {
+          handle = [
+            {
+              handler = "file_server";
+              root = "${pkgs.mastodon}/public";
+              pass_thru = true;
+            }
+            {
+              handler = "reverse_proxy";
+              headers.request.set."X-Forwarded-Proto" = [ "https" ];
+              upstreams = lib.singleton {
+                dial = "unix//run/mastodon-web/web.socket";
+              };
+            }
+          ];
+        }
+      ];
+    };
+  };
+
+  services.caddy.settings.apps.http.servers.srv0.errors.routes = lib.singleton {
+    match = lib.singleton {
+      host = [ "mastodon.ny4.dev" ];
+    };
+    handle = lib.singleton {
+      handler = "subroute";
+      routes = [
+        {
+          handle = lib.singleton {
+            handler = "rewrite";
+            uri = "500.html";
+          };
+        }
+        {
+          handle = lib.singleton {
+            handler = "file_server";
+            root = "${pkgs.mastodon}/public";
+          };
+        }
+      ];
+    };
+  };
+
 }

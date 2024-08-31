@@ -67,12 +67,21 @@
     };
   };
 
-  services.caddy = {
-    enable = true;
-    configFile = pkgs.replaceVars ./Caddyfile {
-      robots = toString ../tyo0/robots.txt;
-      inherit (pkgs) mastodon;
+  services.caddy.enable = true;
+  services.caddy.settings.apps.http.servers.srv0 = {
+    listen = [ ":80" ];
+    trusted_proxies = {
+      ranges = [
+        "192.168.0.0/16"
+        "172.16.0.0/12"
+        "10.0.0.0/8"
+        "127.0.0.1/8"
+        "fd00::/8"
+        "::1"
+      ];
+      source = "static";
     };
+    trusted_proxies_strict = 1;
   };
 
   systemd.services.caddy.serviceConfig = {

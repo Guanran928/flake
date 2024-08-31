@@ -54,4 +54,29 @@
     environment = config.networking.proxy.envVars;
     serviceConfig.RuntimeDirectory = [ "matrix-synapse" ];
   };
+
+  services.caddy.settings.apps.http.servers.srv0.routes = lib.singleton {
+    match = lib.singleton {
+      host = [ "matrix.ny4.dev" ];
+    };
+    handle = lib.singleton {
+      handler = "subroute";
+      routes = lib.singleton {
+        match = lib.singleton {
+          path = [
+            "/_matrix/*"
+            "/_synapse/*"
+            "/health"
+          ];
+        };
+        handle = lib.singleton {
+          handler = "reverse_proxy";
+          headers.request.set."X-Forwarded-Proto" = [ "https" ];
+          upstreams = lib.singleton {
+            dial = "unix//run/matrix-synapse/synapse.sock";
+          };
+        };
+      };
+    };
+  };
 }

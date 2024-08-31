@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
   services.ntfy-sh = {
     enable = true;
@@ -11,4 +12,14 @@
   };
 
   systemd.services.ntfy-sh.serviceConfig.RuntimeDirectory = [ "ntfy-sh" ];
+
+  services.caddy.settings.apps.http.servers.srv0.routes = lib.singleton {
+    match = lib.singleton {
+      host = [ "ntfy.ny4.dev" ];
+    };
+    handle = lib.singleton {
+      handler = "reverse_proxy";
+      upstreams = [ { dial = "unix//run/ntfy-sh/ntfy.sock"; } ];
+    };
+  };
 }

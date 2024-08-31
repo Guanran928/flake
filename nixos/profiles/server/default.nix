@@ -19,4 +19,6 @@
   ];
 
   time.timeZone = "UTC";
+
+  networking.domain = "ny4.dev";
 }

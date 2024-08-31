@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   services.forgejo = {
     enable = true;
@@ -24,6 +24,16 @@
         DISABLE_STARS = true;
         DEFAULT_BRANCH = "master";
       };
+    };
+  };
+
+  services.caddy.settings.apps.http.servers.srv0.routes = lib.singleton {
+    match = lib.singleton {
+      host = [ "git.ny4.dev" ];
+    };
+    handle = lib.singleton {
+      handler = "reverse_proxy";
+      upstreams = [ { dial = "unix//run/forgejo/forgejo.sock"; } ];
     };
   };
 }

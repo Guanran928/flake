@@ -1,4 +1,4 @@
-{ config, ... }:
+{ lib, config, ... }:
 {
   services.vaultwarden = {
     enable = true;
@@ -13,6 +13,16 @@
       SENDS_ALLOWED = false;
       SIGNUPS_ALLOWED = false;
       ORG_CREATION_USERS = "none";
+    };
+  };
+
+  services.caddy.settings.apps.http.servers.srv0.routes = lib.singleton {
+    match = lib.singleton {
+      host = [ "vault.ny4.dev" ];
+    };
+    handle = lib.singleton {
+      handler = "reverse_proxy";
+      upstreams = [ { dial = "localhost:9500"; } ];
     };
   };
 }

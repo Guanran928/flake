@@ -23,6 +23,7 @@
   ];
 
   boot.loader.grub.device = lib.mkForce "/dev/nvme0n1";
+  networking.hostName = "tyo0";
   system.stateVersion = "24.05";
 
   swapDevices = lib.singleton {
@@ -57,32 +58,146 @@
     443
   ];
 
-  systemd.tmpfiles.settings = {
-    "10-www" = {
-      "/var/www/robots/robots.txt".C.argument = toString ./robots.txt;
-      "/var/www/matrix/client".C.argument = toString ./matrix-client.json;
-      "/var/www/matrix/server".C.argument = toString ./matrix-server.json;
-    };
+  services.caddy.enable = true;
+  services.caddy.settings.apps.http.servers.srv0 = {
+    listen = [ ":443" ];
   };
 
-  services.caddy = {
-    enable = true;
-    configFile = pkgs.replaceVars ./Caddyfile {
-      "element" = pkgs.element-web.override {
-        conf.default_server_config."m.homeserver" = {
-          base_url = "https://matrix.ny4.dev";
-          server_name = "ny4.dev";
+  services.caddy.settings.apps.http.servers.srv0.routes = [
+    {
+      match = lib.singleton {
+        host = [ "ny4.dev" ];
+        path = [ "/.well-known/matrix/server" ];
+      };
+      handle = lib.singleton {
+        handler = "static_response";
+        status_code = 200;
+        headers = {
+          Access-Control-Allow-Origin = [ "*" ];
+          Content-Type = [ "application/json" ];
+        };
+        body = builtins.toJSON {
+          "m.server" = "matrix.ny4.dev:443";
         };
       };
-
-      "cinny" = pkgs.cinny.override {
-        conf = {
-          defaultHomeserver = 0;
-          homeserverList = [ "ny4.dev" ];
+    }
+    {
+      match = lib.singleton {
+        host = [ "ny4.dev" ];
+        path = [ "/.well-known/matrix/client" ];
+      };
+      handle = lib.singleton {
+        handler = "static_response";
+        status_code = 200;
+        headers = {
+          Access-Control-Allow-Origin = [ "*" ];
+          Content-Type = [ "application/json" ];
+        };
+        body = builtins.toJSON {
+          "m.homeserver" = {
+            "base_url" = "https://matrix.ny4.dev";
+          };
         };
       };
-    };
-  };
+    }
+    {
+      match = lib.singleton {
+        host = [ "ny4.dev" ];
+        path = [ "/.well-known/webfinger" ];
+      };
+      handle = lib.singleton {
+        handler = "static_response";
+        status_code = 301;
+        headers = {
+          Access-Control-Allow-Origin = [ "*" ];
+          Location = [ "https://mastodon.ny4.dev{http.request.uri}" ];
+        };
+      };
+    }
+    {
+      match = lib.singleton {
+        host = [ "ny4.dev" ];
+      };
+      handle = lib.singleton {
+        handler = "static_response";
+        status_code = 302;
+        headers = {
+          Location = [ "https://blog.ny4.dev" ];
+        };
+      };
+    }
+    {
+      match = lib.singleton {
+        host = [ "element.ny4.dev" ];
+      };
+      handle = [
+        {
+          handler = "headers";
+          response.set = {
+            X-Frame-Options = [ "SAMEORIGIN" ];
+            X-Content-Type-Options = [ "nosniff" ];
+            X-XSS-Protection = [ "1; mode=block" ];
+            Content-Security-Policy = [ "frame-ancestors 'self'" ];
+          };
+        }
+        {
+          handler = "file_server";
+          root = pkgs.element-web.override {
+            conf.default_server_config."m.homeserver" = {
+              base_url = "https://matrix.ny4.dev";
+              server_name = "ny4.dev";
+            };
+          };
+        }
+      ];
+    }
+    {
+      match = lib.singleton {
+        host = [ "cinny.ny4.dev" ];
+      };
+      handle = lib.singleton {
+        handler = "subroute";
+        routes = [
+          {
+            match = [ { "path" = [ "/*/olm.wasm" ]; } ];
+            handle = lib.singleton {
+              handler = "rewrite";
+              uri = "/olm.wasm";
+            };
+          }
+          {
+            match = lib.singleton {
+              not = [
+                { path = [ "/index.html" ]; }
+                { path = [ "/public/*" ]; }
+                { path = [ "/assets/*" ]; }
+                { path = [ "/config.json" ]; }
+                { path = [ "/manifest.json" ]; }
+                { path = [ "/pdf.worker.min.js" ]; }
+                { path = [ "/olm.wasm" ]; }
+              ];
+              path = [ "/*" ];
+            };
+            handle = lib.singleton {
+              handler = "rewrite";
+              uri = "/index.html";
+            };
+          }
+          {
+            handle = lib.singleton {
+              handler = "file_server";
+              root = pkgs.cinny.override {
+                conf = {
+                  defaultHomeserver = 0;
+                  homeserverList = [ "ny4.dev" ];
+                };
+              };
+            };
+          }
+        ];
+      };
+    }
+  ];
 
   services.postgresql = {
     package = pkgs.postgresql_16;
