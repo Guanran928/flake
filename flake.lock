@@ -1,5 +1,34 @@
 {
   "nodes": {
+    "colmena": {
+      "inputs": {
+        "flake-compat": [
+          "flake-compat"
+        ],
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "stable": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1711386353,
+        "narHash": "sha256-gWEpb8Hybnoqb4O4tmpohGZk6+aerAbJpywKcFIiMlg=",
+        "owner": "zhaofengli",
+        "repo": "colmena",
+        "rev": "cd65ef7a25cdc75052fbd04b120aeb066c3881db",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zhaofengli",
+        "repo": "colmena",
+        "type": "github"
+      }
+    },
     "crane": {
       "inputs": {
         "nixpkgs": [
@@ -276,6 +305,7 @@
     },
     "root": {
       "inputs": {
+        "colmena": "colmena",
         "crane": "crane",
         "disko": "disko",
         "flake-compat": "flake-compat",

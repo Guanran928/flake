@@ -21,7 +21,7 @@
     ]);
 
   nixpkgs.overlays = [
-    inputs.self.overlays.patches
+    inputs.self.overlays.default
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;

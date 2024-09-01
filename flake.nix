@@ -10,6 +10,13 @@
     nixpkgs.url = "github:NixOS/nixpkgs/c169763c3087b02a8308e2f8a9bba77c428dcca1"; # userborn
     # nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
+    colmena = {
+      url = "github:zhaofengli/colmena";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-compat.follows = "flake-compat";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.stable.follows = "nixpkgs";
+    };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -49,7 +56,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nixpkgs-stable.follows = "nixpkgs";
     };
-    systems.url = "github:nix-systems/default";
+    systems = {
+      url = "github:nix-systems/default";
+    };
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -93,16 +102,16 @@
         treefmtEval = inputs.treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
       in
       {
-        ### nix fmt
+        # nix fmt
         formatter = treefmtEval.config.build.wrapper;
 
-        ### nix flake check
+        # nix flake check
         checks.formatting = treefmtEval.config.build.check inputs.self;
 
-        ### nix {run,shell,build}
+        # nix {run,shell,build}
         legacyPackages = import ./pkgs pkgs;
 
-        ### nix develop
+        # nix develop
         devShells.default = pkgs.mkShellNoCC {
           packages = with pkgs; [
             colmena
@@ -112,26 +121,23 @@
       }
     )
     // {
-      ### imports = [];
       nixosModules.default = ./nixos/modules;
-      homeManagerModules.default = ./home/modules;
+      overlays.default = import ./overlays;
 
-      ### nixpkgs.overlays = [];
-      overlays = import ./overlays;
-
-      ### NixOS
-      nixosConfigurations."dust" = inputs.nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./nixos/profiles/core
-          ./hosts/dust
-        ];
-        specialArgs = {
-          inherit inputs;
+      nixosConfigurations = {
+        "dust" = inputs.nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./nixos/profiles/core
+            ./hosts/dust
+          ];
+          specialArgs = {
+            inherit inputs;
+          };
         };
-      };
+      } // inputs.self.colmenaHive.nodes;
 
-      colmena = {
+      colmenaHive = inputs.colmena.lib.makeHive {
         meta = {
           specialArgs = {
             inherit inputs;
