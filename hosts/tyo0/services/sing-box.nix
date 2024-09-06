@@ -18,7 +18,7 @@
           listen = "0.0.0.0";
           listen_port = 27253;
           users = {
-            _secret = "/run/credentials/sing-box.service/auth";
+            _secret = config.sops.secrets."sing-box/auth".path;
             quote = false;
           };
           tls = {
@@ -47,7 +47,6 @@
       path = "/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/tyo0.ny4.dev";
     in
     [
-      "auth:${config.sops.secrets."sing-box/auth".path}"
       "cert:${path}/tyo0.ny4.dev.crt"
       "key:${path}/tyo0.ny4.dev.key"
     ];
