@@ -1,10 +1,13 @@
 { lib, config, ... }:
+let
+  port = config.lib.ports.miniflux;
+in
 {
   services.miniflux = {
     enable = true;
     adminCredentialsFile = config.sops.secrets."miniflux/environment".path;
     config = {
-      LISTEN_ADDR = "127.0.0.1:9300";
+      LISTEN_ADDR = "127.0.0.1:${toString port}";
       BASE_URL = "https://rss.ny4.dev";
 
       OAUTH2_PROVIDER = "oidc";
@@ -21,7 +24,7 @@
     };
     handle = lib.singleton {
       handler = "reverse_proxy";
-      upstreams = [ { dial = "localhost:9300"; } ];
+      upstreams = [ { dial = "localhost:${toString port}"; } ];
     };
   };
 }

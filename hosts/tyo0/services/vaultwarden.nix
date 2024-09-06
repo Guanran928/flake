@@ -1,4 +1,7 @@
 { lib, config, ... }:
+let
+  port = config.lib.ports.vaultwarden;
+in
 {
   services.vaultwarden = {
     enable = true;
@@ -7,7 +10,7 @@
       DOMAIN = "https://vault.ny4.dev";
       IP_HEADER = "X-Forwarded-For";
       ROCKET_ADDRESS = "127.0.0.1";
-      ROCKET_PORT = 9500;
+      ROCKET_PORT = port;
 
       EMERGENCY_ACCESS_ALLOWED = false;
       SENDS_ALLOWED = false;
@@ -22,7 +25,7 @@
     };
     handle = lib.singleton {
       handler = "reverse_proxy";
-      upstreams = [ { dial = "localhost:9500"; } ];
+      upstreams = [ { dial = "localhost:${toString port}"; } ];
     };
   };
 }

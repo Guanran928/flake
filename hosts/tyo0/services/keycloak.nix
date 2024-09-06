@@ -1,4 +1,12 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+let
+  port = config.lib.ports.keycloak;
+in
 {
   services.keycloak = {
     enable = true;
@@ -6,7 +14,7 @@
       cache = "local";
       hostname = "id.ny4.dev";
       http-host = "127.0.0.1";
-      http-port = 8800;
+      http-port = port;
       proxy = "edge";
     };
     database.passwordFile = toString (pkgs.writeText "password" "keycloak");
@@ -18,7 +26,7 @@
     };
     handle = lib.singleton {
       handler = "reverse_proxy";
-      upstreams = [ { dial = "localhost:8800"; } ];
+      upstreams = [ { dial = "localhost:${toString port}"; } ];
     };
   };
 }

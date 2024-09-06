@@ -4,17 +4,20 @@
   config,
   ...
 }:
+let
+  inherit (config.lib) ports;
+in
 {
   services.prometheus = {
     enable = true;
     listenAddress = "127.0.0.1";
-    port = 9090;
+    port = ports.prometheus;
     webExternalUrl = "https://prom.ny4.dev";
 
     exporters.blackbox = {
       enable = true;
       listenAddress = "127.0.0.1";
-      port = 9093;
+      port = ports.blackbox;
       configFile = (pkgs.formats.yaml { }).generate "config.yaml" {
         modules = {
           http_2xx = {
@@ -73,7 +76,7 @@
           }
           {
             target_label = "__address__";
-            replacement = "127.0.0.1:9093";
+            replacement = "127.0.0.1:${toString ports.blackbox}";
           }
         ];
       }
@@ -116,7 +119,7 @@
     alertmanagers = lib.singleton {
       static_configs = lib.singleton {
         targets = [
-          "127.0.0.1:9092"
+          "127.0.0.1:${toString ports.alertmanager}"
         ];
       };
     };
@@ -124,7 +127,7 @@
     alertmanager = {
       enable = true;
       listenAddress = "127.0.0.1";
-      port = 9092;
+      port = ports.alertmanager;
 
       configuration = {
         receivers = lib.singleton {
@@ -146,7 +149,7 @@
     };
     handle = lib.singleton {
       handler = "reverse_proxy";
-      upstreams = [ { dial = "127.0.0.1:9090"; } ];
+      upstreams = [ { dial = "127.0.0.1:${toString ports.prometheus}"; } ];
     };
   };
 }
