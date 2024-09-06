@@ -13,9 +13,17 @@ in
     match = lib.singleton {
       host = [ "reddit.ny4.dev" ];
     };
-    handle = lib.singleton {
-      handler = "reverse_proxy";
-      upstreams = [ { dial = "localhost:${toString port}"; } ];
-    };
+    handle = [
+      {
+        # Google's indexing caused a DoS with 800k requests...
+        # https://developers.google.com/search/docs/crawling-indexing/block-indexing
+        handler = "headers";
+        response.set."X-Robots-Tag" = [ "noindex" ];
+      }
+      {
+        handler = "reverse_proxy";
+        upstreams = [ { dial = "localhost:${toString port}"; } ];
+      }
+    ];
   };
 }
