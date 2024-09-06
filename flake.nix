@@ -7,8 +7,7 @@
     #       `nixpkgs-unstable` contains less(?) jobs, and usually updates faster.
     #
     # REFERENCE: https://discourse.nixos.org/t/differences-between-nix-channels/13998/5
-    nixpkgs.url = "github:NixOS/nixpkgs/c169763c3087b02a8308e2f8a9bba77c428dcca1"; # userborn
-    # nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     colmena = {
       url = "github:zhaofengli/colmena";
@@ -67,7 +66,6 @@
     ### De-dupe flake dependencies
     crane = {
       url = "github:ipetkov/crane";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-compat = {
       url = "github:edolstra/flake-compat";

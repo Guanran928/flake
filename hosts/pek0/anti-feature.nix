@@ -7,6 +7,7 @@
       lib.elem (lib.getName pkg) [
         "adoptopenjdk-hotspot-bin"
         "cargo-bootstrap"
+        "go"
         "minecraft-server"
         "rustc-bootstrap"
         "rustc-bootstrap-wrapper"

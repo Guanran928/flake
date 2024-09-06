@@ -7,9 +7,10 @@
       lib.elem (lib.getName pkg) [
         "adoptopenjdk-hotspot-bin"
         "cargo-bootstrap"
+        "go"
+        "keycloak"
         "rustc-bootstrap"
         "rustc-bootstrap-wrapper"
-        "keycloak"
         "temurin-bin"
       ];
 

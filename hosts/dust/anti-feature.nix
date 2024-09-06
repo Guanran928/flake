@@ -10,6 +10,7 @@
         "cargo-bootstrap"
         "cef-binary"
         "dart"
+        "go"
         "rustc-bootstrap"
         "rustc-bootstrap-wrapper"
         "sof-firmware"
