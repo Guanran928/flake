@@ -28,9 +28,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    impermanence = {
-      url = "github:nix-community/impermanence";
-    };
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -49,6 +46,9 @@
     };
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware";
+    };
+    preservation = {
+      url = "github:WilliButz/preservation";
     };
     sops-nix = {
       url = "github:Mic92/sops-nix";

@@ -12,10 +12,6 @@
       ./zram.nix
     ]
     ++ (with inputs; [
-      disko.nixosModules.disko
-      home-manager.nixosModules.home-manager
-      impermanence.nixosModules.impermanence
-      lanzaboote.nixosModules.lanzaboote
       self.nixosModules.default
       sops-nix.nixosModules.sops
     ]);

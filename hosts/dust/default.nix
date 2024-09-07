@@ -6,16 +6,23 @@
   ...
 }:
 {
-  imports = [
-    ../../nixos/profiles/sing-box
-    ../../nixos/profiles/wireless
+  imports =
+    [
+      ../../nixos/profiles/sing-box
+      ../../nixos/profiles/wireless
 
-    ./anti-feature.nix
-    ./disko.nix
-    ./hardware-configuration.nix
-    ./impermanence.nix
-    ./lanzaboote.nix
-  ];
+      ./anti-feature.nix
+      ./disko.nix
+      ./hardware-configuration.nix
+      ./lanzaboote.nix
+      ./preservation.nix
+    ]
+    ++ (with inputs; [
+      disko.nixosModules.disko
+      home-manager.nixosModules.home-manager
+      lanzaboote.nixosModules.lanzaboote
+      preservation.nixosModules.preservation
+    ]);
 
   networking.hostName = "dust";
   time.timeZone = "Asia/Shanghai";

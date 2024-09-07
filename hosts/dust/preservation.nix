@@ -2,8 +2,8 @@
 {
   sops.age.sshKeyPaths = lib.mkForce [ "/persist/etc/ssh/ssh_host_ed25519_key" ];
   fileSystems."/persist".neededForBoot = true;
-  environment.persistence."/persist" = {
-    hideMounts = true;
+  preservation.enable = true;
+  preservation.preserveAt."/persist" = {
     directories = [
       "/var/log"
       "/var/lib"
@@ -15,6 +15,7 @@
       "/etc/ssh/ssh_host_rsa_key"
       "/etc/ssh/ssh_host_rsa_key.pub"
     ];
+
     users.guanranwang = {
       directories = [
         "Desktop"
@@ -43,4 +44,19 @@
       ];
     };
   };
+
+  systemd.tmpfiles.settings.preservation =
+    let
+      mkTmpfile = {
+        user = "guanranwang";
+        group = "users";
+        mode = "0755";
+      };
+    in
+    {
+      "/home/guanranwang/.config".d = mkTmpfile;
+      "/home/guanranwang/.mozilla".d = mkTmpfile;
+      "/home/guanranwang/.local/share".d = mkTmpfile;
+      "/home/guanranwang/.local/state".d = mkTmpfile;
+    };
 }
