@@ -64,6 +64,10 @@
     listen = [ ":443" ];
   };
 
+  systemd.services."caddy".serviceConfig.SupplementaryGroups = [
+    "forgejo"
+  ];
+
   services.caddy.settings.apps.http.servers.srv0.routes = [
     {
       match = lib.singleton {

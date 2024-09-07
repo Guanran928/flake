@@ -84,12 +84,10 @@
     trusted_proxies_strict = 1;
   };
 
-  systemd.services.caddy.serviceConfig = {
-    SupplementaryGroups = [
-      "mastodon"
-      "matrix-synapse"
-    ];
-  };
+  systemd.services."caddy".serviceConfig.SupplementaryGroups = [
+    "mastodon"
+    "matrix-synapse"
+  ];
 
   services.postgresql = {
     enable = true;

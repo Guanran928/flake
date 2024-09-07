@@ -14,6 +14,7 @@
         PROTOCOL = "http+unix";
         ROOT_URL = "https://git.ny4.dev/";
         SSH_DOMAIN = "tyo0.ny4.dev";
+        UNIX_SOCKET_PERMISSION = "660";
       };
 
       service = {
