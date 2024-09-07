@@ -27,7 +27,7 @@
           tag = "tyo0";
           server = "tyo0.ny4.dev";
           server_port = 27253;
-          uuid = "29e54ee5-43f5-4891-b750-ca73c7e3b2b3";
+          uuid._secret = config.sops.secrets."sing-box/tyo0".path;
           flow = "xtls-rprx-vision";
           tls.enabled = true;
         }
