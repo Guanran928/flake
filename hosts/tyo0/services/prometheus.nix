@@ -19,18 +19,17 @@ in
       listenAddress = "127.0.0.1";
       port = ports.blackbox;
       configFile = (pkgs.formats.yaml { }).generate "config.yaml" {
-        modules = {
-          http_2xx = {
-            prober = "http";
-          };
+        modules.http_2xx = {
+          prober = "http";
+          http.fail_if_not_ssl = true;
         };
       };
     };
 
     scrapeConfigs = [
       {
-        job_name = "metrics";
-        scheme = "https";
+        job_name = "node_exporter";
+        metrics_path = "/metrics";
         basic_auth = {
           username = "prometheus";
           password_file = config.sops.secrets."prometheus/auth".path;
@@ -43,8 +42,29 @@ in
         };
       }
       {
-        job_name = "http";
-        scheme = "http";
+        job_name = "caddy";
+        metrics_path = "/caddy";
+        basic_auth = {
+          username = "prometheus";
+          password_file = config.sops.secrets."prometheus/auth".path;
+        };
+        static_configs = lib.singleton {
+          targets = [
+            "tyo0.ny4.dev"
+            "pek0.ny4.dev"
+          ];
+        };
+      }
+      {
+        job_name = "blackbox_exporter";
+        static_configs = lib.singleton {
+          targets = [
+            "127.0.0.1:${toString ports.blackbox}"
+          ];
+        };
+      }
+      {
+        job_name = "blackbox_probe";
         metrics_path = "/probe";
         params = {
           module = [ "http_2xx" ];
@@ -90,12 +110,12 @@ in
           rules = [
             {
               alert = "NodeDown";
-              expr = ''up == 0'';
+              expr = ''up{job="node_exporter"} == 0'';
               for = "5m";
             }
             {
               alert = "HTTPDown";
-              expr = ''probe_http_status_code < 200 or probe_http_status_code > 299'';
+              expr = ''up{job="blackbox_probe"} == 0 or probe_success{job="blackbox_probe"} == 0'';
               for = "5m";
             }
             {
