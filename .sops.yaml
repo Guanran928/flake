@@ -1,29 +1,27 @@
 keys:
-  # Users
   - &guanranwang age129yyxyz686qj88ce5v77ahelqqwt6zz94mzzls0ny4hq76psrd9qhc79kq
 
-  # Hosts
-  # nix-shell -p ssh-to-age --run 'cat /etc/ssh/ssh_host_ed25519_key.pub | ssh-to-age'
-  - &blacksteel age174knn6hjtukp32ymcdvjwj6x0j54g7yw02dqfjmua3fkyltwcqrsxccjdk
+  # ssh-to-age < /etc/ssh/ssh_host_ed25519_key.pub
   - &dust age193x79xx8snu82w3t3hax6nruuw57g7pduwnkpvzkzmd7fs5jvfrquqa3sl
-  - &lightsail-tokyo age1vw4kf5v8cfnhfhvl0eyvqzpvy9hpfv9enffvzyt95tx5mu7s5dxqjqw0fa
+  - &pek0 age174knn6hjtukp32ymcdvjwj6x0j54g7yw02dqfjmua3fkyltwcqrsxccjdk
+  - &tyo0 age1vw4kf5v8cfnhfhvl0eyvqzpvy9hpfv9enffvzyt95tx5mu7s5dxqjqw0fa
 creation_rules:
-  - path_regex: hosts/blacksteel/secrets.yaml$
+  - path_regex: hosts/pek0/secrets.yaml$
     key_groups:
       - age:
           - *guanranwang
-          - *blacksteel
+          - *pek0
   - path_regex: hosts/tyo0/secrets.yaml$
     key_groups:
       - age:
           - *guanranwang
-          - *lightsail-tokyo
+          - *tyo0
   - path_regex: nixos/profiles/sing-box/secrets.yaml$
     key_groups:
       - age:
           - *guanranwang
-          - *blacksteel
           - *dust
+          - *pek0
   - path_regex: nixos/profiles/wireless/secrets.yaml$
     key_groups:
       - age:
@@ -33,6 +31,6 @@ creation_rules:
     key_groups:
       - age:
           - *guanranwang
-          - *blacksteel
           - *dust
-          - *lightsail-tokyo
+          - *pek0
+          - *tyo0

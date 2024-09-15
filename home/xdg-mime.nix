@@ -22,7 +22,7 @@
         "audio/mpeg"
         "audio/ogg"
         "audio/wav"
-      ] (_n: [ "io.bassi.Amberol.desktop" ])
+      ] (_n: [ "mpv.desktop" ])
       ### Image viewer
       // lib.genAttrs [
         "image/gif"

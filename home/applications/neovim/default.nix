@@ -4,12 +4,7 @@
   ...
 }:
 {
-  home.packages = [
-    (inputs.neovim.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
-      viAlias = true;
-      vimAlias = true;
-    })
-  ];
-
+  home.packages = [ pkgs.neovim ];
   home.sessionVariables."EDITOR" = "nvim";
+  xdg.configFile."nvim".source = inputs.neovim;
 }

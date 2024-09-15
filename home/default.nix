@@ -23,6 +23,11 @@
     zoxide.enable = true;
   };
 
+  services = {
+    cliphist.enable = true;
+    udiskie.enable = true;
+  };
+
   home.packages = with pkgs; [
     dconf-editor
     fastfetch
@@ -32,6 +37,8 @@
     gnome-calculator
     hyperfine
     loupe
+    pwvucontrol
     seahorse
+    wl-clipboard
   ];
 }
