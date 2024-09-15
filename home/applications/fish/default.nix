@@ -22,6 +22,13 @@
       }
     ];
 
+    shellAbbrs = {
+      g = "git";
+      n = "nvim";
+      gi = "gitui";
+      sy = "systemctl";
+    };
+
     functions =
       let
         jq = lib.getExe pkgs.jq;
