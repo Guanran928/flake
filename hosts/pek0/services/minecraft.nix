@@ -50,6 +50,7 @@
     whitelist = {
       "Guanran928" = "86dbb6c5-8d8b-4c45-b8eb-b3fdf03bfb27";
       "i_love_ravens" = "2788dd4b-b010-4a2f-9b5c-aad0c0e0cba5";
+      "e32ftedg" = "a54db5a0-67c2-476d-8457-a654dfbafd84";
     };
   };
 }

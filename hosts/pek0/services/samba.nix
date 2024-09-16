@@ -3,7 +3,7 @@
   services.samba = {
     enable = true;
     openFirewall = true;
-    shares."external" = {
+    settings."external" = {
       "path" = "/mnt";
       "read only" = "no";
     };

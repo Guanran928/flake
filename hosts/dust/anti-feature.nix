@@ -11,6 +11,7 @@
         "cef-binary"
         "dart"
         "go"
+        "osu-lazer-bin"
         "rustc-bootstrap"
         "rustc-bootstrap-wrapper"
         "sof-firmware"
@@ -23,6 +24,10 @@
       lib.elem (lib.getName pkg) [
         "fcitx5-pinyin-minecraft"
         "fcitx5-pinyin-moegirl"
+        "osu-lazer-bin"
+        "steam"
+        "steam-original"
+        "steam-run"
       ];
   };
 }

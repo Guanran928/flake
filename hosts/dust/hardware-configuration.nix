@@ -23,8 +23,6 @@
   boot.loader.timeout = 0;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.kernelParams = [ "ia32_emulation=0" ];
-
   boot.initrd.availableKernelModules = [
     "xhci_pci"
     "thunderbolt"

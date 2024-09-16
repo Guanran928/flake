@@ -16,7 +16,6 @@
     checkConfig = false; # wtf?
     wrapperFeatures.gtk = true;
     systemd.xdgAutostart = true;
-    xwayland = false;
     config = {
       ### Visuals
       output."*".bg = "${inputs.self.legacyPackages.${pkgs.stdenv.hostPlatform.system}.background} fill";

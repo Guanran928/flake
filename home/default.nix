@@ -21,6 +21,7 @@
     ripgrep.enable = true;
     skim.enable = true;
     zoxide.enable = true;
+    mangohud.enable = true;
   };
 
   services = {
@@ -41,5 +42,15 @@
     pwvucontrol
     seahorse
     wl-clipboard
+
+    mumble
+    osu-lazer-bin
+    prismlauncher
   ];
+
+  home.sessionVariables = {
+    # https://github.com/ppy/osu-framework/pull/6292
+    "OSU_SDL3" = "1";
+    "SDL_VIDEO_DRIVER" = "wayland";
+  };
 }

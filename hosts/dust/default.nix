@@ -71,6 +71,9 @@
   networking.firewall.allowedTCPPorts = [ 53317 ];
   networking.firewall.allowedUDPPorts = [ 53317 ];
 
+  programs.gamemode.enable = true;
+  programs.steam.enable = true;
+
   programs.adb.enable = true;
   programs.dconf.enable = true;
   programs.fish.enable = true;
