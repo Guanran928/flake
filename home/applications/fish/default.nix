@@ -35,10 +35,19 @@
     ];
 
     shellAbbrs = {
-      g = "git";
-      n = "nvim";
       gi = "gitui";
-      sy = "systemctl";
+      n = "nvim";
+      s = "nh os switch";
+
+      g = "git";
+      ga = "git add";
+      gc = "git commit -m";
+      gca = "git commit --amend";
+      gd = "git diff";
+      gds = "git diff --staged";
+      gl = "git log";
+      gp = "git push";
+      gr = "git rebase -i --autosquash";
     };
 
     functions =
