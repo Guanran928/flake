@@ -36,6 +36,7 @@
     fractal
     gnome-calculator
     hyperfine
+    libnotify
     loupe
     pwvucontrol
     seahorse
