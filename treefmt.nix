@@ -1,13 +1,15 @@
 {
   projectRootFile = "flake.nix";
 
-  ### nix
-  programs.nixfmt.enable = true;
-  programs.deadnix.enable = true;
-  programs.statix.enable = true;
+  programs = {
+    deadnix.enable = true;
+    nixfmt.enable = true;
+    prettier.enable = true;
+    statix.enable = true;
+  };
 
-  ### misc
-  programs.prettier.enable = true;
+  settings.formatter.nixfmt.options = [ "--strict" ];
+
   settings.formatter.prettier.excludes = [
     "hosts/pek0/secrets.yaml"
     "hosts/tyo0/secrets.yaml"

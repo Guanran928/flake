@@ -9,9 +9,7 @@ in
   };
 
   services.caddy.settings.apps.http.servers.srv0.routes = lib.singleton {
-    match = lib.singleton {
-      host = [ "pb.ny4.dev" ];
-    };
+    match = lib.singleton { host = [ "pb.ny4.dev" ]; };
     handle = lib.singleton {
       handler = "reverse_proxy";
       upstreams = [ { dial = "localhost:${toString port}"; } ];

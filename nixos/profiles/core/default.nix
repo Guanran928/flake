@@ -1,8 +1,4 @@
-{
-  inputs,
-  pkgs,
-  ...
-}:
+{ inputs, pkgs, ... }:
 {
   imports =
     [
@@ -16,9 +12,7 @@
       sops-nix.nixosModules.sops
     ]);
 
-  nixpkgs.overlays = [
-    inputs.self.overlays.default
-  ];
+  nixpkgs.overlays = [ inputs.self.overlays.default ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 

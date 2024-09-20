@@ -1,12 +1,8 @@
 { pkgs, ... }:
 {
-  imports = [
-    ../prometheus
-  ];
+  imports = [ ../prometheus ];
 
-  environment.systemPackages = with pkgs; [
-    foot.terminfo
-  ];
+  environment.systemPackages = with pkgs; [ foot.terminfo ];
 
   services.openssh = {
     enable = true;

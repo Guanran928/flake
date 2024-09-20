@@ -10,9 +10,7 @@ in
   };
 
   services.caddy.settings.apps.http.servers.srv0.routes = lib.singleton {
-    match = lib.singleton {
-      host = [ "reddit.ny4.dev" ];
-    };
+    match = lib.singleton { host = [ "reddit.ny4.dev" ]; };
     handle = [
       {
         # Google's indexing caused a DoS with 800k requests...

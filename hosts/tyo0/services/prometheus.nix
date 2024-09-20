@@ -57,11 +57,7 @@ in
       }
       {
         job_name = "blackbox_exporter";
-        static_configs = lib.singleton {
-          targets = [
-            "127.0.0.1:${toString ports.blackbox}"
-          ];
-        };
+        static_configs = lib.singleton { targets = [ "127.0.0.1:${toString ports.blackbox}" ]; };
       }
       {
         job_name = "blackbox_probe";
@@ -137,11 +133,7 @@ in
     );
 
     alertmanagers = lib.singleton {
-      static_configs = lib.singleton {
-        targets = [
-          "127.0.0.1:${toString ports.alertmanager}"
-        ];
-      };
+      static_configs = lib.singleton { targets = [ "127.0.0.1:${toString ports.alertmanager}" ]; };
     };
 
     alertmanager = {
@@ -152,9 +144,7 @@ in
       configuration = {
         receivers = lib.singleton {
           name = "ntfy";
-          webhook_configs = lib.singleton {
-            url = "https://ntfy.ny4.dev/alert";
-          };
+          webhook_configs = lib.singleton { url = "https://ntfy.ny4.dev/alert"; };
         };
         route = {
           receiver = "ntfy";
@@ -164,9 +154,7 @@ in
   };
 
   services.caddy.settings.apps.http.servers.srv0.routes = lib.singleton {
-    match = lib.singleton {
-      host = [ "prom.ny4.dev" ];
-    };
+    match = lib.singleton { host = [ "prom.ny4.dev" ]; };
     handle = lib.singleton {
       handler = "reverse_proxy";
       upstreams = [ { dial = "127.0.0.1:${toString ports.prometheus}"; } ];

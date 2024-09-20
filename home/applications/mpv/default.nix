@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}:
+{ pkgs, lib, ... }:
 {
   programs.mpv = {
     enable = true;
@@ -23,12 +19,7 @@
         modernx-zydezu
         thumbfast
       ])
-      ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux (
-        with pkgs.mpvScripts;
-        [
-          mpris
-        ]
-      );
+      ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux (with pkgs.mpvScripts; [ mpris ]);
 
     bindings =
       let

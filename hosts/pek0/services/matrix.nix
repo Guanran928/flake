@@ -50,9 +50,7 @@
   };
 
   services.caddy.settings.apps.http.servers.srv0.routes = lib.singleton {
-    match = lib.singleton {
-      host = [ "matrix.ny4.dev" ];
-    };
+    match = lib.singleton { host = [ "matrix.ny4.dev" ]; };
     handle = lib.singleton {
       handler = "subroute";
       routes = lib.singleton {
@@ -66,9 +64,7 @@
         handle = lib.singleton {
           handler = "reverse_proxy";
           headers.request.set."X-Forwarded-Proto" = [ "https" ];
-          upstreams = lib.singleton {
-            dial = "unix//run/matrix-synapse/synapse.sock";
-          };
+          upstreams = lib.singleton { dial = "unix//run/matrix-synapse/synapse.sock"; };
         };
       };
     };

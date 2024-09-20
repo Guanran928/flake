@@ -64,9 +64,7 @@
     listen = [ ":443" ];
   };
 
-  systemd.services."caddy".serviceConfig.SupplementaryGroups = [
-    "forgejo"
-  ];
+  systemd.services."caddy".serviceConfig.SupplementaryGroups = [ "forgejo" ];
 
   services.caddy.settings.apps.http.servers.srv0.routes = [
     {
@@ -81,9 +79,7 @@
           Access-Control-Allow-Origin = [ "*" ];
           Content-Type = [ "application/json" ];
         };
-        body = builtins.toJSON {
-          "m.server" = "matrix.ny4.dev:443";
-        };
+        body = builtins.toJSON { "m.server" = "matrix.ny4.dev:443"; };
       };
     }
     {
@@ -120,9 +116,7 @@
       };
     }
     {
-      match = lib.singleton {
-        host = [ "ny4.dev" ];
-      };
+      match = lib.singleton { host = [ "ny4.dev" ]; };
       handle = lib.singleton {
         handler = "static_response";
         status_code = 302;
@@ -132,9 +126,7 @@
       };
     }
     {
-      match = lib.singleton {
-        host = [ "element.ny4.dev" ];
-      };
+      match = lib.singleton { host = [ "element.ny4.dev" ]; };
       handle = [
         {
           handler = "headers";
@@ -157,9 +149,7 @@
       ];
     }
     {
-      match = lib.singleton {
-        host = [ "cinny.ny4.dev" ];
-      };
+      match = lib.singleton { host = [ "cinny.ny4.dev" ]; };
       handle = lib.singleton {
         handler = "subroute";
         routes = [

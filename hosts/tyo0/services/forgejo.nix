@@ -29,9 +29,7 @@
   };
 
   services.caddy.settings.apps.http.servers.srv0.routes = lib.singleton {
-    match = lib.singleton {
-      host = [ "git.ny4.dev" ];
-    };
+    match = lib.singleton { host = [ "git.ny4.dev" ]; };
     handle = lib.singleton {
       handler = "reverse_proxy";
       upstreams = [ { dial = "unix//run/forgejo/forgejo.sock"; } ];

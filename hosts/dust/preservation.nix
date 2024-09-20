@@ -39,9 +39,7 @@
         ".config/fcitx5"
         ".config/obs-studio"
       ];
-      files = [
-        ".config/sops/age/keys.txt"
-      ];
+      files = [ ".config/sops/age/keys.txt" ];
     };
   };
 

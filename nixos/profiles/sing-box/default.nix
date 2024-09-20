@@ -47,9 +47,7 @@
             outbound = "direct";
           }
           {
-            rule_set = [
-              "geosite-private"
-            ];
+            rule_set = [ "geosite-private" ];
             ip_is_private = true;
             outbound = "direct";
           }

@@ -1,8 +1,6 @@
 { lib, config, ... }:
 {
-  networking.firewall.allowedTCPPorts = [
-    27253
-  ];
+  networking.firewall.allowedTCPPorts = [ 27253 ];
 
   services.sing-box = {
     enable = true;

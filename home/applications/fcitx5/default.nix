@@ -1,8 +1,4 @@
-{
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, pkgs, ... }:
 let
   package = pkgs.qt6Packages.fcitx5-with-addons.override {
     addons = with pkgs; [
@@ -14,9 +10,7 @@ let
   };
 in
 {
-  home.packages = [
-    package
-  ];
+  home.packages = [ package ];
 
   systemd.user.services.fcitx5-daemon = {
     Unit.Description = "Fcitx5 input method editor";

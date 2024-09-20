@@ -52,12 +52,8 @@ _final: prev: {
 
   # HACK: no more gtk2
   gnome-themes-extra =
-    (prev.gnome-themes-extra.override {
-      gtk2 = prev.emptyDirectory;
-    }).overrideAttrs
-      {
-        configureFlags = [ "--disable-gtk2-engine" ];
-      };
+    (prev.gnome-themes-extra.override { gtk2 = prev.emptyDirectory; }).overrideAttrs
+      { configureFlags = [ "--disable-gtk2-engine" ]; };
 
   sway-unwrapped = addPatches prev.sway-unwrapped [
     # text_input: Implement input-method popups

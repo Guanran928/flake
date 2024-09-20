@@ -59,48 +59,48 @@
 
   boot.tmp.useTmpfs = true;
 
-  services.tailscale = {
-    enable = true;
-    openFirewall = true;
+  environment.systemPackages = with pkgs; [ yubikey-manager ];
+
+  networking.firewall = {
+    allowedTCPPorts = [ 53317 ];
+    allowedUDPPorts = [ 53317 ];
   };
 
-  environment.systemPackages = with pkgs; [
-    yubikey-manager
-  ];
-
-  networking.firewall.allowedTCPPorts = [ 53317 ];
-  networking.firewall.allowedUDPPorts = [ 53317 ];
-
-  programs.gamemode.enable = true;
-  programs.steam.enable = true;
-
-  programs.adb.enable = true;
-  programs.dconf.enable = true;
-  programs.fish.enable = true;
-  programs.localsend.enable = true;
-  programs.seahorse.enable = true;
-  programs.ssh = {
-    startAgent = true;
-    enableAskPassword = true;
+  programs = {
+    adb.enable = true;
+    dconf.enable = true;
+    fish.enable = true;
+    gamemode.enable = true;
+    localsend.enable = true;
+    seahorse.enable = true;
+    steam.enable = true;
+    ssh = {
+      startAgent = true;
+      enableAskPassword = true;
+    };
   };
 
-  services.power-profiles-daemon.enable = true;
-  services.gvfs.enable = true;
-  services.gnome = {
-    gnome-keyring.enable = true;
-    sushi.enable = true;
-  };
+  services = {
+    power-profiles-daemon.enable = true;
+    gvfs.enable = true;
+    gnome = {
+      gnome-keyring.enable = true;
+      sushi.enable = true;
+    };
+    tailscale = {
+      enable = true;
+      openFirewall = true;
+    };
 
-  # yubikey
-  services.pcscd.enable = true;
-  services.udev.packages = [ pkgs.yubikey-personalization ];
+    # yubikey
+    pcscd.enable = true;
+    udev.packages = [ pkgs.yubikey-personalization ];
+  };
 
   fonts = {
     enableDefaultPackages = false;
     packages = with pkgs; [
-      (nerdfonts.override {
-        fonts = [ "NerdFontsSymbolsOnly" ];
-      })
+      (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
       (inter.overrideAttrs {
         installPhase = ''
           runHook preInstall
@@ -129,9 +129,7 @@
     ];
     fontconfig = {
       defaultFonts = {
-        emoji = [
-          "Noto Color Emoji"
-        ];
+        emoji = [ "Noto Color Emoji" ];
         # Append emoji font for Qt apps, they might use the monochrome emoji
         monospace = [
           "JetBrains Mono"

@@ -41,9 +41,7 @@
             password = "$2a$14$2Phk4tobM04H4XiGegB3TuEXkyORCKMKW8TptYPTPXUWmZgtGBj/.";
           };
         }
-        {
-          handler = "metrics";
-        }
+        { handler = "metrics"; }
       ];
     }
   ];
