@@ -19,36 +19,56 @@
       end
     '';
 
-    plugins = [
-      {
-        name = "autopair";
-        inherit (pkgs.fishPlugins.autopair) src;
-      }
-      {
-        name = "done";
-        inherit (pkgs.fishPlugins.done) src;
-      }
-      {
-        name = "puffer";
-        inherit (pkgs.fishPlugins.puffer) src;
-      }
-    ];
+    plugins =
+      lib.map
+        (f: {
+          name = f.pname;
+          inherit (f) src;
+        })
+        (
+          with pkgs.fishPlugins;
+          [
+            autopair
+            done
+            puffer
+          ]
+        );
 
-    shellAbbrs = {
-      gi = "gitui";
-      n = "nvim";
-      s = "nh os switch";
+    shellAbbrs =
+      let
+        cursor = f: {
+          setCursor = true;
+          expansion = f;
+        };
+      in
+      {
+        gi = "gitui";
+        p = "powerprofilesctl";
+        s = "nh os switch";
+        v = "nvim";
 
-      g = "git";
-      ga = "git add";
-      gc = "git commit -m";
-      gca = "git commit --amend";
-      gd = "git diff";
-      gds = "git diff --staged";
-      gl = "git log";
-      gp = "git push";
-      gr = "git rebase -i --autosquash";
-    };
+        # TODO: maybe fishPlugins.fish-git-abbr?
+        g = "git";
+        ga = "git add";
+        gac = cursor "git commit -am '%'";
+        gc = cursor "git commit -m '%'";
+        gca = "git commit --amend";
+        gd = "git diff";
+        gds = "git diff --staged";
+        gl = "git log";
+        gp = "git pull";
+        gpu = "git push";
+        gr = "git rebase -i --autosquash";
+
+        n = "nix";
+        nb = cursor "nix build nixpkgs#%";
+        nr = cursor "nix run nixpkgs#%";
+        ns = cursor "nix shell nixpkgs#%";
+        nbb = "nix-build -A";
+        nf = "nix fmt";
+        nu = "nix flake update";
+        nv = "nix eval";
+      };
 
     functions =
       let
