@@ -17,7 +17,6 @@
     ./services/murmur.nix
     ./services/ntfy.nix
     ./services/prometheus.nix
-    ./services/redlib.nix
     ./services/vaultwarden.nix
     ./services/wastebin.nix
 

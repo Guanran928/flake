@@ -2,7 +2,6 @@
   lib.ports = {
     keycloak = 8010;
     miniflux = 8020;
-    redlib = 8030;
     vaultwarden = 8040;
     wastebin = 8050;
 

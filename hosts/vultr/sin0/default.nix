@@ -1,6 +1,12 @@
 { ... }:
 {
-  imports = [ ../../../nixos/profiles/sing-box-server ];
+  imports = [
+    ./ports.nix
+
+    ./services/redlib.nix
+
+    ../../../nixos/profiles/sing-box-server
+  ];
 
   system.stateVersion = "24.05";
 
