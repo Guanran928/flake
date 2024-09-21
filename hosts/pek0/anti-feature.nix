@@ -1,10 +1,10 @@
 { lib, ... }:
 {
   nixpkgs.config = {
-    allowNonSource = false;
+    allowNonSource = true;
     allowNonSourcePredicate =
       pkg:
-      lib.elem (lib.getName pkg) [
+      (lib.elem (lib.getName pkg) [
         "cargo-bootstrap"
         "go"
         "minecraft-server"
@@ -12,7 +12,7 @@
         "rustc-bootstrap-wrapper"
         "sof-firmware"
         "temurin-bin"
-      ];
+      ]);
 
     allowUnfree = false;
     allowUnfreePredicate =

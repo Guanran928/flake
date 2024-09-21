@@ -2,10 +2,12 @@
   lib,
   pkgs,
   config,
+  nodes,
   ...
 }:
 let
   inherit (config.lib) ports;
+  targets = lib.mapAttrsToList (_name: node: node.fqdn) nodes;
 in
 {
   services.prometheus = {
@@ -36,9 +38,9 @@ in
         };
         static_configs = lib.singleton {
           targets = [
-            "tyo0.ny4.dev"
             "pek0.ny4.dev"
-          ];
+            "tyo0.ny4.dev"
+          ] ++ targets;
         };
       }
       {
@@ -52,7 +54,7 @@ in
           targets = [
             "tyo0.ny4.dev"
             "pek0.ny4.dev"
-          ];
+          ] ++ targets;
         };
       }
       {

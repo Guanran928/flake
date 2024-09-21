@@ -93,6 +93,13 @@
 
   outputs =
     inputs:
+    let
+      data = builtins.fromJSON (builtins.readFile ./infra/data.json);
+      specialArgs = {
+        inherit inputs;
+        nodes = data.nodes.value;
+      };
+    in
     inputs.flake-utils.lib.eachDefaultSystem (
       system:
       let
@@ -112,6 +119,12 @@
         # nix develop
         devShells.default = pkgs.mkShellNoCC {
           packages = with pkgs; [
+            (opentofu.withPlugins (
+              ps: with ps; [
+                vultr
+                sops
+              ]
+            ))
             colmena
             sops
           ];
@@ -124,41 +137,57 @@
 
       nixosConfigurations = {
         "dust" = inputs.nixpkgs.lib.nixosSystem {
+          inherit specialArgs;
           system = "x86_64-linux";
           modules = [
             ./nixos/profiles/core
             ./hosts/dust
           ];
-          specialArgs = {
-            inherit inputs;
-          };
         };
       } // inputs.self.colmenaHive.nodes;
 
-      colmenaHive = inputs.colmena.lib.makeHive {
-        meta = {
-          specialArgs = {
-            inherit inputs;
+      colmenaHive = inputs.colmena.lib.makeHive (
+        {
+          meta = {
+            inherit specialArgs;
+            nixpkgs = import inputs.nixpkgs {
+              system = "x86_64-linux"; # How does this work?
+            };
           };
-          nixpkgs = import inputs.nixpkgs {
-            system = "x86_64-linux"; # How does this work?
+
+          defaults.imports = [
+            ./nixos/profiles/core
+            ./nixos/profiles/server
+          ];
+
+          "tyo0" = {
+            imports = [ ./hosts/tyo0 ];
+            deployment.targetHost = "tyo0.ny4.dev";
           };
-        };
 
-        defaults.imports = [
-          ./nixos/profiles/core
-          ./nixos/profiles/server
-        ];
-
-        "tyo0" = {
-          imports = [ ./hosts/tyo0 ];
-          deployment.targetHost = "tyo0.ny4.dev";
-        };
-
-        "pek0" = {
-          imports = [ ./hosts/pek0 ];
-          deployment.targetHost = "blacksteel"; # thru tailscale
-        };
-      };
+          "pek0" = {
+            imports = [ ./hosts/pek0 ];
+            deployment.targetHost = "blacksteel"; # thru tailscale
+          };
+        }
+        // (builtins.mapAttrs (n: v: {
+          deployment = {
+            inherit (v) tags;
+            targetHost = v.fqdn;
+          };
+          imports =
+            if (builtins.elem "vultr" v.tags) then
+              [
+                ./hosts/vultr/${n}
+                ./hosts/vultr/common
+                { networking.hostName = n; }
+              ]
+            # TODO: import aws
+            else if (builtins.elem "amazon" v.tags) then
+              [ ./hosts/amazon/${n} ]
+            else
+              [ ./hosts/${n} ];
+        }) data.nodes.value)
+      );
     };
 }

@@ -1,0 +1,45 @@
+{
+  "nodes": {
+    "sensitive": false,
+    "type": [
+      "object",
+      {
+        "sin0": [
+          "object",
+          {
+            "fqdn": "string",
+            "ipv4": "string",
+            "ipv6": "string",
+            "remarks": [
+              "object",
+              {
+                "city": "string",
+                "continent": "string",
+                "country": "string"
+              }
+            ],
+            "tags": [
+              "list",
+              "string"
+            ]
+          }
+        ]
+      }
+    ],
+    "value": {
+      "sin0": {
+        "fqdn": "sin0.ny4.dev",
+        "ipv4": "149.28.143.116",
+        "ipv6": "2001:19f0:4400:7041:5400:05ff:fe1b:042d",
+        "remarks": {
+          "city": "Singapore",
+          "continent": "Asia",
+          "country": "SG"
+        },
+        "tags": [
+          "vultr"
+        ]
+      }
+    }
+  }
+}
