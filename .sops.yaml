@@ -23,6 +23,12 @@ creation_rules:
           - *guanranwang
           - *dust
           - *pek0
+  - path_regex: ^nixos/profiles/sing-box-server/secrets.yaml$
+    key_groups:
+      - age:
+          - *guanranwang
+          - *tyo0
+          - *sin0
   - path_regex: ^nixos/profiles/wireless/secrets.yaml$
     key_groups:
       - age:

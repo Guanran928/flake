@@ -163,6 +163,7 @@
           "tyo0" = {
             imports = [ ./hosts/tyo0 ];
             deployment.targetHost = "tyo0.ny4.dev";
+            deployment.tags = [ "proxy" ];
           };
 
           "pek0" = {

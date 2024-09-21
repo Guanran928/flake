@@ -37,7 +37,8 @@
           "country": "SG"
         },
         "tags": [
-          "vultr"
+          "vultr",
+          "proxy"
         ]
       }
     }

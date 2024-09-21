@@ -212,6 +212,7 @@
         tag = "select";
         outbounds = [
           "tyo0"
+          "sin0"
           "direct"
         ];
         default = "tyo0";

@@ -1,4 +1,7 @@
+{ ... }:
 {
+  imports = [ ../../../nixos/profiles/sing-box-server ];
+
   system.stateVersion = "24.05";
 
   networking.firewall.allowedUDPPorts = [ 443 ];

@@ -3,7 +3,7 @@ locals {
     sin0 = {
       region = "sgp"
       plan   = "vhp-1c-1gb-amd"
-      tags   = ["vultr"]
+      tags   = ["vultr", "proxy"]
     }
   }
 }

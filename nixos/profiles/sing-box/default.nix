@@ -32,6 +32,15 @@
           tls.enabled = true;
         }
         {
+          type = "vless";
+          tag = "sin0";
+          server = "sin0.ny4.dev";
+          server_port = 27253;
+          uuid._secret = config.sops.secrets."sing-box/tyo0".path;
+          flow = "xtls-rprx-vision";
+          tls.enabled = true;
+        }
+        {
           type = "direct";
           tag = "direct";
         }

@@ -18,9 +18,10 @@
     ./services/ntfy.nix
     ./services/prometheus.nix
     ./services/redlib.nix
-    ./services/sing-box.nix
     ./services/vaultwarden.nix
     ./services/wastebin.nix
+
+    ../../nixos/profiles/sing-box-server
   ];
 
   boot.loader.grub.device = lib.mkForce "/dev/nvme0n1";
@@ -40,9 +41,6 @@
 
   ### Secrets
   sops.secrets = lib.mapAttrs (_name: value: value // { sopsFile = ./secrets.yaml; }) {
-    "sing-box/auth" = {
-      restartUnits = [ "sing-box.service" ];
-    };
     "prometheus/auth" = {
       owner = config.systemd.services.prometheus.serviceConfig.User;
       restartUnits = [ "prometheus.service" ];
