@@ -30,3 +30,6 @@ module "vultr" {
   script   = vultr_startup_script.script.id
 }
 
+resource "vultr_object_storage" "storage" {
+  cluster_id = 4 # sgp1.vultrobjects.com
+}

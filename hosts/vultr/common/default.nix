@@ -12,6 +12,8 @@
 
       ./disko.nix
       ./preservation.nix
+
+      ../../../nixos/profiles/restic
     ]
     ++ (with inputs; [
       disko.nixosModules.disko

@@ -17,6 +17,12 @@ creation_rules:
       - age:
           - *guanranwang
           - *tyo0
+  - path_regex: ^nixos/profiles/restic/secrets.yaml$
+    key_groups:
+      - age:
+          - *guanranwang
+          - *dust
+          - *sin0
   - path_regex: ^nixos/profiles/sing-box/secrets.yaml$
     key_groups:
       - age:

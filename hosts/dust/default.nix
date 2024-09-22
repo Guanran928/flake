@@ -8,6 +8,7 @@
 {
   imports =
     [
+      ../../nixos/profiles/restic
       ../../nixos/profiles/sing-box
       ../../nixos/profiles/wireless
 
@@ -231,4 +232,6 @@
       };
     };
   };
+
+  services.restic.backups.persist.exclude = [ "/persist/home/guanranwang/.local/share/Steam" ];
 }
