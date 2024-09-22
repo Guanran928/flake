@@ -8,13 +8,14 @@ locals {
   }
 }
 
+# https://github.com/NickCao/netboot
 resource "vultr_startup_script" "script" {
   name = "nixos"
   type = "pxe"
   script = base64encode(<<EOT
 #!ipxe
 set cmdline sshkey="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMmd/uqiBahzKcKMJ+gT3dkUIdrWQgudspsDchDlx1E/"
-chain https://github.com/NickCao/netboot/releases/download/latest/ipxe
+chain http://nixos.icu
 EOT
   )
 }

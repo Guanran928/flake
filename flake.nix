@@ -126,6 +126,7 @@
               ]
             ))
             colmena
+            just
             sops
           ];
         };
