@@ -42,7 +42,7 @@
         };
       in
       {
-        gi = "gitui";
+        gi = "lazygit";
         p = "powerprofilesctl";
         s = "nh os switch";
         v = "nvim";
