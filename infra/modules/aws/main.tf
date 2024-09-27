@@ -46,7 +46,7 @@ output "ipv4" {
 }
 
 output "ipv6" {
-  value = aws_lightsail_instance.server.ipv6_addresses
+  value = aws_lightsail_instance.server.ipv6_addresses[0]
 }
 
 output "fqdn" {

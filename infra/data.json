@@ -29,10 +29,7 @@
           {
             "fqdn": "string",
             "ipv4": "string",
-            "ipv6": [
-              "list",
-              "string"
-            ],
+            "ipv6": "string",
             "tags": [
               "list",
               "string"
@@ -59,9 +56,7 @@
       "tyo0": {
         "fqdn": "tyo0.ny4.dev",
         "ipv4": "18.177.132.61",
-        "ipv6": [
-          "2406:da14:f1f:2f00:e63f:64a0:7505:7534"
-        ],
+        "ipv6": "2406:da14:f1f:2f00:e63f:64a0:7505:7534",
         "tags": [
           "aws",
           "proxy"
