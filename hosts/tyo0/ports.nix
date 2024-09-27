@@ -1,7 +1,6 @@
 {
   lib.ports = {
     keycloak = 8010;
-    miniflux = 8020;
     vaultwarden = 8040;
     wastebin = 8050;
 

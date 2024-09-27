@@ -1,14 +1,24 @@
 { lib, config, ... }:
-let
-  port = config.lib.ports.miniflux;
-in
 {
+  # https://miniflux.app/docs/howto.html#systemd-socket-activation
+  systemd = {
+    sockets.miniflux = {
+      description = "Miniflux Socket";
+      wantedBy = [ "sockets.target" ];
+      requiredBy = [ "miniflux.service" ];
+      listenStreams = [ "/run/miniflux.sock" ];
+      socketConfig.NoDelay = true;
+    };
+    services.miniflux = {
+      serviceConfig.NonBlocking = true;
+    };
+  };
+
   services.miniflux = {
     enable = true;
     adminCredentialsFile = config.sops.secrets."miniflux/environment".path;
     config = {
       CREATE_ADMIN = 0;
-      LISTEN_ADDR = "127.0.0.1:${toString port}";
       BASE_URL = "https://rss.ny4.dev";
 
       OAUTH2_PROVIDER = "oidc";
@@ -23,7 +33,7 @@ in
     match = lib.singleton { host = [ "rss.ny4.dev" ]; };
     handle = lib.singleton {
       handler = "reverse_proxy";
-      upstreams = [ { dial = "localhost:${toString port}"; } ];
+      upstreams = [ { dial = "unix//run/miniflux.sock"; } ];
     };
   };
 }
