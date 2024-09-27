@@ -7,6 +7,7 @@ in
     enable = true;
     adminCredentialsFile = config.sops.secrets."miniflux/environment".path;
     config = {
+      CREATE_ADMIN = 0;
       LISTEN_ADDR = "127.0.0.1:${toString port}";
       BASE_URL = "https://rss.ny4.dev";
 
