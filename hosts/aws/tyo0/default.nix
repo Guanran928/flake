@@ -20,11 +20,10 @@
     ./services/vaultwarden.nix
     ./services/wastebin.nix
 
-    ../../nixos/profiles/sing-box-server
+    ../../../nixos/profiles/sing-box-server
   ];
 
   boot.loader.grub.device = lib.mkForce "/dev/nvme0n1";
-  networking.hostName = "tyo0";
   system.stateVersion = "24.05";
 
   swapDevices = lib.singleton {

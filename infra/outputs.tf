@@ -1,3 +1,3 @@
 output "nodes" {
-  value = module.vultr
+  value = merge(module.vultr, module.aws)
 }

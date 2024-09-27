@@ -6,6 +6,9 @@ terraform {
     sops = {
       source = "registry.terraform.io/carlpett/sops"
     }
+    aws = {
+      source = "registry.terraform.io/hashicorp/aws"
+    }
   }
 
   encryption {

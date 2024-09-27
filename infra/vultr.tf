@@ -1,5 +1,5 @@
 locals {
-  nodes = {
+  vultr_nodes = {
     sin0 = {
       region = "sgp"
       plan   = "vhp-1c-1gb-amd"
@@ -22,7 +22,7 @@ EOT
 
 module "vultr" {
   source   = "./modules/vultr"
-  for_each = local.nodes
+  for_each = local.vultr_nodes
   hostname = each.key
   fqdn     = "${each.key}.ny4.dev"
   region   = each.value.region

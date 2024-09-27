@@ -121,6 +121,7 @@
           packages = with pkgs; [
             (opentofu.withPlugins (
               ps: with ps; [
+                aws
                 vultr
                 sops
               ]
@@ -161,12 +162,6 @@
             ./nixos/profiles/server
           ];
 
-          "tyo0" = {
-            imports = [ ./hosts/tyo0 ];
-            deployment.targetHost = "tyo0.ny4.dev";
-            deployment.tags = [ "proxy" ];
-          };
-
           "pek0" = {
             imports = [ ./hosts/pek0 ];
             deployment.targetHost = "blacksteel"; # thru tailscale
@@ -184,9 +179,11 @@
                 ./hosts/vultr/common
                 { networking.hostName = n; }
               ]
-            # TODO: import aws
-            else if (builtins.elem "amazon" v.tags) then
-              [ ./hosts/amazon/${n} ]
+            else if (builtins.elem "aws" v.tags) then
+              [
+                ./hosts/aws/${n}
+                { networking.hostName = n; }
+              ]
             else
               [ ./hosts/${n} ];
         }) data.nodes.value)
