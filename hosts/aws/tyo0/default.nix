@@ -139,9 +139,14 @@
         {
           handler = "file_server";
           root = pkgs.element-web.override {
-            conf.default_server_config."m.homeserver" = {
-              base_url = "https://matrix.ny4.dev";
-              server_name = "ny4.dev";
+            conf = {
+              default_server_config."m.homeserver" = {
+                base_url = "https://matrix.ny4.dev";
+                server_name = "ny4.dev";
+              };
+              enable_presence_by_hs_url = {
+                "https://matrix.ny4.dev" = false;
+              };
             };
           };
         }
