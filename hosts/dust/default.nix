@@ -225,10 +225,11 @@
     };
 
     experimental = {
-      clash_api = {
+      clash_api = rec {
         external_controller = "127.0.0.1:9090";
         external_ui = pkgs.metacubexd;
         secret = "hunter2";
+        access_control_allow_origin = [ "http://${external_controller}" ];
       };
     };
   };

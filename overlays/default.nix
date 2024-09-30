@@ -22,6 +22,20 @@ _final: prev: {
     '';
   };
 
+  # https://www.v2ex.com/t/1076579
+  sing-box = prev.sing-box.overrideAttrs (rec {
+    version = "1.10.0-beta.11";
+
+    src = prev.fetchFromGitHub {
+      owner = "SagerNet";
+      repo = "sing-box";
+      rev = "v${version}";
+      hash = "sha256-hxOQdrNQB/3KbI1ULDLPfMzFB1JmZb49iPEOtGzWajY=";
+    };
+
+    vendorHash = "sha256-rsgrcVkIMUIobuGFBlDDQM05sljZXShsa1+10xxzmlA=";
+  });
+
   qt6Packages = prev.qt6Packages.overrideScope (
     _final': prev': {
       # HACK: no more qt5
