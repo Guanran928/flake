@@ -149,7 +149,7 @@
           "Noto Color Emoji"
         ];
       };
-      # GitHub perfers Noto Sans...
+      # GitHub prefers Noto Sans...
       localConf = ''
         <selectfont>
           <rejectfont>
