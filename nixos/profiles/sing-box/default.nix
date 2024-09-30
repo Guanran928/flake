@@ -2,6 +2,7 @@
   lib,
   pkgs,
   config,
+  nodes,
   ...
 }:
 {
@@ -21,30 +22,20 @@
         sniff_override_destination = true;
       };
 
-      outbounds = [
-        {
+      outbounds =
+        lib.mapAttrsToList (n: v: {
           type = "vless";
-          tag = "tyo0";
-          server = "tyo0.ny4.dev";
+          tag = n;
+          server = v.fqdn;
           server_port = 27253;
-          uuid._secret = config.sops.secrets."sing-box/tyo0".path;
+          uuid._secret = config.sops.secrets."sing-box/uuid".path;
           flow = "xtls-rprx-vision";
           tls.enabled = true;
-        }
-        {
-          type = "vless";
-          tag = "sin0";
-          server = "sin0.ny4.dev";
-          server_port = 27253;
-          uuid._secret = config.sops.secrets."sing-box/tyo0".path;
-          flow = "xtls-rprx-vision";
-          tls.enabled = true;
-        }
-        {
+        }) (lib.filterAttrs (_name: value: lib.elem "proxy" value.tags) nodes)
+        ++ lib.singleton {
           type = "direct";
           tag = "direct";
-        }
-      ];
+        };
 
       route = {
         rules = [
@@ -104,7 +95,7 @@
     };
 
   ### sops-nix
-  sops.secrets."sing-box/tyo0" = {
+  sops.secrets."sing-box/uuid" = {
     restartUnits = [ "sing-box.service" ];
     sopsFile = ./secrets.yaml;
   };
