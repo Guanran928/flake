@@ -7,16 +7,24 @@ keys:
   - &sin0 age1u7srtfpgf83hesmsvtqdqftl8xrjmmp33mlg0aze6ken866ad55qxmzdqd
   - &tyo0 age1vw4kf5v8cfnhfhvl0eyvqzpvy9hpfv9enffvzyt95tx5mu7s5dxqjqw0fa
 creation_rules:
+  # per host
+  - path_regex: ^hosts/dust/secrets.yaml$
+    key_groups:
+      - age:
+          - *guanranwang
+          - *dust
   - path_regex: ^hosts/pek0/secrets.yaml$
     key_groups:
       - age:
           - *guanranwang
           - *pek0
-  - path_regex: ^hosts/tyo0/secrets.yaml$
+  - path_regex: ^hosts/aws/tyo0/secrets.yaml$
     key_groups:
       - age:
           - *guanranwang
           - *tyo0
+
+  # shared
   - path_regex: ^nixos/profiles/restic/secrets.yaml$
     key_groups:
       - age:
@@ -40,14 +48,8 @@ creation_rules:
       - age:
           - *guanranwang
           - *dust
-  - path_regex: ^secrets.yaml$
-    key_groups:
-      - age:
-          - *guanranwang
-          - *dust
-          - *pek0
-          - *sin0
-          - *tyo0
+
+  # opentofu
   - path_regex: ^infra/secrets.yaml$
     key_groups:
       - age:

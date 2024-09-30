@@ -49,13 +49,5 @@
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
-
-    extraOptions = "!include ${config.sops.secrets.nix-access-tokens.path}";
-  };
-
-  users.groups."nix-access-tokens" = { };
-  sops.secrets."nix-access-tokens" = {
-    group = config.users.groups."nix-access-tokens".name;
-    mode = "0440";
   };
 }

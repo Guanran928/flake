@@ -29,6 +29,9 @@
 
   ######## Secrets
   sops.secrets = lib.mapAttrs (_name: value: value // { sopsFile = ./secrets.yaml; }) {
+    "hashed-passwd" = {
+      neededForUsers = true;
+    };
     "synapse/secret" = {
       restartUnits = [ "matrix-synapse.service" ];
       owner = config.systemd.services.matrix-synapse.serviceConfig.User;

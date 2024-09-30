@@ -25,6 +25,18 @@
       preservation.nixosModules.preservation
     ]);
 
+  sops.secrets = lib.mapAttrs (_n: v: v // { sopsFile = ./secrets.yaml; }) {
+    "hashed-passwd" = {
+      neededForUsers = true;
+    };
+    "nix-access-tokens" = {
+      owner = "guanranwang";
+      mode = "0440";
+    };
+  };
+
+  nix.extraOptions = "!include ${config.sops.secrets.nix-access-tokens.path}";
+
   networking.hostName = "dust";
   time.timeZone = "Asia/Shanghai";
   system.stateVersion = "24.05";
@@ -36,17 +48,12 @@
   # TODO: this is currently broken
   # system.etc.overlay.mutable = false;
 
-  users.users = {
-    "guanranwang" = {
-      isNormalUser = true;
-      description = "Guanran Wang";
-      hashedPasswordFile = config.sops.secrets."hashed-passwd".path;
-      shell = pkgs.fish;
-      extraGroups = [
-        "wheel"
-        "nix-access-tokens"
-      ];
-    };
+  users.users."guanranwang" = {
+    isNormalUser = true;
+    description = "Guanran Wang";
+    hashedPasswordFile = config.sops.secrets."hashed-passwd".path;
+    shell = pkgs.fish;
+    extraGroups = [ "wheel" ];
   };
 
   home-manager = {
