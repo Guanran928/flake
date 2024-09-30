@@ -63,7 +63,10 @@
     listen = [ ":443" ];
   };
 
-  systemd.services."caddy".serviceConfig.SupplementaryGroups = [ "forgejo" ];
+  systemd.services."caddy".serviceConfig.SupplementaryGroups = [
+    "forgejo"
+    "ntfy-sh"
+  ];
 
   services.caddy.settings.apps.http.servers.srv0.routes = [
     {

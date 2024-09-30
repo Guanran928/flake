@@ -6,7 +6,7 @@
       base-url = "https://ntfy.ny4.dev";
       listen-http = "";
       listen-unix = "/run/ntfy-sh/ntfy.sock";
-      listen-unix-mode = 511; # 0777
+      listen-unix-mode = 432; # 0660
       behind-proxy = true;
     };
   };
