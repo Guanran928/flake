@@ -22,6 +22,10 @@
 
   # vnc
   services.getty.autologinUser = "root";
+  console = {
+    earlySetup = true;
+    keyMap = "dvorak";
+  };
 
   networking = {
     useNetworkd = true;
