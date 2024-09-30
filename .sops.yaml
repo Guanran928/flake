@@ -43,11 +43,6 @@ creation_rules:
           - *guanranwang
           - *tyo0
           - *sin0
-  - path_regex: ^nixos/profiles/wireless/secrets.yaml$
-    key_groups:
-      - age:
-          - *guanranwang
-          - *dust
 
   # opentofu
   - path_regex: ^infra/secrets.yaml$

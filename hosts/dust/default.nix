@@ -25,15 +25,25 @@
       preservation.nixosModules.preservation
     ]);
 
-  sops.secrets = lib.mapAttrs (_n: v: v // { sopsFile = ./secrets.yaml; }) {
-    "hashed-passwd" = {
-      neededForUsers = true;
-    };
-    "nix-access-tokens" = {
-      owner = "guanranwang";
-      mode = "0440";
-    };
-  };
+  sops.secrets = lib.mapAttrs (_n: v: v // { sopsFile = ./secrets.yaml; }) (
+    lib.listToAttrs (
+      lib.map (x: lib.nameValuePair "wireless/${x}" { path = "/var/lib/iwd/${x}.psk"; }) [
+        "Galaxy S24 EC54"
+        "ImmortalWrt"
+        "XYC-SEEWO"
+        "wangxiaobo"
+      ]
+    )
+    // {
+      "hashed-passwd" = {
+        neededForUsers = true;
+      };
+      "nix-access-tokens" = {
+        owner = "guanranwang";
+        mode = "0440";
+      };
+    }
+  );
 
   nix.extraOptions = "!include ${config.sops.secrets.nix-access-tokens.path}";
 

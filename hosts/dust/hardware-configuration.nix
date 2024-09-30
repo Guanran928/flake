@@ -20,6 +20,8 @@
     settings.General.FastConnectable = true;
   };
 
+  networking.wireless.iwd.enable = true;
+
   boot.loader.timeout = 0;
   boot.loader.efi.canTouchEfiVariables = true;
 
