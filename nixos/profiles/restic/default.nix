@@ -1,6 +1,6 @@
-{ config, ... }:
+{ lib, config, ... }:
 {
-  sops.secrets = builtins.mapAttrs (_n: v: v // { sopsFile = ./secrets.yaml; }) {
+  sops.secrets = lib.mapAttrs (_n: v: v // { sopsFile = ./secrets.yaml; }) {
     "restic/environment" = { };
     "restic/password" = { };
     "restic/repository" = { };

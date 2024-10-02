@@ -10,7 +10,6 @@
     [
       ../../nixos/profiles/restic
       ../../nixos/profiles/sing-box
-      ../../nixos/profiles/wireless
 
       ./anti-feature.nix
       ./disko.nix

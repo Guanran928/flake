@@ -7,7 +7,7 @@
 }:
 let
   inherit (config.lib) ports;
-  targets = lib.mapAttrsToList (_name: node: node.fqdn) nodes;
+  targets = lib.mapAttrsToList (_name: node: node.fqdn) nodes ++ [ "pek0.ny4.dev" ];
 in
 {
   services.prometheus = {
@@ -36,12 +36,7 @@ in
           username = "prometheus";
           password_file = config.sops.secrets."prometheus/auth".path;
         };
-        static_configs = lib.singleton {
-          targets = [
-            "pek0.ny4.dev"
-            "tyo0.ny4.dev"
-          ] ++ targets;
-        };
+        static_configs = lib.singleton { inherit targets; };
       }
       {
         job_name = "caddy";
@@ -50,12 +45,7 @@ in
           username = "prometheus";
           password_file = config.sops.secrets."prometheus/auth".path;
         };
-        static_configs = lib.singleton {
-          targets = [
-            "tyo0.ny4.dev"
-            "pek0.ny4.dev"
-          ] ++ targets;
-        };
+        static_configs = lib.singleton { inherit targets; };
       }
       {
         job_name = "blackbox_exporter";
