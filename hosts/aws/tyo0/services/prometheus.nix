@@ -162,15 +162,9 @@ in
               let
                 tmpl = lib.escapeURL ''
                   {{ range .alerts }}- Status: {{ .status }}
-
-                    Labels:
-                    {{ range $k, $v := .labels }} - {{ $k }} = {{ $v }}
-                    {{ end }}
-                    Annotations:
-                    {{ range $k, $v := .annotations }} - {{ $k }} = {{ $v }}
-                    {{ end }}
+                    Summary: {{ .annotations.summary }}
+                    Description: {{ .annotations.description }}
                     Source: {{ .generatorURL }}
-
                   {{ end }}
                 '';
               in
