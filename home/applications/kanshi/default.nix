@@ -19,7 +19,7 @@
             status = "disable";
           }
           {
-            criteria = "ASUSTek COMPUTER INC VG27AQML1A S5LMQS059959";
+            criteria = "ASUSTek COMPUTER INC VG27AQML1A S7LMQS122018";
             mode = "2560x1440@119.998";
             status = "enable";
           }
