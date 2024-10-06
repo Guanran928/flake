@@ -125,7 +125,7 @@ in
             }
             {
               alert = "DiskFull";
-              expr = ''node_filesystem_avail_bytes{mountpoint=~"/|/mnt"} / node_filesystem_size_bytes < 0.1'';
+              expr = ''node_filesystem_avail_bytes{mountpoint=~"/|/persist|/mnt"} / node_filesystem_size_bytes < 0.1'';
               annotations = {
                 summary = "Low disk space on {{ $labels.instance }}";
                 description = "The disk {{ $labels.device }} mounted at {{ $labels.mountpoint }} on {{ $labels.instance }} has less than 10% of empty space available.";
