@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  inputs,
+  pkgs,
+  ...
+}:
 {
   home = {
     username = "guanranwang";
@@ -25,24 +30,27 @@
     udiskie.enable = true;
   };
 
-  home.packages = with pkgs; [
-    dconf-editor
-    fastfetch
-    fd
-    file-roller
-    fractal
-    gnome-calculator
-    hyperfine
-    libnotify
-    loupe
-    pwvucontrol
-    seahorse
-    wl-clipboard
+  home.packages =
+    (with pkgs; [
+      dconf-editor
+      fastfetch
+      fd
+      file-roller
+      fractal
+      gnome-calculator
+      hyperfine
+      libnotify
+      loupe
+      pwvucontrol
+      seahorse
+      wl-clipboard
 
-    mumble
-    osu-lazer-bin
-    prismlauncher
-  ];
+      osu-lazer-bin
+      prismlauncher
+    ])
+    ++ (with inputs.self.legacyPackages.${pkgs.stdenv.hostPlatform.system}; [
+      mumble-git
+    ]);
 
   home.sessionVariables = {
     # https://github.com/ppy/osu-framework/pull/6292

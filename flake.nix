@@ -114,7 +114,16 @@
         checks.formatting = treefmtEval.config.build.check inputs.self;
 
         # nix {run,shell,build}
-        legacyPackages = import ./pkgs pkgs;
+        # NOTE: 301: All packages are migrated to `github:Guanran928/nur-packages`,
+        #       only keeping some packages that only fits for personal use.
+        legacyPackages =
+          pkgs.lib.packagesFromDirectoryRecursive {
+            inherit (pkgs) callPackage;
+            directory = ./pkgs;
+          }
+          // {
+            background = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.src;
+          };
 
         # nix develop
         devShells.default = pkgs.mkShellNoCC {
