@@ -43,6 +43,7 @@
       loupe
       pwvucontrol
       seahorse
+      telegram-desktop
       wl-clipboard
 
       osu-lazer-bin
