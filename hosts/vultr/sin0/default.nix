@@ -1,9 +1,10 @@
-{ ... }:
+{ lib, ... }:
 {
   imports = [
     ./anti-feature.nix
     ./ports.nix
 
+    ./services/telegram-bot/danbooru_img_bot.nix
     ./services/redlib.nix
 
     ../../../nixos/profiles/sing-box-server
@@ -16,6 +17,10 @@
     80
     443
   ];
+
+  sops.secrets = lib.mapAttrs (_n: v: v // { sopsFile = ./secrets.yaml; }) {
+    "tg/danbooru_img_bot" = { };
+  };
 
   services.caddy.enable = true;
   services.caddy.settings.apps.http.servers.srv0 = {

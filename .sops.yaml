@@ -23,6 +23,11 @@ creation_rules:
       - age:
           - *guanranwang
           - *tyo0
+  - path_regex: ^hosts/vultr/sin0/secrets.yaml$
+    key_groups:
+      - age:
+          - *guanranwang
+          - *sin0
 
   # shared
   - path_regex: ^nixos/profiles/restic/secrets.yaml$
