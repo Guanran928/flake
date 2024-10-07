@@ -49,9 +49,7 @@
       osu-lazer-bin
       prismlauncher
     ])
-    ++ (with inputs.self.legacyPackages.${pkgs.stdenv.hostPlatform.system}; [
-      mumble-git
-    ]);
+    ++ (with inputs.self.legacyPackages.${pkgs.stdenv.hostPlatform.system}; [ mumble-git ]);
 
   home.sessionVariables = {
     # https://github.com/ppy/osu-framework/pull/6292

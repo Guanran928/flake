@@ -9,8 +9,8 @@ end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
 
-# Ignore diffs/patches
-[*.{diff,patch}]
+# Ignore generated files
+[*.{diff,patch,tfstate}]
 end_of_line = unset
 insert_final_newline = unset
 trim_trailing_whitespace = unset

@@ -28,7 +28,7 @@
   pulseSupport ? true,
   speechdSupport ? false,
 }:
-stdenv.mkDerivation (finalAttrs: {
+stdenv.mkDerivation {
   pname = "mumble";
   version = "1.5.634-unstable-2024-10-05";
 
@@ -115,4 +115,4 @@ stdenv.mkDerivation (finalAttrs: {
     ];
     platforms = lib.platforms.linux;
   };
-})
+}
