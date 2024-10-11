@@ -166,12 +166,20 @@
         ];
       };
       # GitHub prefers Noto Sans...
+      # DejaVu Sans from nixpkgs#fontconfig.out
       localConf = ''
         <selectfont>
           <rejectfont>
             <pattern>
               <patelt name="family">
                 <string>Noto Sans</string>
+              </patelt>
+            </pattern>
+          </rejectfont>
+          <rejectfont>
+            <pattern>
+              <patelt name="family">
+                <string>DejaVu Sans</string>
               </patelt>
             </pattern>
           </rejectfont>
