@@ -52,6 +52,19 @@
       keybindings =
         let
           inherit (config.wayland.windowManager.sway.config) modifier;
+          inherit (lib) getExe getExe';
+          inherit (pkgs)
+            brightnessctl
+            cliphist
+            foot
+            pamixer
+            playerctl
+            sway-contrib
+            wireplumber
+            wl-clipboard
+            wmenu
+            xdg-utils
+            ;
         in
         {
           ### Sway itself
@@ -75,28 +88,28 @@
 
           ### Execute other stuff
           # Launch applications
-          "${modifier}+Return" = "exec ${lib.getExe pkgs.foot}";
-          "${modifier}+w" = "exec ${pkgs.xdg-utils}/bin/xdg-open http:";
-          "${modifier}+e" = "exec ${pkgs.xdg-utils}/bin/xdg-open ~";
+          "${modifier}+Return" = "exec ${getExe foot}";
+          "${modifier}+w" = "exec ${xdg-utils}/bin/xdg-open http:";
+          "${modifier}+e" = "exec ${xdg-utils}/bin/xdg-open ~";
 
           # Launcher
-          "${modifier}+d" = "exec ${lib.getExe' pkgs.wmenu "wmenu-run"}";
-          "${modifier}+Shift+d" = "exec ${lib.getExe pkgs.cliphist} list | ${lib.getExe pkgs.wmenu} -l 10 | ${lib.getExe pkgs.cliphist} decode | ${lib.getExe' pkgs.wl-clipboard "wl-copy"}";
+          "${modifier}+d" = "exec ${getExe' wmenu "wmenu-run"}";
+          "${modifier}+Shift+d" = "exec ${getExe cliphist} list | ${getExe wmenu} -l 10 | ${getExe cliphist} decode | ${getExe' wl-clipboard "wl-copy"}";
           "${modifier}+Shift+Semicolon" = "exec loginctl lock-session";
 
           # Screenshot
-          "Print" = "exec env XDG_SCREENSHOTS_DIR=$HOME/Pictures/Screenshots ${lib.getExe pkgs.sway-contrib.grimshot} --notify savecopy anything";
+          "Print" = "exec env XDG_SCREENSHOTS_DIR=$HOME/Pictures/Screenshots ${getExe sway-contrib.grimshot} --notify savecopy anything";
 
           # Fn keys
-          "XF86MonBrightnessUp" = "exec ${lib.getExe pkgs.brightnessctl} set 5%+";
-          "XF86MonBrightnessDown" = "exec ${lib.getExe pkgs.brightnessctl} set 5%-";
-          "XF86AudioRaiseVolume" = "exec ${lib.getExe pkgs.pamixer} -i5";
-          "XF86AudioLowerVolume" = "exec ${lib.getExe pkgs.pamixer} -d5";
-          "XF86AudioMute" = "exec ${lib.getExe pkgs.pamixer} -t";
-          "XF86AudioPlay" = "exec ${lib.getExe pkgs.playerctl} play-pause";
-          "XF86AudioPrev" = "exec ${lib.getExe pkgs.playerctl} previous";
-          "XF86AudioNext" = "exec ${lib.getExe pkgs.playerctl} next";
-          "XF86AudioStop" = "exec ${lib.getExe pkgs.playerctl} stop";
+          "XF86MonBrightnessUp" = "exec ${getExe brightnessctl} set 5%+";
+          "XF86MonBrightnessDown" = "exec ${getExe brightnessctl} set 5%-";
+          "XF86AudioRaiseVolume" = "exec ${getExe' wireplumber "wpctl"} set-volume @DEFAULT_SINK@ 5%+";
+          "XF86AudioLowerVolume" = "exec ${getExe' wireplumber "wpctl"} set-volume @DEFAULT_SINK@ 5%-";
+          "XF86AudioMute" = "exec ${getExe pamixer} -t";
+          "XF86AudioPlay" = "exec ${getExe playerctl} play-pause";
+          "XF86AudioPrev" = "exec ${getExe playerctl} previous";
+          "XF86AudioNext" = "exec ${getExe playerctl} next";
+          "XF86AudioStop" = "exec ${getExe playerctl} stop";
         }
         //
           # workspace binds
