@@ -46,6 +46,8 @@
         p = "powerprofilesctl";
         s = "nh os switch";
         v = "nvim";
+        t = "tmux";
+        ta = "tmux attach";
 
         # TODO: maybe fishPlugins.fish-git-abbr?
         g = "git";
