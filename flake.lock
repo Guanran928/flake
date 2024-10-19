@@ -175,17 +175,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1729312090,
-        "narHash": "sha256-Xw4rhHlVQBTa2PkzF+bjvgxSop0i46oY/zPBxlykveo=",
-        "ref": "refs/heads/master",
-        "rev": "24b6477ef84041093ec88c4719368f05297052d0",
-        "revCount": 11,
-        "type": "git",
-        "url": "https://git.ny4.dev/nyancat/ip-checker"
+        "lastModified": 1729316020,
+        "narHash": "sha256-ujO/zbXqnZ6xR1Pl7zW0f4pGA3Q9mARpCTRxoGkn9E8=",
+        "rev": "c67ad664ffacf614ba6716bab41ac2f18b0e880e",
+        "type": "tarball",
+        "url": "https://git.ny4.dev/api/v1/repos/nyancat/ip-checker/archive/c67ad664ffacf614ba6716bab41ac2f18b0e880e.tar.gz"
       },
       "original": {
-        "type": "git",
-        "url": "https://git.ny4.dev/nyancat/ip-checker"
+        "type": "tarball",
+        "url": "https://git.ny4.dev/nyancat/ip-checker/archive/master.tar.gz"
       }
     },
     "lanzaboote": {
@@ -228,15 +226,13 @@
       "locked": {
         "lastModified": 1726316254,
         "narHash": "sha256-82snaLYq0U2Wt5Vy+gFUmOTrjKEHOhm0uqaT6ycLKXc=",
-        "ref": "refs/heads/master",
         "rev": "2c3b306495070c8b20a1f28f9f7143917bbff9e6",
-        "revCount": 78,
-        "type": "git",
-        "url": "https://git.ny4.dev/nyancat/nvim"
+        "type": "tarball",
+        "url": "https://git.ny4.dev/api/v1/repos/nyancat/nvim/archive/2c3b306495070c8b20a1f28f9f7143917bbff9e6.tar.gz"
       },
       "original": {
-        "type": "git",
-        "url": "https://git.ny4.dev/nyancat/nvim"
+        "type": "tarball",
+        "url": "https://git.ny4.dev/nyancat/nvim/archive/master.tar.gz"
       }
     },
     "nixos-hardware": {

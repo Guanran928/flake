@@ -58,11 +58,11 @@
 
     ### Resources used for auto update
     neovim = {
-      url = "git+https://git.ny4.dev/nyancat/nvim";
+      url = "https://git.ny4.dev/nyancat/nvim/archive/master.tar.gz";
       flake = false;
     };
     ip-checker = {
-      url = "git+https://git.ny4.dev/nyancat/ip-checker";
+      url = "https://git.ny4.dev/nyancat/ip-checker/archive/master.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
       inputs.systems.follows = "systems";
