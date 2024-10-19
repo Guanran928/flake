@@ -5,6 +5,7 @@
     ./ports.nix
 
     ./services/telegram-bot/danbooru_img_bot.nix
+    ./services/ip-checker.nix
     ./services/redlib.nix
 
     ../../../nixos/profiles/sing-box-server
