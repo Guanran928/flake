@@ -11,7 +11,10 @@ in
 {
   systemd.services."ip-checker" = {
     wantedBy = [ "multi-user.target" ];
-    environment.IP_CHECKER_LISTEN = "127.0.0.1:${toString port}";
+    environment = {
+      IP_CHECKER_LISTEN = "127.0.0.1:${toString port}";
+      IP_CHECKER_COUNTRY_DB = "${pkgs.clash-geoip}/etc/clash/Country.mmdb";
+    };
     serviceConfig = {
       ExecStart = lib.getExe inputs.ip-checker.packages.${pkgs.stdenv.hostPlatform.system}.default;
       WorkingDirectory = inputs.ip-checker;

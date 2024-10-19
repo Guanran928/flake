@@ -146,11 +146,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1729260213,
-        "narHash": "sha256-jAvHoU/1y/yCuXzr2fNF+q6uKmr8Jj2xgAisK4QB9to=",
+        "lastModified": 1729321331,
+        "narHash": "sha256-KVyQq+ez/oB30/WbdNgVD8g/bda34z8NiU187QKQb74=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "09a0c0c02953318bf94425738c7061ffdc4cba75",
+        "rev": "122f70545b29ccb922e655b08acfe05bfb44ec68",
         "type": "github"
       },
       "original": {
@@ -175,11 +175,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1729316020,
-        "narHash": "sha256-ujO/zbXqnZ6xR1Pl7zW0f4pGA3Q9mARpCTRxoGkn9E8=",
-        "rev": "c67ad664ffacf614ba6716bab41ac2f18b0e880e",
+        "lastModified": 1729329289,
+        "narHash": "sha256-49QKrohNJzmrLBjI9yqy/z8qdntfwrwqqb2EhQbrvKc=",
+        "rev": "51621426b862bced548fe9f88a5a36d02fd4b551",
         "type": "tarball",
-        "url": "https://git.ny4.dev/api/v1/repos/nyancat/ip-checker/archive/c67ad664ffacf614ba6716bab41ac2f18b0e880e.tar.gz"
+        "url": "https://git.ny4.dev/api/v1/repos/nyancat/ip-checker/archive/51621426b862bced548fe9f88a5a36d02fd4b551.tar.gz"
       },
       "original": {
         "type": "tarball",
