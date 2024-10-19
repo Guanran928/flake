@@ -1,11 +1,11 @@
 {
   lib,
-  config,
   pkgs,
+  ports,
   ...
 }:
 let
-  port = config.lib.ports.keycloak;
+  port = ports.keycloak;
 in
 {
   services.keycloak = {
@@ -13,9 +13,10 @@ in
     settings = {
       cache = "local";
       hostname = "id.ny4.dev";
+      http-enabled = true;
       http-host = "127.0.0.1";
       http-port = port;
-      proxy = "edge";
+      proxy-headers = "xforwarded";
     };
     database.passwordFile = toString (pkgs.writeText "password" "keycloak");
   };

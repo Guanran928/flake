@@ -1,6 +1,4 @@
 {
-  lib.ports = {
-    redlib = 8010;
-    ip-checker = 8020;
-  };
+  redlib = 8010;
+  ip-checker = 8020;
 }

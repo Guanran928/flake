@@ -3,10 +3,10 @@
   pkgs,
   config,
   nodes,
+  ports,
   ...
 }:
 let
-  inherit (config.lib) ports;
   targets = lib.mapAttrsToList (_name: node: node.fqdn) nodes ++ [ "pek0.ny4.dev" ];
 in
 {

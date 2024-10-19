@@ -1,6 +1,6 @@
-{ lib, config, ... }:
+{ lib, ports, ... }:
 let
-  port = config.lib.ports.redlib;
+  port = ports.redlib;
 in
 {
   services.redlib = {

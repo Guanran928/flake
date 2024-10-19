@@ -9,7 +9,6 @@
   imports = [
     "${modulesPath}/virtualisation/amazon-image.nix"
     ./anti-feature.nix
-    ./ports.nix
 
     ./services/forgejo.nix
     ./services/keycloak.nix
@@ -22,6 +21,8 @@
 
     ../../../nixos/profiles/sing-box-server
   ];
+
+  _module.args.ports = import ./ports.nix;
 
   boot.loader.grub.device = lib.mkForce "/dev/nvme0n1";
   system.stateVersion = "24.05";

@@ -2,11 +2,11 @@
   lib,
   pkgs,
   inputs,
-  config,
+  ports,
   ...
 }:
 let
-  port = config.lib.ports.ip-checker;
+  port = ports.ip-checker;
 in
 {
   systemd.services."ip-checker" = {

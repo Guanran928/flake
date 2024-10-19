@@ -2,7 +2,6 @@
 {
   imports = [
     ./anti-feature.nix
-    ./ports.nix
 
     ./services/telegram-bot/danbooru_img_bot.nix
     ./services/ip-checker.nix
@@ -10,6 +9,8 @@
 
     ../../../nixos/profiles/sing-box-server
   ];
+
+  _module.args.ports = import ./ports.nix;
 
   system.stateVersion = "24.05";
 

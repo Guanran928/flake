@@ -1,6 +1,11 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  ports,
+  ...
+}:
 let
-  port = config.lib.ports.vaultwarden;
+  port = ports.vaultwarden;
 in
 {
   services.vaultwarden = {
