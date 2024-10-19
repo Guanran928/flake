@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, pkgs, ... }:
 {
   programs.gpg = {
     enable = true;
@@ -11,7 +6,7 @@
   };
 
   services.gpg-agent = {
-    enable = lib.mkIf pkgs.stdenv.hostPlatform.isLinux true;
+    enable = pkgs.stdenv.hostPlatform.isLinux;
     pinentryPackage = pkgs.pinentry-gnome3;
   };
 }

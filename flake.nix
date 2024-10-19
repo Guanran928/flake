@@ -37,13 +37,6 @@
       inputs.pre-commit-hooks-nix.follows = "pre-commit-hooks-nix";
       inputs.rust-overlay.follows = "rust-overlay";
     };
-    neovim = {
-      url = "git+https://git.ny4.dev/nyancat/nvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.treefmt-nix.follows = "treefmt-nix";
-      inputs.systems.follows = "systems";
-    };
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware";
     };
@@ -61,6 +54,19 @@
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    ### Resources used for auto update
+    neovim = {
+      url = "git+https://git.ny4.dev/nyancat/nvim";
+      flake = false;
+    };
+    ip-checker = {
+      url = "git+https://git.ny4.dev/nyancat/ip-checker";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.systems.follows = "systems";
+      inputs.treefmt-nix.follows = "treefmt-nix";
     };
 
     ### De-dupe flake dependencies

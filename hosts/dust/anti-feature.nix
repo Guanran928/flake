@@ -27,6 +27,7 @@
         "osu-lazer-bin"
         "steam"
         "steam-original"
+        "steam-unwrapped"
         "steam-run"
       ];
   };

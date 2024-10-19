@@ -17,8 +17,8 @@
     allowUnfreePredicate = pkg: lib.elem (lib.getName pkg) [ ];
 
     permittedInsecurePackages = [
-      "cinny-4.2.1"
-      "cinny-unwrapped-4.2.1"
+      "cinny-4.2.2"
+      "cinny-unwrapped-4.2.2"
     ];
   };
 }
