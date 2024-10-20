@@ -2,12 +2,7 @@
   description = "Guanran928's Flake";
 
   inputs = {
-    # INFO: `nixos-unstable` and `nixpkgs-unstable` contains the same set of packages,
-    #       the difference between those channels is their jobsets,
-    #       `nixpkgs-unstable` contains less(?) jobs, and usually updates faster.
-    #
-    # REFERENCE: https://discourse.nixos.org/t/differences-between-nix-channels/13998/5
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:Guanran928/nixpkgs";
 
     colmena = {
       url = "github:zhaofengli/colmena";

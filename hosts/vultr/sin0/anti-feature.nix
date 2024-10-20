@@ -13,11 +13,7 @@
       ];
 
     allowUnfree = false;
-    allowUnfreePredicate =
-      pkg:
-      lib.elem (lib.getName pkg) [
-        "clash-geoip"
-      ];
+    allowUnfreePredicate = pkg: lib.elem (lib.getName pkg) [ "clash-geoip" ];
 
     permittedInsecurePackages = [ ];
   };
