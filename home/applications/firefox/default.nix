@@ -4,11 +4,13 @@
     enable = true;
     package = pkgs.firefox.override {
       extraPrefsFiles = [
-        "${pkgs.arkenfox-userjs}/user.cfg"
         (pkgs.runCommandLocal "userjs" { } ''
-          install -Dm644 ${./user-overrides.js} $out
-          substituteInPlace $out \
-            --replace-fail "user_pref" "defaultPref"
+          substitute ${pkgs.arkenfox-userjs}/user.js $out \
+            --replace-fail 'user_pref' 'lockPref'
+        '')
+        (pkgs.runCommandLocal "userjs" { } ''
+          substitute ${./user-overrides.js} $out \
+            --replace-fail 'user_pref' 'lockPref'
         '')
       ];
     };

@@ -22,6 +22,7 @@ user_pref("signon.rememberSignons", false);
 // Neat features, nice to have
 user_pref("browser.compactmode.show", true);
 user_pref("browser.search.separatePrivateDefault", false);
+user_pref("browser.tabs.hoverPreview.enabled", true);
 user_pref("browser.tabs.inTitlebar", 0);
 user_pref("browser.urlbar.suggest.calculator", true);
 
