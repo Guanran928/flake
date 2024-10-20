@@ -18,11 +18,12 @@
 
   programs = {
     jq.enable = true;
+    man.generateCaches = false;
+    mangohud.enable = true;
     obs-studio.enable = true;
     ripgrep.enable = true;
     skim.enable = true;
     zoxide.enable = true;
-    mangohud.enable = true;
   };
 
   services = {

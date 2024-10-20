@@ -44,6 +44,8 @@
     }
   );
 
+  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_testing;
+
   nix.extraOptions = "!include ${config.sops.secrets.nix-access-tokens.path}";
 
   networking.hostName = "dust";
@@ -51,11 +53,23 @@
   system.stateVersion = "24.05";
 
   # TODO: move to 'core' profile
-  system.etc.overlay.enable = true;
   services.userborn.enable = true;
-
-  # TODO: this is currently broken
-  # system.etc.overlay.mutable = false;
+  system.etc.overlay.enable = true;
+  system.etc.overlay.mutable = false;
+  # HACK: for impermanence
+  environment.etc =
+    lib.genAttrs
+      [
+        "ssh/ssh_host_rsa_key"
+        "ssh/ssh_host_rsa_key.pub"
+        "ssh/ssh_host_ed25519_key"
+        "ssh/ssh_host_ed25519_key.pub"
+        "secureboot/placeholder"
+      ]
+      (_n: {
+        source = pkgs.emptyFile;
+        mode = "0644";
+      });
 
   users.users."guanranwang" = {
     isNormalUser = true;
