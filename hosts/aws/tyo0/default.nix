@@ -32,9 +32,6 @@
     size = 4 * 1024; # 4 GiB
   };
 
-  # FIXME: error: builder for '/nix/store/...-ena-2.12.3-6.11.drv' failed with exit code 2
-  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_10;
-
   ### Secrets
   sops.secrets = lib.mapAttrs (_name: value: value // { sopsFile = ./secrets.yaml; }) {
     "prometheus/auth" = {
