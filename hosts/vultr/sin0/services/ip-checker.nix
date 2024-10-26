@@ -7,6 +7,7 @@
 }:
 let
   port = ports.ip-checker;
+  pkgs' = inputs.ip-checker.packages.${pkgs.stdenv.hostPlatform.system};
 in
 {
   systemd.services."ip-checker" = {
@@ -18,7 +19,7 @@ in
       IP_CHECKER_CITY_DB = pkgs.dbip-city-lite.mmdb;
     };
     serviceConfig = {
-      ExecStart = lib.getExe inputs.ip-checker.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      ExecStart = lib.getExe pkgs'.api;
 
       CapabilityBoundingSet = "";
       DynamicUser = true;
@@ -63,7 +64,7 @@ in
         {
           handle = lib.singleton {
             handler = "file_server";
-            root = "${inputs.ip-checker}/ui";
+            root = pkgs'.ui;
           };
         }
       ];

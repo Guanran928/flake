@@ -64,6 +64,7 @@ in
             "https://element.ny4.dev"
             "https://git.ny4.dev"
             "https://id.ny4.dev"
+            "https://ip.ny4.dev"
             "https://mastodon.ny4.dev"
             "https://matrix.ny4.dev"
             "https://ntfy.ny4.dev"
