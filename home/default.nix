@@ -47,6 +47,7 @@
       telegram-desktop
       wl-clipboard
 
+      lunar-client
       osu-lazer-bin
       prismlauncher
     ])

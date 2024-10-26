@@ -30,6 +30,8 @@
         ".ssh"
         ".mozilla/firefox"
         ".thunderbird"
+        ".minecraft"
+        ".lunarclient"
 
         ".cache"
         ".local/share"

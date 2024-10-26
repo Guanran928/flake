@@ -11,6 +11,7 @@
         "cef-binary"
         "dart"
         "go"
+        "lunarclient"
         "osu-lazer-bin"
         "rustc-bootstrap"
         "rustc-bootstrap-wrapper"
@@ -24,11 +25,12 @@
       lib.elem (lib.getName pkg) [
         "fcitx5-pinyin-minecraft"
         "fcitx5-pinyin-moegirl"
+        "lunarclient"
         "osu-lazer-bin"
         "steam"
         "steam-original"
-        "steam-unwrapped"
         "steam-run"
+        "steam-unwrapped"
       ];
   };
 }
