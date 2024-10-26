@@ -175,11 +175,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1729944300,
-        "narHash": "sha256-6cDNrf5z30WXaze81Qd13FoMsD9d8lk6kBYfeTg7gno=",
-        "rev": "53dc329decd7c216f9313c2175173e27bb02ca03",
+        "lastModified": 1729948117,
+        "narHash": "sha256-6tpRbrn1h8xPDiQxo11D2mFUNIoUjBq7vytdWHZTjPQ=",
+        "rev": "4e12f0f7d4cfbe4eaed816a0fcb3d01ca9253bfb",
         "type": "tarball",
-        "url": "https://git.ny4.dev/api/v1/repos/nyancat/ip-checker/archive/53dc329decd7c216f9313c2175173e27bb02ca03.tar.gz"
+        "url": "https://git.ny4.dev/api/v1/repos/nyancat/ip-checker/archive/4e12f0f7d4cfbe4eaed816a0fcb3d01ca9253bfb.tar.gz"
       },
       "original": {
         "type": "tarball",
