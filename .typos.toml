@@ -1,9 +1,6 @@
 [files]
 extend-exclude = [
   "secrets.yaml",
-
-  # hex color
-  "home/applications/swaylock/default.nix",
 ]
 
 [default.extend-words]
