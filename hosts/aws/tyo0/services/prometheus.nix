@@ -31,6 +31,7 @@ in
     scrapeConfigs = [
       {
         job_name = "node_exporter";
+        scheme = "https";
         metrics_path = "/metrics";
         basic_auth = {
           username = "prometheus";
@@ -40,6 +41,7 @@ in
       }
       {
         job_name = "caddy";
+        scheme = "https";
         metrics_path = "/caddy";
         basic_auth = {
           username = "prometheus";
