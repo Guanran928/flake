@@ -44,6 +44,27 @@
     }
   );
 
+  networking = {
+    useNetworkd = true;
+    useDHCP = false;
+  };
+
+  systemd.network.networks = {
+    "10-wlan0" = {
+      name = "wlan0";
+      DHCP = "yes";
+      dhcpV4Config.RouteMetric = 2048;
+      dhcpV6Config.RouteMetric = 2048;
+    };
+    "11-eth" = {
+      matchConfig = {
+        Kind = "!*";
+        Type = "ether";
+      };
+      DHCP = "yes";
+    };
+  };
+
   boot.kernelPackages = lib.mkForce pkgs.linuxPackages_testing;
 
   nix.extraOptions = "!include ${config.sops.secrets.nix-access-tokens.path}";
