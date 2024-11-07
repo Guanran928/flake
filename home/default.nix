@@ -37,7 +37,6 @@
       fastfetch
       fd
       file-roller
-      fractal
       gnome-calculator
       hyperfine
       libnotify
