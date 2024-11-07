@@ -1,6 +1,6 @@
 {
   cursor = {
-    color = "c0caf5 283457";
+    color = "283457 c0caf5";
   };
 
   colors = {

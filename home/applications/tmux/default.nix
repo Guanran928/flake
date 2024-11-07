@@ -4,6 +4,7 @@
 
   xdg.configFile."tmux/tmux.conf".text = ''
     run-shell ${pkgs.tmuxPlugins.sensible.rtp}
+    run-shell ${pkgs.tmuxPlugins.prefix-highlight.rtp}
 
     set-option    -s default-terminal  "tmux-256color"
 
@@ -25,7 +26,5 @@
     bind-key -r -N "Resize the pane down by 5"                   J resize-pane -D 5
     bind-key -r -N "Resize the pane up by 5"                     K resize-pane -U 5
     bind-key -r -N "Resize the pane right by 5"                  L resize-pane -R 5
-
-    new-session
-  '';
+  '' + builtins.readFile ./tokyonight_night.tmux;
 }
