@@ -10,6 +10,14 @@ resource "cloudflare_zone" "terraform_managed_resource_4b7a25e8fb5035c84820c26e4
   zone       = "ny4.dev"
 }
 
+resource "cloudflare_zone_settings_override" "terraform_managed_resource_4b7a25e8fb5035c84820c26e454ed03d" {
+  zone_id = local.cloudflare_zone_id
+  settings {
+    ipv6 = "on"
+    ssl  = "strict"
+  }
+}
+
 resource "cloudflare_record" "terraform_managed_resource_3bb7c82777ada1dcafb0cd16ae22bcac" {
   content = module.vultr["sin0"].ipv4
   name    = "sin0"
