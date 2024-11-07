@@ -31,6 +31,7 @@
             autopair
             done
             puffer
+            tide
           ]
         );
 
