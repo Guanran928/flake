@@ -12,5 +12,9 @@
   boot.kernel.sysctl = {
     "net.core.default_qdisc" = "cake";
     "net.ipv4.tcp_congestion_control" = "bbr";
+
+    # https://github.com/quic-go/quic-go/wiki/UDP-Buffer-Sizes
+    "net.core.rmem_max" = 7500000;
+    "net.core.wmem_max" = 7500000;
   };
 }
