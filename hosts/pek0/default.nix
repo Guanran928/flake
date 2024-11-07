@@ -44,9 +44,9 @@
       restartUnits = [ "mastodon-web.service" ];
     };
     "cloudflared/secret" = {
-      restartUnits = [ "cloudflared-tunnel-6222a3e0-98da-4325-be19-0f86a7318a41.service" ];
+      restartUnits = [ "cloudflared-tunnel-b73805e7-a8a9-49db-8c9f-aae52c406635.service" ];
       owner =
-        config.systemd.services."cloudflared-tunnel-6222a3e0-98da-4325-be19-0f86a7318a41".serviceConfig.User;
+        config.systemd.services."cloudflared-tunnel-b73805e7-a8a9-49db-8c9f-aae52c406635".serviceConfig.User;
     };
   };
 
@@ -57,16 +57,14 @@
 
   services.cloudflared = {
     enable = true;
-    tunnels = {
-      "6222a3e0-98da-4325-be19-0f86a7318a41" = {
-        credentialsFile = config.sops.secrets."cloudflared/secret".path;
-        default = "http_status:404";
-        ingress = lib.genAttrs [
-          "mastodon.ny4.dev"
-          "matrix.ny4.dev"
-          "pek0.ny4.dev"
-        ] (_: "http://localhost");
-      };
+    tunnels."b73805e7-a8a9-49db-8c9f-aae52c406635" = {
+      credentialsFile = config.sops.secrets."cloudflared/secret".path;
+      default = "http_status:404";
+      ingress = lib.genAttrs [
+        "mastodon.ny4.dev"
+        "matrix.ny4.dev"
+        "pek0.ny4.dev"
+      ] (_: "http://localhost");
     };
   };
 

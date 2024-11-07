@@ -1,9 +1,10 @@
 locals {
-  cloudflare_zone_id = cloudflare_zone.terraform_managed_resource_4b7a25e8fb5035c84820c26e454ed03d.id
+  cloudflare_zone_id    = cloudflare_zone.terraform_managed_resource_4b7a25e8fb5035c84820c26e454ed03d.id
+  cloudflare_account_id = "af3504d3b07107975feaa691beae1553"
 }
 
 resource "cloudflare_zone" "terraform_managed_resource_4b7a25e8fb5035c84820c26e454ed03d" {
-  account_id = "af3504d3b07107975feaa691beae1553"
+  account_id = local.cloudflare_account_id
   paused     = false
   plan       = "free"
   type       = "full"
@@ -16,6 +17,21 @@ resource "cloudflare_zone_settings_override" "terraform_managed_resource_4b7a25e
     ipv6 = "on"
     ssl  = "strict"
   }
+}
+
+resource "cloudflare_zero_trust_tunnel_cloudflared" "blacksteel" {
+  name       = "blacksteel"
+  account_id = local.cloudflare_account_id
+  secret     = local.secrets.cloudflare.tunnel_secret
+}
+
+resource "cloudflare_record" "terraform_managed_resource_e8a39752064c17b2c91d10edf667e322" {
+  content = cloudflare_zero_trust_tunnel_cloudflared.blacksteel.cname
+  name    = "pek0"
+  proxied = true
+  ttl     = 1
+  type    = "CNAME"
+  zone_id = local.cloudflare_zone_id
 }
 
 resource "cloudflare_record" "terraform_managed_resource_3bb7c82777ada1dcafb0cd16ae22bcac" {
@@ -147,15 +163,6 @@ resource "cloudflare_record" "terraform_managed_resource_07b0adf15b8e0a285b27e79
 resource "cloudflare_record" "terraform_managed_resource_f3507181cd0965a1040216e6e5d94adf" {
   content = "tyo0.ny4.dev"
   name    = "pb"
-  proxied = true
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = local.cloudflare_zone_id
-}
-
-resource "cloudflare_record" "terraform_managed_resource_e8a39752064c17b2c91d10edf667e322" {
-  content = "6222a3e0-98da-4325-be19-0f86a7318a41.cfargotunnel.com"
-  name    = "pek0"
   proxied = true
   ttl     = 1
   type    = "CNAME"
