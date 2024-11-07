@@ -1,15 +1,6 @@
 resource "cloudflare_record" "terraform_managed_resource_3bb7c82777ada1dcafb0cd16ae22bcac" {
-  content = "149.28.143.116"
+  content = module.vultr["sin0"].ipv4
   name    = "sin0"
-  proxied = false
-  ttl     = 1
-  type    = "A"
-  zone_id = "4b7a25e8fb5035c84820c26e454ed03d"
-}
-
-resource "cloudflare_record" "terraform_managed_resource_3d75642939f7653d8d51dfb93c518b07" {
-  content = "18.177.132.61"
-  name    = "tyo0"
   proxied = false
   ttl     = 1
   type    = "A"
@@ -17,7 +8,7 @@ resource "cloudflare_record" "terraform_managed_resource_3d75642939f7653d8d51dfb
 }
 
 resource "cloudflare_record" "terraform_managed_resource_3393fe6c746c9f55d841397c77900a59" {
-  content = "2001:19f0:4400:7041:5400:5ff:fe1b:42d"
+  content = module.vultr["sin0"].ipv6
   name    = "sin0"
   proxied = false
   ttl     = 1
@@ -25,8 +16,17 @@ resource "cloudflare_record" "terraform_managed_resource_3393fe6c746c9f55d841397
   zone_id = "4b7a25e8fb5035c84820c26e454ed03d"
 }
 
+resource "cloudflare_record" "terraform_managed_resource_3d75642939f7653d8d51dfb93c518b07" {
+  content = module.aws["tyo0"].ipv4
+  name    = "tyo0"
+  proxied = false
+  ttl     = 1
+  type    = "A"
+  zone_id = "4b7a25e8fb5035c84820c26e454ed03d"
+}
+
 resource "cloudflare_record" "terraform_managed_resource_03f9bd0678d8d76dc0e07892bc554393" {
-  content = "2406:da14:f1f:2f00:e63f:64a0:7505:7534"
+  content = module.aws["tyo0"].ipv6
   name    = "tyo0"
   proxied = false
   ttl     = 1
