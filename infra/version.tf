@@ -9,6 +9,9 @@ terraform {
     aws = {
       source = "registry.terraform.io/hashicorp/aws"
     }
+    cloudflare = {
+      source = "registry.terraform.io/cloudflare/cloudflare"
+    }
   }
 
   encryption {

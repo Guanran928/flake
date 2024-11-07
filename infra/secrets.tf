@@ -15,3 +15,8 @@ provider "aws" {
   access_key = local.secrets.aws.access_key
   secret_key = local.secrets.aws.secret_key
 }
+
+provider "cloudflare" {
+  api_token = local.secrets.cloudflare.api_token
+}
+

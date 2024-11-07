@@ -134,6 +134,7 @@
                 aws
                 vultr
                 sops
+                cloudflare
               ]
             ))
             colmena
