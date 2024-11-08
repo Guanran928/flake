@@ -9,6 +9,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-compat.follows = "flake-compat";
       inputs.flake-utils.follows = "flake-utils";
+      inputs.nix-github-actions.follows = "nix-github-actions";
       inputs.stable.follows = "nixpkgs";
     };
     disko = {
@@ -77,6 +78,10 @@
     };
     gitignore = {
       url = "github:hercules-ci/gitignore.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-github-actions = {
+      url = "github:nix-community/nix-github-actions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     pre-commit-hooks-nix = {
