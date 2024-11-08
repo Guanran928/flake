@@ -37,6 +37,7 @@
         ".local/share"
         ".local/state"
 
+        ".config/unity3d"
         ".config/gh"
         ".config/fcitx5"
         ".config/obs-studio"
