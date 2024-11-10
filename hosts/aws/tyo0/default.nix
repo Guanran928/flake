@@ -11,6 +11,7 @@
     ./anti-feature.nix
 
     ./services/forgejo.nix
+    ./services/grafana.nix
     ./services/keycloak.nix
     ./services/miniflux.nix
     ./services/murmur.nix
@@ -44,7 +45,26 @@
     "vaultwarden/environment" = {
       restartUnits = [ "vaultwarden.service" ];
     };
+    "grafana/environment" = {
+      restartUnits = [ "grafana.service" ];
+    };
+    "alertmanager/webhook" = {
+      restartUnits = [ "alertmanager.service" ];
+    };
   };
+
+  sops.templates."alertmanager/environment".content =
+    let
+      tmpl = lib.escapeURL ''
+        {{ range .alerts }}- Status: {{ .status }}
+          Summary: {{ .annotations.summary }}
+          Description: {{ .annotations.description }}
+          Source: {{ .generatorURL }}
+        {{ end }}
+      '';
+      token = config.sops.placeholder."alertmanager/webhook";
+    in
+    "ALERTMANAGER_WEBHOOK_URL=https://ntfy.ny4.dev/alert?tpl=yes&md=yes&m=${tmpl}&auth=${token}";
 
   ### Services
   networking.firewall.allowedUDPPorts = [ 443 ];
@@ -91,6 +111,7 @@
   systemd.services."caddy".serviceConfig.SupplementaryGroups = [
     "forgejo"
     "ntfy-sh"
+    "grafana"
   ];
 
   services.caddy.settings.apps.http.servers.srv0.routes = [
@@ -243,6 +264,13 @@
       min_wal_size = "1GB";
       max_wal_size = "4GB";
     };
+    initialScript = pkgs.writeText "grafana-init.sql" ''
+      CREATE ROLE "grafana" with LOGIN;
+      CREATE DATABASE "grafana" WITH OWNER "grafana"
+        TEMPLATE template0
+        LC_COLLATE = "C"
+        LC_CTYPE = "C";
+    '';
   };
 
   ### Prevents me from bankrupt

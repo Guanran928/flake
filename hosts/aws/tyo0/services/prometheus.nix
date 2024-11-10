@@ -50,6 +50,24 @@ in
         static_configs = lib.singleton { inherit targets; };
       }
       {
+        job_name = "ntfy";
+        scheme = "https";
+        metrics_path = "/metrics";
+        static_configs = lib.singleton { targets = [ "ntfy.ny4.dev" ]; };
+      }
+      {
+        job_name = "forgejo";
+        scheme = "https";
+        metrics_path = "/metrics";
+        static_configs = lib.singleton { targets = [ "git.ny4.dev" ]; };
+      }
+      {
+        job_name = "miniflux";
+        scheme = "https";
+        metrics_path = "/metrics";
+        static_configs = lib.singleton { targets = [ "rss.ny4.dev" ]; };
+      }
+      {
         job_name = "blackbox_exporter";
         static_configs = lib.singleton { targets = [ "127.0.0.1:${toString ports.blackbox}" ]; };
       }
@@ -153,6 +171,7 @@ in
 
     alertmanager = {
       enable = true;
+      checkConfig = false;
       listenAddress = "127.0.0.1";
       port = ports.alertmanager;
 
@@ -161,17 +180,7 @@ in
           name = "ntfy";
           webhook_configs = lib.singleton {
             # https://docs.ntfy.sh/publish/#message-templating
-            url =
-              let
-                tmpl = lib.escapeURL ''
-                  {{ range .alerts }}- Status: {{ .status }}
-                    Summary: {{ .annotations.summary }}
-                    Description: {{ .annotations.description }}
-                    Source: {{ .generatorURL }}
-                  {{ end }}
-                '';
-              in
-              "https://ntfy.ny4.dev/alert?tpl=yes&md=yes&m=${tmpl}";
+            url = "$ALERTMANAGER_WEBHOOK_URL";
           };
         };
         route = {
@@ -180,6 +189,9 @@ in
       };
     };
   };
+
+  systemd.services."alertmanager".serviceConfig.EnvironmentFile =
+    config.sops.templates."alertmanager/environment".path;
 
   services.caddy.settings.apps.http.servers.srv0.routes = lib.singleton {
     match = lib.singleton { host = [ "prom.ny4.dev" ]; };

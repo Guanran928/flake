@@ -214,6 +214,15 @@ resource "cloudflare_record" "terraform_managed_resource_e2500de6c975c90729b8f35
   zone_id = local.cloudflare_zone_id
 }
 
+resource "cloudflare_record" "grafana" {
+  content = "tyo0.ny4.dev"
+  name    = "grafana"
+  proxied = true
+  ttl     = 1
+  type    = "CNAME"
+  zone_id = local.cloudflare_zone_id
+}
+
 resource "cloudflare_record" "terraform_managed_resource_856ec5e567960bf847db2e814f18168b" {
   content = "google-site-verification=wBL5EFnbnt9lt2j_BtcwlXTaBFlFT563mC1MkCscnR8"
   name    = "ny4.dev"

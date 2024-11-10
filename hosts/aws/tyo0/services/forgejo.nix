@@ -17,6 +17,10 @@
         UNIX_SOCKET_PERMISSION = "660";
       };
 
+      metrics = {
+        ENABLED = true;
+      };
+
       service = {
         ALLOW_ONLY_EXTERNAL_REGISTRATION = true;
       };
