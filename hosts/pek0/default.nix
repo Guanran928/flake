@@ -61,6 +61,7 @@
       credentialsFile = config.sops.secrets."cloudflared/secret".path;
       default = "http_status:404";
       ingress = lib.genAttrs [
+        "jellyfin.ny4.dev"
         "mastodon.ny4.dev"
         "matrix.ny4.dev"
         "pek0.ny4.dev"

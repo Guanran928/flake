@@ -223,6 +223,15 @@ resource "cloudflare_record" "grafana" {
   zone_id = local.cloudflare_zone_id
 }
 
+resource "cloudflare_record" "jellyfin" {
+  content = "pek0.ny4.dev"
+  name    = "jellyfin"
+  proxied = true
+  ttl     = 1
+  type    = "CNAME"
+  zone_id = local.cloudflare_zone_id
+}
+
 resource "cloudflare_record" "terraform_managed_resource_856ec5e567960bf847db2e814f18168b" {
   content = "google-site-verification=wBL5EFnbnt9lt2j_BtcwlXTaBFlFT563mC1MkCscnR8"
   name    = "ny4.dev"
