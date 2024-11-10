@@ -1,7 +1,4 @@
 { config, ... }:
 {
-  programs.bash = {
-    enable = true;
-    historyFile = "${config.xdg.configHome}/bash/.bash_history";
-  };
+  home.sessionVariables.HISTFILE = "${config.xdg.stateHome}/bash_history";
 }

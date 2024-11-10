@@ -17,6 +17,16 @@
         fish_default_key_bindings -M insert
         fish_vi_key_bindings --no-erase insert
       end
+
+      tide configure --auto \
+        --style=Lean \
+        --prompt_colors='16 colors' \
+        --show_time=No \
+        --lean_prompt_height='Two lines' \
+        --prompt_connection=Disconnected \
+        --prompt_spacing=Sparse \
+        --icons='Few icons' \
+        --transient=No
     '';
 
     plugins =
