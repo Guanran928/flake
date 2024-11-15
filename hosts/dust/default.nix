@@ -160,10 +160,10 @@
           runHook postInstall
         '';
       })
-      (jetbrains-mono.overrideAttrs {
+      (ibm-plex.overrideAttrs {
         installPhase = ''
           runHook preInstall
-          install -Dm644 -t $out/share/fonts/truetype/ fonts/variable/*.ttf
+          install -Dm644 IBM-Plex-Mono/IBMPlexMono-*.otf -t $out/share/fonts/opentype
           runHook postInstall
         '';
       })
@@ -184,7 +184,7 @@
         emoji = [ "Noto Color Emoji" ];
         # Append emoji font for Qt apps, they might use the monochrome emoji
         monospace = [
-          "JetBrains Mono"
+          "IBM Plex Mono"
           "Source Han Sans SC VF"
           "Symbols Nerd Font"
           "Noto Color Emoji"
