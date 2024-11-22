@@ -51,14 +51,36 @@ in
 
   systemd.services."caddy".serviceConfig.SupplementaryGroups = [ "ip-checker" ];
 
+  # HACK: this disables automatic https redirection for every VirtualHost
+  #       to make `curl ip.ny4.dev` work
+  services.caddy.settings.apps.http.servers.srv0 = {
+    automatic_https.disable_redirects = true;
+    listen = [ ":80" ];
+  };
+
   services.caddy.settings.apps.http.servers.srv0.routes = lib.singleton {
     match = lib.singleton { host = [ "ip.ny4.dev" ]; };
     handle = lib.singleton {
       handler = "subroute";
       routes = [
-        # TODO: make `curl ip.ny4.dev` work
         {
-          match = [ { path = [ "/api/v1/*" ]; } ];
+          match = lib.singleton {
+            header_regexp."User-Agent".pattern = "^curl/.*";
+            path = [ "/" ];
+          };
+          handle = [
+            {
+              handler = "rewrite";
+              uri = "/api/v1/ip";
+            }
+            {
+              handler = "reverse_proxy";
+              upstreams = lib.singleton { dial = "unix//run/ip-checker/ip-checker.sock"; };
+            }
+          ];
+        }
+        {
+          match = lib.singleton { path = [ "/api/v1/*" ]; };
           handle = lib.singleton {
             handler = "reverse_proxy";
             upstreams = lib.singleton { dial = "unix//run/ip-checker/ip-checker.sock"; };
