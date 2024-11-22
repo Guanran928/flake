@@ -42,7 +42,6 @@
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs-stable.follows = "nixpkgs";
     };
     systems = {
       url = "github:nix-systems/default";
@@ -59,6 +58,13 @@
     };
     ip-checker = {
       url = "https://git.ny4.dev/nyancat/ip-checker/archive/master.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.systems.follows = "systems";
+      inputs.treefmt-nix.follows = "treefmt-nix";
+    };
+    chicken-box = {
+      url = "https://git.ny4.dev/nyancat/chicken-box/archive/master.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
       inputs.systems.follows = "systems";

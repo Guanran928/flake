@@ -4,6 +4,7 @@
     ./anti-feature.nix
 
     ./services/telegram-bot/danbooru_img_bot.nix
+    ./services/chicken-box.nix
     ./services/ip-checker.nix
     ./services/redlib.nix
 

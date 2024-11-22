@@ -153,17 +153,11 @@
     enableDefaultPackages = false;
     packages = with pkgs; [
       (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+      (ibm-plex.override { families = [ "mono" ]; })
       (inter.overrideAttrs {
         installPhase = ''
           runHook preInstall
           install -Dm644 -t $out/share/fonts/truetype/ InterVariable*.ttf
-          runHook postInstall
-        '';
-      })
-      (ibm-plex.overrideAttrs {
-        installPhase = ''
-          runHook preInstall
-          install -Dm644 IBM-Plex-Mono/IBMPlexMono-*.otf -t $out/share/fonts/opentype
           runHook postInstall
         '';
       })

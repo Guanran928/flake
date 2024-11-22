@@ -27,6 +27,9 @@
   networking.hostName = "pek0";
   system.stateVersion = "24.05";
 
+  # error: 1 dependencies of derivation '/nix/store/42rdjw63xw8asrfbczy0skrx8485n75i-linux-6.12-modules.drv' failed to build
+  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_11;
+
   ######## Secrets
   sops.secrets = lib.mapAttrs (_name: value: value // { sopsFile = ./secrets.yaml; }) {
     "hashed-passwd" = {
