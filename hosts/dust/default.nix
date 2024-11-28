@@ -152,7 +152,6 @@
   fonts = {
     enableDefaultPackages = false;
     packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
       (ibm-plex.override { families = [ "mono" ]; })
       (inter.overrideAttrs {
         installPhase = ''
@@ -168,10 +167,11 @@
           runHook postInstall
         '';
       })
-      source-han-sans-vf-otf
-      source-han-serif-vf-otf
+      nerd-fonts.symbols-only
       noto-fonts
       noto-fonts-color-emoji
+      source-han-sans-vf-otf
+      source-han-serif-vf-otf
     ];
     fontconfig = {
       defaultFonts = {
