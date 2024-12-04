@@ -113,11 +113,6 @@
 
   environment.systemPackages = with pkgs; [ yubikey-manager ];
 
-  networking.firewall = {
-    allowedTCPPorts = [ 53317 ];
-    allowedUDPPorts = [ 53317 ];
-  };
-
   programs = {
     adb.enable = true;
     dconf.enable = true;
