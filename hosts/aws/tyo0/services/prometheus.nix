@@ -121,44 +121,31 @@ in
               alert = "NodeDown";
               expr = ''up{job="node_exporter"} == 0'';
               for = "5m";
-              annotations = {
-                summary = "Node exporter down on {{ $labels.instance }}";
-                description = "Node exporter on {{ $labels.instance }} has been down for more than 5 minutes.";
-              };
+              annotations.summary = "Node exporter down on {{ $labels.instance }}";
             }
             {
               alert = "HTTPDown";
               expr = ''up{job="blackbox_probe"} == 0 or probe_success{job="blackbox_probe"} == 0'';
               for = "5m";
-              annotations = {
-                summary = "HTTP probe failure on {{ $labels.instance }}";
-                description = "The HTTP blackbox probe on {{ $labels.instance }} has failed for more than 5 minutes.";
-              };
+              annotations.summary = "HTTP probe failure on {{ $labels.instance }}";
             }
             {
               alert = "MemoryFull";
               expr = ''node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes < 0.1'';
               for = "5m";
-              annotations = {
-                summary = "Low available memory on {{ $labels.instance }}";
-                description = "{{ $labels.instance }} has less than 10% available memory for more than 5 minutes.";
-              };
+              annotations.summary = "Low available memory on {{ $labels.instance }}";
             }
             {
               alert = "DiskFull";
               expr = ''node_filesystem_avail_bytes{mountpoint=~"/|/persist|/mnt"} / node_filesystem_size_bytes < 0.1'';
               annotations = {
                 summary = "Low disk space on {{ $labels.instance }}";
-                description = "The disk {{ $labels.device }} mounted at {{ $labels.mountpoint }} on {{ $labels.instance }} has less than 10% of empty space available.";
               };
             }
             {
               alert = "UnitFailed";
               expr = ''node_systemd_unit_state{state="failed"} == 1'';
-              annotations = {
-                summary = "Systemd unit {{ $labels.name }} failure on {{ $labels.instance }}";
-                description = "The systemd unit {{ $labels.name }} on {{ $labels.instance }} has entered a {{ $labels.state }} state.";
-              };
+              annotations.summary = "Systemd unit {{ $labels.name }} failure on {{ $labels.instance }}";
             }
           ];
         };

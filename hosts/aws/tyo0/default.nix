@@ -58,7 +58,6 @@
       tmpl = lib.escapeURL ''
         {{ range .alerts }}- Status: {{ .status }}
           Summary: {{ .annotations.summary }}
-          Description: {{ .annotations.description }}
           Source: {{ .generatorURL }}
         {{ end }}
       '';
