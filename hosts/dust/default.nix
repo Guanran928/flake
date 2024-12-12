@@ -97,7 +97,10 @@
     description = "Guanran Wang";
     hashedPasswordFile = config.sops.secrets."hashed-passwd".path;
     shell = pkgs.fish;
-    extraGroups = [ "wheel" ];
+    extraGroups = [
+      "wheel"
+      "dialout"
+    ];
   };
 
   home-manager = {
