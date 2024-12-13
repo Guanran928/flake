@@ -6,7 +6,6 @@
 }:
 {
   imports = [
-    inputs.nixpkgs.nixosModules.notDetected
     inputs.nixos-hardware.nixosModules.apple-macbook-pro
     inputs.nixos-hardware.nixosModules.common-cpu-intel
     inputs.nixos-hardware.nixosModules.common-hidpi
