@@ -1,7 +1,13 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 {
   imports = [
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-12th-gen
+  ];
+
+  hardware.firmware = with pkgs; [
+    linux-firmware
+    alsa-firmware
+    sof-firmware
   ];
 
   services.fwupd.enable = true;
