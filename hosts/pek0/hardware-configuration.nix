@@ -31,7 +31,8 @@
   nixpkgs.hostPlatform = "x86_64-linux";
 
   # no disko because dual booting with macOS isnt very flexible
-  boot.initrd.luks.devices."luks-8c26de19-f0d4-4ac7-a73c-a28dafd30544".device = "/dev/disk/by-uuid/8c26de19-f0d4-4ac7-a73c-a28dafd30544";
+  boot.initrd.luks.devices."luks-8c26de19-f0d4-4ac7-a73c-a28dafd30544".device =
+    "/dev/disk/by-uuid/8c26de19-f0d4-4ac7-a73c-a28dafd30544";
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-uuid/ab9b92a9-b67b-43b4-b0d9-9dd59ccd594b";

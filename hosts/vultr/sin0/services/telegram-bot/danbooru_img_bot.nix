@@ -1,16 +1,15 @@
-{ pkgs, config, ... }:
+{
+  lib,
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 {
   systemd.services."tg-danbooru_img_bot" = {
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
-      # TODO: un-vendor this file
-      ExecStart = pkgs.writers.writePython3 "pytest" {
-        doCheck = false;
-        libraries = with pkgs.python3Packages; [
-          python-telegram-bot
-          aiohttp
-        ];
-      } (builtins.readFile ./danbooru_img_bot.py);
+      ExecStart = lib.getExe inputs.danbooru_img_bot.packages.${pkgs.stdenv.hostPlatform.system}.default;
       EnvironmentFile = config.sops.secrets."tg/danbooru_img_bot".path;
 
       CapabilityBoundingSet = "";

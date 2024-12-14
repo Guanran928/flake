@@ -70,6 +70,12 @@
       inputs.systems.follows = "systems";
       inputs.treefmt-nix.follows = "treefmt-nix";
     };
+    danbooru_img_bot = {
+      url = "https://git.ny4.dev/nyancat/danbooru_img_bot/archive/master.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.treefmt-nix.follows = "treefmt-nix";
+    };
 
     ### De-dupe flake dependencies
     crane = {

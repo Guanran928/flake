@@ -107,9 +107,7 @@
     users.guanranwang = import ../../home;
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = {
-      inherit inputs;
-    };
+    extraSpecialArgs = { inherit inputs; };
   };
 
   environment.systemPackages = with pkgs; [ yubikey-manager ];

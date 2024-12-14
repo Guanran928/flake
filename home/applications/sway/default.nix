@@ -74,7 +74,8 @@
           "${modifier}+f" = "fullscreen toggle";
           "${modifier}+r" = "mode resize";
           "${modifier}+q" = "kill";
-          "${modifier}+Shift+e" = "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'";
+          "${modifier}+Shift+e" =
+            "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'";
 
           # Move around
           "${modifier}+h" = "focus left";
@@ -94,11 +95,13 @@
 
           # Launcher
           "${modifier}+d" = "exec ${getExe' wmenu "wmenu-run"}";
-          "${modifier}+Shift+d" = "exec ${getExe cliphist} list | ${getExe wmenu} -l 10 | ${getExe cliphist} decode | ${getExe' wl-clipboard "wl-copy"}";
+          "${modifier}+Shift+d" =
+            "exec ${getExe cliphist} list | ${getExe wmenu} -l 10 | ${getExe cliphist} decode | ${getExe' wl-clipboard "wl-copy"}";
           "${modifier}+Shift+Semicolon" = "exec loginctl lock-session";
 
           # Screenshot
-          "Print" = "exec env XDG_SCREENSHOTS_DIR=$HOME/Pictures/Screenshots ${getExe sway-contrib.grimshot} --notify savecopy anything";
+          "Print" =
+            "exec env XDG_SCREENSHOTS_DIR=$HOME/Pictures/Screenshots ${getExe sway-contrib.grimshot} --notify savecopy anything";
 
           # Fn keys
           "XF86MonBrightnessUp" = "exec ${getExe brightnessctl} set 5%+";

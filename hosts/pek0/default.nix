@@ -30,6 +30,10 @@
   # error: 1 dependencies of derivation '/nix/store/42rdjw63xw8asrfbczy0skrx8485n75i-linux-6.12-modules.drv' failed to build
   boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_11;
 
+  users.users."root" = {
+    hashedPasswordFile = config.sops.secrets."hashed-passwd".path;
+  };
+
   ######## Secrets
   sops.secrets = lib.mapAttrs (_name: value: value // { sopsFile = ./secrets.yaml; }) {
     "hashed-passwd" = {
@@ -63,12 +67,9 @@
     tunnels."b73805e7-a8a9-49db-8c9f-aae52c406635" = {
       credentialsFile = config.sops.secrets."cloudflared/secret".path;
       default = "http_status:404";
-      ingress = lib.genAttrs [
-        "jellyfin.ny4.dev"
-        "mastodon.ny4.dev"
-        "matrix.ny4.dev"
-        "pek0.ny4.dev"
-      ] (_: "http://localhost");
+      ingress = lib.genAttrs [ "jellyfin.ny4.dev" "mastodon.ny4.dev" "matrix.ny4.dev" "pek0.ny4.dev" ] (
+        _: "http://localhost"
+      );
     };
   };
 
