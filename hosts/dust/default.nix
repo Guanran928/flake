@@ -112,8 +112,6 @@
     };
   };
 
-  boot.tmp.useTmpfs = true;
-
   environment.systemPackages = with pkgs; [ yubikey-manager ];
 
   programs = {
