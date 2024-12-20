@@ -47,14 +47,8 @@
       wl-clipboard
 
       lunar-client
-      osu-lazer-bin
+      (osu-lazer-bin.override { nativeWayland = true; })
       prismlauncher
     ])
     ++ (with inputs.self.legacyPackages.${pkgs.stdenv.hostPlatform.system}; [ mumble-git ]);
-
-  home.sessionVariables = {
-    # https://github.com/ppy/osu-framework/pull/6292
-    "OSU_SDL3" = "1";
-    "SDL_VIDEO_DRIVER" = "wayland";
-  };
 }
