@@ -28,7 +28,6 @@
     lib.listToAttrs (
       lib.map (x: lib.nameValuePair "wireless/${x}" { path = "/var/lib/iwd/${x}.psk"; }) [
         "Galaxy S24 EC54"
-        "ImmortalWrt"
         "XYC-SEEWO"
         "wangxiaobo"
       ]
