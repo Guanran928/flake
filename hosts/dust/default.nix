@@ -24,6 +24,10 @@
       preservation.nixosModules.preservation
     ]);
 
+  sops = {
+    age.keyFile = "/persist/home/guanranwang/.config/sops/age/keys.txt";
+  };
+
   sops.secrets = lib.mapAttrs (_n: v: v // { sopsFile = ./secrets.yaml; }) (
     lib.listToAttrs (
       lib.map (x: lib.nameValuePair "wireless/${x}" { path = "/var/lib/iwd/${x}.psk"; }) [

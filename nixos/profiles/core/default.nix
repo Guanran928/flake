@@ -65,10 +65,4 @@
 
   # See `nixos-version(8)`
   system.configurationRevision = inputs.self.rev or "dirty";
-
-  ### sops-nix
-  sops = {
-    age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-    gnupg.sshKeyPaths = [ ];
-  };
 }
