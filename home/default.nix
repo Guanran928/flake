@@ -48,7 +48,7 @@
 
       lunar-client
       (osu-lazer-bin.override { nativeWayland = true; })
-      prismlauncher
+      (prismlauncher.override { jdks = [ pkgs.jdk21 ]; })
     ])
     ++ (with inputs.self.legacyPackages.${pkgs.stdenv.hostPlatform.system}; [ mumble-git ]);
 }
