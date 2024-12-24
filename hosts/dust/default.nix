@@ -131,10 +131,8 @@
 
   services = {
     power-profiles-daemon.enable = true;
-    gvfs.enable = true;
     gnome = {
       gnome-keyring.enable = true;
-      sushi.enable = true;
     };
     tailscale = {
       enable = true;

@@ -28,7 +28,6 @@
 
   services = {
     cliphist.enable = true;
-    udiskie.enable = true;
   };
 
   home.packages =

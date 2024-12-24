@@ -1,20 +1,4 @@
 _final: prev: {
-  # https://aur.archlinux.org/pkgbase/nautilus-typeahead
-  nautilus = prev.nautilus.overrideAttrs {
-    src = prev.fetchFromGitLab {
-      domain = "gitlab.gnome.org";
-      owner = "xclaesse";
-      repo = "nautilus";
-      rev = "05f8e6e9bee25c894d2f3582649750737081253b";
-      hash = "sha256-BDWYWBdty/SumkhftEH5fOAow9EjYwdw7pwnSWL+Q48=";
-    };
-
-    # Enable type-ahead behavior by default
-    postPatch = ''
-      awk -i inplace '/type-ahead-search/{c++;} c==1 && /true/{sub("true", "false"); c++;} 1' data/org.gnome.nautilus.gschema.xml
-    '';
-  };
-
   qt6Packages = prev.qt6Packages.overrideScope (
     _final': prev': {
       # HACK: no more qt5
