@@ -14,6 +14,8 @@
 
   nixpkgs.overlays = [ inputs.self.overlays.default ];
 
+  boot.enableContainers = false;
+  boot.initrd.systemd.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   environment.systemPackages = with pkgs; [
@@ -32,7 +34,6 @@
   ];
 
   users.mutableUsers = false;
-  boot.initrd.systemd.enable = true;
   environment.stub-ld.enable = false;
 
   programs.command-not-found.enable = false;
