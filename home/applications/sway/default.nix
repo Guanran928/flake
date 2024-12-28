@@ -53,17 +53,16 @@
         let
           inherit (config.wayland.windowManager.sway.config) modifier;
           inherit (lib) getExe getExe';
+          inherit (config.programs) firefox foot;
           inherit (pkgs)
             brightnessctl
             cliphist
-            foot
             pamixer
             playerctl
             sway-contrib
             wireplumber
             wl-clipboard
             wmenu
-            xdg-utils
             ;
         in
         {
@@ -89,9 +88,8 @@
 
           ### Execute other stuff
           # Launch applications
-          "${modifier}+Return" = "exec ${getExe foot}";
-          "${modifier}+w" = "exec ${xdg-utils}/bin/xdg-open http:";
-          "${modifier}+e" = "exec ${xdg-utils}/bin/xdg-open ~";
+          "${modifier}+Return" = "exec ${getExe foot.package}";
+          "${modifier}+w" = "exec ${getExe firefox.finalPackage}";
 
           # Launcher
           "${modifier}+d" = "exec ${getExe' wmenu "wmenu-run"}";
