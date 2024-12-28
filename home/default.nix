@@ -17,12 +17,12 @@
   ] ++ lib.filter (x: lib.hasSuffix "default.nix" x) (lib.fileset.toList ./applications);
 
   programs = {
+    fzf.enable = true;
     jq.enable = true;
     man.generateCaches = false;
     mangohud.enable = true;
     obs-studio.enable = true;
     ripgrep.enable = true;
-    skim.enable = true;
     zoxide.enable = true;
   };
 
