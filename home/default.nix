@@ -36,7 +36,6 @@
       fastfetch
       fd
       file-roller
-      gnome-calculator
       hyperfine
       libnotify
       loupe
