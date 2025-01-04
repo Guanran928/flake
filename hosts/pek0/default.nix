@@ -57,6 +57,19 @@
     };
   };
 
+  networking = {
+    useNetworkd = true;
+    useDHCP = false;
+  };
+
+  systemd.network.networks.ethernet = {
+    matchConfig.Name = [
+      "en*"
+      "eth*"
+    ];
+    DHCP = "yes";
+  };
+
   services.tailscale = {
     enable = true;
     openFirewall = true;
