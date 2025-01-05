@@ -35,7 +35,6 @@
       dconf-editor
       fastfetch
       fd
-      file-roller
       hyperfine
       libnotify
       loupe

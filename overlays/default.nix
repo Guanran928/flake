@@ -33,6 +33,15 @@ _final: prev: {
     configureFlags = [ "--disable-gtk2-engine" ];
   };
 
+  # HACK:
+  xdg-desktop-portal-gtk =
+    (prev.xdg-desktop-portal-gtk.override {
+      gnome-settings-daemon = null;
+      gnome-desktop = null;
+      gsettings-desktop-schemas = null;
+    }).overrideAttrs
+      { mesonFlags = [ (prev.lib.mesonEnable "wallpaper" false) ]; };
+
   # TODO:
   # sway-unwrapped = prev.sway-unwrapped.overrideAttrs (oldAttrs: {
   #   patches = (oldAttrs.patches or [ ]) ++ [
