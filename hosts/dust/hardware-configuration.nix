@@ -12,7 +12,7 @@
   services.fprintd.enable = true;
 
   security.rtkit.enable = true;
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   services.pipewire = {
     enable = true;
     pulse.enable = true;
