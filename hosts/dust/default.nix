@@ -77,7 +77,6 @@
   system.stateVersion = "24.05";
 
   # TODO: move to 'core' profile
-  services.userborn.enable = true;
   system.etc.overlay.enable = true;
   system.etc.overlay.mutable = false;
   # HACK: for impermanence

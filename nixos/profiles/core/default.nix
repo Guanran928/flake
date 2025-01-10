@@ -34,6 +34,7 @@
   ];
 
   users.mutableUsers = false;
+  services.userborn.enable = true;
   environment.stub-ld.enable = false;
 
   programs.command-not-found.enable = false;
