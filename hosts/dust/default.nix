@@ -253,33 +253,12 @@
     };
   };
 
-  services.sing-box.settings = {
-    outbounds = [
-      {
-        type = "selector";
-        tag = "select";
-        outbounds = [
-          "tyo0"
-          "sin0"
-          "direct"
-        ];
-        default = "tyo0";
-      }
-    ];
-
-    route = {
-      final = "select";
-    };
-
-    experimental = {
-      clash_api = rec {
-        external_controller = "127.0.0.1:9090";
-        external_ui = pkgs.metacubexd;
-        secret = "hunter2";
-        # https://www.v2ex.com/t/1076579
-        access_control_allow_origin = [ "http://${external_controller}" ];
-      };
-    };
+  services.sing-box.settings.experimental.clash_api = rec {
+    external_controller = "127.0.0.1:9090";
+    external_ui = pkgs.metacubexd;
+    secret = "hunter2";
+    # https://www.v2ex.com/t/1076579
+    access_control_allow_origin = [ "http://${external_controller}" ];
   };
 
   services.restic.backups.persist.exclude = [ "/persist/home/guanranwang/.local/share/Steam" ];

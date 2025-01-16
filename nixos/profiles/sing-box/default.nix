@@ -5,12 +5,42 @@
   nodes,
   ...
 }:
+let
+  proxyServers = lib.filterAttrs (_name: value: lib.elem "proxy" value.tags) nodes;
+in
 {
   services.sing-box = {
     enable = true;
     settings = {
       log = {
         level = "info";
+      };
+
+      dns = {
+        servers = [
+          {
+            tag = "cloudflare";
+            address = "https://[2606:4700:4700::1111]/dns-query";
+            strategy = "prefer_ipv6";
+          }
+          {
+            tag = "local";
+            address = "local";
+            strategy = "prefer_ipv4";
+          }
+        ];
+        rules = lib.singleton {
+          rule_set = [
+            "geoip-cn"
+            "geosite-cn"
+            "geosite-private"
+          ];
+          # avoid querying proxy server's dns from proxy server
+          domain = lib.mapAttrsToList (_name: node: node.fqdn) proxyServers;
+          ip_is_private = true;
+          server = "local";
+        };
+        final = "cloudflare";
       };
 
       inbounds = lib.singleton {
@@ -31,27 +61,34 @@
           uuid._secret = config.sops.secrets."sing-box/uuid".path;
           flow = "xtls-rprx-vision";
           tls.enabled = true;
-        }) (lib.filterAttrs (_name: value: lib.elem "proxy" value.tags) nodes)
-        ++ lib.singleton {
-          type = "direct";
-          tag = "direct";
-        };
-
-      route = {
-        rules = [
+        }) proxyServers
+        ++ [
           {
-            rule_set = [
-              "geoip-cn"
-              "geosite-cn"
+            type = "selector";
+            tag = "select";
+            outbounds = [
+              "tyo0"
+              "sin0"
+              "direct"
             ];
-            outbound = "direct";
+            default = "tyo0";
           }
           {
-            rule_set = [ "geosite-private" ];
-            ip_is_private = true;
-            outbound = "direct";
+            type = "direct";
+            tag = "direct";
           }
         ];
+
+      route = {
+        rules = lib.singleton {
+          rule_set = [
+            "geoip-cn"
+            "geosite-cn"
+            "geosite-private"
+          ];
+          ip_is_private = true;
+          outbound = "direct";
+        };
 
         rule_set = [
           {
@@ -74,7 +111,7 @@
           }
         ];
 
-        final = lib.mkDefault "tyo0";
+        final = "select";
       };
     };
   };
