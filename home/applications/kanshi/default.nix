@@ -21,7 +21,7 @@
           }
           {
             criteria = "ASUSTek COMPUTER INC VG27AQML1A S7LMQS122018";
-            mode = "2560x1440@119.998";
+            mode = "2560x1440@240.001";
             status = "enable";
           }
         ];
