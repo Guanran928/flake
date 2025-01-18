@@ -16,9 +16,9 @@
       download-dir = "/mnt/torrent";
 
       speed-limit-up-enabled = true;
-      speed-limit-up = 1000;
+      speed-limit-up = 2 * 1000;
       speed-limit-down-enabled = true;
-      speed-limit-down = 4000;
+      speed-limit-down = 32 * 1000;
 
       ratio-limit-enabled = true;
       ratio-limit = 2;
