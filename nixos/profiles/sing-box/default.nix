@@ -13,7 +13,7 @@ in
     enable = true;
     settings = {
       log = {
-        level = "info";
+        level = "debug";
       };
 
       dns = {
@@ -31,13 +31,11 @@ in
         ];
         rules = lib.singleton {
           rule_set = [
-            "geoip-cn"
             "geosite-cn"
             "geosite-private"
           ];
           # avoid querying proxy server's dns from proxy server
           domain = lib.mapAttrsToList (_name: node: node.fqdn) proxyServers;
-          ip_is_private = true;
           server = "local";
         };
         final = "cloudflare";
