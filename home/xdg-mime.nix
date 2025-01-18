@@ -4,11 +4,8 @@
   xdg.mimeApps = {
     enable = true;
     defaultApplications =
-      {
-        "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
-      }
       ### Browser
-      // lib.genAttrs [
+      lib.genAttrs [
         "text/html"
         "x-scheme-handler/http"
         "x-scheme-handler/https"

@@ -34,6 +34,12 @@
     hashedPasswordFile = config.sops.secrets."hashed-passwd".path;
   };
 
+  # tty
+  console = {
+    earlySetup = true;
+    keyMap = "dvorak";
+  };
+
   ######## Secrets
   sops.secrets = lib.mapAttrs (_name: value: value // { sopsFile = ./secrets.yaml; }) {
     "hashed-passwd" = {
