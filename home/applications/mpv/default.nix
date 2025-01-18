@@ -6,7 +6,8 @@
       ao = "pipewire";
       vo = "gpu-next";
       hwdec = "auto-safe";
-      profile = "high-quality";
+      # FIXME: freezes the entire WM when using with vo = gpu-next
+      # profile = "high-quality";
 
       alang = "jpn,ja";
       slang = "eng,en";
