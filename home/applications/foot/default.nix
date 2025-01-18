@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 {
   programs.foot = {
     enable = true;
@@ -10,4 +15,6 @@
       url.label-letters = "aoeuhtns";
     } // import ./tokyonight_night.nix;
   };
+
+  home.sessionVariables."TERMINAL" = config.programs.foot.package;
 }

@@ -62,7 +62,7 @@
             sway-contrib
             wireplumber
             wl-clipboard
-            wmenu
+            fuzzel
             ;
         in
         {
@@ -92,9 +92,9 @@
           "${modifier}+w" = "exec ${getExe firefox.finalPackage}";
 
           # Launcher
-          "${modifier}+d" = "exec ${getExe' wmenu "wmenu-run"}";
+          "${modifier}+d" = "exec ${getExe fuzzel}";
           "${modifier}+Shift+d" =
-            "exec ${getExe cliphist} list | ${getExe wmenu} -l 10 | ${getExe cliphist} decode | ${getExe' wl-clipboard "wl-copy"}";
+            "exec ${getExe cliphist} list | ${getExe fuzzel} -d | ${getExe cliphist} decode | ${getExe' wl-clipboard "wl-copy"}";
           "${modifier}+Shift+Semicolon" = "exec loginctl lock-session";
 
           # Screenshot
