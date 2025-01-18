@@ -11,6 +11,22 @@
   home.sessionVariables.GTK_CSD = 0;
   dconf.settings."org/gnome/desktop/wm/preferences"."button-layout" = "appmenu:";
 
+  # autostart
+  home.file =
+    lib.mapAttrs'
+      (name: package: {
+        name = ".config/autostart/${name}.desktop";
+        value = {
+          source = "${package}/share/applications/${name}.desktop";
+        };
+      })
+      {
+        "foot" = config.programs.foot.package;
+        "firefox" = config.programs.firefox.finalPackage;
+        "thunderbird" = config.programs.thunderbird.package;
+        "org.telegram.desktop" = pkgs.telegram-desktop;
+      };
+
   wayland.windowManager.sway = {
     enable = true;
     checkConfig = false; # wtf?
@@ -45,6 +61,13 @@
           xkb_options = "caps:escape,altwin:swap_lalt_lwin";
           xkb_variant = "dvorak";
         };
+      };
+
+      assigns = {
+        "1" = [ { app_id = "foot"; } ];
+        "2" = [ { app_id = "firefox"; } ];
+        "3" = [ { app_id = "org.telegram.desktop"; } ];
+        "4" = [ { app_id = "thunderbird"; } ];
       };
 
       ### Keybinds
