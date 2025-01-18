@@ -76,7 +76,7 @@
         let
           inherit (config.wayland.windowManager.sway.config) modifier;
           inherit (lib) getExe getExe';
-          inherit (config.programs) firefox foot;
+          inherit (config.programs) firefox;
           inherit (pkgs)
             brightnessctl
             cliphist
@@ -111,7 +111,7 @@
 
           ### Execute other stuff
           # Launch applications
-          "${modifier}+Return" = "exec ${getExe foot.package}";
+          "${modifier}+Return" = "workspace 1";
           "${modifier}+w" = "exec ${getExe firefox.finalPackage}";
 
           # Launcher
