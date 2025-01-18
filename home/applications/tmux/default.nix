@@ -11,11 +11,12 @@
     set-option -w -g pane-base-index   1
     set-option    -g renumber-windows  on
 
-    set-option    -g status-keys       vi
-    set-option -w -g mode-keys         vi
-    set-option    -g mouse             on
-    set-option    -s set-clipboard     on
-    set-option -w -g aggressive-resize on
+    set-option    -g status-keys        vi
+    set-option -w -g mode-keys          vi
+    set-option    -g mouse              on
+    set-option    -s set-clipboard      on
+    set-option -w -g aggressive-resize  on
+    set-option    -g destroy-unattached keep-last
 
     set-option    -g status-style "bg=black"
     set-option    -g status-left  ""
