@@ -7,6 +7,7 @@
     ./services/chicken-box.nix
     ./services/ip-checker.nix
     ./services/redlib.nix
+    ./services/pixivfe.nix
 
     ../../../nixos/profiles/sing-box-server
   ];
@@ -22,7 +23,8 @@
   ];
 
   sops.secrets = lib.mapAttrs (_n: v: v // { sopsFile = ./secrets.yaml; }) {
-    "tg/danbooru_img_bot" = { };
+    "tg/danbooru_img_bot".restartUnits = [ "tg-danbooru_img_bot.service" ];
+    "pixivfe/environment".restartUnits = [ "pixivfe.service" ];
   };
 
   services.caddy.enable = true;
