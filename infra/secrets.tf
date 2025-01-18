@@ -20,3 +20,9 @@ provider "cloudflare" {
   api_token = local.secrets.cloudflare.api_token
 }
 
+provider "keycloak" {
+  client_id     = "terraform"
+  client_secret = local.secrets.keycloak.token
+  realm         = "ny4"
+  url           = "https://id.ny4.dev"
+}

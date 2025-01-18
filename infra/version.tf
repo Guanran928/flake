@@ -12,6 +12,9 @@ terraform {
     cloudflare = {
       source = "cloudflare/cloudflare"
     }
+    keycloak = {
+      source = "keycloak/keycloak"
+    }
   }
 
   encryption {

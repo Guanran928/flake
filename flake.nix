@@ -148,9 +148,10 @@
             (opentofu.withPlugins (
               ps: with ps; [
                 aws
-                vultr
-                sops
                 cloudflare
+                keycloak
+                sops
+                vultr
               ]
             ))
             colmena
