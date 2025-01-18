@@ -1,16 +1,16 @@
 terraform {
   required_providers {
     vultr = {
-      source = "registry.terraform.io/vultr/vultr"
+      source = "vultr/vultr"
     }
     sops = {
-      source = "registry.terraform.io/carlpett/sops"
+      source = "carlpett/sops"
     }
     aws = {
-      source = "registry.terraform.io/hashicorp/aws"
+      source = "hashicorp/aws"
     }
     cloudflare = {
-      source = "registry.terraform.io/cloudflare/cloudflare"
+      source = "cloudflare/cloudflare"
     }
   }
 
