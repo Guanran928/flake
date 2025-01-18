@@ -44,6 +44,7 @@
       wl-clipboard
 
       lunar-client
+      mindustry-wayland
       (osu-lazer-bin.override { nativeWayland = true; })
       (prismlauncher.override { jdks = [ pkgs.jdk21 ]; })
     ])
