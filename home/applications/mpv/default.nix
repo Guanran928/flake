@@ -4,10 +4,11 @@
     enable = true;
     config = {
       ao = "pipewire";
-      vo = "gpu-next";
-      hwdec = "auto-safe";
-      # FIXME: freezes the entire WM when using with vo = gpu-next
-      # profile = "high-quality";
+      # FIXME: freezes the entire WM
+      # vo = "gpu-next";
+      # FIXME: using VAAPI sometimes can cause address boundary error
+      # hwdec = "auto-safe";
+      profile = "high-quality";
 
       alang = "jpn,ja";
       slang = "eng,en";
@@ -17,7 +18,7 @@
 
     scripts =
       (with pkgs.mpvScripts; [
-        modernx-zydezu
+        modernz
         thumbfast
       ])
       ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux (with pkgs.mpvScripts; [ mpris ]);
