@@ -13,7 +13,7 @@ in
     enable = true;
     settings = {
       log = {
-        level = "debug";
+        level = "info";
       };
 
       dns = {
