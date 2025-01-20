@@ -28,6 +28,9 @@
   boot.loader.grub.device = lib.mkForce "/dev/nvme0n1";
   system.stateVersion = "24.05";
 
+  # error: 1 dependencies of derivation '/nix/store/85184j0g9jpqvr9fskigvz20kv3dyaal-linux-6.13-modules.drv' failed to build
+  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_12;
+
   swapDevices = lib.singleton {
     device = "/var/lib/swapfile";
     size = 4 * 1024; # 4 GiB

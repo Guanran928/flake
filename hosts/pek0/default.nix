@@ -27,14 +27,12 @@
   networking.hostName = "pek0";
   system.stateVersion = "24.05";
 
-  # error: 1 dependencies of derivation '/nix/store/42rdjw63xw8asrfbczy0skrx8485n75i-linux-6.12-modules.drv' failed to build
-  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_11;
-
-  users.users."root" = {
-    hashedPasswordFile = config.sops.secrets."hashed-passwd".path;
-  };
+  # error: 1 dependencies of derivation '/nix/store/97z59acjdgqpwv6458qy4fnpkm25x141-linux-6.13-modules.drv' failed to build
+  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_12;
 
   # tty
+  users.users."root".hashedPasswordFile = config.sops.secrets."hashed-passwd".path;
+  boot.kernelParams = [ "consoleblank=60" ];
   console = {
     earlySetup = true;
     keyMap = "dvorak";
