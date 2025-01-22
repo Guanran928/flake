@@ -44,6 +44,7 @@
         owner = "guanranwang";
         mode = "0440";
       };
+      "u2f" = { };
     }
   );
 
@@ -236,6 +237,15 @@
       Restart = "on-failure";
       RestartSec = 1;
       TimeoutStopSec = 10;
+    };
+  };
+
+  security.pam.u2f = {
+    enable = true;
+    control = "sufficient";
+    settings = {
+      cue = true;
+      authfile = config.sops.secrets.u2f.path;
     };
   };
 
