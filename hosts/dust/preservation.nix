@@ -14,6 +14,7 @@
         "Downloads"
         "Music"
         "Pictures"
+        "Projects"
         "Videos"
 
         ".ssh"

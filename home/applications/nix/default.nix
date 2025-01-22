@@ -17,5 +17,5 @@
   ];
 
   # nh
-  home.sessionVariables.FLAKE = "/home/guanranwang/Documents/Projects/flake";
+  home.sessionVariables.FLAKE = "/home/guanranwang/Projects/flake";
 }
