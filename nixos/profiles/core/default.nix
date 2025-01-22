@@ -17,6 +17,7 @@
   boot.enableContainers = false;
   boot.initrd.systemd.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelParams = [ "ia32_emulation=0" ];
 
   environment.systemPackages = with pkgs; [
     unzip

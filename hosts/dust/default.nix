@@ -119,10 +119,8 @@
     adb.enable = true;
     dconf.enable = true;
     fish.enable = true;
-    gamemode.enable = true;
     localsend.enable = true;
     seahorse.enable = true;
-    steam.enable = true;
     ssh = {
       startAgent = true;
       enableAskPassword = true;
@@ -270,6 +268,4 @@
     # https://www.v2ex.com/t/1076579
     access_control_allow_origin = [ "http://${external_controller}" ];
   };
-
-  services.restic.backups.persist.exclude = [ "/persist/home/guanranwang/.local/share/Steam" ];
 }

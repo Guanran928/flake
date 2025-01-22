@@ -1,9 +1,4 @@
-{
-  lib,
-  inputs,
-  pkgs,
-  ...
-}:
+{ lib, pkgs, ... }:
 {
   home = {
     username = "guanranwang";
@@ -30,23 +25,16 @@
     cliphist.enable = true;
   };
 
-  home.packages =
-    (with pkgs; [
-      dconf-editor
-      fastfetch
-      fd
-      hyperfine
-      libnotify
-      loupe
-      pwvucontrol
-      seahorse
-      telegram-desktop
-      wl-clipboard
-
-      lunar-client
-      mindustry-wayland
-      (osu-lazer-bin.override { nativeWayland = true; })
-      (prismlauncher.override { jdks = [ pkgs.jdk21 ]; })
-    ])
-    ++ (with inputs.self.legacyPackages.${pkgs.stdenv.hostPlatform.system}; [ mumble-git ]);
+  home.packages = with pkgs; [
+    dconf-editor
+    fastfetch
+    fd
+    hyperfine
+    libnotify
+    loupe
+    pwvucontrol
+    seahorse
+    telegram-desktop
+    wl-clipboard
+  ];
 }
