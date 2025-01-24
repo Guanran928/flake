@@ -149,14 +149,14 @@
       (inter.overrideAttrs {
         installPhase = ''
           runHook preInstall
-          install -Dm644 -t $out/share/fonts/truetype/ InterVariable*.ttf
+          install -Dt $out/share/fonts/truetype/ InterVariable*.ttf
           runHook postInstall
         '';
       })
       (source-serif.overrideAttrs {
         installPhase = ''
           runHook preInstall
-          install -Dm444 VAR/*.otf -t $out/share/fonts/variable
+          install -Dt $out/share/fonts/variable/ VAR/*.otf
           runHook postInstall
         '';
       })
