@@ -1,6 +1,7 @@
 resource "keycloak_realm" "ny4" {
   realm                       = "ny4"
   default_signature_algorithm = "RS256"
+  remember_me                 = true
 }
 
 resource "keycloak_openid_client" "forgejo" {
