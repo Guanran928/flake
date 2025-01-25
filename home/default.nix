@@ -13,11 +13,6 @@
 
   programs = {
     fzf.enable = true;
-    jq.enable = true;
-    man.generateCaches = false;
-    mangohud.enable = true;
-    obs-studio.enable = true;
-    ripgrep.enable = true;
     zoxide.enable = true;
   };
 
@@ -30,9 +25,12 @@
     fastfetch
     fd
     hyperfine
+    jq
     libnotify
     loupe
+    obs-studio
     pwvucontrol
+    ripgrep
     seahorse
     telegram-desktop
     wl-clipboard
