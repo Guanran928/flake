@@ -21,10 +21,7 @@
   };
 
   home.packages = with pkgs; [
-    dconf-editor
-    fastfetch
     fd
-    hyperfine
     jq
     libnotify
     loupe
@@ -34,5 +31,6 @@
     seahorse
     telegram-desktop
     wl-clipboard
+    yubikey-manager
   ];
 }

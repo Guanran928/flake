@@ -113,8 +113,6 @@
     extraSpecialArgs = { inherit inputs; };
   };
 
-  environment.systemPackages = with pkgs; [ yubikey-manager ];
-
   programs = {
     adb.enable = true;
     dconf.enable = true;
