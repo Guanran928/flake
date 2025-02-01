@@ -20,7 +20,6 @@
     config = {
       CREATE_ADMIN = 0;
       BASE_URL = "https://rss.ny4.dev";
-      METRICS_COLLECTOR = 1;
 
       OAUTH2_PROVIDER = "oidc";
       OAUTH2_CLIENT_ID = "miniflux";
