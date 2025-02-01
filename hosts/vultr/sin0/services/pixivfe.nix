@@ -1,9 +1,16 @@
-{ config, lib, ... }:
+{
+  lib,
+  config,
+  ports,
+  ...
+}:
+let
+  port = ports.pixivfe;
+in
 {
   services.pixivfe = {
     enable = true;
-    openFirewall = true;
-    settings.port = 8080;
+    settings.port = port;
     EnvironmentFile = config.sops.secrets."pixivfe/environment".path;
   };
 

@@ -117,7 +117,6 @@
     adb.enable = true;
     dconf.enable = true;
     fish.enable = true;
-    localsend.enable = true;
     seahorse.enable = true;
     ssh = {
       startAgent = true;
