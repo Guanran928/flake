@@ -13,6 +13,7 @@
     ]);
 
   nixpkgs.overlays = [ inputs.self.overlays.default ];
+  nixpkgs.config.allowAliases = false;
 
   boot.enableContainers = false;
   boot.initrd.systemd.enable = true;

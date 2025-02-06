@@ -11,4 +11,7 @@
     "net.core.rmem_max" = 7500000;
     "net.core.wmem_max" = 7500000;
   };
+
+  # Use nftables based firewall
+  networking.nftables.enable = true;
 }
