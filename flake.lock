@@ -326,11 +326,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1738851567,
-        "narHash": "sha256-P8eKLMgwCQyjta0gxIA4Fxh/W6Ttt7WifseG/ihfyxU=",
+        "lastModified": 1738855718,
+        "narHash": "sha256-oTFVaurYKeq4Ixg0UmUeBcZWMYV5jNKAtuiVfKuL0ow=",
         "owner": "Guanran928",
         "repo": "nixpkgs",
-        "rev": "8f704fb293eee0c8555ff96da9fd4537c9a1c653",
+        "rev": "ef8350d96cc1a5439079a26946c6788765132073",
         "type": "github"
       },
       "original": {
