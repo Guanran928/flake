@@ -46,8 +46,6 @@ in
         tag = "inbound";
         listen = "127.0.0.1";
         listen_port = 1080;
-        sniff = true;
-        sniff_override_destination = true;
       };
 
       outbounds =
@@ -78,15 +76,25 @@ in
         ];
 
       route = {
-        rules = lib.singleton {
-          rule_set = [
-            "geoip-cn"
-            "geosite-cn"
-            "geosite-private"
-          ];
-          ip_is_private = true;
-          outbound = "direct";
-        };
+        rules = [
+          {
+            inbound = "inbound";
+            action = "resolve";
+          }
+          {
+            inbound = "inbound";
+            action = "sniff";
+          }
+          {
+            rule_set = [
+              "geoip-cn"
+              "geosite-cn"
+              "geosite-private"
+            ];
+            ip_is_private = true;
+            outbound = "direct";
+          }
+        ];
 
         rule_set = [
           {
