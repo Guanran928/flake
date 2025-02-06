@@ -40,7 +40,7 @@
 
   programs.command-not-found.enable = false;
   programs.nano.enable = false;
-  programs.vim = {
+  programs.neovim = {
     enable = true;
     defaultEditor = true;
   };
