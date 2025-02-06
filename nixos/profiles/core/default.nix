@@ -66,6 +66,12 @@
     enableNg = true;
   };
 
+  # https://github.com/NixOS/nixpkgs/pull/354029
+  # nixos-rebuild-ng: init
+  system.rebuild = {
+    enableNg = true;
+  };
+
   # See `nixos-version(8)`
   system.configurationRevision = inputs.self.rev or "dirty";
 }
