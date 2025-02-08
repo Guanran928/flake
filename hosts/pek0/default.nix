@@ -8,6 +8,7 @@
   imports = [
     # OS
     ../../nixos/profiles/sing-box
+    ../../nixos/profiles/restic
 
     # Hardware
     ./hardware-configuration.nix

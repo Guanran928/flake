@@ -21,6 +21,7 @@
     ./services/wastebin.nix
 
     ../../../nixos/profiles/sing-box-server
+    ../../../nixos/profiles/restic
   ];
 
   _module.args.ports = import ./ports.nix;

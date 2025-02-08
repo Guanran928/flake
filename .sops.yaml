@@ -35,7 +35,9 @@ creation_rules:
       - age:
           - *guanranwang
           - *dust
+          - *pek0
           - *sin0
+          - *tyo0
   - path_regex: ^nixos/profiles/sing-box/secrets.yaml$
     key_groups:
       - age:

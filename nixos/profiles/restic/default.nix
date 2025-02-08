@@ -10,7 +10,8 @@
     environmentFile = config.sops.secrets."restic/environment".path;
     passwordFile = config.sops.secrets."restic/password".path;
     repositoryFile = config.sops.secrets."restic/repository".path;
-    paths = [ "/persist" ];
+    paths =
+      if (config ? preservation && config.preservation.enable) then [ "/persist" ] else [ "/var" ];
     extraBackupArgs = [
       "--one-file-system"
       "--exclude-caches"
