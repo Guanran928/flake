@@ -76,7 +76,6 @@
         let
           inherit (config.wayland.windowManager.sway.config) modifier;
           inherit (lib) getExe getExe';
-          inherit (config.programs) firefox;
           inherit (pkgs)
             brightnessctl
             cliphist
@@ -108,11 +107,6 @@
           "${modifier}+Shift+j" = "move down";
           "${modifier}+Shift+k" = "move up";
           "${modifier}+Shift+l" = "move right";
-
-          ### Execute other stuff
-          # Launch applications
-          "${modifier}+Return" = "workspace 1";
-          "${modifier}+w" = "exec ${getExe firefox.finalPackage}";
 
           # Launcher
           "${modifier}+d" = "exec ${getExe fuzzel}";
