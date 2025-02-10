@@ -111,7 +111,7 @@
           # Launcher
           "${modifier}+d" = "exec ${getExe fuzzel}";
           "${modifier}+Shift+d" =
-            "exec ${getExe cliphist} list | ${getExe fuzzel} -d | ${getExe cliphist} decode | ${getExe' wl-clipboard "wl-copy"}";
+            "exec ${getExe cliphist} list | ${getExe fuzzel} --dmenu --width 50 | ${getExe cliphist} decode | ${getExe' wl-clipboard "wl-copy"}";
           "${modifier}+Shift+Semicolon" = "exec loginctl lock-session";
 
           # Screenshot
