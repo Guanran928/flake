@@ -150,5 +150,9 @@
             ]) (lib.genList (x: toString (x + 1)) 9)
           );
     };
+    extraConfig = ''
+      bindgesture swipe:right workspace prev
+      bindgesture swipe:left workspace next
+    '';
   };
 }
