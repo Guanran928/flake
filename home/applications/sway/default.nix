@@ -58,6 +58,12 @@
 
         "type:keyboard" = {
           xkb_layout = "us";
+          xkb_options = "caps:escape";
+          xkb_variant = "dvorak";
+        };
+
+        "1:1:AT_Translated_Set_2_keyboard" = {
+          xkb_layout = "us";
           xkb_options = "caps:escape,altwin:swap_lalt_lwin";
           xkb_variant = "dvorak";
         };
