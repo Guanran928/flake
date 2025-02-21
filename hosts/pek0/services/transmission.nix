@@ -1,4 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, ports, ... }:
+let
+  port = ports.transmission;
+in
 {
   services.transmission = {
     enable = true;
@@ -6,7 +9,7 @@
     webHome = pkgs.flood-for-transmission;
     settings = {
       rpc-bind-address = "0.0.0.0";
-      rpc-port = 9080;
+      rpc-port = port;
 
       # tailscale
       rpc-whitelist = "100.*.*.*";

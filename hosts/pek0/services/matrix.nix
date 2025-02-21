@@ -1,4 +1,12 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  ports,
+  ...
+}:
+let
+  port = ports.matrix-synapse;
+in
 {
   services.matrix-synapse = {
     enable = true;
@@ -9,19 +17,22 @@
       server_name = "ny4.dev";
       public_baseurl = "https://matrix.ny4.dev";
       presence.enabled = false; # tradeoff
-      listeners = [
-        {
-          path = "/run/matrix-synapse/synapse.sock";
-          type = "http";
-          resources = lib.singleton {
+      listeners = lib.singleton {
+        inherit port;
+        type = "http";
+        bind_addresses = [ "127.0.0.1" ];
+        tls = false;
+        x_forwarded = true;
+        resources = [
+          {
+            compress = true;
             names = [
               "client"
               "federation"
             ];
-            compress = true;
-          };
-        }
-      ];
+          }
+        ];
+      };
 
       # https://element-hq.github.io/synapse/latest/openid.html#keycloak
       oidc_providers = lib.singleton {
@@ -41,12 +52,15 @@
         backchannel_logout_enabled = true;
         allow_existing_users = true;
       };
+
+      app_service_config_files = [ "/run/credentials/matrix-synapse.service/telegram" ];
     };
   };
 
   systemd.services.matrix-synapse = {
     environment = config.networking.proxy.envVars;
     serviceConfig.RuntimeDirectory = [ "matrix-synapse" ];
+    serviceConfig.LoadCredential = [ "telegram:/var/lib/mautrix-telegram/telegram-registration.yaml" ];
   };
 
   services.caddy.settings.apps.http.servers.srv0.routes = lib.singleton {
@@ -64,7 +78,7 @@
         handle = lib.singleton {
           handler = "reverse_proxy";
           headers.request.set."X-Forwarded-Proto" = [ "https" ];
-          upstreams = lib.singleton { dial = "unix//run/matrix-synapse/synapse.sock"; };
+          upstreams = lib.singleton { dial = "127.0.0.1:${toString port}"; };
         };
       };
     };

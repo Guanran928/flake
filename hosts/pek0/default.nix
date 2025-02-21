@@ -18,10 +18,13 @@
     ./services/jellyfin.nix
     ./services/mastodon.nix
     ./services/matrix.nix
+    ./services/mautrix.nix
     ./services/minecraft.nix
     ./services/samba.nix
     ./services/transmission.nix
   ];
+
+  _module.args.ports = import ./ports.nix;
 
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.enable = true;
@@ -48,6 +51,9 @@
     "synapse/oidc" = {
       restartUnits = [ "matrix-synapse.service" ];
       owner = config.systemd.services.matrix-synapse.serviceConfig.User;
+    };
+    "mautrix-telegram/environment" = {
+      restartUnits = [ "mautrix-telegram.service" ];
     };
     "mastodon/environment" = {
       restartUnits = [ "mastodon-web.service" ];
