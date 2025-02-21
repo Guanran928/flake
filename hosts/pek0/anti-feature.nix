@@ -1,20 +1,9 @@
 { lib, ... }:
 {
   nixpkgs.config = {
-    allowNonSource = true;
-    allowNonSourcePredicate =
-      pkg:
-      (lib.elem (lib.getName pkg) [
-        "cargo-bootstrap"
-        "go"
-        "minecraft-server"
-        "rustc-bootstrap"
-        "rustc-bootstrap-wrapper"
-        "sof-firmware"
-        "temurin-bin"
-      ]);
+    # FIXME: dotnet
+    allowNonSourcePredicate = _pkg: true;
 
-    allowUnfree = false;
     allowUnfreePredicate =
       pkg:
       lib.elem (lib.getName pkg) [
@@ -22,8 +11,6 @@
         "minecraft-server"
       ];
 
-    permittedInsecurePackages = [
-      "olm-3.2.16"
-    ];
+    permittedInsecurePackages = [ "olm-3.2.16" ];
   };
 }

@@ -12,8 +12,14 @@
       sops-nix.nixosModules.sops
     ]);
 
-  nixpkgs.overlays = [ inputs.self.overlays.default ];
-  nixpkgs.config.allowAliases = false;
+  nixpkgs = {
+    overlays = [ inputs.self.overlays.default ];
+    config = {
+      allowAliases = false;
+      allowNonSource = false;
+      allowUnfree = false;
+    };
+  };
 
   boot.enableContainers = false;
   boot.initrd.systemd.enable = true;

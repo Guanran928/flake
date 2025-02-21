@@ -1,7 +1,6 @@
 { lib, ... }:
 {
   nixpkgs.config = {
-    allowNonSource = false;
     allowNonSourcePredicate =
       pkg:
       lib.elem (lib.getName pkg) [
@@ -15,7 +14,6 @@
         "temurin-bin"
       ];
 
-    allowUnfree = false;
     allowUnfreePredicate =
       pkg:
       lib.elem (lib.getName pkg) [
