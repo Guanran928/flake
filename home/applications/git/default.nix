@@ -11,10 +11,15 @@
     signing.key = "91F97D9ED12639CF";
 
     extraConfig = {
+      branch.ui = "auto";
+      credential.helper = "${package}/bin/git-credential-libsecret";
+      diff.algorithm = "histogram";
+      feature.experimental = true;
       init.defaultBranch = "master";
       pull.rebase = true;
       push.autoSetupRemote = true;
-      credential.helper = "${package}/bin/git-credential-libsecret";
+      rebase.autoStash = true;
+      tag.sort = "version:refname";
     };
   };
 
