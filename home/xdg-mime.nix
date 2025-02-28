@@ -29,4 +29,7 @@
         "thunderbird.desktop"
       ]);
   };
+
+  xdg.dataFile."applications/mimeapps.list".enable = false;
+  xdg.configFile."mimeapps.list".force = true;
 }
