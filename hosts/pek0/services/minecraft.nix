@@ -46,6 +46,7 @@
     whitelist = {
       "Guanran928" = "86dbb6c5-8d8b-4c45-b8eb-b3fdf03bfb27";
       "i_love_ravens" = "2788dd4b-b010-4a2f-9b5c-aad0c0e0cba5";
+      "EmonliPC" = "291d3704-47c3-41e0-a6cc-5543c3d86292";
     };
   };
 }
