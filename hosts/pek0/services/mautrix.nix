@@ -2,6 +2,7 @@
 {
   services.mautrix-telegram = {
     enable = true;
+    environmentFile = config.sops.secrets."mautrix-telegram/environment".path;
     settings = {
       homeserver = {
         address = "http://127.0.0.1:${toString ports.matrix-synapse}";
