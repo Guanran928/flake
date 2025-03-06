@@ -8,6 +8,10 @@
         { block = "sound"; }
         { block = "battery"; }
         {
+          block = "net";
+          format = " $icon {$ssid|Wired connection} ";
+        }
+        {
           block = "time";
           format = " $icon $timestamp.datetime(f:'%F %r') ";
           interval = 1;
