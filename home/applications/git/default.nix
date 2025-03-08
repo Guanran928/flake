@@ -16,6 +16,7 @@
       diff.algorithm = "histogram";
       feature.experimental = true;
       init.defaultBranch = "master";
+      log.date = "iso";
       pull.rebase = true;
       push.autoSetupRemote = true;
       rebase.autoStash = true;
