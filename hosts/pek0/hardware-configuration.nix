@@ -1,9 +1,4 @@
-{
-  lib,
-  inputs,
-  config,
-  ...
-}:
+{ inputs, ... }:
 {
   imports = [
     inputs.nixos-hardware.nixosModules.apple-macbook-pro
@@ -14,6 +9,17 @@
   ];
 
   services.thermald.enable = true;
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/ab9b92a9-b67b-43b4-b0d9-9dd59ccd594b";
+      fsType = "btrfs";
+      options = [ "subvol=@" ];
+    };
+    "/boot" = {
+      device = "/dev/disk/by-uuid/E5DE-9C92";
+      fsType = "vfat";
+    };
+  };
 
   boot.initrd.availableKernelModules = [
     "xhci_pci"
@@ -26,23 +32,6 @@
     "kvm-intel"
     "wl"
   ];
-  boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
 
   nixpkgs.hostPlatform = "x86_64-linux";
-
-  # no disko because dual booting with macOS isnt very flexible
-  boot.initrd.luks.devices."luks-8c26de19-f0d4-4ac7-a73c-a28dafd30544".device =
-    "/dev/disk/by-uuid/8c26de19-f0d4-4ac7-a73c-a28dafd30544";
-  fileSystems = {
-    "/" = {
-      device = "/dev/disk/by-uuid/ab9b92a9-b67b-43b4-b0d9-9dd59ccd594b";
-      fsType = "btrfs";
-      options = [ "subvol=@" ];
-    };
-    "/boot" = {
-      device = "/dev/disk/by-uuid/E5DE-9C92";
-      fsType = "vfat";
-    };
-  };
-  swapDevices = lib.singleton { device = "/dev/disk/by-uuid/8a2e90a9-5cc2-40fc-82fe-69ef3cd88e29"; };
 }
