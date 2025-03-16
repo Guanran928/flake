@@ -60,8 +60,6 @@
     };
     "cloudflared/secret" = {
       restartUnits = [ "cloudflared-tunnel-b73805e7-a8a9-49db-8c9f-aae52c406635.service" ];
-      owner =
-        config.systemd.services."cloudflared-tunnel-b73805e7-a8a9-49db-8c9f-aae52c406635".serviceConfig.User;
     };
   };
 
