@@ -11,15 +11,18 @@
     signing.key = "91F97D9ED12639CF";
 
     extraConfig = {
-      branch.ui = "auto";
+      column.ui = "auto";
       credential.helper = "${package}/bin/git-credential-libsecret";
       diff.algorithm = "histogram";
       feature.experimental = true;
+      grep.patternType = "perl";
       init.defaultBranch = "master";
       log.date = "iso";
       pull.rebase = true;
       push.autoSetupRemote = true;
       rebase.autoStash = true;
+      rerere.autoupdate = true;
+      rerere.enabled = true;
       tag.sort = "version:refname";
     };
   };
