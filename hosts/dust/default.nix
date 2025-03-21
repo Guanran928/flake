@@ -81,19 +81,10 @@
   system.etc.overlay.enable = true;
   system.etc.overlay.mutable = false;
   # HACK: for impermanence
-  environment.etc =
-    lib.genAttrs
-      [
-        "ssh/ssh_host_rsa_key"
-        "ssh/ssh_host_rsa_key.pub"
-        "ssh/ssh_host_ed25519_key"
-        "ssh/ssh_host_ed25519_key.pub"
-        "secureboot/placeholder"
-      ]
-      (_n: {
-        source = pkgs.emptyFile;
-        mode = "0644";
-      });
+  environment.etc."secureboot/placeholder" = {
+    source = pkgs.emptyFile;
+    mode = "0644";
+  };
 
   users.users."guanranwang" = {
     isNormalUser = true;
