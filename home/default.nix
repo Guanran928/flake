@@ -17,7 +17,6 @@
   ] ++ lib.filter (x: lib.hasSuffix "default.nix" x) (lib.fileset.toList ./applications);
 
   programs = {
-    fzf.enable = true;
     zoxide.enable = true;
   };
 
