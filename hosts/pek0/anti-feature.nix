@@ -7,7 +7,6 @@
     allowUnfreePredicate =
       pkg:
       lib.elem (lib.getName pkg) [
-        "broadcom-sta"
         "minecraft-server"
       ];
 
