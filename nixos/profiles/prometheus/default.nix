@@ -17,9 +17,12 @@
       handle = [
         {
           handler = "authentication";
-          providers.http_basic.accounts = lib.singleton {
-            username = "prometheus";
-            password = "$2a$14$2Phk4tobM04H4XiGegB3TuEXkyORCKMKW8TptYPTPXUWmZgtGBj/.";
+          providers.http_basic = {
+            accounts = lib.singleton {
+              username = "prometheus";
+              password = "$2a$14$2Phk4tobM04H4XiGegB3TuEXkyORCKMKW8TptYPTPXUWmZgtGBj/.";
+            };
+            hash_cache = { };
           };
         }
         {
@@ -36,9 +39,12 @@
       handle = [
         {
           handler = "authentication";
-          providers.http_basic.accounts = lib.singleton {
-            username = "prometheus";
-            password = "$2a$14$2Phk4tobM04H4XiGegB3TuEXkyORCKMKW8TptYPTPXUWmZgtGBj/.";
+          providers.http_basic = {
+            accounts = lib.singleton {
+              username = "prometheus";
+              password = "$2a$14$2Phk4tobM04H4XiGegB3TuEXkyORCKMKW8TptYPTPXUWmZgtGBj/.";
+            };
+            hash_cache = { };
           };
         }
         { handler = "metrics"; }
