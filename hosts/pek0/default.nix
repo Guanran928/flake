@@ -15,7 +15,6 @@
     ./anti-feature.nix
 
     # Services
-    ./services/jellyfin.nix
     ./services/mastodon.nix
     ./services/matrix.nix
     ./services/mautrix.nix
@@ -59,7 +58,7 @@
       restartUnits = [ "mastodon-web.service" ];
     };
     "cloudflared/secret" = {
-      restartUnits = [ "cloudflared-tunnel-b73805e7-a8a9-49db-8c9f-aae52c406635.service" ];
+      restartUnits = [ "cloudflared-tunnel-56cb139d-be03-46a9-b5ef-d00af5f8ef33.service" ];
     };
   };
 
@@ -83,10 +82,10 @@
 
   services.cloudflared = {
     enable = true;
-    tunnels."b73805e7-a8a9-49db-8c9f-aae52c406635" = {
+    tunnels."56cb139d-be03-46a9-b5ef-d00af5f8ef33" = {
       credentialsFile = config.sops.secrets."cloudflared/secret".path;
       default = "http_status:404";
-      ingress = lib.genAttrs [ "jellyfin.ny4.dev" "mastodon.ny4.dev" "matrix.ny4.dev" "pek0.ny4.dev" ] (
+      ingress = lib.genAttrs [ "mastodon.ny4.dev" "matrix.ny4.dev" "pek0.ny4.dev" ] (
         _: "http://localhost"
       );
     };

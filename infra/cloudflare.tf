@@ -223,15 +223,6 @@ resource "cloudflare_record" "grafana" {
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "jellyfin" {
-  content = "pek0.ny4.dev"
-  name    = "jellyfin"
-  proxied = true
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = local.cloudflare_zone_id
-}
-
 resource "cloudflare_record" "cxk" {
   content = "sin0.ny4.dev"
   name    = "cxk"
