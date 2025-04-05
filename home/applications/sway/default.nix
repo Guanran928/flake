@@ -76,6 +76,16 @@
         "4" = [ { app_id = "thunderbird"; } ];
       };
 
+      window.commands = [
+        {
+          criteria = {
+            app_id = "firefox";
+            title = "Picture-in-Picture";
+          };
+          command = "floating enable, sticky enable";
+        }
+      ];
+
       ### Keybinds
       modifier = "Mod4";
       keybindings =
