@@ -76,6 +76,11 @@
       inputs.flake-utils.follows = "flake-utils";
       inputs.treefmt-nix.follows = "treefmt-nix";
     };
+    rdict = {
+      url = "github:Guanran928/rdict";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
 
     ### De-dupe flake dependencies
     crane = {

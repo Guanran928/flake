@@ -44,9 +44,10 @@
         gi = "lazygit";
         p = "powerprofilesctl";
         s = "nh os switch";
-        v = "nvim";
         t = "tmux";
         ta = "tmux attach";
+        v = "nvim";
+        yd = "rdict";
 
         # TODO: maybe fishPlugins.fish-git-abbr?
         g = "git";

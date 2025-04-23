@@ -33,7 +33,7 @@ module "vultr" {
 
 resource "vultr_object_storage" "storage" {
   cluster_id = 4 # sgp1.vultrobjects.com
-  tier_id = 114514
+  tier_id    = 114514
   lifecycle {
     ignore_changes = [
       tier_id,

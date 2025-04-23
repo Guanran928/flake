@@ -1,7 +1,8 @@
 {
   lib,
-  pkgs,
   config,
+  inputs,
+  pkgs,
   ...
 }:
 {
@@ -29,17 +30,22 @@
     HISTFILE = "${config.xdg.stateHome}/bash_history";
   };
 
-  home.packages = with pkgs; [
-    fd
-    jq
-    libnotify
-    loupe
-    obs-studio
-    pwvucontrol
-    ripgrep
-    seahorse
-    telegram-desktop
-    wl-clipboard
-    yubikey-manager
-  ];
+  home.packages =
+    (with pkgs; [
+      fd
+      jq
+      libnotify
+      loupe
+      numbat
+      obs-studio
+      pwvucontrol
+      ripgrep
+      seahorse
+      telegram-desktop
+      wl-clipboard
+      yubikey-manager
+    ])
+    ++ [
+      inputs.rdict.packages.${pkgs.stdenv.hostPlatform.system}.default
+    ];
 }

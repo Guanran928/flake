@@ -138,9 +138,7 @@ in
             {
               alert = "DiskFull";
               expr = ''node_filesystem_avail_bytes{mountpoint=~"/|/persist|/mnt"} / node_filesystem_size_bytes < 0.1'';
-              annotations = {
-                summary = "Low disk space on {{ $labels.instance }}";
-              };
+              annotations.summary = "Low disk space on {{ $labels.instance }}";
             }
             {
               alert = "UnitFailed";
