@@ -49,7 +49,10 @@ in
     };
   };
 
-  systemd.services."caddy".serviceConfig.SupplementaryGroups = [ "ip-checker" ];
+  systemd.services."caddy" = {
+    requires = [ "ip-checker.service" ];
+    serviceConfig.SupplementaryGroups = [ "ip-checker" ];
+  };
 
   # HACK: this disables automatic https redirection for every VirtualHost
   #       to make `curl ip.ny4.dev` work
