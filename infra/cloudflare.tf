@@ -241,8 +241,17 @@ resource "cloudflare_record" "pixiv" {
   zone_id = local.cloudflare_zone_id
 }
 
+resource "cloudflare_record" "bluesky" {
+  content = "\"did=did:plc:s3ii4l6etpymuj5rzz2bondu\""
+  name    = "_atproto"
+  proxied = false
+  ttl     = 1
+  type    = "TXT"
+  zone_id = local.cloudflare_zone_id
+}
+
 resource "cloudflare_record" "terraform_managed_resource_856ec5e567960bf847db2e814f18168b" {
-  content = "google-site-verification=wBL5EFnbnt9lt2j_BtcwlXTaBFlFT563mC1MkCscnR8"
+  content = "\"google-site-verification=wBL5EFnbnt9lt2j_BtcwlXTaBFlFT563mC1MkCscnR8\""
   name    = "ny4.dev"
   proxied = false
   ttl     = 3600
