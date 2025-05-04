@@ -7,6 +7,6 @@
 
   services.gpg-agent = {
     enable = pkgs.stdenv.hostPlatform.isLinux;
-    pinentryPackage = pkgs.pinentry-gnome3;
+    pinentry.package = pkgs.pinentry-gnome3;
   };
 }
