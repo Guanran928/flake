@@ -21,10 +21,6 @@
     zoxide.enable = true;
   };
 
-  services = {
-    cliphist.enable = true;
-  };
-
   home.sessionVariables = {
     ANDROID_USER_HOME = "${config.xdg.dataHome}/android";
     HISTFILE = "${config.xdg.stateHome}/bash_history";
