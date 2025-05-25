@@ -250,6 +250,15 @@ resource "cloudflare_record" "bluesky" {
   zone_id = local.cloudflare_zone_id
 }
 
+resource "cloudflare_record" "discord" {
+  content = "\"dh=8da72697ecf86306cc5d5147711c3d0c12c11d71\""
+  name    = "_atproto"
+  proxied = false
+  ttl     = 1
+  type    = "TXT"
+  zone_id = local.cloudflare_zone_id
+}
+
 resource "cloudflare_record" "terraform_managed_resource_856ec5e567960bf847db2e814f18168b" {
   content = "\"google-site-verification=wBL5EFnbnt9lt2j_BtcwlXTaBFlFT563mC1MkCscnR8\""
   name    = "ny4.dev"

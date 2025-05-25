@@ -2,6 +2,14 @@ resource "keycloak_realm" "ny4" {
   realm                       = "ny4"
   default_signature_algorithm = "RS256"
   remember_me                 = true
+  internationalization {
+    default_locale    = "en"
+    supported_locales = [
+      "en",
+      "zh-CN",
+      "zh-TW",
+    ]
+  }
 }
 
 resource "keycloak_openid_client" "forgejo" {
