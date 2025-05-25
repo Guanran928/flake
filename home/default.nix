@@ -41,7 +41,5 @@
       wl-clipboard
       yubikey-manager
     ])
-    ++ [
-      inputs.rdict.packages.${pkgs.stdenv.hostPlatform.system}.default
-    ];
+    ++ [ inputs.rdict.packages.${pkgs.stdenv.hostPlatform.system}.default ];
 }
