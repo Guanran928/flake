@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 {
   services.forgejo = {
     enable = true;
@@ -28,6 +33,11 @@
     };
   };
 
+  systemd.services."anubis-default".serviceConfig.SupplementaryGroups = [ "forgejo" ];
+
+  # Protect with anubis
+  services.anubis.instances.default.settings.TARGET = "unix:///run/forgejo/forgejo.sock";
+
   services.caddy.settings.apps.http.servers.srv0.routes = lib.singleton {
     match = lib.singleton { host = [ "git.ny4.dev" ]; };
     handle = lib.singleton {
@@ -47,7 +57,7 @@
         {
           handle = lib.singleton {
             handler = "reverse_proxy";
-            upstreams = [ { dial = "unix//run/forgejo/forgejo.sock"; } ];
+            upstreams = [ { dial = "unix/${config.services.anubis.instances.default.settings.BIND}"; } ];
           };
         }
       ];

@@ -109,7 +109,7 @@
   };
 
   systemd.services."caddy".serviceConfig.SupplementaryGroups = [
-    "forgejo"
+    config.users.groups.anubis.name
     "ntfy-sh"
     "grafana"
   ];
