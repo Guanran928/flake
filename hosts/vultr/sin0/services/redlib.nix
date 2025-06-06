@@ -1,4 +1,9 @@
-{ lib, config, ports, ... }:
+{
+  lib,
+  config,
+  ports,
+  ...
+}:
 let
   port = ports.redlib;
 in
@@ -15,7 +20,6 @@ in
     REDLIB_ROBOTS_DISABLE_INDEXING = "on";
     REDLIB_DEFAULT_USE_HLS = "on";
   };
-
 
   # Protect with anubis
   services.anubis.instances.default.settings.TARGET = "http://localhost:${toString port}";

@@ -27,9 +27,7 @@
     "pixivfe/environment".restartUnits = [ "pixivfe.service" ];
   };
 
-  systemd.services."caddy".serviceConfig.SupplementaryGroups = [
-    config.users.groups.anubis.name
-  ];
+  systemd.services."caddy".serviceConfig.SupplementaryGroups = [ config.users.groups.anubis.name ];
 
   services.caddy.enable = true;
   services.caddy.settings.apps.http.servers.srv0 = {
