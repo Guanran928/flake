@@ -11,27 +11,10 @@
   home.sessionVariables.GTK_CSD = 0;
   dconf.settings."org/gnome/desktop/wm/preferences"."button-layout" = "appmenu:";
 
-  # autostart
-  home.file =
-    lib.mapAttrs'
-      (name: package: {
-        name = ".config/autostart/${name}.desktop";
-        value = {
-          source = "${package}/share/applications/${name}.desktop";
-        };
-      })
-      {
-        "foot" = config.programs.foot.package;
-        "firefox" = config.programs.firefox.finalPackage;
-        "thunderbird" = config.programs.thunderbird.package;
-        "org.telegram.desktop" = pkgs.telegram-desktop;
-      };
-
   wayland.windowManager.sway = {
     enable = true;
     checkConfig = false; # wtf?
     wrapperFeatures.gtk = true;
-    systemd.xdgAutostart = true;
     config = {
       ### Visuals
       output."*".bg = "${inputs.self.legacyPackages.${pkgs.stdenv.hostPlatform.system}.background} fill";
@@ -42,6 +25,13 @@
           icon_theme ${config.gtk.iconTheme.name}
         '';
       };
+
+      startup = [
+        { command = lib.getExe config.programs.foot.package + " -e tmux"; }
+        { command = lib.getExe config.programs.firefox.finalPackage; }
+        { command = lib.getExe config.programs.thunderbird.package; }
+        { command = lib.getExe pkgs.telegram-desktop; }
+      ];
 
       ### Inputs
       input = {
