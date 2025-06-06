@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, config, ... }:
 {
   imports = [
     ./anti-feature.nix
@@ -26,6 +26,10 @@
     "tg/danbooru_img_bot".restartUnits = [ "tg-danbooru_img_bot.service" ];
     "pixivfe/environment".restartUnits = [ "pixivfe.service" ];
   };
+
+  systemd.services."caddy".serviceConfig.SupplementaryGroups = [
+    config.users.groups.anubis.name
+  ];
 
   services.caddy.enable = true;
   services.caddy.settings.apps.http.servers.srv0 = {
