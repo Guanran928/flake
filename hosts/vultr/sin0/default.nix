@@ -4,6 +4,7 @@
     ./anti-feature.nix
 
     ./services/telegram-bot/danbooru_img_bot.nix
+    ./services/telegram-bot/ny4_rdict_bot.nix
     ./services/chicken-box.nix
     ./services/ip-checker.nix
     ./services/redlib.nix
@@ -24,6 +25,7 @@
 
   sops.secrets = lib.mapAttrs (_n: v: v // { sopsFile = ./secrets.yaml; }) {
     "tg/danbooru_img_bot".restartUnits = [ "tg-danbooru_img_bot.service" ];
+    "tg/ny4_rdict_bot".restartUnits = [ "tg-ny4_rdict_bot.service" ];
     "pixivfe/environment".restartUnits = [ "pixivfe.service" ];
   };
 
