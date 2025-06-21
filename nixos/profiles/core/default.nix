@@ -66,13 +66,6 @@
     nixos.enable = false;
   };
 
-  # https://github.com/NixOS/nixpkgs/pull/308801
-  # nixos/switch-to-configuration: add new implementation
-  system.switch = {
-    enable = false;
-    enableNg = true;
-  };
-
   # https://github.com/NixOS/nixpkgs/pull/354029
   # nixos-rebuild-ng: init
   system.rebuild = {

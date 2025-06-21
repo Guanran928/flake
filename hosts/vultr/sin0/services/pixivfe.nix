@@ -18,7 +18,7 @@ in
     match = lib.singleton { host = [ "pixiv.ny4.dev" ]; };
     handle = lib.singleton {
       handler = "reverse_proxy";
-      upstreams = lib.singleton { dial = "127.0.0.1:8080"; };
+      upstreams = lib.singleton { dial = "127.0.0.1:${toString port}"; };
     };
   };
 }
