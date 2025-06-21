@@ -13,7 +13,10 @@
     };
   };
 
-  systemd.services.ntfy-sh.serviceConfig.RuntimeDirectory = [ "ntfy-sh" ];
+  systemd.services = {
+    ntfy-sh.serviceConfig.RuntimeDirectory = [ "ntfy-sh" ];
+    caddy.serviceConfig.SupplementaryGroups = [ "ntfy-sh" ];
+  };
 
   services.caddy.settings.apps.http.servers.srv0.routes = lib.singleton {
     match = lib.singleton { host = [ "ntfy.ny4.dev" ]; };

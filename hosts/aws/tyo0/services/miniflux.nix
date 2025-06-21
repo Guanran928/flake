@@ -29,6 +29,8 @@
     };
   };
 
+  sops.secrets."miniflux/environment".restartUnits = [ "miniflux.service" ];
+
   services.caddy.settings.apps.http.servers.srv0.routes = lib.singleton {
     match = lib.singleton { host = [ "rss.ny4.dev" ]; };
     handle = lib.singleton {

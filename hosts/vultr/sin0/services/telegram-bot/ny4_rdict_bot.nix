@@ -6,7 +6,7 @@
   ...
 }:
 {
-  systemd.services."tg-ny4_rdict_bot" = {
+  systemd.services.tg-ny4_rdict_bot = {
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       ExecStart = lib.getExe inputs.rdict.packages.${pkgs.stdenv.hostPlatform.system}.rdict-telegram;
@@ -38,4 +38,6 @@
       UMask = "0077";
     };
   };
+
+  sops.secrets."tg/ny4_rdict_bot".restartUnits = [ "tg-ny4_rdict_bot.service" ];
 }

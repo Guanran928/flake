@@ -175,7 +175,29 @@ in
     };
   };
 
-  systemd.services."alertmanager".serviceConfig.EnvironmentFile =
+  sops.secrets = {
+    "prometheus/auth" = {
+      owner = config.systemd.services.prometheus.serviceConfig.User;
+      restartUnits = [ "prometheus.service" ];
+    };
+    "alertmanager/webhook" = {
+      restartUnits = [ "alertmanager.service" ];
+    };
+  };
+
+  sops.templates."alertmanager/environment".content =
+    let
+      tmpl = lib.escapeURL ''
+        {{ range .alerts }}- Status: {{ .status }}
+          Summary: {{ .annotations.summary }}
+          Source: {{ .generatorURL }}
+        {{ end }}
+      '';
+      token = config.sops.placeholder."alertmanager/webhook";
+    in
+    "ALERTMANAGER_WEBHOOK_URL=https://ntfy.ny4.dev/alert?tpl=yes&md=yes&m=${tmpl}&auth=${token}";
+
+  systemd.services.alertmanager.serviceConfig.EnvironmentFile =
     config.sops.templates."alertmanager/environment".path;
 
   services.caddy.settings.apps.http.servers.srv0.routes = lib.singleton {

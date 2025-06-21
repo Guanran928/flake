@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ config, ... }:
 {
   imports = [
     ./anti-feature.nix
@@ -13,6 +13,7 @@
   ];
 
   _module.args.ports = import ./ports.nix;
+  sops.defaultSopsFile = ./secrets.yaml;
 
   system.stateVersion = "24.05";
 
@@ -22,12 +23,7 @@
     443
   ];
 
-  sops.secrets = lib.mapAttrs (_n: v: v // { sopsFile = ./secrets.yaml; }) {
-    "tg/danbooru_img_bot".restartUnits = [ "tg-danbooru_img_bot.service" ];
-    "tg/ny4_rdict_bot".restartUnits = [ "tg-ny4_rdict_bot.service" ];
-  };
-
-  systemd.services."caddy".serviceConfig.SupplementaryGroups = [ config.users.groups.anubis.name ];
+  systemd.services.caddy.serviceConfig.SupplementaryGroups = [ config.users.groups.anubis.name ];
 
   services.caddy.enable = true;
   services.caddy.settings.apps.http.servers.srv0 = {

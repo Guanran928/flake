@@ -25,6 +25,7 @@
   ];
 
   _module.args.ports = import ./ports.nix;
+  sops.defaultSopsFile = ./secrets.yaml;
 
   boot.loader.grub.device = lib.mkForce "/dev/nvme0n1";
   system.stateVersion = "24.05";
@@ -33,38 +34,6 @@
     device = "/var/lib/swapfile";
     size = 4 * 1024; # 4 GiB
   };
-
-  ### Secrets
-  sops.secrets = lib.mapAttrs (_name: value: value // { sopsFile = ./secrets.yaml; }) {
-    "prometheus/auth" = {
-      owner = config.systemd.services.prometheus.serviceConfig.User;
-      restartUnits = [ "prometheus.service" ];
-    };
-    "miniflux/environment" = {
-      restartUnits = [ "miniflux.service" ];
-    };
-    "vaultwarden/environment" = {
-      restartUnits = [ "vaultwarden.service" ];
-    };
-    "grafana/environment" = {
-      restartUnits = [ "grafana.service" ];
-    };
-    "alertmanager/webhook" = {
-      restartUnits = [ "alertmanager.service" ];
-    };
-  };
-
-  sops.templates."alertmanager/environment".content =
-    let
-      tmpl = lib.escapeURL ''
-        {{ range .alerts }}- Status: {{ .status }}
-          Summary: {{ .annotations.summary }}
-          Source: {{ .generatorURL }}
-        {{ end }}
-      '';
-      token = config.sops.placeholder."alertmanager/webhook";
-    in
-    "ALERTMANAGER_WEBHOOK_URL=https://ntfy.ny4.dev/alert?tpl=yes&md=yes&m=${tmpl}&auth=${token}";
 
   ### Services
   networking.firewall.allowedUDPPorts = [ 443 ];
@@ -108,11 +77,7 @@
     trusted_proxies_strict = 1;
   };
 
-  systemd.services."caddy".serviceConfig.SupplementaryGroups = [
-    config.users.groups.anubis.name
-    "ntfy-sh"
-    "grafana"
-  ];
+  systemd.services.caddy.serviceConfig.SupplementaryGroups = [ config.users.groups.anubis.name ];
 
   services.caddy.settings.apps.http.servers.srv0.routes = [
     {
@@ -271,30 +236,5 @@
         LC_COLLATE = "C"
         LC_CTYPE = "C";
     '';
-  };
-
-  ### Prevents me from bankrupt
-  # https://fmk.im/p/shutdown-aws/
-  services.vnstat.enable = true;
-  systemd.services."no-bankrupt" = {
-    serviceConfig.Type = "oneshot";
-    path = with pkgs; [
-      coreutils
-      gawk
-      vnstat
-      systemd
-    ];
-    script = ''
-      TRAFF_TOTAL=1900
-      TRAFF_USED=$(vnstat --oneline b | awk -F ';' '{print $11}')
-      CHANGE_TO_GB=$(($TRAFF_USED / 1073741824))
-
-      if [ $CHANGE_TO_GB -gt $TRAFF_TOTAL ]; then
-          shutdown -h now
-      fi
-    '';
-  };
-  systemd.timers."no-bankrupt" = {
-    timerConfig.OnCalendar = "*:0:0"; # Check every hour
   };
 }

@@ -1,9 +1,4 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}:
+{ config, pkgs, ... }:
 {
   imports = [
     # OS
@@ -15,6 +10,7 @@
     ./anti-feature.nix
 
     # Services
+    ./services/cloudflared.nix
     ./services/mastodon.nix
     ./services/matrix.nix
     ./services/mautrix.nix
@@ -24,42 +20,20 @@
   ];
 
   _module.args.ports = import ./ports.nix;
+  sops.defaultSopsFile = ./secrets.yaml;
 
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.enable = true;
   networking.hostName = "pek0";
   system.stateVersion = "24.05";
 
-  # tty
+  # Password protected physical TTY access
+  sops.secrets."hashed-passwd".neededForUsers = true;
   users.users."root".hashedPasswordFile = config.sops.secrets."hashed-passwd".path;
   boot.kernelParams = [ "consoleblank=60" ];
   console = {
     earlySetup = true;
     keyMap = "dvorak";
-  };
-
-  ######## Secrets
-  sops.secrets = lib.mapAttrs (_name: value: value // { sopsFile = ./secrets.yaml; }) {
-    "hashed-passwd" = {
-      neededForUsers = true;
-    };
-    "synapse/secret" = {
-      restartUnits = [ "matrix-synapse.service" ];
-      owner = config.systemd.services.matrix-synapse.serviceConfig.User;
-    };
-    "synapse/oidc" = {
-      restartUnits = [ "matrix-synapse.service" ];
-      owner = config.systemd.services.matrix-synapse.serviceConfig.User;
-    };
-    "mautrix-telegram/environment" = {
-      restartUnits = [ "mautrix-telegram.service" ];
-    };
-    "mastodon/environment" = {
-      restartUnits = [ "mastodon-web.service" ];
-    };
-    "cloudflared/secret" = {
-      restartUnits = [ "cloudflared-tunnel-56cb139d-be03-46a9-b5ef-d00af5f8ef33.service" ];
-    };
   };
 
   networking = {
@@ -80,17 +54,6 @@
     openFirewall = true;
   };
 
-  services.cloudflared = {
-    enable = true;
-    tunnels."56cb139d-be03-46a9-b5ef-d00af5f8ef33" = {
-      credentialsFile = config.sops.secrets."cloudflared/secret".path;
-      default = "http_status:404";
-      ingress = lib.genAttrs [ "mastodon.ny4.dev" "matrix.ny4.dev" "pek0.ny4.dev" ] (
-        _: "http://localhost"
-      );
-    };
-  };
-
   services.caddy.enable = true;
   services.caddy.settings.apps.http.servers.srv0 = {
     listen = [ ":80" ];
@@ -107,11 +70,6 @@
     };
     trusted_proxies_strict = 1;
   };
-
-  systemd.services."caddy".serviceConfig.SupplementaryGroups = [
-    "mastodon"
-    "matrix-synapse"
-  ];
 
   services.postgresql = {
     enable = true;

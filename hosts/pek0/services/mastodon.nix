@@ -34,12 +34,17 @@
     };
   };
 
+  sops.secrets."mastodon/environment".restartUnits = [ "mastodon-web.service" ];
+
   systemd.services.mastodon-web = {
     environment = config.networking.proxy.envVars;
     serviceConfig.EnvironmentFile = [ config.sops.secrets."mastodon/environment".path ];
   };
 
+  # Let traffic go through proxy
   systemd.services.mastodon-sidekiq-all.environment = config.networking.proxy.envVars;
+
+  systemd.services.caddy.serviceConfig.SupplementaryGroups = [ "mastodon" ];
 
   services.caddy.settings.apps.http.servers.srv0.routes = lib.singleton {
     match = lib.singleton { host = [ "mastodon.ny4.dev" ]; };

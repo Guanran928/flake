@@ -47,7 +47,7 @@ in
     };
   };
 
-  systemd.services."sing-box".serviceConfig.LoadCredential =
+  systemd.services.sing-box.serviceConfig.LoadCredential =
     let
       # FIXME: remove somewhat hardcoded path
       path = "/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory";

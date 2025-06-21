@@ -6,7 +6,7 @@
   ...
 }:
 {
-  systemd.services."tg-danbooru_img_bot" = {
+  systemd.services.tg-danbooru_img_bot = {
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       ExecStart = lib.getExe inputs.danbooru_img_bot.packages.${pkgs.stdenv.hostPlatform.system}.default;
@@ -38,4 +38,6 @@
       UMask = "0077";
     };
   };
+
+  sops.secrets."tg/danbooru_img_bot".restartUnits = [ "tg-danbooru_img_bot.service" ];
 }

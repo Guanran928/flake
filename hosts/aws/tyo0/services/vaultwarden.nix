@@ -24,6 +24,8 @@ in
     };
   };
 
+  sops.secrets."vaultwarden/environment".restartUnits = [ "vaultwarden.service" ];
+
   services.caddy.settings.apps.http.servers.srv0.routes = lib.singleton {
     match = lib.singleton { host = [ "vault.ny4.dev" ]; };
     handle = lib.singleton {

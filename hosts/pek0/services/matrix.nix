@@ -57,11 +57,24 @@ in
     };
   };
 
+  sops.secrets = {
+    "synapse/secret" = {
+      restartUnits = [ "matrix-synapse.service" ];
+      owner = config.systemd.services.matrix-synapse.serviceConfig.User;
+    };
+    "synapse/oidc" = {
+      restartUnits = [ "matrix-synapse.service" ];
+      owner = config.systemd.services.matrix-synapse.serviceConfig.User;
+    };
+  };
+
   systemd.services.matrix-synapse = {
     environment = config.networking.proxy.envVars;
     serviceConfig.RuntimeDirectory = [ "matrix-synapse" ];
     serviceConfig.LoadCredential = [ "telegram:/var/lib/mautrix-telegram/telegram-registration.yaml" ];
   };
+
+  systemd.services.caddy.serviceConfig.SupplementaryGroups = [ "matrix-synapse" ];
 
   services.caddy.settings.apps.http.servers.srv0.routes = lib.singleton {
     match = lib.singleton { host = [ "matrix.ny4.dev" ]; };

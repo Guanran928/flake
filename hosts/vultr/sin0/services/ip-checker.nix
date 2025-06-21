@@ -8,7 +8,7 @@ let
   pkgs' = inputs.ip-checker.packages.${pkgs.stdenv.hostPlatform.system};
 in
 {
-  systemd.services."ip-checker" = {
+  systemd.services.ip-checker = {
     wantedBy = [ "multi-user.target" ];
     environment = {
       IP_CHECKER_ASN_DB = pkgs.dbip-asn-lite.mmdb;
@@ -49,7 +49,7 @@ in
     };
   };
 
-  systemd.services."caddy" = {
+  systemd.services.caddy = {
     requires = [ "ip-checker.service" ];
     serviceConfig.SupplementaryGroups = [ "ip-checker" ];
   };

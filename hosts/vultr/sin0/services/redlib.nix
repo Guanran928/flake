@@ -14,10 +14,7 @@ in
     address = "127.0.0.1";
   };
 
-  systemd.services."redlib".environment = {
-    # Google's indexing caused a DoS with 800k requests...
-    # https://developers.google.com/search/docs/crawling-indexing/block-indexing
-    REDLIB_ROBOTS_DISABLE_INDEXING = "on";
+  systemd.services.redlib.environment = {
     REDLIB_DEFAULT_USE_HLS = "on";
   };
 

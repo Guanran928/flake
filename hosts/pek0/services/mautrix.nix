@@ -54,4 +54,6 @@
       };
     };
   };
+
+  sops.secrets."mautrix-telegram/environment".restartUnits = [ "mautrix-telegram.service" ];
 }

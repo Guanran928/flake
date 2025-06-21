@@ -40,8 +40,12 @@
     };
   };
 
-  systemd.services."grafana".serviceConfig.EnvironmentFile =
-    config.sops.secrets."grafana/environment".path;
+  sops.secrets."grafana/environment".restartUnits = [ "grafana.service" ];
+
+  systemd.services = {
+    grafana.serviceConfig.EnvironmentFile = config.sops.secrets."grafana/environment".path;
+    caddy.serviceConfig.SupplementaryGroups = [ "grafana" ];
+  };
 
   services.caddy.settings.apps.http.servers.srv0.routes = lib.singleton {
     match = lib.singleton { host = [ "grafana.ny4.dev" ]; };

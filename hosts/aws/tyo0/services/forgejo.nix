@@ -33,7 +33,7 @@
     };
   };
 
-  systemd.services."anubis-default".serviceConfig.SupplementaryGroups = [ "forgejo" ];
+  systemd.services.anubis-default.serviceConfig.SupplementaryGroups = [ "forgejo" ];
 
   # Protect with anubis
   services.anubis.instances.default.settings.TARGET = "unix:///run/forgejo/forgejo.sock";
@@ -42,25 +42,12 @@
     match = lib.singleton { host = [ "git.ny4.dev" ]; };
     handle = lib.singleton {
       handler = "subroute";
-      routes = [
-        {
-          match = lib.singleton { path = [ "/robots.txt" ]; };
-          handle = lib.singleton {
-            handler = "static_response";
-            status_code = 200;
-            body = ''
-              User-agent: *
-              Disallow: /
-            '';
-          };
-        }
-        {
-          handle = lib.singleton {
-            handler = "reverse_proxy";
-            upstreams = [ { dial = "unix/${config.services.anubis.instances.default.settings.BIND}"; } ];
-          };
-        }
-      ];
+      routes = lib.singleton {
+        handle = lib.singleton {
+          handler = "reverse_proxy";
+          upstreams = [ { dial = "unix/${config.services.anubis.instances.default.settings.BIND}"; } ];
+        };
+      };
     };
   };
 }
