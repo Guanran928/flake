@@ -214,15 +214,6 @@ resource "cloudflare_record" "terraform_managed_resource_e2500de6c975c90729b8f35
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "grafana" {
-  content = "tyo0.ny4.dev"
-  name    = "grafana"
-  proxied = true
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = local.cloudflare_zone_id
-}
-
 resource "cloudflare_record" "cxk" {
   content = "sin0.ny4.dev"
   name    = "cxk"

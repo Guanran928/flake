@@ -11,7 +11,6 @@
     ./anti-feature.nix
 
     ./services/forgejo.nix
-    ./services/grafana.nix
     ./services/miniflux.nix
     ./services/murmur.nix
     ./services/ntfy.nix
@@ -229,12 +228,5 @@
       min_wal_size = "1GB";
       max_wal_size = "4GB";
     };
-    initialScript = pkgs.writeText "grafana-init.sql" ''
-      CREATE ROLE "grafana" with LOGIN;
-      CREATE DATABASE "grafana" WITH OWNER "grafana"
-        TEMPLATE template0
-        LC_COLLATE = "C"
-        LC_CTYPE = "C";
-    '';
   };
 }
