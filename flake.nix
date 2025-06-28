@@ -154,7 +154,6 @@
               ps: with ps; [
                 aws
                 cloudflare
-                keycloak
                 sops
                 vultr
               ]

@@ -19,14 +19,13 @@
       SINGLE_USER_MODE = "true";
       WEB_DOMAIN = "mastodon.ny4.dev";
 
-      # keycloak
       OMNIAUTH_ONLY = "true";
       OIDC_ENABLED = "true";
-      OIDC_CLIENT_ID = "mastodon";
+      OIDC_CLIENT_ID = "0ebb58af-9bc9-47ee-9cdd-4ca05c17bc9f";
       # OIDC_CLIENT_SECRET # EnvironmentFile
       OIDC_DISCOVERY = "true";
       OIDC_DISPLAY_NAME = "id.ny4.dev";
-      OIDC_ISSUER = "https://id.ny4.dev/realms/ny4";
+      OIDC_ISSUER = "https://id.ny4.dev";
       OIDC_REDIRECT_URI = "https://${WEB_DOMAIN}/auth/auth/openid_connect/callback";
       OIDC_SCOPE = "openid,profile,email";
       OIDC_SECURITY_ASSUME_EMAIL_IS_VERIFIED = "true";

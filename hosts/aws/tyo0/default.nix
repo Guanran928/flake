@@ -12,10 +12,10 @@
 
     ./services/forgejo.nix
     ./services/grafana.nix
-    ./services/keycloak.nix
     ./services/miniflux.nix
     ./services/murmur.nix
     ./services/ntfy.nix
+    ./services/pocket-id.nix
     ./services/prometheus.nix
     ./services/vaultwarden.nix
     ./services/wastebin.nix

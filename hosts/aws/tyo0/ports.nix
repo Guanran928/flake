@@ -1,5 +1,5 @@
 {
-  keycloak = 8010;
+  pocket-id = 8010;
   vaultwarden = 8040;
   wastebin = 8050;
 

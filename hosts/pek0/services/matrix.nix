@@ -34,12 +34,12 @@ in
         ];
       };
 
-      # https://element-hq.github.io/synapse/latest/openid.html#keycloak
+      # https://element-hq.github.io/synapse/latest/openid.html
       oidc_providers = lib.singleton {
-        idp_id = "keycloak";
+        idp_id = "pocket-id";
         idp_name = "id.ny4.dev";
-        issuer = "https://id.ny4.dev/realms/ny4";
-        client_id = "synapse";
+        issuer = "https://id.ny4.dev";
+        client_id = "32238772-8bf1-4f03-9bc0-bc37d1362315";
         client_secret_path = config.sops.secrets."synapse/oidc".path;
         scopes = [
           "openid"
