@@ -1,0 +1,175 @@
+hotkey-overlay {
+    skip-at-startup
+}
+
+gestures {
+    hot-corners {
+        off
+    }
+}
+
+input {
+    keyboard {
+        xkb {
+            layout "us"
+            variant "dvorak"
+            options "caps:escape,altwin:swap_lalt_lwin"
+        }
+    }
+
+    touchpad {
+        tap
+        natural-scroll
+        accel-profile "flat"
+    }
+
+    mouse {
+        natural-scroll
+        accel-profile "flat"
+    }
+
+    trackpoint {
+        natural-scroll
+        accel-profile "flat"
+    }
+}
+
+
+layout {
+    gaps 16
+    center-focused-column "never"
+
+    preset-column-widths {
+        proportion 0.5
+        proportion 1.0
+    }
+
+    preset-window-heights {
+        proportion 0.5
+        proportion 1.0
+    }
+
+    default-column-width {
+        proportion 1.0
+    }
+
+    focus-ring {
+        width 2
+        active-color "#7fc8ff"
+        inactive-color "#505050"
+    }
+}
+
+prefer-no-csd
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+workspace "terminal"
+workspace "browser"
+workspace "chat"
+workspace "mail"
+
+spawn-at-startup "foot" "-e" "tmux"
+spawn-at-startup "firefox"
+spawn-at-startup "Telegram"
+spawn-at-startup "thunderbird"
+
+window-rule {
+    match at-startup=true app-id="^Alacritty$"
+    open-on-workspace "terminal"
+}
+
+window-rule {
+    match at-startup=true app-id="^firefox$"
+    open-on-workspace "browser"
+}
+
+window-rule {
+    match at-startup=true app-id="^org\\.telegram\\.desktop$"
+    open-on-workspace "chat"
+}
+
+window-rule {
+    match at-startup=true app-id="^thunderbird$"
+    open-on-workspace "mail"
+}
+
+window-rule {
+    match app-id="firefox$" title="^Picture-in-Picture$"
+    open-floating true
+}
+
+binds {
+    Mod+D                 { spawn "fuzzel"; }
+    Mod+Shift+D           { spawn "sh" "-c" "cliphist list | fuzzel --dmenu --width 50 | cliphist decode | wl-copy"; }
+    Super+Shift+Semicolon { spawn "loginctl" "lock-session"; }
+
+    XF86AudioRaiseVolume  allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+"; }    
+    XF86AudioLowerVolume  allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-"; }   
+    XF86AudioMute         allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }  
+    XF86AudioMicMute      allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+    XF86MonBrightnessUp   allow-when-locked=true { spawn "brightnessctl" "set" "5%+"; }     
+    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "set" "5%-"; }    
+    XF86AudioPlay         allow-when-locked=true { spawn "playerctl" "play-pause"; }    
+    XF86AudioPrev         allow-when-locked=true { spawn "playerctl" "previous"; }  
+    XF86AudioNext         allow-when-locked=true { spawn "playerctl" "next"; }     
+    XF86AudioStop         allow-when-locked=true { spawn "playerctl" "stop"; }    
+
+    Mod+Q { close-window; }
+
+    Mod+H { focus-column-left; }
+    Mod+J { focus-window-down; }
+    Mod+K { focus-window-up; }
+    Mod+L { focus-column-right; }
+
+    Mod+Shift+H { move-column-left; }
+    Mod+Shift+J { move-window-down; }
+    Mod+Shift+K { move-window-up; }
+    Mod+Shift+L { move-column-right; }
+
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Shift+4 { move-column-to-workspace 4; }
+    Mod+Shift+5 { move-column-to-workspace 5; }
+    Mod+Shift+6 { move-column-to-workspace 6; }
+    Mod+Shift+7 { move-column-to-workspace 7; }
+    Mod+Shift+8 { move-column-to-workspace 8; }
+    Mod+Shift+9 { move-column-to-workspace 9; }
+
+    Mod+BracketLeft  { consume-or-expel-window-left; }
+    Mod+BracketRight { consume-or-expel-window-right; }
+
+    Mod+Comma   { consume-window-into-column; }
+    Mod+Period  { expel-window-from-column; }
+    Mod+R       { switch-preset-column-width; }
+    Mod+Shift+R { switch-preset-window-height; }
+    Mod+Ctrl+R  { reset-window-height; }
+    Mod+F       { maximize-column; }
+    Mod+Shift+F { fullscreen-window; }
+    Mod+Ctrl+F  { expand-column-to-available-width; }
+    Mod+C       { center-column; }
+
+    Mod+Minus       { set-column-width "-10%"; }
+    Mod+Equal       { set-column-width "+10%"; }
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Equal { set-window-height "+10%"; }
+
+    Mod+V       { toggle-window-floating; }
+    Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+
+    Print      { screenshot; }
+    Ctrl+Print { screenshot-screen; }
+    Alt+Print  { screenshot-window; }
+
+    Mod+Shift+E { quit; }
+}

@@ -117,9 +117,6 @@
 
   services = {
     power-profiles-daemon.enable = true;
-    gnome = {
-      gnome-keyring.enable = true;
-    };
     tailscale = {
       enable = true;
       openFirewall = true;
@@ -205,10 +202,7 @@
 
   services.greetd = {
     enable = true;
-    settings.default_session.command = "${lib.getExe pkgs.greetd.tuigreet} --cmd ${pkgs.writeShellScript "sway" ''
-      dbus-update-activation-environment --all --systemd
-      exec systemd-cat --identifier=sway sway
-    ''}";
+    settings.default_session.command = "${lib.getExe pkgs.greetd.tuigreet} --cmd niri-session";
   };
 
   security.polkit.enable = true;
@@ -222,17 +216,14 @@
   };
 
   security.pam.services.swaylock = { };
+
   xdg.portal = {
     enable = true;
-    wlr.enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    # https://gitlab.archlinux.org/archlinux/packaging/packages/sway/-/blob/main/sway-portals.conf
-    config."sway" = {
-      default = "gtk";
-      "org.freedesktop.impl.portal.ScreenCast" = "wlr";
-      "org.freedesktop.impl.portal.Screenshot" = "wlr";
-      "org.freedesktop.impl.portal.Inhibit" = "none";
-    };
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gnome
+    ];
+    configPackages = [ pkgs.niri ];
   };
 
   services.sing-box.settings.experimental.clash_api = rec {

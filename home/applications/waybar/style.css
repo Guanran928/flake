@@ -1,0 +1,57 @@
+* {
+  font-family: monospace;
+  font-size: 12px;
+}
+
+window#waybar {
+  background: transparent;
+}
+
+#workspaces,
+#window,
+#clock,
+#battery,
+#backlight,
+#network,
+#wireplumber,
+#tray,
+#idle_inhibitor,
+#power-profiles-daemon,
+#mpris {
+  background-color: #222;
+  padding: 4px 12px;
+  margin-top: 8px;
+  color: #eeeeee;
+}
+
+#tray {
+  margin-right: 12px;
+}
+
+#workspaces {
+  margin-left: 12px;
+  padding: 0px;
+}
+
+/* Reset default style */
+#workspaces button {
+  padding: 0 5px;
+  border-radius: 0;
+}
+
+#workspaces button.focused {
+  background-color: #64727d;
+}
+
+#power-profiles-daemon.performance {
+  background-color: #f53c3c;
+}
+
+#power-profiles-daemon.balanced {
+  background-color: #2980b9;
+}
+
+#power-profiles-daemon.power-saver {
+  background-color: #2ecc71;
+  color: #000000;
+}
