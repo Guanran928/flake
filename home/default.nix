@@ -23,6 +23,7 @@
 
   home.sessionVariables = {
     ANDROID_USER_HOME = "${config.xdg.dataHome}/android";
+    CARGO_HOME = "${config.xdg.cacheHome}/cargo";
     HISTFILE = "${config.xdg.stateHome}/bash_history";
   };
 
