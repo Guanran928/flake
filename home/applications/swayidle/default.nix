@@ -4,7 +4,7 @@
     enable = true;
     timeouts = [
       {
-        timeout = 60 * 10;
+        timeout = 60 * 5;
         command = "/run/current-system/sw/bin/systemctl suspend";
       }
     ];
