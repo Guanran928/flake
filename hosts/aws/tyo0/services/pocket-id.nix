@@ -11,9 +11,8 @@ in
       HOST = "127.0.0.1";
       PORT = port;
 
-      # TODO: https://github.com/pocket-id/pocket-id/issues/686
-      # UNIX_SOCKET = "/run/pocket-id/pocket-id.sock";
-      # UNIX_SOCKET_MODE = "0660";
+      UNIX_SOCKET = "/run/pocket-id/pocket-id.sock";
+      UNIX_SOCKET_MODE = "0660";
 
       DB_PROVIDER = "postgres";
       DB_CONNECTION_STRING = "user=pocket-id dbname=pocket-id host=/run/postgresql";
@@ -32,8 +31,7 @@ in
     match = lib.singleton { host = [ "id.ny4.dev" ]; };
     handle = lib.singleton {
       handler = "reverse_proxy";
-      # upstreams = [ { dial = "unix//run/pocket-id/pocket-id.sock"; } ];
-      upstreams = [ { dial = "127.0.0.1:${toString port}"; } ];
+      upstreams = [ { dial = "unix//run/pocket-id/pocket-id.sock"; } ];
     };
   };
 }
