@@ -223,6 +223,15 @@ resource "cloudflare_record" "cxk" {
   zone_id = local.cloudflare_zone_id
 }
 
+resource "cloudflare_record" "immich" {
+  content = "pek0.ny4.dev"
+  name    = "immich"
+  proxied = true
+  ttl     = 1
+  type    = "CNAME"
+  zone_id = local.cloudflare_zone_id
+}
+
 resource "cloudflare_record" "bluesky" {
   content = "\"did=did:plc:s3ii4l6etpymuj5rzz2bondu\""
   name    = "_atproto"

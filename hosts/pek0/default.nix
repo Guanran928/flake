@@ -11,6 +11,7 @@
 
     # Services
     ./services/cloudflared.nix
+    ./services/immich.nix
     ./services/mastodon.nix
     ./services/matrix.nix
     ./services/mautrix.nix
