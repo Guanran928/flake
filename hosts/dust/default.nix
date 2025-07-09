@@ -26,27 +26,34 @@
 
   sops = {
     age.keyFile = "/persist/home/guanranwang/.config/sops/age/keys.txt";
+    defaultSopsFile = ./secrets.yaml;
   };
 
-  sops.secrets = lib.mapAttrs (_n: v: v // { sopsFile = ./secrets.yaml; }) (
-    lib.listToAttrs (
-      lib.map (x: lib.nameValuePair "wireless/${x}" { path = "/var/lib/iwd/${x}.psk"; }) [
-        "Galaxy S24 EC54"
-        "XYC-SEEWO"
-        "wangxiaobo"
-      ]
-    )
-    // {
-      "hashed-passwd" = {
-        neededForUsers = true;
+  sops.secrets = {
+    "hashed-passwd" = {
+      neededForUsers = true;
+    };
+    "nix-access-tokens" = {
+      owner = "guanranwang";
+      mode = "0440";
+    };
+    "wireless/Galaxy S24 EC54" = { };
+    "wireless/XYC-SEEWO" = { };
+    "wireless/Svartalfheim" = { };
+    "u2f" = { };
+  };
+
+  systemd.tmpfiles.settings =
+    let
+      inherit (config.sops) secrets;
+    in
+    {
+      "10-iwd" = {
+        "/var/lib/iwd/Svartalfheim.psk".C.argument = secrets."wireless/Svartalfheim".path;
+        "/var/lib/iwd/XYC-SEEWO.psk".C.argument = secrets."wireless/XYC-SEEWO".path;
+        "/var/lib/iwd/Galaxy S24 EC54.psk".C.argument = secrets."wireless/Galaxy S24 EC54".path;
       };
-      "nix-access-tokens" = {
-        owner = "guanranwang";
-        mode = "0440";
-      };
-      "u2f" = { };
-    }
-  );
+    };
 
   networking = {
     useNetworkd = true;
