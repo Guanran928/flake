@@ -50,24 +50,6 @@ in
         static_configs = lib.singleton { inherit targets; };
       }
       {
-        job_name = "ntfy";
-        scheme = "https";
-        metrics_path = "/metrics";
-        static_configs = lib.singleton { targets = [ "ntfy.ny4.dev" ]; };
-      }
-      {
-        job_name = "forgejo";
-        scheme = "https";
-        metrics_path = "/metrics";
-        static_configs = lib.singleton { targets = [ "git.ny4.dev" ]; };
-      }
-      {
-        job_name = "miniflux";
-        scheme = "https";
-        metrics_path = "/metrics";
-        static_configs = lib.singleton { targets = [ "rss.ny4.dev" ]; };
-      }
-      {
         job_name = "blackbox_exporter";
         static_configs = lib.singleton { targets = [ "127.0.0.1:${toString ports.blackbox}" ]; };
       }
@@ -81,6 +63,7 @@ in
           targets = [
             "https://blog.ny4.dev"
             "https://cinny.ny4.dev"
+            "https://cxk.ny4.dev"
             "https://element.ny4.dev"
             "https://git.ny4.dev"
             "https://id.ny4.dev"

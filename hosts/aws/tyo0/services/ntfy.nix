@@ -8,8 +8,6 @@
       listen-unix = "/run/ntfy-sh/ntfy.sock";
       listen-unix-mode = 432; # 0660
       behind-proxy = true;
-      # TODO: basic auth this
-      enable-metrics = true;
     };
   };
 
