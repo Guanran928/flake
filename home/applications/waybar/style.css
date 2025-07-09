@@ -44,14 +44,14 @@ window#waybar {
 }
 
 #power-profiles-daemon.performance {
-  background-color: #f53c3c;
+  background-color: #802020;
 }
 
 #power-profiles-daemon.balanced {
-  background-color: #2980b9;
+  background-color: #1c3d5e;
 }
 
 #power-profiles-daemon.power-saver {
-  background-color: #2ecc71;
-  color: #000000;
+  background-color: #1e5c3a;
+  color: #e0e0e0;
 }
