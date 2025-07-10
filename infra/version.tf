@@ -1,16 +1,19 @@
 terraform {
   required_providers {
-    vultr = {
-      source = "vultr/vultr"
-    }
-    sops = {
-      source = "carlpett/sops"
-    }
     aws = {
       source = "hashicorp/aws"
     }
     cloudflare = {
       source = "cloudflare/cloudflare"
+    }
+    pocketid = {
+      source  = "trozz/pocketid"
+    }
+    sops = {
+      source = "carlpett/sops"
+    }
+    vultr = {
+      source = "vultr/vultr"
     }
   }
 

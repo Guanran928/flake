@@ -154,6 +154,7 @@
               ps: with ps; [
                 aws
                 cloudflare
+                pocketid
                 sops
                 vultr
               ]
