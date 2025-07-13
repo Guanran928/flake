@@ -7,10 +7,10 @@
   "modules-right": [
     "mpris",
     "idle_inhibitor",
-    "wireplumber",
-    "network",
     "power-profiles-daemon",
+    "network",
     "backlight",
+    "wireplumber",
     "battery",
     "clock",
     "tray",
@@ -78,8 +78,8 @@
   },
   "wireplumber": {
     "scroll-step": 5,
-    "format": "{icon} {volume}%",
-    "format-bluetooth": "{icon} {volume}% ",
+    "format": "{volume}% {icon} ",
+    "format-bluetooth": "{volume}% {icon} ",
     "format-bluetooth-muted": " {icon} ",
     "format-muted": "",
     "format-icons": {
