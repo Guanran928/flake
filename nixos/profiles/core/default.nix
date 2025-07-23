@@ -1,16 +1,15 @@
 { inputs, pkgs, ... }:
 {
-  imports =
-    [
-      ./hardening.nix
-      ./networking.nix
-      ./nix.nix
-      ./zram.nix
-    ]
-    ++ (with inputs; [
-      self.nixosModules.default
-      sops-nix.nixosModules.sops
-    ]);
+  imports = [
+    ./hardening.nix
+    ./networking.nix
+    ./nix.nix
+    ./zram.nix
+  ]
+  ++ (with inputs; [
+    self.nixosModules.default
+    sops-nix.nixosModules.sops
+  ]);
 
   nixpkgs = {
     overlays = [ inputs.self.overlays.default ];

@@ -10,7 +10,7 @@
     nix-output-monitor
     nix-tree
     nix-update
-    nixfmt-rfc-style
+    nixfmt
     nixpkgs-review
     sops
     statix

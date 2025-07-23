@@ -67,10 +67,16 @@ in
       handler = "subroute";
       routes = [
         {
-          match = lib.singleton {
-            header_regexp."User-Agent".pattern = "^curl/.*";
-            path = [ "/" ];
-          };
+          match = [
+            {
+              header_regexp."User-Agent".pattern = "^curl/.*";
+              path = [ "/" ];
+            }
+            {
+              header_regexp."User-Agent".pattern = "^xh/.*";
+              path = [ "/" ];
+            }
+          ];
           handle = [
             {
               handler = "rewrite";

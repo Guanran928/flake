@@ -15,7 +15,8 @@
   imports = [
     ./theme.nix
     ./xdg-mime.nix
-  ] ++ lib.filter (x: lib.hasSuffix "default.nix" x) (lib.fileset.toList ./applications);
+  ]
+  ++ lib.filter (x: lib.hasSuffix "default.nix" x) (lib.fileset.toList ./applications);
 
   programs = {
     zoxide.enable = true;

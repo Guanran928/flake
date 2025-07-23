@@ -33,6 +33,15 @@
       inputs.pre-commit-hooks-nix.follows = "pre-commit-hooks-nix";
       inputs.rust-overlay.follows = "rust-overlay";
     };
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-compat.follows = "flake-compat";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.git-hooks.follows = "pre-commit-hooks-nix";
+      inputs.hercules-ci-effects.follows = "hercules-ci-effects";
+      inputs.treefmt-nix.follows = "treefmt-nix";
+    };
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware";
     };
@@ -43,26 +52,12 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    systems = {
-      url = "github:nix-systems/default";
-    };
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     ### Resources used for auto update
-    neovim = {
-      url = "https://git.ny4.dev/nyancat/nvim/archive/master.tar.gz";
-      flake = false;
-    };
-    ip-checker = {
-      url = "https://git.ny4.dev/nyancat/ip-checker/archive/master.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.systems.follows = "systems";
-      inputs.treefmt-nix.follows = "treefmt-nix";
-    };
     chicken-box = {
       url = "https://git.ny4.dev/nyancat/chicken-box/archive/master.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -75,6 +70,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
       inputs.treefmt-nix.follows = "treefmt-nix";
+    };
+    ip-checker = {
+      url = "https://git.ny4.dev/nyancat/ip-checker/archive/master.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.systems.follows = "systems";
+      inputs.treefmt-nix.follows = "treefmt-nix";
+    };
+    neovim = {
+      url = "https://git.ny4.dev/nyancat/nvim/archive/master.tar.gz";
+      flake = false;
     };
     rdict = {
       url = "github:Guanran928/rdict";
@@ -97,6 +103,11 @@
       url = "github:hercules-ci/gitignore.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hercules-ci-effects = {
+      url = "github:hercules-ci/hercules-ci-effects";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+    };
     nix-github-actions = {
       url = "github:nix-community/nix-github-actions";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -106,6 +117,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-compat.follows = "flake-compat";
       inputs.gitignore.follows = "gitignore";
+    };
+    systems = {
+      url = "github:nix-systems/default";
     };
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
@@ -179,7 +193,8 @@
             ./hosts/dust
           ];
         };
-      } // inputs.self.colmenaHive.nodes;
+      }
+      // inputs.self.colmenaHive.nodes;
 
       colmenaHive = inputs.colmena.lib.makeHive (
         {

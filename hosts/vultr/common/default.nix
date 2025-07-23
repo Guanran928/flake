@@ -5,19 +5,18 @@
   ...
 }:
 {
-  imports =
-    [
-      "${modulesPath}/profiles/qemu-guest.nix"
+  imports = [
+    "${modulesPath}/profiles/qemu-guest.nix"
 
-      ./disko.nix
-      ./preservation.nix
+    ./disko.nix
+    ./preservation.nix
 
-      ../../../nixos/profiles/restic
-    ]
-    ++ (with inputs; [
-      disko.nixosModules.disko
-      preservation.nixosModules.preservation
-    ]);
+    ../../../nixos/profiles/restic
+  ]
+  ++ (with inputs; [
+    disko.nixosModules.disko
+    preservation.nixosModules.preservation
+  ]);
 
   # vnc
   services.getty.autologinUser = "root";

@@ -6,23 +6,22 @@
   ...
 }:
 {
-  imports =
-    [
-      ../../nixos/profiles/restic
-      ../../nixos/profiles/sing-box
+  imports = [
+    ../../nixos/profiles/restic
+    ../../nixos/profiles/sing-box
 
-      ./anti-feature.nix
-      ./disko.nix
-      ./hardware-configuration.nix
-      ./lanzaboote.nix
-      ./preservation.nix
-    ]
-    ++ (with inputs; [
-      disko.nixosModules.disko
-      home-manager.nixosModules.home-manager
-      lanzaboote.nixosModules.lanzaboote
-      preservation.nixosModules.preservation
-    ]);
+    ./anti-feature.nix
+    ./disko.nix
+    ./hardware-configuration.nix
+    ./lanzaboote.nix
+    ./preservation.nix
+  ]
+  ++ (with inputs; [
+    disko.nixosModules.disko
+    home-manager.nixosModules.home-manager
+    lanzaboote.nixosModules.lanzaboote
+    preservation.nixosModules.preservation
+  ]);
 
   sops = {
     age.keyFile = "/persist/home/guanranwang/.config/sops/age/keys.txt";
@@ -115,15 +114,18 @@
     adb.enable = true;
     dconf.enable = true;
     fish.enable = true;
+    neovim.package = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.neovim;
     seahorse.enable = true;
     ssh = {
-      startAgent = true;
       enableAskPassword = true;
     };
   };
 
   services = {
     power-profiles-daemon.enable = true;
+    gnome = {
+      gnome-keyring.enable = true;
+    };
     tailscale = {
       enable = true;
       openFirewall = true;

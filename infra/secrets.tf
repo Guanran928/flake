@@ -17,7 +17,7 @@ provider "cloudflare" {
 }
 
 provider "pocketid" {
-  base_url = "https://id.ny4.dev"
+  base_url  = "https://id.ny4.dev"
   api_token = local.secrets.pocketid.api_token
 }
 

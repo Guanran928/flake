@@ -7,7 +7,7 @@ terraform {
       source = "cloudflare/cloudflare"
     }
     pocketid = {
-      source  = "trozz/pocketid"
+      source = "trozz/pocketid"
     }
     sops = {
       source = "carlpett/sops"
