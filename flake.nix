@@ -152,14 +152,9 @@
         # nix {run,shell,build}
         # NOTE: 301: All packages are migrated to `github:Guanran928/nur-packages`,
         #       only keeping some packages that only fits for personal use.
-        legacyPackages =
-          pkgs.lib.packagesFromDirectoryRecursive {
-            inherit (pkgs) callPackage;
-            directory = ./pkgs;
-          }
-          // {
-            background = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.src;
-          };
+        legacyPackages = {
+          background = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.src;
+        };
 
         # nix develop
         devShells.default = pkgs.mkShellNoCC {
@@ -181,7 +176,6 @@
       }
     )
     // {
-      nixosModules.default = ./nixos/modules;
       overlays.default = import ./overlays;
 
       nixosConfigurations = {
@@ -189,7 +183,7 @@
           inherit specialArgs;
           system = "x86_64-linux";
           modules = [
-            ./nixos/profiles/core
+            ./profiles/core
             ./hosts/dust
           ];
         };
@@ -206,8 +200,8 @@
           };
 
           defaults.imports = [
-            ./nixos/profiles/core
-            ./nixos/profiles/server
+            ./profiles/core
+            ./profiles/server
           ];
 
           "pek0" = {
@@ -220,20 +214,18 @@
             inherit (v) tags;
             targetHost = v.fqdn;
           };
-          imports =
+          imports = [
+            ./hosts/${n}
+            { networking.hostName = n; }
+          ]
+          ++ (
             if (builtins.elem "vultr" v.tags) then
               [
-                ./hosts/vultr/${n}
-                ./hosts/vultr/common
-                { networking.hostName = n; }
-              ]
-            else if (builtins.elem "aws" v.tags) then
-              [
-                ./hosts/aws/${n}
-                { networking.hostName = n; }
+                ./profiles/vultr
               ]
             else
-              [ ./hosts/${n} ];
+              [ ]
+          );
         }) data.nodes.value)
       );
     };

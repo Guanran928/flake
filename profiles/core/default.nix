@@ -7,7 +7,6 @@
     ./zram.nix
   ]
   ++ (with inputs; [
-    self.nixosModules.default
     sops-nix.nixosModules.sops
   ]);
 
@@ -63,12 +62,6 @@
     doc.enable = false;
     info.enable = false;
     nixos.enable = false;
-  };
-
-  # https://github.com/NixOS/nixpkgs/pull/354029
-  # nixos-rebuild-ng: init
-  system.rebuild = {
-    enableNg = true;
   };
 
   # See `nixos-version(8)`

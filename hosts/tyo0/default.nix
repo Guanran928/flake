@@ -19,8 +19,8 @@
     ./services/vaultwarden.nix
     ./services/wastebin.nix
 
-    ../../../nixos/profiles/sing-box-server
-    ../../../nixos/profiles/restic
+    ../../profiles/sing-box-server
+    ../../profiles/restic
   ];
 
   _module.args.ports = import ./ports.nix;

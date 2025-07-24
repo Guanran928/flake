@@ -2,8 +2,8 @@
 {
   imports = [
     # OS
-    ../../nixos/profiles/sing-box
-    ../../nixos/profiles/restic
+    ../../profiles/sing-box
+    ../../profiles/restic
 
     # Hardware
     ./hardware-configuration.nix

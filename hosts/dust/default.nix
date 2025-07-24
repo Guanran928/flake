@@ -7,8 +7,8 @@
 }:
 {
   imports = [
-    ../../nixos/profiles/restic
-    ../../nixos/profiles/sing-box
+    ../../profiles/restic
+    ../../profiles/sing-box
 
     ./anti-feature.nix
     ./disko.nix

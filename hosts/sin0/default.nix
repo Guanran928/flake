@@ -9,7 +9,7 @@
     ./services/ip-checker.nix
     ./services/redlib.nix
 
-    ../../../nixos/profiles/sing-box-server
+    ../../profiles/sing-box-server
   ];
 
   _module.args.ports = import ./ports.nix;
