@@ -259,3 +259,11 @@ resource "cloudflare_record" "terraform_managed_resource_856ec5e567960bf847db2e8
   zone_id = local.cloudflare_zone_id
 }
 
+resource "cloudflare_record" "bing_webmaster" {
+  content = "verify.bing.com"
+  name    = "c721047d80432b0bbe1f6856f5f17970"
+  proxied = false
+  ttl     = 1
+  type    = "CNAME"
+  zone_id = local.cloudflare_zone_id
+}
