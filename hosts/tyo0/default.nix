@@ -16,6 +16,7 @@
     ./services/ntfy.nix
     ./services/pocket-id.nix
     ./services/prometheus.nix
+    ./services/shortlinks.nix
     ./services/vaultwarden.nix
     ./services/wastebin.nix
 
