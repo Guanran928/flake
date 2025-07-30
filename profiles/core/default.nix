@@ -6,9 +6,7 @@
     ./nix.nix
     ./zram.nix
   ]
-  ++ (with inputs; [
-    sops-nix.nixosModules.sops
-  ]);
+  ++ (with inputs; [ sops-nix.nixosModules.sops ]);
 
   nixpkgs = {
     overlays = [ inputs.self.overlays.default ];

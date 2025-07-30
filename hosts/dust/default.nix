@@ -116,9 +116,7 @@
     fish.enable = true;
     neovim.package = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.neovim;
     seahorse.enable = true;
-    ssh = {
-      enableAskPassword = true;
-    };
+    ssh.enableAskPassword = true;
   };
 
   services = {

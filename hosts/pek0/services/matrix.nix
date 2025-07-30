@@ -49,7 +49,6 @@ in
           localpart_template = "{{ user.preferred_username }}";
           display_name_template = "{{ user.name }}";
         };
-        backchannel_logout_enabled = true;
         allow_existing_users = true;
       };
 

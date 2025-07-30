@@ -218,14 +218,7 @@
             ./hosts/${n}
             { networking.hostName = n; }
           ]
-          ++ (
-            if (builtins.elem "vultr" v.tags) then
-              [
-                ./profiles/vultr
-              ]
-            else
-              [ ]
-          );
+          ++ (if (builtins.elem "vultr" v.tags) then [ ./profiles/vultr ] else [ ]);
         }) data.nodes.value)
       );
     };

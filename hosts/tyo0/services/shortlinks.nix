@@ -28,9 +28,7 @@ in
       to = "https://t.me/guanranwang";
     }
     {
-      from = [
-        "/github"
-      ];
+      from = [ "/github" ];
       to = "https://github.com/guanran928";
     }
     {
@@ -48,9 +46,7 @@ in
       to = "https://x.com/Guanran928";
     }
     {
-      from = [
-        "/steam"
-      ];
+      from = [ "/steam" ];
       to = "https://steamcommunity.com/profiles/76561198855505856";
     }
   ];
