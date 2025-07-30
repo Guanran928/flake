@@ -30,7 +30,7 @@ creation_rules:
           - *sin0
 
   # shared
-  - path_regex: ^nixos/profiles/restic/secrets.yaml$
+  - path_regex: ^profiles/restic/secrets.yaml$
     key_groups:
       - age:
           - *guanranwang
@@ -38,13 +38,13 @@ creation_rules:
           - *pek0
           - *sin0
           - *tyo0
-  - path_regex: ^nixos/profiles/sing-box/secrets.yaml$
+  - path_regex: ^profiles/sing-box/secrets.yaml$
     key_groups:
       - age:
           - *guanranwang
           - *dust
           - *pek0
-  - path_regex: ^nixos/profiles/sing-box-server/secrets.yaml$
+  - path_regex: ^profiles/sing-box-server/secrets.yaml$
     key_groups:
       - age:
           - *guanranwang
