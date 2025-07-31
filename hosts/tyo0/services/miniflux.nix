@@ -21,6 +21,8 @@
       CREATE_ADMIN = 0;
       BASE_URL = "https://rss.ny4.dev";
 
+      DISABLE_LOCAL_AUTH = "true";
+      OAUTH2_USER_CREATION = "true";
       OAUTH2_PROVIDER = "oidc";
       OAUTH2_CLIENT_ID = "f3dce354-5be8-42dd-8579-4773d2f32ce0";
       # OAUTH2_CLIENT_SECRET = "replace_me"; # EnvironmentFile
