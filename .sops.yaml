@@ -18,12 +18,12 @@ creation_rules:
       - age:
           - *guanranwang
           - *pek0
-  - path_regex: ^hosts/aws/tyo0/secrets.yaml$
+  - path_regex: ^hosts/tyo0/secrets.yaml$
     key_groups:
       - age:
           - *guanranwang
           - *tyo0
-  - path_regex: ^hosts/vultr/sin0/secrets.yaml$
+  - path_regex: ^hosts/sin0/secrets.yaml$
     key_groups:
       - age:
           - *guanranwang

@@ -146,15 +146,13 @@ in
 
       configuration = {
         receivers = lib.singleton {
-          name = "ntfy";
-          webhook_configs = lib.singleton {
-            # https://docs.ntfy.sh/publish/#message-templating
-            url = "$ALERTMANAGER_WEBHOOK_URL";
+          name = "telegram";
+          telegram_configs = lib.singleton {
+            bot_token_file = "/run/credentials/alertmanager.service/telegram";
+            chat_id = 7672225115;
           };
         };
-        route = {
-          receiver = "ntfy";
-        };
+        route.receiver = "telegram";
       };
     };
   };
@@ -164,25 +162,14 @@ in
       owner = config.systemd.services.prometheus.serviceConfig.User;
       restartUnits = [ "prometheus.service" ];
     };
-    "alertmanager/webhook" = {
+    "alertmanager/telegram-token" = {
       restartUnits = [ "alertmanager.service" ];
     };
   };
 
-  sops.templates."alertmanager/environment".content =
-    let
-      tmpl = lib.escapeURL ''
-        {{ range .alerts }}- Status: {{ .status }}
-          Summary: {{ .annotations.summary }}
-          Source: {{ .generatorURL }}
-        {{ end }}
-      '';
-      token = config.sops.placeholder."alertmanager/webhook";
-    in
-    "ALERTMANAGER_WEBHOOK_URL=https://ntfy.ny4.dev/alert?tpl=yes&md=yes&m=${tmpl}&auth=${token}";
-
-  systemd.services.alertmanager.serviceConfig.EnvironmentFile =
-    config.sops.templates."alertmanager/environment".path;
+  systemd.services.alertmanager.serviceConfig.LoadCredential = [
+    "telegram:${config.sops.secrets."alertmanager/telegram-token".path}"
+  ];
 
   services.caddy.settings.apps.http.servers.srv0.routes = lib.singleton {
     match = lib.singleton { host = [ "prom.ny4.dev" ]; };
