@@ -34,7 +34,6 @@
           "sponsorBlocker@ajay.app" # sponsorblock
           "uBlock0@raymondhill.net" # ublock origin
           "{446900e4-71c2-419f-a6a7-df9c091e268b}" # bitwarden
-          "{d7742d87-e61d-4b78-b8a1-b469842139fa}" # vimium
         ]
     );
 
