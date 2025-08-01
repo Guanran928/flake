@@ -11,6 +11,10 @@
     };
   };
 
+  systemd.services."cloudflared-tunnel-56cb139d-be03-46a9-b5ef-d00af5f8ef33" = {
+    environment.TUNNEL_TRANSPORT_PROTOCOL = "http2"; # QUIC is quite unstable in China Mainland
+  };
+
   sops.secrets."cloudflared/secret".restartUnits = [
     "cloudflared-tunnel-56cb139d-be03-46a9-b5ef-d00af5f8ef33.service"
   ];
