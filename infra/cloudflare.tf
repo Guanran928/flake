@@ -1,157 +1,162 @@
 locals {
-  cloudflare_zone_id    = cloudflare_zone.terraform_managed_resource_4b7a25e8fb5035c84820c26e454ed03d.id
+  cloudflare_zone_id    = cloudflare_zone.ny4.id
   cloudflare_account_id = "af3504d3b07107975feaa691beae1553"
 }
 
-resource "cloudflare_zone" "terraform_managed_resource_4b7a25e8fb5035c84820c26e454ed03d" {
-  account_id = local.cloudflare_account_id
+resource "cloudflare_zone" "ny4" {
+  account    = {
+    id = local.cloudflare_account_id
+  }
   paused     = false
-  plan       = "free"
   type       = "full"
-  zone       = "ny4.dev"
+  name       = "ny4.dev"
 }
 
-resource "cloudflare_zone_settings_override" "terraform_managed_resource_4b7a25e8fb5035c84820c26e454ed03d" {
+resource "cloudflare_zone_setting" "ipv6" {
   zone_id = local.cloudflare_zone_id
-  settings {
-    ipv6 = "on"
-    ssl  = "strict"
-  }
+  setting_id = "ipv6"
+  value =  "on"
+}
+
+resource "cloudflare_zone_setting" "ssl" {
+  zone_id = local.cloudflare_zone_id
+  setting_id = "ssl"
+  value = "strict"
 }
 
 resource "cloudflare_zero_trust_tunnel_cloudflared" "blacksteel" {
   name       = "blacksteel"
   account_id = local.cloudflare_account_id
-  secret     = local.secrets.cloudflare.tunnel_secret
+  tunnel_secret     = local.secrets.cloudflare.tunnel_secret
 }
 
-resource "cloudflare_record" "terraform_managed_resource_e8a39752064c17b2c91d10edf667e322" {
-  content = cloudflare_zero_trust_tunnel_cloudflared.blacksteel.cname
-  name    = "pek0"
+resource "cloudflare_dns_record" "pek0" {
+  content = "${cloudflare_zero_trust_tunnel_cloudflared.blacksteel.id}.cfargotunnel.com"
+  name    = "pek0.ny4.dev"
   proxied = true
   ttl     = 1
   type    = "CNAME"
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "terraform_managed_resource_3bb7c82777ada1dcafb0cd16ae22bcac" {
+resource "cloudflare_dns_record" "sin0_v4" {
   content = module.vultr["sin0"].ipv4
-  name    = "sin0"
+  name    = "sin0.ny4.dev"
   proxied = false
   ttl     = 1
   type    = "A"
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "terraform_managed_resource_3393fe6c746c9f55d841397c77900a59" {
+resource "cloudflare_dns_record" "sin0_v6" {
   content = module.vultr["sin0"].ipv6
-  name    = "sin0"
+  name    = "sin0.ny4.dev"
   proxied = false
   ttl     = 1
   type    = "AAAA"
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "terraform_managed_resource_3d75642939f7653d8d51dfb93c518b07" {
+resource "cloudflare_dns_record" "tyo0_v4" {
   content = module.aws["tyo0"].ipv4
-  name    = "tyo0"
+  name    = "tyo0.ny4.dev"
   proxied = false
   ttl     = 1
   type    = "A"
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "terraform_managed_resource_03f9bd0678d8d76dc0e07892bc554393" {
+resource "cloudflare_dns_record" "tyo0_v6" {
   content = module.aws["tyo0"].ipv6
-  name    = "tyo0"
+  name    = "tyo0.ny4.dev"
   proxied = false
   ttl     = 1
   type    = "AAAA"
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "terraform_managed_resource_8e75c63ef8a2f186ebd104abb4766a1d" {
+resource "cloudflare_dns_record" "blog" {
   content = "guanran928.github.io"
-  name    = "blog"
+  name    = "blog.ny4.dev"
   proxied = false
   ttl     = 1
   type    = "CNAME"
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "terraform_managed_resource_9c931544d9033dee3e3ce376834217f9" {
+resource "cloudflare_dns_record" "cinny" {
   content = "tyo0.ny4.dev"
-  name    = "cinny"
+  name    = "cinny.ny4.dev"
   proxied = true
   ttl     = 1
   type    = "CNAME"
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "terraform_managed_resource_06b8ff66458e32be7ac8b614c46c17fa" {
+resource "cloudflare_dns_record" "element" {
   content = "tyo0.ny4.dev"
-  name    = "element"
+  name    = "element.ny4.dev"
   proxied = true
   ttl     = 1
   type    = "CNAME"
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "terraform_managed_resource_5423bda2c14dfc0785a3c58a4ebe537b" {
+resource "cloudflare_dns_record" "git" {
   content = "tyo0.ny4.dev"
-  name    = "git"
+  name    = "git.ny4.dev"
   proxied = true
   ttl     = 1
   type    = "CNAME"
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "terraform_managed_resource_de1f6297937e0c3f5f4cd38ebf0f37dc" {
+resource "cloudflare_dns_record" "id" {
   content = "tyo0.ny4.dev"
-  name    = "id"
+  name    = "id.ny4.dev"
   proxied = true
   ttl     = 1
   type    = "CNAME"
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "terraform_managed_resource_899b7a0a4077b12d429fae7221e3b5f0" {
+resource "cloudflare_dns_record" "ip" {
   content = "sin0.ny4.dev"
-  name    = "ip"
+  name    = "ip.ny4.dev"
   proxied = true
   ttl     = 1
   type    = "CNAME"
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "terraform_managed_resource_a69da702b5de0b419265bb7e82d8ff72" {
+resource "cloudflare_dns_record" "mastodon" {
   content = "pek0.ny4.dev"
-  name    = "mastodon"
+  name    = "mastodon.ny4.dev"
   proxied = true
   ttl     = 1
   type    = "CNAME"
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "terraform_managed_resource_bb02cc1465eb9b9876496b5825f32520" {
+resource "cloudflare_dns_record" "matrix" {
   content = "pek0.ny4.dev"
-  name    = "matrix"
+  name    = "matrix.ny4.dev"
   proxied = true
   ttl     = 1
   type    = "CNAME"
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "terraform_managed_resource_42a460db1bab9041993a1fb19ac40aec" {
+resource "cloudflare_dns_record" "ntfy" {
   content = "tyo0.ny4.dev"
-  name    = "ntfy"
+  name    = "ntfy.ny4.dev"
   proxied = true
   ttl     = 1
   type    = "CNAME"
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "terraform_managed_resource_07b0adf15b8e0a285b27e7998a4a7f91" {
+resource "cloudflare_dns_record" "apex" {
   content = "tyo0.ny4.dev"
   name    = "ny4.dev"
   proxied = true
@@ -160,97 +165,97 @@ resource "cloudflare_record" "terraform_managed_resource_07b0adf15b8e0a285b27e79
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "terraform_managed_resource_f3507181cd0965a1040216e6e5d94adf" {
+resource "cloudflare_dns_record" "pb" {
   content = "tyo0.ny4.dev"
-  name    = "pb"
+  name    = "pb.ny4.dev"
   proxied = true
   ttl     = 1
   type    = "CNAME"
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "terraform_managed_resource_aab250e5d93fd4ceac718dbaaee7bdb3" {
+resource "cloudflare_dns_record" "prom" {
   content = "tyo0.ny4.dev"
-  name    = "prom"
+  name    = "prom.ny4.dev"
   proxied = true
   ttl     = 1
   type    = "CNAME"
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "terraform_managed_resource_b674a8508d41cd2541e351943c3b247e" {
+resource "cloudflare_dns_record" "reddit" {
   content = "sin0.ny4.dev"
-  name    = "reddit"
+  name    = "reddit.ny4.dev"
   proxied = true
   ttl     = 1
   type    = "CNAME"
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "terraform_managed_resource_365881b47c75cb8da9f515671a7e32f3" {
+resource "cloudflare_dns_record" "rss" {
   content = "tyo0.ny4.dev"
-  name    = "rss"
+  name    = "rss.ny4.dev"
   proxied = true
   ttl     = 1
   type    = "CNAME"
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "terraform_managed_resource_6d07c0bd7a64a0cbb7230426ed7d503e" {
+resource "cloudflare_dns_record" "vault" {
   content = "tyo0.ny4.dev"
-  name    = "vault"
+  name    = "vault.ny4.dev"
   proxied = true
   ttl     = 1
   type    = "CNAME"
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "terraform_managed_resource_e2500de6c975c90729b8f359361d8268" {
+resource "cloudflare_dns_record" "www" {
   content = "tyo0.ny4.dev"
-  name    = "www"
+  name    = "www.ny4.dev"
   proxied = true
   ttl     = 1
   type    = "CNAME"
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "cxk" {
+resource "cloudflare_dns_record" "cxk" {
   content = "sin0.ny4.dev"
-  name    = "cxk"
+  name    = "cxk.ny4.dev"
   proxied = true
   ttl     = 1
   type    = "CNAME"
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "immich" {
+resource "cloudflare_dns_record" "immich" {
   content = "pek0.ny4.dev"
-  name    = "immich"
+  name    = "immich.ny4.dev"
   proxied = true
   ttl     = 1
   type    = "CNAME"
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "bluesky" {
+resource "cloudflare_dns_record" "bluesky" {
   content = "\"did=did:plc:s3ii4l6etpymuj5rzz2bondu\""
-  name    = "_atproto"
+  name    = "_atproto.ny4.dev"
   proxied = false
   ttl     = 1
   type    = "TXT"
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "discord" {
+resource "cloudflare_dns_record" "discord" {
   content = "\"dh=8da72697ecf86306cc5d5147711c3d0c12c11d71\""
-  name    = "_atproto"
+  name    = "_atproto.ny4.dev"
   proxied = false
   ttl     = 1
   type    = "TXT"
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "terraform_managed_resource_856ec5e567960bf847db2e814f18168b" {
+resource "cloudflare_dns_record" "google_search_console" {
   content = "\"google-site-verification=wBL5EFnbnt9lt2j_BtcwlXTaBFlFT563mC1MkCscnR8\""
   name    = "ny4.dev"
   proxied = false
@@ -259,9 +264,9 @@ resource "cloudflare_record" "terraform_managed_resource_856ec5e567960bf847db2e8
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "bing_webmaster" {
+resource "cloudflare_dns_record" "bing_webmaster" {
   content = "verify.bing.com"
-  name    = "c721047d80432b0bbe1f6856f5f17970"
+  name    = "c721047d80432b0bbe1f6856f5f17970.ny4.dev"
   proxied = false
   ttl     = 1
   type    = "CNAME"
