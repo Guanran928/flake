@@ -11,14 +11,8 @@
       (lib.optionals (config.time.timeZone == "Asia/Shanghai") [
         "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" # TUNA - 清华大学 Mirror
       ])
-      ++ [
-        "https://nix-community.cachix.org"
-        "https://guanran928.cachix.org"
-      ];
-    trusted-public-keys = [
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "guanran928.cachix.org-1:BE/iBCj2/pqJXG908wHRrcaV0B2fC+KbFjHsXY6b91c="
-    ];
+      ++ [ "https://nix-community.cachix.org" ];
+    trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
 
     experimental-features = [
       "auto-allocate-uids"
