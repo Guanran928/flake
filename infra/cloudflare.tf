@@ -4,30 +4,30 @@ locals {
 }
 
 resource "cloudflare_zone" "ny4" {
-  account    = {
+  account = {
     id = local.cloudflare_account_id
   }
-  paused     = false
-  type       = "full"
-  name       = "ny4.dev"
+  paused = false
+  type   = "full"
+  name   = "ny4.dev"
 }
 
 resource "cloudflare_zone_setting" "ipv6" {
-  zone_id = local.cloudflare_zone_id
+  zone_id    = local.cloudflare_zone_id
   setting_id = "ipv6"
-  value =  "on"
+  value      = "on"
 }
 
 resource "cloudflare_zone_setting" "ssl" {
-  zone_id = local.cloudflare_zone_id
+  zone_id    = local.cloudflare_zone_id
   setting_id = "ssl"
-  value = "strict"
+  value      = "strict"
 }
 
 resource "cloudflare_zero_trust_tunnel_cloudflared" "blacksteel" {
-  name       = "blacksteel"
-  account_id = local.cloudflare_account_id
-  tunnel_secret     = local.secrets.cloudflare.tunnel_secret
+  name          = "blacksteel"
+  account_id    = local.cloudflare_account_id
+  tunnel_secret = local.secrets.cloudflare.tunnel_secret
 }
 
 resource "cloudflare_dns_record" "pek0" {
