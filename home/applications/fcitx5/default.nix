@@ -19,8 +19,10 @@ in
     Install.WantedBy = [ "graphical-session.target" ];
   };
 
-  xdg.configFile."fcitx5/conf/classicui.conf".text = ''
-    Vertical Candidate List=True
-    PreferTextIcon=True
-  '';
+  xdg.configFile."fcitx5/conf/classicui.conf".text =
+    # ini
+    ''
+      Vertical Candidate List=True
+      PreferTextIcon=True
+    '';
 }

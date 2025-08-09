@@ -3,14 +3,17 @@
   programs.fish = {
     enable = true;
 
-    interactiveShellInit = ''
-      set fish_greeting
-    '';
+    interactiveShellInit =
+      # fish
+      ''
+        set fish_greeting
+      '';
 
     shellInit =
       let
         tide = pkgs.fishPlugins.tide.src + "/functions/tide/configure";
       in
+      # fish
       ''
         string replace -r '^' 'set -g ' < ${tide}/icons.fish | source
         string replace -r '^' 'set -g ' < ${tide}/configs/lean.fish | source
@@ -79,16 +82,20 @@
         curl = lib.getExe pkgs.curl;
       in
       {
-        "pb" = ''
-          ${jq} -Rns '{text: inputs}' | \
-            ${curl} -s -H 'Content-Type: application/json' --data-binary @- https://pb.ny4.dev | \
-            ${jq} -r '. | "https://pb.ny4.dev\(.path)"'
-        '';
+        "pb" =
+          # fish
+          ''
+            ${jq} -Rns '{text: inputs}' | \
+              ${curl} -s -H 'Content-Type: application/json' --data-binary @- https://pb.ny4.dev | \
+              ${jq} -r '. | "https://pb.ny4.dev\(.path)"'
+          '';
 
-        "getmnter" = ''
-          ${nix} eval nixpkgs#{$argv}.meta.maintainers --json | \
-            ${jq} '.[].github | "@" + .' -r
-        '';
+        "getmnter" =
+          # fish
+          ''
+            ${nix} eval nixpkgs#{$argv}.meta.maintainers --json | \
+              ${jq} '.[].github | "@" + .' -r
+          '';
       };
   };
 }

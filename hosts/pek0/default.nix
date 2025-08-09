@@ -95,13 +95,16 @@
       max_parallel_workers = 8;
       max_parallel_maintenance_workers = 4;
     };
-    initialScript = pkgs.writeText "synapse-init.sql" ''
-      CREATE ROLE "matrix-synapse" WITH LOGIN PASSWORD 'synapse';
-      CREATE DATABASE "matrix-synapse" WITH OWNER "matrix-synapse"
-        TEMPLATE template0
-        LC_COLLATE = "C"
-        LC_CTYPE = "C";
-    '';
+    initialScript =
+      pkgs.writeText "synapse-init.sql"
+        # sql
+        ''
+          CREATE ROLE "matrix-synapse" WITH LOGIN PASSWORD 'synapse';
+          CREATE DATABASE "matrix-synapse" WITH OWNER "matrix-synapse"
+            TEMPLATE template0
+            LC_COLLATE = "C"
+            LC_CTYPE = "C";
+        '';
   };
 
   services.postgresqlBackup = {
