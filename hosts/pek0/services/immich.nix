@@ -2,16 +2,17 @@
 {
   services.immich = {
     enable = true;
-    settings = {
-      server.externalDomain = "https://immich.ny4.dev";
-      passwordLogin.enabled = false;
-      oauth = {
-        enabled = true;
-        clientId = "8ce267c4-9fa1-4585-9d2b-bf4c7e6f7437";
-        clientSecret = "NScJ8xx45TRkxsWgIeSxWXkQAyIfToOk";
-        issuerUrl = "https://id.ny4.dev/.well-known/openid-configuration";
-      };
-    };
+    database.enableVectors = false;
+    # TODO: expose the config
+    environment.IMMICH_CONFIG_FILE = config.sops.secrets."immich/config".path;
+  };
+
+  sops.secrets."immich/config" = {
+    owner = config.services.immich.user;
+    restartUnits = [
+      "immich-server.service"
+      "immich-machine-learning.service"
+    ];
   };
 
   services.caddy.settings.apps.http.servers.srv0.routes = lib.singleton {
