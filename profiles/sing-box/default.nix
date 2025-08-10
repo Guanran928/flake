@@ -19,25 +19,17 @@ in
       dns = {
         servers = [
           {
+            # FIXME: it errors if I use `detour = "select";` or `type = "https";`
+            type = "tls";
             tag = "cloudflare";
-            address = "https://[2606:4700:4700::1111]/dns-query";
-            strategy = "prefer_ipv6";
+            server = "[2606:4700:4700::1111]";
+            detour = "direct";
           }
           {
+            type = "local";
             tag = "local";
-            address = "local";
-            strategy = "prefer_ipv4";
           }
         ];
-        rules = lib.singleton {
-          rule_set = [
-            "geosite-cn"
-            "geosite-private"
-          ];
-          # avoid querying proxy server's dns from proxy server
-          domain = lib.mapAttrsToList (_name: node: node.fqdn) proxyServers;
-          server = "local";
-        };
         final = "cloudflare";
       };
 
@@ -46,8 +38,6 @@ in
         tag = "inbound";
         listen = "127.0.0.1";
         listen_port = 1080;
-        sniff = true;
-        sniff_override_destination = true;
       };
 
       outbounds =
@@ -59,34 +49,43 @@ in
           uuid._secret = config.sops.secrets."sing-box/uuid".path;
           flow = "xtls-rprx-vision";
           tls.enabled = true;
+          domain_resolver = {
+            server = "cloudflare";
+            strategy = "prefer_ipv6";
+          };
         }) proxyServers
         ++ [
           {
             type = "selector";
             tag = "select";
-            outbounds = [
-              "tyo0"
-              "sin0"
-              "direct"
-            ];
+            outbounds = lib.attrNames proxyServers ++ [ "direct" ];
             default = "tyo0";
           }
           {
             type = "direct";
             tag = "direct";
+            domain_resolver = {
+              server = "local";
+              strategy = "prefer_ipv4";
+            };
           }
         ];
 
       route = {
-        rules = lib.singleton {
-          rule_set = [
-            "geoip-cn"
-            "geosite-cn"
-            "geosite-private"
-          ];
-          ip_is_private = true;
-          outbound = "direct";
-        };
+        rules = [
+          {
+            action = "sniff";
+          }
+          {
+            rule_set = [
+              "geoip-cn"
+              "geosite-cn"
+              "geosite-private"
+            ];
+            ip_is_private = true;
+            outbound = "direct";
+          }
+        ];
 
         rule_set = [
           {

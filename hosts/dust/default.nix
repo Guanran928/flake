@@ -212,7 +212,7 @@
 
   services.greetd = {
     enable = true;
-    settings.default_session.command = "${lib.getExe pkgs.greetd.tuigreet} --cmd niri-session";
+    settings.default_session.command = "${lib.getExe pkgs.tuigreet} --cmd niri-session";
   };
 
   security.polkit.enable = true;
