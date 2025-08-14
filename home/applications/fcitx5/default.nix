@@ -2,10 +2,11 @@
 let
   package = pkgs.qt6Packages.fcitx5-with-addons.override {
     addons = with pkgs; [
-      qt6Packages.fcitx5-chinese-addons
+      catppuccin-fcitx5
       fcitx5-pinyin-minecraft
       fcitx5-pinyin-moegirl
       fcitx5-pinyin-zhwiki
+      qt6Packages.fcitx5-chinese-addons
     ];
   };
 in
@@ -24,5 +25,6 @@ in
     ''
       Vertical Candidate List=True
       PreferTextIcon=True
+      Theme=catppuccin-mocha-blue
     '';
 }
