@@ -504,7 +504,8 @@
         "rust-overlay": "rust-overlay",
         "sops-nix": "sops-nix",
         "systems": "systems",
-        "treefmt-nix": "treefmt-nix"
+        "treefmt-nix": "treefmt-nix",
+        "zen-browser": "zen-browser"
       }
     },
     "rust-overlay": {
@@ -579,6 +580,29 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "zen-browser": {
+      "inputs": {
+        "home-manager": [
+          "home-manager"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1755184939,
+        "narHash": "sha256-gxKs+3tfe5lNgu3hpiJmRUCkvri4vq2mUL6GL/+OCxM=",
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
+        "rev": "884b88c3ff7f283aec14ecb0a2a35e2da7607eae",
+        "type": "github"
+      },
+      "original": {
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
         "type": "github"
       }
     }

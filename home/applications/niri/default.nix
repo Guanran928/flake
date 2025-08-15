@@ -33,27 +33,4 @@
       Restart = "on-failure";
     };
   };
-
-  # startup = [
-  #   { command = lib.getExe config.programs.foot.package + " -e tmux"; }
-  #   { command = lib.getExe config.programs.firefox.finalPackage; }
-  #   { command = lib.getExe config.programs.thunderbird.package; }
-  #   { command = lib.getExe pkgs.telegram-desktop; }
-  # ];
-  #
-  #       "1:1:AT_Translated_Set_2_keyboard" = {
-  #         xkb_layout = "us";
-  #         xkb_options = "caps:escape,altwin:swap_lalt_lwin";
-  #         xkb_variant = "dvorak";
-  #       };
-  #     };
-  #
-  #     assigns = {
-  #       "1" = [ { app_id = "foot"; } ];
-  #       "2" = [ { app_id = "firefox"; } ];
-  #       "3" = [ { app_id = "org.telegram.desktop"; } ];
-  #       "4" = [ { app_id = "thunderbird"; } ];
-  #     };
-  #
-  #         # Launcher
 }

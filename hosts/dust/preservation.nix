@@ -18,8 +18,8 @@
         "Videos"
 
         ".ssh"
-        ".mozilla/firefox"
         ".thunderbird"
+        ".zen"
 
         ".cache"
         ".local/share"

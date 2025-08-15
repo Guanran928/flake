@@ -12,6 +12,7 @@
         "rustc-bootstrap-wrapper"
         "sof-firmware"
         "temurin-bin"
+        "zen-beta"
       ];
 
     allowUnfreePredicate =
