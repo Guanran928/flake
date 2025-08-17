@@ -138,7 +138,6 @@
   fonts = {
     enableDefaultPackages = false;
     packages = with pkgs; [
-      (ibm-plex.override { families = [ "mono" ]; })
       (inter.overrideAttrs {
         installPhase = ''
           runHook preInstall
@@ -153,6 +152,7 @@
           runHook postInstall
         '';
       })
+      iosevka
       nerd-fonts.symbols-only
       noto-fonts
       noto-fonts-color-emoji
@@ -164,7 +164,7 @@
         emoji = [ "Noto Color Emoji" ];
         # Append emoji font for Qt apps, they might use the monochrome emoji
         monospace = [
-          "IBM Plex Mono"
+          "Iosevka"
           "Source Han Sans SC VF"
           "Symbols Nerd Font"
           "Noto Color Emoji"
