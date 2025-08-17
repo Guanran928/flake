@@ -2,7 +2,7 @@
 let
   package = pkgs.qt6Packages.fcitx5-with-addons.override {
     addons = with pkgs; [
-      catppuccin-fcitx5
+      fcitx5-fluent
       fcitx5-pinyin-minecraft
       fcitx5-pinyin-moegirl
       fcitx5-pinyin-zhwiki
@@ -25,6 +25,6 @@ in
     ''
       Vertical Candidate List=True
       PreferTextIcon=True
-      Theme=catppuccin-mocha-blue
+      Theme=FluentDark-solid
     '';
 }
