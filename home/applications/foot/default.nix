@@ -1,4 +1,4 @@
-{ config, ... }:
+{ lib, config, ... }:
 {
   programs.foot = {
     enable = true;
@@ -8,35 +8,34 @@
       cursor.style = "beam";
       url.label-letters = "aoeuhtns";
 
-      # tokyonight
+      # kanagawa-dragon
       colors = {
-        cursor = "283457 c0caf5";
-        foreground = "c0caf5";
-        background = "1a1b26";
-        selection-foreground = "c0caf5";
-        selection-background = "283457";
-        urls = "73daca";
+        foreground = "c5c9c5";
+        background = "181616";
+        selection-foreground = "C8C093";
+        selection-background = "2D4F67";
+        urls = "72A7BC";
 
-        regular0 = "15161e";
-        regular1 = "f7768e";
-        regular2 = "9ece6a";
-        regular3 = "e0af68";
-        regular4 = "7aa2f7";
-        regular5 = "bb9af7";
-        regular6 = "7dcfff";
-        regular7 = "a9b1d6";
+        regular0 = "0d0c0c";
+        regular1 = "c4746e";
+        regular2 = "8a9a7b";
+        regular3 = "c4b28a";
+        regular4 = "8ba4b0";
+        regular5 = "a292a3";
+        regular6 = "8ea4a2";
+        regular7 = "C8C093";
 
-        bright0 = "414868";
-        bright1 = "f7768e";
-        bright2 = "9ece6a";
-        bright3 = "e0af68";
-        bright4 = "7aa2f7";
-        bright5 = "bb9af7";
-        bright6 = "7dcfff";
-        bright7 = "c0caf5";
+        bright0 = "a6a69c";
+        bright1 = "E46876";
+        bright2 = "87a987";
+        bright3 = "E6C384";
+        bright4 = "7FB4CA";
+        bright5 = "938AA9";
+        bright6 = "7AA89F";
+        bright7 = "c5c9c5";
 
-        "16" = "ff9e64";
-        "17" = "db4b4b";
+        "16" = "b6927b";
+        "17" = "b98d7b";
       };
     };
   };
