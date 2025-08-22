@@ -73,9 +73,7 @@ in
 
       route = {
         rules = [
-          {
-            action = "sniff";
-          }
+          { action = "sniff"; }
           {
             rule_set = [
               "geoip-cn"
