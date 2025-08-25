@@ -5,7 +5,7 @@ keys:
   - &dust age193x79xx8snu82w3t3hax6nruuw57g7pduwnkpvzkzmd7fs5jvfrquqa3sl
   - &pek0 age174knn6hjtukp32ymcdvjwj6x0j54g7yw02dqfjmua3fkyltwcqrsxccjdk
   - &sin0 age1u7srtfpgf83hesmsvtqdqftl8xrjmmp33mlg0aze6ken866ad55qxmzdqd
-  - &tyo0 age1vw4kf5v8cfnhfhvl0eyvqzpvy9hpfv9enffvzyt95tx5mu7s5dxqjqw0fa
+  - &tyo0 age1t9zw852d0g7k7atl4ge985ddmgp2qfythnvcan9l852gahqj83tq62xv7a
 creation_rules:
   # per host
   - path_regex: ^hosts/dust/secrets.yaml$

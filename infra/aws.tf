@@ -2,7 +2,7 @@ locals {
   aws_nodes = {
     tyo0 = {
       region = "ap-northeast-1a"
-      plan   = "micro_3_0"
+      plan   = "small_3_0"
       tags   = ["aws", "proxy"]
     }
   }

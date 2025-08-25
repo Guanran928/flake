@@ -1,4 +1,4 @@
-{ config, ... }:
+{ inputs, config, ... }:
 {
   imports = [
     ./anti-feature.nix
@@ -6,10 +6,13 @@
     ./services/telegram-bot/danbooru_img_bot.nix
     ./services/telegram-bot/ny4_rdict_bot.nix
     ./services/chicken-box.nix
+    ./services/dn42.nix
     ./services/ip-checker.nix
     ./services/redlib.nix
 
     ../../profiles/sing-box-server
+
+    inputs.self.nixosModules.dn42
   ];
 
   _module.args.ports = import ./ports.nix;
@@ -17,6 +20,7 @@
 
   system.stateVersion = "24.05";
 
+  networking.firewall.enable = false;
   networking.firewall.allowedUDPPorts = [ 443 ];
   networking.firewall.allowedTCPPorts = [
     80

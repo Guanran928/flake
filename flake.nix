@@ -183,6 +183,8 @@
     // {
       overlays.default = import ./overlays;
 
+      nixosModules = import ./modules;
+
       nixosConfigurations = {
         "dust" = inputs.nixpkgs.lib.nixosSystem {
           inherit specialArgs;

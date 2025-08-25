@@ -3,6 +3,7 @@
   config,
   modulesPath,
   pkgs,
+  inputs,
   ...
 }:
 {
@@ -10,6 +11,8 @@
     "${modulesPath}/virtualisation/amazon-image.nix"
     ./anti-feature.nix
 
+    ./services/bird-lg.nix
+    ./services/dn42.nix
     ./services/forgejo.nix
     ./services/miniflux.nix
     ./services/murmur.nix
@@ -20,14 +23,21 @@
     ./services/vaultwarden.nix
     ./services/wastebin.nix
 
+    ./disko.nix
+    ./preservation.nix
+
     ../../profiles/sing-box-server
     ../../profiles/restic
+
+    inputs.disko.nixosModules.disko
+    inputs.preservation.nixosModules.preservation
+    inputs.self.nixosModules.dn42
   ];
 
   _module.args.ports = import ./ports.nix;
   sops.defaultSopsFile = ./secrets.yaml;
 
-  boot.loader.grub.device = lib.mkForce "/dev/nvme0n1";
+  # boot.loader.grub.device = lib.mkForce "/dev/nvme0n1";
   system.stateVersion = "24.05";
 
   swapDevices = lib.singleton {
@@ -36,6 +46,20 @@
   };
 
   ### Services
+  networking = {
+    firewall.enable = false;
+    useNetworkd = true;
+    useDHCP = false;
+  };
+
+  systemd.network.networks.ethernet = {
+    matchConfig.Name = [
+      "en*"
+      "eth*"
+    ];
+    DHCP = "yes";
+  };
+
   networking.firewall.allowedUDPPorts = [ 443 ];
   networking.firewall.allowedTCPPorts = [
     80
