@@ -73,7 +73,8 @@ in
             "https://matrix.ny4.dev"
             "https://ntfy.ny4.dev"
             "https://pb.ny4.dev"
-            "https://reddit.ny4.dev"
+            # FIXME: too flakey, suppressed
+            # "https://reddit.ny4.dev"
             "https://rss.ny4.dev"
             "https://vault.ny4.dev"
           ];
