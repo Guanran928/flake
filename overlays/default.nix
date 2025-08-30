@@ -7,22 +7,14 @@ _final: prev: {
       # HACK: no more kde stuff
       fcitx5-configtool = prev'.fcitx5-configtool.override { kcmSupport = false; };
 
-      # HACK: no more qtwebengine, opencc
+      # HACK: no more qtwebengine
       fcitx5-chinese-addons =
         (prev'.fcitx5-chinese-addons.override {
-          curl = null;
-          opencc = null;
           qtwebengine = null;
         }).overrideAttrs
           (oldAttrs: {
-            buildInputs = oldAttrs.buildInputs ++ [
-              prev.gettext
-              prev'.qtbase
-            ];
-            cmakeFlags = oldAttrs.cmakeFlags ++ [
+            cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [
               (prev.lib.cmakeBool "ENABLE_BROWSER" false)
-              (prev.lib.cmakeBool "ENABLE_CLOUDPINYIN" false)
-              (prev.lib.cmakeBool "ENABLE_OPENCC" false)
             ];
           });
     }
@@ -40,10 +32,12 @@ _final: prev: {
       gnome-desktop = null;
       gsettings-desktop-schemas = null;
     }).overrideAttrs
-      { mesonFlags = [ (prev.lib.mesonEnable "wallpaper" false) ]; };
+      (oldAttrs: {
+        mesonFlags = (oldAttrs.mesonFlags or [ ]) ++ [ (prev.lib.mesonEnable "wallpaper" false) ];
+      });
 
-  mautrix-telegram = prev.mautrix-telegram.overrideAttrs (old: {
-    patches = (old.patches or [ ]) ++ [
+  mautrix-telegram = prev.mautrix-telegram.overrideAttrs (oldAttrs: {
+    patches = (oldAttrs.patches or [ ]) ++ [
       (prev.fetchpatch2 {
         url = "https://github.com/mautrix/telegram/commit/0c2764e3194fb4b029598c575945060019bad236.patch";
         hash = "sha256-48QiKByX/XKDoaLPTbsi4rrlu9GwZM26/GoJ12RA2qE=";

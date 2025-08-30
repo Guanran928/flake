@@ -39,7 +39,7 @@ window#waybar {
   border-radius: 0;
 }
 
-#workspaces button.focused {
+#workspaces button.active {
   background-color: #64727d;
 }
 

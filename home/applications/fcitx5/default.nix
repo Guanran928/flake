@@ -11,11 +11,15 @@ let
   };
 in
 {
+  # NOTE: not using `i18n.inputMethod.fcitx5` to unset environment variables
   home.packages = [ package ];
 
   systemd.user.services.fcitx5-daemon = {
-    Unit.Description = "Fcitx5 input method editor";
-    Unit.PartOf = [ "graphical-session.target" ];
+    Unit = {
+      Description = "Fcitx5 input method editor";
+      PartOf = [ "graphical-session.target" ];
+      After = [ "graphical-session.target" ];
+    };
     Service.ExecStart = lib.getExe' package "fcitx5";
     Install.WantedBy = [ "graphical-session.target" ];
   };

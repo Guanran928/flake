@@ -68,7 +68,7 @@ workspace "browser"
 workspace "chat"
 workspace "mail"
 
-spawn-at-startup "foot" "-e" "tmux"
+spawn-at-startup "foot" "tmux" "new" "-s" "main"
 spawn-at-startup "zen-beta"
 spawn-at-startup "Telegram"
 spawn-at-startup "thunderbird"
@@ -100,7 +100,7 @@ window-rule {
 
 binds {
     Mod+D                 { spawn "fuzzel"; }
-    Mod+Shift+D           { spawn "sh" "-c" "cliphist list | fuzzel --dmenu --width 50 | cliphist decode | wl-copy"; }
+    Mod+Shift+D           { spawn-sh "cliphist list | fuzzel --dmenu --width 50 | cliphist decode | wl-copy"; }
     Super+Shift+Semicolon { spawn "loginctl" "lock-session"; }
 
     XF86AudioRaiseVolume  allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+"; }

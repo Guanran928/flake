@@ -2,7 +2,7 @@
   "layer": "top",
   "spacing": 4,
   "reload_style_on_change": true,
-  "modules-left": ["niri/workspaces", "niri/window"],
+  "modules-left": ["ext/workspaces", "niri/window"],
   "modules-center": [],
   "modules-right": [
     "mpris",
@@ -15,8 +15,11 @@
     "clock",
     "tray",
   ],
-  "niri/workspaces": {
+  "ext/workspaces": {
     "all-outputs" : true,
+    "sort-by-name": false,
+    "sort-by-coordinates": true,
+    "on-click": "activate",
     "format" : "{icon}",
     "format-icons" : {
       "terminal" : "",
