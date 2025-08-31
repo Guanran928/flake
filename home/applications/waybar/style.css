@@ -55,3 +55,23 @@ window#waybar {
   background-color: #1e5c3a;
   color: #e0e0e0;
 }
+
+#battery.charging,
+#battery.plugged {
+  background-color: #002200;
+}
+
+#battery.critical:not(.charging) {
+  background-color: #300;
+  animation-name: blink;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes blink {
+  to {
+    background-color: #400;
+  }
+}
