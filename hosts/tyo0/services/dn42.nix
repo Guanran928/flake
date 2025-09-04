@@ -33,7 +33,7 @@
             listenPort = last5 asn;
           };
         }
-        # iYoRoy, TYO
+        # IYOROY, TYO
         rec {
           asn = "4242422024";
           address = "fd18:3e15:61d0::3";
@@ -53,7 +53,7 @@
             listenPort = last5 asn;
           };
         }
-        # iEdon, TYO
+        # IEDON, TYO
         rec {
           asn = "4242422189";
           address = "fd42:4242:2189:115::1";
@@ -70,6 +70,16 @@
           wireguard = {
             endpoint = "jp01.dn42.lare.cc:20021";
             pubkey = "oTPdRylNhX2O80e6rLejT9Fwzo7KWKZ7a3PUF4G9oEM=";
+            listenPort = last5 asn;
+          };
+        }
+        # NIGHTCOFFEE, TYO
+        rec {
+          asn = "4242423508";
+          address = "fd82:9700:355e:100::1";
+          wireguard = {
+            endpoint = "jp-tyo.dn42.ydkf.me:35603";
+            pubkey = "gMlu6MvagM0Bvywjv0KXkqHX5JI3zY0rXx1c8Xt2zzc=";
             listenPort = last5 asn;
           };
         }
@@ -93,7 +103,7 @@
             listenPort = last5 asn;
           };
         }
-        # HExpNetwork, HKG
+        # H503MC, HKG
         rec {
           asn = "4242420298";
           address = "fdfa:6ded:ae4:3000::1";
