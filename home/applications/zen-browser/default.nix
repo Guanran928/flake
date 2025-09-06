@@ -40,12 +40,7 @@
       "browser.tabs.inTitlebar" = 0;
     };
 
-    policies.ExtensionSettings = {
-      "*" = {
-        installation_mode = "blocked";
-      };
-    }
-    // lib.listToAttrs (
+    policies.ExtensionSettings = lib.listToAttrs (
       map
         (x: {
           name = x;
