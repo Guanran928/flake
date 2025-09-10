@@ -38,7 +38,7 @@
   sops.defaultSopsFile = ./secrets.yaml;
 
   # boot.loader.grub.device = lib.mkForce "/dev/nvme0n1";
-  system.stateVersion = "24.05";
+  system.stateVersion = "25.05";
 
   swapDevices = lib.singleton {
     device = "/var/lib/swapfile";

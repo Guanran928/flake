@@ -81,7 +81,7 @@
 
   networking.hostName = "dust";
   time.timeZone = "Asia/Shanghai";
-  system.stateVersion = "24.05";
+  system.stateVersion = "25.05";
 
   # TODO: move to 'core' profile
   system.etc.overlay.enable = true;

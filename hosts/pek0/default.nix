@@ -26,7 +26,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.enable = true;
   networking.hostName = "pek0";
-  system.stateVersion = "24.05";
+  system.stateVersion = "25.05";
 
   # Password protected physical TTY access
   sops.secrets."hashed-passwd".neededForUsers = true;

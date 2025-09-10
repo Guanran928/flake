@@ -18,7 +18,7 @@
   _module.args.ports = import ./ports.nix;
   sops.defaultSopsFile = ./secrets.yaml;
 
-  system.stateVersion = "24.05";
+  system.stateVersion = "25.05";
 
   networking.firewall.enable = false;
   networking.firewall.allowedUDPPorts = [ 443 ];
