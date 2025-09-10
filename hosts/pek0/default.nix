@@ -75,7 +75,7 @@
 
   services.postgresql = {
     enable = true;
-    package = pkgs.postgresql_16;
+    package = pkgs.postgresql_17;
     settings = {
       max_connections = 200;
       shared_buffers = "4GB";
@@ -86,7 +86,7 @@
       default_statistics_target = 100;
       random_page_cost = 1.1;
       effective_io_concurrency = 200;
-      work_mem = "5242kB";
+      work_mem = "20164kB";
       huge_pages = "off";
       min_wal_size = "1GB";
       max_wal_size = "4GB";
