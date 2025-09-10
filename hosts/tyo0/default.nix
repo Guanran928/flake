@@ -17,6 +17,7 @@
     ./services/miniflux.nix
     ./services/murmur.nix
     ./services/ntfy.nix
+    ./services/rustical.nix
     ./services/pocket-id.nix
     ./services/prometheus.nix
     ./services/shortlinks.nix

@@ -237,6 +237,16 @@ resource "cloudflare_dns_record" "immich" {
   zone_id = local.cloudflare_zone_id
 }
 
+resource "cloudflare_dns_record" "cal" {
+  content = "tyo0.ny4.dev"
+  name    = "cal.ny4.dev"
+  proxied = true
+  ttl     = 1
+  type    = "CNAME"
+  zone_id = local.cloudflare_zone_id
+}
+
+
 resource "cloudflare_dns_record" "bluesky" {
   content = "\"did=did:plc:s3ii4l6etpymuj5rzz2bondu\""
   name    = "_atproto.ny4.dev"
