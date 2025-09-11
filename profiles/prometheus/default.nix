@@ -2,7 +2,7 @@
 {
   services.prometheus.exporters.node = {
     enable = true;
-    listenAddress = "127.0.0.1";
+    listenAddress = "[::1]";
     port = 9091;
     enabledCollectors = [ "systemd" ];
   };
@@ -27,7 +27,7 @@
         }
         {
           handler = "reverse_proxy";
-          upstreams = lib.singleton { dial = "127.0.0.1:9091"; };
+          upstreams = lib.singleton { dial = "[::1]:9091"; };
         }
       ];
     }

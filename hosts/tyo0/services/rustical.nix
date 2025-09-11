@@ -14,7 +14,7 @@ in
     settings = {
       http = {
         inherit port;
-        host = "127.0.0.1";
+        host = "[::1]";
       };
 
       oidc = {
@@ -39,7 +39,7 @@ in
     match = lib.singleton { host = [ "cal.ny4.dev" ]; };
     handle = lib.singleton {
       handler = "reverse_proxy";
-      upstreams = [ { dial = "127.0.0.1:${toString port}"; } ];
+      upstreams = [ { dial = "[::1]:${toString port}"; } ];
     };
   };
 }

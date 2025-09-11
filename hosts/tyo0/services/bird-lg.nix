@@ -5,7 +5,7 @@ in
 {
   services.bird-lg.frontend = {
     enable = true;
-    listenAddress = "127.0.0.1:${toString port}";
+    listenAddress = "[::1]:${toString port}";
 
     netSpecificMode = "dn42";
     whois = "whois.dn42";
@@ -25,7 +25,7 @@ in
       routes = lib.singleton {
         handle = lib.singleton {
           handler = "reverse_proxy";
-          upstreams = [ { dial = "127.0.0.1:${toString port}"; } ];
+          upstreams = [ { dial = "[::1]:${toString port}"; } ];
         };
       };
     };

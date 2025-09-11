@@ -12,13 +12,13 @@ in
 {
   services.prometheus = {
     enable = true;
-    listenAddress = "127.0.0.1";
+    listenAddress = "[::1]";
     port = ports.prometheus;
     webExternalUrl = "https://prom.ny4.dev";
 
     exporters.blackbox = {
       enable = true;
-      listenAddress = "127.0.0.1";
+      listenAddress = "[::1]";
       port = ports.blackbox;
       configFile = (pkgs.formats.yaml { }).generate "config.yaml" {
         modules.http_2xx = {
@@ -51,7 +51,7 @@ in
       }
       {
         job_name = "blackbox_exporter";
-        static_configs = lib.singleton { targets = [ "127.0.0.1:${toString ports.blackbox}" ]; };
+        static_configs = lib.singleton { targets = [ "[::1]:${toString ports.blackbox}" ]; };
       }
       {
         job_name = "blackbox_probe";
@@ -90,7 +90,7 @@ in
           }
           {
             target_label = "__address__";
-            replacement = "127.0.0.1:${toString ports.blackbox}";
+            replacement = "[::1]:${toString ports.blackbox}";
           }
         ];
       }
@@ -136,13 +136,13 @@ in
     );
 
     alertmanagers = lib.singleton {
-      static_configs = lib.singleton { targets = [ "127.0.0.1:${toString ports.alertmanager}" ]; };
+      static_configs = lib.singleton { targets = [ "[::1]:${toString ports.alertmanager}" ]; };
     };
 
     alertmanager = {
       enable = true;
       checkConfig = false;
-      listenAddress = "127.0.0.1";
+      listenAddress = "[::1]";
       port = ports.alertmanager;
 
       configuration = {
@@ -176,7 +176,7 @@ in
     match = lib.singleton { host = [ "prom.ny4.dev" ]; };
     handle = lib.singleton {
       handler = "reverse_proxy";
-      upstreams = [ { dial = "127.0.0.1:${toString ports.prometheus}"; } ];
+      upstreams = [ { dial = "[::1]:${toString ports.prometheus}"; } ];
     };
   };
 }

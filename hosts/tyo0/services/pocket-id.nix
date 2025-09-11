@@ -1,16 +1,10 @@
-{ lib, ports, ... }:
-let
-  port = ports.pocket-id;
-in
+{ lib,  ... }:
 {
   services.pocket-id = {
     enable = true;
     settings = {
       APP_URL = "https://id.ny4.dev";
       TRUST_PROXY = true;
-      HOST = "127.0.0.1";
-      PORT = port;
-
       UNIX_SOCKET = "/run/pocket-id/pocket-id.sock";
       UNIX_SOCKET_MODE = "0660";
 

@@ -6,7 +6,7 @@
       credentialsFile = config.sops.secrets."cloudflared/secret".path;
       default = "http_status:404";
       ingress = lib.genAttrs [ "mastodon.ny4.dev" "matrix.ny4.dev" "immich.ny4.dev" "pek0.ny4.dev" ] (
-        _: "http://localhost"
+        _: "http://[::1]"
       );
     };
   };
