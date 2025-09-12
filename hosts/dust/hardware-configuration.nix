@@ -8,6 +8,12 @@
     sof-firmware
   ];
 
+  # https://www.phoronix.com/review/intel-mtl-i915-xe-linux
+  boot.kernelParams = [
+    "i915.force_probe=!7d55"
+    "xe.force_probe=7d55"
+  ];
+
   services.fwupd.enable = true;
   services.fprintd.enable = true;
 
