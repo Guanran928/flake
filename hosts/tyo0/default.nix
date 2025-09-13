@@ -197,41 +197,36 @@
         handler = "subroute";
         routes = [
           {
-            match = [ { "path" = [ "/*/olm.wasm" ]; } ];
-            handle = lib.singleton {
-              handler = "rewrite";
-              uri = "/olm.wasm";
-            };
-          }
-          {
-            match = lib.singleton {
-              not = [
-                { path = [ "/index.html" ]; }
-                { path = [ "/public/*" ]; }
-                { path = [ "/assets/*" ]; }
-                { path = [ "/config.json" ]; }
-                { path = [ "/manifest.json" ]; }
-                { path = [ "/pdf.worker.min.js" ]; }
-                { path = [ "/olm.wasm" ]; }
-              ];
-              path = [ "/*" ];
-            };
-            handle = lib.singleton {
-              handler = "rewrite";
-              uri = "/index.html";
-            };
-          }
-          {
-            handle = lib.singleton {
-              handler = "file_server";
-              root = pkgs.cinny.override {
-                conf = {
-                  defaultHomeserver = 0;
-                  homeserverList = [ "ny4.dev" ];
+            handle = [
+              {
+                handler = "vars";
+                root = pkgs.cinny.override {
+                  conf = {
+                    defaultHomeserver = 0;
+                    homeserverList = [ "ny4.dev" ];
+                  };
                 };
-              };
-            };
+              }
+            ];
           }
+          {
+            match = [
+              {
+                file.try_files = [
+                  "{http.request.uri.path}"
+                  "/"
+                  "index.html"
+                ];
+              }
+            ];
+            handle = [
+              {
+                handler = "rewrite";
+                uri = "{http.matchers.file.relative}";
+              }
+            ];
+          }
+          { handle = lib.singleton { handler = "file_server"; }; }
         ];
       };
     }

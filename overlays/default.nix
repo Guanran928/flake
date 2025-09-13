@@ -9,13 +9,9 @@ _final: prev: {
 
       # HACK: no more qtwebengine
       fcitx5-chinese-addons =
-        (prev'.fcitx5-chinese-addons.override {
-          qtwebengine = null;
-        }).overrideAttrs
+        (prev'.fcitx5-chinese-addons.override { qtwebengine = null; }).overrideAttrs
           (oldAttrs: {
-            cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [
-              (prev.lib.cmakeBool "ENABLE_BROWSER" false)
-            ];
+            cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [ (prev.lib.cmakeBool "ENABLE_BROWSER" false) ];
           });
     }
   );
