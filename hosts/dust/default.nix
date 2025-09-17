@@ -117,6 +117,7 @@
     neovim.package = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.neovim;
     seahorse.enable = true;
     ssh.enableAskPassword = true;
+    yubikey-manager.enable = true;
   };
 
   services = {
@@ -130,10 +131,6 @@
       extraDaemonFlags = [ "--no-logs-no-support" ];
     };
     speechd.enable = false;
-
-    # yubikey
-    pcscd.enable = true;
-    udev.packages = [ pkgs.yubikey-personalization ];
   };
 
   fonts = {

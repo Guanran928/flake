@@ -41,7 +41,6 @@
       seahorse
       telegram-desktop
       wl-clipboard
-      yubikey-manager
     ])
     ++ [ inputs.rdict.packages.${pkgs.stdenv.hostPlatform.system}.default ];
 }
