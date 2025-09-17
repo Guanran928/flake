@@ -21,7 +21,7 @@ in
         {
           type = "vless";
           tag = "inbound";
-          listen = "0.0.0.0";
+          listen = "::";
           listen_port = 27253;
           users = {
             _secret = config.sops.secrets."sing-box/auth".path;

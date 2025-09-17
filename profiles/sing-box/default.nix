@@ -19,17 +19,17 @@ in
       dns = {
         servers = [
           {
-            # FIXME: it errors if I use `detour = "select";` or `type = "https";`
             type = "tls";
             tag = "cloudflare";
             server = "[2606:4700:4700::1111]";
-            detour = "direct";
           }
           {
             type = "local";
             tag = "local";
           }
         ];
+
+        strategy = "prefer_ipv6";
         final = "cloudflare";
       };
 
@@ -50,8 +50,8 @@ in
           flow = "xtls-rprx-vision";
           tls.enabled = true;
           domain_resolver = {
-            server = "cloudflare";
-            strategy = "prefer_ipv6";
+            server = "local";
+            strategy = "prefer_ipv4";
           };
         }) proxyServers
         ++ [
@@ -106,6 +106,7 @@ in
           }
         ];
 
+        default_domain_resolver = "local";
         final = "select";
       };
     };

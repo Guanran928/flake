@@ -129,6 +129,7 @@
       openFirewall = true;
       extraDaemonFlags = [ "--no-logs-no-support" ];
     };
+    speechd.enable = false;
 
     # yubikey
     pcscd.enable = true;
