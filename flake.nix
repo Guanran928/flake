@@ -45,6 +45,12 @@
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware";
     };
+    nix-minecraft = {
+      url = "github:Infinidoge/nix-minecraft";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-compat.follows = "flake-compat";
+      inputs.flake-utils.follows = "flake-utils";
+    };
     preservation = {
       url = "github:WilliButz/preservation";
     };

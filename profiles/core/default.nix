@@ -1,7 +1,6 @@
 { inputs, pkgs, ... }:
 {
   imports = [
-    ./hardening.nix
     ./networking.nix
     ./nix.nix
     ./zram.nix
@@ -22,6 +21,7 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelParams = [ "ia32_emulation=0" ];
 
+  environment.etc.machine-id.text = "b08dfa6083e7567a1921a715000001fb"; # whonix id
   environment.systemPackages = with pkgs; [
     unzip
     tree
@@ -29,7 +29,6 @@
     htop
 
     lsof
-    ltrace
     strace
 
     dnsutils

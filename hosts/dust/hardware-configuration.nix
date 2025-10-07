@@ -9,6 +9,7 @@
   ];
 
   # https://www.phoronix.com/review/intel-mtl-i915-xe-linux
+  hardware.intelgpu.driver = "xe";
   boot.kernelParams = [
     "i915.force_probe=!7d55"
     "xe.force_probe=7d55"

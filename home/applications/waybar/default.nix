@@ -32,8 +32,8 @@
       After = [ config.wayland.systemd.target ];
       ConditionEnvironment = "WAYLAND_DISPLAY";
       X-Restart-Triggers = [
-        config.xdg.configFile."waybar/config.jsonc".source
-        config.xdg.configFile."waybar/style.css".source
+        (toString config.xdg.configFile."waybar/config.jsonc".source)
+        (toString config.xdg.configFile."waybar/style.css".source)
       ];
     };
 

@@ -23,6 +23,9 @@
     preservation.nixosModules.preservation
   ]);
 
+  system.nixos-init.enable = true;
+  networking.firewall.enable = false;
+
   sops = {
     age.keyFile = "/persist/home/guanranwang/.config/sops/age/keys.txt";
     defaultSopsFile = ./secrets.yaml;
@@ -136,45 +139,34 @@
   fonts = {
     enableDefaultPackages = false;
     packages = with pkgs; [
-      (inter.overrideAttrs {
-        installPhase = ''
-          runHook preInstall
-          install -Dt $out/share/fonts/truetype/ InterVariable*.ttf
-          runHook postInstall
-        '';
-      })
-      (source-serif.overrideAttrs {
-        installPhase = ''
-          runHook preInstall
-          install -Dt $out/share/fonts/variable/ VAR/*.otf
-          runHook postInstall
-        '';
-      })
+      inter
       iosevka
       nerd-fonts.symbols-only
       noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
       noto-fonts-color-emoji
-      source-han-sans-vf-otf
-      source-han-serif-vf-otf
     ];
     fontconfig = {
       defaultFonts = {
         emoji = [ "Noto Color Emoji" ];
-        # Append emoji font for Qt apps, they might use the monochrome emoji
+        # NOTE: Append emoji font for Qt apps, they might use the monochrome emoji
         monospace = [
           "Iosevka"
-          "Source Han Sans SC VF"
+          "Noto Sans"
+          "Noto Sans CJK SC"
           "Symbols Nerd Font"
           "Noto Color Emoji"
         ];
         sansSerif = [
-          "Inter Variable"
-          "Source Han Sans SC VF"
+          "Inter"
+          "Noto Sans"
+          "Noto Sans CJK SC"
           "Noto Color Emoji"
         ];
         serif = [
-          "Source Serif 4 Variable"
-          "Source Han Serif SC VF"
+          "Noto Serif"
+          "Noto Serif CJK SC"
           "Noto Color Emoji"
         ];
       };

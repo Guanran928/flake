@@ -45,25 +45,9 @@
       in
       {
         gi = "lazygit";
-        p = "powerprofilesctl";
         s = "nh os switch";
-        t = "tmux";
-        ta = "tmux attach";
         v = "nvim";
         yd = "rdict";
-
-        # TODO: maybe fishPlugins.fish-git-abbr?
-        g = "git";
-        ga = "git add";
-        gac = cursor "git commit -am '%'";
-        gc = cursor "git commit -m '%'";
-        gca = "git commit --amend";
-        gd = "git diff";
-        gds = "git diff --staged";
-        gl = "git log";
-        gp = "git pull";
-        gpu = "git push";
-        gr = "git rebase -i --autosquash";
 
         n = "nix";
         nb = cursor "nix build nixpkgs#%";
@@ -75,27 +59,16 @@
         nv = "nix eval";
       };
 
-    functions =
+    functions.pb =
       let
         jq = lib.getExe pkgs.jq;
-        nix = lib.getExe pkgs.nix;
         curl = lib.getExe pkgs.curl;
       in
-      {
-        "pb" =
-          # fish
-          ''
-            ${jq} -Rns '{text: inputs}' | \
-              ${curl} -s -H 'Content-Type: application/json' --data-binary @- https://pb.ny4.dev | \
-              ${jq} -r '. | "https://pb.ny4.dev\(.path)"'
-          '';
-
-        "getmnter" =
-          # fish
-          ''
-            ${nix} eval nixpkgs#{$argv}.meta.maintainers --json | \
-              ${jq} '.[].github | "@" + .' -r
-          '';
-      };
+      # fish
+      ''
+        ${jq} -Rns '{text: inputs}' | \
+          ${curl} -s -H 'Content-Type: application/json' --data-binary @- https://pb.ny4.dev | \
+          ${jq} -r '. | "https://pb.ny4.dev\(.path)"'
+      '';
   };
 }

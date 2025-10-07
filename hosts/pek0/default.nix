@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 {
   imports = [
     # OS
@@ -18,7 +23,8 @@
     ./services/minecraft.nix
     ./services/samba.nix
     ./services/transmission.nix
-  ];
+  ]
+  ++ (with inputs; [ nix-minecraft.nixosModules.minecraft-servers ]);
 
   _module.args.ports = import ./ports.nix;
   sops.defaultSopsFile = ./secrets.yaml;
