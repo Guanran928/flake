@@ -1,6 +1,5 @@
 {
   lib,
-  inputs,
   pkgs,
   ...
 }:
@@ -27,9 +26,7 @@
       After = [ "graphical-session.target" ];
     };
     Service = {
-      ExecStart = "${lib.getExe pkgs.swaybg} -i ${
-        inputs.self.legacyPackages.${pkgs.stdenv.hostPlatform.system}.background
-      } -m fill";
+      ExecStart = "${lib.getExe pkgs.swaybg} -i ${pkgs.nixos-artwork.wallpapers.nineish-dark-gray.src} -m fill";
       Restart = "on-failure";
     };
   };

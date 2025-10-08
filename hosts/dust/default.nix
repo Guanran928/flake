@@ -215,7 +215,7 @@
     };
   };
 
-  security.pam.services.swaylock = { };
+  programs.gtklock.enable = true;
 
   xdg.portal = {
     enable = true;

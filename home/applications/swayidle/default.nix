@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, osConfig, ... }:
 {
   services.swayidle = {
     enable = true;
@@ -11,7 +11,7 @@
     events = [
       {
         event = "lock";
-        command = lib.getExe config.programs.swaylock.package;
+        command = lib.getExe osConfig.programs.gtklock.package;
       }
       {
         event = "before-sleep";
