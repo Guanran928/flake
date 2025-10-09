@@ -213,7 +213,13 @@
     };
   };
 
-  programs.gtklock.enable = true;
+  programs.gtklock = {
+    enable = true;
+    modules = with pkgs; [
+      gtklock-playerctl-module
+      gtklock-powerbar-module
+    ];
+  };
 
   xdg.portal = {
     enable = true;
