@@ -52,6 +52,7 @@
     tree
     file
     htop
+    tmux
 
     lsof
     strace
@@ -60,6 +61,8 @@
     pciutils
     usbutils
   ];
+
+  environment.etc."tmux.conf".source = ./tmux.conf;
 
   users.mutableUsers = false;
   services.userborn.enable = true;
