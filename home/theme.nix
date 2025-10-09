@@ -1,9 +1,4 @@
-{
-  pkgs,
-  config,
-  lib,
-  ...
-}:
+{ pkgs, config, ... }:
 {
   home.pointerCursor = {
     name = "Adwaita";
@@ -15,6 +10,7 @@
   gtk = {
     enable = true;
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+    gtk4.theme = null;
 
     iconTheme = {
       name = "Adwaita";
@@ -29,28 +25,20 @@
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {
-      "color-scheme" = "prefer-dark";
+      color-scheme = "prefer-dark";
     };
-
-    # Make GTK listen to fontconfig
     "org/gnome/desktop/wm/preferences" = {
-      "titlebar-font" = "Sans Bold 11";
+      titlebar-font = "Sans Bold 11";
+      button-layout = "appmenu:";
     };
     "org/gnome/desktop/interface" = {
-      "font-name" = "Sans 11";
-      "document-font-name" = "Sans 11";
-      "monospace-font-name" = "Monospace 10";
+      font-name = "Sans 11";
+      document-font-name = "Sans 11";
+      monospace-font-name = "Monospace 10";
     };
   };
-
-  # https://github.com/nix-community/home-manager/commit/e9b9ecef4295a835ab073814f100498716b05a96
-  xdg.configFile."gtk-4.0/gtk.css".text = lib.mkForce config.gtk.gtk4.extraCss;
 
   # Declutter $HOME
   home.file.".icons/default/index.theme".enable = false;
   home.file.".icons/${config.home.pointerCursor.name}".enable = false;
-
-  home.sessionVariables = {
-    QT_QPA_PLATFORMTHEME = "gtk3";
-  };
 }

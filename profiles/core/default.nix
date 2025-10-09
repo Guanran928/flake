@@ -1,4 +1,9 @@
-{ inputs, pkgs, ... }:
+{
+  lib,
+  inputs,
+  pkgs,
+  ...
+}:
 {
   imports = [
     ./networking.nix
@@ -7,13 +12,33 @@
   ]
   ++ (with inputs; [ sops-nix.nixosModules.sops ]);
 
-  nixpkgs = {
-    overlays = [ inputs.self.overlays.default ];
-    config = {
-      allowAliases = false;
-      allowNonSource = false;
-      allowUnfree = false;
-    };
+  nixpkgs.config = {
+    allowAliases = false;
+    allowNonSource = false;
+
+    allowNonSourcePredicate =
+      pkg:
+      lib.elem (lib.getName pkg) [
+        "cargo-bootstrap"
+        "cef-binary"
+        "dart"
+        "go"
+        "rustc-bootstrap"
+        "rustc-bootstrap-wrapper"
+        "sof-firmware"
+        "temurin-bin"
+        "zen-beta"
+        "minecraft-server"
+      ];
+
+    allowUnfreePredicate =
+      pkg:
+      lib.elem (lib.getName pkg) [
+        "fcitx5-pinyin-minecraft"
+        "fcitx5-pinyin-moegirl"
+      ];
+
+    permittedInsecurePackages = [ "olm-3.2.16" ];
   };
 
   boot.enableContainers = false;
@@ -40,7 +65,6 @@
   services.userborn.enable = true;
   environment.stub-ld.enable = false;
 
-  programs.command-not-found.enable = false;
   programs.nano.enable = false;
   programs.neovim = {
     enable = true;
@@ -50,7 +74,6 @@
   # https://archlinux.org/news/making-dbus-broker-our-default-d-bus-daemon/
   services.dbus.implementation = "broker";
 
-  security.sudo.execWheelOnly = true;
   security.sudo.extraConfig = ''
     Defaults lecture = never
   '';

@@ -27,8 +27,6 @@
     };
   };
 
-  programs.gh.enable = true;
-
   programs.lazygit = {
     enable = true;
     settings = {

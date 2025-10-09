@@ -10,10 +10,8 @@
     ../../profiles/restic
     ../../profiles/sing-box
 
-    ./anti-feature.nix
     ./disko.nix
     ./hardware-configuration.nix
-    ./lanzaboote.nix
     ./preservation.nix
   ]
   ++ (with inputs; [

@@ -36,6 +36,10 @@
           ]
         );
 
+    shellAliases = {
+      ls = "eza --icons";
+    };
+
     shellAbbrs =
       let
         cursor = f: {

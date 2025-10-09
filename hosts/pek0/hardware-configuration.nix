@@ -8,6 +8,9 @@
     inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
   ];
 
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.enable = true;
+
   services.thermald.enable = true;
   fileSystems = {
     "/" = {

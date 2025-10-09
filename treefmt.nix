@@ -10,13 +10,19 @@
     terraform.enable = true;
   };
 
-  settings.formatter.nixfmt.options = [ "--strict" ];
+  settings.formatter = {
+    nixfmt = {
+      options = [ "--strict" ];
+    };
 
-  settings.formatter.just.includes = [ "infra/justfile" ];
+    just = {
+      includes = [ "infra/justfile" ];
+    };
 
-  settings.formatter.prettier.excludes = [
-    "**/secrets.yaml"
-    "infra/data.json"
-    "secrets.yaml"
-  ];
+    prettier.excludes = [
+      "**/secrets.yaml"
+      "infra/data.json"
+      "secrets.yaml"
+    ];
+  };
 }

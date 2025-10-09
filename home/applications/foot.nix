@@ -3,10 +3,18 @@
   programs.foot = {
     enable = true;
     settings = {
-      main.font = "monospace:size=10";
-      main.resize-by-cells = false;
-      cursor.style = "beam";
-      url.label-letters = "aoeuhtns";
+      main = {
+        font = "monospace:size=10";
+        resize-by-cells = false;
+      };
+
+      cursor = {
+        style = "beam";
+      };
+
+      url = {
+        label-letters = "aoeuhtns";
+      };
 
       # kanagawa-dragon
       colors = {

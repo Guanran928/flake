@@ -4,10 +4,8 @@
     enable = true;
     config = {
       ao = "pipewire";
-      # FIXME: freezes the entire WM
-      # vo = "gpu-next";
-      # FIXME: using VAAPI sometimes can cause address boundary error
-      # hwdec = "auto-safe";
+      vo = "gpu-next";
+      hwdec = "auto-safe";
       profile = "high-quality";
 
       alang = "jpn,ja";

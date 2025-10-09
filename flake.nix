@@ -160,10 +160,6 @@
         # nix flake check
         checks.formatting = treefmtEval.config.build.check inputs.self;
 
-        # nix {run,shell,build}
-        # NOTE: 301: All packages are migrated to `github:Guanran928/nur-packages`.
-        legacyPackages = { };
-
         # nix develop
         devShells.default = pkgs.mkShellNoCC {
           packages = with pkgs; [
@@ -184,8 +180,6 @@
       }
     )
     // {
-      overlays.default = import ./overlays;
-
       nixosModules = import ./modules;
 
       nixosConfigurations = {
