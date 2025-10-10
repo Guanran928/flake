@@ -1,4 +1,9 @@
-{ config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 {
   services.caddy.enable = true;
   services.caddy.settings.apps.http.servers.srv0 = {
@@ -36,4 +41,132 @@
   };
 
   systemd.services.caddy.serviceConfig.SupplementaryGroups = [ config.users.groups.anubis.name ];
+
+  services.caddy.settings.apps.http.servers.srv0.routes = [
+    {
+      match = lib.singleton {
+        host = [ "ny4.dev" ];
+        path = [ "/.well-known/matrix/server" ];
+      };
+      handle = lib.singleton {
+        handler = "static_response";
+        status_code = 200;
+        headers = {
+          Access-Control-Allow-Origin = [ "*" ];
+          Content-Type = [ "application/json" ];
+        };
+        body = builtins.toJSON { "m.server" = "matrix.ny4.dev:443"; };
+      };
+    }
+    {
+      match = lib.singleton {
+        host = [ "ny4.dev" ];
+        path = [ "/.well-known/matrix/client" ];
+      };
+      handle = lib.singleton {
+        handler = "static_response";
+        status_code = 200;
+        headers = {
+          Access-Control-Allow-Origin = [ "*" ];
+          Content-Type = [ "application/json" ];
+        };
+        body = builtins.toJSON {
+          "m.homeserver" = {
+            "base_url" = "https://matrix.ny4.dev";
+          };
+        };
+      };
+    }
+    {
+      match = lib.singleton {
+        host = [ "ny4.dev" ];
+        path = [ "/.well-known/webfinger" ];
+      };
+      handle = lib.singleton {
+        handler = "static_response";
+        status_code = 301;
+        headers = {
+          Access-Control-Allow-Origin = [ "*" ];
+          Location = [ "https://mastodon.ny4.dev{http.request.uri}" ];
+        };
+      };
+    }
+    {
+      match = lib.singleton { host = [ "ny4.dev" ]; };
+      handle = lib.singleton {
+        handler = "static_response";
+        status_code = 302;
+        headers = {
+          Location = [ "https://blog.ny4.dev" ];
+        };
+      };
+    }
+    {
+      match = lib.singleton { host = [ "element.ny4.dev" ]; };
+      handle = [
+        {
+          handler = "headers";
+          response.set = {
+            X-Frame-Options = [ "SAMEORIGIN" ];
+            X-Content-Type-Options = [ "nosniff" ];
+            X-XSS-Protection = [ "1; mode=block" ];
+            Content-Security-Policy = [ "frame-ancestors 'self'" ];
+          };
+        }
+        {
+          handler = "file_server";
+          root = pkgs.element-web.override {
+            conf = {
+              default_server_config."m.homeserver" = {
+                base_url = "https://matrix.ny4.dev";
+                server_name = "ny4.dev";
+              };
+              enable_presence_by_hs_url = {
+                "https://matrix.ny4.dev" = false;
+              };
+            };
+          };
+        }
+      ];
+    }
+    {
+      match = lib.singleton { host = [ "cinny.ny4.dev" ]; };
+      handle = lib.singleton {
+        handler = "subroute";
+        routes = [
+          {
+            handle = [
+              {
+                handler = "vars";
+                root = pkgs.cinny.override {
+                  conf = {
+                    defaultHomeserver = 0;
+                    homeserverList = [ "ny4.dev" ];
+                  };
+                };
+              }
+            ];
+          }
+          {
+            match = [
+              {
+                file.try_files = [
+                  "{http.request.uri.path}"
+                  "/"
+                  "index.html"
+                ];
+              }
+            ];
+            handle = [
+              {
+                handler = "rewrite";
+                uri = "{http.matchers.file.relative}";
+              }
+            ];
+          }
+          { handle = lib.singleton { handler = "file_server"; }; }
+        ];
+      };
+    }
+  ];
 }

@@ -57,24 +57,6 @@ resource "cloudflare_dns_record" "sin0_v6" {
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_dns_record" "tyo0_v4" {
-  content = module.aws["tyo0"].ipv4
-  name    = "tyo0.ny4.dev"
-  proxied = false
-  ttl     = 1
-  type    = "A"
-  zone_id = local.cloudflare_zone_id
-}
-
-resource "cloudflare_dns_record" "tyo0_v6" {
-  content = module.aws["tyo0"].ipv6
-  name    = "tyo0.ny4.dev"
-  proxied = false
-  ttl     = 1
-  type    = "AAAA"
-  zone_id = local.cloudflare_zone_id
-}
-
 resource "cloudflare_dns_record" "blog" {
   content = "guanran928.github.io"
   name    = "blog.ny4.dev"
@@ -85,7 +67,7 @@ resource "cloudflare_dns_record" "blog" {
 }
 
 resource "cloudflare_dns_record" "cinny" {
-  content = "tyo0.ny4.dev"
+  content = "sin0.ny4.dev"
   name    = "cinny.ny4.dev"
   proxied = true
   ttl     = 1
@@ -94,7 +76,7 @@ resource "cloudflare_dns_record" "cinny" {
 }
 
 resource "cloudflare_dns_record" "element" {
-  content = "tyo0.ny4.dev"
+  content = "sin0.ny4.dev"
   name    = "element.ny4.dev"
   proxied = true
   ttl     = 1
@@ -103,7 +85,7 @@ resource "cloudflare_dns_record" "element" {
 }
 
 resource "cloudflare_dns_record" "git" {
-  content = "tyo0.ny4.dev"
+  content = "pek0.ny4.dev"
   name    = "git.ny4.dev"
   proxied = true
   ttl     = 1
@@ -112,7 +94,7 @@ resource "cloudflare_dns_record" "git" {
 }
 
 resource "cloudflare_dns_record" "id" {
-  content = "tyo0.ny4.dev"
+  content = "pek0.ny4.dev"
   name    = "id.ny4.dev"
   proxied = true
   ttl     = 1
@@ -147,17 +129,8 @@ resource "cloudflare_dns_record" "matrix" {
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_dns_record" "ntfy" {
-  content = "tyo0.ny4.dev"
-  name    = "ntfy.ny4.dev"
-  proxied = true
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = local.cloudflare_zone_id
-}
-
 resource "cloudflare_dns_record" "apex" {
-  content = "tyo0.ny4.dev"
+  content = "sin0.ny4.dev"
   name    = "ny4.dev"
   proxied = true
   ttl     = 1
@@ -166,7 +139,7 @@ resource "cloudflare_dns_record" "apex" {
 }
 
 resource "cloudflare_dns_record" "pb" {
-  content = "tyo0.ny4.dev"
+  content = "pek0.ny4.dev"
   name    = "pb.ny4.dev"
   proxied = true
   ttl     = 1
@@ -175,7 +148,7 @@ resource "cloudflare_dns_record" "pb" {
 }
 
 resource "cloudflare_dns_record" "prom" {
-  content = "tyo0.ny4.dev"
+  content = "pek0.ny4.dev"
   name    = "prom.ny4.dev"
   proxied = true
   ttl     = 1
@@ -193,7 +166,7 @@ resource "cloudflare_dns_record" "reddit" {
 }
 
 resource "cloudflare_dns_record" "rss" {
-  content = "tyo0.ny4.dev"
+  content = "pek0.ny4.dev"
   name    = "rss.ny4.dev"
   proxied = true
   ttl     = 1
@@ -202,7 +175,7 @@ resource "cloudflare_dns_record" "rss" {
 }
 
 resource "cloudflare_dns_record" "vault" {
-  content = "tyo0.ny4.dev"
+  content = "pek0.ny4.dev"
   name    = "vault.ny4.dev"
   proxied = true
   ttl     = 1
@@ -211,7 +184,7 @@ resource "cloudflare_dns_record" "vault" {
 }
 
 resource "cloudflare_dns_record" "www" {
-  content = "tyo0.ny4.dev"
+  content = "sin0.ny4.dev"
   name    = "www.ny4.dev"
   proxied = true
   ttl     = 1
@@ -238,7 +211,7 @@ resource "cloudflare_dns_record" "immich" {
 }
 
 resource "cloudflare_dns_record" "cal" {
-  content = "tyo0.ny4.dev"
+  content = "pek0.ny4.dev"
   name    = "cal.ny4.dev"
   proxied = true
   ttl     = 1
@@ -246,6 +219,23 @@ resource "cloudflare_dns_record" "cal" {
   zone_id = local.cloudflare_zone_id
 }
 
+resource "cloudflare_dns_record" "bird-lg" {
+  content = "sin0.ny4.dev"
+  name    = "bird-lg.ny4.dev"
+  proxied = true
+  ttl     = 1
+  type    = "CNAME"
+  zone_id = local.cloudflare_zone_id
+}
+
+resource "cloudflare_dns_record" "nix" {
+  content = "sin0.ny4.dev"
+  name    = "nix.ny4.dev"
+  proxied = true
+  ttl     = 1
+  type    = "CNAME"
+  zone_id = local.cloudflare_zone_id
+}
 
 resource "cloudflare_dns_record" "bluesky" {
   content = "\"did=did:plc:s3ii4l6etpymuj5rzz2bondu\""

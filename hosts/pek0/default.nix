@@ -14,15 +14,22 @@
     ./hardware-configuration.nix
 
     # Services
-    ./services/postgresql.nix
     ./services/cloudflared.nix
+    ./services/forgejo.nix
     ./services/immich.nix
     ./services/mastodon.nix
     ./services/matrix.nix
     ./services/mautrix.nix
     ./services/minecraft.nix
+    ./services/miniflux.nix
+    ./services/pocket-id.nix
+    ./services/postgresql.nix
+    ./services/prometheus.nix
+    ./services/rustical.nix
     ./services/samba.nix
     ./services/transmission.nix
+    ./services/vaultwarden.nix
+    ./services/wastebin.nix
   ]
   ++ (with inputs; [ nix-minecraft.nixosModules.minecraft-servers ]);
 
@@ -61,6 +68,8 @@
     openFirewall = true;
     extraDaemonFlags = [ "--no-logs-no-support" ];
   };
+
+  systemd.services.caddy.serviceConfig.SupplementaryGroups = [ config.users.groups.anubis.name ];
 
   services.caddy.enable = true;
   services.caddy.settings.apps.http.servers.srv0 = {

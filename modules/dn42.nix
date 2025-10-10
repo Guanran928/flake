@@ -269,7 +269,7 @@ in
     ################################################
     services.bird-lg.proxy = {
       enable = true;
-      listenAddress = "[::]:${toString cfg.lgPort}";
+      listenAddresses = "[::]:${toString cfg.lgPort}";
     };
   };
 }

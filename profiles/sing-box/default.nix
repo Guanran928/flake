@@ -59,7 +59,7 @@ in
             type = "selector";
             tag = "select";
             outbounds = lib.attrNames proxyServers ++ [ "direct" ];
-            default = "tyo0";
+            default = "sin0";
           }
           {
             type = "direct";

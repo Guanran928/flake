@@ -23,6 +23,16 @@
         last5 = x: builtins.substring ((builtins.stringLength x) - 5) 5 x;
       in
       [
+        # BINGXIN, SIN
+        rec {
+          asn = "4242423374";
+          address = "fddf:3681:e80::227";
+          wireguard = {
+            endpoint = "sg01.dn42.baka.pub:20021";
+            pubkey = "O3zvtZQNT6InSXgYDloIuQ4jP6PHO06WtsKz6coylBs=";
+            listenPort = last5 asn;
+          };
+        }
         # iEdon, SIN
         rec {
           asn = "4242422189";

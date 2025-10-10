@@ -71,7 +71,6 @@ in
             "https://ip.ny4.dev"
             "https://mastodon.ny4.dev"
             "https://matrix.ny4.dev"
-            "https://ntfy.ny4.dev"
             "https://pb.ny4.dev"
             # FIXME: too flakey, suppressed
             # "https://reddit.ny4.dev"
@@ -146,14 +145,25 @@ in
       port = ports.alertmanager;
 
       configuration = {
-        receivers = lib.singleton {
-          name = "telegram";
-          telegram_configs = lib.singleton {
-            bot_token_file = "/run/credentials/alertmanager.service/telegram";
-            chat_id = 7672225115;
-          };
+        global.http_config = {
+          proxy_url = config.networking.proxy.httpsProxy;
         };
-        route.receiver = "telegram";
+
+        route = {
+          receiver = "telegram";
+        };
+
+        receivers = [
+          {
+            name = "telegram";
+            telegram_configs = [
+              {
+                bot_token_file = "/run/credentials/alertmanager.service/telegram";
+                chat_id = 7672225115;
+              }
+            ];
+          }
+        ];
       };
     };
   };

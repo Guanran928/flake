@@ -10,8 +10,6 @@
 
     ./disko.nix
     ./preservation.nix
-
-    ../restic
   ]
   ++ (with inputs; [
     disko.nixosModules.disko

@@ -5,17 +5,14 @@ in
 {
   services.bird-lg.frontend = {
     enable = true;
-    listenAddress = "[::1]:${toString port}";
+    listenAddresses = "[::1]:${toString port}";
 
     netSpecificMode = "dn42";
     whois = "whois.dn42";
 
     domain = "ny4.dev";
     proxyPort = 4200; # FIXME: this is hard-coded
-    servers = [
-      "tyo0"
-      "sin0"
-    ];
+    servers = [ "sin0" ];
   };
 
   services.caddy.settings.apps.http.servers.srv0.routes = lib.singleton {

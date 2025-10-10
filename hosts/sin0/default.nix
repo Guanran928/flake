@@ -3,11 +3,15 @@
   imports = [
     ./services/telegram-bot/danbooru_img_bot.nix
     ./services/telegram-bot/ny4_rdict_bot.nix
+
+    ./services/bird-lg.nix
     ./services/caddy.nix
     ./services/chicken-box.nix
     ./services/dn42.nix
     ./services/ip-checker.nix
+    ./services/nixpkgs-tracker.nix
     ./services/redlib.nix
+    ./services/shortlinks.nix
 
     ../../profiles/sing-box-server
 
