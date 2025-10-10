@@ -8,6 +8,8 @@
     prettier.enable = true;
     statix.enable = true;
     terraform.enable = true;
+    stylua.enable = true;
+    taplo.enable = true;
   };
 
   settings.formatter = {

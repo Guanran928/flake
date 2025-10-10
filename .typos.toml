@@ -1,7 +1,5 @@
 [files]
-extend-exclude = [
-  "secrets.yaml",
-]
+extend-exclude = ["secrets.yaml"]
 
 [default.extend-words]
 # osu

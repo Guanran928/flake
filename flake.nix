@@ -89,10 +89,6 @@
       inputs.systems.follows = "systems";
       inputs.treefmt-nix.follows = "treefmt-nix";
     };
-    neovim = {
-      url = "https://git.ny4.dev/nyancat/nvim/archive/master.tar.gz";
-      flake = false;
-    };
     rdict = {
       url = "github:Guanran928/rdict";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -172,9 +168,15 @@
                 vultr
               ]
             ))
+
             colmena
             just
             sops
+
+            lua-language-server
+            nil
+            nixfmt
+            stylua
           ];
         };
       }

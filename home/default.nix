@@ -37,6 +37,7 @@
       deadnix
       eza
       fd
+      gcc
       jq
       libnotify
       loupe
@@ -131,7 +132,7 @@
   '';
 
   xdg.configFile."nvim" = {
-    source = inputs.neovim;
+    source = ./applications/nvim;
     recursive = true;
   };
 }

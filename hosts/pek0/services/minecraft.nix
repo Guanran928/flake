@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  config,
   inputs,
   ...
 }:
@@ -10,10 +9,10 @@
     enable = true;
     eula = true;
     openFirewall = true;
-    servers.survival = {
+    servers.survival = rec {
       enable = true;
       package =
-        inputs.nix-minecraft.legacyPackages.${pkgs.stdenv.hostPlatform.system}.fabricServers.fabric;
+        inputs.nix-minecraft.legacyPackages.${pkgs.stdenv.hostPlatform.system}.fabricServers.fabric-1_21_8;
 
       # Aikar's flag
       # https://aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft/
@@ -44,7 +43,7 @@
       ];
 
       serverProperties = {
-        motd = ''\u00A78::\u00A7r \u00A7aEvergreen\u00A7r \u00A7fSurvival \u00A78::\u00A7r\nJoin with ${config.services.minecraft-server.package.version}'';
+        motd = ''\u00A78::\u00A7r \u00A7aEvergreen\u00A7r \u00A7fSurvival \u00A78::\u00A7r\nJoin with ${package.version}'';
         white-list = true;
         max-players = 5;
 
