@@ -94,6 +94,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
+    upower-notify = {
+      url = "github:Guanran928/upower-notify";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
 
     ### De-dupe flake dependencies
     crane = {

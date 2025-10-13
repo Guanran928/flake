@@ -221,6 +221,11 @@
     ];
   };
 
+  services.upower = {
+    enable = true;
+    criticalPowerAction = "PowerOff";
+  };
+
   xdg.portal = {
     enable = true;
     extraPortals = [
