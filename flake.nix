@@ -99,6 +99,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
+    nixpkgs-tracker = {
+      url = "github:Guanran928/nixpkgs-tracker";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
+
 
     ### De-dupe flake dependencies
     crane = {
@@ -166,11 +172,11 @@
           packages = with pkgs; [
             (opentofu.withPlugins (
               ps: with ps; [
-                aws
-                cloudflare
-                pocketid
-                sops
-                vultr
+                hashicorp_aws
+                cloudflare_cloudflare
+                trozz_pocketid
+                carlpett_sops
+                vultr_vultr
               ]
             ))
 
