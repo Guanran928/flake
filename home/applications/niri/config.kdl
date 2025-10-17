@@ -69,17 +69,17 @@ workspace "chat"
 workspace "mail"
 
 spawn-at-startup "foot" "tmux" "new" "-s" "main"
-spawn-at-startup "zen-beta"
+spawn-at-startup "zen-twilight"
 spawn-at-startup "Telegram"
 spawn-at-startup "thunderbird"
 
 window-rule {
-    match at-startup=true app-id="^Alacritty$"
+    match at-startup=true app-id="^foot$"
     open-on-workspace "terminal"
 }
 
 window-rule {
-    match at-startup=true app-id="^zen-beta$"
+    match at-startup=true app-id="^zen-twilight$"
     open-on-workspace "browser"
 }
 
@@ -94,7 +94,7 @@ window-rule {
 }
 
 window-rule {
-    match app-id="^zen-beta$" title="^Picture-in-Picture$"
+    match app-id="^zen-twilight$" title="^Picture-in-Picture$"
     open-floating true
 }
 

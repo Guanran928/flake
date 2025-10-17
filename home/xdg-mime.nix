@@ -13,7 +13,7 @@
         "x-scheme-handler/https"
         "x-scheme-handler/about"
         "x-scheme-handler/unknown"
-      ] (_n: [ "zen-beta.desktop" ])
+      ] (_n: [ "zen-twilight.desktop" ])
       ### Audio player
       // lib.genAttrs [ "audio/aac" "audio/flac" "audio/mpeg" "audio/ogg" "audio/wav" ] (_n: [
         "mpv.desktop"
