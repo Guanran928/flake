@@ -11,6 +11,9 @@
     signing.key = "91F97D9ED12639CF";
 
     extraConfig = {
+      # FIXME: https://github.com/folke/lazy.nvim/issues/2046
+      init.defaultRefFormat = "files";
+
       column.ui = "auto";
       credential.helper = "${package}/bin/git-credential-libsecret";
       diff.algorithm = "histogram";
