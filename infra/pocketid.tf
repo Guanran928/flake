@@ -35,6 +35,14 @@ resource "pocketid_client" "miniflux" {
   pkce_enabled = false
 }
 
+resource "pocketid_client" "rustical" {
+  name = "Rustical"
+  callback_urls = [
+    "https://cal.ny4.dev/frontend/login/oidc/callback",
+  ]
+  pkce_enabled = false
+}
+
 resource "pocketid_client" "synapse" {
   name = "Synapse"
   callback_urls = [

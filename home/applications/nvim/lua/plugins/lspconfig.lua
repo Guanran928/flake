@@ -1,7 +1,6 @@
 ---@type LazyPluginSpec
 return {
   "neovim/nvim-lspconfig",
-  dependencies = { "saghen/blink.cmp" },
   config = function()
     vim.lsp.enable({
       "gopls",

@@ -4,6 +4,7 @@
     name = "Adwaita";
     package = pkgs.adwaita-icon-theme;
     size = 24;
+    dotIcons.enable = false;
     gtk.enable = true;
   };
 
@@ -37,8 +38,4 @@
       monospace-font-name = "Monospace 10";
     };
   };
-
-  # Declutter $HOME
-  home.file.".icons/default/index.theme".enable = false;
-  home.file.".icons/${config.home.pointerCursor.name}".enable = false;
 }

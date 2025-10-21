@@ -3,14 +3,14 @@
   programs.git = rec {
     enable = true;
     package = pkgs.gitFull; # overriding takes forever to compile
-    delta.enable = true;
 
-    userName = "Guanran Wang";
-    userEmail = "guanran928@outlook.com";
     signing.signByDefault = true;
     signing.key = "91F97D9ED12639CF";
 
-    extraConfig = {
+    settings = {
+      user.name = "Guanran Wang";
+      user.email = "guanran928@outlook.com";
+
       # FIXME: https://github.com/folke/lazy.nvim/issues/2046
       init.defaultRefFormat = "files";
 
@@ -29,6 +29,8 @@
       tag.sort = "version:refname";
     };
   };
+
+  programs.delta.enable = true;
 
   programs.lazygit = {
     enable = true;
