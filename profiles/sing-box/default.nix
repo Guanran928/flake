@@ -9,7 +9,7 @@
     enable = true;
     settings = {
       log = {
-        level = "info";
+        level = "warn";
       };
 
       dns = {
