@@ -12,7 +12,6 @@
     ./services/dn42.nix
     ./services/ip-checker.nix
     ./services/nixpkgs-tracker.nix
-    ./services/redlib.nix
     ./services/shortlinks.nix
     ./services/telegram-bot/danbooru_img_bot.nix
     ./services/telegram-bot/ny4_rdict_bot.nix

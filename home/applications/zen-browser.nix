@@ -52,7 +52,6 @@
           };
         })
         [
-          "redirector@einaregilsson.com" # redirector
           "sponsorBlocker@ajay.app" # sponsorblock
           "uBlock0@raymondhill.net" # ublock origin
           "{446900e4-71c2-419f-a6a7-df9c091e268b}" # bitwarden

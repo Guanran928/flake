@@ -156,15 +156,6 @@ resource "cloudflare_dns_record" "prom" {
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_dns_record" "reddit" {
-  content = "tyo0.ny4.dev"
-  name    = "reddit.ny4.dev"
-  proxied = true
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = local.cloudflare_zone_id
-}
-
 resource "cloudflare_dns_record" "rss" {
   content = "pek0.ny4.dev"
   name    = "rss.ny4.dev"

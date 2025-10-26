@@ -1,9 +1,4 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}:
+{ lib, pkgs, ... }:
 {
   services.caddy.enable = true;
   services.caddy.settings.apps.http.servers.srv0 = {
@@ -39,8 +34,6 @@
     };
     trusted_proxies_strict = 1;
   };
-
-  systemd.services.caddy.serviceConfig.SupplementaryGroups = [ config.users.groups.anubis.name ];
 
   services.caddy.settings.apps.http.servers.srv0.routes = [
     {

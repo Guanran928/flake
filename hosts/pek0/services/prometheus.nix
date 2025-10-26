@@ -63,6 +63,7 @@ in
         };
         static_configs = lib.singleton {
           targets = [
+            "https://bird-lg.ny4.dev"
             "https://blog.ny4.dev"
             "https://cinny.ny4.dev"
             "https://cxk.ny4.dev"
@@ -73,9 +74,8 @@ in
             "https://ip.ny4.dev"
             "https://mastodon.ny4.dev"
             "https://matrix.ny4.dev"
+            "https://nix.ny4.dev"
             "https://pb.ny4.dev"
-            # FIXME: too flakey, suppressed
-            # "https://reddit.ny4.dev"
             "https://rss.ny4.dev"
             "https://vault.ny4.dev"
           ];
