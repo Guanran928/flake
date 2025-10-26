@@ -1,6 +1,8 @@
 {
   imports = [ ../prometheus ];
 
+  boot.kernelParams = [ "ia32_emulation=0" ];
+
   services.openssh = {
     enable = true;
     settings.PasswordAuthentication = false;

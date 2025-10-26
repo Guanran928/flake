@@ -53,7 +53,9 @@
       nixpkgs-review
       numbat
       obs-studio
+      osu-lazer-bin
       playerctl
+      prismlauncher
       pwvucontrol
       python3
       ripgrep

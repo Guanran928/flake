@@ -23,12 +23,13 @@
         "cef-binary"
         "dart"
         "go"
+        "minecraft-server"
+        "osu-lazer-bin"
         "rustc-bootstrap"
         "rustc-bootstrap-wrapper"
         "sof-firmware"
         "temurin-bin"
         "zen-twilight"
-        "minecraft-server"
       ];
 
     allowUnfreePredicate =
@@ -36,6 +37,9 @@
       lib.elem (lib.getName pkg) [
         "fcitx5-pinyin-minecraft"
         "fcitx5-pinyin-moegirl"
+        "osu-lazer-bin"
+        "steam"
+        "steam-unwrapped"
       ];
 
     permittedInsecurePackages = [ "olm-3.2.16" ];
@@ -44,7 +48,6 @@
   boot.enableContainers = false;
   boot.initrd.systemd.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelParams = [ "ia32_emulation=0" ];
 
   environment.etc.machine-id.text = "b08dfa6083e7567a1921a715000001fb"; # whonix id
   environment.systemPackages = with pkgs; [

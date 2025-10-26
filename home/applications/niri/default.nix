@@ -1,6 +1,9 @@
 { lib, pkgs, ... }:
 {
-  home.packages = with pkgs; [ niri ];
+  home.packages = with pkgs; [
+    niri
+    xwayland-satellite
+  ];
 
   xdg.configFile."niri/config.kdl".source = ./config.kdl;
 

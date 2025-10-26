@@ -120,6 +120,19 @@
     yubikey-manager.enable = true;
   };
 
+  programs.gtklock = {
+    enable = true;
+    modules = with pkgs; [
+      gtklock-playerctl-module
+      gtklock-powerbar-module
+    ];
+  };
+
+  programs.steam = {
+    enable = true;
+    package = pkgs.steam.override { extraArgs = "-system-composer"; };
+  };
+
   services = {
     power-profiles-daemon.enable = true;
     gnome = {
@@ -131,6 +144,24 @@
       extraDaemonFlags = [ "--no-logs-no-support" ];
     };
     speechd.enable = false;
+  };
+
+  services.greetd = {
+    enable = true;
+    settings.default_session.command = "${lib.getExe pkgs.tuigreet} --cmd niri-session";
+  };
+
+  services.upower = {
+    enable = true;
+    criticalPowerAction = "PowerOff";
+  };
+
+  services.sing-box.settings.experimental.clash_api = rec {
+    external_controller = "127.0.0.1:9090";
+    external_ui = pkgs.metacubexd;
+    secret = "hunter2";
+    # https://www.v2ex.com/t/1076579
+    access_control_allow_origin = [ "http://${external_controller}" ];
   };
 
   fonts = {
@@ -197,11 +228,6 @@
     keyMap = "dvorak";
   };
 
-  services.greetd = {
-    enable = true;
-    settings.default_session.command = "${lib.getExe pkgs.tuigreet} --cmd niri-session";
-  };
-
   security.polkit.enable = true;
   security.pam.u2f = {
     enable = true;
@@ -212,19 +238,6 @@
     };
   };
 
-  programs.gtklock = {
-    enable = true;
-    modules = with pkgs; [
-      gtklock-playerctl-module
-      gtklock-powerbar-module
-    ];
-  };
-
-  services.upower = {
-    enable = true;
-    criticalPowerAction = "PowerOff";
-  };
-
   xdg.portal = {
     enable = true;
     extraPortals = [
@@ -232,13 +245,5 @@
       pkgs.xdg-desktop-portal-gnome
     ];
     configPackages = [ pkgs.niri ];
-  };
-
-  services.sing-box.settings.experimental.clash_api = rec {
-    external_controller = "127.0.0.1:9090";
-    external_ui = pkgs.metacubexd;
-    secret = "hunter2";
-    # https://www.v2ex.com/t/1076579
-    access_control_allow_origin = [ "http://${external_controller}" ];
   };
 }
