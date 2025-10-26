@@ -1,8 +1,10 @@
-{ inputs, ... }:
+{ modulesPath, ... }:
 {
   imports = [
-    ./services/telegram-bot/danbooru_img_bot.nix
-    ./services/telegram-bot/ny4_rdict_bot.nix
+    (modulesPath + "/profiles/qemu-guest.nix")
+    ../../modules/dn42.nix
+    ../../profiles/sing-box-server
+    ./hardware-configuration.nix
 
     ./services/bird-lg.nix
     ./services/caddy.nix
@@ -12,10 +14,8 @@
     ./services/nixpkgs-tracker.nix
     ./services/redlib.nix
     ./services/shortlinks.nix
-
-    ../../profiles/sing-box-server
-
-    inputs.self.nixosModules.dn42
+    ./services/telegram-bot/danbooru_img_bot.nix
+    ./services/telegram-bot/ny4_rdict_bot.nix
   ];
 
   _module.args.ports = import ./ports.nix;
@@ -23,4 +23,6 @@
   system.stateVersion = "25.05";
 
   networking.firewall.enable = false;
+  networking.hostName = "tyo0";
+  services.getty.autologinUser = "root";
 }

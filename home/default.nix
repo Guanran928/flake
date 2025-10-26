@@ -25,7 +25,7 @@
     HISTFILE = "${config.xdg.stateHome}/bash_history";
     MANPAGER = "sh -c 'col -bx | bat -l man -p'";
     MANROFFOPT = "-c";
-    NH_FLAKE = "/home/guanranwang/Projects/flake";
+    NH_FLAKE = "${config.home.homeDirectory}/Projects/flake";
     PYTHON_HISTORY = "${config.xdg.stateHome}/python_history";
     QT_QPA_PLATFORMTHEME = "gtk3";
   };

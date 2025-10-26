@@ -7,7 +7,6 @@
 }:
 {
   imports = [
-    ../../profiles/restic
     ../../profiles/sing-box
 
     ./disko.nix

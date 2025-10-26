@@ -8,7 +8,6 @@
   imports = [
     # OS
     ../../profiles/sing-box
-    ../../profiles/restic
 
     # Hardware
     ./hardware-configuration.nix

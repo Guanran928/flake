@@ -2,12 +2,14 @@
   lib,
   pkgs,
   config,
-  nodes,
   ports,
   ...
 }:
 let
-  targets = lib.mapAttrsToList (_name: node: node.fqdn) nodes ++ [ "pek0.ny4.dev" ];
+  targets = [
+    "pek0.ny4.dev"
+    "tyo0.ny4.dev"
+  ];
 in
 {
   services.prometheus = {

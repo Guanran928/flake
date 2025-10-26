@@ -146,13 +146,6 @@
 
   outputs =
     inputs:
-    let
-      data = builtins.fromJSON (builtins.readFile ./infra/data.json);
-      specialArgs = {
-        inherit inputs;
-        nodes = data.nodes.value;
-      };
-    in
     inputs.flake-utils.lib.eachDefaultSystem (
       system:
       let
@@ -175,7 +168,6 @@
                 cloudflare_cloudflare
                 trozz_pocketid
                 carlpett_sops
-                vultr_vultr
               ]
             ))
 
@@ -196,7 +188,7 @@
 
       nixosConfigurations = {
         "dust" = inputs.nixpkgs.lib.nixosSystem {
-          inherit specialArgs;
+          specialArgs.inputs = inputs;
           system = "x86_64-linux";
           modules = [
             ./profiles/core
@@ -206,36 +198,28 @@
       }
       // inputs.self.colmenaHive.nodes;
 
-      colmenaHive = inputs.colmena.lib.makeHive (
-        {
-          meta = {
-            inherit specialArgs;
-            nixpkgs = import inputs.nixpkgs {
-              system = "x86_64-linux"; # How does this work?
-            };
+      colmenaHive = inputs.colmena.lib.makeHive {
+        meta = {
+          specialArgs.inputs = inputs;
+          nixpkgs = import inputs.nixpkgs {
+            system = "x86_64-linux"; # How does this work?
           };
+        };
 
-          defaults.imports = [
-            ./profiles/core
-            ./profiles/server
-          ];
+        defaults.imports = [
+          ./profiles/core
+          ./profiles/server
+        ];
 
-          "pek0" = {
-            imports = [ ./hosts/pek0 ];
-            deployment.targetHost = "blacksteel"; # thru tailscale
-          };
-        }
-        // (builtins.mapAttrs (n: v: {
-          deployment = {
-            inherit (v) tags;
-            targetHost = v.fqdn;
-          };
-          imports = [
-            ./hosts/${n}
-            { networking.hostName = n; }
-          ]
-          ++ (if (builtins.elem "vultr" v.tags) then [ ./profiles/vultr ] else [ ]);
-        }) data.nodes.value)
-      );
+        "pek0" = {
+          imports = [ ./hosts/pek0 ];
+          deployment.targetHost = "blacksteel"; # thru tailscale
+        };
+
+        "tyo0" = {
+          imports = [ ./hosts/tyo0 ];
+          deployment.targetHost = "tyo0.ny4.dev";
+        };
+      };
     };
 }

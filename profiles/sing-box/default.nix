@@ -2,12 +2,8 @@
   lib,
   pkgs,
   config,
-  nodes,
   ...
 }:
-let
-  proxyServers = lib.filterAttrs (_name: value: lib.elem "proxy" value.tags) nodes;
-in
 {
   services.sing-box = {
     enable = true;
@@ -40,11 +36,11 @@ in
         listen_port = 1080;
       };
 
-      outbounds =
-        lib.mapAttrsToList (n: v: {
+      outbounds = [
+        {
           type = "vless";
-          tag = n;
-          server = v.fqdn;
+          tag = "tyo0";
+          server = "tyo0.ny4.dev";
           server_port = 27253;
           uuid._secret = config.sops.secrets."sing-box/uuid".path;
           flow = "xtls-rprx-vision";
@@ -53,23 +49,25 @@ in
             server = "local";
             strategy = "prefer_ipv4";
           };
-        }) proxyServers
-        ++ [
-          {
-            type = "selector";
-            tag = "select";
-            outbounds = lib.attrNames proxyServers ++ [ "direct" ];
-            default = "sin0";
-          }
-          {
-            type = "direct";
-            tag = "direct";
-            domain_resolver = {
-              server = "local";
-              strategy = "prefer_ipv4";
-            };
-          }
-        ];
+        }
+        {
+          type = "selector";
+          tag = "select";
+          outbounds = [
+            "tyo0"
+            "direct"
+          ];
+          default = "tyo0";
+        }
+        {
+          type = "direct";
+          tag = "direct";
+          domain_resolver = {
+            server = "local";
+            strategy = "prefer_ipv4";
+          };
+        }
+      ];
 
       route = {
         rules = [

@@ -12,7 +12,7 @@ in
 
     domain = "ny4.dev";
     proxyPort = 4200; # FIXME: this is hard-coded
-    servers = [ "sin0" ];
+    servers = [ "tyo0" ];
   };
 
   services.caddy.settings.apps.http.servers.srv0.routes = lib.singleton {

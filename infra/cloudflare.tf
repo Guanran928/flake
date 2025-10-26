@@ -39,18 +39,18 @@ resource "cloudflare_dns_record" "pek0" {
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_dns_record" "sin0_v4" {
-  content = module.vultr["sin0"].ipv4
-  name    = "sin0.ny4.dev"
+resource "cloudflare_dns_record" "tyo0_v4" {
+  content = "178.239.125.6"
+  name    = "tyo0.ny4.dev"
   proxied = false
   ttl     = 1
   type    = "A"
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_dns_record" "sin0_v6" {
-  content = module.vultr["sin0"].ipv6
-  name    = "sin0.ny4.dev"
+resource "cloudflare_dns_record" "tyo0_v6" {
+  content = "2602:fd6f:1f:3ed::324"
+  name    = "tyo0.ny4.dev"
   proxied = false
   ttl     = 1
   type    = "AAAA"
@@ -67,7 +67,7 @@ resource "cloudflare_dns_record" "blog" {
 }
 
 resource "cloudflare_dns_record" "cinny" {
-  content = "sin0.ny4.dev"
+  content = "tyo0.ny4.dev"
   name    = "cinny.ny4.dev"
   proxied = true
   ttl     = 1
@@ -76,7 +76,7 @@ resource "cloudflare_dns_record" "cinny" {
 }
 
 resource "cloudflare_dns_record" "element" {
-  content = "sin0.ny4.dev"
+  content = "tyo0.ny4.dev"
   name    = "element.ny4.dev"
   proxied = true
   ttl     = 1
@@ -103,7 +103,7 @@ resource "cloudflare_dns_record" "id" {
 }
 
 resource "cloudflare_dns_record" "ip" {
-  content = "sin0.ny4.dev"
+  content = "tyo0.ny4.dev"
   name    = "ip.ny4.dev"
   proxied = true
   ttl     = 1
@@ -130,7 +130,7 @@ resource "cloudflare_dns_record" "matrix" {
 }
 
 resource "cloudflare_dns_record" "apex" {
-  content = "sin0.ny4.dev"
+  content = "tyo0.ny4.dev"
   name    = "ny4.dev"
   proxied = true
   ttl     = 1
@@ -157,7 +157,7 @@ resource "cloudflare_dns_record" "prom" {
 }
 
 resource "cloudflare_dns_record" "reddit" {
-  content = "sin0.ny4.dev"
+  content = "tyo0.ny4.dev"
   name    = "reddit.ny4.dev"
   proxied = true
   ttl     = 1
@@ -184,7 +184,7 @@ resource "cloudflare_dns_record" "vault" {
 }
 
 resource "cloudflare_dns_record" "www" {
-  content = "sin0.ny4.dev"
+  content = "tyo0.ny4.dev"
   name    = "www.ny4.dev"
   proxied = true
   ttl     = 1
@@ -193,7 +193,7 @@ resource "cloudflare_dns_record" "www" {
 }
 
 resource "cloudflare_dns_record" "cxk" {
-  content = "sin0.ny4.dev"
+  content = "tyo0.ny4.dev"
   name    = "cxk.ny4.dev"
   proxied = true
   ttl     = 1
@@ -220,7 +220,7 @@ resource "cloudflare_dns_record" "cal" {
 }
 
 resource "cloudflare_dns_record" "bird-lg" {
-  content = "sin0.ny4.dev"
+  content = "tyo0.ny4.dev"
   name    = "bird-lg.ny4.dev"
   proxied = true
   ttl     = 1
@@ -229,7 +229,7 @@ resource "cloudflare_dns_record" "bird-lg" {
 }
 
 resource "cloudflare_dns_record" "nix" {
-  content = "sin0.ny4.dev"
+  content = "tyo0.ny4.dev"
   name    = "nix.ny4.dev"
   proxied = true
   ttl     = 1
