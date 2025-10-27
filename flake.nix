@@ -36,11 +36,7 @@
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-compat.follows = "flake-compat";
       inputs.flake-parts.follows = "flake-parts";
-      inputs.git-hooks.follows = "pre-commit-hooks-nix";
-      inputs.hercules-ci-effects.follows = "hercules-ci-effects";
-      inputs.treefmt-nix.follows = "treefmt-nix";
     };
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware";
@@ -119,11 +115,6 @@
     gitignore = {
       url = "github:hercules-ci/gitignore.nix";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hercules-ci-effects = {
-      url = "github:hercules-ci/hercules-ci-effects";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
     };
     nix-github-actions = {
       url = "github:nix-community/nix-github-actions";
