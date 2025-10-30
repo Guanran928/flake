@@ -14,7 +14,3 @@ provider "pocketid" {
   base_url  = "https://id.ny4.dev"
   api_token = local.secrets.pocketid.api_token
 }
-
-provider "vultr" {
-  api_key = local.secrets.vultr.api_key
-}

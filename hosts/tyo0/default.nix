@@ -21,7 +21,6 @@
   sops.defaultSopsFile = ./secrets.yaml;
   system.stateVersion = "25.05";
 
-  networking.firewall.enable = false;
   networking.hostName = "tyo0";
   services.getty.autologinUser = "root";
 }

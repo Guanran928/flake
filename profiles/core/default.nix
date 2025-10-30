@@ -19,6 +19,7 @@
     allowNonSourcePredicate =
       pkg:
       lib.elem (lib.getName pkg) [
+        "antlr"
         "cargo-bootstrap"
         "cef-binary"
         "dart"
@@ -88,6 +89,11 @@
     doc.enable = false;
     info.enable = false;
     nixos.enable = false;
+  };
+
+  console = {
+    earlySetup = true;
+    keyMap = "dvorak";
   };
 
   # See `nixos-version(8)`

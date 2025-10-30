@@ -1,4 +1,5 @@
 {
+  networking.firewall.enable = false;
   services.resolved.enable = true;
 
   ### https://wiki.archlinux.org/title/Sysctl#Improving_performance
@@ -11,7 +12,4 @@
     "net.core.rmem_max" = 7500000;
     "net.core.wmem_max" = 7500000;
   };
-
-  # Use nftables based firewall
-  networking.nftables.enable = true;
 }

@@ -7,6 +7,7 @@ in
     enable = true;
     openRPCPort = true;
     webHome = pkgs.flood-for-transmission;
+    package = pkgs.transmission_4;
     settings = {
       rpc-bind-address = "0.0.0.0";
       rpc-port = port;

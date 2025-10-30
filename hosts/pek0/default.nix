@@ -44,10 +44,6 @@
   sops.secrets."hashed-passwd".neededForUsers = true;
   users.users."root".hashedPasswordFile = config.sops.secrets."hashed-passwd".path;
   boot.kernelParams = [ "consoleblank=60" ];
-  console = {
-    earlySetup = true;
-    keyMap = "dvorak";
-  };
 
   networking = {
     useNetworkd = true;
@@ -64,7 +60,6 @@
 
   services.tailscale = {
     enable = true;
-    openFirewall = true;
     extraDaemonFlags = [ "--no-logs-no-support" ];
   };
 

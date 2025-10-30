@@ -30,7 +30,10 @@
     };
   };
 
-  programs.delta.enable = true;
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+  };
 
   programs.lazygit = {
     enable = true;
@@ -41,7 +44,7 @@
         showBottomLine = false;
       };
       git = {
-        paging.pager = "delta --paging=never";
+        pagers = [ { pager = "delta --paging=never"; } ];
       };
     };
   };

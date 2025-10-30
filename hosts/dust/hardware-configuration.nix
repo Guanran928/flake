@@ -2,10 +2,9 @@
 {
   imports = [ inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-12th-gen ];
 
-  environment.systemPackages = [ pkgs.sbctl ];
   boot.lanzaboote = {
     enable = true;
-    pkiBundle = "/etc/secureboot";
+    pkiBundle = "/var/lib/sbctl";
   };
 
   hardware.firmware = with pkgs; [

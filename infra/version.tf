@@ -9,9 +9,6 @@ terraform {
     sops = {
       source = "carlpett/sops"
     }
-    vultr = {
-      source = "vultr/vultr"
-    }
   }
 
   encryption {

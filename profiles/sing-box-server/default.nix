@@ -8,8 +8,6 @@ in
     sopsFile = ./secrets.yaml;
   };
 
-  networking.firewall.allowedTCPPorts = [ 27253 ];
-
   services.sing-box = {
     enable = true;
     settings = {

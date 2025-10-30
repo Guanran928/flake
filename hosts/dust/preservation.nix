@@ -5,7 +5,6 @@
     directories = [
       "/var/log"
       "/var/lib"
-      "/etc/secureboot"
     ];
 
     users.guanranwang = {
@@ -43,7 +42,6 @@
     in
     {
       "/home/guanranwang/.config".d = mkTmpfile;
-      "/home/guanranwang/.mozilla".d = mkTmpfile;
       "/home/guanranwang/.local/share".d = mkTmpfile;
       "/home/guanranwang/.local/state".d = mkTmpfile;
     };

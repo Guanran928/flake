@@ -104,7 +104,7 @@ window-rule {
 }
 
 binds {
-    Mod+D                 { spawn "fuzzel"; }
+    Mod+D                 { spawn "fuzzel" "--launch-prefix" "niri msg action spawn --"; }
     Mod+Shift+D           { spawn-sh "cliphist list | fuzzel --dmenu --width 50 | cliphist decode | wl-copy"; }
     Super+Shift+Semicolon { spawn "loginctl" "lock-session"; }
 

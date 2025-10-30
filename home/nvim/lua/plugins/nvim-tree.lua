@@ -48,7 +48,9 @@ return {
       on_attach = on_attach,
       hijack_cursor = true,
       view = {
-        side = "right",
+        float = {
+          enable = true,
+        },
       },
       renderer = {
         symlink_destination = false, -- usually too long

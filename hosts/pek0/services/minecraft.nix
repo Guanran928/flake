@@ -8,7 +8,6 @@
   services.minecraft-servers = {
     enable = true;
     eula = true;
-    openFirewall = true;
     servers.survival = rec {
       enable = true;
       package =
@@ -82,7 +81,4 @@
       ];
     };
   };
-
-  # Required by Simple Voice Chat
-  networking.firewall.allowedUDPPorts = [ 24454 ];
 }

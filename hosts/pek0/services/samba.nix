@@ -2,7 +2,6 @@
 {
   services.samba = {
     enable = true;
-    openFirewall = true;
     settings."external" = {
       "path" = "/mnt";
       "read only" = "no";
@@ -11,7 +10,6 @@
 
   services.samba-wsdd = {
     enable = true;
-    openFirewall = true;
   };
 
   users.users."guanranwang" = {

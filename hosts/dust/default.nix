@@ -20,8 +20,20 @@
     preservation.nixosModules.preservation
   ]);
 
+  systemd.user.services.polkit-gnome-authentication-agent-1 = {
+    description = "polkit-gnome-authentication-agent-1";
+    wantedBy = [ "graphical-session.target" ];
+    wants = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+      Restart = "on-failure";
+      RestartSec = 1;
+      TimeoutStopSec = 10;
+    };
+  };
   system.nixos-init.enable = true;
-  networking.firewall.enable = false;
 
   sops = {
     age.keyFile = "/persist/home/guanranwang/.config/sops/age/keys.txt";
@@ -86,11 +98,6 @@
   # TODO: move to 'core' profile
   system.etc.overlay.enable = true;
   system.etc.overlay.mutable = false;
-  # HACK: for impermanence
-  environment.etc."secureboot/placeholder" = {
-    source = pkgs.emptyFile;
-    mode = "0644";
-  };
 
   users.users."guanranwang" = {
     isNormalUser = true;
@@ -104,7 +111,7 @@
   };
 
   home-manager = {
-    users.guanranwang = import ../../home;
+    users.guanranwang = import ./home-manager.nix;
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = { inherit inputs; };
@@ -112,8 +119,8 @@
 
   programs = {
     adb.enable = true;
-    dconf.enable = true;
     fish.enable = true;
+    niri.enable = true;
     neovim.package = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.neovim;
     seahorse.enable = true;
     ssh.enableAskPassword = true;
@@ -140,7 +147,6 @@
     };
     tailscale = {
       enable = true;
-      openFirewall = true;
       extraDaemonFlags = [ "--no-logs-no-support" ];
     };
     speechd.enable = false;
@@ -223,12 +229,6 @@
     };
   };
 
-  console = {
-    earlySetup = true;
-    keyMap = "dvorak";
-  };
-
-  security.polkit.enable = true;
   security.pam.u2f = {
     enable = true;
     control = "sufficient";
@@ -236,14 +236,5 @@
       cue = true;
       authfile = config.sops.secrets.u2f.path;
     };
-  };
-
-  xdg.portal = {
-    enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-gnome
-    ];
-    configPackages = [ pkgs.niri ];
   };
 }

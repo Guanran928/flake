@@ -1,5 +1,5 @@
 {
-  imports = [ ../prometheus ];
+  imports = [ ./prometheus.nix ];
 
   boot.kernelParams = [ "ia32_emulation=0" ];
 
