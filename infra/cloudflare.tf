@@ -57,6 +57,24 @@ resource "cloudflare_dns_record" "tyo0_v6" {
   zone_id = local.cloudflare_zone_id
 }
 
+resource "cloudflare_dns_record" "lax0_v4" {
+  content = "154.17.237.246"
+  name    = "lax0.ny4.dev"
+  proxied = false
+  ttl     = 1
+  type    = "A"
+  zone_id = local.cloudflare_zone_id
+}
+
+resource "cloudflare_dns_record" "lax0_v6" {
+  content = "2605:52c0:1:ca6:a09f:95ff:fe19:6b7b"
+  name    = "lax0.ny4.dev"
+  proxied = false
+  ttl     = 1
+  type    = "AAAA"
+  zone_id = local.cloudflare_zone_id
+}
+
 resource "cloudflare_dns_record" "blog" {
   content = "guanran928.github.io"
   name    = "blog.ny4.dev"

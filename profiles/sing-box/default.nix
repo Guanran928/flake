@@ -51,10 +51,24 @@
           };
         }
         {
+          type = "vless";
+          tag = "lax0";
+          server = "lax0.ny4.dev";
+          server_port = 27253;
+          uuid._secret = config.sops.secrets."sing-box/uuid".path;
+          flow = "xtls-rprx-vision";
+          tls.enabled = true;
+          domain_resolver = {
+            server = "local";
+            strategy = "prefer_ipv4";
+          };
+        }
+        {
           type = "selector";
           tag = "select";
           outbounds = [
             "tyo0"
+            "lax0"
             "direct"
           ];
           default = "tyo0";
