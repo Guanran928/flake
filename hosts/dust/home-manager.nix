@@ -6,7 +6,7 @@
   ...
 }:
 {
-  imports = lib.filter (x: lib.hasSuffix ".nix" x) (lib.fileset.toList ../../home);
+  imports = ../../home |> lib.fileset.fileFilter (file: file.hasExt "nix") |> lib.fileset.toList;
 
   home = {
     stateVersion = "25.05";

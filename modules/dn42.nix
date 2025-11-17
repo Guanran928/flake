@@ -104,7 +104,7 @@ in
             ];
           };
       in
-      lib.listToAttrs (map toNetdev cfg.peers);
+      cfg.peers |> map toNetdev |> lib.listToAttrs;
 
     systemd.network.networks =
       let
@@ -134,7 +134,7 @@ in
             };
           };
       in
-      lib.listToAttrs (map toNetwork cfg.peers);
+      cfg.peers |> map toNetwork |> lib.listToAttrs;
 
     ################################################
     #                     BGP                      #
@@ -264,7 +264,7 @@ in
             '';
           };
       in
-      lib.listToAttrs (map toFile cfg.peers);
+      cfg.peers |> map toFile |> lib.listToAttrs;
 
     ################################################
     #                Looking Glass                 #

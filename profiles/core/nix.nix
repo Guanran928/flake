@@ -20,6 +20,7 @@
       "flakes"
       "nix-command"
       "no-url-literals"
+      "pipe-operators"
     ];
     flake-registry = "";
     trusted-users = [ "@wheel" ];
@@ -36,7 +37,7 @@
 
     # Add each flake input as a registry
     # To make nix3 commands consistent with the flake
-    registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
+    registry = inputs |> lib.mapAttrs (_: value: { flake = value; });
 
     # Disable nix-channel
     channel.enable = false;

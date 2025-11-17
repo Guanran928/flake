@@ -42,21 +42,20 @@
       "zen.view.experimental-no-window-controls" = true;
     };
 
-    policies.ExtensionSettings = lib.listToAttrs (
-      map
-        (x: {
-          name = x;
-          value = {
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/${x}/latest.xpi";
-            installation_mode = "force_installed";
-          };
-        })
-        [
-          "sponsorBlocker@ajay.app" # sponsorblock
-          "uBlock0@raymondhill.net" # ublock origin
-          "{446900e4-71c2-419f-a6a7-df9c091e268b}" # bitwarden
-        ]
-    );
+    policies.ExtensionSettings =
+      [
+        "sponsorBlocker@ajay.app" # sponsorblock
+        "uBlock0@raymondhill.net" # ublock origin
+        "{446900e4-71c2-419f-a6a7-df9c091e268b}" # bitwarden
+      ]
+      |> map (x: {
+        name = x;
+        value = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/${x}/latest.xpi";
+          installation_mode = "force_installed";
+        };
+      })
+      |> lib.listToAttrs;
 
     profiles."default" = { };
   };

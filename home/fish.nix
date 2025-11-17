@@ -21,20 +21,16 @@
       '';
 
     plugins =
-      lib.map
-        (f: {
-          name = f.pname;
-          inherit (f) src;
-        })
-        (
-          with pkgs.fishPlugins;
-          [
-            autopair
-            done
-            puffer
-            tide
-          ]
-        );
+      (with pkgs.fishPlugins; [
+        autopair
+        done
+        puffer
+        tide
+      ])
+      |> lib.map (f: {
+        name = f.pname;
+        inherit (f) src;
+      });
 
     shellAliases = {
       ls = "eza --icons";
