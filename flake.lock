@@ -29,15 +29,11 @@
     },
     "colmena": {
       "inputs": {
-        "flake-compat": [
-          "flake-compat"
-        ],
+        "flake-compat": [],
         "flake-utils": [
           "flake-utils"
         ],
-        "nix-github-actions": [
-          "nix-github-actions"
-        ],
+        "nix-github-actions": [],
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -115,21 +111,6 @@
       "original": {
         "owner": "nix-community",
         "repo": "disko",
-        "type": "github"
-      }
-    },
-    "flake-compat": {
-      "locked": {
-        "lastModified": 1761588595,
-        "narHash": "sha256-XKUZz9zewJNUj46b4AJdiRZJAvSZ0Dqj2BNfXvFlJC4=",
-        "owner": "edolstra",
-        "repo": "flake-compat",
-        "rev": "f387cd2afec9419c8ee37694406ca490c3f34ee5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "edolstra",
-        "repo": "flake-compat",
         "type": "github"
       }
     },
@@ -245,18 +226,14 @@
         "crane": [
           "crane"
         ],
-        "flake-compat": [
-          "flake-compat"
-        ],
+        "flake-compat": [],
         "flake-parts": [
           "flake-parts"
         ],
         "nixpkgs": [
           "nixpkgs"
         ],
-        "pre-commit-hooks-nix": [
-          "pre-commit-hooks-nix"
-        ],
+        "pre-commit-hooks-nix": [],
         "rust-overlay": [
           "rust-overlay"
         ]
@@ -315,31 +292,9 @@
         "type": "github"
       }
     },
-    "nix-github-actions": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1737420293,
-        "narHash": "sha256-F1G5ifvqTpJq7fdkT34e/Jy9VCyzd5XfJ9TO8fHhJWE=",
-        "owner": "nix-community",
-        "repo": "nix-github-actions",
-        "rev": "f4158fa080ef4503c8f4c820967d946c2af31ec9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "nix-github-actions",
-        "type": "github"
-      }
-    },
     "nix-minecraft": {
       "inputs": {
-        "flake-compat": [
-          "flake-compat"
-        ],
+        "flake-compat": [],
         "flake-utils": [
           "flake-utils"
         ],
@@ -414,32 +369,6 @@
         "type": "github"
       }
     },
-    "pre-commit-hooks-nix": {
-      "inputs": {
-        "flake-compat": [
-          "flake-compat"
-        ],
-        "gitignore": [
-          "gitignore"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1763032142,
-        "narHash": "sha256-M+2QBQoC0lzkCdUQRXylR2RkcT6BCRfW3KDs+c/IGLw=",
-        "owner": "cachix",
-        "repo": "git-hooks.nix",
-        "rev": "84255025dee4c8701a99fbff65ac3c9095952f99",
-        "type": "github"
-      },
-      "original": {
-        "owner": "cachix",
-        "repo": "git-hooks.nix",
-        "type": "github"
-      }
-    },
     "preservation": {
       "locked": {
         "lastModified": 1757436102,
@@ -485,7 +414,6 @@
         "crane": "crane",
         "danbooru_img_bot": "danbooru_img_bot",
         "disko": "disko",
-        "flake-compat": "flake-compat",
         "flake-parts": "flake-parts",
         "flake-utils": "flake-utils",
         "gitignore": "gitignore",
@@ -493,12 +421,10 @@
         "ip-checker": "ip-checker",
         "lanzaboote": "lanzaboote",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
-        "nix-github-actions": "nix-github-actions",
         "nix-minecraft": "nix-minecraft",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "nixpkgs-tracker": "nixpkgs-tracker",
-        "pre-commit-hooks-nix": "pre-commit-hooks-nix",
         "preservation": "preservation",
         "rdict": "rdict",
         "rust-overlay": "rust-overlay",

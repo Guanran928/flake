@@ -7,9 +7,9 @@
     colmena = {
       url = "github:zhaofengli/colmena";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-compat.follows = "flake-compat";
+      inputs.flake-compat.follows = "";
       inputs.flake-utils.follows = "flake-utils";
-      inputs.nix-github-actions.follows = "nix-github-actions";
+      inputs.nix-github-actions.follows = "";
       inputs.stable.follows = "nixpkgs";
     };
     disko = {
@@ -28,9 +28,9 @@
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.crane.follows = "crane";
-      inputs.flake-compat.follows = "flake-compat";
+      inputs.flake-compat.follows = "";
       inputs.flake-parts.follows = "flake-parts";
-      inputs.pre-commit-hooks-nix.follows = "pre-commit-hooks-nix";
+      inputs.pre-commit-hooks-nix.follows = "";
       inputs.rust-overlay.follows = "rust-overlay";
     };
     neovim-nightly-overlay = {
@@ -44,7 +44,7 @@
     nix-minecraft = {
       url = "github:Infinidoge/nix-minecraft";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-compat.follows = "flake-compat";
+      inputs.flake-compat.follows = "";
       inputs.flake-utils.follows = "flake-utils";
     };
     preservation = {
@@ -105,9 +105,6 @@
     crane = {
       url = "github:ipetkov/crane";
     };
-    flake-compat = {
-      url = "github:edolstra/flake-compat";
-    };
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
@@ -115,16 +112,6 @@
     gitignore = {
       url = "github:hercules-ci/gitignore.nix";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nix-github-actions = {
-      url = "github:nix-community/nix-github-actions";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    pre-commit-hooks-nix = {
-      url = "github:cachix/git-hooks.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-compat.follows = "flake-compat";
-      inputs.gitignore.follows = "gitignore";
     };
     systems = {
       url = "github:nix-systems/default";
