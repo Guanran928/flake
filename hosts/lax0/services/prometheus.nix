@@ -148,12 +148,9 @@ in
       checkConfig = false;
       listenAddress = "[::1]";
       port = ports.alertmanager;
+      extraFlags = [ ''--cluster.listen-address=""'' ];
 
       configuration = {
-        global.http_config = {
-          proxy_url = config.networking.proxy.httpsProxy;
-        };
-
         route = {
           receiver = "telegram";
         };

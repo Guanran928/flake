@@ -24,7 +24,6 @@
     ./services/miniflux.nix
     ./services/pocket-id.nix
     ./services/postgresql.nix
-    ./services/prometheus.nix
     ./services/rustical.nix
     ./services/samba.nix
     ./services/transmission.nix

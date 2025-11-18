@@ -32,24 +32,25 @@ resource "cloudflare_zero_trust_tunnel_cloudflared" "blacksteel" {
 
 locals {
   dns_records = {
+    "bird-lg" = "tyo0.ny4.dev"
     "cinny"   = "tyo0.ny4.dev"
+    "cxk"     = "tyo0.ny4.dev"
     "element" = "tyo0.ny4.dev"
     "ip"      = "tyo0.ny4.dev"
-    "www"     = "tyo0.ny4.dev"
-    "cxk"     = "tyo0.ny4.dev"
-    "bird-lg" = "tyo0.ny4.dev"
     "nix"     = "tyo0.ny4.dev"
+    "www"     = "tyo0.ny4.dev"
 
+    "cal"      = "pek0.ny4.dev"
     "git"      = "pek0.ny4.dev"
     "id"       = "pek0.ny4.dev"
+    "immich"   = "pek0.ny4.dev"
     "mastodon" = "pek0.ny4.dev"
     "matrix"   = "pek0.ny4.dev"
     "pb"       = "pek0.ny4.dev"
-    "prom"     = "pek0.ny4.dev"
     "rss"      = "pek0.ny4.dev"
     "vault"    = "pek0.ny4.dev"
-    "immich"   = "pek0.ny4.dev"
-    "cal"      = "pek0.ny4.dev"
+
+    "prom" = "lax0.ny4.dev"
   }
 }
 

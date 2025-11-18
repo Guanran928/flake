@@ -3,7 +3,11 @@
   imports = [
     ./hardware-configuration.nix
     ../../profiles/sing-box-server
+    ./services/prometheus.nix
   ];
+
+  _module.args.ports = import ./ports.nix;
+  sops.defaultSopsFile = ./secrets.yaml;
 
   networking = {
     nameservers = [ "2606:4700:4700::1111" ];

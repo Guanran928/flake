@@ -23,6 +23,11 @@ creation_rules:
       - age:
           - *guanranwang
           - *tyo0
+  - path_regex: ^hosts/lax0/secrets.yaml$
+    key_groups:
+      - age:
+          - *guanranwang
+          - *lax0
 
   # shared
   - path_regex: ^profiles/sing-box/secrets.yaml$

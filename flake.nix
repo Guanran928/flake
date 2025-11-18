@@ -144,7 +144,6 @@
           packages = with pkgs; [
             (opentofu.withPlugins (
               ps: with ps; [
-                hashicorp_aws
                 cloudflare_cloudflare
                 trozz_pocketid
                 carlpett_sops
