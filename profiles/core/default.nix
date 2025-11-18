@@ -19,6 +19,7 @@
     allowNonSourcePredicate =
       pkg:
       lib.elem (lib.getName pkg) [
+        # keep-sorted start
         "antlr"
         "cargo-bootstrap"
         "cef-binary"
@@ -31,16 +32,19 @@
         "sof-firmware"
         "temurin-bin"
         "zen-twilight"
+        # keep-sorted end
       ];
 
     allowUnfreePredicate =
       pkg:
       lib.elem (lib.getName pkg) [
+        # keep-sorted start
         "fcitx5-pinyin-minecraft"
         "fcitx5-pinyin-moegirl"
         "osu-lazer-bin"
         "steam"
         "steam-unwrapped"
+        # keep-sorted end
       ];
 
     permittedInsecurePackages = [ "olm-3.2.16" ];

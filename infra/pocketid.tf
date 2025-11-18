@@ -1,3 +1,4 @@
+# keep-sorted start block=yes newline_separated=yes
 resource "pocketid_client" "forgejo" {
   name = "Forgejo"
   callback_urls = [
@@ -50,3 +51,4 @@ resource "pocketid_client" "synapse" {
   ]
   pkce_enabled = false
 }
+# keep-sorted end

@@ -13,6 +13,7 @@
     ./hardware-configuration.nix
 
     # Services
+    # keep-sorted start
     ./services/cloudflared.nix
     ./services/forgejo.nix
     ./services/immich.nix
@@ -29,6 +30,7 @@
     ./services/transmission.nix
     ./services/vaultwarden.nix
     ./services/wastebin.nix
+    # keep-sorted end
   ]
   ++ (with inputs; [ nix-minecraft.nixosModules.minecraft-servers ]);
 

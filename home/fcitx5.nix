@@ -2,11 +2,13 @@
 let
   package = pkgs.qt6Packages.fcitx5-with-addons.override {
     addons = with pkgs; [
+      # keep-sorted start
       fcitx5-fluent
       fcitx5-pinyin-minecraft
       fcitx5-pinyin-moegirl
       fcitx5-pinyin-zhwiki
       qt6Packages.fcitx5-chinese-addons
+      # keep-sorted end
     ];
   };
 in

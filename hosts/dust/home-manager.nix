@@ -25,6 +25,8 @@
 
   home.packages =
     (with pkgs; [
+      # keep-sorted start
+      (osu-lazer-bin.override { nativeWayland = true; })
       bat
       brightnessctl
       deadnix
@@ -46,7 +48,6 @@
       nixpkgs-review
       numbat
       obs-studio
-      (osu-lazer-bin.override { nativeWayland = true; })
       playerctl
       prismlauncher
       pwvucontrol
@@ -57,8 +58,9 @@
       sops
       statix
       telegram-desktop
-      xwayland-satellite
       wl-clipboard
+      xwayland-satellite
+      # keep-sorted end
     ])
     ++ [ inputs.rdict.packages.${pkgs.stdenv.hostPlatform.system}.default ];
 

@@ -4,6 +4,14 @@
   inputs = {
     nixpkgs.url = "github:Guanran928/nixpkgs";
 
+    # keep-sorted start block=yes
+    chicken-box = {
+      url = "https://git.ny4.dev/nyancat/chicken-box/archive/master.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.systems.follows = "systems";
+      inputs.treefmt-nix.follows = "treefmt-nix";
+    };
     colmena = {
       url = "github:zhaofengli/colmena";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -11,6 +19,12 @@
       inputs.flake-utils.follows = "flake-utils";
       inputs.nix-github-actions.follows = "";
       inputs.stable.follows = "nixpkgs";
+    };
+    danbooru_img_bot = {
+      url = "https://git.ny4.dev/nyancat/danbooru_img_bot/archive/master.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.treefmt-nix.follows = "treefmt-nix";
     };
     disko = {
       url = "github:nix-community/disko";
@@ -24,8 +38,15 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ip-checker = {
+      url = "https://git.ny4.dev/nyancat/ip-checker/archive/master.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.systems.follows = "systems";
+      inputs.treefmt-nix.follows = "treefmt-nix";
+    };
     lanzaboote = {
-      url = "github:nix-community/lanzaboote";
+      url = "github:nix-community/lanzaboote/v0.4.3";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.crane.follows = "crane";
       inputs.flake-compat.follows = "";
@@ -38,17 +59,27 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
-    nixos-hardware = {
-      url = "github:NixOS/nixos-hardware";
-    };
     nix-minecraft = {
       url = "github:Infinidoge/nix-minecraft";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-compat.follows = "";
       inputs.flake-utils.follows = "flake-utils";
     };
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware";
+    };
+    nixpkgs-tracker = {
+      url = "github:Guanran928/nixpkgs-tracker";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
     preservation = {
       url = "github:WilliButz/preservation";
+    };
+    rdict = {
+      url = "github:Guanran928/rdict";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
     };
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -58,50 +89,20 @@
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    zen-browser = {
-      url = "github:0xc000022070/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
-
-    ### Resources used for auto update
-    chicken-box = {
-      url = "https://git.ny4.dev/nyancat/chicken-box/archive/master.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.systems.follows = "systems";
-      inputs.treefmt-nix.follows = "treefmt-nix";
-    };
-    danbooru_img_bot = {
-      url = "https://git.ny4.dev/nyancat/danbooru_img_bot/archive/master.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.treefmt-nix.follows = "treefmt-nix";
-    };
-    ip-checker = {
-      url = "https://git.ny4.dev/nyancat/ip-checker/archive/master.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.systems.follows = "systems";
-      inputs.treefmt-nix.follows = "treefmt-nix";
-    };
-    rdict = {
-      url = "github:Guanran928/rdict";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
-    };
     upower-notify = {
       url = "github:Guanran928/upower-notify";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
-    nixpkgs-tracker = {
-      url = "github:Guanran928/nixpkgs-tracker";
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
+      inputs.home-manager.follows = "home-manager";
     };
+    # keep-sorted end
 
     ### De-dupe flake dependencies
+    # keep-sorted start block=yes
     crane = {
       url = "github:ipetkov/crane";
     };
@@ -113,13 +114,14 @@
       url = "github:hercules-ci/gitignore.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    systems = {
-      url = "github:nix-systems/default";
-    };
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    systems = {
+      url = "github:nix-systems/default";
+    };
+    # keep-sorted end block=yes
   };
 
   outputs =

@@ -173,6 +173,7 @@
   fonts = {
     enableDefaultPackages = false;
     packages = with pkgs; [
+      # keep-sorted start
       inter
       iosevka
       nerd-fonts.symbols-only
@@ -180,6 +181,7 @@
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
       noto-fonts-color-emoji
+      # keep-sorted end
     ];
     fontconfig = {
       defaultFonts = {
