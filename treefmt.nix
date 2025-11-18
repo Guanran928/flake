@@ -16,18 +16,15 @@
   };
 
   settings.formatter = {
+    # keep-sorted start block=yes newline_separated=yes
     nixfmt = {
       options = [ "--strict" ];
     };
 
-    just = {
-      includes = [ "infra/justfile" ];
-    };
-
     prettier.excludes = [
       "**/secrets.yaml"
-      "infra/data.json"
       "secrets.yaml"
     ];
+    # keep-sorted end
   };
 }

@@ -3,13 +3,14 @@
   pkgs,
   config,
   ports,
+  inputs,
   ...
 }:
 let
-  targets = [
-    "pek0.ny4.dev"
-    "tyo0.ny4.dev"
-  ];
+  targets =
+    inputs.self.colmenaHive.deploymentConfig
+    |> lib.attrNames
+    |> lib.map (host: "${host}.${config.networking.domain}");
 in
 {
   services.prometheus = {
@@ -63,6 +64,7 @@ in
         };
         static_configs = lib.singleton {
           targets = [
+            # keep-sorted start
             "https://bird-lg.ny4.dev"
             "https://blog.ny4.dev"
             "https://cinny.ny4.dev"
@@ -78,6 +80,7 @@ in
             "https://pb.ny4.dev"
             "https://rss.ny4.dev"
             "https://vault.ny4.dev"
+            # keep-sorted end
           ];
         };
         relabel_configs = [

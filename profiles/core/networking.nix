@@ -1,4 +1,6 @@
 {
+  networking.domain = "ny4.dev";
+
   networking.firewall.enable = false;
   services.resolved.enable = true;
 

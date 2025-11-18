@@ -191,20 +191,31 @@
           ./profiles/server
         ];
 
+        # keep-sorted start block=yes newline_separated=yes
+        "lax0" = {
+          imports = [ ./hosts/lax0 ];
+          deployment = {
+            tags = [ "proxy" ];
+            targetHost = "lax0.ny4.dev";
+          };
+        };
+
         "pek0" = {
           imports = [ ./hosts/pek0 ];
-          deployment.targetHost = "blacksteel"; # thru tailscale
+          deployment = {
+            tags = [ ];
+            targetHost = "blacksteel"; # thru tailscale
+          };
         };
 
         "tyo0" = {
           imports = [ ./hosts/tyo0 ];
-          deployment.targetHost = "tyo0.ny4.dev";
+          deployment = {
+            tags = [ "proxy" ];
+            targetHost = "tyo0.ny4.dev";
+          };
         };
-
-        "lax0" = {
-          imports = [ ./hosts/lax0 ];
-          deployment.targetHost = "lax0.ny4.dev";
-        };
+        # keep-sorted end
       };
     };
 }

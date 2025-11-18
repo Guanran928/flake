@@ -2,8 +2,15 @@
   lib,
   pkgs,
   config,
+  inputs,
   ...
 }:
+let
+  endpoints =
+    inputs.self.colmenaHive.deploymentConfig
+    |> lib.filterAttrs (_name: host: lib.elem "proxy" host.tags)
+    |> lib.attrNames;
+in
 {
   services.sing-box = {
     enable = true;
@@ -36,11 +43,11 @@
         listen_port = 1080;
       };
 
-      outbounds = [
-        {
+      outbounds =
+        map (endpoint: {
           type = "vless";
-          tag = "tyo0";
-          server = "tyo0.ny4.dev";
+          tag = endpoint;
+          server = "${endpoint}.${config.networking.domain}";
           server_port = 27253;
           uuid._secret = config.sops.secrets."sing-box/uuid".path;
           flow = "xtls-rprx-vision";
@@ -49,39 +56,23 @@
             server = "local";
             strategy = "prefer_ipv4";
           };
-        }
-        {
-          type = "vless";
-          tag = "lax0";
-          server = "lax0.ny4.dev";
-          server_port = 27253;
-          uuid._secret = config.sops.secrets."sing-box/uuid".path;
-          flow = "xtls-rprx-vision";
-          tls.enabled = true;
-          domain_resolver = {
-            server = "local";
-            strategy = "prefer_ipv4";
-          };
-        }
-        {
-          type = "selector";
-          tag = "select";
-          outbounds = [
-            "tyo0"
-            "lax0"
-            "direct"
-          ];
-          default = "tyo0";
-        }
-        {
-          type = "direct";
-          tag = "direct";
-          domain_resolver = {
-            server = "local";
-            strategy = "prefer_ipv4";
-          };
-        }
-      ];
+        }) endpoints
+        ++ [
+          {
+            type = "selector";
+            tag = "select";
+            outbounds = endpoints ++ [ "direct" ];
+            default = "tyo0";
+          }
+          {
+            type = "direct";
+            tag = "direct";
+            domain_resolver = {
+              server = "local";
+              strategy = "prefer_ipv4";
+            };
+          }
+        ];
 
       route = {
         rules = [

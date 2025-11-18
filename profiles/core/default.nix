@@ -25,6 +25,7 @@
         "cef-binary"
         "dart"
         "go"
+        "librusty_v8"
         "minecraft-server"
         "osu-lazer-bin"
         "rustc-bootstrap"
