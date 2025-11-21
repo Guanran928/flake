@@ -40,17 +40,13 @@ layout {
     center-focused-column "never"
 
     preset-column-widths {
+        proportion 0.33333
         proportion 0.5
-        proportion 1.0
-    }
-
-    preset-window-heights {
-        proportion 0.5
-        proportion 1.0
+        proportion 0.66667
     }
 
     default-column-width {
-        proportion 1.0
+        proportion 0.5
     }
 
     focus-ring {
@@ -76,21 +72,25 @@ spawn-at-startup "thunderbird"
 window-rule {
     match at-startup=true app-id="^foot$"
     open-on-workspace "terminal"
+    default-column-width { proportion 1.0; }
 }
 
 window-rule {
     match at-startup=true app-id="^zen-twilight$"
     open-on-workspace "browser"
+    default-column-width { proportion 1.0; }
 }
 
 window-rule {
     match at-startup=true app-id="^org\\.telegram\\.desktop$"
     open-on-workspace "chat"
+    default-column-width { proportion 1.0; }
 }
 
 window-rule {
     match at-startup=true app-id="^thunderbird$"
     open-on-workspace "mail"
+    default-column-width { proportion 1.0; }
 }
 
 window-rule {
