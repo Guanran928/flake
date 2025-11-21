@@ -20,12 +20,15 @@
       pkg:
       lib.elem (lib.getName pkg) [
         # keep-sorted start
+        "alsa-firmware"
         "antlr"
         "cargo-bootstrap"
         "cef-binary"
         "dart"
+        "ghc-binary"
         "go"
         "librusty_v8"
+        "linux-firmware"
         "minecraft-server"
         "osu-lazer-bin"
         "rustc-bootstrap"
