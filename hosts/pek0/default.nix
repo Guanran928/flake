@@ -6,32 +6,11 @@
 }:
 {
   imports = [
-    # OS
     ../../profiles/sing-box
-
-    # Hardware
     ./hardware-configuration.nix
-
-    # Services
-    # keep-sorted start
-    ./services/cloudflared.nix
-    ./services/forgejo.nix
-    ./services/immich.nix
-    ./services/mastodon.nix
-    ./services/matrix.nix
-    ./services/mautrix.nix
-    ./services/minecraft.nix
-    ./services/miniflux.nix
-    ./services/pocket-id.nix
-    ./services/postgresql.nix
-    ./services/rustical.nix
-    ./services/samba.nix
-    ./services/transmission.nix
-    ./services/vaultwarden.nix
-    ./services/wastebin.nix
-    # keep-sorted end
   ]
-  ++ (with inputs; [ nix-minecraft.nixosModules.minecraft-servers ]);
+  ++ (with inputs; [ nix-minecraft.nixosModules.minecraft-servers ])
+  ++ (./services |> lib.fileset.fileFilter (file: file.hasExt "nix") |> lib.fileset.toList);
 
   _module.args.ports = import ./ports.nix;
   sops.defaultSopsFile = ./secrets.yaml;

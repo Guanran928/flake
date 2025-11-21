@@ -1,11 +1,11 @@
 { inputs, ... }:
 {
-  imports = [
-    inputs.nixos-hardware.nixosModules.apple-macbook-pro
-    inputs.nixos-hardware.nixosModules.common-cpu-intel
-    inputs.nixos-hardware.nixosModules.common-hidpi
-    inputs.nixos-hardware.nixosModules.common-pc-laptop
-    inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
+  imports = with inputs.nixos-hardware.nixosModules; [
+    apple-macbook-pro
+    common-cpu-intel
+    common-hidpi
+    common-pc-laptop
+    common-pc-laptop-ssd
   ];
 
   boot.loader.efi.canTouchEfiVariables = true;
