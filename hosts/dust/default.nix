@@ -54,16 +54,14 @@
     "u2f" = { };
   };
 
-  systemd.tmpfiles.settings =
+  systemd.tmpfiles.settings."10-iwd" =
     let
       inherit (config.sops) secrets;
     in
     {
-      "10-iwd" = {
-        "/var/lib/iwd/Svartalfheim.psk".C.argument = secrets."wireless/Svartalfheim".path;
-        "/var/lib/iwd/XYC-SEEWO.psk".C.argument = secrets."wireless/XYC-SEEWO".path;
-        "/var/lib/iwd/Galaxy S24 EC54.psk".C.argument = secrets."wireless/Galaxy S24 EC54".path;
-      };
+      "/var/lib/iwd/Svartalfheim.psk".C.argument = secrets."wireless/Svartalfheim".path;
+      "/var/lib/iwd/XYC-SEEWO.psk".C.argument = secrets."wireless/XYC-SEEWO".path;
+      "/var/lib/iwd/Galaxy S24 EC54.psk".C.argument = secrets."wireless/Galaxy S24 EC54".path;
     };
 
   networking = {
