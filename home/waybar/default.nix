@@ -1,6 +1,9 @@
 { pkgs, ... }:
 {
-  programs.waybar.enable = true;
+  programs.waybar = {
+    enable = true;
+    systemd.enable = true;
+  };
 
   xdg.configFile."waybar/config.jsonc" = {
     source = ./config.jsonc;
@@ -17,7 +20,7 @@
   };
 
   systemd.user.services.waybar.Unit.X-Reload-Triggers = [
-    ./config.jsonc
-    ./style.css
+    (toString ./config.jsonc)
+    (toString ./style.css)
   ];
 }
