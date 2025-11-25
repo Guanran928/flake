@@ -15,8 +15,8 @@ return {
     },
     sections = {
       lualine_a = { "mode" },
-      lualine_b = { "diff" },
-      lualine_c = { "diagnostics" },
+      lualine_b = { "diff", "diagnostics" },
+      lualine_c = { "filename" },
       lualine_x = { "filetype" },
       lualine_y = {},
       lualine_z = { "location" },
