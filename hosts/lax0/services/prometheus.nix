@@ -70,7 +70,6 @@ in
             "https://cinny.ny4.dev"
             "https://cxk.ny4.dev"
             "https://element.ny4.dev"
-            "https://git.ny4.dev"
             "https://id.ny4.dev"
             "https://immich.ny4.dev"
             "https://ip.ny4.dev"

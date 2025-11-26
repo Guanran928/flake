@@ -6,7 +6,7 @@
 
     # keep-sorted start block=yes
     chicken-box = {
-      url = "https://git.ny4.dev/nyancat/chicken-box/archive/master.tar.gz";
+      url = "github:Guanran928/chicken-box";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
       inputs.systems.follows = "systems";
@@ -21,7 +21,7 @@
       inputs.stable.follows = "nixpkgs";
     };
     danbooru_img_bot = {
-      url = "https://git.ny4.dev/nyancat/danbooru_img_bot/archive/master.tar.gz";
+      url = "github:Guanran928/danbooru_img_bot";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
       inputs.treefmt-nix.follows = "treefmt-nix";
@@ -39,7 +39,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     ip-checker = {
-      url = "https://git.ny4.dev/nyancat/ip-checker/archive/master.tar.gz";
+      url = "github:Guanran928/ip-checker";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
       inputs.systems.follows = "systems";

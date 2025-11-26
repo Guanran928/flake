@@ -1,12 +1,4 @@
 # keep-sorted start block=yes newline_separated=yes
-resource "pocketid_client" "forgejo" {
-  name = "Forgejo"
-  callback_urls = [
-    "https://git.ny4.dev/user/oauth2/id.ny4.dev/callback",
-  ]
-  pkce_enabled = false
-}
-
 resource "pocketid_client" "immich" {
   name = "Immich"
   callback_urls = [

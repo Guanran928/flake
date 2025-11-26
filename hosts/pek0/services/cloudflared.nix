@@ -10,7 +10,6 @@
 
         # keep-sorted start
         "cal.ny4.dev"
-        "git.ny4.dev"
         "id.ny4.dev"
         "immich.ny4.dev"
         "mastodon.ny4.dev"
