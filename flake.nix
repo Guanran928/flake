@@ -194,7 +194,10 @@
         "lax0" = {
           imports = [ ./hosts/lax0 ];
           deployment = {
-            tags = [ "proxy" ];
+            tags = [
+              "proxy"
+              "dn42"
+            ];
             targetHost = "lax0.ny4.dev";
           };
         };
@@ -210,7 +213,10 @@
         "tyo0" = {
           imports = [ ./hosts/tyo0 ];
           deployment = {
-            tags = [ "proxy" ];
+            tags = [
+              "proxy"
+              "dn42"
+            ];
             targetHost = "tyo0.ny4.dev";
           };
         };

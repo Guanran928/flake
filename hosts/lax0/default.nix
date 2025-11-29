@@ -1,10 +1,11 @@
-{ ... }:
+{ lib, ... }:
 {
   imports = [
     ./hardware-configuration.nix
+    ../../modules/dn42.nix
     ../../profiles/sing-box-server
-    ./services/prometheus.nix
-  ];
+  ]
+  ++ (./services |> lib.fileset.fileFilter (file: file.hasExt "nix") |> lib.fileset.toList);
 
   _module.args.ports = import ./ports.nix;
   sops.defaultSopsFile = ./secrets.yaml;

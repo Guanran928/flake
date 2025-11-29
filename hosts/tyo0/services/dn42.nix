@@ -23,23 +23,24 @@
         last5 = x: builtins.substring ((builtins.stringLength x) - 5) 5 x;
       in
       [
-        # iEdon, SIN
+        # keep-sorted start block=yes
+        # H503MC, HKG
         rec {
-          asn = "4242422189";
-          address = "fd42:4242:2189:115::1";
+          asn = "4242420298";
+          address = "fdfa:6ded:ae4:3000::1";
           wireguard = {
-            endpoint = "jp-ty2.dn42.iedon.net:57756";
-            pubkey = "XjKsLfOYJ8y/U9saLpfM/MjXErlQ7gkw3+OgQTdVZ0U=";
+            endpoint = "node2.ox5.cc:20021";
+            pubkey = "mkdYhqStqiT4tGQLCSZ0ByGNKY5T5/00I6OvAl1hpy0=";
             listenPort = last5 asn;
           };
         }
-        # COWGL, TYO
+        # POTAT0, HKG
         rec {
-          asn = "4242423999";
-          address = "fd36:62be:ef51:1::1";
+          asn = "4242421816";
+          address = "fd2c:1323:4042::4";
           wireguard = {
-            endpoint = "tyo.node.cowgl.xyz:30021";
-            pubkey = "mMGGxtEqsagrx1Raw57C2H3Stl6ch/cUuF7y08eVgBE=";
+            endpoint = "hkg.node.potat0.cc:20021";
+            pubkey = "Tv1+HniELrS4Br2i7oQgwqBJFXQKculsW8r+UOqQXH0=";
             listenPort = last5 asn;
           };
         }
@@ -53,6 +54,26 @@
             listenPort = last5 asn;
           };
         }
+        # iEdon, SIN
+        rec {
+          asn = "4242422189";
+          address = "fd42:4242:2189:115::1";
+          wireguard = {
+            endpoint = "jp-ty2.dn42.iedon.net:57756";
+            pubkey = "XjKsLfOYJ8y/U9saLpfM/MjXErlQ7gkw3+OgQTdVZ0U=";
+            listenPort = last5 asn;
+          };
+        }
+        # LARE, TYO
+        rec {
+          asn = "4242423035";
+          address = "fd63:5d40:47e5::134";
+          wireguard = {
+            endpoint = "jp01.dn42.lare.cc:20021";
+            pubkey = "oTPdRylNhX2O80e6rLejT9Fwzo7KWKZ7a3PUF4G9oEM=";
+            listenPort = last5 asn;
+          };
+        }
         # SUNNET, TYO
         rec {
           asn = "4242423088";
@@ -63,16 +84,28 @@
             listenPort = last5 asn;
           };
         }
-        # H503MC, HKG
+        # Kioubit, HKG
         rec {
-          asn = "4242420298";
-          address = "fdfa:6ded:ae4:3000::1";
+          asn = "4242423914";
+          address = "fdfc:e23f:fb45:3234::11";
           wireguard = {
-            endpoint = "node2.ox5.cc:20021";
-            pubkey = "mkdYhqStqiT4tGQLCSZ0ByGNKY5T5/00I6OvAl1hpy0=";
+            endpoint = "hk1.g-load.eu:20021";
+            pubkey = "sLbzTRr2gfLFb24NPzDOpy8j09Y6zI+a7NkeVMdVSR8=";
             listenPort = last5 asn;
           };
         }
+        # COWGL, TYO
+        rec {
+          asn = "4242423999";
+          address = "fd36:62be:ef51:1::1";
+          wireguard = {
+            endpoint = "tyo.node.cowgl.xyz:30021";
+            pubkey = "mMGGxtEqsagrx1Raw57C2H3Stl6ch/cUuF7y08eVgBE=";
+            listenPort = last5 asn;
+          };
+        }
+        # keep-sorted end
+
         # # BINGXIN, SIN
         # rec {
         #   asn = "4242423374";
@@ -80,16 +113,6 @@
         #   wireguard = {
         #     endpoint = "sg01.dn42.baka.pub:20021";
         #     pubkey = "O3zvtZQNT6InSXgYDloIuQ4jP6PHO06WtsKz6coylBs=";
-        #     listenPort = last5 asn;
-        #   };
-        # }
-        # # LARE, TYO
-        # rec {
-        #   asn = "4242423035";
-        #   address = "fd63:5d40:47e5::134";
-        #   wireguard = {
-        #     endpoint = "jp01.dn42.lare.cc:20021";
-        #     pubkey = "oTPdRylNhX2O80e6rLejT9Fwzo7KWKZ7a3PUF4G9oEM=";
         #     listenPort = last5 asn;
         #   };
         # }
@@ -103,16 +126,6 @@
         #     listenPort = last5 asn;
         #   };
         # }
-        # # POTAT0, HKG
-        # rec {
-        #   asn = "4242421816";
-        #   address = "fd2c:1323:4042::4";
-        #   wireguard = {
-        #     endpoint = "hkg.node.potat0.cc:20021";
-        #     pubkey = "Tv1+HniELrS4Br2i7oQgwqBJFXQKculsW8r+UOqQXH0=";
-        #     listenPort = last5 asn;
-        #   };
-        # }
         # # YINFENG, HKG
         # rec {
         #   asn = "4242420128";
@@ -120,16 +133,6 @@
         #   wireguard = {
         #     endpoint = "[2404:8c80:85:1011:1:1:42cb:3d39]:20021";
         #     pubkey = "hZWqXT/9rDGvEgyoyzhbGCZItJD0MbWSfDVuDioSzUk=";
-        #     listenPort = last5 asn;
-        #   };
-        # }
-        # # Kioubit, HKG
-        # rec {
-        #   asn = "4242423914";
-        #   address = "fdfc:e23f:fb45:3234::11";
-        #   wireguard = {
-        #     endpoint = "hk1.g-load.eu:20021";
-        #     pubkey = "sLbzTRr2gfLFb24NPzDOpy8j09Y6zI+a7NkeVMdVSR8=";
         #     listenPort = last5 asn;
         #   };
         # }

@@ -1,6 +1,15 @@
-{ lib, ports, ... }:
+{
+  lib,
+  ports,
+  inputs,
+  ...
+}:
 let
   port = ports.bird-lg;
+  endpoints =
+    inputs.self.colmenaHive.deploymentConfig
+    |> lib.filterAttrs (_name: host: lib.elem "dn42" host.tags)
+    |> lib.attrNames;
 in
 {
   services.bird-lg.frontend = {
@@ -12,7 +21,7 @@ in
 
     domain = "ny4.dev";
     proxyPort = 4200; # FIXME: this is hard-coded
-    servers = [ "tyo0" ];
+    servers = endpoints;
   };
 
   services.caddy.settings.apps.http.servers.srv0.routes = lib.singleton {
