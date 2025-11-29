@@ -7,7 +7,6 @@
       # fish
       ''
         set fish_greeting
-        set -p fish_complete_path ${pkgs.fish}/share/fish/completions
       '';
 
     shellInit =

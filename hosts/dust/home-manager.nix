@@ -13,6 +13,7 @@
   };
 
   home.sessionVariables = {
+    # keep-sorted start
     ANDROID_USER_HOME = "${config.xdg.dataHome}/android";
     CARGO_HOME = "${config.xdg.cacheHome}/cargo";
     GTK_CSD = 0;
@@ -21,6 +22,7 @@
     MANROFFOPT = "-c";
     NH_FLAKE = "${config.home.homeDirectory}/Projects/flake";
     PYTHON_HISTORY = "${config.xdg.stateHome}/python_history";
+    # keep-sorted end
   };
 
   home.packages =
@@ -65,78 +67,92 @@
     ++ [ inputs.rdict.packages.${pkgs.stdenv.hostPlatform.system}.default ];
 
   programs = {
-    zoxide.enable = true;
-    gh.enable = true;
-  };
-
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-  };
-
-  programs.fzf = {
-    enable = true;
-    defaultOptions = [ "--color 16" ];
-  };
-
-  programs.ssh = {
-    enable = true;
-    enableDefaultConfig = false;
-    matchBlocks = {
-      "*.ny4.dev" = {
-        identityFile = "${config.home.homeDirectory}/.ssh/id_github_signing";
-        user = "root";
+    # keep-sorted start block=yes
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
+    fzf = {
+      enable = true;
+      defaultOptions = [ "--color 16" ];
+    };
+    gh = {
+      enable = true;
+    };
+    gpg = {
+      enable = true;
+      homedir = "${config.xdg.dataHome}/gnupg";
+    };
+    ssh = {
+      enable = true;
+      enableDefaultConfig = false;
+      matchBlocks = {
+        "*.ny4.dev" = {
+          identityFile = "${config.home.homeDirectory}/.ssh/id_github_signing";
+          user = "root";
+        };
+        "pek0.ny4.dev".hostname = "blacksteel";
       };
-      "pek0.ny4.dev".hostname = "blacksteel";
+    };
+    tealdeer = {
+      enable = true;
+      settings = {
+        display.use_pager = true;
+        updates.auto_update = true;
+      };
+    };
+    zoxide = {
+      enable = true;
+    };
+    # keep-sorted end
+  };
+
+  services = {
+    # keep-sorted start block=yes
+    cliphist = {
+      enable = true;
+      extraOptions = [
+        "-max-items"
+        "100"
+      ];
+    };
+    gpg-agent = {
+      enable = pkgs.stdenv.hostPlatform.isLinux;
+      pinentry.package = pkgs.pinentry-gnome3;
+    };
+    mako = {
+      enable = true;
+      settings = {
+        default-timeout = "5000";
+        layer = "overlay";
+      };
+    };
+    # keep-sorted end
+  };
+
+  xdg.configFile = {
+    "go/env" = {
+      text = ''
+        GOPATH=${config.xdg.cacheHome}/go
+        GOBIN=${config.xdg.stateHome}/go/bin
+      '';
+    };
+    "nvim" = {
+      source = ../../home/nvim;
+      recursive = true;
+    };
+    "niri" = {
+      source = ../../home/niri;
+    };
+    "mimeapps.list" = {
+      force = true;
     };
   };
 
-  programs.gpg = {
-    enable = true;
-    homedir = "${config.xdg.dataHome}/gnupg";
-  };
-
-  programs.tealdeer = {
-    enable = true;
-    settings = {
-      display.use_pager = true;
-      updates.auto_update = true;
+  xdg.dataFile = {
+    "applications/mimeapps.list" = {
+      enable = false;
     };
-  };
-
-  services.cliphist = {
-    enable = true;
-    extraOptions = [
-      "-max-items"
-      "100"
-    ];
-  };
-
-  services.gpg-agent = {
-    enable = pkgs.stdenv.hostPlatform.isLinux;
-    pinentry.package = pkgs.pinentry-gnome3;
-  };
-
-  services.mako = {
-    enable = true;
-    settings = {
-      default-timeout = "5000";
-      layer = "overlay";
-    };
-  };
-
-  xdg.configFile."go/env".text = ''
-    GOPATH=${config.xdg.cacheHome}/go
-    GOBIN=${config.xdg.stateHome}/go/bin
-  '';
-
-  xdg.configFile."nvim" = {
-    source = ../../home/nvim;
-    recursive = true;
-  };
-
-  xdg.configFile."niri" = {
-    source = ../../home/niri;
   };
 
   systemd.user.services.swaybg = {
@@ -178,17 +194,18 @@
   };
 
   dconf.settings = {
+    # keep-sorted start block=yes
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
-    };
-    "org/gnome/desktop/wm/preferences" = {
-      titlebar-font = "Sans Bold 11";
-      button-layout = "appmenu:";
     };
     "org/gnome/desktop/interface" = {
       font-name = "Sans 11";
       document-font-name = "Sans 11";
       monospace-font-name = "Monospace 10";
+    };
+    "org/gnome/desktop/wm/preferences" = {
+      titlebar-font = "Sans Bold 11";
+      button-layout = "appmenu:";
     };
     "org/gnome/nautilus/list-view" = {
       default-zoom-level = "small";
@@ -199,6 +216,7 @@
     "org/gtk/gtk4/settings/file-chooser" = {
       show-hidden = true;
     };
+    # keep-sorted end
   };
 
   # https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
@@ -207,13 +225,7 @@
     enable = true;
     defaultApplications =
       {
-        "zen-twilight.desktop" = [
-          "text/html"
-          "x-scheme-handler/http"
-          "x-scheme-handler/https"
-          "x-scheme-handler/about"
-          "x-scheme-handler/unknown"
-        ];
+        # keep-sorted start block=yes
         "mpv.desktop" = [
           "audio/aac"
           "audio/flac"
@@ -224,27 +236,32 @@
           "video/mpeg"
           "video/webm"
         ];
+        "nvim.desktop" = [
+          "text/css"
+          "text/javascript"
+          "text/plain"
+        ];
         "org.gnome.Loupe.desktop" = [
           "image/gif"
           "image/jpeg"
           "image/png"
           "image/webp"
         ];
-        "nvim.desktop" = [
-          "text/css"
-          "text/javascript"
-          "text/plain"
-        ];
         "thunderbird.desktop" = [
           "x-scheme-handler/mailto"
           "x-scheme-handler/mid"
         ];
+        "zen-twilight.desktop" = [
+          "text/html"
+          "x-scheme-handler/about"
+          "x-scheme-handler/http"
+          "x-scheme-handler/https"
+          "x-scheme-handler/unknown"
+        ];
+        # keep-sorted end
       }
       |> lib.mapAttrsToList lib.nameValuePair
       |> map (x: lib.genAttrs x.value (_: x.name))
       |> lib.mkMerge;
   };
-
-  xdg.dataFile."applications/mimeapps.list".enable = false;
-  xdg.configFile."mimeapps.list".force = true;
 }

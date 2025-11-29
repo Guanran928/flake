@@ -54,44 +54,17 @@
     permittedInsecurePackages = [ "olm-3.2.16" ];
   };
 
-  boot.enableContainers = false;
-  boot.initrd.systemd.enable = true;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  environment.etc.machine-id.text = "b08dfa6083e7567a1921a715000001fb"; # whonix id
-  environment.systemPackages = with pkgs; [
-    unzip
-    tree
-    file
-    htop
-    tmux
-
-    lsof
-    strace
-
-    dnsutils
-    pciutils
-    usbutils
-  ];
-
-  environment.etc."tmux.conf".source = ./tmux.conf;
-
-  users.mutableUsers = false;
-  services.userborn.enable = true;
-  environment.stub-ld.enable = false;
-
-  programs.nano.enable = false;
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
+  # keep-sorted start block=yes newline_separated=yes
+  boot = {
+    enableContainers = false;
+    initrd.systemd.enable = true;
+    kernelPackages = pkgs.linuxPackages_latest;
   };
 
-  # https://archlinux.org/news/making-dbus-broker-our-default-d-bus-daemon/
-  services.dbus.implementation = "broker";
-
-  security.sudo.extraConfig = ''
-    Defaults lecture = never
-  '';
+  console = {
+    earlySetup = true;
+    keyMap = "dvorak";
+  };
 
   documentation = {
     doc.enable = false;
@@ -99,10 +72,53 @@
     nixos.enable = false;
   };
 
-  console = {
-    earlySetup = true;
-    keyMap = "dvorak";
+  environment.etc = {
+    "machine-id".text = "b08dfa6083e7567a1921a715000001fb"; # whonix id
+    "tmux.conf".source = ./tmux.conf;
   };
+
+  environment.stub-ld = {
+    enable = false;
+  };
+
+  environment.systemPackages = with pkgs; [
+    # keep-sorted start
+    dnsutils
+    file
+    htop
+    lsof
+    pciutils
+    strace
+    tmux
+    tree
+    unzip
+    usbutils
+    # keep-sorted end
+  ];
+
+  programs.nano = {
+    enable = false;
+  };
+
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+  };
+
+  services = {
+    dbus.implementation = "broker"; # https://archlinux.org/news/making-dbus-broker-our-default-d-bus-daemon/
+    userborn.enable = true;
+  };
+
+  users = {
+    mutableUsers = false;
+  };
+  # keep-sorted end
+
+  # keep-sorted does not work with multiline strings
+  security.sudo.extraConfig = ''
+    Defaults lecture = never
+  '';
 
   # See `nixos-version(8)`
   system.configurationRevision = inputs.self.rev or "dirty";

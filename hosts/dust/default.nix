@@ -34,7 +34,6 @@
       TimeoutStopSec = 10;
     };
   };
-  system.nixos-init.enable = true;
 
   sops = {
     age.keyFile = "/persist/home/guanranwang/.config/sops/age/keys.txt";
@@ -61,8 +60,11 @@
   system.stateVersion = "25.05";
 
   # TODO: move to 'core' profile
-  system.etc.overlay.enable = true;
-  system.etc.overlay.mutable = false;
+  system = {
+    nixos-init.enable = true;
+    etc.overlay.enable = true;
+    etc.overlay.mutable = false;
+  };
 
   users.users."guanranwang" = {
     isNormalUser = true;
@@ -83,48 +85,69 @@
   };
 
   programs = {
-    adb.enable = true;
-    fish.enable = true;
-    niri.enable = true;
-    neovim.package = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.neovim;
-    seahorse.enable = true;
-    ssh.enableAskPassword = true;
-    yubikey-manager.enable = true;
-  };
-
-  programs.gtklock = {
-    enable = true;
-    modules = with pkgs; [
-      gtklock-playerctl-module
-      gtklock-powerbar-module
-    ];
-  };
-
-  programs.steam = {
-    enable = true;
-    package = pkgs.steam.override { extraArgs = "-system-composer"; };
+    # keep-sorted start block=yes
+    adb = {
+      enable = true;
+    };
+    fish = {
+      enable = true;
+    };
+    gtklock = {
+      enable = true;
+      modules = with pkgs; [
+        gtklock-playerctl-module
+        gtklock-powerbar-module
+      ];
+    };
+    neovim = {
+      package = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.neovim;
+    };
+    niri = {
+      enable = true;
+    };
+    seahorse = {
+      enable = true;
+    };
+    ssh = {
+      enableAskPassword = true;
+    };
+    steam = {
+      enable = true;
+      package = pkgs.steam.override { extraArgs = "-system-composer"; };
+    };
+    virt-manager = {
+      enable = true;
+    };
+    yubikey-manager = {
+      enable = true;
+    };
+    # keep-sorted end
   };
 
   services = {
-    power-profiles-daemon.enable = true;
+    # keep-sorted start block=yes
     gnome = {
       gnome-keyring.enable = true;
+    };
+    greetd = {
+      enable = true;
+      settings.default_session.command = "${lib.getExe pkgs.tuigreet} --cmd niri-session";
+    };
+    power-profiles-daemon = {
+      enable = true;
+    };
+    speechd = {
+      enable = false;
     };
     tailscale = {
       enable = true;
       extraDaemonFlags = [ "--no-logs-no-support" ];
     };
-    speechd.enable = false;
-  };
-
-  services.greetd = {
-    enable = true;
-    settings.default_session.command = "${lib.getExe pkgs.tuigreet} --cmd niri-session";
-  };
-
-  services.upower = {
-    enable = true;
-    criticalPowerAction = "PowerOff";
+    upower = {
+      enable = true;
+      criticalPowerAction = "PowerOff";
+    };
+    # keep-sorted end
   };
 
   fonts = {
