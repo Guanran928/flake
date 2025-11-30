@@ -56,7 +56,7 @@
   nix.extraOptions = "!include ${config.sops.secrets.nix-access-tokens.path}";
 
   networking.hostName = "dust";
-  time.timeZone = "Asia/Shanghai";
+  time.timeZone = "Asia/Hong_Kong";
   system.stateVersion = "25.05";
 
   # TODO: move to 'core' profile
