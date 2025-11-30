@@ -10,6 +10,11 @@ let
     inputs.self.colmenaHive.deploymentConfig
     |> lib.filterAttrs (_name: host: lib.elem "proxy" host.tags)
     |> lib.attrNames;
+
+  endpoints_dn42 =
+    inputs.self.colmenaHive.deploymentConfig
+    |> lib.filterAttrs (_name: host: (lib.elem "proxy" host.tags) && (lib.elem "dn42" host.tags))
+    |> lib.attrNames;
 in
 {
   services.sing-box = {
@@ -65,6 +70,21 @@ in
             default = if (config.time.timeZone == "Asia/Shanghai") then "tyo0" else "direct";
           }
           {
+            type = "selector";
+            tag = "reddit";
+            outbounds = [
+              "tyo0" # the only accessible node
+              "direct"
+            ];
+            default = if (config.time.timeZone == "Asia/Shanghai") then "tyo0" else "direct";
+          }
+          {
+            type = "selector";
+            tag = "dn42";
+            outbounds = endpoints_dn42;
+            default = "tyo0";
+          }
+          {
             type = "direct";
             tag = "direct";
             domain_resolver = {
@@ -86,9 +106,19 @@ in
             ip_is_private = true;
             outbound = "direct";
           }
+          {
+            domain_suffix = [ ".dn42" ];
+            ip_cidr = [ "fd00::/8" ];
+            outbound = "dn42";
+          }
+          {
+            rule_set = [ "geosite-reddit" ];
+            outbound = "reddit"; # the only accessible node
+          }
         ];
 
         rule_set = [
+          # keep-sorted start block=yes
           {
             tag = "geoip-cn";
             type = "local";
@@ -107,6 +137,13 @@ in
             format = "binary";
             path = "${pkgs.sing-geosite}/share/sing-box/rule-set/geosite-private.srs";
           }
+          {
+            tag = "geosite-reddit";
+            type = "local";
+            format = "binary";
+            path = "${pkgs.sing-geosite}/share/sing-box/rule-set/geosite-reddit.srs";
+          }
+          # keep-sorted end
         ];
 
         default_domain_resolver = "local";
