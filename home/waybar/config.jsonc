@@ -1,5 +1,5 @@
 {
-  "layer": "top",
+  "layer": "bottom",
   "spacing": 4,
   "reload_style_on_change": true,
   "modules-left": ["ext/workspaces", "niri/window"],
