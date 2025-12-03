@@ -43,8 +43,6 @@
     extraDaemonFlags = [ "--no-logs-no-support" ];
   };
 
-  systemd.services.caddy.serviceConfig.SupplementaryGroups = [ config.users.groups.anubis.name ];
-
   services.caddy.enable = true;
   services.caddy.settings.apps.http.servers.srv0 = {
     listen = [ ":80" ];

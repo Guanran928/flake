@@ -31,6 +31,7 @@
         "linux-firmware"
         "minecraft-server"
         "osu-lazer-bin"
+        "extism-js"
         "rustc-bootstrap"
         "rustc-bootstrap-wrapper"
         "sof-firmware"
