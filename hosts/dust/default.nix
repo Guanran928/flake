@@ -56,7 +56,7 @@
   nix.extraOptions = "!include ${config.sops.secrets.nix-access-tokens.path}";
 
   networking.hostName = "dust";
-  time.timeZone = "Asia/Hong_Kong";
+  time.timeZone = "Asia/Shanghai";
   system.stateVersion = "25.05";
 
   # TODO: move to 'core' profile
@@ -114,9 +114,6 @@
     steam = {
       enable = true;
       package = pkgs.steam.override { extraArgs = "-system-composer"; };
-    };
-    virt-manager = {
-      enable = true;
     };
     yubikey-manager = {
       enable = true;
