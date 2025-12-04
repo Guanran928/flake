@@ -105,7 +105,7 @@ resource "cloudflare_dns_record" "lax0_v4" {
 }
 
 resource "cloudflare_dns_record" "lax0_v6" {
-  content = "2605:52c0:1:ca6:a09f:95ff:fe19:6b7b"
+  content = "2605:52c0:1:ca6:1014:f5ff:fe0c:513f"
   name    = "lax0.ny4.dev"
   proxied = false
   ttl     = 1
