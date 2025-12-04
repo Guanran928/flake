@@ -34,6 +34,7 @@
 
     shellAliases = {
       ls = "eza --icons";
+      tree = "eza --tree";
     };
 
     shellAbbrs =
