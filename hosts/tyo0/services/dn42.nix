@@ -24,12 +24,12 @@
       in
       [
         # keep-sorted start block=yes
-        # H503MC, HKG
+        # H503MC, TYO
         rec {
           asn = "4242420298";
-          address = "fdfa:6ded:ae4:3000::1";
+          address = "fdfa:6ded:ae4:8000::1";
           wireguard = {
-            endpoint = "node2.ox5.cc:20021";
+            endpoint = "node5.ox5.cc:20021";
             pubkey = "mkdYhqStqiT4tGQLCSZ0ByGNKY5T5/00I6OvAl1hpy0=";
             listenPort = last5 asn;
           };

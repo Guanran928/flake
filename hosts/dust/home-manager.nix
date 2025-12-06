@@ -38,6 +38,7 @@
       jq
       libnotify
       loupe
+      nautilus
       nh
       nil
       nix-diff
