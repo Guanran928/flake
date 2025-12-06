@@ -10,7 +10,7 @@
 
   _module.args.ports = import ./ports.nix;
   sops.defaultSopsFile = ./secrets.yaml;
-  system.stateVersion = "25.05";
+  system.stateVersion = "25.11";
 
   networking.hostName = "tyo0";
   services.getty.autologinUser = "root";

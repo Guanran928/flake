@@ -57,7 +57,6 @@
 
   # keep-sorted start block=yes newline_separated=yes
   boot = {
-    enableContainers = false;
     initrd.systemd.enable = true;
     kernelPackages = pkgs.linuxPackages_latest;
   };

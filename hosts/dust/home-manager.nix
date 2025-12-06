@@ -9,7 +9,7 @@
   imports = ../../home |> lib.fileset.fileFilter (file: file.hasExt "nix") |> lib.fileset.toList;
 
   home = {
-    stateVersion = "25.05";
+    stateVersion = "25.11";
   };
 
   home.sessionVariables = {

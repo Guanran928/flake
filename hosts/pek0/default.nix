@@ -15,7 +15,7 @@
   _module.args.ports = import ./ports.nix;
   sops.defaultSopsFile = ./secrets.yaml;
   networking.hostName = "pek0";
-  system.stateVersion = "25.05";
+  system.stateVersion = "25.11";
 
   # FIXME: dotnet
   nixpkgs.config.allowNonSourcePredicate = lib.mkForce (_pkg: true);
