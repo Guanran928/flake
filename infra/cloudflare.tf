@@ -95,6 +95,24 @@ resource "cloudflare_dns_record" "tyo0_v6" {
   zone_id = local.cloudflare_zone_id
 }
 
+resource "cloudflare_dns_record" "tyo1_v4" {
+  content = "178.239.126.230"
+  name    = "tyo1.ny4.dev"
+  proxied = false
+  ttl     = 1
+  type    = "A"
+  zone_id = local.cloudflare_zone_id
+}
+
+resource "cloudflare_dns_record" "tyo1_v6" {
+  content = "2602:fd6f:1f:6a7::121"
+  name    = "tyo1.ny4.dev"
+  proxied = false
+  ttl     = 1
+  type    = "AAAA"
+  zone_id = local.cloudflare_zone_id
+}
+
 resource "cloudflare_dns_record" "lax0_v4" {
   content = "154.17.237.246"
   name    = "lax0.ny4.dev"

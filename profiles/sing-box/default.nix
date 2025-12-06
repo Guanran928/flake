@@ -73,7 +73,8 @@ in
             type = "selector";
             tag = "reddit";
             outbounds = [
-              "tyo0" # the only accessible node
+              "tyo0" # the only accessible nodes
+              "tyo1"
               "direct"
             ];
             default = if (config.time.timeZone == "Asia/Shanghai") then "tyo0" else "direct";
