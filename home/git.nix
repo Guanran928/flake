@@ -38,13 +38,14 @@
   programs.lazygit = {
     enable = true;
     settings = {
-      gui = {
-        nerdFontsVersion = "3";
-        showRandomTip = false;
-        showBottomLine = false;
-      };
       git = {
         pagers = [ { pager = "delta --paging=never"; } ];
+      };
+      gui = {
+        border = "single";
+        nerdFontsVersion = "3";
+        showBottomLine = false;
+        showRandomTip = false;
       };
     };
   };
