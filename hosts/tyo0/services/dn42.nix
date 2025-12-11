@@ -84,6 +84,26 @@
             listenPort = last5 asn;
           };
         }
+        # BINGXIN, SIN
+        rec {
+          asn = "4242423374";
+          address = "fddf:3681:e80:227::1";
+          wireguard = {
+            endpoint = "sg01.dn42.baka.pub:20021";
+            pubkey = "O3zvtZQNT6InSXgYDloIuQ4jP6PHO06WtsKz6coylBs=";
+            listenPort = last5 asn;
+          };
+        }
+        # NIGHTCOFFEE, TYO
+        rec {
+          asn = "4242423508";
+          address = "fd82:9700:355e:100::1";
+          wireguard = {
+            endpoint = "jp-tyo.dn42.ydkf.me:35603";
+            pubkey = "gMlu6MvagM0Bvywjv0KXkqHX5JI3zY0rXx1c8Xt2zzc=";
+            listenPort = last5 asn;
+          };
+        }
         # Kioubit, HKG
         rec {
           asn = "4242423914";
@@ -106,26 +126,6 @@
         }
         # keep-sorted end
 
-        # # BINGXIN, SIN
-        # rec {
-        #   asn = "4242423374";
-        #   address = "fddf:3681:e80::227";
-        #   wireguard = {
-        #     endpoint = "sg01.dn42.baka.pub:20021";
-        #     pubkey = "O3zvtZQNT6InSXgYDloIuQ4jP6PHO06WtsKz6coylBs=";
-        #     listenPort = last5 asn;
-        #   };
-        # }
-        # # NIGHTCOFFEE, TYO
-        # rec {
-        #   asn = "4242423508";
-        #   address = "fd82:9700:355e:100::1";
-        #   wireguard = {
-        #     endpoint = "jp-tyo.dn42.ydkf.me:35603";
-        #     pubkey = "gMlu6MvagM0Bvywjv0KXkqHX5JI3zY0rXx1c8Xt2zzc=";
-        #     listenPort = last5 asn;
-        #   };
-        # }
         # # YINFENG, HKG
         # rec {
         #   asn = "4242420128";

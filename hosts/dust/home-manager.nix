@@ -35,6 +35,7 @@
       eza
       fd
       gcc
+      gh
       jq
       libnotify
       loupe
@@ -76,9 +77,6 @@
     fzf = {
       enable = true;
       defaultOptions = [ "--color 16" ];
-    };
-    gh = {
-      enable = true;
     };
     gpg = {
       enable = true;

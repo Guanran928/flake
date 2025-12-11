@@ -2,7 +2,9 @@
   description = "Guanran928's Flake";
 
   inputs = {
-    nixpkgs.url = "github:Guanran928/nixpkgs";
+    nixpkgs = {
+      url = "github:Guanran928/nixpkgs";
+    };
 
     # keep-sorted start block=yes
     chicken-box = {
