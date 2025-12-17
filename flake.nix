@@ -48,12 +48,10 @@
       inputs.treefmt-nix.follows = "treefmt-nix";
     };
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.4.3";
+      url = "github:nix-community/lanzaboote/v1.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.crane.follows = "crane";
-      inputs.flake-compat.follows = "";
-      inputs.flake-parts.follows = "flake-parts";
-      inputs.pre-commit-hooks-nix.follows = "";
+      inputs.pre-commit.follows = "";
       inputs.rust-overlay.follows = "rust-overlay";
     };
     neovim-nightly-overlay = {

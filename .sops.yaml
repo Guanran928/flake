@@ -1,8 +1,7 @@
 keys:
-  - &guanranwang age129yyxyz686qj88ce5v77ahelqqwt6zz94mzzls0ny4hq76psrd9qhc79kq
+  - &dust age129yyxyz686qj88ce5v77ahelqqwt6zz94mzzls0ny4hq76psrd9qhc79kq
 
   # ssh-to-age < /etc/ssh/ssh_host_ed25519_key.pub
-  - &dust age193x79xx8snu82w3t3hax6nruuw57g7pduwnkpvzkzmd7fs5jvfrquqa3sl
   - &lax0 age1uy7gjr68yc375fyd4z02p480hmuupjhauayr385m0xqyef9lypyqfyu3ev
   - &pek0 age174knn6hjtukp32ymcdvjwj6x0j54g7yw02dqfjmua3fkyltwcqrsxccjdk
   - &tyo0 age1jyj9pewy4xcqm54rrwwqrz3trj8f6jrt2uduyxe4truhhtzgdq0qwsgl4h
@@ -12,35 +11,33 @@ creation_rules:
   - path_regex: ^hosts/dust/secrets.yaml$
     key_groups:
       - age:
-          - *guanranwang
           - *dust
   - path_regex: ^hosts/pek0/secrets.yaml$
     key_groups:
       - age:
-          - *guanranwang
+          - *dust
           - *pek0
   - path_regex: ^hosts/tyo0/secrets.yaml$
     key_groups:
       - age:
-          - *guanranwang
+          - *dust
           - *tyo0
   - path_regex: ^hosts/lax0/secrets.yaml$
     key_groups:
       - age:
-          - *guanranwang
+          - *dust
           - *lax0
 
   # shared
   - path_regex: ^profiles/sing-box/secrets.yaml$
     key_groups:
       - age:
-          - *guanranwang
           - *dust
           - *pek0
   - path_regex: ^profiles/sing-box-server/secrets.yaml$
     key_groups:
       - age:
-          - *guanranwang
+          - *dust
           - *lax0
           - *tyo0
           - *tyo1
@@ -49,4 +46,4 @@ creation_rules:
   - path_regex: ^infra/secrets.yaml$
     key_groups:
       - age:
-          - *guanranwang
+          - *dust
