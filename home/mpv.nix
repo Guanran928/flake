@@ -3,9 +3,7 @@
   programs.mpv = {
     enable = true;
     config = {
-      ao = "pipewire";
-      vo = "gpu-next";
-      hwdec = "auto-safe";
+      hwdec = "auto";
       profile = "high-quality";
 
       alang = "jpn,ja";
