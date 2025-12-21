@@ -180,9 +180,7 @@
       colmenaHive = inputs.colmena.lib.makeHive {
         meta = {
           specialArgs.inputs = inputs;
-          nixpkgs = import inputs.nixpkgs {
-            system = "x86_64-linux"; # How does this work?
-          };
+          nixpkgs = import inputs.nixpkgs { system = "x86_64-linux"; };
         };
 
         defaults.imports = [
