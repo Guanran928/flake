@@ -8,10 +8,26 @@
     common-pc-laptop-ssd
   ];
 
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.systemd-boot.enable = true;
+  boot.loader = {
+    efi.canTouchEfiVariables = true;
+    systemd-boot.enable = true;
+  };
 
-  services.thermald.enable = true;
+  boot = {
+    initrd.availableKernelModules = [
+      "xhci_pci"
+      "ahci"
+      "usbhid"
+      "usb_storage"
+      "sd_mod"
+    ];
+    kernelModules = [ "kvm-intel" ];
+  };
+
+  services = {
+    thermald.enable = true;
+  };
+
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-uuid/ab9b92a9-b67b-43b4-b0d9-9dd59ccd594b";
@@ -27,16 +43,4 @@
       fsType = "vfat";
     };
   };
-
-  boot.initrd.availableKernelModules = [
-    "xhci_pci"
-    "ahci"
-    "usbhid"
-    "usb_storage"
-    "sd_mod"
-  ];
-  boot.kernelModules = [
-    "kvm-intel"
-    "wl"
-  ];
 }

@@ -7,6 +7,21 @@
     pkiBundle = "/var/lib/sbctl";
   };
 
+  boot.loader = {
+    efi.canTouchEfiVariables = true;
+    timeout = 0;
+  };
+
+  boot = {
+    initrd.availableKernelModules = [
+      "xhci_pci"
+      "thunderbolt"
+      "nvme"
+      "sd_mod"
+    ];
+    kernelModules = [ "kvm-intel" ];
+  };
+
   hardware.firmware = with pkgs; [
     linux-firmware
     alsa-firmware
@@ -20,34 +35,27 @@
     "xe.force_probe=7d55"
   ];
 
-  services.fwupd.enable = true;
-  services.fprintd.enable = true;
-
-  security.rtkit.enable = true;
-  services.pulseaudio.enable = false;
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
+  networking = {
+    wireless.iwd.enable = true;
   };
 
-  hardware.bluetooth = {
-    enable = true;
-    settings.General.FastConnectable = true;
+  security = {
+    rtkit.enable = true;
   };
 
-  networking.wireless.iwd.enable = true;
-
-  boot.loader.timeout = 0;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  boot.initrd.availableKernelModules = [
-    "xhci_pci"
-    "thunderbolt"
-    "nvme"
-    "usb_storage"
-    "sd_mod"
-  ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  services = {
+    fprintd = {
+      enable = true;
+    };
+    fwupd = {
+      enable = true;
+    };
+    pipewire = {
+      enable = true;
+      pulse.enable = true;
+    };
+    pulseaudio = {
+      enable = false;
+    };
+  };
 }
