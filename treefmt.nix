@@ -4,7 +4,6 @@
   programs = {
     # keep-sorted start
     deadnix.enable = true;
-    just.enable = true;
     keep-sorted.enable = true;
     nixfmt.enable = true;
     prettier.enable = true;

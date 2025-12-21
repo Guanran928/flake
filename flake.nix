@@ -151,7 +151,6 @@
             ))
 
             colmena
-            just
             sops
 
             lua-language-server

@@ -1,4 +1,0 @@
-/.terraform
-/terraform.tfstate.*
-/.terraform.lock.hcl
-/output

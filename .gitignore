@@ -1,6 +1,9 @@
 result
 result-*
 
-.DS_Store
-
 /.direnv
+
+/infra/.terraform
+/infra/.terraform.lock.hcl
+/infra/output
+/infra/terraform.tfstate.*
