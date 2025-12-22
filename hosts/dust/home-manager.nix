@@ -153,7 +153,27 @@
     "applications/mimeapps.list" = {
       enable = false;
     };
-  };
+  }
+  // (
+    [
+      # keep-sorted start
+      "foot-server"
+      "footclient"
+      "htop"
+      "kbd-layout-viewer5"
+      "nvim"
+      "org.fcitx.fcitx5-migrator"
+      # keep-sorted end
+    ]
+    |> map (x: {
+      name = "applications/${x}.desktop";
+      value.text = ''
+        [Desktop Entry]
+        Hidden=true
+      '';
+    })
+    |> lib.listToAttrs
+  );
 
   systemd.user.services.swaybg = {
     Install = {
