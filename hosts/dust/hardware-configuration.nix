@@ -40,7 +40,7 @@
   };
 
   security = {
-    rtkit.enable = true;
+    rtkit.enable = true; # pipewire
   };
 
   services = {
@@ -49,13 +49,6 @@
     };
     fwupd = {
       enable = true;
-    };
-    pipewire = {
-      enable = true;
-      pulse.enable = true;
-    };
-    pulseaudio = {
-      enable = false;
     };
   };
 }
