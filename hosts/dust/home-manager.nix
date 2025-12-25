@@ -6,7 +6,10 @@
   ...
 }:
 {
-  imports = ../../home |> lib.fileset.fileFilter (file: file.hasExt "nix") |> lib.fileset.toList;
+  imports =
+    ../../home
+    |> lib.fileset.fileFilter (file: file.hasExt "nix" && !lib.elem file.name [ "style.css.nix" ]) # FIXME: hack
+    |> lib.fileset.toList;
 
   home = {
     stateVersion = "25.11";

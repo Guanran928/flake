@@ -21,9 +21,15 @@
   nixpkgs.config.allowNonSourcePredicate = lib.mkForce (_pkg: true);
 
   # Password protected physical TTY access
-  sops.secrets."hashed-passwd".neededForUsers = true;
-  users.users."root".hashedPasswordFile = config.sops.secrets."hashed-passwd".path;
-  boot.kernelParams = [ "consoleblank=60" ];
+  sops.secrets."hashed-passwd" = {
+    neededForUsers = true;
+  };
+  users.users."root" = {
+    hashedPasswordFile = config.sops.secrets."hashed-passwd".path;
+  };
+  boot = {
+    kernelParams = [ "consoleblank=60" ];
+  };
 
   networking = {
     useNetworkd = true;

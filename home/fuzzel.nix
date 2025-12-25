@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
   programs.fuzzel = {
     enable = true;
@@ -11,17 +12,31 @@
         radius = 0;
       };
 
-      # FIXME: Temporary color scheme
-      # https://github.com/kuripa/oxocarbon-fuzzel/blob/master/output/oxocarbon-dark.ini
-      colors = {
-        background = "161616ff";
-        text = "ffffffff";
-        match = "ee5396ff";
-        selection-match = "ee5396ff";
-        selection = "262626ff";
-        selection-text = "33b1ffff";
-        border = "525252ff";
-      };
+      colors =
+        let
+          c = import ../lib/colors.nix |> lib.mapAttrs (_n: v: "#${v}ff"); # expects #RRGGBBAA
+
+          bg = c.neutral-900;
+          bg_highlight = c.neutral-800;
+
+          fg = c.neutral-300;
+          fg_muted = c.neutral-500;
+
+          accent = c.blue-400;
+          border = c.neutral-800;
+        in
+        {
+          background = bg;
+          text = fg;
+          prompt = fg_muted;
+          placeholder = fg_muted;
+          input = fg;
+          match = accent;
+          selection = bg_highlight;
+          selection-text = fg;
+          selection-match = accent;
+          border = border;
+        };
     };
   };
 }

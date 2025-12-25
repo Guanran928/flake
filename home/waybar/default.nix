@@ -13,14 +13,9 @@
   };
 
   xdg.configFile."waybar/style.css" = {
-    source = ./style.css;
+    text = import ./style.css.nix;
     onChange = ''
       ${pkgs.procps}/bin/pkill -u $USER -USR2 waybar || true
     '';
   };
-
-  systemd.user.services.waybar.Unit.X-Reload-Triggers = [
-    (toString ./config.jsonc)
-    (toString ./style.css)
-  ];
 }
