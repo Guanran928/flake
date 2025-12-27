@@ -8,6 +8,7 @@
     ];
 
     users.guanranwang = {
+      commonMountOptions = [ "x-gvfs-hide" ];
       directories = [
         "Documents"
         "Downloads"

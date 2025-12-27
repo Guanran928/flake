@@ -130,6 +130,9 @@
       enable = true;
       settings.default_session.command = "${lib.getExe pkgs.tuigreet} --cmd niri-session";
     };
+    gvfs = {
+      enable = true;
+    };
     power-profiles-daemon = {
       enable = true;
     };
