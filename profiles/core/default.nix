@@ -24,13 +24,11 @@
         "antlr"
         "cargo-bootstrap"
         "cef-binary"
-        "dart"
         "extism-js"
         "ghc-binary"
         "go"
         "librusty_v8"
         "linux-firmware"
-        "minecraft-server"
         "osu-lazer-bin"
         "rustc-bootstrap"
         "rustc-bootstrap-wrapper"
@@ -52,7 +50,9 @@
         # keep-sorted end
       ];
 
-    permittedInsecurePackages = [ "olm-3.2.16" ];
+    permittedInsecurePackages = [
+      "olm-3.2.16" # mautrix-telegram
+    ];
   };
 
   # keep-sorted start block=yes newline_separated=yes

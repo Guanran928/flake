@@ -17,9 +17,6 @@
   networking.hostName = "pek0";
   system.stateVersion = "25.11";
 
-  # FIXME: dotnet
-  nixpkgs.config.allowNonSourcePredicate = lib.mkForce (_pkg: true);
-
   # Password protected physical TTY access
   sops.secrets."hashed-passwd" = {
     neededForUsers = true;
