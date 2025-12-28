@@ -67,7 +67,7 @@ in
             type = "selector";
             tag = "select";
             outbounds = endpoints ++ [ "direct" ];
-            default = if (config.time.timeZone == "Asia/Shanghai") then "tyo0" else "direct";
+            default = "tyo0";
           }
           {
             type = "selector";
@@ -77,7 +77,7 @@ in
               "tyo1"
               "direct"
             ];
-            default = if (config.time.timeZone == "Asia/Shanghai") then "tyo0" else "direct";
+            default = "tyo0";
           }
           {
             type = "selector";
