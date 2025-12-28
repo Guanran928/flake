@@ -11,7 +11,7 @@
     servers.survival = rec {
       enable = true;
       package =
-        inputs.nix-minecraft.legacyPackages.${pkgs.stdenv.hostPlatform.system}.fabricServers.fabric-1_21_8;
+        inputs.nix-minecraft.legacyPackages.${pkgs.stdenv.hostPlatform.system}.fabricServers.fabric-1_21_11;
 
       # Aikar's flag
       # https://aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft/
@@ -37,19 +37,26 @@
         "-XX:SurvivorRatio=32"
         "-XX:+PerfDisableSharedMem"
         "-XX:MaxTenuringThreshold=1"
-        "-Dusing.aikars.flags=https://mcflags.emc.gs"
-        "-Daikars.new.flags=true"
       ];
 
-      serverProperties = {
-        motd = ''\u00A78::\u00A7r \u00A7aEvergreen\u00A7r \u00A7fSurvival \u00A78::\u00A7r\nJoin with ${package.version}'';
-        white-list = true;
-        max-players = 5;
+      serverProperties =
+        let
+          c = color: str: "\u00A7" + color + str + "\u00A7" + "r";
+        in
+        {
 
-        difficulty = "hard";
-        gamemode = "survival";
-        level-seed = "Nix";
-      };
+          motd = ''
+            ${c "8" "::"} ${c "a" "Evergreen"} ${c "f" "Survival"} ${c "8" "::"}
+            Join with ${builtins.split "-" package.version |> (x: builtins.elemAt x 0)}
+          '';
+          white-list = true;
+          max-players = 5;
+          enforce-secure-profile = false;
+
+          difficulty = "hard";
+          gamemode = "survival";
+          level-seed = "Nix";
+        };
 
       whitelist = {
         "Guanran928" = "86dbb6c5-8d8b-4c45-b8eb-b3fdf03bfb27";
@@ -57,28 +64,31 @@
         "multimode_Liu" = "5bad0d97-1b6e-448f-87c4-350ee898cb68";
       };
 
-      symlinks.mods = pkgs.linkFarmFromDrvs "mods" [
-        # Matrix Bridge
-        (pkgs.fetchurl {
-          url = "https://cdn.modrinth.com/data/dPf5THEO/versions/gL6xGcgj/matrix-bridge-1.21-1.4.jar";
-          hash = "sha256-vzPTTXHYJBFjafz6LUPHBCKbKgvPhVkYwPnW/Vrhqps=";
-        })
-        # Simple Voice Chat
-        (pkgs.fetchurl {
-          url = "https://cdn.modrinth.com/data/9eGKb6K1/versions/s1rczw8x/voicechat-fabric-1.21.8-2.6.4.jar";
-          hash = "sha256-mIPQx7y3B3+XWtywclbP9DTE2kh0xe5hYsE9KkxXuvk=";
-        })
-        # Fabric API
-        (pkgs.fetchurl {
-          url = "https://cdn.modrinth.com/data/P7dR8mSH/versions/e9QZFLr0/fabric-api-0.134.0%2B1.21.8.jar";
-          hash = "sha256-SsPy3cHTvJ2d/+iD4zIZw+9WmNuOUQNrj7ucHcSul2Y=";
-        })
-        # Fabric Language Kotlin
-        (pkgs.fetchurl {
-          url = "https://cdn.modrinth.com/data/Ha28R6CL/versions/iqWDz8qt/fabric-language-kotlin-1.13.3%2Bkotlin.2.1.21.jar";
-          hash = "sha256-0d58143zqMbIazgji/1pFA0b8OrV2O9bukjPPKE0LYs=";
-        })
-      ];
+      symlinks.mods =
+        [
+          {
+            # Telegram Bridge
+            url = "https://cdn.modrinth.com/data/QI59B2cO/versions/QgZI7iZs/tgbridge-0.9.1-fabric.jar";
+            hash = "sha256-GXlY2ma0Io89ofvdcIgTQZUlWoHgezSNFp/3ofHZ148=";
+          }
+          {
+            # Simple Voice Chat
+            url = "https://cdn.modrinth.com/data/9eGKb6K1/versions/T42QJY4i/voicechat-fabric-1.21.11-2.6.10.jar";
+            hash = "sha256-Bw++uNpoCuu7bQE/PSagtVFLBgoNKbtbBzSNBmbrGO0=";
+          }
+          {
+            # Fabric API
+            url = "https://cdn.modrinth.com/data/P7dR8mSH/versions/gB6TkYEJ/fabric-api-0.140.2%2B1.21.11.jar";
+            hash = "sha256-t8RYO3/EihF5gsxZuizBDFO3K+zQHSXkAnCUgSb4QyE=";
+          }
+          {
+            # Fabric Language Kotlin
+            url = "https://cdn.modrinth.com/data/Ha28R6CL/versions/N6D3uiZF/fabric-language-kotlin-1.13.8%2Bkotlin.2.3.0.jar";
+            hash = "sha256-dglT2NPR+jKjU1k9dE4pF9ipHKiSOulRi17yZ2pjEAI=";
+          }
+        ]
+        |> map pkgs.fetchurl
+        |> pkgs.linkFarmFromDrvs "mods";
     };
   };
 }
