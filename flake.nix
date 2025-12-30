@@ -203,7 +203,7 @@
           imports = [ ./hosts/pek0 ];
           deployment = {
             tags = [ ];
-            targetHost = "blacksteel"; # thru tailscale
+            targetHost = "pek0.ny4.dev"; # thru tailscale
           };
         };
 

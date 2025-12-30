@@ -93,7 +93,7 @@
           user = "root";
         };
         "pek0.ny4.dev" = {
-          hostname = "blacksteel";
+          hostname = "pek0"; # tailscale magicdns
         };
       };
     };

@@ -14,7 +14,7 @@ in
 
       # tailscale
       rpc-whitelist = "100.*.*.*";
-      rpc-host-whitelist = "blacksteel";
+      rpc-host-whitelist = "pek0";
 
       incomplete-dir = "/mnt/torrent/downloading";
       download-dir = "/mnt/torrent";

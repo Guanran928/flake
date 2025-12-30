@@ -24,8 +24,8 @@ resource "cloudflare_zone_setting" "ssl" {
   value      = "strict"
 }
 
-resource "cloudflare_zero_trust_tunnel_cloudflared" "blacksteel" {
-  name          = "blacksteel"
+resource "cloudflare_zero_trust_tunnel_cloudflared" "pek0" {
+  name          = "pek0"
   account_id    = local.cloudflare_account_id
   tunnel_secret = local.secrets.cloudflare.tunnel_secret
 }
@@ -69,7 +69,7 @@ resource "cloudflare_dns_record" "cname_records" {
 }
 
 resource "cloudflare_dns_record" "pek0" {
-  content = "${cloudflare_zero_trust_tunnel_cloudflared.blacksteel.id}.cfargotunnel.com"
+  content = "${cloudflare_zero_trust_tunnel_cloudflared.pek0.id}.cfargotunnel.com"
   name    = "pek0.ny4.dev"
   proxied = true
   ttl     = 1
