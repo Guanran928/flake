@@ -2,7 +2,7 @@
 {
   services.cloudflared = {
     enable = true;
-    tunnels."56cb139d-be03-46a9-b5ef-d00af5f8ef33" = {
+    tunnels."36f02df3-b1f5-4447-be61-c1e5d4124ed1" = {
       credentialsFile = config.sops.secrets."cloudflared/secret".path;
       default = "http_status:404";
       ingress = lib.genAttrs [
@@ -23,11 +23,11 @@
     };
   };
 
-  systemd.services."cloudflared-tunnel-56cb139d-be03-46a9-b5ef-d00af5f8ef33" = {
+  systemd.services."cloudflared-tunnel-36f02df3-b1f5-4447-be61-c1e5d4124ed1" = {
     environment.TUNNEL_TRANSPORT_PROTOCOL = "http2"; # QUIC is quite unstable in China Mainland
   };
 
   sops.secrets."cloudflared/secret".restartUnits = [
-    "cloudflared-tunnel-56cb139d-be03-46a9-b5ef-d00af5f8ef33.service"
+    "cloudflared-tunnel-36f02df3-b1f5-4447-be61-c1e5d4124ed1.service"
   ];
 }

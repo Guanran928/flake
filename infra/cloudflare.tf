@@ -31,8 +31,26 @@ resource "cloudflare_zero_trust_tunnel_cloudflared" "pek0" {
 }
 
 locals {
-  dns_records = {
+  a_records = {
+    "lax0" = "154.17.237.246"
+    "tyo0" = "178.239.125.6"
+    "tyo1" = "178.239.126.230"
+  }
+
+  aaaa_records = {
+    "lax0" = "2605:52c0:1:ca6:1014:f5ff:fe0c:513f"
+    "tyo0" = "2602:fd6f:1f:3ed::324"
+    "tyo1" = "2602:fd6f:1f:6a7::121"
+  }
+
+  cname_records = {
+    "blog"                             = "guanran928.github.io"
+    "c721047d80432b0bbe1f6856f5f17970" = "verify.bing.com"
+  }
+
+  cname_records_proxied = {
     # keep-sorted start
+    "@"       = "tyo0.ny4.dev"
     "bird-lg" = "tyo0.ny4.dev"
     "cinny"   = "tyo0.ny4.dev"
     "cxk"     = "tyo0.ny4.dev"
@@ -54,136 +72,76 @@ locals {
     # keep-sorted end
 
     "prom" = "lax0.ny4.dev"
+    "pek0" = "${cloudflare_zero_trust_tunnel_cloudflared.pek0.id}.cfargotunnel.com"
+  }
+
+  txt_records = {
+    "_atproto" = "did=did:plc:s3ii4l6etpymuj5rzz2bondu"
+    "@"        = "google-site-verification=wBL5EFnbnt9lt2j_BtcwlXTaBFlFT563mC1MkCscnR8"
   }
 }
 
-resource "cloudflare_dns_record" "cname_records" {
-  for_each = local.dns_records
+resource "cloudflare_dns_record" "a_records" {
+  for_each = local.a_records
 
+  name    = each.key
   content = each.value
-  name    = "${each.key}.ny4.dev"
-  proxied = true
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = local.cloudflare_zone_id
-}
-
-resource "cloudflare_dns_record" "pek0" {
-  content = "${cloudflare_zero_trust_tunnel_cloudflared.pek0.id}.cfargotunnel.com"
-  name    = "pek0.ny4.dev"
-  proxied = true
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = local.cloudflare_zone_id
-}
-
-resource "cloudflare_dns_record" "tyo0_v4" {
-  content = "178.239.125.6"
-  name    = "tyo0.ny4.dev"
   proxied = false
   ttl     = 1
   type    = "A"
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_dns_record" "tyo0_v6" {
-  content = "2602:fd6f:1f:3ed::324"
-  name    = "tyo0.ny4.dev"
+resource "cloudflare_dns_record" "aaaa_records" {
+  for_each = local.aaaa_records
+
+  name    = each.key
+  content = each.value
   proxied = false
   ttl     = 1
   type    = "AAAA"
   zone_id = local.cloudflare_zone_id
 }
 
-resource "cloudflare_dns_record" "tyo1_v4" {
-  content = "178.239.126.230"
-  name    = "tyo1.ny4.dev"
-  proxied = false
-  ttl     = 1
-  type    = "A"
-  zone_id = local.cloudflare_zone_id
-}
+resource "cloudflare_dns_record" "cname_records" {
+  for_each = local.cname_records
 
-resource "cloudflare_dns_record" "tyo1_v6" {
-  content = "2602:fd6f:1f:6a7::121"
-  name    = "tyo1.ny4.dev"
-  proxied = false
-  ttl     = 1
-  type    = "AAAA"
-  zone_id = local.cloudflare_zone_id
-}
-
-resource "cloudflare_dns_record" "lax0_v4" {
-  content = "154.17.237.246"
-  name    = "lax0.ny4.dev"
-  proxied = false
-  ttl     = 1
-  type    = "A"
-  zone_id = local.cloudflare_zone_id
-}
-
-resource "cloudflare_dns_record" "lax0_v6" {
-  content = "2605:52c0:1:ca6:1014:f5ff:fe0c:513f"
-  name    = "lax0.ny4.dev"
-  proxied = false
-  ttl     = 1
-  type    = "AAAA"
-  zone_id = local.cloudflare_zone_id
-}
-
-
-resource "cloudflare_dns_record" "blog" {
-  content = "guanran928.github.io"
-  name    = "blog.ny4.dev"
+  name    = each.key == "@" ? "ny4.dev" : each.key
+  content = each.value
   proxied = false
   ttl     = 1
   type    = "CNAME"
   zone_id = local.cloudflare_zone_id
 }
 
+resource "cloudflare_dns_record" "cname_records_proxied" {
+  for_each = local.cname_records_proxied
 
-resource "cloudflare_dns_record" "apex" {
-  content = "tyo0.ny4.dev"
-  name    = "ny4.dev"
+  name    = each.key == "@" ? "ny4.dev" : each.key
+  content = each.value
   proxied = true
   ttl     = 1
   type    = "CNAME"
   zone_id = local.cloudflare_zone_id
 }
 
+resource "cloudflare_dns_record" "txt_records" {
+  for_each = local.txt_records
 
-resource "cloudflare_dns_record" "bluesky" {
-  content = "\"did=did:plc:s3ii4l6etpymuj5rzz2bondu\""
-  name    = "_atproto.ny4.dev"
+  name    = each.key == "@" ? "ny4.dev" : each.key
+  content = "\"${each.value}\""
   proxied = false
   ttl     = 1
   type    = "TXT"
   zone_id = local.cloudflare_zone_id
 }
 
+# FIXME: why is this at _atproto.ny4.dev?
 resource "cloudflare_dns_record" "discord" {
   content = "\"dh=8da72697ecf86306cc5d5147711c3d0c12c11d71\""
   name    = "_atproto.ny4.dev"
   proxied = false
   ttl     = 1
   type    = "TXT"
-  zone_id = local.cloudflare_zone_id
-}
-
-resource "cloudflare_dns_record" "google_search_console" {
-  content = "\"google-site-verification=wBL5EFnbnt9lt2j_BtcwlXTaBFlFT563mC1MkCscnR8\""
-  name    = "ny4.dev"
-  proxied = false
-  ttl     = 3600
-  type    = "TXT"
-  zone_id = local.cloudflare_zone_id
-}
-
-resource "cloudflare_dns_record" "bing_webmaster" {
-  content = "verify.bing.com"
-  name    = "c721047d80432b0bbe1f6856f5f17970.ny4.dev"
-  proxied = false
-  ttl     = 1
-  type    = "CNAME"
   zone_id = local.cloudflare_zone_id
 }
