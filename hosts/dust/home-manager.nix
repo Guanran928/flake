@@ -202,8 +202,26 @@
 
   gtk = {
     enable = true;
-    gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
-    gtk4.theme = null;
+
+    gtk2 = {
+      configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+    };
+
+    # The default bookmarks for Nautilus are usually set by `xdg-user-dirs-gtk` upon login on GNOME.
+    # However, I am not on GNOME, so I'm going to set this myself.
+    gtk3.bookmarks =
+      [
+        "Documents"
+        "Music"
+        "Pictures"
+        "Videos"
+        "Downloads"
+      ]
+      |> map (x: "file://${config.home.homeDirectory}/${x}");
+
+    gtk4 = {
+      theme = null;
+    };
 
     iconTheme = {
       name = "Adwaita";
@@ -242,12 +260,23 @@
     # keep-sorted end
   };
 
-  # https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
-  xdg.enable = true;
+  xdg = {
+    enable = true;
+  };
+
+  # Nautilus needs to read `~/.config/user-dirs.dirs` to determine folder icons
+  xdg.userDirs = {
+    enable = true;
+    desktop = null;
+    publicShare = null;
+    templates = null;
+  };
+
   xdg.mimeApps = {
     enable = true;
     defaultApplications =
       {
+        # https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
         # keep-sorted start block=yes
         "mpv.desktop" = [
           "audio/aac"
