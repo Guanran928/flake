@@ -85,6 +85,7 @@ window-rule {
     match at-startup=true app-id="^org\\.telegram\\.desktop$"
     open-on-workspace "chat"
     default-column-width { proportion 1.0; }
+    open-focused false
 }
 
 window-rule {
