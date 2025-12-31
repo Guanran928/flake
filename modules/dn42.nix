@@ -254,7 +254,7 @@ in
 
     environment.etc =
       let
-        toFile =
+        toPeerFile =
           peer:
           lib.nameValuePair "bird/peers/${peer.asn}.conf" {
             text = ''
@@ -264,7 +264,7 @@ in
             '';
           };
       in
-      cfg.peers |> map toFile |> lib.listToAttrs;
+      cfg.peers |> map toPeerFile |> lib.listToAttrs;
 
     ################################################
     #                Looking Glass                 #

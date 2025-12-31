@@ -5,6 +5,7 @@
     # keep-sorted start
     deadnix.enable = true;
     keep-sorted.enable = true;
+    nixf-diagnose.enable = true;
     nixfmt.enable = true;
     prettier.enable = true;
     statix.enable = true;

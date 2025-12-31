@@ -48,10 +48,10 @@ in
   systemd.services.sing-box.serviceConfig.LoadCredential =
     let
       # FIXME: remove somewhat hardcoded path
-      path = "/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory";
+      certPath = "/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory";
     in
     [
-      "cert:${path}/${fqdn}/${fqdn}.crt"
-      "key:${path}/${fqdn}/${fqdn}.key"
+      "cert:${certPath}/${fqdn}/${fqdn}.crt"
+      "key:${certPath}/${fqdn}/${fqdn}.key"
     ];
 }
