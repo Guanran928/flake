@@ -17,7 +17,6 @@ in
   }
 
   #workspaces,
-  #window,
   #clock,
   #battery,
   #backlight,
