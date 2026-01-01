@@ -71,16 +71,6 @@ in
           }
           {
             type = "selector";
-            tag = "reddit";
-            outbounds = [
-              "tyo0" # the only accessible nodes
-              "tyo1"
-              "direct"
-            ];
-            default = "tyo0";
-          }
-          {
-            type = "selector";
             tag = "dn42";
             outbounds = endpoints_dn42;
             default = "tyo0";
@@ -114,7 +104,7 @@ in
           }
           {
             rule_set = [ "geosite-reddit" ];
-            outbound = "reddit"; # the only accessible node
+            outbound = "tyo0"; # the only accessible node
           }
         ];
 

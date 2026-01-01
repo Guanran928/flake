@@ -4,8 +4,7 @@ keys:
   # ssh-to-age < /etc/ssh/ssh_host_ed25519_key.pub
   - &lax0 age1uy7gjr68yc375fyd4z02p480hmuupjhauayr385m0xqyef9lypyqfyu3ev
   - &pek0 age174knn6hjtukp32ymcdvjwj6x0j54g7yw02dqfjmua3fkyltwcqrsxccjdk
-  - &tyo0 age1jyj9pewy4xcqm54rrwwqrz3trj8f6jrt2uduyxe4truhhtzgdq0qwsgl4h
-  - &tyo1 age18m5hmpyfr68a6a7lqyf7ukt7gpfcgyvts8agz76vtylv9kv40yeqzuw0gv
+  - &tyo0 age18m5hmpyfr68a6a7lqyf7ukt7gpfcgyvts8agz76vtylv9kv40yeqzuw0gv
 creation_rules:
   # per host
   - path_regex: ^hosts/dust/secrets.yaml$
@@ -40,7 +39,6 @@ creation_rules:
           - *dust
           - *lax0
           - *tyo0
-          - *tyo1
 
   # opentofu
   - path_regex: ^infra/secrets.yaml$

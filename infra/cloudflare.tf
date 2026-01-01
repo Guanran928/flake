@@ -33,14 +33,12 @@ resource "cloudflare_zero_trust_tunnel_cloudflared" "pek0" {
 locals {
   a_records = {
     "lax0" = "154.17.237.246"
-    "tyo0" = "178.239.125.6"
-    "tyo1" = "178.239.126.230"
+    "tyo0" = "178.239.126.230"
   }
 
   aaaa_records = {
     "lax0" = "2605:52c0:1:ca6:1014:f5ff:fe0c:513f"
-    "tyo0" = "2602:fd6f:1f:3ed::324"
-    "tyo1" = "2602:fd6f:1f:6a7::121"
+    "tyo0" = "2602:fd6f:1f:6a7::121"
   }
 
   cname_records = {

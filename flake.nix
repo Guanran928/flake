@@ -217,15 +217,6 @@
             targetHost = "tyo0.ny4.dev";
           };
         };
-
-        # TODO: This server is going to be tyo0 in the future.
-        "tyo1" = {
-          imports = [ ./hosts/tyo1 ];
-          deployment = {
-            tags = [ "proxy" ];
-            targetHost = "tyo1.ny4.dev";
-          };
-        };
         # keep-sorted end
       };
     };
