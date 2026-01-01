@@ -1,4 +1,4 @@
-{ config, ... }:
+{ lib, config, ... }:
 {
   programs.foot = {
     enable = true;
@@ -48,5 +48,5 @@
     };
   };
 
-  home.sessionVariables."TERMINAL" = config.programs.foot.package;
+  home.sessionVariables."TERMINAL" = lib.getExe config.xdg.terminal-exec.package;
 }

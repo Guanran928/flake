@@ -264,6 +264,11 @@
     enable = true;
   };
 
+  xdg.terminal-exec = {
+    enable = true;
+    settings.default = [ "foot.desktop" ];
+  };
+
   # Nautilus needs to read `~/.config/user-dirs.dirs` to determine folder icons
   xdg.userDirs = {
     enable = true;
