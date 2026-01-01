@@ -24,6 +24,7 @@
         "antlr"
         "cargo-bootstrap"
         "cef-binary"
+        "dart"
         "extism-js"
         "ghc-binary"
         "go"
