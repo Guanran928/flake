@@ -32,6 +32,7 @@
     (with pkgs; [
       # keep-sorted start
       (osu-lazer-bin.override { nativeWayland = true; })
+      android-tools
       bat
       brightnessctl
       deadnix

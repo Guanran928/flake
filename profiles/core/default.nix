@@ -21,6 +21,7 @@
       lib.elem (lib.getName pkg) [
         # keep-sorted start
         "alsa-firmware"
+        "ant"
         "antlr"
         "cargo-bootstrap"
         "cef-binary"

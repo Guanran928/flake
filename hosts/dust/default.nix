@@ -86,9 +86,6 @@
 
   programs = {
     # keep-sorted start block=yes
-    adb = {
-      enable = true;
-    };
     fish = {
       enable = true;
     };
