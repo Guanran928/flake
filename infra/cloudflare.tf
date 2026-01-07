@@ -75,6 +75,7 @@ locals {
 
   txt_records = {
     "_atproto" = "did=did:plc:s3ii4l6etpymuj5rzz2bondu"
+    "_discord" = "dh=8da72697ecf86306cc5d5147711c3d0c12c11d71"
     "@"        = "google-site-verification=wBL5EFnbnt9lt2j_BtcwlXTaBFlFT563mC1MkCscnR8"
   }
 }
@@ -128,16 +129,6 @@ resource "cloudflare_dns_record" "txt_records" {
 
   name    = each.key == "@" ? "ny4.dev" : each.key
   content = "\"${each.value}\""
-  proxied = false
-  ttl     = 1
-  type    = "TXT"
-  zone_id = local.cloudflare_zone_id
-}
-
-# FIXME: why is this at _atproto.ny4.dev?
-resource "cloudflare_dns_record" "discord" {
-  content = "\"dh=8da72697ecf86306cc5d5147711c3d0c12c11d71\""
-  name    = "_atproto.ny4.dev"
   proxied = false
   ttl     = 1
   type    = "TXT"
