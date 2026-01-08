@@ -133,6 +133,12 @@ in
               expr = ''node_systemd_unit_state{state="failed"} == 1'';
               annotations.summary = "Systemd unit {{ $labels.name }} failure on {{ $labels.instance }}";
             }
+            {
+              alert = "UnitActivating";
+              expr = ''node_systemd_unit_state{state="activating"} == 1'';
+              for = "5m";
+              annotations.summary = "Systemd unit {{ $labels.name }} stuck activating on {{ $labels.instance }}";
+            }
           ];
         };
       }
