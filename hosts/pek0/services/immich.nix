@@ -18,13 +18,8 @@
   services.caddy.settings.apps.http.servers.srv0.routes = lib.singleton {
     match = lib.singleton { host = [ "immich.ny4.dev" ]; };
     handle = lib.singleton {
-      handler = "subroute";
-      routes = lib.singleton {
-        handle = lib.singleton {
-          handler = "reverse_proxy";
-          upstreams = [ { dial = "[::1]:${toString config.services.immich.port}"; } ];
-        };
-      };
+      handler = "reverse_proxy";
+      upstreams = [ { dial = "[::1]:${toString config.services.immich.port}"; } ];
     };
   };
 }
