@@ -4,4 +4,5 @@
   wastebin = 8050;
   bird-lg = 8060;
   rustical = 8070;
+  sub-server = 8080;
 }

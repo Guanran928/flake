@@ -27,13 +27,8 @@ in
   services.caddy.settings.apps.http.servers.srv0.routes = lib.singleton {
     match = lib.singleton { host = [ "bird-lg.ny4.dev" ]; };
     handle = lib.singleton {
-      handler = "subroute";
-      routes = lib.singleton {
-        handle = lib.singleton {
-          handler = "reverse_proxy";
-          upstreams = [ { dial = "[::1]:${toString port}"; } ];
-        };
-      };
+      handler = "reverse_proxy";
+      upstreams = [ { dial = "[::1]:${toString port}"; } ];
     };
   };
 }
