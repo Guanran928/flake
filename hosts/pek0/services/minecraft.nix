@@ -39,27 +39,29 @@
         "-XX:MaxTenuringThreshold=1"
       ];
 
-      serverProperties =
-        let
-          c = color: str: "\u00A7" + color + str + "\u00A7" + "r";
-        in
-        {
+      serverProperties = {
+        motd =
+          let
+            c = color: str: "\\u00A7" + color + str + "\\u00A7" + "r";
+          in
+          [
+            "${c "8" "::"} ${c "a" "Evergreen"} ${c "f" "Survival"} ${c "8" "::"}"
+            "Join with ${builtins.split "-" package.version |> (x: builtins.elemAt x 0)}"
+          ]
+          |> lib.concatStringsSep "\\n";
 
-          motd = ''
-            ${c "8" "::"} ${c "a" "Evergreen"} ${c "f" "Survival"} ${c "8" "::"}
-            Join with ${builtins.split "-" package.version |> (x: builtins.elemAt x 0)}
-          '';
-          white-list = true;
-          max-players = 5;
-          enforce-secure-profile = false;
+        white-list = true;
+        max-players = 5;
+        enforce-secure-profile = false;
 
-          difficulty = "hard";
-          gamemode = "survival";
-          level-seed = "Nix";
-        };
+        difficulty = "hard";
+        gamemode = "survival";
+        level-seed = "Nix";
+      };
 
       whitelist = {
         "Guanran928" = "86dbb6c5-8d8b-4c45-b8eb-b3fdf03bfb27";
+        "Moe_Kafu_Chino" = "0b036845-c18d-4349-be89-7f8705b5f65b";
         "i_love_ravens" = "2788dd4b-b010-4a2f-9b5c-aad0c0e0cba5";
         "multimode_Liu" = "5bad0d97-1b6e-448f-87c4-350ee898cb68";
       };
