@@ -3,9 +3,15 @@ let
   inherit (config.networking) fqdn;
 in
 {
-  sops.secrets."sing-box/auth" = {
-    restartUnits = [ "sing-box.service" ];
-    sopsFile = ./secrets.yaml;
+  sops.secrets = {
+    "sing-box/auth" = {
+      restartUnits = [ "sing-box.service" ];
+      sopsFile = ./secrets.yaml;
+    };
+    "sing-box/dns01_token" = {
+      restartUnits = [ "sing-box.service" ];
+      sopsFile = ./secrets.yaml;
+    };
   };
 
   services.sing-box = {
@@ -28,8 +34,13 @@ in
           tls = {
             enabled = true;
             server_name = fqdn;
-            certificate_path = "/run/credentials/sing-box.service/cert";
-            key_path = "/run/credentials/sing-box.service/key";
+            acme = {
+              domain = [ fqdn ];
+              dns01_challenge = {
+                provider = "cloudflare";
+                api_token._secret = config.sops.secrets."sing-box/dns01_token".path;
+              };
+            };
           };
         }
       ];
@@ -44,14 +55,4 @@ in
       };
     };
   };
-
-  systemd.services.sing-box.serviceConfig.LoadCredential =
-    let
-      # FIXME: remove somewhat hardcoded path
-      certPath = "/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory";
-    in
-    [
-      "cert:${certPath}/${fqdn}/${fqdn}.crt"
-      "key:${certPath}/${fqdn}/${fqdn}.key"
-    ];
 }
