@@ -1,5 +1,8 @@
 {
-  fileSystems."/persist".neededForBoot = true;
+  fileSystems."/persist" = {
+    neededForBoot = true;
+  };
+
   preservation.enable = true;
   preservation.preserveAt."/persist" = {
     directories = [

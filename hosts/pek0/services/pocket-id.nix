@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, config, ... }:
 {
   services.pocket-id = {
     enable = true;
@@ -8,17 +8,24 @@
       UNIX_SOCKET = "/run/pocket-id/pocket-id.sock";
       UNIX_SOCKET_MODE = "0660";
 
-      DB_PROVIDER = "postgres";
-      DB_CONNECTION_STRING = "user=pocket-id dbname=pocket-id host=/run/postgresql";
+      DB_CONNECTION_STRING = "postgresql://pocket-id@/pocket-id?host=/run/postgresql";
 
       ANALYTICS_DISABLED = true;
     };
   };
 
-  systemd.services = {
-    pocket-id.serviceConfig.RuntimeDirectory = [ "pocket-id" ];
-    pocket-id.serviceConfig.RestrictAddressFamilies = [ "AF_UNIX" ];
-    caddy.serviceConfig.SupplementaryGroups = [ "pocket-id" ];
+  sops.secrets."pocket-id/environment" = {
+    restartUnits = [ "pocket-id.service" ]; # ENCRYPTION_KEY
+  };
+
+  systemd.services.pocket-id.serviceConfig = {
+    RuntimeDirectory = [ "pocket-id" ];
+    RestrictAddressFamilies = [ "AF_UNIX" ];
+    EnvironmentFile = config.sops.secrets."pocket-id/environment".path;
+  };
+
+  systemd.services.caddy.serviceConfig = {
+    SupplementaryGroups = [ "pocket-id" ];
   };
 
   services.caddy.settings.apps.http.servers.srv0.routes = lib.singleton {

@@ -193,6 +193,20 @@
     };
   };
 
+  systemd.user.services.polkit-gnome-authentication-agent-1 = {
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
+    Unit = {
+      PartOf = [ "graphical-session.target" ];
+      After = [ "graphical-session.target" ];
+    };
+    Service = {
+      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+      Restart = "on-failure";
+    };
+  };
+
   home.pointerCursor = {
     name = "Adwaita";
     package = pkgs.adwaita-icon-theme;

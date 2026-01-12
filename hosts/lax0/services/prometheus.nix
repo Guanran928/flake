@@ -119,7 +119,7 @@ in
             }
             {
               alert = "MemoryFull";
-              expr = ''node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes < 0.1'';
+              expr = "node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes < 0.1";
               for = "5m";
               annotations.summary = "Low available memory on {{ $labels.instance }}";
             }

@@ -8,10 +8,7 @@
     common-pc-laptop-ssd
   ];
 
-  boot.loader = {
-    efi.canTouchEfiVariables = true;
-    systemd-boot.enable = true;
-  };
+  # keep-sorted start block=yes newline_separated=yes
 
   boot = {
     initrd.availableKernelModules = [
@@ -24,23 +21,32 @@
     kernelModules = [ "kvm-intel" ];
   };
 
+  boot.loader = {
+    efi.canTouchEfiVariables = true;
+    systemd-boot.enable = true;
+  };
+
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/ab9b92a9-b67b-43b4-b0d9-9dd59ccd594b";
+    fsType = "btrfs";
+    options = [
+      "subvol=@"
+      "compress-force=zstd"
+      "noatime"
+    ];
+  };
+
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/E5DE-9C92";
+    fsType = "vfat";
+  };
+
   services = {
     thermald.enable = true;
   };
 
-  fileSystems = {
-    "/" = {
-      device = "/dev/disk/by-uuid/ab9b92a9-b67b-43b4-b0d9-9dd59ccd594b";
-      fsType = "btrfs";
-      options = [
-        "subvol=@"
-        "compress-force=zstd"
-        "noatime"
-      ];
-    };
-    "/boot" = {
-      device = "/dev/disk/by-uuid/E5DE-9C92";
-      fsType = "vfat";
-    };
+  sops.secrets = {
+    luks-external = { };
   };
+  # keep-sorted end
 }
