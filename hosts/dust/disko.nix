@@ -26,10 +26,7 @@ in
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = [
-                  "defaults"
-                  "umask=007"
-                ];
+                mountOptions = [ "umask=007" ];
               };
             };
             "cryptroot" = {
@@ -75,7 +72,6 @@ in
       "/" = {
         fsType = "tmpfs";
         mountOptions = [
-          "defaults"
           "size=16G"
           "mode=755"
           "nodev"
