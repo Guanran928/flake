@@ -9,7 +9,6 @@
   ];
 
   # keep-sorted start block=yes newline_separated=yes
-
   boot = {
     initrd.availableKernelModules = [
       "xhci_pci"
@@ -43,10 +42,6 @@
 
   services = {
     thermald.enable = true;
-  };
-
-  sops.secrets = {
-    luks-external = { };
   };
   # keep-sorted end
 }

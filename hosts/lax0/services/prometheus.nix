@@ -43,16 +43,6 @@ in
         static_configs = lib.singleton { inherit targets; };
       }
       {
-        job_name = "caddy";
-        scheme = "https";
-        metrics_path = "/caddy";
-        basic_auth = {
-          username = "prometheus";
-          password_file = config.sops.secrets."prometheus/auth".path;
-        };
-        static_configs = lib.singleton { inherit targets; };
-      }
-      {
         job_name = "blackbox_exporter";
         static_configs = lib.singleton { targets = [ "[::1]:${toString ports.blackbox}" ]; };
       }
