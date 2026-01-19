@@ -13,6 +13,7 @@
 
   home = {
     stateVersion = "25.11";
+    preferXdgDirectories = true;
   };
 
   home.sessionVariables = {
@@ -217,10 +218,6 @@
 
   gtk = {
     enable = true;
-
-    gtk2 = {
-      configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
-    };
 
     # The default bookmarks for Nautilus are usually set by `xdg-user-dirs-gtk` upon login on GNOME.
     # However, I am not on GNOME, so I'm going to set this myself.
