@@ -41,11 +41,6 @@
     DHCP = "yes";
   };
 
-  services.tailscale = {
-    enable = true;
-    extraDaemonFlags = [ "--no-logs-no-support" ];
-  };
-
   services.caddy.enable = true;
   services.caddy.settings.apps.http.servers.srv0 = {
     listen = [ ":80" ];
