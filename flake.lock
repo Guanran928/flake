@@ -413,7 +413,6 @@
         "sops-nix": "sops-nix",
         "systems": "systems",
         "treefmt-nix": "treefmt-nix",
-        "upower-notify": "upower-notify",
         "zen-browser": "zen-browser"
       }
     },
@@ -489,29 +488,6 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
-        "type": "github"
-      }
-    },
-    "upower-notify": {
-      "inputs": {
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1763848935,
-        "narHash": "sha256-XtxRvWcLApXAHRCz4kObFncrbbeY0965k1hB9ZcB3+Y=",
-        "owner": "Guanran928",
-        "repo": "upower-notify",
-        "rev": "64c4edec34a8382131f319c78c09aaebac87ede3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Guanran928",
-        "repo": "upower-notify",
         "type": "github"
       }
     },

@@ -21,6 +21,15 @@
     preservation.nixosModules.preservation
   ]);
 
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+  };
+
+  services.desktopManager.plasma6 = {
+    enable = true;
+  };
+
   sops = {
     age.keyFile = "/persist/home/guanranwang/.config/sops/age/keys.txt";
     defaultSopsFile = ./secrets.yaml;
@@ -85,14 +94,9 @@
     neovim = {
       package = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.neovim;
     };
-    niri = {
-      enable = true;
-    };
-    seahorse = {
-      enable = true;
-    };
     ssh = {
       enableAskPassword = true;
+      startAgent = true;
     };
     steam = {
       enable = true;
@@ -106,29 +110,12 @@
 
   services = {
     # keep-sorted start block=yes
-    gnome = {
-      gnome-keyring.enable = true;
-    };
-    greetd = {
-      enable = true;
-      settings.default_session.command = "${lib.getExe pkgs.tuigreet} --cmd niri-session";
-    };
-    gvfs = {
-      enable = true;
-    };
     power-profiles-daemon = {
       enable = true;
-    };
-    speechd = {
-      enable = false;
     };
     tailscale = {
       enable = true;
       extraDaemonFlags = [ "--no-logs-no-support" ];
-    };
-    upower = {
-      enable = true;
-      criticalPowerAction = "PowerOff";
     };
     # keep-sorted end
   };

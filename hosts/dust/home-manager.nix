@@ -20,7 +20,6 @@
     # keep-sorted start
     ANDROID_USER_HOME = "${config.xdg.dataHome}/android";
     CARGO_HOME = "${config.xdg.cacheHome}/cargo";
-    GTK_CSD = 0;
     HISTFILE = "${config.xdg.stateHome}/bash_history";
     MANPAGER = "sh -c 'col -bx | bat -l man -p'";
     MANROFFOPT = "-c";
@@ -43,8 +42,6 @@
       gh
       jq
       libnotify
-      loupe
-      nautilus
       nh
       nil
       nix-diff
@@ -59,16 +56,13 @@
       obs-studio
       playerctl
       prismlauncher
-      pwvucontrol
       python3
       ripgrep
       sbctl
-      seahorse
       sops
       statix
       telegram-desktop
       wl-clipboard
-      xwayland-satellite
       # keep-sorted end
     ])
     ++ [ inputs.rdict.packages.${pkgs.stdenv.hostPlatform.system}.default ];
@@ -114,23 +108,9 @@
 
   services = {
     # keep-sorted start block=yes
-    cliphist = {
-      enable = true;
-      extraOptions = [
-        "-max-items"
-        "100"
-      ];
-    };
     gpg-agent = {
       enable = pkgs.stdenv.hostPlatform.isLinux;
       pinentry.package = pkgs.pinentry-gnome3;
-    };
-    mako = {
-      enable = true;
-      settings = {
-        default-timeout = "5000";
-        layer = "overlay";
-      };
     };
     # keep-sorted end
   };
@@ -146,20 +126,9 @@
       source = ../../home/nvim;
       recursive = true;
     };
-    "niri" = {
-      source = ../../home/niri;
-    };
-    "mimeapps.list" = {
-      force = true;
-    };
   };
 
-  xdg.dataFile = {
-    "applications/mimeapps.list" = {
-      enable = false;
-    };
-  }
-  // (
+  xdg.dataFile =
     [
       # keep-sorted start
       "foot-server"
@@ -177,80 +146,10 @@
         Hidden=true
       '';
     })
-    |> lib.listToAttrs
-  );
-
-  systemd.user.services.swaybg = {
-    Install = {
-      WantedBy = [ "graphical-session.target" ];
-    };
-    Unit = {
-      PartOf = [ "graphical-session.target" ];
-      After = [ "graphical-session.target" ];
-    };
-    Service = {
-      ExecStart = "${lib.getExe pkgs.swaybg} -i ${pkgs.nixos-artwork.wallpapers.nineish-dark-gray.src} -m fill";
-      Restart = "on-failure";
-    };
-  };
-
-  systemd.user.services.polkit-gnome-authentication-agent-1 = {
-    Install = {
-      WantedBy = [ "graphical-session.target" ];
-    };
-    Unit = {
-      PartOf = [ "graphical-session.target" ];
-      After = [ "graphical-session.target" ];
-    };
-    Service = {
-      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-      Restart = "on-failure";
-    };
-  };
-
-  home.pointerCursor = {
-    name = "Adwaita";
-    package = pkgs.adwaita-icon-theme;
-    size = 24;
-    dotIcons.enable = false;
-    gtk.enable = true;
-  };
-
-  gtk = {
-    enable = true;
-
-    # The default bookmarks for Nautilus are usually set by `xdg-user-dirs-gtk` upon login on GNOME.
-    # However, I am not on GNOME, so I'm going to set this myself.
-    gtk3.bookmarks =
-      [
-        "Documents"
-        "Music"
-        "Pictures"
-        "Videos"
-        "Downloads"
-      ]
-      |> map (x: "file://${config.home.homeDirectory}/${x}");
-
-    gtk4 = {
-      theme = null;
-    };
-
-    iconTheme = {
-      name = "Adwaita";
-      package = pkgs.adwaita-icon-theme;
-    };
-
-    theme = {
-      name = "Adwaita-dark";
-      package = pkgs.gnome-themes-extra;
-    };
-  };
+    |> lib.listToAttrs;
 
   dconf.settings = {
     # keep-sorted start block=yes
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-    };
     "org/gnome/desktop/interface" = {
       font-name = "Sans 11";
       document-font-name = "Sans 11";
@@ -258,7 +157,6 @@
     };
     "org/gnome/desktop/wm/preferences" = {
       titlebar-font = "Sans Bold 11";
-      button-layout = "appmenu:";
     };
     "org/gnome/nautilus/list-view" = {
       default-zoom-level = "small";
@@ -289,48 +187,5 @@
     templates = null;
   };
 
-  xdg.mimeApps = {
-    enable = true;
-    defaultApplications =
-      {
-        # https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
-        # keep-sorted start block=yes
-        "mpv.desktop" = [
-          "audio/aac"
-          "audio/flac"
-          "audio/mpeg"
-          "audio/ogg"
-          "audio/wav"
-          "video/mp4"
-          "video/mpeg"
-          "video/webm"
-        ];
-        "nvim.desktop" = [
-          "text/css"
-          "text/javascript"
-          "text/plain"
-        ];
-        "org.gnome.Loupe.desktop" = [
-          "image/gif"
-          "image/jpeg"
-          "image/png"
-          "image/webp"
-        ];
-        "thunderbird.desktop" = [
-          "x-scheme-handler/mailto"
-          "x-scheme-handler/mid"
-        ];
-        "zen-twilight.desktop" = [
-          "text/html"
-          "x-scheme-handler/about"
-          "x-scheme-handler/http"
-          "x-scheme-handler/https"
-          "x-scheme-handler/unknown"
-        ];
-        # keep-sorted end
-      }
-      |> lib.mapAttrsToList lib.nameValuePair
-      |> map (x: lib.genAttrs x.value (_: x.name))
-      |> lib.mkMerge;
-  };
+  fonts.fontconfig.enable = false;
 }

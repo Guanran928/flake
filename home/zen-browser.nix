@@ -37,9 +37,6 @@
 
     policies.Preferences = {
       "browser.tabs.closeWindowWithLastTab" = false;
-      "browser.tabs.inTitlebar" = 0;
-      "zen.theme.content-element-separation" = 0;
-      "zen.view.experimental-no-window-controls" = true;
     };
 
     policies.ExtensionSettings =
