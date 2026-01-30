@@ -15,6 +15,11 @@
     ];
   };
 
+  # Immich needs to download modules from Hugging Face, which is blocked in Mainland China.
+  systemd.services.immich-machine-learning = {
+    environment = config.networking.proxy.envVars;
+  };
+
   services.caddy.settings.apps.http.servers.srv0.routes = lib.singleton {
     match = lib.singleton { host = [ "immich.ny4.dev" ]; };
     handle = lib.singleton {
