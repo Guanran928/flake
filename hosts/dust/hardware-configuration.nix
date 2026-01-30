@@ -50,5 +50,9 @@
     fwupd = {
       enable = true;
     };
+    thermald = {
+      enable = true;
+      ignoreCpuidCheck = true;
+    };
   };
 }
