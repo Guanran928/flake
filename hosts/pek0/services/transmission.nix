@@ -28,4 +28,11 @@ in
       ratio-limit = 2;
     };
   };
+
+  # Only start transmission when the external drive is plugged in.
+  systemd.services.transmission = {
+    bindsTo = [ "mnt.mount" ];
+    after = [ "mnt.mount" ];
+    wantedBy = [ "mnt.mount" ];
+  };
 }
