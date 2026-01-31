@@ -11,6 +11,7 @@
     };
     services.miniflux = {
       serviceConfig.NonBlocking = true;
+      environment = config.networking.proxy.envVars;
     };
   };
 
