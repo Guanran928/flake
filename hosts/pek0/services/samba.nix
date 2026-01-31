@@ -1,4 +1,4 @@
-{ config, ... }:
+{ lib, config, ... }:
 {
   services.samba = {
     enable = true;
@@ -10,6 +10,18 @@
 
   services.samba-wsdd = {
     enable = true;
+  };
+
+  systemd.targets.samba = {
+    bindsTo = [ "mnt.mount" ];
+    after = [ "mnt.mount" ];
+    wantedBy = [ "mnt.mount" ];
+  };
+
+  # NOTE: this defaults to multi-user.target, maybe upstream?
+  systemd.services.samba-wsdd = {
+    partOf = [ "samba.target" ];
+    wantedBy = lib.mkForce [ "samba.target" ];
   };
 
   users.users."guanranwang" = {
