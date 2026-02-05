@@ -7,6 +7,7 @@
 {
   imports = [
     ../../profiles/sing-box
+    ../../profiles/restic
     ./hardware-configuration.nix
   ]
   ++ (with inputs; [ nix-minecraft.nixosModules.minecraft-servers ])

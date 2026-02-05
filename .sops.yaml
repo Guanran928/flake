@@ -39,6 +39,11 @@ creation_rules:
           - *dust
           - *lax0
           - *tyo0
+  - path_regex: ^profiles/restic/secrets.yaml$
+    key_groups:
+      - age:
+          - *dust
+          - *pek0
 
   # opentofu
   - path_regex: ^infra/secrets.yaml$
