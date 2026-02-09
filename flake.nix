@@ -130,12 +130,6 @@
         # nix flake check
         checks.formatting = treefmtEval.config.build.check inputs.self;
 
-        # nix build & nix run
-        packages = pkgs.lib.packagesFromDirectoryRecursive {
-          inherit (pkgs) callPackage;
-          directory = ./pkgs;
-        };
-
         # nix develop
         devShells.default = pkgs.mkShellNoCC {
           packages = with pkgs; [
