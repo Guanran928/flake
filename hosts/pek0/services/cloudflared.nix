@@ -15,7 +15,6 @@
         "mastodon.ny4.dev"
         "matrix.ny4.dev"
         "pb.ny4.dev"
-        "prom.ny4.dev"
         "rss.ny4.dev"
         "vault.ny4.dev"
         # keep-sorted end

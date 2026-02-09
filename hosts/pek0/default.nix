@@ -44,7 +44,13 @@
 
   services.caddy.enable = true;
   services.caddy.settings.apps.http.servers.srv0 = {
-    listen = [ ":80" ];
+    # HTTPS for LAN, HTTP for Cloudflare Tunnels
+    automatic_https.disable_redirects = true;
+    listen = [
+      ":80"
+      ":443"
+    ];
+
     trusted_proxies = {
       ranges = [
         "192.168.0.0/16"
