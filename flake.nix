@@ -63,7 +63,7 @@
       url = "github:Infinidoge/nix-minecraft";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-compat.follows = "";
-      inputs.flake-utils.follows = "flake-utils";
+      inputs.systems.follows = "systems";
     };
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware";

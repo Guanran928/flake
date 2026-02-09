@@ -97,4 +97,4 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
-require("vim._extui").enable({})
+require("vim._core.ui2").enable({})
