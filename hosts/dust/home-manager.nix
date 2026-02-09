@@ -24,6 +24,7 @@
     MANPAGER = "sh -c 'col -bx | bat -l man -p'";
     MANROFFOPT = "-c";
     NH_FLAKE = "${config.home.homeDirectory}/Projects/flake";
+    NIXOS_OZONE_WL = "1";
     PYTHON_HISTORY = "${config.xdg.stateHome}/python_history";
     # keep-sorted end
   };
@@ -54,6 +55,7 @@
       nixpkgs-review
       numbat
       obs-studio
+      obsidian
       playerctl
       prismlauncher
       python3
