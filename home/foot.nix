@@ -5,7 +5,6 @@
     settings = {
       main = {
         font = "monospace:size=10";
-        resize-by-cells = false;
       };
 
       cursor = {
