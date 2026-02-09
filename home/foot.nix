@@ -44,6 +44,10 @@
         "16" = "b6927b";
         "17" = "b98d7b";
       };
+
+      mouse-bindings = {
+        primary-paste = "none";
+      };
     };
   };
 
