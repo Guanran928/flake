@@ -1,0 +1,10 @@
+output:
+  - success
+  - failure
+  - skips
+
+pre-commit:
+  jobs:
+    - name: treefmt-nix
+      run: nix fmt -- {staged_files}
+      stage_fixed: true
