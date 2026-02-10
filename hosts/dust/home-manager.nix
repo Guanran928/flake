@@ -30,6 +30,9 @@
   };
 
   home.packages =
+    let
+      inherit (pkgs.stdenv.hostPlatform) system;
+    in
     (with pkgs; [
       # keep-sorted start
       (osu-lazer-bin.override { nativeWayland = true; })
@@ -67,7 +70,10 @@
       wl-clipboard
       # keep-sorted end
     ])
-    ++ [ inputs.rdict.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+    ++ [
+      inputs.kwin-effects-better-blur-dx.packages.${system}.default
+      inputs.rdict.packages.${system}.default
+    ];
 
   programs = {
     # keep-sorted start block=yes

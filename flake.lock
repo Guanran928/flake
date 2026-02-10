@@ -207,6 +207,29 @@
         "type": "github"
       }
     },
+    "kwin-effects-better-blur-dx": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "utils": [
+          "flake-utils"
+        ]
+      },
+      "locked": {
+        "lastModified": 1770395191,
+        "narHash": "sha256-+3Xi5zsMNvcDx1qSaRDaj4Ylrkc7yZIN1shzrbgPEkg=",
+        "owner": "xarblu",
+        "repo": "kwin-effects-better-blur-dx",
+        "rev": "eb5148ec313dcd26d678bbe9417934acaf3f0207",
+        "type": "github"
+      },
+      "original": {
+        "owner": "xarblu",
+        "repo": "kwin-effects-better-blur-dx",
+        "type": "github"
+      }
+    },
     "lanzaboote": {
       "inputs": {
         "crane": [
@@ -401,6 +424,7 @@
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "ip-checker": "ip-checker",
+        "kwin-effects-better-blur-dx": "kwin-effects-better-blur-dx",
         "lanzaboote": "lanzaboote",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nix-minecraft": "nix-minecraft",
