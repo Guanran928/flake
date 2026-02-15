@@ -22,6 +22,8 @@
     ''
       Vertical Candidate List=True
       PreferTextIcon=True
-      Theme=FluentDark-solid
+      Theme=FluentLight
+      DarkTheme=FluentDark
+      UseDarkTheme=True
     '';
 }
