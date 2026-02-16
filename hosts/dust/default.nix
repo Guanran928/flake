@@ -21,6 +21,14 @@
     preservation.nixosModules.preservation
   ]);
 
+  services.flatpak = {
+    enable = true;
+  };
+
+  boot.plymouth = {
+    enable = true;
+  };
+
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
@@ -133,52 +141,6 @@
       noto-fonts-color-emoji
       # keep-sorted end
     ];
-    fontconfig = {
-      defaultFonts = {
-        emoji = [ "Noto Color Emoji" ];
-        # NOTE: Append emoji font for Qt apps, they might use the monochrome emoji
-        monospace = [
-          "Iosevka"
-          "Noto Sans"
-          "Noto Sans CJK SC"
-          "Symbols Nerd Font"
-          "Noto Color Emoji"
-        ];
-        sansSerif = [
-          "Inter"
-          "Noto Sans"
-          "Noto Sans CJK SC"
-          "Noto Color Emoji"
-        ];
-        serif = [
-          "Noto Serif"
-          "Noto Serif CJK SC"
-          "Noto Color Emoji"
-        ];
-      };
-      # GitHub prefers Noto Sans...
-      # DejaVu Sans from nixpkgs#fontconfig.out
-      localConf =
-        # xml
-        ''
-          <selectfont>
-            <rejectfont>
-              <pattern>
-                <patelt name="family">
-                  <string>Noto Sans</string>
-                </patelt>
-              </pattern>
-            </rejectfont>
-            <rejectfont>
-              <pattern>
-                <patelt name="family">
-                  <string>DejaVu Sans</string>
-                </patelt>
-              </pattern>
-            </rejectfont>
-          </selectfont>
-        '';
-    };
   };
 
   security.pam.u2f = {

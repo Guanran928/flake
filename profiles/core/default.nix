@@ -46,7 +46,6 @@
         # keep-sorted start
         "fcitx5-pinyin-minecraft"
         "fcitx5-pinyin-moegirl"
-        "obsidian"
         "osu-lazer-bin"
         "steam"
         "steam-unwrapped"

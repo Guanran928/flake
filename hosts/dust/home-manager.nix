@@ -24,7 +24,6 @@
     MANPAGER = "sh -c 'col -bx | bat -l man -p'";
     MANROFFOPT = "-c";
     NH_FLAKE = "${config.home.homeDirectory}/Projects/flake";
-    NIXOS_OZONE_WL = "1";
     PYTHON_HISTORY = "${config.xdg.stateHome}/python_history";
     # keep-sorted end
   };
@@ -57,8 +56,6 @@
       nixfmt
       nixpkgs-review
       numbat
-      obs-studio
-      obsidian
       playerctl
       prismlauncher
       python3
@@ -66,7 +63,6 @@
       sbctl
       sops
       statix
-      telegram-desktop
       wl-clipboard
       # keep-sorted end
     ])
@@ -74,6 +70,60 @@
       inputs.kwin-effects-better-blur-dx.packages.${system}.default
       inputs.rdict.packages.${system}.default
     ];
+
+  fonts.fontconfig = {
+    enable = true;
+    defaultFonts = {
+      emoji = [ "Noto Color Emoji" ];
+      # NOTE: Append emoji font for Qt apps, they might use the monochrome emoji
+      monospace = [
+        "Iosevka"
+        "Noto Sans"
+        "Noto Sans CJK SC"
+        "Symbols Nerd Font"
+        "Noto Color Emoji"
+      ];
+      sansSerif = [
+        "Inter"
+        "Noto Sans"
+        "Noto Sans CJK SC"
+        "Noto Color Emoji"
+      ];
+      serif = [
+        "Noto Serif"
+        "Noto Serif CJK SC"
+        "Noto Color Emoji"
+      ];
+    };
+    configFile = {
+      reject-unwanted-fonts = {
+        enable = true;
+        text = # xml
+          ''
+            <?xml version="1.0"?>
+            <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+            <fontconfig>
+              <selectfont>
+                <rejectfont>
+                  <pattern>
+                    <patelt name="family">
+                      <string>Noto Sans</string>
+                    </patelt>
+                  </pattern>
+                </rejectfont>
+                <rejectfont>
+                  <pattern>
+                    <patelt name="family">
+                      <string>DejaVu Sans</string>
+                    </patelt>
+                  </pattern>
+                </rejectfont>
+              </selectfont>
+            </fontconfig>
+          '';
+      };
+    };
+  };
 
   programs = {
     # keep-sorted start block=yes
@@ -195,6 +245,4 @@
     publicShare = null;
     templates = null;
   };
-
-  fonts.fontconfig.enable = false;
 }
