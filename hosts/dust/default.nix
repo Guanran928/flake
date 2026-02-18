@@ -29,14 +29,21 @@
     enable = true;
   };
 
-  services.displayManager.sddm = {
+  services.displayManager.plasma-login-manager = {
     enable = true;
-    wayland.enable = true;
   };
 
   services.desktopManager.plasma6 = {
     enable = true;
   };
+
+  # GNOME Keyring / KWallet requires logging in with password.
+  security.pam.services.login = {
+    fprintAuth = false;
+    u2fAuth = false;
+  };
+
+  environment.plasma6.excludePackages = [ pkgs.kdePackages.kwin-x11 ];
 
   sops = {
     age.keyFile = "/persist/home/guanranwang/.config/sops/age/keys.txt";
