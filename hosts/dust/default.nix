@@ -99,13 +99,6 @@
     fish = {
       enable = true;
     };
-    gtklock = {
-      enable = true;
-      modules = with pkgs; [
-        gtklock-playerctl-module
-        gtklock-powerbar-module
-      ];
-    };
     neovim = {
       package = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.neovim;
     };
