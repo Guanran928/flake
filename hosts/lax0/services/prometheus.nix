@@ -115,7 +115,13 @@ in
             }
             {
               alert = "DiskFull";
-              expr = ''node_filesystem_avail_bytes{fstype=~"btrfs|ext4"} / node_filesystem_size_bytes < 0.1 and node_filesystem_avail_bytes < 10_000_000_000'';
+              expr = ''
+                topk by (instance, device) (1,
+                  (node_filesystem_avail_bytes{fstype=~"btrfs|ext4"} / node_filesystem_size_bytes < 0.1)
+                  and
+                  (node_filesystem_avail_bytes < 10000000000)
+                )
+              '';
               annotations.summary = "Low disk space on {{ $labels.instance }}";
             }
             {
