@@ -17,13 +17,11 @@
     };
   };
 
-  xdg.configFile."fcitx5/conf/classicui.conf".text =
-    # ini
-    ''
-      Vertical Candidate List=True
-      PreferTextIcon=True
-      Theme=FluentLight
-      DarkTheme=FluentDark
-      UseDarkTheme=True
-    '';
+  xdg.configFile."fcitx5/conf/classicui.conf".text = /* ini */ ''
+    Vertical Candidate List=True
+    PreferTextIcon=True
+    Theme=FluentLight
+    DarkTheme=FluentDark
+    UseDarkTheme=True
+  '';
 }

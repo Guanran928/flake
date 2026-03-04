@@ -3,18 +3,15 @@
   programs.fish = {
     enable = true;
 
-    interactiveShellInit =
-      # fish
-      ''
-        set fish_greeting
-      '';
+    interactiveShellInit = /* fish */ ''
+      set fish_greeting
+    '';
 
     shellInit =
       let
         tide = pkgs.fishPlugins.tide.src + "/functions/tide/configure";
       in
-      # fish
-      ''
+      /* fish */ ''
         string replace -r '^' 'set -g ' < ${tide}/icons.fish | source
         string replace -r '^' 'set -g ' < ${tide}/configs/lean.fish | source
         string replace -r '^' 'set -g ' < ${tide}/configs/lean_16color.fish | source
@@ -65,8 +62,7 @@
         jq = lib.getExe pkgs.jq;
         curl = lib.getExe pkgs.curl;
       in
-      # fish
-      ''
+      /* fish */ ''
         ${jq} -Rns '{text: inputs}' | \
           ${curl} -s -H 'Content-Type: application/json' --data-binary @- https://pb.ny4.dev | \
           ${jq} -r '. | "https://pb.ny4.dev\(.path)"'

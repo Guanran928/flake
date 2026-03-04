@@ -98,29 +98,28 @@
     configFile = {
       reject-unwanted-fonts = {
         enable = true;
-        text = # xml
-          ''
-            <?xml version="1.0"?>
-            <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
-            <fontconfig>
-              <selectfont>
-                <rejectfont>
-                  <pattern>
-                    <patelt name="family">
-                      <string>Noto Sans</string>
-                    </patelt>
-                  </pattern>
-                </rejectfont>
-                <rejectfont>
-                  <pattern>
-                    <patelt name="family">
-                      <string>DejaVu Sans</string>
-                    </patelt>
-                  </pattern>
-                </rejectfont>
-              </selectfont>
-            </fontconfig>
-          '';
+        text = /* xml */ ''
+          <?xml version="1.0"?>
+          <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+          <fontconfig>
+            <selectfont>
+              <rejectfont>
+                <pattern>
+                  <patelt name="family">
+                    <string>Noto Sans</string>
+                  </patelt>
+                </pattern>
+              </rejectfont>
+              <rejectfont>
+                <pattern>
+                  <patelt name="family">
+                    <string>DejaVu Sans</string>
+                  </patelt>
+                </pattern>
+              </rejectfont>
+            </selectfont>
+          </fontconfig>
+        '';
       };
     };
   };
@@ -199,7 +198,7 @@
     ]
     |> map (x: {
       name = "applications/${x}.desktop";
-      value.text = ''
+      value.text = /* ini */ ''
         [Desktop Entry]
         Hidden=true
       '';
