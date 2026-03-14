@@ -32,8 +32,6 @@ opt.sidescrolloff = 8
 -- Searching
 opt.ignorecase = true
 opt.smartcase = true
-opt.grepformat = "%f:%l:%c:%m"
-opt.grepprg = "rg --vimgrep"
 
 -- System integration
 -- https://github.com/nvim-lua/kickstart.nvim/blob/7201dc480134f41dd1be1f8f9b8f8470aac82a3b/init.lua#L113-L119

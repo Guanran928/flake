@@ -14,24 +14,27 @@
       ++ [ "https://nix-community.cachix.org" ];
     trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
 
+    flake-registry = "";
+    trusted-users = [ "@wheel" ];
+
     experimental-features = [
       # keep-sorted start
       "auto-allocate-uids"
       "cgroups"
       "flakes"
       "nix-command"
-      "no-url-literals"
       "pipe-operators"
       # keep-sorted end
     ];
-    flake-registry = "";
-    trusted-users = [ "@wheel" ];
+
+    # keep-sorted start
     allow-import-from-derivation = false;
     auto-allocate-uids = true;
     auto-optimise-store = true;
     builders-use-substitutes = true;
     use-cgroups = true;
     use-xdg-base-directories = true;
+    # keep-sorted end
   };
 
   nix = {

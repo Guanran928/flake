@@ -106,10 +106,6 @@
       enableAskPassword = true;
       startAgent = true;
     };
-    steam = {
-      enable = true;
-      package = pkgs.steam.override { extraArgs = "-system-composer"; };
-    };
     yubikey-manager = {
       enable = true;
     };

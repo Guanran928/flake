@@ -16,7 +16,7 @@
       };
 
       # kanagawa-dragon
-      colors = {
+      colors-dark = {
         foreground = "c5c9c5";
         background = "181616";
         selection-foreground = "C8C093";

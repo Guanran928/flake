@@ -21,8 +21,7 @@
     ANDROID_USER_HOME = "${config.xdg.dataHome}/android";
     CARGO_HOME = "${config.xdg.cacheHome}/cargo";
     HISTFILE = "${config.xdg.stateHome}/bash_history";
-    MANPAGER = "sh -c 'col -bx | bat -l man -p'";
-    MANROFFOPT = "-c";
+    MANPAGER = "bat -plman";
     NH_FLAKE = "${config.home.homeDirectory}/Projects/flake";
     PYTHON_HISTORY = "${config.xdg.stateHome}/python_history";
     # keep-sorted end
@@ -34,18 +33,27 @@
     in
     (with pkgs; [
       # keep-sorted start
-      (osu-lazer-bin.override { nativeWayland = true; })
       android-tools
       bat
       brightnessctl
-      deadnix
       eza
       fd
       gcc
       gh
       jq
       libnotify
+      numbat
+      playerctl
+      python3
+      ripgrep
+      sbctl
+      sops
+      wl-clipboard
+      # keep-sorted end
+
+      # keep-sorted start
       nh
+      deadnix
       nil
       nix-diff
       nix-index
@@ -55,15 +63,7 @@
       nix-update
       nixfmt
       nixpkgs-review
-      numbat
-      playerctl
-      prismlauncher
-      python3
-      ripgrep
-      sbctl
-      sops
       statix
-      wl-clipboard
       # keep-sorted end
     ])
     ++ [
@@ -114,6 +114,13 @@
                 <pattern>
                   <patelt name="family">
                     <string>DejaVu Sans</string>
+                  </patelt>
+                </pattern>
+              </rejectfont>
+              <rejectfont>
+                <pattern>
+                  <patelt name="family">
+                    <string>Liberation Mono</string>
                   </patelt>
                 </pattern>
               </rejectfont>

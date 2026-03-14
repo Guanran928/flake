@@ -4,7 +4,6 @@
 
   programs.zen-browser = {
     enable = true;
-    suppressXdgMigrationWarning = true;
 
     policies = {
       DisableFirefoxStudies = true;
