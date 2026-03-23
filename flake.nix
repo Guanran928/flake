@@ -73,11 +73,6 @@
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware";
     };
-    nixpkgs-tracker = {
-      url = "github:Guanran928/nixpkgs-tracker";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
-    };
     preservation = {
       url = "github:WilliButz/preservation";
     };

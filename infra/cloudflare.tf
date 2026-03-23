@@ -54,7 +54,6 @@ locals {
     "cxk"     = "tyo0.ny4.dev"
     "element" = "tyo0.ny4.dev"
     "ip"      = "tyo0.ny4.dev"
-    "nix"     = "tyo0.ny4.dev"
     "sub"     = "tyo0.ny4.dev"
     "www"     = "tyo0.ny4.dev"
     # keep-sorted end
