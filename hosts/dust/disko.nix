@@ -51,19 +51,6 @@ in
                 };
               };
             };
-            "cryptswap" = {
-              size = "100%";
-              content = {
-                type = "luks";
-                name = "cryptswap";
-                passwordFile = "/tmp/secret.key";
-                settings = cryptSettings;
-                content = {
-                  type = "swap";
-                  resumeDevice = true;
-                };
-              };
-            };
           };
         };
       };
