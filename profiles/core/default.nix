@@ -36,7 +36,6 @@
         "rustc-bootstrap-wrapper"
         "sof-firmware"
         "temurin-bin"
-        "zen-twilight"
         # keep-sorted end
       ];
 
