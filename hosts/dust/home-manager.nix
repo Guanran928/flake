@@ -213,6 +213,7 @@
   # Nautilus needs to read `~/.config/user-dirs.dirs` to determine folder icons
   xdg.userDirs = {
     enable = true;
+    setSessionVariables = false;
     desktop = null;
     publicShare = null;
     templates = null;

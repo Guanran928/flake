@@ -59,11 +59,6 @@
       inputs.pre-commit.follows = "";
       inputs.rust-overlay.follows = "rust-overlay";
     };
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
-    };
     nix-minecraft = {
       url = "github:Infinidoge/nix-minecraft";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -95,10 +90,6 @@
     # keep-sorted start block=yes
     crane = {
       url = "github:ipetkov/crane";
-    };
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs-lib.follows = "nixpkgs";
     };
     rust-overlay = {
       url = "github:oxalica/rust-overlay";

@@ -99,9 +99,6 @@
     fish = {
       enable = true;
     };
-    neovim = {
-      package = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.neovim;
-    };
     ssh = {
       enableAskPassword = true;
       startAgent = true;
