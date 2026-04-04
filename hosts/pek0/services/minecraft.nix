@@ -11,7 +11,8 @@
     servers.survival = rec {
       enable = true;
       package =
-        inputs.nix-minecraft.legacyPackages.${pkgs.stdenv.hostPlatform.system}.fabricServers.fabric-1_21_11;
+        inputs.nix-minecraft.legacyPackages.${pkgs.stdenv.hostPlatform.system}.fabricServers.fabric-26_1_1.override
+          { jre_headless = pkgs.openjdk25.headless; };
 
       # Aikar's flag
       # https://aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft/
@@ -70,23 +71,23 @@
         [
           {
             # Telegram Bridge
-            url = "https://cdn.modrinth.com/data/QI59B2cO/versions/QgZI7iZs/tgbridge-0.9.1-fabric.jar";
-            hash = "sha256-GXlY2ma0Io89ofvdcIgTQZUlWoHgezSNFp/3ofHZ148=";
+            url = "https://cdn.modrinth.com/data/QI59B2cO/versions/7sbOIfCX/tgbridge-0.9.6-fabric.jar";
+            hash = "sha256-pxzPhnfgBZe4EIFm1b1gPC37EB4slaooN3ywx7oPjcQ=";
           }
           {
             # Simple Voice Chat
-            url = "https://cdn.modrinth.com/data/9eGKb6K1/versions/T42QJY4i/voicechat-fabric-1.21.11-2.6.10.jar";
-            hash = "sha256-Bw++uNpoCuu7bQE/PSagtVFLBgoNKbtbBzSNBmbrGO0=";
+            url = "https://cdn.modrinth.com/data/9eGKb6K1/versions/4cjovAfF/voicechat-fabric-2.6.15+26.1.1.jar";
+            hash = "sha256-fqIWVG6KO+hpDeOQaQ4ctTzO4blWeiNb0s+EoV+yMiY=";
           }
           {
             # Fabric API
-            url = "https://cdn.modrinth.com/data/P7dR8mSH/versions/gB6TkYEJ/fabric-api-0.140.2%2B1.21.11.jar";
-            hash = "sha256-t8RYO3/EihF5gsxZuizBDFO3K+zQHSXkAnCUgSb4QyE=";
+            url = "https://cdn.modrinth.com/data/P7dR8mSH/versions/G0yfY6x2/fabric-api-0.145.3+26.1.1.jar";
+            hash = "sha256-oOKFvhTKFWtImPCTQrKRrerzSSrC36juhwLLM7HqujQ=";
           }
           {
             # Fabric Language Kotlin
-            url = "https://cdn.modrinth.com/data/Ha28R6CL/versions/N6D3uiZF/fabric-language-kotlin-1.13.8%2Bkotlin.2.3.0.jar";
-            hash = "sha256-dglT2NPR+jKjU1k9dE4pF9ipHKiSOulRi17yZ2pjEAI=";
+            url = "https://cdn.modrinth.com/data/Ha28R6CL/versions/21TRTKmh/fabric-language-kotlin-1.13.10+kotlin.2.3.20.jar";
+            hash = "sha256-8ojwJz+p1ZKweGn6K7173KJ0mYo4uH64SFwQlCCSHio=";
           }
         ]
         |> map pkgs.fetchurl
