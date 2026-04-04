@@ -7,13 +7,6 @@
     };
 
     # keep-sorted start block=yes
-    chicken-box = {
-      url = "github:Guanran928/chicken-box";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.systems.follows = "systems";
-      inputs.treefmt-nix.follows = "treefmt-nix";
-    };
     colmena = {
       url = "github:zhaofengli/colmena";
       inputs.nixpkgs.follows = "nixpkgs";

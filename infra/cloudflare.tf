@@ -51,7 +51,6 @@ locals {
     "@"       = "tyo0.ny4.dev"
     "bird-lg" = "tyo0.ny4.dev"
     "cinny"   = "tyo0.ny4.dev"
-    "cxk"     = "tyo0.ny4.dev"
     "element" = "tyo0.ny4.dev"
     "ip"      = "tyo0.ny4.dev"
     "sub"     = "tyo0.ny4.dev"

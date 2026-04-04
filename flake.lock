@@ -1,34 +1,5 @@
 {
   "nodes": {
-    "chicken-box": {
-      "inputs": {
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "systems": [
-          "systems"
-        ],
-        "treefmt-nix": [
-          "treefmt-nix"
-        ]
-      },
-      "locked": {
-        "lastModified": 1767204640,
-        "narHash": "sha256-/BOPA6D/+nKOWooCf0gJWg01HrjK85ps8dQm5p7B4iM=",
-        "owner": "Guanran928",
-        "repo": "chicken-box",
-        "rev": "f9a479e8aac72a0b3fdb01ed4597e1b73fb8c470",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Guanran928",
-        "repo": "chicken-box",
-        "type": "github"
-      }
-    },
     "colmena": {
       "inputs": {
         "flake-compat": [],
@@ -332,7 +303,6 @@
     },
     "root": {
       "inputs": {
-        "chicken-box": "chicken-box",
         "colmena": "colmena",
         "crane": "crane",
         "danbooru_img_bot": "danbooru_img_bot",
