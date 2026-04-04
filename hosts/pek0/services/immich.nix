@@ -2,7 +2,6 @@
 {
   services.immich = {
     enable = true;
-    database.enableVectors = false;
     # TODO: expose the config
     environment.IMMICH_CONFIG_FILE = config.sops.secrets."immich/config".path;
   };
