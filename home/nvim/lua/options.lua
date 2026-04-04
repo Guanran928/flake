@@ -52,16 +52,6 @@ opt.cmdheight = 0 -- Remove gap between lualine and tmux
 opt.signcolumn = "yes" -- Prevents shifting
 opt.fillchars = { eob = " " } -- Remove tilde on empty lines
 
--- Restore cursor after exit
--- https://codeberg.org/dnkl/foot/issues/1891#issuecomment-2557228
-vim.api.nvim_create_autocmd("VimLeave", {
-  pattern = "*",
-  callback = function()
-    opt.guicursor = ""
-    vim.fn.chansend(vim.v.stderr, "\x1b[ q")
-  end,
-})
-
 vim.diagnostic.config({
   virtual_text = {
     -- HACK: There is a space before the diagnostic text for some
@@ -82,17 +72,6 @@ vim.diagnostic.config({
 })
 
 vim.lsp.inlay_hint.enable()
-
-vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function(args)
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    if not client then
-      return
-    end
-    if client:supports_method("textDocument/documentColor") then
-      vim.lsp.document_color.enable(true, args.buf)
-    end
-  end,
-})
+vim.lsp.document_color.enable()
 
 require("vim._core.ui2").enable({})
