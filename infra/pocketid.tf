@@ -1,3 +1,13 @@
+output "oidc" {
+  value = {
+    immich   = pocketid_client.immich.id
+    mastodon = pocketid_client.mastodon.id
+    miniflux = pocketid_client.miniflux.id
+    rustical = pocketid_client.rustical.id
+    synapse  = pocketid_client.synapse.id
+  }
+}
+
 # keep-sorted start block=yes newline_separated=yes
 resource "pocketid_client" "immich" {
   name = "Immich"

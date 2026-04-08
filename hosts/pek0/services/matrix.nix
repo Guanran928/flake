@@ -2,6 +2,7 @@
   lib,
   config,
   ports,
+  data,
   ...
 }:
 let
@@ -39,7 +40,7 @@ in
         idp_id = "pocket-id";
         idp_name = "id.ny4.dev";
         issuer = "https://id.ny4.dev";
-        client_id = "32238772-8bf1-4f03-9bc0-bc37d1362315";
+        client_id = data.oidc.value.synapse;
         client_secret_path = config.sops.secrets."synapse/oidc".path;
         scopes = [
           "openid"

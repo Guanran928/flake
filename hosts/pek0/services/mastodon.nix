@@ -2,6 +2,7 @@
   lib,
   pkgs,
   config,
+  data,
   ...
 }:
 {
@@ -21,7 +22,7 @@
 
       OMNIAUTH_ONLY = "true";
       OIDC_ENABLED = "true";
-      OIDC_CLIENT_ID = "0ebb58af-9bc9-47ee-9cdd-4ca05c17bc9f";
+      OIDC_CLIENT_ID = data.oidc.value.mastodon;
       # OIDC_CLIENT_SECRET # EnvironmentFile
       OIDC_DISCOVERY = "true";
       OIDC_DISPLAY_NAME = "id.ny4.dev";

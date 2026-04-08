@@ -1,0 +1,22 @@
+{
+  "oidc": {
+    "sensitive": false,
+    "type": [
+      "object",
+      {
+        "immich": "string",
+        "mastodon": "string",
+        "miniflux": "string",
+        "rustical": "string",
+        "synapse": "string"
+      }
+    ],
+    "value": {
+      "immich": "8ce267c4-9fa1-4585-9d2b-bf4c7e6f7437",
+      "mastodon": "0ebb58af-9bc9-47ee-9cdd-4ca05c17bc9f",
+      "miniflux": "f3dce354-5be8-42dd-8579-4773d2f32ce0",
+      "rustical": "7d1dec55-1da7-44eb-a1ce-3ce24d73414b",
+      "synapse": "32238772-8bf1-4f03-9bc0-bc37d1362315"
+    }
+  }
+}

@@ -2,6 +2,7 @@
   lib,
   config,
   ports,
+  data,
   ...
 }:
 let
@@ -20,7 +21,7 @@ in
       oidc = {
         name = "id.ny4.dev";
         issuer = "https://id.ny4.dev";
-        client_id = "7d1dec55-1da7-44eb-a1ce-3ce24d73414b";
+        client_id = data.oidc.value.rustical;
         scopes = [
           "openid"
           "profile"

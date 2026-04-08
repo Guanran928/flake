@@ -148,7 +148,10 @@
 
       colmenaHive = inputs.colmena.lib.makeHive {
         meta = {
-          specialArgs.inputs = inputs;
+          specialArgs = {
+            inputs = inputs;
+            data = ./infra/data.json |> builtins.readFile |> builtins.fromJSON;
+          };
           nixpkgs = import inputs.nixpkgs { system = "x86_64-linux"; };
         };
 
