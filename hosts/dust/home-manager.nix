@@ -52,8 +52,8 @@
       # keep-sorted end
 
       # keep-sorted start
-      nh
       deadnix
+      nh
       nil
       nix-diff
       nix-index

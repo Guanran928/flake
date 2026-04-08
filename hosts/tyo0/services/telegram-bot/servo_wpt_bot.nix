@@ -1,8 +1,4 @@
-{
-  pkgs,
-  config,
-  ...
-}:
+{ pkgs, config, ... }:
 {
   systemd.timers.tg-servo_wpt_bot = {
     wantedBy = [ "timers.target" ];
