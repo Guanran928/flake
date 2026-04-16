@@ -23,9 +23,14 @@
   services.miniflux = {
     enable = true;
     adminCredentialsFile = config.sops.secrets."miniflux/environment".path;
+
     config = {
       CREATE_ADMIN = 0;
       BASE_URL = "https://rss.ny4.dev";
+
+      # TODO: remove on next release
+      # https://github.com/miniflux/v2/issues/4219
+      FETCHER_ALLOW_PRIVATE_NETWORKS = "true";
 
       DISABLE_LOCAL_AUTH = "true";
       OAUTH2_USER_CREATION = "true";
