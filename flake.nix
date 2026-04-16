@@ -56,6 +56,10 @@
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware";
     };
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     preservation = {
       url = "github:WilliButz/preservation";
     };
@@ -130,13 +134,20 @@
       nixosModules = import ./modules;
 
       nixosConfigurations = {
-        "dust" = inputs.nixpkgs.lib.nixosSystem {
+        dust = inputs.nixpkgs.lib.nixosSystem {
           specialArgs.inputs = inputs;
           system = "x86_64-linux";
           modules = [
             ./profiles/core
             ./hosts/dust
           ];
+        };
+
+        # wsl
+        nixos = inputs.nixpkgs.lib.nixosSystem {
+          specialArgs.inputs = inputs;
+          system = "x86_64-linux";
+          modules = [ ./hosts/wsl ];
         };
       }
       // inputs.self.colmenaHive.nodes;
