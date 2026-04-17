@@ -1,3 +1,9 @@
+output "cloudflared" {
+  value = {
+    pek0 = cloudflare_zero_trust_tunnel_cloudflared.pek0.id
+  }
+}
+
 locals {
   cloudflare_zone_id    = cloudflare_zone.ny4.id
   cloudflare_account_id = "af3504d3b07107975feaa691beae1553"
