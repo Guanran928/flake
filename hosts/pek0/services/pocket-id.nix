@@ -9,8 +9,6 @@
       UNIX_SOCKET_MODE = "0660";
 
       DB_CONNECTION_STRING = "postgresql://pocket-id@/pocket-id?host=/run/postgresql";
-
-      ANALYTICS_DISABLED = true;
     };
   };
 
