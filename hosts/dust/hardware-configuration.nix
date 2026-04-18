@@ -22,6 +22,10 @@
     kernelModules = [ "kvm-intel" ];
   };
 
+  hardware.bluetooth = {
+    enable = true;
+  };
+
   hardware.firmware = with pkgs; [
     linux-firmware
     alsa-firmware
