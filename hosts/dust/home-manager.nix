@@ -63,10 +63,7 @@
       statix
       # keep-sorted end
     ])
-    ++ [
-      inputs.kwin-effects-better-blur-dx.packages.${system}.default
-      inputs.rdict.packages.${system}.default
-    ];
+    ++ [ inputs.rdict.packages.${system}.default ];
 
   fonts.fontconfig = {
     enable = true;

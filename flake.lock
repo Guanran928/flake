@@ -158,29 +158,6 @@
         "type": "github"
       }
     },
-    "kwin-effects-better-blur-dx": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "utils": [
-          "flake-utils"
-        ]
-      },
-      "locked": {
-        "lastModified": 1775745746,
-        "narHash": "sha256-JvaizbBY5Je3Dfu2w76hK2tQPP+rKqbMuj1yAWpsMyM=",
-        "owner": "xarblu",
-        "repo": "kwin-effects-better-blur-dx",
-        "rev": "2a7aeef5e2134b7b946b98003ac7879e855bfd8a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "xarblu",
-        "repo": "kwin-effects-better-blur-dx",
-        "type": "github"
-      }
-    },
     "lanzaboote": {
       "inputs": {
         "crane": [
@@ -310,7 +287,6 @@
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "ip-checker": "ip-checker",
-        "kwin-effects-better-blur-dx": "kwin-effects-better-blur-dx",
         "lanzaboote": "lanzaboote",
         "nix-minecraft": "nix-minecraft",
         "nixos-hardware": "nixos-hardware",
