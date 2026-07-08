@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs = {
-      url = "github:Guanran928/nixpkgs";
+      url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     };
 
     # keep-sorted start block=yes
@@ -41,7 +41,7 @@
       inputs.treefmt-nix.follows = "treefmt-nix";
     };
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v1.0.0";
+      url = "github:nix-community/lanzaboote/v1.1.0";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.crane.follows = "crane";
       inputs.pre-commit.follows = "";
@@ -115,7 +115,7 @@
               ]
             ))
 
-            colmena
+            inputs.colmena.packages.${pkgs.stdenv.hostPlatform.system}.colmena
             sops
 
             lua-language-server
@@ -144,7 +144,7 @@
       colmenaHive = inputs.colmena.lib.makeHive {
         meta = {
           specialArgs = {
-            inputs = inputs;
+            inherit inputs;
             data = ./infra/data.json |> builtins.readFile |> builtins.fromJSON;
           };
           nixpkgs = import inputs.nixpkgs { system = "x86_64-linux"; };

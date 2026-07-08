@@ -10,6 +10,7 @@
     tunnels.${data.cloudflared.value.pek0} = {
       credentialsFile = config.sops.secrets."cloudflared/secret".path;
       default = "http_status:404";
+      protocol = "http2"; # QUIC is quite unstable in Mainland China
       ingress = lib.genAttrs [
         "pek0.ny4.dev"
 
@@ -25,10 +26,6 @@
         # keep-sorted end
       ] (_: "http://[::1]");
     };
-  };
-
-  systemd.services."cloudflared-tunnel-${data.cloudflared.value.pek0}" = {
-    environment.TUNNEL_TRANSPORT_PROTOCOL = "http2"; # QUIC is quite unstable in Mainland China
   };
 
   sops.secrets."cloudflared/secret".restartUnits = [
