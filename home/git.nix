@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   programs.git = rec {
     enable = true;
     package = pkgs.gitFull; # overriding takes forever to compile

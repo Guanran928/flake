@@ -1,5 +1,4 @@
-{ lib, config, ... }:
-{
+{ lib, config, ... }: {
   programs.foot = {
     enable = true;
     settings = {

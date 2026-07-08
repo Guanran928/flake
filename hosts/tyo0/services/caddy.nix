@@ -1,5 +1,4 @@
-{ lib, pkgs, ... }:
-{
+{ lib, pkgs, ... }: {
   services.caddy.enable = true;
   services.caddy.settings.apps.http.servers.srv0 = {
     listen = [ ":443" ];

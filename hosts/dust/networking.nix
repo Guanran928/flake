@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
   sops.secrets = {
     "wireless/Galaxy S24 EC54" = { };
     "wireless/XYC-SEEWO" = { };
