@@ -11,11 +11,10 @@ in
 {
   services.rustical = {
     enable = true;
-    environmentFile = config.sops.secrets."rustical/environment".path;
+    environmentFiles = [ config.sops.secrets."rustical/environment".path ];
     settings = {
       http = {
-        inherit port;
-        host = "[::1]";
+        bind = "[::1]:${toString port}";
       };
 
       oidc = {

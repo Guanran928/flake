@@ -108,12 +108,12 @@
     ssh = {
       enable = true;
       enableDefaultConfig = false;
-      matchBlocks = {
+      settings = {
         "*.ny4.dev" = {
-          user = "root";
+          User = "root";
         };
         "pek0.ny4.dev" = {
-          hostname = "pek0"; # tailscale magicdns
+          HostName = "pek0"; # tailscale magicdns
         };
       };
     };
