@@ -1,6 +1,7 @@
 result
 result-*
 
+/.gcroots
 /.direnv
 
 /infra/.terraform
