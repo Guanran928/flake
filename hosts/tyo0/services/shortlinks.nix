@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{ lib, ... }: {
   services.caddy.settings.apps.http.servers.srv0.routes =
     [
       {

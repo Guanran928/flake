@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+{ config, ... }: {
   sops.secrets."wg-privatekey" = {
     owner = "systemd-network";
     restartUnits = [ "systemd-networkd.service" ];

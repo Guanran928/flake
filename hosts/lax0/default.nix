@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{ lib, ... }: {
   imports = [
     ./hardware-configuration.nix
     ../../modules/dn42.nix

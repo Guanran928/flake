@@ -1,5 +1,4 @@
-{ lib, config, ... }:
-{
+{ lib, config, ... }: {
   services.pocket-id = {
     enable = true;
     settings = {

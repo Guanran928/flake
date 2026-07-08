@@ -1,5 +1,4 @@
-{ inputs, ... }:
-{
+{ inputs, ... }: {
   imports = with inputs.nixos-hardware.nixosModules; [
     apple-macbook-pro
     common-cpu-intel

@@ -1,5 +1,4 @@
-{ lib, config, ... }:
-{
+{ lib, config, ... }: {
   services.samba = {
     enable = true;
     settings."external" = {

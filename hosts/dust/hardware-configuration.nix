@@ -1,5 +1,4 @@
-{ inputs, pkgs, ... }:
-{
+{ inputs, pkgs, ... }: {
   imports = [ inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-12th-gen ];
 
   boot.lanzaboote = {

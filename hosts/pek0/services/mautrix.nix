@@ -1,5 +1,4 @@
-{ config, ports, ... }:
-{
+{ config, ports, ... }: {
   services.mautrix-telegram = {
     enable = true;
     environmentFile = config.sops.secrets."mautrix-telegram/environment".path;

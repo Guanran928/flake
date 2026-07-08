@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{ lib, ... }: {
   imports = [ ./prometheus.nix ];
 
   # keep-sorted start block=yes newline_separated=yes

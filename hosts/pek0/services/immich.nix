@@ -1,5 +1,4 @@
-{ config, lib, ... }:
-{
+{ config, lib, ... }: {
   services.immich = {
     enable = true;
     # TODO: expose the config
