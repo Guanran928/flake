@@ -11,7 +11,7 @@
     servers.survival = rec {
       enable = true;
       package =
-        inputs.nix-minecraft.legacyPackages.${pkgs.stdenv.hostPlatform.system}.fabricServers.fabric-26_1_1.override
+        inputs.nix-minecraft.legacyPackages.${pkgs.stdenv.hostPlatform.system}.fabricServers.fabric-26_2.override
           { jre_headless = pkgs.openjdk25.headless; };
 
       # Aikar's flag
@@ -71,23 +71,28 @@
         [
           {
             # Telegram Bridge
-            url = "https://cdn.modrinth.com/data/QI59B2cO/versions/7sbOIfCX/tgbridge-0.9.6-fabric.jar";
-            hash = "sha256-pxzPhnfgBZe4EIFm1b1gPC37EB4slaooN3ywx7oPjcQ=";
+            url = "https://cdn.modrinth.com/data/QI59B2cO/versions/84vGfeQP/tgbridge-0.9.10-fabric.jar";
+            hash = "sha256-gTcJSl8STSepgyeQmaQ6kaZRjxVLiNXmcP02APPJwqE=";
           }
           {
             # Simple Voice Chat
-            url = "https://cdn.modrinth.com/data/9eGKb6K1/versions/4cjovAfF/voicechat-fabric-2.6.15+26.1.1.jar";
-            hash = "sha256-fqIWVG6KO+hpDeOQaQ4ctTzO4blWeiNb0s+EoV+yMiY=";
+            url = "https://cdn.modrinth.com/data/9eGKb6K1/versions/bvaEHE2T/voicechat-fabric-2.6.20%2B26.2.jar";
+            hash = "sha256-Y1emeQirNSx7hN3tcqwaUfJVAo7xP5jcEJVBuU/jRkU=";
           }
           {
             # Fabric API
-            url = "https://cdn.modrinth.com/data/P7dR8mSH/versions/G0yfY6x2/fabric-api-0.145.3+26.1.1.jar";
-            hash = "sha256-oOKFvhTKFWtImPCTQrKRrerzSSrC36juhwLLM7HqujQ=";
+            url = "https://cdn.modrinth.com/data/P7dR8mSH/versions/Kr4WG5mG/fabric-api-0.154.2%2B26.2.jar";
+            hash = "sha256-BebDzJi8U0rvfx8Eg8C7/RRUvRzzd1GHH4/xpm6ddEY=";
           }
           {
             # Fabric Language Kotlin
-            url = "https://cdn.modrinth.com/data/Ha28R6CL/versions/21TRTKmh/fabric-language-kotlin-1.13.10+kotlin.2.3.20.jar";
-            hash = "sha256-8ojwJz+p1ZKweGn6K7173KJ0mYo4uH64SFwQlCCSHio=";
+            url = "https://cdn.modrinth.com/data/Ha28R6CL/versions/Pd0xrHCw/fabric-language-kotlin-1.13.12%2Bkotlin.2.4.0.jar";
+            hash = "sha256-NsXdi3KONHDSiCrmMRm5OiBQD8Dqb1yUXBK/ZbWrGDI=";
+          }
+          {
+            # Distant Horizon
+            url = "https://cdn.modrinth.com/data/uCdwusMi/versions/gBf0SaV1/DistantHorizons-3.2.0-b-26.2-fabric-neoforge.jar";
+            hash = "sha256-+3pg+gZ3XSCP9HzkuYxmjNxSdEnDfaSoBoaVeURWNJ8=";
           }
         ]
         |> map pkgs.fetchurl
